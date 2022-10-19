@@ -11,7 +11,7 @@
   <title>nar-left</title>
   <link rel="stylesheet"
         type="text/css"
-        href="asset/css/nav-left.css">
+        href="../asset/css/nav-left.css">
 </head>
 <body>
 <div class="tab">

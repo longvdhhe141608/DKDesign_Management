@@ -11,7 +11,7 @@
     <title>Trang chủ</title>
     <link rel="stylesheet"
           type="text/css"
-          href="asset/css/home.css">
+          href="../asset/css/home.css">
 </head>
 <body>
 <%@include file="header.jsp" %>
