@@ -1,9 +1,9 @@
-package DkDesignManagement.Mapper;
+package DKDesignManagement.Mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import DkDesignManagement.Entity.Test;
+import DKDesignManagement.Entity.Test;
 import org.springframework.jdbc.core.RowMapper;
 
 
