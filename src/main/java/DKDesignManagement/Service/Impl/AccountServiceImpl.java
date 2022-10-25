@@ -1,8 +1,10 @@
-package DKDesignManagement.Service.Impl;
+package DkDesignManagement.Service.Impl;
 
-import DKDesignManagement.Entity.Account;
-import DKDesignManagement.Service.AccountService;
+import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Service.AccountService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AccountServiceImpl implements AccountService {
     @Override
     public Account getAccount() {

@@ -1,4 +1,4 @@
-package DKDesignManagement.Entity;
+package DkDesignManagement.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

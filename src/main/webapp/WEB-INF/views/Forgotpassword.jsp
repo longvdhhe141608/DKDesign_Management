@@ -11,7 +11,7 @@
   <title>Quên mật khẩu</title>
   <link rel="stylesheet"
         type="text/css"
-        href="../asset/css/forgotpassword.css">
+        href="../assets/css/forgotpassword.css">
 </head>
 <body class="fogotpassword">
 <div class="navbar-shawdow">
