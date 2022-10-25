@@ -1,4 +1,4 @@
-package DkDesignManagement.Entity;
+package DKDesignManagement.Entity;
 
 public class Test {
 	private int id;

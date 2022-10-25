@@ -1,10 +1,10 @@
-package DkDesignManagement.Repository;
+package DKDesignManagement.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import DkDesignManagement.Entity.Test;
-import DkDesignManagement.Mapper.MapperTest;
+import DKDesignManagement.Entity.Test;
+import DKDesignManagement.Mapper.MapperTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

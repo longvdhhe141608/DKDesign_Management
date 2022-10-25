@@ -1,4 +1,13 @@
-package DkDesignManagement.Service.Impl;
+package DKDesignManagement.Service.Impl;
 
-public class TestServiceImpl {
+import DKDesignManagement.Entity.Test;
+import DKDesignManagement.Service.TestService;
+
+import java.util.List;
+
+public class TestServiceImpl implements TestService {
+    @Override
+    public List<Test> getAllTest() {
+        return null;
+    }
 }
