@@ -11,7 +11,7 @@
     <title>Header</title>
     <link rel="stylesheet"
           type="text/css"
-          href="../assets/css/header.css">
+          href="../../resources/assets/css/header.css">
 </head>
 <body>
 

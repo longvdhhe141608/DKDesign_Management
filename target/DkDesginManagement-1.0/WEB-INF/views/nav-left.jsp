@@ -12,7 +12,7 @@
     <title>nar-left</title>
     <link rel="stylesheet"
           type="text/css"
-          href="../assets/css/nav-left.css">
+          href="../../resources/assets/css/nav-left.css">
 </head>
 <body>
 <div class="tab">

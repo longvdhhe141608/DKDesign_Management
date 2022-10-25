@@ -1,0 +1,20 @@
+.list-task{
+    display: flex;
+    min-height: 100%;
+    max-width: 20rem;
+}
+.table-task{
+    width: 100%;
+    height: 100%;
+    margin-left: 15px;
+}
+.list-task-top{
+    border-right:5px solid black;
+
+}
+.list-task-top-detail{
+    border-right:1px solid black;
+    margin: 15px;
+    text-align: center;
+    width: 200px;
+}

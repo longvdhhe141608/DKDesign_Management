@@ -6,12 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>Danh sách công việc </title>
-    <link rel="stylesheet"
-          type="text/css"
-          href="../assets/css/list-task.css">
+    <link href="<c:url value="/resources/assets/css/list-task.css" />" rel="stylesheet" />
 </head>
 <body>
 <%@include file="header.jsp" %>
