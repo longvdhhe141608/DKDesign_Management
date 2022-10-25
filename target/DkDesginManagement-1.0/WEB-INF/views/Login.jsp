@@ -6,12 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet"
-          type="text/css"
-          href="../assets/css/login.css">
+    <link href="<c:url value="/resources/assets/css/login.css" />" rel="stylesheet" />
 </head>
 <body class="login">
 <div class="navbar-shawdow">

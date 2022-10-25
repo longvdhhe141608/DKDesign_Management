@@ -26,7 +26,7 @@ public class HomeControll {
 
 	@GetMapping("/")
 	public ModelAndView index() {
-		ModelAndView v = new ModelAndView("Login");
+		ModelAndView v = new ModelAndView("Forgotpassword");
 		v.addObject("mess", dao.getAll());
 		return v;
 	}
