@@ -1,6 +1,6 @@
-package DKDesignManagement.Mapper;
+package DkDesignManagement.Mapper;
 
-import DKDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.Account;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

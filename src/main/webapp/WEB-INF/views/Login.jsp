@@ -11,7 +11,7 @@
     <title>Login</title>
     <link rel="stylesheet"
           type="text/css"
-          href="../asset/css/login.css">
+          href="../assets/css/login.css">
 </head>
 <body class="login">
 <div class="navbar-shawdow">
@@ -47,6 +47,9 @@
             </div>
         </form>
     </div>
+
+
 </div>
+
 </body>
 </html>

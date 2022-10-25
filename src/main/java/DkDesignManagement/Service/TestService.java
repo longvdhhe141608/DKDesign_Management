@@ -1,9 +1,7 @@
-package DKDesignManagement.Service;
+package DkDesignManagement.Service;
 
-import DKDesignManagement.Entity.Test;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Service
 public interface TestService {
-    public List<Test> getAllTest();
 }

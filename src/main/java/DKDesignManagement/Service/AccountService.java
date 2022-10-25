@@ -1,7 +1,9 @@
-package DKDesignManagement.Service;
+package DkDesignManagement.Service;
 
-import DKDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.Account;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface AccountService {
     public Account getAccount();
 }

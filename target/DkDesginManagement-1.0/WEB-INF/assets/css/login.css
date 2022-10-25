@@ -1,0 +1,49 @@
+.login{
+    height:100%;
+    width:100%;
+    background: #FFFFFF;
+}
+
+h3{
+    padding-top:100px;
+    color:#3075DC;
+
+    font-size:35px;
+}
+
+h4{
+
+    color:#000000;
+    font-size:35px;
+
+}
+.input-group{
+
+    margin:15px;
+    text-align: center;
+}
+#email{
+
+    background: #EAF0F7;
+    border-radius: 10px;
+}
+#password{
+    background: #EAF0F7;
+    border-radius: 10px;
+}
+.btn-login{
+    background: #4461F2;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    margin-bottom: 100px;
+}
+.form-control{
+    height: 30px;
+    width: 250px;
+}
+.navbar-shawdow{
+    margin: 200px;
+    text-align: center;
+    background: #D2D2D2;
+    border-radius: 20px;
+}

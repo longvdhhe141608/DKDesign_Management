@@ -11,7 +11,7 @@
     <title>Công trình</title>
     <link rel="stylesheet"
           type="text/css"
-          href="../asset/css/project.css">
+          href="../assets/css/project.css">
 </head>
 <body>
 <%@include file="header.jsp" %>

@@ -1,7 +1,7 @@
-package DKDesignManagement.Repository;
+package DkDesignManagement.Repository;
 
-import DKDesignManagement.Entity.Account;
-import DKDesignManagement.Mapper.MapperAccount;
+import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Mapper.MapperAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

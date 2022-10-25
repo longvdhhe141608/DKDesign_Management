@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Trang chủ</title>
-    <link rel="stylesheet" type="text/css" href="../asset/css/home.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/home.css">
 </head>
 <body>
 <%@include file="header.jsp" %>
