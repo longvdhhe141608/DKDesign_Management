@@ -7,8 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="DkDesignManagement" />
         <module name="DKDesign_Management" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="DKDesign_Management" target="17" />
+      <module name="DkDesignManagement" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
