@@ -11,7 +11,7 @@
     <title>Danh sách công việc </title>
     <link rel="stylesheet"
           type="text/css"
-          href="asset/css/list-task.css">
+          href="../asset/css/list-task.css">
 </head>
 <body>
 <%@include file="header.jsp" %>
