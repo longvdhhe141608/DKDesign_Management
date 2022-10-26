@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Login</title>
@@ -45,6 +46,13 @@
                 <button type="submit" class="btn-login form-control">Đăng nhập</button>
             </div>
         </form>
+
+        ${message}
+        <spring:form method="post" commandName="account" action="login.html">
+            Username <spring:input path="nameAcc"/><br>
+            Password <spring:password path="passAcc"/><br>
+            <input type="submit" value="Login">
+        </spring:form>
     </div>
 
 
