@@ -5,7 +5,11 @@
   <artifactId>DKDesign_Management</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>DKDesign_Management Maven Webapp</name>
+    <properties>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
+    </properties>
+    <name>DKDesign_Management Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
