@@ -21,7 +21,7 @@
     </div>
     <div class="main">
         <h1>Xin chào, Nguyễn</h1>
-
+            Welcome ${sessionScope.username}
         <div class="main-table">
             <table class="main-table-tbn">
 

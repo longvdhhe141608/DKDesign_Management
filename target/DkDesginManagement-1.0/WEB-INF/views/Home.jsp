@@ -6,10 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>Trang chủ</title>
-    <link rel="stylesheet" type="text/css" href="../assets/css/home.css">
+    <link href="<c:url value="/resources/assets/css/home.css" />" rel="stylesheet" />
 </head>
 <body>
 <%@include file="header.jsp" %>
@@ -20,7 +21,7 @@
     </div>
     <div class="main">
         <h1>Xin chào, Nguyễn</h1>
-
+            Welcome ${sessionScope.username}
         <div class="main-table">
             <table class="main-table-tbn">
 
