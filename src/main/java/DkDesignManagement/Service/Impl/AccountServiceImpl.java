@@ -15,7 +15,7 @@ public class AccountServiceImpl implements AccountService {
         return null;
     }
     public boolean isUser(String username, String password) {
-        Account account = AccountDao.getAccount(username);
+        Account account = accountDao.getAccount(username);
         if (account != null && account.getPassAcc().equals(password)) {
             return true;
         }
