@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping(value = "/Login")
+@RequestMapping(value = "/")
 public class LoginController {
 
-    @RequestMapping(value = "/Login", method = RequestMethod.GET)
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String Login(ModelMap modelMap) {
         modelMap.put("account", new Account());
         return "Login";
@@ -25,7 +26,7 @@ public class LoginController {
         AccountDao accountDao = new AccountDao();
 
         if (account.getNameAcc().equals("abc")
-                && account.getPassAcc().equals("123")) {
+                && account.getPassAcc().equals("123456")) {
             session.setAttribute("username", account.getNameAcc());
         } else {
             modelMap.put("message", "Tai khoan k ok");

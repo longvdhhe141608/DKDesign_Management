@@ -47,12 +47,12 @@
             </div>
         </form>
 
-        ${message}
-        <spring:form method="post" commandName="account" action="login.html">
-            Username <spring:input path="nameAcc"/><br>
-            Password <spring:password path="passAcc"/><br>
-            <input type="submit" value="Login">
-        </spring:form>
+<%--        ${message}--%>
+<%--        <spring:form method="post" action="login.html" commandName="">--%>
+<%--            Username <spring:input path="nameAcc"/><br>--%>
+<%--            Password <spring:password path="passAcc"/><br>--%>
+<%--            <input type="submit" value="Login">--%>
+<%--        </spring:form>--%>
     </div>
 
 
