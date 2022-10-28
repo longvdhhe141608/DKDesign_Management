@@ -56,17 +56,13 @@ public class ProjectDao {
         return projectList;
     }
 
-    public Project addNewProject(String acc, String cate, String pn, String sd, String cl, String status) {
+    public int addNewProject(String acc, int cate, String pn, String sd, String cl, String status) {
         status = "Đang thực hiện";
-        Category c = new Category();
-        CategoryDao dao = new CategoryDao();
-        c = dao.getCategoryByName(cate);
         String sql = "insert into `dkmanagement`.`project` (`Project_Name`, `Start_Date`, `Closure_Date`,`Ended_Date`, " +
                 "`Creator`, `Type`, `Customer's name`, `Customer's address`, `Customer's phone number`, `Detail`, `Status`) " +
-                "values(N'" + pn + "', '" + sd + "','" + cl + "',null, " + acc + ", " + c.getIdCate()
-                + ", null, null, null, null, N'" + status + "');";
-        Project p = new Project();
-        p = jdbcTemplate.queryForObject(sql,new MapperProject());
+                "values(N'" + pn + "', '" + sd + "','" + cl + "',null, " + acc + ", ?, null, null, null, null, N'" + status + "');";
+        int p = 0;
+        p = jdbcTemplate.update(sql);
         return p;
     }
 }
