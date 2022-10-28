@@ -18,7 +18,7 @@ public class LoginController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String Login(ModelMap modelMap) {
         modelMap.put("account", new Account());
-        return "Login";
+        return "login";
     }
 
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
@@ -31,7 +31,7 @@ public class LoginController {
         } else {
             modelMap.put("message", "Tai khoan k ok");
         }
-        return "Login";
+        return "login";
     }
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)
 //    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response,

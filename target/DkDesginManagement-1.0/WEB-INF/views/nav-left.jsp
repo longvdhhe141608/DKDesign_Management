@@ -16,7 +16,7 @@
 <body>
 <div class="tab">
     <div class="btn">
-        <span class="input-group"> <img src="Home.jsp" alt=""></span><span class="input-group">Trang chủ</span>
+        <span class="input-group"> <img src="home.jsp" alt=""></span><span class="input-group">Trang chủ</span>
     </div>
     <div class="btn">
         <span class="input-group"><img src="" alt=""></span><span class="input-group">Công việc của tôi</span>

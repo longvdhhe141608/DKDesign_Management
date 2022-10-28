@@ -40,7 +40,7 @@
                        maxlength="32">
             </div>
             <div class="input-group-text">
-                <a href="Forgotpassword.jsp" class="text-blue">Quên mật khẩu</a>
+                <a href="forgotPassword.jsp" class="text-blue">Quên mật khẩu</a>
             </div>
             <div class="input-group input-group-btn">
                 <button type="submit" class="btn-login form-control">Đăng nhập</button>
