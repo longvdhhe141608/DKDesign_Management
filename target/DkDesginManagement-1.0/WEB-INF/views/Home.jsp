@@ -6,20 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<<<<<<<< HEAD:target/DkDesginManagement-1.0/WEB-INF/views/home.jsp
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Trang chủ</title>
     <link href="<c:url value="/resources/assets/css/home.css" />" rel="stylesheet"/>
-========
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html>
-<head>
-    <title>Trang chủ</title>
-    <link href="<c:url value="/resources/assets/css/home.css" />" rel="stylesheet" />
->>>>>>>> General:target/DkDesginManagement-1.0/WEB-INF/views/Home.jsp
-</head>
 <body>
 <%@include file="header.jsp" %>
 
@@ -28,13 +20,7 @@
         <%@include file="nav-left.jsp" %>
     </div>
     <div class="main">
-<<<<<<<< HEAD:target/DkDesginManagement-1.0/WEB-INF/views/home.jsp
-        <h1>Xin chào, ${sessionScope.loginUser}</h1>
-
-========
-        <h1>Xin chào, Nguyễn</h1>
-            Welcome ${sessionScope.username}
->>>>>>>> General:target/DkDesginManagement-1.0/WEB-INF/views/Home.jsp
+        <h1>Xin chào, ${sessionScope.loginUser.nameAcc}</h1>
         <div class="main-table">
             <table class="main-table-tbn">
 
@@ -50,11 +36,7 @@
                         <td><a href="project1.xxx">Biệt thự nhà dân</a></td>
                     </tr>
                     <tr>
-<<<<<<<< HEAD:target/DkDesginManagement-1.0/WEB-INF/views/home.jsp
                         <td><input type="button" name="icon" value="icon"> <img src="home.jsp" alt=""></td>
-========
-                        <td><input type="button" name="icon" value="icon"> <img src="Home.jsp" alt=""></td>
->>>>>>>> General:target/DkDesginManagement-1.0/WEB-INF/views/Home.jsp
                         <td><a href="project2.xxx">Biệt thự nhà dân2</a></td>
                     </tr>
                     <tr>

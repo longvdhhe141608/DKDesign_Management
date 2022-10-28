@@ -16,10 +16,10 @@ import java.io.IOException;
 
 @Controller
 public class LoginController {
-//    @RequestMapping(value = "/", method = RequestMethod.GET)
-//    public ModelAndView Login(ModelMap modelMap) {
-//        return new ModelAndView("member");
-//    }
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView Login(ModelMap modelMap) {
+        return new ModelAndView("login");
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView Login(@ModelAttribute(value = "account") Account account, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
@@ -29,7 +29,7 @@ public class LoginController {
 //        AccountDao accountDao = new AccountDao();
         account = new Account(username, "123");
         if (account.getPassAcc().equals(password)) {
-            session.setAttribute("loginUser", account.getNameAcc());
+            session.setAttribute("loginUser", account);
             view = new ModelAndView("home");
         } else {
             request.setAttribute("message", "Invalid username or password!");

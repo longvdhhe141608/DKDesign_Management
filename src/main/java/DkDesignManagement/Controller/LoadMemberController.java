@@ -14,10 +14,11 @@ import java.util.List;
 
 @Controller
 public class LoadMemberController {
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView member(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/member", method = RequestMethod.GET)
+    public ModelAndView LoadMember(HttpServletRequest request, HttpServletResponse response) {
 
         List<Member> memberList = new ArrayList<>();
+
         memberList.add(new Member("nambi", 1, "0123", "nam@bi.com", "hoabinh", "1"));
         memberList.add(new Member("nambi2", 2, "01234", "nam@bi1.com", "hoabinh", "1"));
         memberList.add(new Member("nambi3", 2, "01235", "nam@bi2.com", "hoabinh", "0"));

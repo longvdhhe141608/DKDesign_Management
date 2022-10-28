@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Header</title>
@@ -31,11 +32,11 @@
         <div class="dropdown">
             <span class="dropdown-select">Icon Profile</span>
             <div class="dropdown-content">
-                <p><input class="dropdown-content-title" name="profile" type="button" href="profile"
+                <p><input class="dropdown-content-title" name="profile" type="button" href="profile.jsp"
                           value="Thông tin cá nhân"></p>
-                <p><input class="dropdown-content-title" name="changePassword" type="button" href="changePassword"
+                <p><input class="dropdown-content-title" name="changePassword" type="button" href="changePassword.jsp"
                           value="Đổi mật khẩu"></p>
-                <p><input class="dropdown-content-title" name="logout" type="button" href="${pageContext.request.contextPath}/taikhoan/logout.html" value="Đăng xuất">
+                <p><input class="dropdown-content-title" name="logout" type="button" href="logout" value="Đăng xuất">
                 </p>
             </div>
         </div>
