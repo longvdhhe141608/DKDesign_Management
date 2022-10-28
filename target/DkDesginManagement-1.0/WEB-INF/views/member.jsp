@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %><html>
 <head>
     <title>Thành viên dự án</title>
 </head>
@@ -55,46 +56,18 @@
                 <td>Chương Mỹ, Hà Nội</td>
                 <td>mở</td>
             </tr>
-            <tr>
-                <td>Nguyễn Như Huấn</td>
-                <td>trưởng nhóm</td>
-                <td>0332000229</td>
-                <td>huannnhe141550@fpt.edu.vn</td>
-                <td>Chương Mỹ, Hà Nội</td>
-                <td>mở</td>
-            </tr>
-            <tr>
-                <td>Nguyễn Như Huấn</td>
-                <td>trưởng nhóm</td>
-                <td>0332000229</td>
-                <td>huannnhe141550@fpt.edu.vn</td>
-                <td>Chương Mỹ, Hà Nội</td>
-                <td>mở</td>
-            </tr>
-            <tr>
-                <td>Nguyễn Như Huấn</td>
-                <td>trưởng nhóm</td>
-                <td>0332000229</td>
-                <td>huannnhe141550@fpt.edu.vn</td>
-                <td>Chương Mỹ, Hà Nội</td>
-                <td>mở</td>
-            </tr>
-            <tr>
-                <td>Nguyễn Như Huấn</td>
-                <td>trưởng nhóm</td>
-                <td>0332000229</td>
-                <td>huannnhe141550@fpt.edu.vn</td>
-                <td>Chương Mỹ, Hà Nội</td>
-                <td>mở</td>
-            </tr>
-            <tr>
-                <td>Nguyễn Như Huấn</td>
-                <td>trưởng nhóm</td>
-                <td>0332000229</td>
-                <td>huannnhe141550@fpt.edu.vn</td>
-                <td>Chương Mỹ, Hà Nội</td>
-                <td>mở</td>
-            </tr>
+
+            <c:forEach items="${sessionScope.memberList}" var="member">
+                <tr>
+                    <td>${member.memberName}</td>
+                    <td>${member.memberRole?"Truong nhom" : "Thanh vien"}</td>
+                    <td>${member.memberPhone}</td>
+                    <td>${member.memberMail}</td>
+                    <td>${member.memberAddress}</td>
+                    <td>${member.memberStatus?"Mo":"Chan"}</td>
+                </tr>
+            </c:forEach>
+
         </table>
     </div>
 </div>

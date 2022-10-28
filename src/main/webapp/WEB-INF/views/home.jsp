@@ -6,12 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Trang chủ</title>
-    <link href="<c:url value="/resources/assets/css/home.css" />" rel="stylesheet" />
-</head>
+    <link href="<c:url value="/resources/assets/css/home.css" />" rel="stylesheet"/>
 <body>
 <%@include file="header.jsp" %>
 
@@ -20,8 +20,7 @@
         <%@include file="nav-left.jsp" %>
     </div>
     <div class="main">
-        <h1>Xin chào, Nguyễn</h1>
-            Welcome ${sessionScope.username}
+        <h1>Xin chào, ${sessionScope.loginUser.nameAcc}</h1>
         <div class="main-table">
             <table class="main-table-tbn">
 

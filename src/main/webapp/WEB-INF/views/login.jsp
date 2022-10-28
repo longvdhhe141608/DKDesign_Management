@@ -20,23 +20,22 @@
         <h4>Đăng Nhập</h4>
     </div>
     <div class="card-body">
-        <form action="Login" method="post">
+        ${message}
+        <form action="login" method="post">
             <div class="input-group">
-                <input id="email"
-                       name="email"
-
+                <input id="username"
+                       name="username"
                        required
                        class="form-control"
                        placeholder="Nhập Email">
             </div>
             <div class="input-group">
                 <input id="password"
-                       name="pass"
+                       name="password"
+                       type="password"
                        required
-
                        class="form-control"
                        placeholder="Nhập mật khẩu"
-                       minlength="6"
                        maxlength="32">
             </div>
             <div class="input-group-text">
@@ -46,13 +45,6 @@
                 <button type="submit" class="btn-login form-control">Đăng nhập</button>
             </div>
         </form>
-
-<%--        ${message}--%>
-<%--        <spring:form method="post" action="login.html" commandName="">--%>
-<%--            Username <spring:input path="nameAcc"/><br>--%>
-<%--            Password <spring:password path="passAcc"/><br>--%>
-<%--            <input type="submit" value="Login">--%>
-<%--        </spring:form>--%>
     </div>
 
 
