@@ -46,6 +46,15 @@
             </div>
         </form>
 
+<<<<<<<< HEAD:src/main/webapp/WEB-INF/views/login.jsp
+========
+<%--        ${message}--%>
+<%--        <spring:form method="post" action="login.html" commandName="">--%>
+<%--            Username <spring:input path="nameAcc"/><br>--%>
+<%--            Password <spring:password path="passAcc"/><br>--%>
+<%--            <input type="submit" value="Login">--%>
+<%--        </spring:form>--%>
+>>>>>>>> General:src/main/webapp/WEB-INF/views/Login.jsp
     </div>
 
 

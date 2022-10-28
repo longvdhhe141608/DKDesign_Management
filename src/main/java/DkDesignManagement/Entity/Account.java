@@ -15,9 +15,4 @@ public class Account {
     private String passAcc;
     private int roleInWeb;
     private boolean status;
-
-    public Account(String nameAcc, String passAcc) {
-        this.nameAcc = nameAcc;
-        this.passAcc = passAcc;
-    }
 }

@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Thành viên dự án</title>
@@ -57,19 +55,46 @@
                 <td>Chương Mỹ, Hà Nội</td>
                 <td>mở</td>
             </tr>
-
-            <c:forEach items="${sessionScope.memberList}" var="Member">
-                <tr>
-                    <td>${Member.memberName}</td>
-                    <td>${Member.memberRole==1?"Leader":"Designer"}</td>
-                    <td>${Member.memberPhone}</td>
-                    <td>${Member.memberMail}</td>
-                    <td>${Member.memberAddress}</td>
-                    <td>${Member.memberStatus==1?"Mo":"Block"}</td>
-                </tr>
-            </c:forEach>
-
-
+            <tr>
+                <td>Nguyễn Như Huấn</td>
+                <td>trưởng nhóm</td>
+                <td>0332000229</td>
+                <td>huannnhe141550@fpt.edu.vn</td>
+                <td>Chương Mỹ, Hà Nội</td>
+                <td>mở</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Như Huấn</td>
+                <td>trưởng nhóm</td>
+                <td>0332000229</td>
+                <td>huannnhe141550@fpt.edu.vn</td>
+                <td>Chương Mỹ, Hà Nội</td>
+                <td>mở</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Như Huấn</td>
+                <td>trưởng nhóm</td>
+                <td>0332000229</td>
+                <td>huannnhe141550@fpt.edu.vn</td>
+                <td>Chương Mỹ, Hà Nội</td>
+                <td>mở</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Như Huấn</td>
+                <td>trưởng nhóm</td>
+                <td>0332000229</td>
+                <td>huannnhe141550@fpt.edu.vn</td>
+                <td>Chương Mỹ, Hà Nội</td>
+                <td>mở</td>
+            </tr>
+            <tr>
+                <td>Nguyễn Như Huấn</td>
+                <td>trưởng nhóm</td>
+                <td>0332000229</td>
+                <td>huannnhe141550@fpt.edu.vn</td>
+                <td>Chương Mỹ, Hà Nội</td>
+                <td>mở</td>
+            </tr>
         </table>
     </div>
 </div>
