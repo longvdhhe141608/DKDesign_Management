@@ -29,8 +29,8 @@ public class AccountDao {
         }
     }
 
-    public static void main(String[] args) {
-        AccountDao accountDao = new AccountDao();
-        accountDao.Login("long","123456");
-    }
+//    public static void main(String[] args) {
+//        AccountDao accountDao = new AccountDao();
+//        accountDao.Login("long","123456");
+//    }
 }
