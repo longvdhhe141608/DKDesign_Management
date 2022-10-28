@@ -47,6 +47,14 @@ public class AccountDao {
         return check;
     }
 
+    public int updateAccount(String acc, int role, int status) {
+        String sql = "update `dkmanagement`.`accounts` set `Role in website` = " + role + ", `Status` = " + status + " " +
+                "where `accounts`.`Username` = '" + acc + "';";
+        int check = 0;
+        check = jdbcTemplate.update(sql);
+        return check;
+    }
+
 //    public static void main(String[] args) {
 //        AccountDao accountDao = new AccountDao();
 //        accountDao.Login("long","123456");
