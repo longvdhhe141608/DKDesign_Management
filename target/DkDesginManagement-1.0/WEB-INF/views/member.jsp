@@ -57,14 +57,14 @@
                 <td>mở</td>
             </tr>
 
-            <c:forEach items="${sessionScope.memberList}" var="member">
+            <c:forEach items="${requestScope.memberList}" var="member">
                 <tr>
                     <td>${member.memberName}</td>
-                    <td>${member.memberRole?"Truong nhom" : "Thanh vien"}</td>
+                    <td>${member.memberRole==1?"Truong nhom" : "Thanh vien"}</td>
                     <td>${member.memberPhone}</td>
                     <td>${member.memberMail}</td>
                     <td>${member.memberAddress}</td>
-                    <td>${member.memberStatus?"Mo":"Chan"}</td>
+                    <td>${member.memberStatus==1?"Mo":"Chan"}</td>
                 </tr>
             </c:forEach>
 

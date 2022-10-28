@@ -32,9 +32,9 @@
         <div class="dropdown">
             <span class="dropdown-select">Icon Profile</span>
             <div class="dropdown-content">
-                <p><input class="dropdown-content-title" name="profile" type="button" href="profile.jsp"
+                <p><input class="dropdown-content-title" name="profile" type="button" href="profile"
                           value="Thông tin cá nhân"></p>
-                <p><input class="dropdown-content-title" name="changePassword" type="button" href="changePassword.jsp"
+                <p><input class="dropdown-content-title" name="changePassword" type="button" href="changePassword"
                           value="Đổi mật khẩu"></p>
                 <p><input class="dropdown-content-title" name="logout" type="button" href="logout" value="Đăng xuất">
                 </p>

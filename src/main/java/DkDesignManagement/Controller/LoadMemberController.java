@@ -23,8 +23,7 @@ public class LoadMemberController {
         memberList.add(new Member("nambi2", 2, "01234", "nam@bi1.com", "hoabinh", "1"));
         memberList.add(new Member("nambi3", 2, "01235", "nam@bi2.com", "hoabinh", "0"));
         memberList.add(new Member("nambi4", 2, "01236", "nam@bi3.com", "hoabinh", "1"));
-        HttpSession session = request.getSession();
-        session.setAttribute("memberList", memberList);
+        request.setAttribute("memberList", memberList);
 
         return new ModelAndView("member");
     }
