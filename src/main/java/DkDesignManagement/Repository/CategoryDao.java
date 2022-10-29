@@ -11,6 +11,7 @@ public class CategoryDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+//    Lấy category bằng tên
     public Category getCategoryByName(String s){
         String sql = "SELECT * FROM `dkmanagement`.`category` where `Category_Name` like N'"+ s +"';";
         Category c = new Category();

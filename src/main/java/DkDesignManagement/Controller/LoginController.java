@@ -2,49 +2,54 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Repository.AccountDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Objects;
 
 @Controller
-@RequestMapping(value = "/")
 public class LoginController {
 
+    @Autowired
+    private AccountDao dao;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String Login(ModelMap modelMap) {
-        modelMap.put("account", new Account());
-        return "Login";
+    public ModelAndView Login(ModelMap modelMap) {
+        return new ModelAndView("Login");
     }
 
-    @RequestMapping(value = "/Login", method = RequestMethod.POST)
-    public String Login(@ModelAttribute(value = "account") Account account, ModelMap modelMap, HttpSession session) {
-        AccountDao accountDao = new AccountDao();
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public ModelAndView Login(@ModelAttribute(value = "account") Account account, ModelMap modelMap,
+                              HttpServletRequest request,
+                              HttpServletResponse response, HttpSession session) throws IOException, ServletException {
+        ModelAndView view = null;
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
 
-        if (account.getNameAcc().equals("abc")
-                && account.getPassAcc().equals("123456")) {
-            session.setAttribute("username", account.getNameAcc());
+        Account ac = dao.getAccount(username);
+
+        if (Objects.isNull(ac)) {
+            request.setAttribute("message", "Invalid username or password!");
+            view = new ModelAndView("Login");
         } else {
-            modelMap.put("message", "Tai khoan k ok");
+            if (ac.getPassAcc().equals(password)) {
+                session.setAttribute("loginUser", ac);
+                view = new ModelAndView("Home");
+            } else {
+                request.setAttribute("message", "Invalid username or password!");
+                view = new ModelAndView("Login");
+            }
         }
-        return "Login";
+        return view;
     }
-//    @RequestMapping(value = "/login", method = RequestMethod.POST)
-//    public ModelAndView executeLogin(HttpServletRequest request, HttpServletResponse response,
-//                                     @ModelAttribute("loginBean") Account loginBean) {
-//        ModelAndView view = null;
-//        AccountServiceImpl accountService = new AccountServiceImpl();
-//        if (accountService.isUser(loginBean.getPassAcc(), loginBean.getPassAcc())) {
-//            request.setAttribute("loggedInUser", loginBean.getNameAcc());
-//            view = new ModelAndView("welcome");
-//        } else {
-//            request.setAttribute("message", "Invalid ussename or password!");
-//            view = new ModelAndView("login");
-//        }
-//        return view;
-//    }
 }

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MapperAccount implements RowMapper<Account> {
+
     @Override
     public Account mapRow(ResultSet resultSet, int i) throws SQLException {
         Account a = new Account();
@@ -14,7 +15,7 @@ public class MapperAccount implements RowMapper<Account> {
         a.setNameAcc(resultSet.getString("Username"));
         a.setPassAcc(resultSet.getString("Password"));
         a.setRoleInWeb(resultSet.getInt("Role in website"));
-        a.setStatus(resultSet.getBoolean("Status"));
+        a.setStatus(resultSet.getInt("Status"));
         return a;
     }
 }

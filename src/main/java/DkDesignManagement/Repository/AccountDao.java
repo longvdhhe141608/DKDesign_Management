@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class AccountDao {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public Account getAccount(String user) {
         String sql = "Select * from `dkmanagement`.`accounts` where Username = ?";
