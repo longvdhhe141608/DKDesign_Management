@@ -57,7 +57,7 @@
                 <td>mở</td>
             </tr>
 
-            <c:forEach items="${requestScope.memberList}" var="member">
+            <c:forEach items="${memberList}" var="member">
                 <tr>
                     <td>${member.memberName}</td>
                     <td>${member.memberRole==1?"Truong nhom" : "Thanh vien"}</td>

@@ -25,19 +25,18 @@
         <form class="search-home" action="#" method="post">
 
             <input class="input-search" type="text" id="search" name="search" placeholder="Tìm Kiếm">
-            <button class="btn-search">Search</button>
+            <button class="btn-search" type="submit" >Search</button>
         </form>
 
 
         <div class="dropdown">
-            <span class="dropdown-select">Icon Profile</span>
+            <c:if test="${sessionScope.loginUser != null}">
+                <span class="dropdown-select">${loginUser.roleInWeb} ${loginUser.nameAcc}</span>
+            </c:if>
             <div class="dropdown-content">
-                <p><input class="dropdown-content-title" name="profile" type="button" href="profile"
-                          value="Thông tin cá nhân"></p>
-                <p><input class="dropdown-content-title" name="changePassword" type="button" href="changePassword"
-                          value="Đổi mật khẩu"></p>
-                <p><input class="dropdown-content-title" name="logout" type="button" href="logout" value="Đăng xuất">
-                </p>
+                <p><a class="dropdown-content-title" href="profile">Thông tin cá nhân</a></p>
+                <p><a class="dropdown-content-title" href="changePassword">Đổi mật khẩu</a></p>
+                <p><a class="dropdown-content-title" href="logout">Dang xuat</a></p>
             </div>
         </div>
 
