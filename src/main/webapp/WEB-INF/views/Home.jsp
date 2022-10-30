@@ -37,7 +37,7 @@
                         <td><a href="project1.xxx">Biệt thự nhà dân</a></td>
                     </tr>
                     <tr>
-                        <td><input type="button" name="icon" value="icon"> <img src="Home.jsp" alt=""></td>
+                        <td><input type="button" name="icon" value="icon"> <img src="home.jsp" alt=""></td>
                         <td><a href="project2.xxx">Biệt thự nhà dân2</a></td>
                     </tr>
                     <tr>

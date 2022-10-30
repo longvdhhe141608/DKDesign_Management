@@ -22,7 +22,7 @@
 
         </div>
         <div class="information">
-            <a href="Home.jsp" class="main-information">icon</a>
+            <a href="home.jsp" class="main-information">icon</a>
             <h3 class="main-information">Thông tin cá nhân</h3>
         </div>
         <div class="main">

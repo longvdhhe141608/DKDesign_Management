@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Thông tin cá nhân</title>
@@ -22,7 +23,7 @@
 
         </div>
         <div class="information">
-            <a href="Home.jsp" class="main-information">icon</a>
+            <a href="home.jsp" class="main-information">icon</a>
             <h3 class="main-information">Thông tin cá nhân</h3>
         </div>
         <div class="main">

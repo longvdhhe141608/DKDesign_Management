@@ -25,7 +25,7 @@ public class LoginController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView Login(ModelMap modelMap) {
-        return new ModelAndView("Login");
+        return new ModelAndView("login");
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -40,14 +40,14 @@ public class LoginController {
 
         if (Objects.isNull(ac)) {
             request.setAttribute("message", "Invalid username or password!");
-            view = new ModelAndView("Login");
+            view = new ModelAndView("login");
         } else {
             if (ac.getPassAcc().equals(password)) {
                 session.setAttribute("loginUser", ac);
-                view = new ModelAndView("Home");
+                view = new ModelAndView("home");
             } else {
                 request.setAttribute("message", "Invalid username or password!");
-                view = new ModelAndView("Login");
+                view = new ModelAndView("login");
             }
         }
         return view;
