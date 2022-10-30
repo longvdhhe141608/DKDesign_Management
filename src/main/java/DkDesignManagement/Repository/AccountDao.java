@@ -12,13 +12,13 @@ import java.util.List;
 @Repository
 public class AccountDao {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public Account getAccount(String user) {
         String sql = "Select * from `dkmanagement`.`accounts` where Username = ?";
-        Account a = new Account();
-        a = jdbcTemplate.queryForObject(sql, new MapperAccount(), user);
-        return a;
+        Account account = new Account();
+        account = jdbcTemplate.queryForObject(sql, new MapperAccount(), user);
+        return account;
     }
 
     public Account Login(String user, String pass) {

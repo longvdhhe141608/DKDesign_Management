@@ -25,8 +25,7 @@
         <form class="search-home" action="#" method="post">
 
             <input class="input-search" type="text" id="search" name="search" placeholder="Tìm Kiếm">
-            <input class="btn-search" type="button" value="Search">
-            <button class="btn-search">Search</button>
+            <button class="btn-search" type="submit" >Search</button>
         </form>
 
 

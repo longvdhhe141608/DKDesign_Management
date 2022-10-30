@@ -1,6 +1,7 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Repository.AccountDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Objects;
 
 @Controller
 @RequestMapping(value = "/")
@@ -36,11 +38,14 @@ public class LoginController {
         ModelAndView view = null;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-//        AccountDao accountDao = new AccountDao();
-        account = new Account(username, "123");
-        if (account.getPassAcc().equals(password)) {
+        AccountDao accountDao = new AccountDao();
+        Account ac = accountDao.getAccount(username);
+
+//        account = accountDao.Login(username,password);
+//      account = new Account(username, "123");
+        if (account != null) {
             session.setAttribute("loginUser", account);
-            view = new ModelAndView("redirect:/home");
+            view = new ModelAndView("redirect:home");
         } else {
             request.setAttribute("message", "Invalid username or password!");
             view = new ModelAndView("login");
