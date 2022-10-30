@@ -11,14 +11,11 @@
     <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/headerHome.css" />
     <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/bodyAdmin.css" />
     <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/footerPage.css" />
-    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/summary.css" />
-    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/list-task.css" />
-    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/calendar.css" />
+    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/task-detail.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="/src/main/webapp/resources/assets/JS/summary.js"></script>
-    <script src="/src/main/webapp/resources/assets/JS/bodyAdmin.js"></script>
 </head>
 
 <body>
@@ -47,95 +44,68 @@
                     <a class="statistic" href="dashboard.html"><input type="button" value="Thống kê"></a>
                 </div>
             </div>
-            <h1>Thành viên dự án</h1>
-            <div class="all-member">
+            <div>
+                <h1>Tiến độ công trình</h1>
+                <input type="search" placeholder="Tìm kiếm">
 
-                <button type="button" class="btn btn-primary btn-add-member" data-toggle="modal"
-                    data-target="#exampleModal">
-                    +thêm thành viên
-                </button>
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Thêm thành viên</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="text">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
-                                <button type="button" class="btn btn-primary">Thêm</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="search-member">
-                    <input class="search-all-member-name" type="search" placeholder="Tìm kiếm">
-                    <input type="button" class="search-all-member-soft" value="sort by name"></input>
-                </div>
             </div>
             <div>
                 <table class="table table-bordered">
                     <tr>
-
-                        <td>Tên</td>
-                        <td>Chức danh</td>
-                        <td>Số điện thoại</td>
-                        <td>Email</td>
-                        <td>địa chỉ</td>
-                        <td>trạng thái</td>
+                        <td>Công việc</td>
+                        <td>Người thực hiện</td>
+                        <td>Ngày bắt đầu</td>
+                        <td>Ngày dự kiến kết thúc</td>
+                        <td>Ngày kết thúc</td>
+                        <td>Tiến độ</td>
+                        <td>Trạng thái</td>
                     </tr>
                     <tr>
+                        <td>Thiết kế mặt sàn tầng 1</td>
                         <td>Nguyễn như huấn</td>
-                        <td>thiết kế</td>
-                        <td>123456789</td>
-                        <td>huan@gmail.com</td>
-                        <td>Hà nội</td>
-                        <td><button class="btn btn-status" style="background: green;">mở</button></td>
-
-                    </tr>
-
-                    <tr>
-                        <td>Nguyễn như huấn</td>
-                        <td>thiết kế</td>
-                        <td>123456789</td>
-                        <td>huan@gmail.com</td>
-                        <td>Hà nội</td>
-                        <td><button class="btn btn-status" style="background: red;">chặn</button></td>
-
+                        <td>01/10/2022</td>
+                        <td>8/10/2022</td>
+                        <td>09/10/2022</td>
+                        <td>90%</td>
+                        <td>Phê duyệt</td>
                     </tr>
                     <tr>
+                        <td>Thiết kế mặt sàn tầng 1</td>
                         <td>Nguyễn như huấn</td>
-                        <td>thiết kế</td>
-                        <td>123456789</td>
-                        <td>huan@gmail.com</td>
-                        <td>Hà nội</td>
-                        <td>mở</td>
-
+                        <td>01/10/2022</td>
+                        <td>8/10/2022</td>
+                        <td>09/10/2022</td>
+                        <td>90%</td>
+                        <td>Phê duyệt</td>
                     </tr>
                     <tr>
+                        <td>Thiết kế mặt sàn tầng 1</td>
                         <td>Nguyễn như huấn</td>
-                        <td>thiết kế</td>
-                        <td>123456789</td>
-                        <td>huan@gmail.com</td>
-                        <td>Hà nội</td>
-                        <td>mở</td>
-
+                        <td>01/10/2022</td>
+                        <td>8/10/2022</td>
+                        <td>09/10/2022</td>
+                        <td>90%</td>
+                        <td>Phê duyệt</td>
                     </tr>
                     <tr>
+                        <td>Thiết kế mặt sàn tầng 1</td>
                         <td>Nguyễn như huấn</td>
-                        <td>thiết kế</td>
-                        <td>123456789</td>
-                        <td>huan@gmail.com</td>
-                        <td>Hà nội</td>
-                        <td>mở</td>
-
+                        <td>01/10/2022</td>
+                        <td>8/10/2022</td>
+                        <td>09/10/2022</td>
+                        <td>90%</td>
+                        <td>Phê duyệt</td>
                     </tr>
+                    <tr>
+                        <td>Thiết kế mặt sàn tầng 1</td>
+                        <td>Nguyễn như huấn</td>
+                        <td>01/10/2022</td>
+                        <td>8/10/2022</td>
+                        <td>09/10/2022</td>
+                        <td>90%</td>
+                        <td>Phê duyệt</td>
+                    </tr>
+
                 </table>
             </div>
         </div>
@@ -155,7 +125,6 @@
         $("#narbar_menu").load("nav-left.jsp");
     });
 </script>
-
 
 
 </html>
