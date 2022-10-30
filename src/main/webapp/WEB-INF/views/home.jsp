@@ -6,12 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>Trang chủ</title>
-    <link href="<c:url value="/resources/assets/css/home.css" />" rel="stylesheet"/>
+    <link href="<c:url value="/resources/assets/css/home.css" />" rel="stylesheet" />
+</head>
 <body>
 <%@include file="header.jsp" %>
 
@@ -20,7 +20,8 @@
         <%@include file="nav-left.jsp" %>
     </div>
     <div class="main">
-        <h1>Xin chào, ${sessionScope.loginUser.nameAcc}</h1>
+        <h1>Xin chào, Nguyễn</h1>
+            Welcome ${sessionScope.username}
         <div class="main-table">
             <table class="main-table-tbn">
 
@@ -33,15 +34,15 @@
                     </tr>
                     <tr>
                         <td><input type="button" name="icon" value="icon"></td>
-                        <td><a href="${pageContext.request.contextPath}/logout">Biệt thự nhà dân</a></td>
+                        <td><a href="project1.xxx">Biệt thự nhà dân</a></td>
                     </tr>
                     <tr>
                         <td><input type="button" name="icon" value="icon"> <img src="home.jsp" alt=""></td>
-                        <td><a href="logout">Biệt thự nhà dân2</a></td>
+                        <td><a href="project2.xxx">Biệt thự nhà dân2</a></td>
                     </tr>
                     <tr>
                         <td><input type="button" name="icon" value="icon"></td>
-                        <td><a href="${pageContext.request.contextPath}/logout">Biệt thự nhà dân3</a></td>
+                        <td><a href="project3.xxx">Biệt thự nhà dân3</a></td>
                     </tr>
                     </tbody>
                 </div>
