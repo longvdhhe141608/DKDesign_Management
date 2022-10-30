@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>nar-left</title>
@@ -16,16 +16,16 @@
 <body>
 <div class="tab">
     <div class="btn">
-        <span class="input-group"> <img src="../home.jsp" alt=""></span><span class="input-group">Trang chủ</span>
+        <span class="input-group"> <img src="home.jsp" alt=""></span><span class="input-group">Trang chủ</span>
     </div>
     <div class="btn">
         <span class="input-group"><img src="" alt=""></span><span class="input-group">Công việc của tôi</span>
     </div>
     <div class="btn" datasrc="">
-        <span class="input-group"><img src="../project.jsp" alt=""></span><span class="input-group">Công trình</span>
+        <span class="input-group"><img src="project.jsp" alt=""></span><span class="input-group">Công trình</span>
     </div>
     <div class="btn">
-        <span class="input-group"><img src="../notification.jsp" alt=""></span><span class="input-group">Thông báo</span>
+        <span class="input-group"><img src="notification.jsp" alt=""></span><span class="input-group">Thông báo</span>
     </div>
 </div>
 </body>

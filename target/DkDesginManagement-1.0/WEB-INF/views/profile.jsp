@@ -6,8 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Thông tin cá nhân</title>
@@ -30,32 +28,32 @@
         <div class="main">
             <div class="main-name">
                 <h5 class="name"> Họ và tên: </h5>
-                <p id="name">${sessionScope.profile.name}</p>
+                <p id="name">Hoàng Thị Thu Hương</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Mã nhân viên:</h5>
-                <p id="employee-code">${requestScope.profile1.idEmp}</p>
+                <p id="employee-code">huonghtt</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Số CCCD/CMND </h5>
-                <p id="number-CCCD">${requestScope.profile1.cccd}</p>
+                <p id="number-CCCD">531231512512</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Ngày sinh: </h5>
-                <p id="Date-of-birth">${requestScope.profile1.age}</p>
+                <p id="Date-of-birth">07-07-2000</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Giới tính: </h5>
-                <p id="sex">${requestScope.profile1.gender}</p>
+                <p id="sex">Nam</p>
             </div>
             <div class="main-name">
                 <h5 class="name">Số điện thoại: </h5>
-                <p id="SĐT">${requestScope.profile1.phone}</p>
+                <p id="SĐT">1234567895</p>
             </div>
 
             <div class="main-name">
                 <h5 class="name"> Email: </h5>
-                <p id="email">${requestScope.profile1.mail}</p>
+                <p id="email">huong@gmail.com</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Địa chỉ nhà: </h5>
@@ -63,7 +61,7 @@
             </div>
             <div class="main-name-btn">
 
-                <button class="edit" name="edit" >Chỉnh sửa</button>
+                <button class="edit">Chỉnh sửa</button>
             </div>
         </div>
     </div>

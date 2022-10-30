@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class MemberDAO {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public List<Member> getMemberInProject(int projectId){
         String sql = "SELECT `employees`.`Name`, `project_participation`.`Role in project`, `employees`.`Phone number`, `employees`.`Mail`, `accounts`.`Status`\n" +

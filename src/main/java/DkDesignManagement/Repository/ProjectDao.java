@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public class ProjectDao {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public Project getProject(int id) {
         String sql = "Select * from `dkmanagement`.`project` where idProject = ?";

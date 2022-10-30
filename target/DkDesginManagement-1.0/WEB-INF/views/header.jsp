@@ -6,8 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
     <title>Header</title>
@@ -25,19 +24,19 @@
         <form class="search-home" action="#" method="post">
 
             <input class="input-search" type="text" id="search" name="search" placeholder="Tìm Kiếm">
-            <input class="btn-search" type="button" value="Search">
             <button class="btn-search">Search</button>
         </form>
 
 
         <div class="dropdown">
-            <c:if test="${sessionScope.loginUser != null}">
-                <span class="dropdown-select">${loginUser.roleInWeb} ${loginUser.nameAcc}</span>
-            </c:if>
+            <span class="dropdown-select">Icon Profile</span>
             <div class="dropdown-content">
-                <p><a class="dropdown-content-title" href="profile">Thông tin cá nhân</a></p>
-                <p><a class="dropdown-content-title" href="changePassword">Đổi mật khẩu</a></p>
-                <p><a class="dropdown-content-title" href="logout">Dang xuat</a></p>
+                <p><input class="dropdown-content-title" name="profile" type="button" href="profile.xxx"
+                          value="Thông tin cá nhân"></p>
+                <p><input class="dropdown-content-title" name="changePassword" type="button" href="changePassword.xxx"
+                          value="Đổi mật khẩu"></p>
+                <p><input class="dropdown-content-title" name="logout" type="button" href="Login.jsp" value="Đăng xuất">
+                </p>
             </div>
         </div>
 
