@@ -12,7 +12,7 @@ public class Account {
     private String nameAcc;
     private String passAcc;
     private int roleInWeb;
-    private int status;
+    private boolean status;
 
     public Account(String nameAcc, String passAcc) {
         this.nameAcc = nameAcc;

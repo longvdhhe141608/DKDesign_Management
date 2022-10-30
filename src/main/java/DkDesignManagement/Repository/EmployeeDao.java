@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EmployeeDao {
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     public Employee getInformation(String acc) {
         String sql = "select * from `dkmanagement`.`employees` where Username = ?";
