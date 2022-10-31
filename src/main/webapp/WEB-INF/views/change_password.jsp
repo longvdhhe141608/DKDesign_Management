@@ -15,7 +15,7 @@
 <%@include file="header.jsp" %>
 <div class="change password">
   <div class="nav-left">
-    <%@include file="nav-left.jsp" %>
+    <%@include file="nav_left.jsp" %>
   </div>
   <div class="nav-right">
     <h3>Thay đổi mật khẩu</h3>
