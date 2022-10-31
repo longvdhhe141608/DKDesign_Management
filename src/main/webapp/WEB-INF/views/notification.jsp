@@ -7,7 +7,6 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Thông báo</title>
@@ -16,7 +15,7 @@
 <%@include file="header.jsp" %>
 <div class="notification">
     <div class="nav-left">
-        <%@include file="nav-left.jsp" %>
+        <%@include file="nav_left.jsp" %>
     </div>
     <div class="nav-right">
         <h3>Thông báo</h3>
