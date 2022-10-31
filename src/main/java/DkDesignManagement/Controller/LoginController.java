@@ -2,6 +2,9 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Repository.AccountDao;
+import DkDesignManagement.Service.AccountService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,12 +23,16 @@ import java.util.Objects;
 @Controller
 //@RequestMapping(value = "/")
 public class LoginController {
+
+    @Autowired
+    private AccountDao dao;
+
     @GetMapping(value = "/")
     public String login() {
         return "login";
     }
 
-    @RequestMapping (value = "/login", method=RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(ModelMap modelMap) {
         Account account = new Account();
         modelMap.put("account", account);
@@ -33,12 +40,14 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute(value = "account") Account account, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
+    public ModelAndView login(@ModelAttribute(value = "account") Account account,
+                              ModelMap modelMap, HttpServletRequest request) throws IOException, ServletException {
+
+        HttpSession httpSession = request.getSession();
+
         ModelAndView view = null;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        AccountDao dao = new AccountDao();
-//        account = new Account(username, "123");
         Account ac = dao.getAccount(username);
 
         if (Objects.isNull(ac)) {
@@ -46,8 +55,8 @@ public class LoginController {
             view = new ModelAndView("Login");
         } else {
             if (ac.getPassAcc().equals(password)) {
-                session.setAttribute("loginUser", ac);
-                view = new ModelAndView("Home");
+                httpSession.setAttribute("loginUser", ac);
+                view = new ModelAndView("headerHome");
             } else {
                 request.setAttribute("message", "Invalid username or password!");
                 view = new ModelAndView("Login");
@@ -55,6 +64,7 @@ public class LoginController {
         }
         return view;
     }
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpSession session) {
         session.removeAttribute("loginUser");

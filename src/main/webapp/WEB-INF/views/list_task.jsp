@@ -133,7 +133,7 @@
 
                     <div id="sub-task" class="row sub-task-detail">
                         <div class="col-3 " style="border: 1px solid burlywood;">
-                            <a href="task-detail.html" class="sub-task-detail-design">Thiết kế mặt sàn tầng 1</a>
+                            <a href="task_detail.jsp" class="sub-task-detail-design">Thiết kế mặt sàn tầng 1</a>
                             <button class="btn-main-list-details">Chi tiết</button>
                         </div>
                         <div class="col-2" style="border: 1px solid burlywood;">huonghoang</div>

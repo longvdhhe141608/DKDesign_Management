@@ -1,4 +1,6 @@
 <!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -6,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="myTask.css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
 
     <title>Hello, world!</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -17,7 +19,7 @@
     <script>
         $(function () {
             $("#header-include").load("header.jsp");
-            $("#nav-left-main").load("nav-left.jsp");
+            $("#nav-left-main").load("nav_left.jsp");
         });
     </script>
 </head>
@@ -40,14 +42,14 @@
             </div>
             <div class="list-task-head">
 
-                <a class="project-detail" href="summary.html"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list-task.html"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="calendar.html"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="requirement.html"><input type="button"
+                <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
+                <a class="list" href="list_task.jsp"><input type="button" value="Danh sách"></a>
+                <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
+                <a class="customer-request" href="requirement.jsp"><input type="button"
                                                                            value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="progress.html"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="member.html"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="dashboard.html"><input type="button" value="Thống kê"></a>
+                <a class="project-progress" href="progress.jsp"><input type="button" value="Tiến độ"></a>
+                <a class="project-member" href="member.jsp"><input type="button" value="Thành viên"></a>
+                <a class="statistic" href="dashboard.jsp"><input type="button" value="Thống kê"></a>
             </div>
         </div>
         <div class="title">
