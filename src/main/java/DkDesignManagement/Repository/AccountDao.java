@@ -15,7 +15,7 @@ public class AccountDao {
     private JdbcTemplate jdbcTemplate;
 
     public Account getAccount(String user) {
-        String sql = "Select * from `dkmanagement`.`accounts` where Username = ?";
+        String sql = "Select * from `dkmanagement`.`accounts` where Username = ? ";
         Account a = new Account();
         a = jdbcTemplate.queryForObject(sql, new MapperAccount(), user);
         return a;

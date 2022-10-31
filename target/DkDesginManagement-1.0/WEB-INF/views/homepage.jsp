@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -16,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link href="<c:url value="/resources/assets/css/headerHome.css" />" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="asset/css/bodyAdmin.css"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css"/>"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
@@ -46,7 +45,7 @@
                             <div class="main-detail-left">
                                 <div class="left-detail">
                                     <img class="img_ava" src="../image/a.jpg"/>
-                                    <a href="summary.html" class="left-main">Biệt thự nhà dân1</a>
+                                    <a href="summary.jsp" class="left-main">Biệt thự nhà dân1</a>
                                 </div>
                                 <div class="left-detail">
                                     <img class="img_ava" src="../image/a.jpg"/>
@@ -130,11 +129,6 @@
         </div>
     </div>
 </div>
-<!-- footer -->
-
-<!-- <div class="footer_page"></div> -->
-
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
