@@ -15,7 +15,7 @@
 <%@include file="header.jsp" %>
 <div class="profile">
     <div class="nav-left">
-        <%@include file="nav-left.jsp" %>
+        <%@include file="nav_left.jsp" %>
     </div>
     <div class="profile-main">
         <div class="information">

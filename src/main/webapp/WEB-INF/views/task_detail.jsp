@@ -8,14 +8,11 @@
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/headerHome.css"/>
-    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/bodyAdmin.css"/>
-    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/footerPage.css"/>
-    <link rel="stylesheet" type="text/css" href="/src/main/webapp/resources/assets/css/task-detail.css"/>
+    <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="/src/main/webapp/resources/assets/JS/summary.js"></script>
+    <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 
 <body>
@@ -68,34 +65,34 @@
         </div>
         <div class="task-cmt-details">
             <div class="task-cmt-details-main">
-                <img class="img_avatar" src="../image/a.jpg"/>
+                <img class="img_avatar" src=""/>
                 <a class="name-avatar">Nam</a>
                 <a> 4 phút trước</a></br>
                 <p>ok đấy</p>
             </div>
             <div class="task-cmt-details-main">
-                <img class="img_avatar" src="../image/a.jpg"/>
+                <img class="img_avatar" src=""/>
                 <a class="name-avatar">Nam</a>
                 <a> 4 phút trước</a></br>
                 <p>ok đấy</p>
             </div>
             <div class="task-cmt-details-main">
-                <img class="img_avatar" src="../image/a.jpg"/>
+                <img class="img_avatar" src=""/>
                 <a class="name-avatar">Nam</a>
                 <a> 4 phút trước</a></br>
                 <p>ok đấy</p>
             </div>
             <div class="task-detail-cmt">
-                <img class="img_avatar" src="../image/a.jpg"/>
+                <img class="img_avatar" src=""/>
                 <input class="input-cmt" type="text" placeholder="Bình luận....">
                 <button>Gửi</button>
             </div>
             <div class="task-detail-cmt">
-                <img class="img_avatar" src="../image/a.jpg"/>
+                <img class="img_avatar" src=""/>
                 <input class="input-cmt" type="text" placeholder="Bình luận....">
             </div>
             <div class="task-detail-cmt">
-                <img class="img_avatar" src="../image/a.jpg"/>
+                <img class="img_avatar" src=""/>
                 <input class="input-cmt" type="text" placeholder="Bình luận....">
             </div>
         </div>
@@ -111,8 +108,8 @@
 </script>
 <script>
     $(function () {
-        $("#header-include").load("header.html");
-        $("#narbar_menu").load("nav-left.html");
+        $("#header-include").load("header.jsp");
+        $("#narbar_menu").load("nav-left.jsp");
     });
 </script>
 

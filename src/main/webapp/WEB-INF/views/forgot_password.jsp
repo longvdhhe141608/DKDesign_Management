@@ -10,7 +10,7 @@
 <html>
 <head>
     <title>Quên mật khẩu</title>
-    <link href="<c:url value="/resources/assets/css/forgotpassword.css" />" rel="stylesheet"/>
+    <link href="<c:url value="/resources/assets/css/forgotPassword.css" />" rel="stylesheet"/>
 </head>
 <body class="fogotpassword">
 <div class="navbar-shawdow">

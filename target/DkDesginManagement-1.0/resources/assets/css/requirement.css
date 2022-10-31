@@ -1,0 +1,31 @@
+.requiment-main {
+    display: flex;
+}
+
+.requiment-main-left {
+    width: 60%;
+}
+
+.cmt-custumer-right {
+    width: 38%;
+    background: #EAEAEA;
+    margin-left: 10px;
+    border-radius: 20px;
+}
+
+.cmt-custumer-right-details {
+    margin-bottom: 10px;
+}
+
+.btn-add-member {
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.all-member {
+    margin: 40px;
+}
+
+.search-all-member {
+    margin-right: 0px;
+}
