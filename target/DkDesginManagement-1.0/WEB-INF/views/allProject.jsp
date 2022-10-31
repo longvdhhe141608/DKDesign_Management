@@ -1,4 +1,6 @@
 <!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 
 <head>
@@ -8,7 +10,7 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="all-project.css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
 
     <title>Tất cả công trình</title>
 </head>
@@ -32,11 +34,11 @@
                         <g clip-path="url(#clip0_448_5554)">
                             <path
                                     d="M26.125 17.3333H17.875V25.3333H15.125V17.3333H6.875V14.6667H15.125V6.66667H17.875V14.6667H26.125V17.3333Z"
-                                    fill="black"/>
+                                    fill="black"></path>
                         </g>
                         <defs>
                             <clipPath id="clip0_448_5554">
-                                <rect width="33" height="32" fill="white"/>
+                                <rect width="33" height="32" fill="white"></rect>
                             </clipPath>
                         </defs>
                     </svg>
@@ -68,7 +70,7 @@
                                          xmlns="http://www.w3.org/2000/svg">
                                         <path
                                                 d="M21.4408 18.8679H20.0858L19.6055 18.4048C21.2864 16.4494 22.2985 13.9108 22.2985 11.1492C22.2985 4.99142 17.307 0 11.1492 0C4.99142 0 0 4.99142 0 11.1492C0 17.307 4.99142 22.2985 11.1492 22.2985C13.9108 22.2985 16.4494 21.2864 18.4048 19.6055L18.8679 20.0858V21.4408L27.4443 30L30 27.4443L21.4408 18.8679ZM11.1492 18.8679C6.87822 18.8679 3.43053 15.4202 3.43053 11.1492C3.43053 6.87822 6.87822 3.43053 11.1492 3.43053C15.4202 3.43053 18.8679 6.87822 18.8679 11.1492C18.8679 15.4202 15.4202 18.8679 11.1492 18.8679Z"
-                                                fill="black"/>
+                                                fill="black"></path>
                                     </svg>
                                 </button>
                                 <input type="text" class="search_term" placeholder="Tìm kiếm">
@@ -94,7 +96,7 @@
                     <tr>
                         <td>
                             <div>
-                                <form action="summary.html">
+                                <form action="summary.jsp">
                                     <a>Biệt thự nhà dân</a>
                                     <button class="btn btn-outline-primary" style="float: right;">Chi
                                         tiết
