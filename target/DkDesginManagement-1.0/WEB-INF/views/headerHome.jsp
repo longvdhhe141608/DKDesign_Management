@@ -38,8 +38,7 @@
         <div class="tab_content ">
             <div id="London" class="city">
                 <div class="container-fluid">
-                    <h2>Xin chào , ${requestScope.loginUser.nameAcc}</h2>
-                    <h2>${ten}</h2>
+                    <h2>Xin chào , Nguyễn</h2>
                     <div class="main">
                         <div class="main-detail">
                             <h3>Công trình</h3>

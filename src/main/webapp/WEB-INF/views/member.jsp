@@ -24,8 +24,8 @@
 </head>
 
 <body>
-<div id="header-include"></div>
-<div class="body_page">
+<jsp:include page="header.jsp"></jsp:include>
+><div class="body_page">
     <div id="narbar_menu"></div>
     <div style="margin-left: 300px;">
         <div class="top">
@@ -92,54 +92,21 @@
                     <td>địa chỉ</td>
                     <td>trạng thái</td>
                 </tr>
-                <tr>
-                    <td>Nguyễn như huấn</td>
-                    <td>thiết kế</td>
-                    <td>123456789</td>
-                    <td>huan@gmail.com</td>
-                    <td>Hà nội</td>
-                    <td>
-                        <button class="btn btn-status" style="background: green;">mở</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nguyễn như huấn</td>
-                    <td>thiết kế</td>
-                    <td>123456789</td>
-                    <td>huan@gmail.com</td>
-                    <td>Hà nội</td>
-                    <td>
-                        <button class="btn btn-status" style="background: red;">chặn</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nguyễn như huấn</td>
-                    <td>thiết kế</td>
-                    <td>123456789</td>
-                    <td>huan@gmail.com</td>
-                    <td>Hà nội</td>
-                    <td>mở</td>
-                </tr>
-                <tr>
-                    <td>Nguyễn như huấn</td>
-                    <td>thiết kế</td>
-                    <td>123456789</td>
-                    <td>huan@gmail.com</td>
-                    <td>Hà nội</td>
-                    <td>mở</td>
-                </tr>
-                <tr>
-                    <td>Nguyễn như huấn</td>
-                    <td>thiết kế</td>
-                    <td>123456789</td>
-                    <td>huan@gmail.com</td>
-                    <td>Hà nội</td>
-                    <td>mở</td>
-                </tr>
+                <c:forEach items="${requestScope.memberList}" var="member">
+                    <tr>
+                        <td>${member.memberName}</td>
+                        <td>${member.memberRole}</td>
+                        <td>${member.memberPhone}</td>
+                        <td>${member.memberMail}</td>
+                        <td>${member.memberAddress}</td>
+                        <td>${member.memberStatus}</td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
     </div>
 </div>
+<jsp:include page=""></jsp:include>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -149,10 +116,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-<script>
-    $(function () {
-        $("#header-include").load("header.jsp");
-        $("#narbar_menu").load("nav_left.jsp");
-    });
-</script>
+
 </html>

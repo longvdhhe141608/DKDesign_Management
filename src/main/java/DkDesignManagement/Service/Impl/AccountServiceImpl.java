@@ -20,14 +20,6 @@ public class AccountServiceImpl implements AccountService {
         return null;
     }
 
-    public boolean isUser(String username, String password) {
-        Account account = accountDao.getAccount(username);
-        if (account != null && account.getPassAcc().equals(password)) {
-            return true;
-        }
-        return false;
-    }
-
     public boolean isExists(String username) {
         for (Account a : accountList) {
             if (a.getNameAcc().equals(username) == true){
@@ -37,11 +29,4 @@ public class AccountServiceImpl implements AccountService {
         return true;
     }
 
-    public AccountDao getAccountDao() {
-        return accountDao;
-    }
-
-    public void setAccountDao(AccountDao accountDao) {
-        this.accountDao = accountDao;
-    }
 }

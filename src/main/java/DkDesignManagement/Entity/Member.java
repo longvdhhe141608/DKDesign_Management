@@ -1,21 +1,19 @@
 package DkDesignManagement.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
 
     private String memberName;
-    private int memberRole;
+    private String memberRole;
     private String memberPhone;
     private String memberMail;
     private String memberAddress;
-    private String memberStatus;
+    private int memberStatus;
 
 }
