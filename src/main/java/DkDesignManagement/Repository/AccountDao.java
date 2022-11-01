@@ -16,21 +16,10 @@ public class AccountDao {
 
     public Account getAccount(String user) {
         String sql = "Select * from `dkmanagement`.`accounts` where Username = ?";
-        Account account = new Account();
-        account = jdbcTemplate.queryForObject(sql, new MapperAccount(), user);
+        Account account = jdbcTemplate.queryForObject(sql, new MapperAccount(), user);
         return account;
     }
 
-    public Account Login(String user, String pass) {
-        Account a = getAccount(user);
-        if (a.getPassAcc() == pass) {
-            System.out.println("Login thanh cong: " + user);
-            return a;
-        } else {
-            System.out.println("fail");
-            return null;
-        }
-    }
 
     public List<Account> getAllAccount() {
         String sql = "SELECT * FROM `dkmanagement`.`accounts`";
@@ -40,16 +29,14 @@ public class AccountDao {
     }
 
     public int addNewAccount(String username, String password, int role) {
-        String sql = "insert into `dkmanagement`.`accounts`(Username, `Password`, `Role in website`, `Status`) " +
-                "values ('" + username + "', '" + password + "', '" + role + "', 1)";
+        String sql = "insert into `dkmanagement`.`accounts`(Username, `Password`, `Role in website`, `Status`) " + "values ('" + username + "', '" + password + "', '" + role + "', 1)";
         int check = 0;
         check = jdbcTemplate.update(sql);
         return check;
     }
 
     public int updateAccount(String acc, int role, int status) {
-        String sql = "update `dkmanagement`.`accounts` set `Role in website` = " + role + ", `Status` = " + status + " " +
-                "where `accounts`.`Username` = '" + acc + "';";
+        String sql = "update `dkmanagement`.`accounts` set `Role in website` = " + role + ", `Status` = " + status + " " + "where `accounts`.`Username` = '" + acc + "';";
         int check = 0;
         check = jdbcTemplate.update(sql);
         return check;

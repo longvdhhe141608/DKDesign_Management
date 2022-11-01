@@ -2,6 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Repository.AccountDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,11 @@ import java.util.Objects;
 
 @Controller
 @RequestMapping(value = "/")
+
 public class LoginController {
+    @Autowired
+    private AccountDao accountDao;
+
     @GetMapping(value = "/")
     public String login() {
         return "login";
@@ -36,14 +41,12 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@ModelAttribute(value = "account") Account account, ModelMap modelMap, HttpServletRequest request, HttpServletResponse response, HttpSession session) throws IOException, ServletException {
         ModelAndView view = null;
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        AccountDao accountDao = new AccountDao();
-        Account ac = accountDao.getAccount(username);
 
-//        account = accountDao.Login(username,password);
-//      account = new Account(username, "123");
-        if (account != null) {
+        account = accountDao.getAccount(username);
+        if (account.getPassAcc().equals(password)) {
             session.setAttribute("loginUser", account);
             view = new ModelAndView("redirect:home");
         } else {

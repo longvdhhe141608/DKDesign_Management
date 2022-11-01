@@ -13,7 +13,7 @@ public class LoadHomeController {
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public ModelAndView loadHome(HttpServletRequest request, HttpServletResponse response){
-        ModelAndView view = new ModelAndView("home");
+        ModelAndView view = new ModelAndView("headerHome");
         return view;
     }
 }

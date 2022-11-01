@@ -11,11 +11,11 @@ public class MapperMember implements RowMapper<Member> {
     public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
         Member member = new Member();
         member.setMemberName(rs.getString("Name"));
-        member.setMemberRole(rs.getInt("Role in project"));
+        member.setMemberRole(rs.getString("Role_Name"));
         member.setMemberPhone(rs.getString("Phone number"));
         member.setMemberMail(rs.getString("mail"));
         member.setMemberAddress(rs.getString("Name"));
-        member.setMemberStatus(rs.getString("Status"));
+        member.setMemberStatus(rs.getInt("Status"));
         return member;
     }
 }

@@ -14,7 +14,7 @@ public class Account {
     private String nameAcc;
     private String passAcc;
     private int roleInWeb;
-    private boolean status;
+    private int status;
 
     public Account(String nameAcc, String passAcc) {
         this.nameAcc = nameAcc;
