@@ -1,8 +1,7 @@
 <!DOCTYPE html>
+<html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-
 <head>
     <meta charset="utf-8">
     <title>JSP Page</title>
@@ -22,10 +21,9 @@
         </div>
         <div class="tab_element">
             <form action="my_task.jsp">
-                <button class="tab_button" onclick="openCity('Paris')"><i class="fa-solid fa-briefcase"></i> Công
-                    việc
-                    của
-                    tôi
+                <button class="tab_button" onclick="openCity('Paris')">
+                    <i class="fa-solid fa-briefcase"></i>
+                    Công việc của tôi
                 </button>
             </form>
         </div>
@@ -47,5 +45,4 @@
     </div>
 </div>
 </body>
-
 </html>

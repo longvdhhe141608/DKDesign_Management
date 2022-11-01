@@ -1,0 +1,17 @@
+.btn-add-task {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.task-cmt-details {
+    background: #D9D9D9;
+    margin-top: 20px;
+}
+
+.name-avatar {
+    padding-right: 20px;
+}
+
+.input-cmt {
+    width: 80%;
+}
