@@ -15,7 +15,7 @@ public class MapperEmployee implements RowMapper<Employee> {
         e.setGender(resultSet.getString("Gender"));
         e.setAge(resultSet.getInt("Age"));
         e.setMail(resultSet.getString("Mail"));
-        e.setPhone(resultSet.getString("Phone number"));
+        e.setPhone(resultSet.getString("Phone"));
         e.setCccd(resultSet.getString("CCCD"));
         return e;
     }

@@ -48,6 +48,7 @@ public class LoginController {
         account = accountDao.getAccount(username);
         if (account.getPassAcc().equals(password)) {
             session.setAttribute("loginUser", account);
+
             view = new ModelAndView("redirect:home");
         } else {
             request.setAttribute("message", "Invalid username or password!");

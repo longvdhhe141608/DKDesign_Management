@@ -25,8 +25,9 @@
 
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-><div class="body_page">
-    <div id="narbar_menu"></div>
+>
+<div class="body_page">
+    <jsp:include page="nav_left.jsp"></jsp:include>
     <div style="margin-left: 300px;">
         <div class="top">
             <div class="list-top">
@@ -39,14 +40,14 @@
             </div>
             <div class="list-task-head">
 
-                <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list_task.jsp"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="requirement.jsp"><input type="button"
-                                                                           value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="progress.jsp"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="member.jsp"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="dashboard.jsp"><input type="button" value="Thống kê"></a>
+                <a class="project-detail" href="/summary"><input type="button" value="Sơ lược"></a>
+                <a class="list" href="/list_task"><input type="button" value="Danh sách"></a>
+                <a class="calendar" href="/calendar"><input type="button" value="Lịch"></a>
+                <a class="customer-request" href="/requirement"><input type="button"
+                                                                       value="Yêu cầu của khách hàng"></a>
+                <a class="project-progress" href="/progress"><input type="button" value="Tiến độ"></a>
+                <a class="project-member" href="/member"><input type="button" value="Thành viên"></a>
+                <a class="statistic" href="/dashboard"><input type="button" value="Thống kê"></a>
             </div>
         </div>
         <h1>Thành viên dự án</h1>
@@ -76,15 +77,17 @@
                     </div>
                 </div>
             </div>
-            <div class="search-member">
-                <input class="search-all-member-name" type="search" placeholder="Tìm kiếm">
-                <input type="button" class="search-all-member-soft" value="sort by name"></input>
-            </div>
+            <form name="search-member" action="searchMember" method="post">
+                <div class="search-member">
+                    <input class="search-all-member-name" type="search" placeholder="Tìm kiếm Thanh Vien">
+                    <input type="submit" class="search-all-member-soft" value="sort by name"></input>
+                </div>
+            </form>
+
         </div>
         <div>
             <table class="table table-bordered">
                 <tr>
-
                     <td>Tên</td>
                     <td>Chức danh</td>
                     <td>Số điện thoại</td>

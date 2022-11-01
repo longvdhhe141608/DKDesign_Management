@@ -16,19 +16,14 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
     </script>
-    <script>
-        $(function () {
-            $("#header-include").load("header.jsp");
-            $("#nav-left-main").load("nav_left.jsp");
-        });
-    </script>
+
 </head>
 
 <body>
 
-<div id="header-include"></div>
+<jsp:include page="header.jsp"></jsp:include>
 <div class="container_content body_page">
-    <div id="nav-left-main"></div>
+    <jsp:include page="nav_left.jsp"></jsp:include>
 
     <div class="content_first">
         <div class="top">
@@ -42,14 +37,14 @@
             </div>
             <div class="list-task-head">
 
-                <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list_task.jsp"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="requirement.jsp"><input type="button"
-                                                                           value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="progress.jsp"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="member.jsp"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="dashboard.jsp"><input type="button" value="Thống kê"></a>
+                <a class="project-detail" href="/summary"><input type="button" value="Sơ lược"></a>
+                <a class="list" href="/list_task"><input type="button" value="Danh sách"></a>
+                <a class="calendar" href="/calendar"><input type="button" value="Lịch"></a>
+                <a class="customer-request" href="/requirement"><input type="button"
+                                                                       value="Yêu cầu của khách hàng"></a>
+                <a class="project-progress" href="/progress"><input type="button" value="Tiến độ"></a>
+                <a class="project-member" href="/member"><input type="button" value="Thành viên"></a>
+                <a class="statistic" href="/dashboard"><input type="button" value="Thống kê"></a>
             </div>
         </div>
         <div class="title">
@@ -120,8 +115,7 @@
                             <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_448_5318)">
-                                    <path
-                                            d="M12 4.33333C16.41 4.33333 20 8.2225 20 13C20 17.7775 16.41 21.6667 12 21.6667C7.59 21.6667 4 17.7775 4 13C4 8.2225 7.59 4.33333 12 4.33333ZM12 2.16666C6.48 2.16666 2 7.02 2 13C2 18.98 6.48 23.8333 12 23.8333C17.52 23.8333 22 18.98 22 13C22 7.02 17.52 2.16666 12 2.16666ZM12 16.25L8 11.9167H16L12 16.25Z"
+                                    <path d="M12 4.33333C16.41 4.33333 20 8.2225 20 13C20 17.7775 16.41 21.6667 12 21.6667C7.59 21.6667 4 17.7775 4 13C4 8.2225 7.59 4.33333 12 4.33333ZM12 2.16666C6.48 2.16666 2 7.02 2 13C2 18.98 6.48 23.8333 12 23.8333C17.52 23.8333 22 18.98 22 13C22 7.02 17.52 2.16666 12 2.16666ZM12 16.25L8 11.9167H16L12 16.25Z"
                                             fill="black"/>
                                 </g>
                                 <defs>
