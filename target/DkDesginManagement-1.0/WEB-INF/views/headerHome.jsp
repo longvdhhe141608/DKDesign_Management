@@ -25,20 +25,20 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
-<jsp:include page="nav_left.jsp"/>
+
+
 <div class="container-fluid" style="padding: 0">
 
-    <div id="header-include"></div>
+    <jsp:include page="header.jsp"/>
     <!-- body -->
 
     <div class="body_page">
-        <div id="nav-left-main"></div>
+        <jsp:include page="nav_left.jsp"/>
 
         <div class="tab_content ">
             <div id="London" class="city">
                 <div class="container-fluid">
-                    <h2>Xin chào , Nguyễn</h2>
+                    <h2>Xin chào , ${sessionScope.loginUser.nameAcc}</h2>
                     <div class="main">
                         <div class="main-detail">
                             <h3>Công trình</h3>
