@@ -29,16 +29,17 @@
         </div>
         <div class="tab_element">
             <form action="allProject.jsp">
-                <button class="tab_button" onclick="openCity('Tokyo')"><i class="fa-solid fa-clipboard-list"></i>
-                    Công
-                    trình
+                <button class="tab_button" onclick="openCity('Tokyo')">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Công trình
                 </button>
             </form>
         </div>
         <div class="tab_element">
             <form action="list_task.jsp">
-                <button class="tab_button" onclick="openCity('Thongbao')"><i class="fa-solid fa-bell"></i> Thông
-                    báo
+                <button class="tab_button" onclick="openCity('Thongbao')">
+                    <i class="fa-solid fa-bell"></i>
+                    Thông báo
                 </button>
             </form>
         </div>
