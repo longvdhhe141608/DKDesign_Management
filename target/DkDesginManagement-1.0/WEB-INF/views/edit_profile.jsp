@@ -19,7 +19,7 @@
     </div>
     <div class="nav-right">
         <div class="information">
-            <a href="profile.jsp" class="main-information">icon</a>
+            <a href="profile" class="main-information">icon</a>
             <h3 class="main-information">Chỉnh sửa thông tin cá nhân</h3>
         </div>
         <div class="main">
