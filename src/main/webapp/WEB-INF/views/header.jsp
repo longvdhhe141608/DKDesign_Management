@@ -29,7 +29,7 @@
         <div class="header_right col-1">
             <div class="logo">
                 <a href="">
-                    <img src="assets/image/TMDKC.png" alt="">
+                    <img src="<c:url value="/resources/assets/image/TMDKC.png"/>" alt="">
                 </a>
             </div>
 

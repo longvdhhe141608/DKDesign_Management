@@ -13,7 +13,7 @@
 <div class="container-fluid" style="padding: 0">
     <div id="tab_menu" class="tab_menu">
         <div class="tab_element">
-            <form action="headerHome.jsp">
+            <form action="headerHome">
                 <button class="tab_button" onclick="openCity('London')" autofocus>
                     <i class="fa-solid fa-house"></i> Trang chủ
                 </button>

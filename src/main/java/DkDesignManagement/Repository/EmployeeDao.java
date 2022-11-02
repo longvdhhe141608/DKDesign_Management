@@ -11,10 +11,10 @@ public class EmployeeDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public Employee getInformation(String acc) {
-        String sql = "select * from `dkmanagement`.`employees` where Username = ?";
+    public Employee getInformation(int id) {
+        String sql = "select * from `dkmanagement`.`employees` where id_acc = ?";
         Employee e = new Employee();
-        e = jdbcTemplate.queryForObject(sql, new MapperEmployee(), acc);
+        e = jdbcTemplate.queryForObject(sql, new MapperEmployee(), id);
         return e;
     }
 

@@ -10,18 +10,18 @@ public class MapperProject implements RowMapper<Project> {
     @Override
     public Project mapRow(ResultSet resultSet, int i) throws SQLException {
         Project p = new Project();
-        p.setIdProject(resultSet.getInt("idProject"));
-        p.setNameProject(resultSet.getString("Project_Name"));
-        p.setStartDate(resultSet.getDate("Start_Date"));
-        p.setClosureDate(resultSet.getInt("Closure_Date"));
-        p.setEndedDate(resultSet.getDate("Ended_Date"));
-        p.setCreator(resultSet.getString("Creator"));
-        p.setType(resultSet.getInt("Type"));
-        p.setCusName(resultSet.getString("Customer's name"));
-        p.setCusAddress(resultSet.getString("Customer's address"));
-        p.setCusPhone(resultSet.getString("Customer's phone number"));
-        p.setDetail(resultSet.getString("Detail"));
-        p.setStatus(resultSet.getString("Status"));
+        p.setId(resultSet.getInt("id"));
+        p.setProject_name(resultSet.getString("project_name"));
+        p.setStart_date(resultSet.getDate("start_date"));
+        p.setClosure_date(resultSet.getDate("closure_date"));
+        p.setEnde_date(resultSet.getDate("ended_date"));
+        p.setCreator(resultSet.getInt("creator"));
+        p.setType(resultSet.getInt("type"));
+        p.setCusName(resultSet.getString("customer_name"));
+        p.setCusAddress(resultSet.getString("customer_address"));
+        p.setCusPhone(resultSet.getString("customer_phone"));
+        p.setDetail(resultSet.getString("detail"));
+        p.setStatus(resultSet.getInt("status"));
         return p;
     }
 }

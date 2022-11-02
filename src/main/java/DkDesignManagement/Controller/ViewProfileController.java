@@ -20,9 +20,9 @@ public class ViewProfileController {
             Account account = (Account) session.getAttribute("loginUser");
             EmployeeDao employeeDao = new EmployeeDao();
 //          Employee employee = employeeDao.getInformation(account.getNameAcc());
-            Employee employee = new Employee(1, "Hoàng Thị Thu Hương", "female", 20, "htth@gmail.com", "0123987654", "531231512512");
-            session.setAttribute("profile", employee);
-            request.setAttribute("profile1",employee);
+//            Employee employee = new Employee(1, "Hoàng Thị Thu Hương", "female", 20, "htth@gmail.com", "0123987654", "531231512512");
+//            session.setAttribute("profile", employee);
+//            request.setAttribute("profile1",employee);
         } catch (Exception ignored) {
         }
 

@@ -45,20 +45,20 @@ public class LoginController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        Account ac = new Account();
+        Account ac = dao.getAccount(username);
 
-        if (Objects.isNull(dao.getAccount(username))) {
+        if (Objects.isNull(ac)) {
             request.setAttribute("message", "Invalid username or password!");
-            view = new ModelAndView("Login");
+            view = new ModelAndView("login");
         } else {
             ac = dao.getAccount(username);
             if (ac.getPassword().equals(password)) {
                 request.setAttribute("loginUser", ac);
                 session.setAttribute("loginUser", ac);
-                view = new ModelAndView("headerHome");
+                view = new ModelAndView("redirect:headerHome");
             } else {
                 request.setAttribute("message", "Invalid username or password!");
-                view = new ModelAndView("Login");
+                view = new ModelAndView("login");
             }
         }
         return view;
