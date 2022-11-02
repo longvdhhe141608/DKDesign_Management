@@ -27,7 +27,7 @@
             </a>
         </div>
         <div class="tab_element">
-            <a href="/allProject">
+            <a href="${pageContext.request.contextPath}/allProject">
                 <button class="tab_button" >
                 <i class="fa-solid fa-clipboard-list"></i>
                 Công trình
@@ -35,7 +35,7 @@
             </a>
         </div>
         <div class="tab_element">
-            <a action="/Task/list_task">
+            <a action="${pageContext.request.contextPath}/Task/list_task">
                 <button class="tab_button" onclick="openCity('Thongbao')">
                     <i class="fa-solid fa-bell"></i>
                     Thông báo

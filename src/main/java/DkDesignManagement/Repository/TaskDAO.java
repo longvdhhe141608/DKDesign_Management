@@ -15,19 +15,71 @@ public class TaskDAO {
 
     public List<Task> getAllTaskInPhase(int idPhase) {
 
-        String sql = "SELECT * FROM dkmanagement.task\n" +
-                "WHERE idPhase = ? ";
+        String sql = "SELECT \n" +
+                "    idTask,\n" +
+                "    idPhase,\n" +
+                "    idTask_f,\n" +
+                "    TaskName,\n" +
+                "    TaskStatus,\n" +
+                "    Starting_Date,\n" +
+                "    Deadline,\n" +
+                "    Ended_Date,\n" +
+                "    Gallery,\n" +
+                "    Description,\n" +
+                "    Creator,\n" +
+                "    AssignedTo,\n" +
+                "    (SELECT \n" +
+                "            project.Project_Name\n" +
+                "        FROM\n" +
+                "            project\n" +
+                "        WHERE\n" +
+                "            project.idProject = (SELECT \n" +
+                "                    idProject\n" +
+                "                FROM\n" +
+                "                    phase\n" +
+                "                WHERE\n" +
+                "                    idPhase = ?)) AS ProjectName\n" +
+                "FROM\n" +
+                "    dkmanagement.task\n" +
+                "WHERE\n" +
+                "    idPhase = ?";
 
-        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), idPhase);
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), idPhase, idPhase);
         return taskList;
     }
 
     public List<Task> getAllTaskInPhaseByAssignedUser(String username, int idPhase) {
 
-        String sql = "SELECT * FROM dkmanagement.task\n" +
-                "WHERE idPhase = ? AND AssignedTo= ?";
+        String sql = "SELECT \n" +
+                "    idTask,\n" +
+                "    idPhase,\n" +
+                "    idTask_f,\n" +
+                "    TaskName,\n" +
+                "    TaskStatus,\n" +
+                "    Starting_Date,\n" +
+                "    Deadline,\n" +
+                "    Ended_Date,\n" +
+                "    Gallery,\n" +
+                "    Description,\n" +
+                "    Creator,\n" +
+                "    AssignedTo,\n" +
+                "    (SELECT \n" +
+                "            project.Project_Name\n" +
+                "        FROM\n" +
+                "            project\n" +
+                "        WHERE\n" +
+                "            project.idProject = (SELECT \n" +
+                "                    idProject\n" +
+                "                FROM\n" +
+                "                    phase\n" +
+                "                WHERE\n" +
+                "                    idPhase = ?)) AS ProjectName\n" +
+                "FROM\n" +
+                "    dkmanagement.task\n" +
+                "WHERE\n" +
+                "    idPhase = ? AND AssignedTo = ?;";
 
-        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), idPhase, username);
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), idPhase, idPhase, username);
         return taskList;
     }
 }

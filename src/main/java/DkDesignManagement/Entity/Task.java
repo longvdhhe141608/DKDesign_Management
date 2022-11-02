@@ -22,4 +22,5 @@ public class Task {
     private String description;
     private  String creator;
     private String assignTo;
+    private String projectName;
 }

@@ -39,15 +39,14 @@
                     </select></a>
             </div>
             <div class="list-task-head">
-
-                <a class="project-detail" href="/summary"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="/list_task"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="/calendar"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="/requirement"><input type="button"
-                                                                       value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="/progress"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="/member"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="/dashboard"><input type="button" value="Thống kê"></a>
+                <a class="project-detail" href="${pageContext.request.contextPath}/summary"><input type="button" value="Sơ lược"></a>
+                <a class="list" href="${pageContext.request.contextPath}/list_task"><input type="button" value="Danh sách"></a>
+                <a class="calendar" href="${pageContext.request.contextPath}/calendar"><input type="button" value="Lịch"></a>
+                <a class="customer-request" href="${pageContext.request.contextPath}/requirement"><input type="button"
+                                                                                                         value="Yêu cầu của khách hàng"></a>
+                <a class="project-progress" href="${pageContext.request.contextPath}/progress"><input type="button" value="Tiến độ"></a>
+                <a class="project-member" href="${pageContext.request.contextPath}/member"><input type="button" value="Thành viên"></a>
+                <a class="statistic" href="${pageContext.request.contextPath}/dashboard"><input type="button" value="Thống kê"></a>
             </div>
         </div>
         <h1>Thành viên dự án</h1>

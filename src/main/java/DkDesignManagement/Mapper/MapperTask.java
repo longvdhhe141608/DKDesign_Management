@@ -22,15 +22,16 @@ public class MapperTask implements RowMapper<Task> {
          task.setIdTask(rs.getInt("idTask"));
          task.setIdPhase(rs.getInt("idPhase"));
          task.setIdTask_f(rs.getInt("idTask_f"));
-         task.setTaskName(rs.getString("Task_Name"));
-         task.setTaskStatus(rs.getBoolean("Task_Status"));
+         task.setTaskName(rs.getString("TaskName"));
+         task.setTaskStatus(rs.getBoolean("TaskStatus"));
          task.setDeadline(rs.getDate("Deadline"));
          task.setStartDate(rs.getDate("Starting_Date"));
          task.setEndDate(rs.getDate("Ended_Date"));
          task.setGallery(rs.getString("Gallery"));
          task.setDescription(rs.getString("Description"));
          task.setCreator(rs.getString("Creator"));
-         task.setAssignTo(rs.getString("AssignTo"));
+         task.setAssignTo(rs.getString("AssignedTo"));
+         task.setProjectName(rs.getString("ProjectName"));
          return task;
     }
 }
