@@ -38,7 +38,7 @@
             <div class="list-task-head">
 
                 <a class="project-detail" href="${pageContext.request.contextPath}/summary"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="${pageContext.request.contextPath}/list_task"><input type="button" value="Danh sách"></a>
+                <a class="list" href="${pageContext.request.contextPath}/Task/list_task"><input type="button" value="Danh sách"></a>
                 <a class="calendar" href="${pageContext.request.contextPath}/calendar"><input type="button" value="Lịch"></a>
                 <a class="customer-request" href="${pageContext.request.contextPath}/requirement"><input type="button"
                                                                        value="Yêu cầu của khách hàng"></a>
@@ -143,7 +143,7 @@
                         <td>10/10/2022</td>
                         <td>Biet thu nha dan</td>
                     </tr>
-                    <c:forEach items="${requestScope.listTask}" var="task">
+                    <c:forEach items="${requestScope.myTaskList}" var="task">
                         <tr>
                             <td>
                                 <svg width="24" height="26" viewBox="0 0 24 26" fill="none"

@@ -35,6 +35,7 @@
                        required
                        class="form-control"
                        placeholder="Nhập mật khẩu"
+                       minlength="6"
                        maxlength="32">
             </div>
             <div class="input-group-text">

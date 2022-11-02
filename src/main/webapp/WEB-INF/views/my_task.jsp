@@ -143,7 +143,7 @@
                         <td>10/10/2022</td>
                         <td>Biet thu nha dan</td>
                     </tr>
-                    <c:forEach items="${requestScope.listTask}" var="task">
+                    <c:forEach items="${requestScope.myTaskList}" var="task">
                         <tr>
                             <td>
                                 <svg width="24" height="26" viewBox="0 0 24 26" fill="none"
