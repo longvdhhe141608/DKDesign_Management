@@ -12,7 +12,7 @@ public class CategoryDao {
     private JdbcTemplate jdbcTemplate;
 
     public Category getCategoryByName(String s){
-        String sql = "SELECT * FROM `dkmanagement`.`category` where `Category_Name` like N'"+ s +"';";
+        String sql = "SELECT * FROM `dkmanagement`.`category` where `category`.`category_name` like N'"+ s +"';";
         Category c = new Category();
         c = jdbcTemplate.queryForObject(sql, new MapperCategory(), s);
         return c;

@@ -39,23 +39,28 @@
             <div id="London" class="city">
                 <div class="container-fluid">
                     <h2>Xin chào , ${sessionScope.loginUser.username}</h2>
-                    <h2>${ten}</h2>
                     <div class="main">
                         <div class="main-detail">
                             <h3>Công trình</h3>
                             <div class="main-detail-left">
-                                <div class="left-detail">
-                                    <img class="img_ava" src=""/>
-                                    <a href="summary.jsp" class="left-main">Biệt thự nhà dân1</a>
-                                </div>
-                                <div class="left-detail">
-                                    <img class="img_ava" src=""/>
-                                    <a class="left-main">Biệt thự nhà dân2</a>
-                                </div>
-                                <div class="left-detail">
-                                    <img class="img_ava" src=""/>
-                                    <a class="left-main">Biệt thự nhà dân3</a>
-                                </div>
+<%--                                <div class="left-detail">--%>
+<%--                                    <img class="img_ava" src=""/>--%>
+<%--                                    <a href="summary.jsp" class="left-main">Biệt thự nhà dân1</a>--%>
+<%--                                </div>--%>
+<%--                                <div class="left-detail">--%>
+<%--                                    <img class="img_ava" src=""/>--%>
+<%--                                    <a class="left-main">Biệt thự nhà dân2</a>--%>
+<%--                                </div>--%>
+<%--                                <div class="left-detail">--%>
+<%--                                    <img class="img_ava" src=""/>--%>
+<%--                                    <a class="left-main">Biệt thự nhà dân3</a>--%>
+<%--                                </div>--%>
+                                <c:forEach var="i" items="${listProject}">
+                                    <div class="left-detail">
+                                        <img class="img_ava" src=""/>
+                                        <a href="summary.jsp" class="left-main">${i.project_name}</a>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="main-detail">

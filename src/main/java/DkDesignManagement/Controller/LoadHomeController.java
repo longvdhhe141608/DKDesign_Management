@@ -17,16 +17,16 @@ import javax.servlet.http.HttpSession;
 public class LoadHomeController {
 
     @Autowired
-    AccountDao accountDao;
-    ProjectDao projectDao;
+    private AccountDao accountDao;
+    @Autowired
+    private ProjectDao projectDao;
 
-    @RequestMapping(value = "/home",method = RequestMethod.GET)
+    @RequestMapping(value = "/headerHome",method = RequestMethod.GET)
     public ModelAndView loadHome(HttpServletRequest request, HttpServletResponse response){
         ModelAndView view = new ModelAndView("headerHome");
-//        HttpSession session = request.getSession();
-//        Account a = (Account) session.getAttribute("loginUser");
-//        view.addObject("ten", a.getUsername());
-
+        HttpSession session = request.getSession();
+        Account a = (Account) session.getAttribute("loginUser");
+        view.addObject("listProject", projectDao.getProjectByAcc(a.getId()));
         return view;
     }
 }

@@ -22,14 +22,26 @@ public class ProjectDao {
         return p;
     }
 
-    public List<Project> getAllProject(String acc) {
-        String sql = "select `project`.`project_Name`, `category`.`Category_Name`, `project`.`Start_Date`, `project`.`Ended_Date`, `project`.`Status` from project " +
+    public List<Project> getAllProject(int acc) {
+        String sql = "select `project`.`project_name`, `category`.`category_name`, `project`.`start_date`," +
+                " `project`.`ended_date`, `project`.`status` from project " +
                 "join `project_participation` on `project`.`id` = `project_participation`.`project_id` " +
-                "join `accounts` on `project_participation`.`account_id` = `accounts`.`username` " +
-                "join category on project.`Type`= category.`id` " +
-                "where `accounts`.`Username` = ?";
+                "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` " +
+                "join category on project.`type`= category.`id` " +
+                "where `accounts`.`id` = ?";
         List<Project> projectList = new ArrayList<>();
         projectList = jdbcTemplate.query(sql, new MapperProject(), acc);
+        return projectList;
+    }
+    public List<Project> getProjectByAcc(int id){
+        String sql = "select `project`.* from project \n" +
+                "join `project_participation` on `project`.`id` = `project_participation`.`project_id` \n" +
+                "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` \n" +
+                "where `accounts`.`id` = ? and `project`.`status` = 2\n" +
+                "GROUP BY `project`.`id` \n" +
+                "order by `project`.`id` desc \n";
+        List<Project> projectList = new ArrayList<>();
+        projectList = jdbcTemplate.query(sql, new MapperProject(), id);
         return projectList;
     }
 
