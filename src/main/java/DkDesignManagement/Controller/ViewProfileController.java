@@ -3,6 +3,7 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Employee;
 import DkDesignManagement.Repository.EmployeeDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,16 +14,16 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ViewProfileController {
+    @Autowired
+    private EmployeeDao employeeDao;
+
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public ModelAndView LoadProfile(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         try {
             Account account = (Account) session.getAttribute("loginUser");
-            EmployeeDao employeeDao = new EmployeeDao();
-//          Employee employee = employeeDao.getInformation(account.getNameAcc());
-//            Employee employee = new Employee(1, "Hoàng Thị Thu Hương", "female", 20, "htth@gmail.com", "0123987654", "531231512512");
-//            session.setAttribute("profile", employee);
-//            request.setAttribute("profile1",employee);
+          Employee employee = employeeDao.getInformation(account.getId());
+             request.setAttribute("profile",employee);
         } catch (Exception ignored) {
         }
 

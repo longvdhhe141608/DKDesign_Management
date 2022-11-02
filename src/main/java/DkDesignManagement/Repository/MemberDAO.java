@@ -17,11 +17,10 @@ public class MemberDAO {
     private JdbcTemplate jdbcTemplate;
 
     public List<Member> getMemberInProject(int projectId){
-        String sql = "SELECT `employees`.`Name`, `role`.`roleName`, `employees`.`Phone`, `employees`.`Mail`,`employees`.`Address`, `accounts`.`Status`\n" +
-                "FROM employees JOIN accounts ON employees.Username = accounts.Username\n" +
-                "JOIN project_participation ON project_participation.Username = accounts.Username\n" +
-                "JOIN `role` ON `role`.idRole = project_participation.RoleInProject\n" +
-                "WHERE project_participation.idProject = ?";
+        String sql = "SELECT `employees`.name as emp_name, `roles`.name as role, `employees`.`phone`, `employees`.`mail`,`employees`.`address`, `employees`.`gender` as `status`\n" +
+                "FROM employees JOIN project_participation ON project_participation.account_id = employees.id_acc\n" +
+                "JOIN `roles` ON roles.id = project_participation.role_id\n" +
+                "WHERE project_participation.project_id = ?";
         List<Member> memberList =  jdbcTemplate.query(sql, new MapperMember(), projectId);
         return memberList;
     }

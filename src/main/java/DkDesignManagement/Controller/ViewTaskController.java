@@ -16,22 +16,22 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/Task")
-public class ViewMyTaskController {
+public class ViewTaskController {
     @Autowired
     private TaskDAO taskDAO;
 
     @GetMapping(value = "/my_task")
-    public ModelAndView viewTask(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView viewMyTask(HttpServletRequest request, HttpServletResponse response){
         ModelAndView view = new ModelAndView("my_task");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        List<Task> taskList = taskDAO.getAllTaskInPhaseByAssignedUser(account.getNameAcc(), 1);
-        request.setAttribute("listTask", taskList);
+        List<Task> myTaskList = taskDAO.getAllTaskInPhaseByAssignedUser(account.getId());
+        request.setAttribute("myTaskList", myTaskList);
         return view;
     }
 
     @GetMapping(value = "/list_task")
-    public ModelAndView viewTask(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response){
         ModelAndView view = new ModelAndView("list_task");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");

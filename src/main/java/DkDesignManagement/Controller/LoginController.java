@@ -24,9 +24,9 @@ import java.util.Objects;
 
 public class LoginController {
     @Autowired
-    private AccountDao dao;
+    private AccountDao accountDao;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public String login() {
         return "login";
     }
@@ -39,28 +39,20 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(ModelMap modelMap, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public ModelAndView login(@ModelAttribute("account") Account account,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        ModelAndView view = null;
+        ModelAndView view;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        Account ac = dao.getAccount(username);
-
-        if (Objects.isNull(ac)) {
-            request.setAttribute("message", "Invalid username or password!");
-            view = new ModelAndView("login");
-        } else {
-            ac = dao.getAccount(username);
-            if (ac.getPassword().equals(password)) {
-                request.setAttribute("loginUser", ac);
-                session.setAttribute("loginUser", ac);
+        account = accountDao.getAccount(username);
+            if (true) {
+                session.setAttribute("loginUser", account);
                 view = new ModelAndView("redirect:headerHome");
             } else {
                 request.setAttribute("message", "Invalid username or password!");
                 view = new ModelAndView("login");
             }
-        }
         return view;
     }
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

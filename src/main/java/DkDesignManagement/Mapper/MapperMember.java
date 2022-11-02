@@ -10,12 +10,12 @@ public class MapperMember implements RowMapper<Member> {
     @Override
     public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
         Member member = new Member();
-        member.setMemberName(rs.getString("Name"));
-        member.setMemberRole(rs.getString("roleName"));
-        member.setMemberPhone(rs.getString("Phone"));
+        member.setMemberName(rs.getString("emp_name"));
+        member.setMemberRole(rs.getString("role"));
+        member.setMemberPhone(rs.getString("phone"));
         member.setMemberMail(rs.getString("mail"));
-        member.setMemberAddress(rs.getString("Address"));
-        member.setMemberStatus(rs.getInt("Status"));
+        member.setMemberAddress(rs.getString("address"));
+        member.setMemberStatus(rs.getInt("status"));
         return member;
     }
 }
