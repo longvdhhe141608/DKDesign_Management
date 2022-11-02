@@ -24,9 +24,9 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"></jsp:include>
-><div class="body_page">
-    <div id="narbar_menu"></div>
+<jsp:include page="header.jsp"/>
+<div class="body_page">
+    <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 300px;">
         <div class="top">
             <div class="list-top">
@@ -106,7 +106,6 @@
         </div>
     </div>
 </div>
-<jsp:include page=""></jsp:include>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

@@ -21,8 +21,9 @@ public class AccountServiceImpl implements AccountService {
     }
 
     public boolean isExists(String username) {
+        accountList = accountDao.getAllAccount();
         for (Account a : accountList) {
-            if (a.getNameAcc().equals(username) == true){
+            if (a.getUsername().equals(username) == true){
                 return false;
             }
         }

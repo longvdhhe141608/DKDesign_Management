@@ -23,9 +23,9 @@
 </head>
 
 <body>
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 <div class="body_page">
-    <div id="narbar_menu"></div>
+    <jsp:include page="nav_left.jsp"/>
     <div class="container py-5" style="margin-left: 300px;">
         <div class="top">
             <div class="list-top">
