@@ -12,10 +12,10 @@
     <title>Thông báo</title>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<jsp:include page="header.jsp"/>
 <div class="notification">
     <div class="nav-left">
-        <%@include file="nav_left.jsp" %>
+        <jsp:include page="nav_left.jsp"/>
     </div>
     <div class="nav-right">
         <h3>Thông báo</h3>

@@ -25,10 +25,10 @@
 </head>
 
 <body>
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 <div class="list-task body_page">
     <div class="nav-left">
-        <div id="nav-left-main"></div>
+        <jsp:include page="nav_left.jsp"/>
     </div>
     <div class="list-task-detail">
         <div class="top">
@@ -346,11 +346,11 @@
 </script>
 
 <script>
-    $(function () {
-        $("#header-include").load("header.jsp");
-        $("#nav-left-main").load("nav_left.jsp");
-
-    });
+    // $(function () {
+    //     $("#header-include").load("header.jsp");
+    //     $("#nav-left-main").load("nav_left.jsp");
+    //
+    // });
 
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal

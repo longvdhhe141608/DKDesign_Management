@@ -26,9 +26,9 @@
 
 <body>
 
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 <div class="container_content body_page">
-    <div id="nav-left-main"></div>
+    <jsp:include page="nav_left.jsp"/>
 
     <div class="content_first">
         <div class="top">

@@ -17,11 +17,11 @@
 
 <body>
 
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 
 
 <div class="container_content body_page">
-    <div id="narbar_menu"></div>
+    <jsp:include page="nav_left.jsp"/>
     <div class="content_first">
 
         <div class="title">
@@ -355,10 +355,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    $(function () {
-        $("#header-include").load("header.jsp");
-        $("#narbar_menu").load("nav-left.jsp");
-    });
+    // $(function () {
+    //     $("#header-include").load("header.jsp");
+    //     $("#narbar_menu").load("nav-left.jsp");
+    // });
     const show = document.querySelector("#show");
 
     const popup = document.querySelector(".popup");
