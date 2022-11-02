@@ -27,6 +27,10 @@
             </a>
         </div>
         <div class="tab_element">
+            <form action="allProject">
+                <button class="tab_button" onclick="openCity('Tokyo')">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Công trình
             <a href="${pageContext.request.contextPath}/allProject">
                 <button class="tab_button" >
                 <i class="fa-solid fa-clipboard-list"></i>
