@@ -32,7 +32,7 @@ public class TaskDAO {
     //Lay ra toan bo task cua mot account
     public List<Task> getAllTaskInPhaseByAssignedUser(int acc_id) {
 
-        String sql = "SELECT *,task.big_task_id as task_in_phase,\n" + "                (SELECT project.project_name from project where project.id = (SELECT big_task.project_id from big_task where big_task.id = task_in_phase)) as projectname\n" + "                FROM task where task.assigned_to = ?";
+        String sql = "SELECT *,task.big_task_id as task_in_phase,\n" + "                (SELECT project.project_name from project where project.id = (SELECT big_task.project_id from big_task where big_task.id = task_in_phase)) as projectname\n" + "                FROM task where task.assignedto = ?";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), acc_id);
         return taskList;
