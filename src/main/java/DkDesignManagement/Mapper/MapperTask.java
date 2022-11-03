@@ -19,19 +19,19 @@ public class MapperTask implements RowMapper<Task> {
     @Override
     public Task mapRow(ResultSet rs, int rowNum) throws SQLException {
         Task task = new Task();
-         task.setIdTask(rs.getInt("idTask"));
-         task.setIdPhase(rs.getInt("idPhase"));
-         task.setIdTask_f(rs.getInt("idTask_f"));
-         task.setTaskName(rs.getString("TaskName"));
-         task.setTaskStatus(rs.getBoolean("TaskStatus"));
-         task.setDeadline(rs.getDate("Deadline"));
-         task.setStartDate(rs.getDate("Starting_Date"));
-         task.setEndDate(rs.getDate("Ended_Date"));
-         task.setGallery(rs.getString("Gallery"));
-         task.setDescription(rs.getString("Description"));
-         task.setCreator(rs.getString("Creator"));
-         task.setAssignTo(rs.getString("AssignedTo"));
-         task.setProjectName(rs.getString("ProjectName"));
+         task.setIdTask(rs.getInt("id"));
+         task.setIdPhase(rs.getInt("big_task_id"));
+         task.setIdTask_f(rs.getInt("task_id"));
+         task.setTaskName(rs.getString("task_name"));
+         task.setTaskStatus(rs.getBoolean("task_status"));
+         task.setStartDate(rs.getDate("starting_date"));
+        task.setDeadline(rs.getDate("deadline"));
+         task.setEndDate(rs.getDate("ended_date"));
+         task.setGallery(rs.getString("gallery"));
+         task.setDescription(rs.getString("description"));
+         task.setCreator(rs.getString("creator"));
+         task.setAssignTo(rs.getString("assignedto"));
+         task.setProjectName(rs.getString("projectname"));
          return task;
     }
 }
