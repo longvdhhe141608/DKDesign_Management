@@ -26,7 +26,7 @@ public class LoadHomeController {
         ModelAndView view = new ModelAndView("headerHome");
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("loginUser");
-        view.addObject("listProject", projectDao.getProjectByAcc(a.getId()));
+        view.addObject("listProDoing", projectDao.getProjectByAcc(a.getId()));
         return view;
     }
 }
