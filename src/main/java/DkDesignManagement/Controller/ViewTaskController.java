@@ -35,7 +35,7 @@ public class ViewTaskController {
         ModelAndView view = new ModelAndView("list_task");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        List<Task> taskList = taskDAO.getAllTaskInPhase(1);
+        List<Task> taskList = taskDAO.getAllTaskInBigTask(1);
         request.setAttribute("listTask", taskList);
         return view;
     }

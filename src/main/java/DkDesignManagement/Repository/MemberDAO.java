@@ -17,7 +17,7 @@ public class MemberDAO {
     private JdbcTemplate jdbcTemplate;
 
     public List<Member> getMemberInProject(int projectId){
-        String sql = "SELECT `employees`.name as emp_name, `roles`.name as role, `employees`.`phone`, `employees`.`mail`,`employees`.`address`, `employees`.`gender` as `status`\n" +
+        String sql = "SELECT `employees`.name as emp_name, `roles`.name as role, `employees`.`phone`, `employees`.`mail`,`employees`.`address`, `project_participation`.`status`\n" +
                 "FROM employees JOIN project_participation ON project_participation.account_id = employees.id_acc\n" +
                 "JOIN `roles` ON roles.id = project_participation.role_id\n" +
                 "WHERE project_participation.project_id = ?";

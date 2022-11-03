@@ -14,6 +14,6 @@ public class Member {
     private String memberPhone;
     private String memberMail;
     private String memberAddress;
-    private int memberStatus;
+    private boolean memberStatus;
 
 }
