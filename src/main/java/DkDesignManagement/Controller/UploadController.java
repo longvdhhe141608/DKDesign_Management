@@ -27,20 +27,20 @@ public class UploadController {
     @RequestMapping(value = "/upload-image", method = RequestMethod.POST)
     public ModelAndView loadHome(HttpServletRequest request, @RequestParam("file") MultipartFile file) throws ServletException, IOException {
 
-        String url = cloudinary.uploadFile(file,"default");
-        if(ObjectUtils.isEmpty(url)){
-            request.setAttribute("message","upload fail ");
+        String url = cloudinary.uploadFile(file, "default");
+        if (ObjectUtils.isEmpty(url)) {
+            request.setAttribute("message", "upload fail ");
 
             return new ModelAndView("upload");
         }
 
-        request.setAttribute("message","upload successfully : "+url);
+        request.setAttribute("message", "upload successfully : " + url);
 
         return new ModelAndView("upload");
     }
 
     @RequestMapping(value = "/upload-image", method = RequestMethod.GET)
-    public ModelAndView loadHome()  {
+    public ModelAndView loadHome() {
         return new ModelAndView("upload");
     }
 }
