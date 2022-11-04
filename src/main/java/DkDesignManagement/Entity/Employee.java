@@ -20,4 +20,18 @@ public class Employee {
     private String mail;
     private String phone;
     private int id_acc;
+
+    public Employee(int id, String name, int age, String address, int gender, Date dob, String cccd, String email, String phone) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.gender = gender;
+        this.dob = dob;
+        this.cccd = cccd;
+        this.mail = email;
+        this.phone = phone;
+    }
+
+
 }
