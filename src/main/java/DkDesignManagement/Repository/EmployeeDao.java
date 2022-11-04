@@ -18,4 +18,13 @@ public class EmployeeDao {
         return e;
     }
 
+    /*
+     * sua doi thong tin cua employee trong profile
+     */
+    public void updateProfile(Employee employee){
+        String sql = "UPDATE `dkmanagement`.`employees` " +
+                "SET `name` = ?, `age` = ?, `address` = ?, `gender` = ?, `dob` = ?, `cccd` = ?, `email` = ?, `phone` = ?" +
+                "WHERE (`id` = '?')";
+        jdbcTemplate.update(sql, employee.getName(), employee.getAge(), employee.getGender(), employee.getCccd(), employee.getCccd(), employee.getMail(), employee.getPhone());
+    }
 }
