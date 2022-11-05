@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,9 +21,9 @@
 </head>
 
 <body>
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 <div class="body_page">
-    <div id="narbar_menu"></div>
+    <jsp:include page="nav_left.jsp"/>
     <div class="summary">
         <div class="top-details">
             <div class="list-top">
@@ -127,12 +129,12 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<script>
-    $(function () {
-        $("#header-include").load("header.jsp");
-        $("#narbar_menu").load("nav_left.jsp");
-    });
-</script>
+<%--<script>--%>
+<%--    $(function () {--%>
+<%--        $("#header-include").load("header.jsp");--%>
+<%--        $("#narbar_menu").load("nav_left.jsp");--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 
 

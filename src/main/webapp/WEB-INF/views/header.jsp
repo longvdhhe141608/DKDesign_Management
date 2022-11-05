@@ -29,7 +29,7 @@
         <div class="header_right col-1">
             <div class="logo">
                 <a href="">
-                    <img src="assets/image/TMDKC.png" alt="">
+                    <img src="<c:url value="/resources/assets/image/TMDKC.png"/>" alt="">
                 </a>
             </div>
 
@@ -39,7 +39,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <input style="width: 30rem;" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm"
                            aria-label="Search"/>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <button class="btn btn-primary" type="submit">
                         Tìm kiếm
                     </button>
                 </form>
@@ -61,10 +61,11 @@
                         <img class="img_avatar" src=""/>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="profile"><i class="fa-solid fa-user"></i> Thông tin cá nhân</a>
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
-                        <a class="dropdown-item" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
-
+                        <a class="dropdown-item" href="profile.jsp"><i class="fa-solid fa-user"></i> Thông tin cá
+                            nhân</a>
+                        <a class="dropdown-item" href="change_password.jsp"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
+                        <a class="dropdown-item" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng
+                            xuất</a>
                     </div>
                 </div>
             </div>
@@ -80,7 +81,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 </body>
 
 </html>

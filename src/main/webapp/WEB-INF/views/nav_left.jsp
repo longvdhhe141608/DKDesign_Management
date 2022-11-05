@@ -14,32 +14,32 @@
     <div id="tab_menu" class="tab_menu">
         <div class="tab_element">
             <form action="headerHome.jsp">
-                <button class="tab_button" onclick="openCity('London')" autofocus>
+                <button class="tab_button">
                     <i class="fa-solid fa-house"></i> Trang chủ
                 </button>
             </form>
         </div>
         <div class="tab_element">
             <form action="my_task.jsp">
-                <button class="tab_button" onclick="openCity('Paris')">
-                    <i class="fa-solid fa-briefcase"></i>
-                    Công việc của tôi
+                <button class="tab_button"><i class="fa-solid fa-briefcase"></i> Công
+                    việc
+                    của
+                    tôi
                 </button>
             </form>
         </div>
         <div class="tab_element">
             <form action="allProject.jsp">
-                <button class="tab_button" onclick="openCity('Tokyo')">
-                    <i class="fa-solid fa-clipboard-list"></i>
-                    Công trình
+                <button class="tab_button"><i class="fa-solid fa-clipboard-list"></i>
+                    Công
+                    trình
                 </button>
             </form>
         </div>
         <div class="tab_element">
             <form action="list_task.jsp">
-                <button class="tab_button" onclick="openCity('Thongbao')">
-                    <i class="fa-solid fa-bell"></i>
-                    Thông báo
+                <button class="tab_button"><i class="fa-solid fa-bell"></i> Thông
+                    báo
                 </button>
             </form>
         </div>
