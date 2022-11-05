@@ -33,16 +33,55 @@
     <!-- body -->
 
     <div class="body_page">
+
+        <div class="nav-left">
+            <jsp:include page="nav_left.jsp"/>
+        </div>
+
         <jsp:include page="nav_left.jsp"/>
+
 
         <div class="tab_content ">
             <div id="London" class="city">
                 <div class="container-fluid">
+
+                    <h2 style="margin-top: 50px;">Xin chào , Nguyễn</h2>
+
                     <h2>Xin chào , ${sessionScope.loginUser.username}</h2>
+
                     <div class="main">
                         <div class="main-detail">
-                            <h3>Công trình</h3>
+                            <h4>Công trình</h4>
                             <div class="main-detail-left">
+
+
+                                <table class=" table">
+                                    <tr>
+                                        <td class="left-main">
+                                            Biệt thự nhà dân1
+                                        </td>
+                                        <td class="left-main">
+                                            Biệt thự nhà dân2
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="left-main">
+                                            Biệt thự nhà dân3
+                                        </td>
+                                        <td class="left-main">
+                                            Biệt thự nhà dân4
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="left-main">
+                                            Biệt thự nhà dân5
+                                        </td>
+                                        <td class="left-main">
+                                            Biệt thự nhà dân6
+                                        </td>
+                                    </tr>
+                                </table>
+
 <%--                                <div class="left-detail">--%>
 <%--                                    <img class="img_ava" src=""/>--%>
 <%--                                    <a href="summary.jsp" class="left-main">Biệt thự nhà dân1</a>--%>
@@ -61,67 +100,88 @@
                                         <a href="summary.jsp" class="left-main">${i.project_name}</a>
                                     </div>
                                 </c:forEach>
+
                             </div>
                         </div>
+
                         <div class="main-detail">
-                            <h3>Công việc của tôi</h3>
+                            <h4>Công việc của tôi</h4>
                             <div class="tab">
-                                <button class="tablinks" onclick="openProject(event , 'project')">Cộng việc</button>
-                                <button class="tablinks" onclick="openProject(event , 'overdue')">Quá hạn</button>
-                                <button class="tablinks" onclick="openProject(event , 'complete')">Hoàn thành</button>
+                                <button class="btn btn-secondary tablinks" onclick="openProject(event , 'project')">Cộng
+                                    việc
+                                </button>
+                                <button class="btn btn-secondary tablinks" onclick="openProject(event , 'overdue')">Quá
+                                    hạn
+                                </button>
+                                <button class="btn btn-secondary tablinks" onclick="openProject(event , 'complete')">
+                                    Hoàn
+                                    thành
+                                </button>
                             </div>
                             <div id="project" class="tabcontent">
 
-                                <table class=" table table-striped">
+                                <table class=" table ">
 
-                                    <tr class="right-detail">
-                                        <td>Mặt bằng tầng 3</td>
-                                        <td>03/09</td>
+                                    <tr class=" right-detail">
+                                        <td style="font-size: 20px;">Mặt bằng tầng 3</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 2</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 1</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
 
                                 </table>
 
                             </div>
                             <div id="overdue" class="tabcontent">
-                                <table class=" table table-striped">
+                                <table class=" table ">
 
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 1</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 1</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 1</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                        <td style="font-size: 20px;">03/09</td>
+                                    </tr>
+                                    <tr class="right-detail">
+                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                        <td style="font-size: 20px;">03/09</td>
+                                    </tr>
+                                    <tr class="right-detail">
+                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                        <td style="font-size: 20px;">03/09</td>
+                                    </tr>
+                                    <tr class="right-detail">
+                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
 
                                 </table>
                             </div>
                             <div id="complete" class="tabcontent">
-                                <table class=" table table-striped">
+                                <table class=" table ">
 
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 2</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 2</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td>Mặt bằng tầng 2</td>
-                                        <td>03/09</td>
+                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                        <td style="font-size: 20px;">03/09</td>
                                     </tr>
 
                                 </table>
@@ -130,8 +190,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
@@ -147,14 +205,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    $(function () {--%>
-<%--        $("#header-include").load("header.jsp");--%>
-<%--        $("#nav-left-main").load("nav_left.jsp");--%>
-
-<%--    });--%>
-<%--</script>--%>
-
 </body>
 
 </html>

@@ -26,7 +26,7 @@
                        name="username"
                        required
                        class="form-control"
-                       placeholder="Nhập Email">
+                       placeholder="Nhập tên tài khoản">
             </div>
             <div class="input-group">
                 <input id="password"
