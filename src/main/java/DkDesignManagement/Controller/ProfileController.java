@@ -45,7 +45,7 @@ public class ProfileController {
 
         return new ModelAndView("edit_profile");
     }
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public ModelAndView updateProfile(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         try {
@@ -64,6 +64,6 @@ public class ProfileController {
         } catch (Exception e) {
 
         }
-        return new ModelAndView("edit_profile");
+        return new ModelAndView("profile");
     }
 }

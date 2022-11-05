@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: Hoang Long
@@ -80,8 +79,8 @@
                        value="${profile.address}">
             </div>
             <div class="btn">
-                <button class="back">Hủy</button>
-                <input value="Save" type="submit" class="save">
+                <input type="button" class="btn btn-default" style="background:#f5f5f5" data-dismiss="modal" value="Cancel">
+                <input type="submit" class="btn btn-success" value="Edit">
             </div>
         </div>
     </div>

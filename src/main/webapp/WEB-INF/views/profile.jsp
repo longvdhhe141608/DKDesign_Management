@@ -61,10 +61,76 @@
                 <p id="address">${profile.address}</p>
             </div>
             <div class="main-name-btn">
-                <a href="${pageContext.request.contextPath}/profile/update" class="fa-user-edit">Chỉnh sửa</a>
+                <a href="#editprofile" data-toggle="modal"  class="btn btn-outline-primary ms-1">Edit Profile</a>
             </div>
         </div>
     </div>
+
 </div>
+<!-- Edit profile -->
+<div id="editprofile" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="${pageContext.request.contextPath}/profile/update" method="post">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Profile</h4>
+                    <h6 style="color: #be123c">${error}</h6>
+                    <button style="background-color: white ; border: 0 ; font-weight: 700" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <a hidden >
+                        <input value="${profile.id}" name="id" type="text" class="form-control" required>
+                    </a>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input pattern="[^!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]+$" value="${profile.name}" name="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input  value="${profile.name}" name="name" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input pattern="^0[0-9]{9}" value="${profile.phone}" title="Số điện thoại bao gồm 10 chữ số và bắt đầu bằng chữ số 0" name="phone" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input value="${profile.address}" name="address" type="text" class="form-control" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" style="background:#f5f5f5" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-success" value="Edit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- End edit profile -->
+
+
+<!-- jQery -->
+<script src="js/jquery-3.4.1.min.js"></script>
+<!-- popper js -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
+<!-- bootstrap js -->
+<script src="js/bootstrap.js"></script>
+<!-- owl slider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+</script>
+<!-- isotope js -->
+<script src="https://unpkg.com/isotope-layout@3.0.4/dist/isotope.pkgd.min.js"></script>
+<!-- nice select -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
+<!-- custom js -->
+<script src="js/custom.js"></script>
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts-1.js"></script>
+<script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </body>
 </html>
