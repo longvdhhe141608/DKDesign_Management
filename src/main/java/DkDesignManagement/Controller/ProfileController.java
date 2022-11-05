@@ -21,7 +21,7 @@ public class ProfileController {
     private EmployeeDao employeeDao;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView LoadProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView loadProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         try {
             account = (Account) session.getAttribute("loginUser");
@@ -33,6 +33,18 @@ public class ProfileController {
         return new ModelAndView("profile");
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    public ModelAndView loadUpdateProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        try {
+            account = (Account) session.getAttribute("loginUser");
+            Employee employee = employeeDao.getInformation(account.getId());
+            request.setAttribute("profile", employee);
+        } catch (Exception ignored) {
+        }
+
+        return new ModelAndView("edit_profile");
+    }
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView updateProfile(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();

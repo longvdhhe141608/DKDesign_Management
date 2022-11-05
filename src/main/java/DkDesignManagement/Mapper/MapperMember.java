@@ -13,7 +13,7 @@ public class MapperMember implements RowMapper<Member> {
         member.setMemberName(rs.getString("emp_name"));
         member.setMemberRole(rs.getString("role"));
         member.setMemberPhone(rs.getString("phone"));
-        member.setMemberMail(rs.getString("mail"));
+        member.setMemberMail(rs.getString("email"));
         member.setMemberAddress(rs.getString("address"));
         member.setMemberStatus(rs.getBoolean("status"));
         return member;
