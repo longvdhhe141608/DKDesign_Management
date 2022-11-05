@@ -1,3 +1,4 @@
+<jsp:useBean id="profile" scope="request" type="DkDesignManagement.Entity.Employee"/>
 <%--
   Created by IntelliJ IDEA.
   User: Hoang Long
@@ -13,21 +14,21 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div class="profile">
-    <jsp:include page="nav_left.jsp"/>
-    <div class="profile-main">
-        <div class="information">
-            <a href="#" class="main-information">icon</a>
 
-        </div>
+<div class="profile">
+    <div class="nav-left">
+        <jsp:include page="nav_left.jsp"/>
+    </div>
+    <div class="profile-main">
         <div class="information">
             <a href="/headerHome" class="main-information">icon</a>
             <h3 class="main-information">Thông tin cá nhân</h3>
+            <a href="/edit_profile">Chỉnh sửa</a>
         </div>
         <div class="main">
             <div class="main-name">
                 <h5 class="name"> Họ và tên: </h5>
-                <p id="name">${requestScope.profile.name}</p>
+                <p id="name">${profile.name}</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Mã nhân viên:</h5>
@@ -35,32 +36,32 @@
             </div>
             <div class="main-name">
                 <h5 class="name"> Số CCCD/CMND </h5>
-                <p id="number-CCCD">${requestScope.profile.cccd}</p>
+                <p id="number-CCCD">${profile.cccd}</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Ngày sinh: </h5>
-                <p id="Date-of-birth">${requestScope.profile.name}</p>
+                <p id="Date-of-birth">${profile.dob}</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Giới tính: </h5>
-                <p id="sex">${requestScope.profile.gender==1?"Nam":requestScope.profile.gender==1?"Nu":"Unknown"}</p>
+                <c:if test="profile.gender == 1"><p id="sex">Nam</p></c:if>
+                <c:if test="profile.gender == 0"><p id="sex">Nu</p></c:if>
             </div>
             <div class="main-name">
                 <h5 class="name">Số điện thoại: </h5>
-                <p id="SĐT">${requestScope.profile.phone}</p>
+                <p id="SĐT">${profile.phone}</p>
             </div>
 
             <div class="main-name">
                 <h5 class="name"> Email: </h5>
-                <p id="email">${requestScope.profile.mail}</p>
+                <p id="email">${profile.mail}</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Địa chỉ nhà: </h5>
-                <p id="address">${requestScope.profile.address}</p>
+                <p id="address">${profile.address}</p>
             </div>
             <div class="main-name-btn">
-
-                <button class="edit">Chỉnh sửa</button>
+                <a href="${pageContext.request.contextPath}/profile/update" class="fa-user-edit">Chỉnh sửa</a>
             </div>
         </div>
     </div>
