@@ -42,11 +42,11 @@ public class LoginController {
     public ModelAndView login(@ModelAttribute("account") Account account,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         ModelAndView view;
-        String username = request.getParameter("username");
+        String username = request.getParameter("username").trim().toLowerCase();
         String password = request.getParameter("password");
 
         account = accountDao.getAccount(username);
-            if (true) {
+            if (account.getPassword().equals(password)) {
                 session.setAttribute("loginUser", account);
                 view = new ModelAndView("redirect:headerHome");
             } else {

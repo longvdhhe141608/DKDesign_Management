@@ -16,7 +16,7 @@
     <div id="tab_menu" class="tab_menu">
 
         <div class="tab_element">
-            <a href="${pageContext.request.contextPath}/home">
+            <a href="${pageContext.request.contextPath}/headerHome">
                 <button class="tab_button">
                     <i class="fa-solid fa-house">Trang chủ</i>
                 </button>
