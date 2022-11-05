@@ -13,63 +13,35 @@
 <div class="container-fluid" style="padding: 0">
     <div id="tab_menu" class="tab_menu">
         <div class="tab_element">
-
-            <form action="headerHome.jsp">
-
-            <a href="${pageContext.request.contextPath}/home">
-
+            <form action="headerHome">
                 <button class="tab_button">
                     <i class="fa-solid fa-house"></i> Trang chủ
                 </button>
-            </a>
+            </form>
         </div>
         <div class="tab_element">
-
             <form action="my_task.jsp">
                 <button class="tab_button"><i class="fa-solid fa-briefcase"></i> Công
                     việc
                     của
                     tôi
-
-            <a href="${pageContext.request.contextPath}/Task/my_task">
-                <button class="tab_button">
-                    <i class="fa-solid fa-briefcase"></i>Công việc của tôi
-
                 </button>
-            </a>
+            </form>
         </div>
         <div class="tab_element">
-
-            <form action="allProject.jsp">
+            <form action="allProject">
                 <button class="tab_button"><i class="fa-solid fa-clipboard-list"></i>
                     Công
                     trình
-
-<%--            <form action="allProject">--%>
-<%--                <button class="tab_button" onclick="openCity('Tokyo')">--%>
-<%--                    <i class="fa-solid fa-clipboard-list"></i>--%>
-<%--                    Công trình--%>
-            <a href="${pageContext.request.contextPath}/allProject">
-                <button class="tab_button">
-                    <i class="fa-solid fa-clipboard-list"></i>
-                    Công trình
-
                 </button>
-            </a>
+            </form>
         </div>
         <div class="tab_element">
-
             <form action="list_task.jsp">
                 <button class="tab_button"><i class="fa-solid fa-bell"></i> Thông
                     báo
-
-            <a action="${pageContext.request.contextPath}/Task/list_task">
-                <button class="tab_button" onclick="openCity('Thongbao')">
-                    <i class="fa-solid fa-bell"></i>
-                    Thông báo
-
                 </button>
-            </a>
+            </form>
         </div>
     </div>
 </div>

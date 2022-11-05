@@ -1,12 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : 25-Oct-2022, 10:51:37
-    Author     : Huan
-*/
 html,
 body {
     height: 100vh;
@@ -33,7 +24,7 @@ body {
     height: 70px;
     width: 100px;
 
-    background-image: url('../image/abc.jpg');
+    background-image: url('');
     background-size: 100% 100%;
 }
 
@@ -67,9 +58,24 @@ body {
 
 .logo {
     padding: 5px;
+    margin-left: 70px;
 }
 
 .header-right {
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
+    padding: 5px;
+}
+
+.body_page .tab_content .main-detail .card_list_project{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.body_page .tab_content .main-detail .card_list_project .card_project{
+    justify-self: start;
+    padding-left: 60px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    font-size: 20px;
 }

@@ -12,75 +12,22 @@ body {
     max-width: 1100px;
     margin: auto;
     width: 100%;
+    margin-bottom: 5%;
 }
 
 .container_content .content_first .content-function {
     display: grid;
-    grid-template-columns: 170px 1fr 150px 250px;
+    grid-template-columns: 170px 1fr 150px 300px;
     align-items: center;
     text-align: center;
     padding-top: 25px;
     column-gap: 70px;
 }
 
-.container_content .content_first .content-function .function-one a svg {
-    width: 22px;
-    height: 22px;
-}
+
 
 .container_content .content_first .title {
-    padding-top: 40px;
-}
-
-.container_content .content_first .title h2 {
-    font-size: 36px;
-    font-family: 'Poppins';
-    font-weight: bold;
-}
-
-.container_content .content_first .content-function .function-one .add {
-    background-color: #D9D9D9;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 5px;
-    border-radius: 15px;
-    color: #000;
-    cursor: pointer;
-}
-
-.container_content .content_first .content-function .dropdown .btn-secondary {
-    border: none;
-    background-color: #EAEAEA;
-    color: #000;
-}
-
-.container_content .content_first .content-function .function_search .search_box {
-    display: grid;
-    grid-template-columns: 50px 1fr;
-    align-items: center;
-    position: relative;
-}
-
-.container_content .content_first .content-function .function_search .search_box .search_term {
-    width: 100%;
-    border: 1px solid #FFFFFF;
-    outline: none;
-    height: 40px;
-    border-radius: 0 20px 20px 0;
-
-}
-
-.container_content .content_first .content-function .function_search .search_box .search_button {
-    width: 50px;
-    height: 40px;
-    text-align: center;
-    border-radius: 20px 0 0 20px;
-    border: none;
-}
-
-.container_content .content_first .content-function .function_search .search_box .search_button svg {
-    color: #000;
+    padding-top: 20px;
 }
 
 .container_content .content_first .table_content {
@@ -92,7 +39,7 @@ body {
 }
 
 .popup {
-    position: fixed;
+
     top: 0;
     left: 0;
     width: 100%;
@@ -109,6 +56,7 @@ body {
     top: 50%;
     left: 50%;
     width: 50%;
+    max-height: 100%;
     margin: 0 auto;
     height: 25rem;
     transform: translate(-50%, -50%);
@@ -152,4 +100,8 @@ body {
 
 .top {
     width: 70%;
+}
+
+.wap_search {
+    display: flex;
 }

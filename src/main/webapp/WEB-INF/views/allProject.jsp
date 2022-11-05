@@ -14,12 +14,8 @@
 
     <title>Tất cả công trình</title>
 </head>
-
 <body>
-
 <jsp:include page="header.jsp"/>
-
-
 <div class="container_content body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="content_first">
@@ -117,12 +113,14 @@
                             </c:if>
                             <td>
                                 <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="date" value="${i.start_date}">
+                                    <input class="form-control" formControlName="dob" type="date"
+                                           value="${i.start_date}">
                                 </div>
                             </td>
                             <td>
                                 <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="date" value="${i.closure_date}">
+                                    <input class="form-control" formControlName="dob" type="date"
+                                           value="${i.closure_date}">
                                 </div>
                             </td>
                             <c:if test="${i.status == 1}">
@@ -284,7 +282,6 @@
         </div>
     </div>
 </div>
-
 <div class="popup hide__popup">
     <div class="popup__content">
         <div class="title">
@@ -367,8 +364,6 @@
         </div>
     </div>
 </div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
