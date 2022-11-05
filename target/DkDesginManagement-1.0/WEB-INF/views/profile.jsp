@@ -13,16 +13,16 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<div class="profile">
-    <jsp:include page="nav_left.jsp"/>
-    <div class="profile-main">
-        <div class="information">
-            <a href="#" class="main-information">icon</a>
 
-        </div>
+<div class="profile">
+    <div class="nav-left">
+        <jsp:include page="nav_left.jsp"/>
+    </div>
+    <div class="profile-main">
         <div class="information">
             <a href="/headerHome" class="main-information">icon</a>
             <h3 class="main-information">Thông tin cá nhân</h3>
+            <a href="/edit_profile">Chỉnh sửa</a>
         </div>
         <div class="main">
             <div class="main-name">
@@ -39,7 +39,7 @@
             </div>
             <div class="main-name">
                 <h5 class="name"> Ngày sinh: </h5>
-                <p id="Date-of-birth">${requestScope.profile.name}</p>
+                <p id="Date-of-birth">${requestScope.profile.dob}</p>
             </div>
             <div class="main-name">
                 <h5 class="name"> Giới tính: </h5>
@@ -59,8 +59,7 @@
                 <p id="address">${requestScope.profile.address}</p>
             </div>
             <div class="main-name-btn">
-
-                <button class="edit">Chỉnh sửa</button>
+                <a href="${pageContext.request.contextPath}/profile/update" class="fa-user-edit">Chỉnh sửa</a>
             </div>
         </div>
     </div>

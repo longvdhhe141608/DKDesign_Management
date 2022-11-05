@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Hoang Long
@@ -6,7 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Chỉnh sửa thông tin cá nhân</title>
@@ -14,80 +16,72 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="edit-profile">
-    <div class="nav-left">
-        <jsp:include page="nav_left.jsp"/>
-    </div>
+    <jsp:include page="nav_left.jsp"/>
     <div class="nav-right">
         <div class="information">
-            <a href="profile" class="main-information">icon</a>
             <h3 class="main-information">Chỉnh sửa thông tin cá nhân</h3>
         </div>
         <div class="main">
             <p>Thông tin cá nhân</p>
+            <a hidden>
+                <input value="${profile.id}" name="id" type="text" class="form-control" required>
+            </a>
             <div class="name">
                 <h5 class="main-name">Họ và tên: </h5>
                 <input id="name"
                        name="name"
-
-
                        class=""
-                       aria-valuetext=" Hoàng Thị Thu Hương">
+                       value="${profile.name}">
             </div>
             <div class="number-CCCD">
-                <h5 class="main-name">Họ và tên: </h5>
-                <input id="CCCD"
-                       name="CCCD"
-
-
+                <h5 class="main-name">cccd: </h5>
+                <input id="cccd"
+                       name="cccd"
                        class=""
-                       aria-valuetext="Số CCCD/CMND">
+                       value="${profile.cccd}">
             </div>
             <div class="day-of-birth">
-                <h5 class="main-name">Họ và tên: </h5>
-                <input id="day-of-birth"
-                       name="day-of-birth"
-
-
+                <h5 class="main-name">Date Of Birth: </h5>
+                <input id="dob"
+                       name="dob"
                        class=""
-                       aria-valuetext="Ngày sinh">
+                       type="date"
+                       value="${profile.dob}">
             </div>
             <div class="sex">
                 <p>Giới tính</p>
+
                 <form>
-                    <input name="gender" type="radio" value="Nam"/>Nam
-                    <input name="gender" type="radio" value="Nữ"/>Nữ
+                    <input id="1" name="gender" type="radio" value="Nam"/>Nam
+                    <input id="0" name="gender" type="radio" value="Nữ"/>Nữ
                 </form>
             </div>
             <div class="SĐT">
                 <h5 class="main-name">SĐT: </h5>
-                <input id="SĐT"
-                       name="SĐT"
-
-
+                <input type="tel"
+                       id="phone"
+                       name="phone"
                        class=""
-                       aria-valuetext="323423423">
+                       value="${profile.phone}">
             </div>
             <div class="email">
                 <h5 class="main-name">Email: </h5>
-                <input id="email"
+                <input type="email"
+                       id="email"
                        name="email"
-
-
                        class=""
-                       aria-valuetext="hanoi.gmail.com">
+                       value="${requestScope.profile.mail}">
             </div>
-            <div class="adress">
+            <div class="address">
                 <h5 class="main-name">Địa chỉ nhà: </h5>
-                <input id="adress"
-                       name="adress"
-
-
+                <input id="address"
+                       name="address"
                        class=""
-                       aria-valuetext="Chương Mỹ, Hà Nội">
+                       value="${profile.address}">
             </div>
             <div class="btn">
                 <button class="back">Hủy</button>
-                <button class="save">Lưu</button>
+                <input value="Save" type="submit" class="save">
             </div>
         </div>
     </div>
