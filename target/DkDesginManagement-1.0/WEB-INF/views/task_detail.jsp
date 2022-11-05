@@ -17,11 +17,11 @@
 </head>
 
 <body>
+
+
 <jsp:include page="header.jsp"/>
-<jsp:include page="nav_left.jsp"/>
-<div id="header-include"></div>
 <div class="body_page">
-    <div id="narbar_menu"></div>
+    <jsp:include page="nav_left.jsp"/>
     <div class="project-task-details" style="margin-left: 250px;">
         <div class="task-details-main">
             <table class="table table-borderless" style="border: 0;">

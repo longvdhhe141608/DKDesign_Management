@@ -25,36 +25,42 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
-<jsp:include page="nav_left.jsp"/>
+
+
 <div class="container-fluid" style="padding: 0">
 
-    <div id="header-include"></div>
+    <jsp:include page="header.jsp"/>
     <!-- body -->
 
     <div class="body_page">
-        <div id="nav-left-main"></div>
+        <jsp:include page="nav_left.jsp"/>
 
         <div class="tab_content ">
             <div id="London" class="city">
                 <div class="container-fluid">
-                    <h2>Xin chào , Nguyễn</h2>
+                    <h2>Xin chào , ${sessionScope.loginUser.username}</h2>
                     <div class="main">
                         <div class="main-detail">
                             <h3>Công trình</h3>
                             <div class="main-detail-left">
-                                <div class="left-detail">
-                                    <img class="img_ava" src=""/>
-                                    <a href="summary.jsp" class="left-main">Biệt thự nhà dân1</a>
-                                </div>
-                                <div class="left-detail">
-                                    <img class="img_ava" src=""/>
-                                    <a class="left-main">Biệt thự nhà dân2</a>
-                                </div>
-                                <div class="left-detail">
-                                    <img class="img_ava" src=""/>
-                                    <a class="left-main">Biệt thự nhà dân3</a>
-                                </div>
+<%--                                <div class="left-detail">--%>
+<%--                                    <img class="img_ava" src=""/>--%>
+<%--                                    <a href="summary.jsp" class="left-main">Biệt thự nhà dân1</a>--%>
+<%--                                </div>--%>
+<%--                                <div class="left-detail">--%>
+<%--                                    <img class="img_ava" src=""/>--%>
+<%--                                    <a class="left-main">Biệt thự nhà dân2</a>--%>
+<%--                                </div>--%>
+<%--                                <div class="left-detail">--%>
+<%--                                    <img class="img_ava" src=""/>--%>
+<%--                                    <a class="left-main">Biệt thự nhà dân3</a>--%>
+<%--                                </div>--%>
+                                <c:forEach var="i" items="${listProDoing}">
+                                    <div class="left-detail">
+                                        <img class="img_ava" src=""/>
+                                        <a href="summary.jsp" class="left-main">${i.project_name}</a>
+                                    </div>
+                                </c:forEach>
                             </div>
                         </div>
                         <div class="main-detail">

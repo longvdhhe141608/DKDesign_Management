@@ -2,17 +2,36 @@ package DkDesignManagement.Entity;
 
 import lombok.*;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
-    private int idEmp;
+    private int id;
     private String name;
-    private String gender;
     private int age;
+    private String address;
+    private int gender;
+    private Date dob;
+    private String cccd;
     private String mail;
     private String phone;
-    private String cccd;
+    private int id_acc;
+
+    public Employee(int id, String name, int age, String address, int gender, Date dob, String cccd, String email, String phone) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.address = address;
+        this.gender = gender;
+        this.dob = dob;
+        this.cccd = cccd;
+        this.mail = email;
+        this.phone = phone;
+    }
+
+
 }

@@ -10,16 +10,16 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Project {
-    private int idProject;
-    private String nameProject;
-    private Date startDate;
-    private int closureDate;
-    private Date endedDate;
-    private String creator;
+    private int id;
+    private String project_name;
+    private Date start_date;
+    private Date closure_date;
+    private Date ende_date;
+    private int creator;
     private int type;
     private String cusName;
     private String cusAddress;
     private String cusPhone;
     private String detail;
-    private String status;
+    private int status;
 }

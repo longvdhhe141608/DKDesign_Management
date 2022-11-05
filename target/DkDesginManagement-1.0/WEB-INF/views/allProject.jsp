@@ -1,6 +1,6 @@
 <!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 
 <head>
@@ -17,11 +17,11 @@
 
 <body>
 
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 
 
 <div class="container_content body_page">
-    <div id="narbar_menu"></div>
+    <jsp:include page="nav_left.jsp"/>
     <div class="content_first">
 
         <div class="title">
@@ -93,148 +93,171 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <div>
-                                <form action="summary.jsp">
-                                    <a>Biệt thự nhà dân</a>
-                                    <button class="btn btn-outline-primary" style="float: right;">Chi
-                                        tiết
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                        <td>
-                            ngoại thất
+                    <c:forEach var="i" items="${listAllProject}">
+                        <tr>
+                            <td>
+                                <div>
+                                    <form action="summary.jsp">
+                                        <a>${i.project_name}</a>
+                                        <button class="btn btn-outline-primary" style="float: right;">
+                                            Chi tiết
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <c:if test="${i.type == 1}">
+                                <td>
+                                    Ngoại thất
+                                </td>
+                            </c:if>
+                            <c:if test="${i.type == 2}">
+                                <td>
+                                    Nội thất
+                                </td>
+                            </c:if>
+                            <td>
+                                <div class="name-input" style="width: 150px;">
+                                    <input class="form-control" formControlName="dob" type="date" value="${i.start_date}">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="name-input" style="width: 150px;">
+                                    <input class="form-control" formControlName="dob" type="date" value="${i.closure_date}">
+                                </div>
+                            </td>
+                            <c:if test="${i.status == 1}">
+                                <td>
+                                    Đã hoàn thành
+                                </td>
+                            </c:if>
+                            <c:if test="${i.status == 2}">
+                                <td>
+                                    Đang thực hiện
+                                </td>
+                            </c:if>
+                            <c:if test="${i.status == 3}">
+                                <td>
+                                    Đang bàn giao
+                                </td>
+                            </c:if>
+                        </tr>
+                    </c:forEach>
 
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>Đang thực hiện</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <a>Biệt thự nhà dân</a>
-                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>
-                            </div>
-                        </td>
-                        <td>
-                            ngoại thất
+                    <%--                    <tr>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div>--%>
+                    <%--                                <a>Biệt thự nhà dân</a>--%>
+                    <%--                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            ngoại thất--%>
 
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>Đang thực hiện</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <a>Biệt thự nhà dân</a>
-                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>
-                            </div>
-                        </td>
-                        <td>
-                            ngoại thất
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>Đang thực hiện</td>--%>
+                    <%--                    </tr>--%>
+                    <%--                    <tr>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div>--%>
+                    <%--                                <a>Biệt thự nhà dân</a>--%>
+                    <%--                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            ngoại thất--%>
 
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>Đang thực hiện</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <a>Biệt thự nhà dân</a>
-                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>
-                            </div>
-                        </td>
-                        <td>
-                            ngoại thất
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>Đang thực hiện</td>--%>
+                    <%--                    </tr>--%>
+                    <%--                    <tr>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div>--%>
+                    <%--                                <a>Biệt thự nhà dân</a>--%>
+                    <%--                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            ngoại thất--%>
 
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>Đang thực hiện</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <a>Biệt thự nhà dân</a>
-                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>
-                            </div>
-                        </td>
-                        <td>
-                            ngoại thất
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>Đang thực hiện</td>--%>
+                    <%--                    </tr>--%>
+                    <%--                    <tr>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div>--%>
+                    <%--                                <a>Biệt thự nhà dân</a>--%>
+                    <%--                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            ngoại thất--%>
 
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>Đã hoàn thành</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <a>Biệt thự nhà dân</a>
-                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>
-                            </div>
-                        </td>
-                        <td>
-                            ngoại thất
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>Đã hoàn thành</td>--%>
+                    <%--                    </tr>--%>
+                    <%--                    <tr>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div>--%>
+                    <%--                                <a>Biệt thự nhà dân</a>--%>
+                    <%--                                <button class="btn btn-outline-primary" style="float: right;">Chi tiết</button>--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            ngoại thất--%>
 
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
-                        </td>
-                        <td>Đang thực hiện</td>
-                    </tr>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="name-input" style="width: 150px;">--%>
+                    <%--                                <input class="form-control" formControlName="dob" type="date">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                        <td>Đang thực hiện</td>--%>
+                    <%--                    </tr>--%>
 
                     </tbody>
                 </table>
@@ -355,10 +378,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    $(function () {
-        $("#header-include").load("header.jsp");
-        $("#narbar_menu").load("nav-left.jsp");
-    });
+    // $(function () {
+    //     $("#header-include").load("header.jsp");
+    //     $("#narbar_menu").load("nav-left.jsp");
+    // });
     const show = document.querySelector("#show");
 
     const popup = document.querySelector(".popup");

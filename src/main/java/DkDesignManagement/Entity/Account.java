@@ -8,14 +8,14 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 public class Account {
-    private int idAcc;
-    private String nameAcc;
-    private String passAcc;
-    private int roleInWeb;
+    private int id;
+    private String username;
+    private String password;
+    private int role_id;
     private int status;
 
     public Account(String nameAcc, String passAcc) {
-        this.nameAcc = nameAcc;
-        this.passAcc = passAcc;
+        this.username = nameAcc;
+        this.password = passAcc;
     }
 }

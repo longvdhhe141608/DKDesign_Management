@@ -12,14 +12,14 @@
     <title>Chỉnh sửa thông tin cá nhân</title>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<jsp:include page="header.jsp"/>
 <div class="edit-profile">
     <div class="nav-left">
-        <%@include file="nav_left.jsp" %>
+        <jsp:include page="nav_left.jsp"/>
     </div>
     <div class="nav-right">
         <div class="information">
-            <a href="profile.jsp" class="main-information">icon</a>
+            <a href="profile" class="main-information">icon</a>
             <h3 class="main-information">Chỉnh sửa thông tin cá nhân</h3>
         </div>
         <div class="main">

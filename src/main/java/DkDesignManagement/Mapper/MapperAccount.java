@@ -9,12 +9,12 @@ import java.sql.SQLException;
 public class MapperAccount implements RowMapper<Account> {
     @Override
     public Account mapRow(ResultSet resultSet, int i) throws SQLException {
-        Account a = new Account();
-        a.setIdAcc(resultSet.getInt("idAcc"));
-        a.setNameAcc(resultSet.getString("Username"));
-        a.setPassAcc(resultSet.getString("Password"));
-        a.setRoleInWeb(resultSet.getInt("Role_in_website"));
-        a.setStatus(resultSet.getInt("Status"));
-        return a;
+        Account account = new Account();
+        account.setId(resultSet.getInt("id"));
+        account.setUsername(resultSet.getString("username"));
+        account.setPassword(resultSet.getString("password"));
+        account.setRole_id(resultSet.getInt("role_id"));
+        account.setStatus(resultSet.getInt("status"));
+        return account;
     }
 }
