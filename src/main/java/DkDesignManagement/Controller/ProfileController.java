@@ -42,7 +42,6 @@ public class ProfileController {
             request.setAttribute("profile", employee);
         } catch (Exception ignored) {
         }
-
         return new ModelAndView("edit_profile");
     }
     @RequestMapping(value = "", method = RequestMethod.POST)

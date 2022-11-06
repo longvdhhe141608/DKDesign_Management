@@ -1,13 +1,3 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/*
-    Created on : 25-Oct-2022, 10:52:37
-    Author     : Huan
-*/
-
 .body_page {
     height: 100%;
     width: 100%;
@@ -19,6 +9,7 @@ and open the template in the editor.
 
     text-align: left;
     overflow: auto;
+
 }
 
 /* css tab */
@@ -40,11 +31,11 @@ and open the template in the editor.
 
 .tab_button {
     width: 100%;
-    outline: none;
-    border: none;
-    padding: 0;
-    height: 40px;
 
+
+    text-align: left;
+    height: 40px;
+    padding-left: 20px;
 }
 
 .tab_button:focus {
@@ -69,7 +60,6 @@ and open the template in the editor.
     padding: 0;
     padding: 10px;
     margin-left: 8%;
-    background-color: aquamarine;
 
 }
 
@@ -83,7 +73,7 @@ and open the template in the editor.
 
     height: 100vh;
     justify-content: space-between;
-    margin: 30px;
+    margin: 10px;
     padding: 100px;
 }
 
@@ -101,26 +91,28 @@ h2 {
     font-size: 60px;
 }
 
-h3 {
+h4 {
     text-align: center;
-    padding: 20px;
-    font-size: 50px;
+    padding: 10px;
+    font-size: 30px;
 }
 
 .main-detail-left {
     width: 100%;
     height: 100%;
     text-align: center;
+    margin-top: 75px;
+    border-top: 1px solid black;
 
+    max-height: 60%;
+    overflow-y: scroll;
 }
 
-.left-detail {
-    margin: 20px;
-}
+
 
 .left-main {
-    font-size: 40px;
-    padding-left: 30px;
+    font-size: 20px;
+
 }
 
 .img_ava {
@@ -129,14 +121,12 @@ h3 {
 }
 
 .tabcontent {
-    max-height: 50%;
+    max-height: 60%;
     overflow-y: scroll;
     text-align: center;
 }
 
-.tablinks:hover {
-    background: cadetblue;
-}
+
 
 .tab {
     text-align: center;
@@ -145,18 +135,15 @@ h3 {
 }
 
 .tablinks {
-    margin: 20px;
+    margin: 15px;
 }
 
 .right-main {
-    margin-left: 30px;
+    margin-left: 20px;
+    font-size: 20px;
 }
 
-.right-detail {
-    border-bottom: 1px solid black;
-    padding-top: 25px;
-    margin-top: 15px;
-}
+
 
 #project:hover {
     display: block;
