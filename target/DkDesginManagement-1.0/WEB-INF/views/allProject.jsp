@@ -15,6 +15,7 @@
     <title>Tất cả công trình</title>
 </head>
 <body>
+
 <div class="container-fluid" style="padding: 0">
     <jsp:include page="header.jsp"/>
 
@@ -29,7 +30,6 @@
             <div class="content-function">
                 <div class="function-one">
                     <div class="add" id="show">
-
                         <button class="btn btn-primary add-project"><i class="fa-solid fa-plus"></i> Thêm công trình
                         </button>
                     </div>
@@ -79,7 +79,7 @@
                             <tr class="each-project">
                                 <td class="name-and-link">
                                     <div class="name-project">
-                                        ${i.project_name}
+                                            ${i.project_name}
                                     </div>
                                     <div class="links">
                                         <a class="link-detail" href="allProject">
@@ -99,15 +99,29 @@
                                 </c:if>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        ${i.start_date}
+                                            ${i.start_date}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        ${i.ende_date}
+                                            ${i.ende_date}
                                     </div>
                                 </td>
-                                <td>Đang thực hiện</td>
+                                <c:if test="${i.status == 1}">
+                                    <td>
+                                        Đã hoàn thành
+                                    </td>
+                                </c:if>
+                                <c:if test="${i.status == 2}">
+                                    <td>
+                                        Đang thực hiện
+                                    </td>
+                                </c:if>
+                                <c:if test="${i.status == 3}">
+                                    <td>
+                                        Đang bàn giao
+                                    </td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                         <%--                        <tr>--%>
@@ -477,8 +491,6 @@
         </div>
     </div>
 </div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -488,18 +500,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    $(function () {
-        $("#header-include").load("header.html");
-        $("#narbar_menu").load("nav-left.html");
-    });
+    // $(function () {
+    //     $("#header-include").load("header.html");
+    //     $("#narbar_menu").load("nav-left.html");
+    // });
     const show = document.querySelector("#show");
-
     const popup = document.querySelector(".popup");
     let close = document.querySelector('.close_popup');
     close.addEventListener('click', function () {
         popup.classList.add("hide__popup");
     });
-
     show.addEventListener('click', function () {
         popup.classList.remove("hide__popup");
     })

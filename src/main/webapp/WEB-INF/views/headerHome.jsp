@@ -35,11 +35,9 @@
         <div class="nav-left">
             <jsp:include page="nav_left.jsp"/>
         </div>
-
         <div class="tab_content ">
             <div id="London" class="city">
                 <div class="container-fluid">
-
                     <h2 style="margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
                     <div class="main">
                         <div class="main-detail">
