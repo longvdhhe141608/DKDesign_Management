@@ -131,6 +131,7 @@ body {
 }
 
 
+
 .container_content .content_first .title {
     padding-top: 20px;
 }
@@ -197,6 +198,7 @@ body {
 }
 
 
+
 .wap_search {
     display: flex;
 }
@@ -232,6 +234,8 @@ body {
     margin-right: 2px;
     border-radius: 50px 10px 10px 50px;
     margin-left: 67px;
+    padding-left: 185px;
+    width: 10px;
 }
 
 .table .ten-cong-trinh {
@@ -277,4 +281,12 @@ body {
     width: 34%;
     color: black;
     background-color: lightgray;
+}
+
+.top {
+    width: 70%;
+}
+
+.wap_search {
+    display: flex;
 }

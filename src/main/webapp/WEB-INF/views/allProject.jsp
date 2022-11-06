@@ -30,13 +30,6 @@
             <div class="content-function">
                 <div class="function-one">
                     <div class="add" id="show">
-
-<jsp:include page="header.jsp"/>
-<div class="container_content body_page">
-    <jsp:include page="nav_left.jsp"/>
-    <div class="content_first">
-
-
                         <button class="btn btn-primary add-project"><i class="fa-solid fa-plus"></i> Thêm công trình
                         </button>
                     </div>
@@ -74,7 +67,6 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-
                             <th class="ten-cong-trinh" scope="col">Tên công trình</th>
                             <th class="loai-cong-trinh" scope="col">Loại công trình</th>
                             <th class="thoi-gian-bat-dau" scope="col">Thời gian bắt đầu</th>
@@ -87,50 +79,13 @@
                             <tr class="each-project">
                                 <td class="name-and-link">
                                     <div class="name-project">
-                                        ${i.project_name}
+                                            ${i.project_name}
                                     </div>
                                     <div class="links">
                                         <a class="link-detail" href="allProject">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
-
-                            <td>
-                                <div>
-                                    <form action="summary.jsp">
-                                        <a>${i.project_name}</a>
-                                        <button class="btn btn-outline-primary" style="float: right;">
-                                            Chi tiết
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                            <c:if test="${i.type == 1}">
-                                <td>
-                                    Ngoại thất
-                                </td>
-                            </c:if>
-                            <c:if test="${i.type == 2}">
-                                <td>
-                                    Nội thất
-                                </td>
-                            </c:if>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="date"
-                                           value="${i.start_date}">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="date"
-                                           value="${i.closure_date}">
-                                </div>
-                            </td>
-                            <c:if test="${i.status == 1}">
-                                <td>
-                                    Đã hoàn thành
-
                                 </td>
                                 <c:if test="${i.type == 1}">
                                     <td>
@@ -144,15 +99,29 @@
                                 </c:if>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        ${i.start_date}
+                                            ${i.start_date}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        ${i.ende_date}
+                                            ${i.ende_date}
                                     </div>
                                 </td>
-                                <td>Đang thực hiện</td>
+                                <c:if test="${i.status == 1}">
+                                    <td>
+                                        Đã hoàn thành
+                                    </td>
+                                </c:if>
+                                <c:if test="${i.status == 2}">
+                                    <td>
+                                        Đang thực hiện
+                                    </td>
+                                </c:if>
+                                <c:if test="${i.status == 3}">
+                                    <td>
+                                        Đang bàn giao
+                                    </td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                         <%--                        <tr>--%>
@@ -531,18 +500,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    $(function () {
-        $("#header-include").load("header.html");
-        $("#narbar_menu").load("nav-left.html");
-    });
+    // $(function () {
+    //     $("#header-include").load("header.html");
+    //     $("#narbar_menu").load("nav-left.html");
+    // });
     const show = document.querySelector("#show");
-
     const popup = document.querySelector(".popup");
     let close = document.querySelector('.close_popup');
     close.addEventListener('click', function () {
         popup.classList.add("hide__popup");
     });
-
     show.addEventListener('click', function () {
         popup.classList.remove("hide__popup");
     })

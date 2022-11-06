@@ -26,8 +26,8 @@
         <p id="profile-name" class="profile-name-card"></p>
         <form class="form-signin" action="login" method="post">
 
-            <input type="text" id="inputEmail" name="username" class="form-control" placeholder="tên đăng nhập" required="" autofocus="">
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="mật khẩu" required="">
+            <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Tên đăng nhập" required="" autofocus="">
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mật khẩu" required="">
 
             <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập</button>
         </form><!-- /form -->
