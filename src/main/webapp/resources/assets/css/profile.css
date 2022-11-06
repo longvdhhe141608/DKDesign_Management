@@ -1,0 +1,33 @@
+.information-main {
+    display: flex;
+    margin-top: 20px;
+
+}
+
+.img_avatar_change {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    border: 1px solid;
+}
+
+.avatar_change {
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.information-main-avata {
+    margin-right: 20px;
+}
+
+.btn-edit {
+    float: right;
+    margin-right: 30%;
+    display: flex;
+}
+
+.information-main .table input{
+    width: 385px;
+}

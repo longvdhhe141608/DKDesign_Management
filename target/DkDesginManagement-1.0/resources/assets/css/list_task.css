@@ -18,6 +18,7 @@
 
 .list-task-main {
     margin-top: 20px;
+
 }
 
 .add-work {
@@ -57,8 +58,13 @@
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+
+    width: 50%;
+    position: absolute;
+
+
+
+    max-height: 100%;
 }
 
 /* The Close Button */
