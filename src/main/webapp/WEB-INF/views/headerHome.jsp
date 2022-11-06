@@ -39,7 +39,13 @@
         <div class="tab_content ">
             <div id="London" class="city">
                 <div class="container-fluid">
+
                     <h2 style="margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
+
+
+                    <h2>Xin chào , ${sessionScope.loginUser.username}</h2>
+
+
                     <div class="main">
                         <div class="main-detail">
                             <h4>Công trình</h4>
