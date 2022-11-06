@@ -30,13 +30,6 @@
             <div class="content-function">
                 <div class="function-one">
                     <div class="add" id="show">
-
-<jsp:include page="header.jsp"/>
-<div class="container_content body_page">
-    <jsp:include page="nav_left.jsp"/>
-    <div class="content_first">
-
-
                         <button class="btn btn-primary add-project"><i class="fa-solid fa-plus"></i> Thêm công trình
                         </button>
                     </div>
