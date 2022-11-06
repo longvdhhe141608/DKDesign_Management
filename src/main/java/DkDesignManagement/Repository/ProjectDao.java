@@ -17,9 +17,8 @@ public class ProjectDao {
 
     public Project getProject(int id) {
         String sql = "Select * from `dkmanagement`.`project` where id = ?";
-        Project p = new Project();
-        p = jdbcTemplate.queryForObject(sql, new MapperProject(), id);
-        return p;
+        Project project  = jdbcTemplate.queryForObject(sql, new MapperProject(), id);
+        return project;
     }
 
     public List<Project> getProjectByAcc(int id) {

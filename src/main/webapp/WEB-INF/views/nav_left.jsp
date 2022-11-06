@@ -32,7 +32,7 @@
         </div>
 
         <div class="tab_element">
-            <a href="${pageContext.request.contextPath}/allProject">
+            <a href="${pageContext.request.contextPath}/project/allProject">
                 <button class="tab_button">
                     <i class="fa-solid fa-clipboard-list">Công trình</i>
                 </button>

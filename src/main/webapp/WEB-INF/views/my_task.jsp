@@ -36,7 +36,6 @@
                 </select></a>
             </div>
             <div class="list-task-head">
-
                 <a class="project-detail" href="${pageContext.request.contextPath}/summary"><input type="button" value="Sơ lược"></a>
                 <a class="list" href="${pageContext.request.contextPath}/Task/list_task"><input type="button" value="Danh sách"></a>
                 <a class="calendar" href="${pageContext.request.contextPath}/calendar"><input type="button" value="Lịch"></a>

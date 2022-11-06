@@ -14,7 +14,7 @@ public class Project {
     private String project_name;
     private Date start_date;
     private Date closure_date;
-    private Date ende_date;
+    private Date end_date;
     private int creator;
     private int type;
     private String cusName;
