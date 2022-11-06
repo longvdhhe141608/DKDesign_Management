@@ -15,6 +15,7 @@
     <title>Tất cả công trình</title>
 </head>
 <body>
+
 <div class="container-fluid" style="padding: 0">
     <jsp:include page="header.jsp"/>
 
@@ -29,6 +30,12 @@
             <div class="content-function">
                 <div class="function-one">
                     <div class="add" id="show">
+
+<jsp:include page="header.jsp"/>
+<div class="container_content body_page">
+    <jsp:include page="nav_left.jsp"/>
+    <div class="content_first">
+
 
                         <button class="btn btn-primary add-project"><i class="fa-solid fa-plus"></i> Thêm công trình
                         </button>
@@ -67,6 +74,7 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
+
                             <th class="ten-cong-trinh" scope="col">Tên công trình</th>
                             <th class="loai-cong-trinh" scope="col">Loại công trình</th>
                             <th class="thoi-gian-bat-dau" scope="col">Thời gian bắt đầu</th>
@@ -86,6 +94,43 @@
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
+
+                            <td>
+                                <div>
+                                    <form action="summary.jsp">
+                                        <a>${i.project_name}</a>
+                                        <button class="btn btn-outline-primary" style="float: right;">
+                                            Chi tiết
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                            <c:if test="${i.type == 1}">
+                                <td>
+                                    Ngoại thất
+                                </td>
+                            </c:if>
+                            <c:if test="${i.type == 2}">
+                                <td>
+                                    Nội thất
+                                </td>
+                            </c:if>
+                            <td>
+                                <div class="name-input" style="width: 150px;">
+                                    <input class="form-control" formControlName="dob" type="date"
+                                           value="${i.start_date}">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="name-input" style="width: 150px;">
+                                    <input class="form-control" formControlName="dob" type="date"
+                                           value="${i.closure_date}">
+                                </div>
+                            </td>
+                            <c:if test="${i.status == 1}">
+                                <td>
+                                    Đã hoàn thành
+
                                 </td>
                                 <c:if test="${i.type == 1}">
                                     <td>
@@ -477,8 +522,6 @@
         </div>
     </div>
 </div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
