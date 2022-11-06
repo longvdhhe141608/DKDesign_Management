@@ -43,7 +43,11 @@
                     <h2 style="margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
 
 
+                    <h2 style="margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
+
+
                     <h2>Xin chào , ${sessionScope.loginUser.username}</h2>
+
 
 
                     <div class="main">
