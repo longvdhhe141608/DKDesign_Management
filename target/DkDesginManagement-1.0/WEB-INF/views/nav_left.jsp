@@ -16,7 +16,7 @@
     <div id="tab_menu" class="tab_menu">
 
         <div class="tab_element">
-            <a href="${pageContext.request.contextPath}/home">
+            <a href="${pageContext.request.contextPath}/headerHome">
                 <button class="tab_button">
                     <i class="fa-solid fa-house">Trang chủ</i>
                 </button>
@@ -32,7 +32,7 @@
         </div>
 
         <div class="tab_element">
-            <a href="${pageContext.request.contextPath}/allProject">
+            <a href="${pageContext.request.contextPath}/project/allProject">
                 <button class="tab_button">
                     <i class="fa-solid fa-clipboard-list">Công trình</i>
                 </button>

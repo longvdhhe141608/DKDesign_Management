@@ -35,14 +35,20 @@
                 </select></a>
             </div>
             <div class="list-task-head">
-                <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list_task.jsp"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="requirement.jsp"><input type="button"
-                                                                           value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="progress.jsp"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="member.jsp"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="dashboard.jsp"><input type="button" value="Thống kê"></a>
+                <a class="project-detail" href="${pageContext.request.contextPath}/project/summary"><input type="button"
+                                                                                                           value="Sơ lược"></a>
+                <a class="list" href="${pageContext.request.contextPath}/Task/list_task"><input type="button"
+                                                                                                value="Danh sách"></a>
+                <a class="calendar" href="${pageContext.request.contextPath}/calendar"><input type="button"
+                                                                                              value="Lịch"></a>
+                <a class="customer-request" href="${pageContext.request.contextPath}/requirement"><input type="button"
+                                                                                                         value="Yêu cầu của khách hàng"></a>
+                <a class="project-progress" href="${pageContext.request.contextPath}/progress"><input type="button"
+                                                                                                      value="Tiến độ"></a>
+                <a class="project-member" href="${pageContext.request.contextPath}/member"><input type="button"
+                                                                                                  value="Thành viên"></a>
+                <a class="statistic" href="${pageContext.request.contextPath}/dashboard"><input type="button"
+                                                                                                value="Thống kê"></a>
             </div>
         </div>
 
@@ -59,47 +65,56 @@
                     </tr>
                     <tr>
                         <td>Chủ nhà:</td>
-                        <td>Nguyễn Văn A</td>
+                        <td>${project.cusName}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td>0123345678</td>
+                        <td>${project.cusPhone}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>
-                        <td>xóm 1, thôn tân xã,huyện thạch thất, hà nội</td>
+                        <td>${project.cusAddress}</td>
                     </tr>
                     <tr>
                         <td>Loại công trình:</td>
-                        <td>Ngoại thất</td>
+                        <c:if test="${i.type == 1}">
+                            <td>
+                                Ngoại thất
+                            </td>
+                        </c:if>
+                        <c:if test="${i.type == 2}">
+                            <td>
+                                Nội thất
+                            </td>
+                        </c:if>
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
-                        <td>500m2</td>
+                        <td>${project.detail}</td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
                         <td>
                             <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
+                                <input class="form-control" formControlName="dob" type="date" value="${project.start_date}">
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
-                        <td>-</td>
+                        <td>${project.closure_date}</td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
-                        <td>-</td>
+                        <td>${project.end_date}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>
-                        <td>-</td>
+                        <td>${project.cusAddress}</td>
                     </tr>
                     <tr>
                         <td>Mô tả:</td>
-                        <td>-</td>
+                        <td>${project.detail}</td>
                     </tr>
                 </table>
             </div>

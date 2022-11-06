@@ -95,6 +95,9 @@
                     <tbody>
                     <c:forEach var="i" items="${listAllProject}">
                         <tr>
+                            <td hidden><input name="id" value="${i.id}" type="number" class="form-control" required></td>
+                        </tr>
+                        <tr>
                             <td>
                                 <div>
                                     <form action="summary.jsp">

@@ -26,7 +26,8 @@
                        name="username"
                        required
                        class="form-control"
-                       placeholder="Nhập tên tài khoản">
+                       placeholder="Nhập tên tài khoản"
+                       pattern="[^!@#$%^&*()_+\-=\[\]{};':\\|,.<>\/?]+$">
             </div>
             <div class="input-group">
                 <input id="password"
