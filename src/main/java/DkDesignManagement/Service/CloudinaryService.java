@@ -13,13 +13,13 @@ import java.util.Map;
 public class CloudinaryService {
 
 
-    private String CLOUDINARY_URL = "cloudinary://691885891388263:j-_-LRNnuyALJTzAE_Ba9MP9ha0@demo-java-cloud-image";
+    private String CLOUDINARY_URL = "cloudinary://524284468348922:QjMfMl2ZXTM1kVmoFbopRKXEfqw@dgbzprb8l";
 
-    public String uploadFile(MultipartFile file, String folder) throws IOException {
+    public String uploadFile(MultipartFile file, String folder, String catalog) throws IOException {
         Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
         String name = generateFileName(file);
-        Map uploadMap = cloudinary.uploader().upload(FileUtils.convertMultiPartToFile(file), com.cloudinary.utils.ObjectUtils.asMap("public_id", "image/image_" + folder + "/" + name + ""));
-
+        Map uploadMap = cloudinary.uploader().upload(FileUtils.convertMultiPartToFile(file), com.cloudinary.utils.ObjectUtils.asMap("resource_type", "auto"
+                , "public_id", "" + catalog + "/" + folder + "/" + name + ""));
         return uploadMap.get("url").toString();
 
     }
