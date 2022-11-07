@@ -49,13 +49,13 @@ public class UploadController {
             return new ModelAndView("upload");
         }
 
-        request.setAttribute("message","upload successfully : "+url);
+        request.setAttribute("message", "upload successfully : " + url);
 
         return new ModelAndView("upload");
     }
 
     @RequestMapping(value = "/upload-image", method = RequestMethod.GET)
-    public ModelAndView loadHome()  {
+    public ModelAndView loadHome() {
         return new ModelAndView("upload");
     }
 }

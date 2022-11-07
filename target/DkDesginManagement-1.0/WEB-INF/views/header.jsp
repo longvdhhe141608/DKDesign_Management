@@ -22,10 +22,9 @@
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <script src="<c:url value="/resources/assets/js/bodyAdmin.js"/>"></script>
 </head>
-
 <body>
 <div class="container-fluid" style="padding: 0;">
-    <div class="header_page row " style="background-color: #383F51; ">
+    <div class="header_page row " style="background-color: #383F51; height: 53px">
         <div class="header_right col-1">
             <div class="logo">
                 <a href="">
@@ -39,7 +38,7 @@
                 <form class="form-inline my-2 my-lg-0">
                     <input style="width: 30rem;" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm"
                            aria-label="Search"/>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    <button class="btn btn-primary" type="submit">
                         Tìm kiếm
                     </button>
                 </form>
@@ -58,13 +57,14 @@
                 border: none;
                 outline: none;
               ">
-                        <img class="img_avatar" src=""/>
+                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile"><i class="fa-solid fa-user"></i> Thông tin cá nhân</a>
-                        <a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
-
+                        <a class="dropdown-item" href="profile.jsp"><i class="fa-solid fa-user"></i> Thông tin cá
+                            nhân</a>
+                        <a class="dropdown-item" href="change_password.jsp"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
+                        <a class="dropdown-item" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng
+                            xuất</a>
                     </div>
                 </div>
             </div>
@@ -77,10 +77,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
 </body>
-
 </html>

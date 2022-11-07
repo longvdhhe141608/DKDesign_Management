@@ -25,7 +25,7 @@
 
 <body>
 <jsp:include page="header.jsp"></jsp:include>
->
+
 <div class="body_page">
     <jsp:include page="nav_left.jsp"></jsp:include>
     <div style="margin-left: 300px;">
@@ -39,14 +39,20 @@
                     </select></a>
             </div>
             <div class="list-task-head">
-                <a class="project-detail" href="${pageContext.request.contextPath}/summary"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="${pageContext.request.contextPath}/list_task"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="${pageContext.request.contextPath}/calendar"><input type="button" value="Lịch"></a>
+                <a class="project-detail" href="${pageContext.request.contextPath}/summary"><input type="button"
+                                                                                                   value="Sơ lược"></a>
+                <a class="list" href="${pageContext.request.contextPath}/list_task"><input type="button"
+                                                                                           value="Danh sách"></a>
+                <a class="calendar" href="${pageContext.request.contextPath}/calendar"><input type="button"
+                                                                                              value="Lịch"></a>
                 <a class="customer-request" href="${pageContext.request.contextPath}/requirement"><input type="button"
                                                                                                          value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="${pageContext.request.contextPath}/progress"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="${pageContext.request.contextPath}/member"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="${pageContext.request.contextPath}/dashboard"><input type="button" value="Thống kê"></a>
+                <a class="project-progress" href="${pageContext.request.contextPath}/progress"><input type="button"
+                                                                                                      value="Tiến độ"></a>
+                <a class="project-member" href="${pageContext.request.contextPath}/member"><input type="button"
+                                                                                                  value="Thành viên"></a>
+                <a class="statistic" href="${pageContext.request.contextPath}/dashboard"><input type="button"
+                                                                                                value="Thống kê"></a>
             </div>
         </div>
         <h1>Thành viên dự án</h1>
@@ -109,7 +115,6 @@
     </div>
 </div>
 <jsp:include page=""></jsp:include>
-</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -118,5 +123,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-
+</body>
 </html>
