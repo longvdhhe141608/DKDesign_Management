@@ -34,7 +34,7 @@ public class UploadController {
             return new ModelAndView("upload");
         }
 
-        request.setAttribute("message","upload successfully : "+url);
+        request.setAttribute("message", "upload successfully : " + url);
 
         return new ModelAndView("upload");
     }
