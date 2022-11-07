@@ -20,7 +20,7 @@
             </form>
         </div>
         <div class="tab_element">
-            <form action="my_task.jsp">
+            <form action="my_task">
                 <button class="tab_button"><i class="fa-solid fa-briefcase"></i> Công
                     việc
                     của
