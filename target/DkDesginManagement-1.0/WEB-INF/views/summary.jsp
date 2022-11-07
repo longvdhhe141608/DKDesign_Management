@@ -36,7 +36,7 @@
             </div>
             <div class="list-task-head">
                 <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list_task.jsp"><input type="button" value="Danh sách"></a>
+                <a class="list" href="list_task"><input type="button" value="Danh sách"></a>
                 <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
                 <a class="customer-request" href="requirement.jsp"><input type="button"
                                                                            value="Yêu cầu của khách hàng"></a>
@@ -54,7 +54,7 @@
                             <h4>Sơ lược công trình</h4>
                         </td>
                         <td>
-                            <button class="btn-update">Cập nhật</button>
+                            <a href="edit_summary"><input type="button" value="Cập nhật"></a>
                         </td>
                     </tr>
                     <tr>
@@ -75,26 +75,20 @@
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
-                        <td>500m2</td>
+                        <td>500 m<sup>2</sup></td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
                         <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date">
-                            </div>
+                            dd/mm/yyyy
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
-                        <td>-</td>
+                        <td>dd/mm/yyyy</td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
-                        <td>-</td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ công trình:</td>
                         <td>-</td>
                     </tr>
                     <tr>
@@ -130,6 +124,4 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 </body>
-
-
 </html>
