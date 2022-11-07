@@ -270,7 +270,7 @@ body {
     height: 70%;
     width: 34%;
     color: white;
-    background-color: white;
+    background-color: lightgray;
 }
 
 .table .list-project .each-project .name-and-link .links a:hover .btn-chi-tiet{
