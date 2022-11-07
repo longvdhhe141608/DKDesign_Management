@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 public interface ProjectService {
     public Project getProject();
 
+    public int addProject(Project project);
 }
