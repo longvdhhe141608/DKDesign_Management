@@ -31,7 +31,7 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping (value = "/login", method=RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView login(ModelMap modelMap) {
         Account account = new Account();
         modelMap.put("account", account);
@@ -39,22 +39,23 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute("account") Account account,HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public ModelAndView login(@ModelAttribute("account") Account account, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         ModelAndView view;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
         account = accountDao.getAccount(username);
-            if (true) {
-                session.setAttribute("loginUser", account);
-                view = new ModelAndView("redirect:headerHome");
-            } else {
-                request.setAttribute("message", "Invalid username or password!");
-                view = new ModelAndView("login");
-            }
+        if (Objects.isNull(account) == false) {
+            session.setAttribute("loginUser", account);
+            view = new ModelAndView("redirect:headerHome");
+        } else {
+            request.setAttribute("message", "Invalid username or password!");
+            view = new ModelAndView("login");
+        }
         return view;
     }
+
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpSession session) {
         session.removeAttribute("loginUser");

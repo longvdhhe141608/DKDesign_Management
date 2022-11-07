@@ -15,15 +15,11 @@
     <title>Tất cả công trình</title>
 </head>
 <body>
-
 <div class="container-fluid" style="padding: 0">
     <jsp:include page="header.jsp"/>
-
-
     <div class="container_content body_page">
         <jsp:include page="nav_left.jsp"/>
         <div class="summary  content_first">
-
             <div class="title">
                 <h4>Tất cả công trình</h4>
             </div>

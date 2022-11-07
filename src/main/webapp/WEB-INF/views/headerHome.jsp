@@ -40,6 +40,7 @@
                 <div class="container-fluid">
                     <h2 style="margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
                     <div class="main">
+                        <%--Bảng công tình đang làm--%>
                         <div class="main-detail">
                             <h4>Công trình</h4>
                             <div class="main-detail-left">
@@ -64,25 +65,23 @@
 <%--                                </table>--%>
                             </div>
                         </div>
-
+                        <%--Kết thúc bảng công trình đang làm--%>
+                        <%--Bảng danh sách công việc--%>
                         <div class="main-detail">
                             <h4>Công việc của tôi</h4>
                             <div class="tab">
-                                <button class="btn btn-secondary tablinks" onclick="openProject(event , 'project')">Cộng
-                                    việc
+                                <button class="btn btn-secondary tablinks" onclick="openProject(event , 'project')">
+                                    Cộng việc
                                 </button>
-                                <button class="btn btn-secondary tablinks" onclick="openProject(event , 'overdue')">Quá
-                                    hạn
+                                <button class="btn btn-secondary tablinks" onclick="openProject(event , 'overdue')">
+                                    Quá hạn
                                 </button>
                                 <button class="btn btn-secondary tablinks" onclick="openProject(event , 'complete')">
-                                    Hoàn
-                                    thành
+                                    Hoàn thành
                                 </button>
                             </div>
                             <div id="project" class="tabcontent">
-
                                 <table class=" table ">
-
                                     <tr class=" right-detail">
                                         <td style="font-size: 20px;">Mặt bằng tầng 3</td>
                                         <td style="font-size: 20px;">03/09</td>
@@ -95,13 +94,10 @@
                                         <td style="font-size: 20px;">Mặt bằng tầng 1</td>
                                         <td style="font-size: 20px;">03/09</td>
                                     </tr>
-
                                 </table>
-
                             </div>
-                            <div id="overdue" class="tabcontent">
+                            <div id="overdue" class="tabcontent" style="display: none">
                                 <table class=" table ">
-
                                     <tr class="right-detail">
                                         <td style="font-size: 20px;">Mặt bằng tầng 1</td>
                                         <td style="font-size: 20px;">03/09</td>
@@ -129,7 +125,7 @@
 
                                 </table>
                             </div>
-                            <div id="complete" class="tabcontent">
+                            <div id="complete" class="tabcontent" style="display: none">
                                 <table class=" table ">
 
                                     <tr class="right-detail">
