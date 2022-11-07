@@ -15,28 +15,28 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/Task")
+@RequestMapping(value = "/my_task")
 public class ViewTaskController {
     @Autowired
     private TaskDAO taskDAO;
 
-    @GetMapping(value = "/my_task")
+    @RequestMapping(value = "")
     public ModelAndView viewMyTask(HttpServletRequest request, HttpServletResponse response){
         ModelAndView view = new ModelAndView("my_task");
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("loginUser");
-        List<Task> myTaskList = taskDAO.getAllTaskInPhaseByAssignedUser(account.getId());
-        request.setAttribute("myTaskList", myTaskList);
+//        HttpSession session = request.getSession();
+//        Account account = (Account) session.getAttribute("loginUser");
+//        List<Task> myTaskList = taskDAO.getAllTaskInPhaseByAssignedUser(account.getId());
+//        request.setAttribute("myTaskList", myTaskList);
         return view;
     }
 
-    @GetMapping(value = "/list_task")
-    public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response){
-        ModelAndView view = new ModelAndView("list_task");
-        HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("loginUser");
-        List<Task> taskList = taskDAO.getAllTaskInBigTask(1);
-        request.setAttribute("listTask", taskList);
-        return view;
-    }
+//    @GetMapping(value = "/list_task")
+//    public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response){
+//        ModelAndView view = new ModelAndView("list_task");
+//        HttpSession session = request.getSession();
+//        Account account = (Account) session.getAttribute("loginUser");
+//        List<Task> taskList = taskDAO.getAllTaskInBigTask(1);
+//        request.setAttribute("listTask", taskList);
+//        return view;
+//    }
 }
