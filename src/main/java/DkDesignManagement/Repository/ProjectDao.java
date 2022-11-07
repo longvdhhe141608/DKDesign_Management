@@ -1,19 +1,25 @@
 package DkDesignManagement.Repository;
 
-import DkDesignManagement.Entity.Category;
+
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Mapper.MapperProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class ProjectDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public Project getProject(int id) {
         String sql = "Select * from `dkmanagement`.`project` where id = ?";
@@ -69,13 +75,29 @@ public class ProjectDao {
         return projectList;
     }
 
-    public int addNewProject(String acc, int cate, String pn, String sd, String cl, String status) {
-        status = "Đang thực hiện";
-//        String sql = "insert into `dkmanagement`.`project` (`Project_Name`, `Start_Date`, `Closure_Date`,`Ended_Date`, " +
-//                "`Creator`, `Type`, `customer_name`, `customer_address`, `customer_phone`, `Detail`, `Status`) " +
-//                "values(N'" + pn + "', '" + sd + "','" + cl + "',null, " + acc + ", ?, null, null, null, null, N'" + status + "');";
-        int p = 0;
-//        p = jdbcTemplate.update(sql);
-        return p;
+
+
+    public int addNewProject(Project project) {
+        String sql = "INSERT INTO dkmanagement.project\n" +
+                "(project_name, start_date, closure_date, ended_date, creator, `type`, customer_name, customer_address, customer_phone, detail, status)\n" +
+                "VALUES(:name, :start_date, :closure_date, :ended_date, :creator, :type, :customer_name " +
+                " , :customer_address , :customer_phone , :detail , :status );\n";
+
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("name",project.getProject_name());
+        params.put("start_date",project.getStart_date());
+        params.put("closure_date",project.getClosure_date());
+        params.put("ended_date",project.getEnde_date());
+        params.put("creator",project.getCreator());
+        params.put("type",project.getType());
+        params.put("customer_name",project.getCusName());
+        params.put("customer_address",project.getCusAddress());
+        params.put("customer_phone",project.getCusPhone());
+        params.put("detail",project.getDetail());
+        params.put("status",project.getStatus());
+
+
+        return namedParameterJdbcTemplate.update(sql,params);
     }
 }

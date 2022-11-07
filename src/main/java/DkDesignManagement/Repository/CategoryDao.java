@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class CategoryDao {
     @Autowired
@@ -16,5 +19,12 @@ public class CategoryDao {
         Category c = new Category();
         c = jdbcTemplate.queryForObject(sql, new MapperCategory(), s);
         return c;
+    }
+
+    public List<Category>  getAll(){
+        String sql = "SELECT * FROM `dkmanagement`.`category` ";
+        List<Category> list = new ArrayList<>();
+        list = jdbcTemplate.query(sql, new MapperCategory());
+        return list;
     }
 }
