@@ -1,3 +1,49 @@
+/*.list-top {*/
+/*    display: flex;*/
+/*    padding: 20px;*/
+/*    border-bottom: 1px solid black;*/
+/*}*/
+
+/*.project-detail {*/
+/*    padding-top: 10px;*/
+/*    margin-left: 30px;*/
+/*}*/
+
+/*.list-task-head {*/
+/*    padding-top: 10px;*/
+/*}*/
+
+/*.list-task-head a {*/
+
+/*    margin-left: 10px;*/
+
+/*}*/
+
+/*.top-details {*/
+/*    width: 70%;*/
+
+/*}*/
+
+/*.summary-main {*/
+/*    margin-top: 20px;*/
+/*    background-color: #F5F5F5;*/
+/*}*/
+
+/*.btn-update {*/
+/*    padding-right: 10px;*/
+/*    border-radius: 5px;*/
+/*    float: right;*/
+/*}*/
+
+
+/*#image {*/
+/*    width: 600px;*/
+/*    border: 3px solid #000000;*/
+/*}*/
+
+/*.summary {*/
+/*    margin-left: 300px;*/
+/*}*/
 .list-top {
     display: flex;
     padding: 20px;
@@ -10,37 +56,50 @@
 }
 
 .list-task-head {
-    padding-top: 10px;
+    padding: 20px;
 }
 
-.list-task-head a {
 
-    margin-left: 10px;
+.list-task-head a input {
+    border-radius: 3px;
 
 }
+
+
+
 
 .top-details {
-    width: 70%;
-
+    width: 100%;
+    border: 1px solid black;
+    margin: 20px 0px;
+    background: aliceblue;
 }
 
 .summary-main {
     margin-top: 20px;
-    background-color: #F5F5F5;
+    background-color: aliceblue;
+    margin-bottom: 10px;
 }
 
 .btn-update {
-    padding-right: 10px;
+    margin-left: 10px;
     border-radius: 5px;
-    float: right;
+
 }
+
 
 
 #image {
     width: 600px;
-    border: 3px solid #000000;
+    border: 1px solid #000000;
 }
 
 .summary {
-    margin-left: 300px;
+    margin-left: 20%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+.test {
+    margin-right: 20px;
 }

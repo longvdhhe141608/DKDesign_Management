@@ -60,7 +60,7 @@
                         <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="profile.jsp"><i class="fa-solid fa-user"></i> Thông tin cá
+                        <a class="dropdown-item" href="profile"><i class="fa-solid fa-user"></i> Thông tin cá
                             nhân</a>
                         <a class="dropdown-item" href="change_password.jsp"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
                         <a class="dropdown-item" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng
