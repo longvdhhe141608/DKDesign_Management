@@ -11,6 +11,11 @@
     <title>Upload</title>
     ${message}
     <form method="post" action="upload-image" enctype="multipart/form-data">
+        Choose a image: <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </form>
+
+    <form method="post" action="upload-file" enctype="multipart/form-data">
         Choose a file: <input type="file" name="file" />
         <input type="submit" value="Upload" />
     </form>
