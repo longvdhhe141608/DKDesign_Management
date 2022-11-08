@@ -1,3 +1,7 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
 .body_page {
     height: 100%;
     width: 100%;
@@ -12,6 +16,10 @@
 
 }
 
+.font-size-all {
+    font-size: 20px;
+}
+
 /* css tab */
 .tab_menu {
     min-height: 100%;
@@ -22,17 +30,16 @@
     background: #383F51;
 }
 
-.tab_element {
-    margin: 0;
-    padding: 0;
-    margin-top: 30px;
 
-}
+
+
 
 .tab_button {
     width: 100%;
 
-
+    margin: 0;
+    padding: 0;
+    margin-top: 30px;
     text-align: left;
     height: 40px;
     padding-left: 20px;
@@ -40,16 +47,11 @@
 
 .tab_button:focus {
     outline: none;
-    background-color: black;
-    color: white;
+    background-color: blue;
+    color: black;
 }
 
-.tab_button:hover {
-    outline: none;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-}
+
 
 /* css tab content */
 .tab_content {

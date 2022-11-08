@@ -1,13 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Hoang Long
-  Date: 023,10/23/2022
-  Time: 5:24 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -15,15 +9,18 @@
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/profile.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<div id="header-include"></div>
 <div class="body_page">
-    <jsp:include page="nav_left.jsp"/>
+    <div id="narbar_menu"></div>
     <div style="margin-left: 20%;">
         <span style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i>Thông tin cá nhân</span>
         <div class="information-main">
@@ -77,7 +74,7 @@
             </div>
         </div>
         <div>
-            <form action="">
+            <form action="${pageContext.request.contextPath}/edit_profile">
                 <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
             </form>
         </div>
@@ -91,12 +88,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-</body>
-<%--<script>--%>
-<%--    $(function () {--%>
-<%--        $("#header-include").load("header.html");--%>
-<%--        $("#narbar_menu").load("nav-left.html");--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
 </html>

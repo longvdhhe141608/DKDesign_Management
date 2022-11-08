@@ -5,8 +5,7 @@
 }
 
 .list-task-detail {
-    margin-top: 50px;
-    margin-left: 300px;
+    display: none;
 }
 
 .main-table-btn {
@@ -14,6 +13,10 @@
 
 
     float: right;
+}
+
+.bot {
+    margin-top: 20px;
 }
 
 .list-task-main {
@@ -90,12 +93,15 @@
     margin-left: 20px;
 }
 
-.bot {
-    margin-top: 30px;
 
-}
 
 .add-btn-work {
 
-    margin-left: auto;
+    margin-left: 40%;
+}
+
+.list-task-header {
+    border: 1px solid gray;
+    font-weight: bold;
+
 }

@@ -1,9 +1,7 @@
-
-<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -18,9 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
-
 <body>
 <jsp:include page="header.jsp"/>
 <div class="body_page">
@@ -28,22 +26,38 @@
     <div class="summary container" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h1>Biệt thự nhà dân</h1>
+                <h3>Biệt thự nhà dân</h3>
                 <a class="btn project-detail"><select>
-                    <option>Đang thực hiện</option>
-                    <option>Đã hoàn thành</option>
-
+                    <option class="btn btn-secondary">Đang thực hiện</option>
+                    <option class="btn btn-secondary">Đã hoàn thành</option>
                 </select></a>
             </div>
             <div class="list-task-head">
-                <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list_task.jsp"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="requirement.jsp"><input type="button"
-                                                                           value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="progress.jsp"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="member.jsp"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="dashboard.jsp"><input type="button" value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary"
+                                                                                         type="button"
+                                                                                         value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
+                                                                                               type="button"
+                                                                                               value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
+                                                                                             type="button"
+                                                                                             value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary"
+                                                                                        type="button"
+                                                                                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           style="background: blue;"
+                                                                                           value="Thống kê"></a>
             </div>
         </div>
         <div>
@@ -55,7 +69,6 @@
                 </div>
                 <div class="col-2 row-dashboard">
                     <p>Công việc đang làm
-
                     </p>
                     <h4>5</h4>
                 </div>
@@ -73,65 +86,45 @@
                 </div>
             </div>
         </div>
-        <canvas id="myChart" width="400" height="400"></canvas>
-
-
+        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
     </div>
-
 </div>
-</body>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
 </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    $(function () {--%>
-<%--        $("#header-include").load("header.html");--%>
-<%--        $("#narbar_menu").load("nav-left.html");--%>
-<%--    });--%>
-<%--</script>--%>
 <script>
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
+    var xValues = ["Công việc đang làm", "Công việc hoàn thành đúng hạn",
+        "Công việc trễ hạn", "Công việc hoàn thành chậm tiến độ"];
+    var yValues = [49, 44, 24, 15];
+    var barColors = [
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145"
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: xValues,
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
+                backgroundColor: barColors,
+                data: yValues
             }]
         },
         options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+            title: {
+                display: true,
+                text: "Đây là biểu đồ"
             }
         }
     });
 </script>
-
-
+</body>
 </html>

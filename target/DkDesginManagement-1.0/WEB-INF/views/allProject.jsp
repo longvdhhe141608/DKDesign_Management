@@ -1,17 +1,16 @@
-<!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
-
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <title>Tất cả công trình</title>
 </head>
 <body>
@@ -20,25 +19,23 @@
     <div class="container_content body_page">
         <jsp:include page="nav_left.jsp"/>
         <div class="summary  content_first">
+
             <div class="title">
                 <h4>Tất cả công trình</h4>
             </div>
             <div class="content-function">
                 <div class="function-one">
                     <div class="add" id="show">
-                        <button class="btn btn-primary add-project"><i class="fa-solid fa-plus"></i> Thêm công trình
-                        </button>
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
                     </div>
                 </div>
                 <div></div>
                 <div class="function-two">
                     <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle search-by-year" href="#" role="button"
-                           data-toggle="dropdown"
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-expanded="false">
                             Tìm kiếm
                         </a>
-
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">2020</a>
                             <a class="dropdown-item" href="#">2021</a>
@@ -48,11 +45,12 @@
                 </div>
                 <div class="function-thir">
                     <div class="function_search">
-                        <form action="" method="" class="search-by-name">
+                        <form action="">
                             <div class="wap_search">
-                                <input type="text" class="search_term"
-                                       placeholder="   Tên công trình">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                                <input style="margin-right: 10px;" type="text" class="search_term"
+                                       placeholder="Tên công trình">
+                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
                         </form>
                     </div>
@@ -63,11 +61,11 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th class="ten-cong-trinh" scope="col">Tên công trình</th>
-                            <th class="loai-cong-trinh" scope="col">Loại công trình</th>
-                            <th class="thoi-gian-bat-dau" scope="col">Thời gian bắt đầu</th>
-                            <th class="thoi-gian-ket-thuc" scope="col">Thời gian kết thúc</th>
-                            <th class="trang-thai" scope="col">Trạng thái</th>
+                            <th scope="col">Tên công trình</th>
+                            <th scope="col">Loại công trình</th>
+                            <th scope="col">Thời gian bắt đầu</th>
+                            <th scope="col">Thời gian kết thúc</th>
+                            <th scope="col">Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody class="list-project">
@@ -78,7 +76,7 @@
                                             ${i.project_name}
                                     </div>
                                     <div class="links">
-                                        <a class="link-detail" href="summary">
+                                        <a class="link-detail" href="${pageContext.request.contextPath}/allProject">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
@@ -487,6 +485,7 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -496,21 +495,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    // $(function () {
-    //     $("#header-include").load("header.html");
-    //     $("#narbar_menu").load("nav-left.html");
-    // });
     const show = document.querySelector("#show");
+
     const popup = document.querySelector(".popup");
     let close = document.querySelector('.close_popup');
     close.addEventListener('click', function () {
         popup.classList.add("hide__popup");
     });
+
     show.addEventListener('click', function () {
         popup.classList.remove("hide__popup");
     })
 </script>
-
 </body>
-
 </html>
