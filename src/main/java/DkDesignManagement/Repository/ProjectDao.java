@@ -5,7 +5,9 @@ import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Mapper.MapperProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -98,6 +100,8 @@ public class ProjectDao {
         params.put("status",project.getStatus());
 
 
-        return namedParameterJdbcTemplate.update(sql,params);
+        GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
+        return generatedKeyHolder.getKey().intValue();
     }
 }
