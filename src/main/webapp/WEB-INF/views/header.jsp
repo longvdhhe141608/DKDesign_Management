@@ -65,7 +65,7 @@
             <div class="account">
                 <!-- Example single danger button -->
                 <div class="dropdown">
-                    <div class="avatar" data-toggle="dropdown" aria-haspopup="true"
+                    <div class="avatar" data-toggle="dropdown-menu" aria-haspopup="true"
                          aria-expanded="false"
                          style="border-radius: 50%; background-color: white;  border: none; outline: none;">
                         <img class="img_avatar" src="https://upload.wikimedia.org/wikipedia/vi/d/dc/CPV_emblem.png"/>

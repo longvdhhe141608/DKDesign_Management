@@ -24,7 +24,7 @@
         </div>
 
         <div class="tab_element">
-            <a href="${pageContext.request.contextPath}/Task/my_task">
+            <a href="${pageContext.request.contextPath}/task/my_task">
                 <button class="tab_button">
                     <i class="fa-solid fa-briefcase">Công việc của tôi</i>
                 </button>
@@ -40,7 +40,7 @@
         </div>
 
         <div class="tab_element">
-            <a action="${pageContext.request.contextPath}/Task/list_task">
+            <a href="${pageContext.request.contextPath}/task/list_task">
                 <button class="tab_button" onclick="openCity('Thongbao')">
                     <i class="fa-solid fa-bell">Thông báo</i>
                 </button>
