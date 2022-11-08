@@ -5,6 +5,7 @@ import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Repository.ProjectDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,7 +31,7 @@ public class ProjectController {
         return view;
     }
 
-    @RequestMapping(value = "/detail", method = RequestMethod.GET)
+    @RequestMapping(value = "/summary", method = RequestMethod.GET)
     public ModelAndView loadProjectDetail(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView view = new ModelAndView("summary");
         try {
