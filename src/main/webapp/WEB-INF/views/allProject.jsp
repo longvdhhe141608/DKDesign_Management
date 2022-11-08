@@ -30,31 +30,30 @@
                     </div>
                 </div>
                 <div></div>
+                <form action="allProject" method="get" >
                 <div class="function-two">
                     <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                           aria-expanded="false">
-                            Tìm kiếm
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">2020</a>
-                            <a class="dropdown-item" href="#">2021</a>
-                            <a class="dropdown-item" href="#">2022</a>
-                        </div>
+
+                        <select name="option" class="btn btn-secondary dropdown-toggle" >
+                            <option value="name">Tên</option>
+                            <option value="date">Ngày bắt đầu</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="function-thir">
                     <div class="function_search">
-                        <form action="">
+
                             <div class="wap_search">
 
-                                <input style="margin-right: 10px;" type="text" class="search_term"
-                                       placeholder="Tên công trình">
+                                <input style="margin-right: 10px;" type="date" class="search_term"
+                                      name="textSearch" placeholder="Tên công trình">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
-                        </form>
+
                     </div>
                 </div>
+                </form>
             </div>
             <div class="table_content">
                 <div class=" table-responsive-sm">
