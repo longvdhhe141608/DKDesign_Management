@@ -24,7 +24,7 @@
             <i class="fa-solid fa-briefcase"></i>
             Công việc của tôi
         </button>
-        <button onclick="sendRedirect('allProject.html')" class="tab_button">
+        <button onclick="sendRedirect('allProject')" class="tab_button">
             <i class="fa-solid fa-clipboard-list"></i>
             Công trình
         </button>
