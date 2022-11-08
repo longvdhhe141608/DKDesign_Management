@@ -82,12 +82,11 @@ public class ProjectDao {
                 "VALUES(:name, :start_date, :closure_date, :ended_date, :creator, :type, :customer_name " +
                 " , :customer_address , :customer_phone , :detail , :status );\n";
 
-
         Map<String, Object> params = new HashMap<>();
         params.put("name",project.getProject_name());
         params.put("start_date",project.getStart_date());
         params.put("closure_date",project.getClosure_date());
-        params.put("ended_date",project.getEnde_date());
+        params.put("ended_date",project.getEnd_date());
         params.put("creator",project.getCreator());
         params.put("type",project.getType());
         params.put("customer_name",project.getCusName());
@@ -95,7 +94,6 @@ public class ProjectDao {
         params.put("customer_phone",project.getCusPhone());
         params.put("detail",project.getDetail());
         params.put("status",project.getStatus());
-
 
         return namedParameterJdbcTemplate.update(sql,params);
     }

@@ -2,10 +2,13 @@ package DkDesignManagement.Repository;
 
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Mapper.MapperTask;
+import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 /*
@@ -50,18 +53,25 @@ public class TaskDAO {
     // lay ra sub task trong 1 task
     public List<Task> getAllSubTaskInTask(int big_task_id, int task_id) {
 
-        String sql = "SELECT *,(SELECT project_name FROM project WHERE id = (SELECT big_task.project_id from big_task where big_task.id = ?)) as projectname FROM task where big_task_id = ? and task_id = ?";
+        String sql = "SELECT *," +
+                "(SELECT project_name " +
+                "FROM project " +
+                "WHERE id = (SELECT big_task.project_id from big_task where big_task.id = ?)" +
+                ") as projectname " +
+                "FROM task WHERE big_task_id = ? AND task_id = ?";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), big_task_id, big_task_id, task_id);
         return taskList;
     }
 
     //tao big task moi ma co assign cho designer luon
-    public void addNewBigTaskHasAssignTo(int id, Date start_date, Date deadline, String description, int project_id, int creator, int assigned_to) {
+    public void addNewBigTaskHasAssignTo(Date start_date, Date deadline, String description, int project_id, int creator, int assigned_to) {
 
-        String sql = "INSERT INTO `dkmanagement`.`big_task` \n" + "(`id`, `start_date`, `deadline`, `description`, `project_id`, `creator`, `assigned_to`) \n" + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO `dkmanagement`.`big_task` \n" +
+                "(`start_date`, `deadline`, `description`, `project_id`, `creator`, `assigned_to`)" +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         try {
-            jdbcTemplate.update(sql, id, start_date, deadline, description, project_id, creator, assigned_to);
+            jdbcTemplate.update(sql, start_date, deadline, description, project_id, creator, assigned_to);
         } catch (Exception e) {
 
         }
@@ -69,22 +79,21 @@ public class TaskDAO {
     }
 
     // tao big task moi ma chua assign cho designer
-    public void addNewBigTaskHasNotAssigned(int id, Date start_date, Date deadline, String description, int project_id, int creator) {
+    public void addNewBigTaskHasNotAssigned(Date start_date, Date deadline, String description, int project_id, int creator) {
         int task = 0;
-        String sql = "INSERT INTO `dkmanagement`.`big_task` \n" + "(`id`, `start_date`, `deadline`, `description`, `project_id`, `creator`) \n" + "VALUES (?, ?, ?, '?', ?, ?)";
-        try {
-            jdbcTemplate.update(sql, id, start_date, deadline, description, project_id, creator);
-        } catch (Exception e) {
+        String sql = "INSERT INTO `dkmanagement`.`big_task` " +
+                "(`start_date`, `deadline`, `description`, `project_id`, `creator`) " +
+                "VALUES (?,?,?,?,?);\n";
 
-        }
+        jdbcTemplate.update(sql, start_date, deadline, description, project_id, creator);
 
     }
 
     //assign mot big task cho member
-    public void assignNewTaskToNewMember(int id, int assign_to) {
+    public void assignNewTaskToNewMember(int id, int assigned_to) {
         String sql = "UPDATE `dkmanagement`.`big_task` SET `assigned_to` = ? WHERE (`id` = ?)";
         try {
-            jdbcTemplate.update(sql, assign_to, id);
+            jdbcTemplate.update(sql, assigned_to, id);
         } catch (Exception e) {
 
         }
@@ -101,10 +110,10 @@ public class TaskDAO {
     }
 
     // Leader them mot task moi trong big_task va assign cho member
-    public void createNewTaskAndAssignToMember(int id, int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`id`, `big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, ?, 2 , ?, ?, ?)";
+    public void createNewTaskAndAssignToMember(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
+        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, ?, 2 , ?, ?)";
         try {
-            jdbcTemplate.update(sql, id, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
+            jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
         } catch (Exception e) {
 
         }
@@ -115,10 +124,11 @@ public class TaskDAO {
      * status mac dinh la 1 (pending)
      * creator =  leader_id, assigned_to = null
      */
-    public void createNewTaskNotAssigned(int id, int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`id`, `big_task_id`, `creator`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, 1 , ?, ?, ?)";
+    public void createNewTaskNotAssigned(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
+        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(big_task_id`, `creator`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) " +
+                "VALUES (?, ?, ?, 1 , ?, ?, ?)";
         try {
-            jdbcTemplate.update(sql, id, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
+            jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
         } catch (Exception e) {
 
         }
@@ -138,9 +148,9 @@ public class TaskDAO {
      * status mac dinh la 1 (pending)
      * creator = assignedTo = member_id
      */
-    public void createNewTaskByMember(int id, int big_task_id, int creator, int assignedTo, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`id`, `big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, ?, 1, ?, ?, ?)";
-        jdbcTemplate.update(sql, id, big_task_id, creator, assignedTo, task_name, start_date, deadline, description);
+    public void createNewTaskByMember(int big_task_id, int creator, int assignedTo, String task_name, Date start_date, Date deadline, String description) {
+        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, 1, ?, ?, ?)";
+        jdbcTemplate.update(sql, big_task_id, creator, assignedTo, task_name, start_date, deadline, description);
     }
 
     /*

@@ -35,7 +35,6 @@
                 </select></a>
             </div>
             <div class="list-task-head">
-<<<<<<< HEAD
                 <a class="project-detail" href="${pageContext.request.contextPath}/project/summary"><input type="button"
                                                                                                            value="Sơ lược"></a>
                 <a class="list" href="${pageContext.request.contextPath}/Task/list_task"><input type="button"
@@ -50,16 +49,6 @@
                                                                                                   value="Thành viên"></a>
                 <a class="statistic" href="${pageContext.request.contextPath}/dashboard"><input type="button"
                                                                                                 value="Thống kê"></a>
-=======
-                <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list_task"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="requirement.jsp"><input type="button"
-                                                                           value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="progress.jsp"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="member.jsp"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="dashboard.jsp"><input type="button" value="Thống kê"></a>
->>>>>>> General
             </div>
         </div>
 
@@ -71,7 +60,7 @@
                             <h4>Sơ lược công trình</h4>
                         </td>
                         <td>
-                            <a href="edit_summary"><input type="button" value="Cập nhật"></a>
+                            <button class="btn-update">Cập nhật</button>
                         </td>
                     </tr>
                     <tr>
@@ -101,44 +90,29 @@
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
-<<<<<<< HEAD
                         <td>${project.detail}</td>
-=======
-                        <td>500 m<sup>2</sup></td>
->>>>>>> General
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
                         <td>
-<<<<<<< HEAD
                             <div class="name-input" style="width: 150px;">
                                 <input class="form-control" formControlName="dob" type="date" value="${project.start_date}">
                             </div>
-=======
-                            dd/mm/yyyy
->>>>>>> General
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
-<<<<<<< HEAD
                         <td>${project.closure_date}</td>
-=======
-                        <td>dd/mm/yyyy</td>
->>>>>>> General
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
                         <td>${project.end_date}</td>
                     </tr>
                     <tr>
-<<<<<<< HEAD
                         <td>Địa chỉ công trình:</td>
                         <td>${project.cusAddress}</td>
                     </tr>
                     <tr>
-=======
->>>>>>> General
                         <td>Mô tả:</td>
                         <td>${project.detail}</td>
                     </tr>
@@ -170,5 +144,13 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
+<%--<script>--%>
+<%--    $(function () {--%>
+<%--        $("#header-include").load("header.jsp");--%>
+<%--        $("#narbar_menu").load("nav_left.jsp");--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
+
+
 </html>

@@ -24,17 +24,9 @@
         </div>
 
         <div class="tab_element">
-<<<<<<< HEAD
             <a href="${pageContext.request.contextPath}/Task/my_task">
                 <button class="tab_button">
                     <i class="fa-solid fa-briefcase">Công việc của tôi</i>
-=======
-            <form action="my_task">
-                <button class="tab_button"><i class="fa-solid fa-briefcase"></i> Công
-                    việc
-                    của
-                    tôi
->>>>>>> General
                 </button>
             </a>
         </div>
