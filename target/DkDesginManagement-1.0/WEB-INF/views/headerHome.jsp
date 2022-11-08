@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -21,16 +20,11 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <script src="<c:url value="/resources/assets/js/bodyAdmin.js"/>"></script>
-
 </head>
-
 <body>
-
 <div class="container-fluid" style="padding: 0">
-
     <jsp:include page="header.jsp"/>
     <!-- body -->
-
     <div class="body_page">
         <div class="nav-left">
             <jsp:include page="nav_left.jsp"/>
@@ -122,12 +116,10 @@
                                         <td style="font-size: 20px;">Mặt bằng tầng 1</td>
                                         <td style="font-size: 20px;">03/09</td>
                                     </tr>
-
                                 </table>
                             </div>
                             <div id="complete" class="tabcontent" style="display: none">
                                 <table class=" table ">
-
                                     <tr class="right-detail">
                                         <td style="font-size: 20px;">Mặt bằng tầng 2</td>
                                         <td style="font-size: 20px;">03/09</td>
@@ -140,7 +132,6 @@
                                         <td style="font-size: 20px;">Mặt bằng tầng 2</td>
                                         <td style="font-size: 20px;">03/09</td>
                                     </tr>
-
                                 </table>
                             </div>
                         </div>
@@ -151,9 +142,7 @@
     </div>
 </div>
 <!-- footer -->
-
 <!-- <div class="footer_page"></div> -->
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -163,5 +152,4 @@
         crossorigin="anonymous">
 </script>
 </body>
-
 </html>

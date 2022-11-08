@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -14,24 +13,21 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/footerPage.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/calendar.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <script src="<c:url value="/resources/assets/js/bodyAdmin.js"/>"></script>
+    <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 <body>
 <div class="container-fluid" style="padding: 0;">
-    <div class="header_page row " style="background-color: #383F51; height: 53px">
+    <div class="header_page row " style="background-color: #383F51; ">
         <div class="header_right col-1">
             <div class="logo">
                 <a href="">
                     <img src="<c:url value="/resources/assets/image/TMDKC.png"/>" alt="">
                 </a>
             </div>
-
         </div>
         <div class="header_left col-10">
             <div class="search_box">
@@ -43,7 +39,6 @@
                     </button>
                 </form>
             </div>
-
         </div>
         <div class="col-1 header-right">
             <div class="account">
@@ -60,11 +55,12 @@
                         <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="profile"><i class="fa-solid fa-user"></i> Thông tin cá
-                            nhân</a>
-                        <a class="dropdown-item" href="change_password.jsp"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
-                        <a class="dropdown-item" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng
-                            xuất</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile"><i
+                                class="fa-solid fa-user"></i> Thông tin cá nhân</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/changepassword"><i
+                                class="fa-solid fa-key"></i> Đổi mật khẩu</a>
+                        <a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i
+                                class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
                     </div>
                 </div>
             </div>

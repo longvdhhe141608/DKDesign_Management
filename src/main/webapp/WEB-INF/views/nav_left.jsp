@@ -1,49 +1,39 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="utf-8">
     <title>JSP Page</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="bodyAdmin.css"/>
+    <script>
+        function sendRedirect(url) {
+            window.location.href = url;
+        }
+    </script>
 </head>
-
 <body>
 <div class="container-fluid" style="padding: 0">
     <div id="tab_menu" class="tab_menu">
-        <div class="tab_element">
-            <form action="headerHome">
-                <button class="tab_button">
-                    <i class="fa-solid fa-house"></i> Trang chủ
-                </button>
-            </form>
-        </div>
-        <div class="tab_element">
-            <form action="my_task">
-                <button class="tab_button"><i class="fa-solid fa-briefcase"></i> Công
-                    việc
-                    của
-                    tôi
-                </button>
-            </form>
-        </div>
-        <div class="tab_element">
-            <form action="allProject">
-                <button class="tab_button"><i class="fa-solid fa-clipboard-list"></i>
-                    Công
-                    trình
-                </button>
-            </form>
-        </div>
-        <div class="tab_element">
-            <form action="list_task.jsp">
-                <button class="tab_button"><i class="fa-solid fa-bell"></i> Thông
-                    báo
-                </button>
-            </form>
-        </div>
+        <button onclick="sendRedirect('headerHome.html')" class="tab_button">
+            <i class="fa-solid fa-house"></i>
+            Trang chủ
+        </button>
+        <button onclick="sendRedirect('My-Task.html')" class="tab_button">
+            <i class="fa-solid fa-briefcase"></i>
+            Công việc của tôi
+        </button>
+        <button onclick="sendRedirect('allProject.html')" class="tab_button">
+            <i class="fa-solid fa-clipboard-list"></i>
+            Công trình
+        </button>
+        <button onclick="sendRedirect('notification.html')" class="tab_button">
+            <i class="fa-solid fa-bell"></i>
+            Thông báo
+        </button>
     </div>
 </div>
 </body>
+
 </html>
