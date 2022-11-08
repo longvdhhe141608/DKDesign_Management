@@ -79,7 +79,7 @@
                                             ${i.project_name}
                                     </div>
                                     <div class="links">
-                                        <a class="link-detail" href="allProject">
+                                        <a class="link-detail" href="summary">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>

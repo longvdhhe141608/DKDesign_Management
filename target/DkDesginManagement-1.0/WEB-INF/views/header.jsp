@@ -71,11 +71,19 @@
                         <img class="img_avatar" src="https://upload.wikimedia.org/wikipedia/vi/d/dc/CPV_emblem.png"/>
                     </div>
                     <div class="dropdown-menu dropdown-menu-right">
+<<<<<<< HEAD
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/profile"><i
                                 class="fa-solid fa-user"></i> Thông tin cá nhân</a>
                         <a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i
                                 class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+=======
+                        <a class="dropdown-item" href="profile"><i class="fa-solid fa-user"></i> Thông tin cá
+                            nhân</a>
+                        <a class="dropdown-item" href="change_password.jsp"><i class="fa-solid fa-key"></i> Đổi mật khẩu</a>
+                        <a class="dropdown-item" href="logout"><i class="fa-solid fa-right-from-bracket"></i>Đăng
+                            xuất</a>
+>>>>>>> General
                     </div>
                 </div>
             </div>
