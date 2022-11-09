@@ -11,7 +11,7 @@ public class DateUtils {
 
     public static Date covertStringToDate(String dateString) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
+        Date date = null;
         try {
             // String -> Date
             date = format.parse(dateString);

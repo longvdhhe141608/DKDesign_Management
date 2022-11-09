@@ -9,4 +9,6 @@ public interface ProjectService {
     public Project getProject();
 
     public int addProject(Project project, Account account);
+
+    public int editProject(Project project);
 }

@@ -34,4 +34,9 @@ public class ProjectServiceImpl implements ProjectService {
 
         return projectParticipationDao.addProjectParticipation(pp);
     }
+
+    @Override
+    public int editProject(Project project) {
+        return projectDao.editProject(project);
+    }
 }
