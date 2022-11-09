@@ -39,8 +39,8 @@ public class ProjectController {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
         String textSearch = request.getParameter("textSearch");
-        String option = request.getParameter("option");
-        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, option));
+        String date = request.getParameter("date");
+        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, date));
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("mess", mess);
         return view;
