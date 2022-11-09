@@ -76,7 +76,7 @@
                                             ${i.project_name}
                                     </div>
                                     <div class="links">
-                                        <a class="link-detail" href="${pageContext.request.contextPath}/allProject">
+                                        <a class="link-detail" href="edit_summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
@@ -473,12 +473,8 @@
                         <td><input required="" name="startDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
-                        <td>Ngày đóng dự án:</td>
-                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
-                    </tr>
-                    <tr>
                         <td>Ngày dự kiến kết thúc:</td>
-                        <td><input required="" name="endDate" class="info-text" type="date"></td>
+                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
                         <td>Tên khách hàng:</td>

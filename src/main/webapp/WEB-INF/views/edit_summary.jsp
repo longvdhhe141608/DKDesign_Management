@@ -66,44 +66,41 @@
                 <table class="table table-borderless">
                     <tr>
                         <td>Chủ nhà:</td>
-                        <td><input type="text" value="Nguyễn Văn A"></td>
+                        <td><input type="text" value="${profile.cusName}"></td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td><input type="text" value="0123345678"></td>
+                        <td><input type="text" value="${profile.cusPhone}"></td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>
-                        <td><input type="text" value="xóm 1, thôn tân xã,huyện thạch thất, hà nội"></td>
+                        <td><input type="text" value="${profile.cusAddress}"></td>
                     </tr>
                     <tr>
                         <td>Loại công trình:</td>
                         <td>
                             <div class="dropdown">
-                                <a class="btn btn-primary dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-expanded="false">
-                                    Nội thất
-                                </a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">Nội thất</a>
-                                    <a class="dropdown-item" href="#">Ngoại thất</a>
-                                </div>
+                                <select name="categoryId" class="btn btn-secondary dropdown-toggle" >
+                                    <c:forEach items="${listCategory}" var="category">
+                                        <option value="${category.id}"> ${category.category_name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
-                        <td><input type="text" value="500m2"></td>
+                        <td><input type="text" value="${profile.construction_area}m2"></td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
                         <td>
-                            <input type="datetime" value="20/10/2022">
+                            <input type="date" value="${profile.start_date}">
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
-                        <td><input type="datetime" value="20/11/2022"></td>
+                        <td><input type="date" value="${profile.closure_date}"></td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
