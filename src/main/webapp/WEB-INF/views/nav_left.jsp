@@ -16,11 +16,11 @@
 <body>
 <div class="container-fluid" style="padding: 0">
     <div id="tab_menu" class="tab_menu">
-        <button onclick="sendRedirect('headerHome.html')" class="tab_button">
+        <button onclick="sendRedirect('headerHome')" class="tab_button">
             <i class="fa-solid fa-house"></i>
             Trang chủ
         </button>
-        <button onclick="sendRedirect('My-Task.html')" class="tab_button">
+        <button onclick="sendRedirect('my_task')" class="tab_button">
             <i class="fa-solid fa-briefcase"></i>
             Công việc của tôi
         </button>

@@ -100,19 +100,14 @@
                                             ${i.ende_date}
                                     </div>
                                 </td>
-                                <c:if test="${i.status == 1}">
+                                <c:if test="${i.status == 2}">
                                     <td>
                                         Đã hoàn thành
                                     </td>
                                 </c:if>
-                                <c:if test="${i.status == 2}">
+                                <c:if test="${i.status == 1}">
                                     <td>
                                         Đang thực hiện
-                                    </td>
-                                </c:if>
-                                <c:if test="${i.status == 3}">
-                                    <td>
-                                        Đang bàn giao
                                     </td>
                                 </c:if>
                             </tr>
@@ -438,7 +433,6 @@
         </div>
         <div class="info">
             <form action="allProject/add" method="POST">
-
                 <table class="table table-borderless">
                     <tr>
                         <td>Tên Công trình:</td>
@@ -448,12 +442,10 @@
                         <td>Loại công trình:</td>
                         <td>
                             <div class="dropdown">
-
                                 <select name="categoryId" class="btn btn-secondary dropdown-toggle" >
                                     <c:forEach items="${listCategory}" var="category">
                                         <option value="${category.id}"> ${category.category_name}</option>
                                     </c:forEach>
-
                                 </select>
                             </div>
                         </td>
@@ -463,7 +455,7 @@
                         <td><input required="" name="startDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
-                        <td>Ngày đóng cửa:</td>
+                        <td>Ngày đóng dự án:</td>
                         <td><input required="" name="closureDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
@@ -491,9 +483,6 @@
                         <td><input required="" class="info-text" name="constructionArea" type="number"></td>
                     </tr>
                 </table>
-
-
-
         </div>
         <div class="button_click">
             <div></div>
