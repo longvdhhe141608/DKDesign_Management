@@ -437,37 +437,61 @@
             <h4>Tạo công trình mới</h4>
         </div>
         <div class="info">
-            <table class="table table-borderless">
-                <tr>
-                    <td>Tên Công trình:</td>
-                    <td><input class="info-text" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Loại công trình:</td>
-                    <td>
-                        <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-expanded="false">
-                                Nội thất
-                            </a>
+            <form action="allProject/add" method="POST">
 
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Phòng ngủ</a>
-                                <a class="dropdown-item" href="#">Phòng khách</a>
-                                <a class="dropdown-item" href="#">Phòng ăn</a>
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Tên Công trình:</td>
+                        <td><input required="" class="info-text" name="name" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Loại công trình:</td>
+                        <td>
+                            <div class="dropdown">
+
+                                <select name="categoryId" class="btn btn-secondary dropdown-toggle" >
+                                    <c:forEach items="${listCategory}" var="category">
+                                        <option value="${category.id}"> ${category.category_name}</option>
+                                    </c:forEach>
+
+                                </select>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ngày bắt đầu:</td>
-                    <td><input class="info-text" type="date"></td>
-                </tr>
-                <tr>
-                    <td>Ngày dự kiến kết thúc:</td>
-                    <td><input class="info-text" type="date"></td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày bắt đầu:</td>
+                        <td><input required="" name="startDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày đóng cửa:</td>
+                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày dự kiến kết thúc:</td>
+                        <td><input required="" name="endDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Tên khách hàng:</td>
+                        <td><input required="" class="info-text" name="customerName" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td><input required="" class="info-text" name="address" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td><input required="" class="info-text" name="phone" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>detail</td>
+                        <td><input required="" class="info-text" name="detail" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>diện tích</td>
+                        <td><input required="" class="info-text" name="constructionArea" type="number"></td>
+                    </tr>
+                </table>
+
 
 
         </div>
@@ -479,12 +503,12 @@
                 </button>
             </div>
             <div class="btn_ok">
-                <button type="button" class="btn btn-primary">Tạo</button>
+                <button type="submit" class="btn btn-primary">Tạo</button>
             </div>
         </div>
     </div>
+    </form>
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -505,6 +529,10 @@
     show.addEventListener('click', function () {
         popup.classList.remove("hide__popup");
     })
+    var mess = '${mess}'
+    if(mess !=''){
+        alert(mess);
+    }
 </script>
 </body>
 </html>

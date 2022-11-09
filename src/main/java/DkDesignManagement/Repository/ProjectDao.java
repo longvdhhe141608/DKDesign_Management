@@ -98,9 +98,9 @@ public class ProjectDao {
 
     public int addNewProject(Project project) {
         String sql = "INSERT INTO dkmanagement.project\n" +
-                "(project_name, start_date, closure_date, ended_date, creator, `type`, customer_name, customer_address, customer_phone, detail, status)\n" +
+                "(project_name, start_date, closure_date, ended_date, creator, `type`, customer_name, customer_address, customer_phone, detail, status,construction_area)\n" +
                 "VALUES(:name, :start_date, :closure_date, :ended_date, :creator, :type, :customer_name " +
-                " , :customer_address , :customer_phone , :detail , :status );\n";
+                " , :customer_address , :customer_phone , :detail , :status , :construction_area);\n";
 
 
         Map<String, Object> params = new HashMap<>();
@@ -115,6 +115,7 @@ public class ProjectDao {
         params.put("customer_phone", project.getCusPhone());
         params.put("detail", project.getDetail());
         params.put("status", project.getStatus());
+        params.put("construction_area", project.getConstruction_area());
 
 
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
