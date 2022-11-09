@@ -21,7 +21,7 @@ public class ProfileController {
     @Autowired
     private EmployeeDao employeeDao;
 
-    @RequestMapping(value = "detail", method = RequestMethod.GET)
+    @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView loadProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         try {
