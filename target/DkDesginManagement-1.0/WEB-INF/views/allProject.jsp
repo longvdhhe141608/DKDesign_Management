@@ -1,17 +1,16 @@
-<!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
-
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <title>Tất cả công trình</title>
 </head>
 <body>
@@ -20,57 +19,54 @@
     <div class="container_content body_page">
         <jsp:include page="nav_left.jsp"/>
         <div class="summary  content_first">
+
             <div class="title">
                 <h4>Tất cả công trình</h4>
             </div>
             <div class="content-function">
                 <div class="function-one">
                     <div class="add" id="show">
-                        <button class="btn btn-primary add-project"><i class="fa-solid fa-plus"></i> Thêm công trình
-                        </button>
+                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
                     </div>
                 </div>
                 <div></div>
+                <form action="allProject" method="get" >
                 <div class="function-two">
                     <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle search-by-year" href="#" role="button"
-                           data-toggle="dropdown"
-                           aria-expanded="false">
-                            Tìm kiếm
-                        </a>
 
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">2020</a>
-                            <a class="dropdown-item" href="#">2021</a>
-                            <a class="dropdown-item" href="#">2022</a>
-                        </div>
+                        <select name="option" class="btn btn-secondary dropdown-toggle" >
+                            <option value="name">Tên</option>
+                            <option value="date">Ngày bắt đầu</option>
+                        </select>
+
                     </div>
                 </div>
                 <div class="function-thir">
                     <div class="function_search">
-                        <form action="" method="" class="search-by-name">
+
                             <div class="wap_search">
-                                <input type="text" class="search_term"
-                                       placeholder="   Tên công trình">
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                                <input style="margin-right: 10px;" type="date" class="search_term"
+                                      name="textSearch" placeholder="Tên công trình">
+                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
-                        </form>
+
                     </div>
                 </div>
+                </form>
             </div>
             <div class="table_content">
                 <div class=" table-responsive-sm">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th class="ten-cong-trinh" scope="col">Tên công trình</th>
-                            <th class="loai-cong-trinh" scope="col">Loại công trình</th>
-                            <th class="thoi-gian-bat-dau" scope="col">Thời gian bắt đầu</th>
-                            <th class="thoi-gian-ket-thuc" scope="col">Thời gian kết thúc</th>
-                            <th class="trang-thai" scope="col">Trạng thái</th>
+                            <th scope="col">Tên công trình</th>
+                            <th scope="col">Loại công trình</th>
+                            <th scope="col">Thời gian bắt đầu</th>
+                            <th scope="col">Thời gian kết thúc</th>
+                            <th scope="col">Trạng thái</th>
                         </tr>
                         </thead>
-
                         <tbody class="list-project">
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
@@ -79,27 +75,10 @@
                                             ${i.project_name}
                                     </div>
                                     <div class="links">
-                                        <a class="link-detail" href="summary">
+                                        <a class="link-detail" href="${pageContext.request.contextPath}/allProject">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>
-                                        <form action="${pageContext.request.contextPath}/project/summary?${i.id}">
-                                            <a>${i.project_name}</a>
-                                            <input type="submit" class="btn btn-outline-primary" style="float: right;">
-                                            Chi tiết
-                                            </input>
-                                        </form>
-                                    </div>
-                                </td>
-                                <c:if test="${i.type == 1}">
-                                <td>
-                                    Ngoại thất
-                                    >>>>>>> Stashed changes
                                 </td>
                                 <c:if test="${i.type == 1}">
                                     <td>
@@ -121,19 +100,14 @@
                                             ${i.ende_date}
                                     </div>
                                 </td>
-                                <c:if test="${i.status == 1}">
+                                <c:if test="${i.status == 2}">
                                     <td>
                                         Đã hoàn thành
                                     </td>
                                 </c:if>
-                                <c:if test="${i.status == 2}">
+                                <c:if test="${i.status == 1}">
                                     <td>
                                         Đang thực hiện
-                                    </td>
-                                </c:if>
-                                <c:if test="${i.status == 3}">
-                                    <td>
-                                        Đang bàn giao
                                     </td>
                                 </c:if>
                             </tr>
@@ -459,58 +433,56 @@
         </div>
         <div class="info">
             <form action="allProject/add" method="POST">
-
-            <table class="table table-borderless">
-                <tr>
-                    <td>Tên Công trình:</td>
-                    <td><input required="" class="info-text" name="name" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Loại công trình:</td>
-                    <td>
-                        <div class="dropdown">
-
-                            <select name="categoryId" class="btn btn-secondary dropdown-toggle" >
-                                <c:forEach items="${listCategory}" var="category">
-                                    <option value="${category.id}"> ${category.category_name}</option>
-                                </c:forEach>
-
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Ngày bắt đầu:</td>
-                    <td><input required="" name="startDate" class="info-text" type="date"></td>
-                </tr>
-                <tr>
-                    <td>Ngày đóng cửa:</td>
-                    <td><input required="" name="closureDate" class="info-text" type="date"></td>
-                </tr>
-                <tr>
-                    <td>Ngày dự kiến kết thúc:</td>
-                    <td><input required="" name="endDate" class="info-text" type="date"></td>
-                </tr>
-                <tr>
-                    <td>Tên khách hàng:</td>
-                    <td><input required="" class="info-text" name="customerName" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Địa chỉ:</td>
-                    <td><input required="" class="info-text" name="address" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Số điện thoại:</td>
-                    <td><input required="" class="info-text" name="phone" type="text"></td>
-                </tr>
-                <tr>
-                    <td>detail</td>
-                    <td><input required="" class="info-text" name="detail" type="text"></td>
-                </tr>
-            </table>
-
-
-
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Tên Công trình:</td>
+                        <td><input required="" class="info-text" name="name" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Loại công trình:</td>
+                        <td>
+                            <div class="dropdown">
+                                <select name="categoryId" class="btn btn-secondary dropdown-toggle" >
+                                    <c:forEach items="${listCategory}" var="category">
+                                        <option value="${category.id}"> ${category.category_name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ngày bắt đầu:</td>
+                        <td><input required="" name="startDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày đóng cửa:</td>
+                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày dự kiến kết thúc:</td>
+                        <td><input required="" name="endDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Tên khách hàng:</td>
+                        <td><input required="" class="info-text" name="customerName" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td><input required="" class="info-text" name="address" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td><input required="" class="info-text" name="phone" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>detail</td>
+                        <td><input required="" class="info-text" name="detail" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>diện tích</td>
+                        <td><input required="" class="info-text" name="constructionArea" type="number"></td>
+                    </tr>
+                </table>
         </div>
         <div class="button_click">
             <div></div>
@@ -535,16 +507,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    // $(function () {
-    //     $("#header-include").load("header.html");
-    //     $("#narbar_menu").load("nav-left.html");
-    // });
     const show = document.querySelector("#show");
+
     const popup = document.querySelector(".popup");
     let close = document.querySelector('.close_popup');
     close.addEventListener('click', function () {
         popup.classList.add("hide__popup");
     });
+
     show.addEventListener('click', function () {
         popup.classList.remove("hide__popup");
     })
@@ -553,7 +523,5 @@
         alert(mess);
     }
 </script>
-
 </body>
-
 </html>

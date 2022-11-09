@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,132 +12,140 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/requirement.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/task_detail.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
-
 <body>
 <jsp:include page="header.jsp"/>
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
-    <div class="requiment" style="margin-left: 300px;">
-        <div class="top">
+    <div class="requiment summary" style="margin-left: 20%;">
+        <div class="top-details">
             <div class="list-top">
-                <h1>Biệt thự nhà dân</h1>
-                <a class="project-detail"><select>
-                    <option>Đang thực hiện</option>
-                    <option>Đã hoàn thành</option>
-
+                <h3>Biệt thự nhà dân</h3>
+                <a class="btn project-detail"><select>
+                    <option class="btn btn-secondary">Đang thực hiện</option>
+                    <option class="btn btn-secondary">Đã hoàn thành</option>
                 </select></a>
             </div>
             <div class="list-task-head">
-
-                <a class="project-detail" href="summary.jsp"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="list_task.jsp"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="calendar.jsp"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="requirement.jsp"><input type="button"
-                                                                           value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="progress.jsp"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="member.jsp"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="dashboard.jsp"><input type="button" value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary" type="button"
+                                                           value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary" type="button"
+                                                             value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary" type="button"
+                                                                 value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary" type="button"
+                                                            value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary" type="button"
+                                                               style="background: blue;" value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary" type="button"
+                                                            value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary" type="button"
+                                                          value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary" type="button"
+                                                             value="Thống kê"></a>
             </div>
         </div>
-        <h1>Thông tin yêu cầu của khách hàng</h1>
-        <div class="requiment-main">
-            <div class="requiment-main-left">
+        <h4>Thông tin yêu cầu của khách hàng</h4>
+        <div>
+            <button class="btn btn-primary">+Thêm yêu cầu</button>
+        </div>
+        <div class="table_content requiment-main ">
+            <div class=" requiment-main-left">
                 <table class="table table-bordered ">
+                    <thead>
                     <tr>
-                        <td></td>
-                        <td>Yêu cầu</td>
-                        <td></td>
+                        <th scope="col">Vị trí</th>
+                        <th scope="col">Yêu cầu</th>
+                        <th scope="col">Trạng thái</th>
+                        <th scope="col"></th>
                     </tr>
+                    </thead>
+                    <tbody>
                     <tr>
-                        <td>1 phòng khách</td>
-                        <td>Diện tích 50m2, có 2 cửa sổ</td>
+                        <td>Tầng 1</td>
+                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch .
+                            2 phòng ngủ : 10m2 , trần thạch cao .
+                        </td>
+                        <td>Đang xử lý</td>
                         <td>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-regular fa-trash-can"></i></button>
+                            <div style="display: flex; justify-content: space-between;">
+                                <button><i
+                                        class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>3 phòng ngủ</td>
-                        <td>1 phòng master , 2 phòng ngủ khách</td>
+                        <td>Tầng 2</td>
+                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch
+                            2 phòng ngủ : 10m2 , trần thạch cao
+                            1 nhà vệ sinh : 12m2 , 1 bồn tắm
+                        </td>
+                        <td>Đang xử lý</td>
                         <td>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-regular fa-trash-can"></i></button>
+                            <div style="display: flex; justify-content: space-between;">
+                                <button><i
+                                        class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>3 phòng ngủ</td>
-                        <td>1 phòng master , 2 phòng ngủ khách</td>
+                        <td>Tầng 3</td>
+                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch
+                            2 phòng ngủ : 10m2 , trần thạch cao
+                            1 nhà vệ sinh : 12m2 , 1 bồn tắm
+                        </td>
+                        <td>Đang xử lý</td>
                         <td>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-regular fa-trash-can"></i></button>
+                            <div style="display: flex; justify-content: space-between;">
+                                <button><i
+                                        class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>3 phòng ngủ</td>
-                        <td>1 phòng master , 2 phòng ngủ khách</td>
+                        <td>Tầng 4</td>
+                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch
+                            2 phòng ngủ : 10m2 , trần thạch cao
+                            1 nhà vệ sinh : 12m2 , 1 bồn tắm
+                        </td>
+                        <td>Đang xử lý</td>
                         <td>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-regular fa-trash-can"></i></button>
+                            <div style="display: flex; justify-content: space-between;">
+                                <button><i
+                                        class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
                         </td>
                     </tr>
-
+                    </tbody>
                 </table>
-                <button class="btn">+Thêm yêu cầu</button>
-            </div>
-            <div class="cmt-custumer-right">
-                <div class="cmt-custumer-right-details">
-                    <a>10/10/2022</a><br>
-                    <img class="img_avatar" src=""/>
-                    <a>khách muốn đổi hướng cửa sổ phòng khách</a>
-
-                </div>
-                <div class="cmt-custumer-right-details">
-                    <a>10/10/2022</a><br>
-                    <img class="img_avatar" src=""/>
-                    <a>khách muốn đổi hướng cửa sổ phòng khách</a>
-
-                </div>
-                <div class="cmt-custumer-right-details">
-                    <a>10/10/2022</a><br>
-                    <img class="img_avatar" src=""/>
-                    <a>khách muốn đổi hướng cửa sổ phòng khách</a>
-
-                </div>
-                <div class="cmt-custumer-right-details">
-                    <a>10/10/2022</a><br>
-                    <img class="img_avatar" src=""/>
-                    <a>khách muốn đổi hướng cửa sổ phòng khách</a>
-
-                </div>
-                <div class="cmt-custumer-right-details">
-                    <a>10/10/2022</a><br>
-                    <img class="img_avatar" src=""/>
-                    <a>khách muốn đổi hướng cửa sổ phòng khách</a>
-
-                </div>
-                <div class="cmt-custumer-right-details">
-                    <a>10/10/2022</a><br>
-                    <img class="img_avatar" src=""/>
-                    <a>khách muốn đổi hướng cửa sổ phòng khách</a>
-
-                </div>
-                <div class="cmt-custumer-right-details">
-                    <a>10/10/2022</a><br>
-                    <img class="img_avatar" src=""/>
-                    <a>khách muốn đổi hướng cửa sổ phòng khách</a>
-
-                </div>
-                <div>
-                    <input type="text" placeholder="phản hồi..."><br>
-                    <button class="btn"><i class="fa-regular fa-circle-user"></i>Tất cả mọi người</button>
-                    <button class="btn btn-primary">Gửi</button>
-
+                <div class="pagination">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
@@ -152,13 +159,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    $(function () {--%>
-<%--        $("#header-include").load("header.jsp");--%>
-<%--        $("#narbar_menu").load("nav_left.jsp");--%>
-<%--    });--%>
-<%--</script>--%>
-
 </body>
-
 </html>

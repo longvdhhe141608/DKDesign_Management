@@ -1,24 +1,24 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trang chủ</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/footerPage.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="summary.jsp"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/calendar.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 
@@ -26,38 +26,44 @@
 <jsp:include page="header.jsp"/>
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
-    <div class="container py-5" style="margin-left: 300px;">
-        <div class="top">
+    <div class="summary " style="margin-left: 20%;">
+        <div class="top-details">
             <div class="list-top">
-                <h1>Biệt thự nhà dân</h1>
-                <a class="project-detail"><select>
-                    <option>Đang thực hiện</option>
-                    <option>Đã hoàn thành</option>
+                <h3>Biệt thự nhà dân</h3>
+                <a class="btn project-detail"><select>
+                    <option class="btn btn-secondary">Đang thực hiện</option>
+                    <option class="btn btn-secondary">Đã hoàn thành</option>
 
                 </select></a>
             </div>
             <div class="list-task-head">
-                <a class="project-detail" href="${pageContext.request.contextPath}/summary"><input type="button" value="Sơ lược"></a>
-                <a class="list" href="${pageContext.request.contextPath}/list_task"><input type="button" value="Danh sách"></a>
-                <a class="calendar" href="${pageContext.request.contextPath}/calendar"><input type="button" value="Lịch"></a>
-                <a class="customer-request" href="${pageContext.request.contextPath}/requirement"><input type="button"
-                                                                                                         value="Yêu cầu của khách hàng"></a>
-                <a class="project-progress" href="${pageContext.request.contextPath}/progress"><input type="button" value="Tiến độ"></a>
-                <a class="project-member" href="${pageContext.request.contextPath}/member"><input type="button" value="Thành viên"></a>
-                <a class="statistic" href="${pageContext.request.contextPath}/dashboard"><input type="button" value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary" type="button"
+                                                           value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary" type="button"
+                                                             value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary" type="button"
+                                                                 value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary" type="button"
+                                                            style="background: blue;" value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary" type="button"
+                                                               value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary" type="button"
+                                                            value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary" type="button"
+                                                          value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary" type="button"
+                                                             value="Thống kê"></a>
             </div>
         </div>
         <!-- For Demo Purpose -->
         <header class="text-center text-white mb-5">
             <h1 class="display-4"></h1>
-
         </header>
-
-        <div class="calendar shadow bg-white p-5">
+        <div class="calendar shadow bg-white p-5" style="border: 1px solid black;">
             <div class="d-flex align-items-center"><i class="fa fa-calendar fa-3x mr-3"></i>
-                <h2 class="month font-weight-bold mb-0 text-uppercase">Tháng 11 Năm 2022</h2>
+                <h4 class="text-uppercase">Tháng 11 Năm 2022</h4>
             </div>
-            <p class="font-italic text-muted mb-5">Không Có Sự Kiện Trong Ngày Hôm Nay.</p>
+            <p class=" ">Không Có Sự Kiện Trong Ngày Hôm Nay.</p>
             <ol class="day-names list-unstyled">
                 <li class="font-weight-bold text-uppercase">Chủ Nhật</li>
                 <li class="font-weight-bold text-uppercase">Thứ Hai</li>
@@ -67,7 +73,6 @@
                 <li class="font-weight-bold text-uppercase">Thứ Sáu</li>
                 <li class="font-weight-bold text-uppercase">Thứ Bảy</li>
             </ol>
-
             <ol class="days list-unstyled">
                 <li>
                     <div class="date">1</div>
@@ -184,7 +189,6 @@
         </div>
     </div>
 </div>
-</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -193,11 +197,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-<script>
-    $(function () {
-        $("#header-include").load("header.jsp");
-        $("#narbar_menu").load("nav_left.jsp");
-    });
-</script>
-
+</body>
 </html>

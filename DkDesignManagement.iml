@@ -119,8 +119,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.6" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.6" level="project" />
-    <orderEntry type="library" name="jquery-nice-select" level="application" />
-    <orderEntry type="library" name="isotope-layout" level="application" />
-    <orderEntry type="library" name="OwlCarousel2" level="application" />
+    <orderEntry type="library" name="Chart.js" level="application" />
   </component>
 </module>

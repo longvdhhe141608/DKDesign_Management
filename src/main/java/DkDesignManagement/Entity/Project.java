@@ -22,4 +22,5 @@ public class Project {
     private String cusPhone;
     private String detail;
     private int status;
+    private Long construction_area;
 }

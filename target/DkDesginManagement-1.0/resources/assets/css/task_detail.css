@@ -13,5 +13,11 @@
 }
 
 .input-cmt {
-    width: 80%;
+    width: 500px;
+    margin-right: 10px;
+}
+
+.task-detail-cmt {
+    display: flex;
+
 }

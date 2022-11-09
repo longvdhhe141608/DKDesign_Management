@@ -9,9 +9,11 @@ import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,22 +34,25 @@ public class ProjectController {
     private CategoryService categoryService;
 
     @RequestMapping(value = "/allProject", method = RequestMethod.GET)
-    public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("allProject");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId()));
+        String textSearch = request.getParameter("textSearch");
+        String option = request.getParameter("option");
+        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, option));
         view.addObject("listCategory", categoryService.getAllCategory());
+        view.addObject("mess", mess);
         return view;
     }
 
     @RequestMapping(value = "/allProject/add", method = RequestMethod.POST)
-    public ModelAndView loadAllProject(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("allProject");
+    public ModelAndView loadAllProject(HttpServletRequest request, RedirectAttributes redirect) {
+        ModelAndView view = new ModelAndView("redirect:/allProject");
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
-            view.addObject("mess", "Please login");
+            redirect.addAttribute("mess", "Please login");
             return view;
         }
 
@@ -62,20 +67,21 @@ public class ProjectController {
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
+        Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
 
         //create model
         Project project = new Project(-1, name, startDate, closureDate, endDate
-                , account.getId(), categoryId, customerName, address, phone, detail, 1);
+                , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
 
         //add
-      int status =  projectService.addProject(project);
-        if(status != 1){
-            view.addObject("mess", "add fail");
+        int id = projectService.addProject(project, account);
+        if (id != 1) {
+            redirect.addAttribute("mess", "add fail");
             return view;
         }
 
 
-        view.addObject("mess", "add successfully");
+        redirect.addAttribute("mess", "add successfully ");
 
         return view;
     }

@@ -22,6 +22,7 @@ public class MapperProject implements RowMapper<Project> {
         p.setCusPhone(resultSet.getString("customer_phone"));
         p.setDetail(resultSet.getString("detail"));
         p.setStatus(resultSet.getInt("status"));
+        p.setConstruction_area(resultSet.getLong("construction_area"));
         return p;
     }
 }
