@@ -86,7 +86,7 @@
                 <div class="btn-edit">
                     <button class="btn btn-secondary" style="margin-right: 10px;"><a
                             href="${pageContext.request.contextPath}/profile/detail">Hủy</a></button>
-                    <input type="submit" class="btn btn-primary" value="Lưu">
+                    <input type="submit" onclick="alert('Sua profile thanh cong')" class="btn btn-primary" value="Lưu">
                 </div>
             </form>
         </div>
