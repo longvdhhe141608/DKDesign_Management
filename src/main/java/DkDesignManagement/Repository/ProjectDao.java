@@ -43,7 +43,7 @@ public class ProjectDao {
         return projectList;
     }
 
-    public List<Project> getAllProjectByAcc(int id, String textSearch,String option) {
+    public List<Project> getAllProjectByAcc(int id, String textSearch,String date) {
         String sql = "select\n" +
                 "\t`project` .*\n" +
                 "from\n" +
@@ -56,12 +56,10 @@ public class ProjectDao {
                 "\t`accounts`.`id` = " + id + " \n";
 
         if (!ObjectUtils.isEmpty(textSearch)) {
-            if(option.equals("name")){
-                sql += " and project.project_name like '%" + textSearch + "%' \n";
-            }else{
-                sql += " and project.start_date  >= '"+textSearch+"' ";
-            }
-
+            sql += " and project.project_name like '%" + textSearch + "%' \n";
+        }
+        if(!ObjectUtils.isEmpty(date) && !date.equals("default") ){
+            sql += " and  year(p.start_date) >= "+date+" ";
         }
         sql += " group by \n" +
                 "\t`project`.`id`\n" +
