@@ -122,4 +122,32 @@ public class ProjectDao {
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
         return generatedKeyHolder.getKey().intValue();
     }
+
+    public int editProject(Project project) {
+        String sql = "UPDATE dkmanagement.project\n" +
+                "SET project_name = :project_name , start_date = :start_date, closure_date = :closure_date, ended_date =:ended_date " +
+                ", creator = :creator, `type`=:type" +
+                ", customer_name = :customer_name, customer_address = :customer_address, customer_phone = :customer_phone" +
+                ", construction_area= :construction_area , detail= :detail, status = :status \n" +
+                "WHERE id= :id ;\n";
+
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("project_name", project.getProject_name());
+        params.put("start_date", project.getStart_date());
+        params.put("closure_date", project.getClosure_date());
+        params.put("ended_date", project.getEnd_date());
+        params.put("creator", project.getCreator());
+        params.put("type", project.getType());
+        params.put("customer_name", project.getCusName());
+        params.put("customer_address", project.getCusAddress());
+        params.put("customer_phone", project.getCusPhone());
+        params.put("detail", project.getDetail());
+        params.put("status", project.getStatus());
+        params.put("construction_area", project.getConstruction_area());
+        params.put("id", project.getId());
+
+        return namedParameterJdbcTemplate.update(sql, params);
+    }
+
 }
