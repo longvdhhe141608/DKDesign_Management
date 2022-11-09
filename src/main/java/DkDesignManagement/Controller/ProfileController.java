@@ -49,8 +49,7 @@ public class ProfileController {
     public ModelAndView updateProfile(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         int id = Integer.parseInt(request.getParameter("userid"));
-        String name = request.getParameter("name").trim();
-        int age = 1;
+
         String address = request.getParameter("address").trim();
         int gender = Integer.parseInt(request.getParameter("gender").trim());
         Date dob = DateUtils.covertStringToDate(request.getParameter("dob"));
@@ -59,7 +58,7 @@ public class ProfileController {
         String phone = request.getParameter("phone").trim();
 
         //tao mot Employee va cast no vao update
-        Employee employee = new Employee(id, name, age, address, gender, dob, cccd, email, phone);
+        Employee employee = new Employee(id,address, gender, dob, cccd, email, phone);
         employeeDao.updateProfile(employee);
         return new ModelAndView("redirect:/profile/detail");
     }

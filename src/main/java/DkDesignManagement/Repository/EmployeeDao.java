@@ -23,8 +23,8 @@ public class EmployeeDao {
      */
     public void updateProfile(Employee employee){
         String sql = "UPDATE `dkmanagement`.`employees` " +
-                "SET `name` = ?, `age` = ?, `address` = ?, `gender` = ?, `dob` = ?, `cccd` = ?, `email` = ?, `phone` = ?" +
+                "SET `address` = ?, `gender` = ?, `dob` = ?, `cccd` = ?, `email` = ?, `phone` = ?" +
                 "WHERE (`id` = ?)";
-        jdbcTemplate.update(sql, employee.getName(), employee.getAge(),employee.getAddress(), employee.getGender(), employee.getDob(), employee.getCccd(), employee.getMail(), employee.getPhone(),employee.getId());
+        jdbcTemplate.update(sql, employee.getAddress(), employee.getGender(), employee.getDob(), employee.getCccd(), employee.getMail(), employee.getPhone(),employee.getId());
     }
 }
