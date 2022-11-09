@@ -41,10 +41,10 @@
                         <td>Họ và tên:</td>
                         <td>${profile.name}</td>
                     </tr>
-                    <tr>
-                        <td>Mã nhân viên:</td>
-                        <td>huonghtt</td>
-                    </tr>
+<%--                    <tr>--%>
+<%--                        <td>Mã nhân viên:</td>--%>
+<%--                        <td>huonghtt</td>--%>
+<%--                    </tr>--%>
                     <tr>
                         <td>Số CCCD/CMND:</td>
                         <td>${profile.cccd}</td>

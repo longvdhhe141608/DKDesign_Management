@@ -66,3 +66,15 @@ body {
     justify-content: end;
     padding: 5px;
 }
+.body_page .tab_content .main-detail .card_list_project{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.body_page .tab_content .main-detail .card_list_project .card_project{
+    justify-self: start;
+    padding-left: 60px;
+    padding-bottom: 12px;
+    padding-top: 12px;
+    font-size: 20px;
+}
