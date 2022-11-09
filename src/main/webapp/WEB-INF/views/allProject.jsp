@@ -67,6 +67,7 @@
                             <th scope="col">Trạng thái</th>
                         </tr>
                         </thead>
+
                         <tbody class="list-project">
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
@@ -79,6 +80,23 @@
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>
+                                        <form action="${pageContext.request.contextPath}/project/summary?${i.id}">
+                                            <a>${i.project_name}</a>
+                                            <input type="submit" class="btn btn-outline-primary" style="float: right;">
+                                            Chi tiết
+                                            </input>
+                                        </form>
+                                    </div>
+                                </td>
+                                <c:if test="${i.type == 1}">
+                                <td>
+                                    Ngoại thất
+                                    >>>>>>> Stashed changes
                                 </td>
                                 <c:if test="${i.type == 1}">
                                     <td>

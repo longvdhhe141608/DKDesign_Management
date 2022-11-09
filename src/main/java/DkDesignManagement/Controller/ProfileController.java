@@ -3,6 +3,7 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Employee;
 import DkDesignManagement.Repository.EmployeeDao;
+import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +21,7 @@ public class ProfileController {
     @Autowired
     private EmployeeDao employeeDao;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "detail", method = RequestMethod.GET)
     public ModelAndView loadProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         try {
@@ -29,11 +30,10 @@ public class ProfileController {
             request.setAttribute("profile", employee);
         } catch (Exception ignored) {
         }
-
         return new ModelAndView("profile");
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView loadUpdateProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         try {
@@ -44,25 +44,23 @@ public class ProfileController {
         }
         return new ModelAndView("edit_profile");
     }
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
+
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
     public ModelAndView updateProfile(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            String name = request.getParameter("name");
-            int age = Integer.parseInt(request.getParameter("age"));
-            String address = request.getParameter("address");
-            int gender = Integer.parseInt(request.getParameter("gender"));
-            Date dob = new Date(request.getParameter("dob"));
-            String cccd = request.getParameter("cccd");
-            String email = request.getParameter("email");
-            String phone = request.getParameter("phone");
+        int id = Integer.parseInt(request.getParameter("userid"));
+        String name = request.getParameter("name").trim();
+        int age = 1;
+        String address = request.getParameter("address").trim();
+        int gender = Integer.parseInt(request.getParameter("gender").trim());
+        Date dob = DateUtils.covertStringToDate(request.getParameter("dob"));
+        String cccd = request.getParameter("cccd").trim();
+        String email = request.getParameter("email").trim();
+        String phone = request.getParameter("phone").trim();
 
-            //tao mot Employee va cast no vao update
-            employeeDao.updateProfile(new Employee(id,name,age,address,gender,dob,cccd,email,phone));
-        } catch (Exception e) {
-
-        }
-        return new ModelAndView("edit_profile");
+        //tao mot Employee va cast no vao update
+        Employee employee = new Employee(id, name, age, address, gender, dob, cccd, email, phone);
+        employeeDao.updateProfile(employee);
+        return new ModelAndView("redirect:/profile/detail");
     }
 }
