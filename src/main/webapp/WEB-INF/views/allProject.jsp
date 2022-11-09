@@ -31,28 +31,31 @@
                 </div>
                 <div></div>
                 <form action="allProject" method="get" >
-                <div class="function-two">
-                    <div class="dropdown">
+                    <div class="function-two">
+                        <div class="dropdown">
 
-                        <select name="option" class="btn btn-secondary dropdown-toggle" >
-                            <option value="name">Tên</option>
-                            <option value="date">Ngày bắt đầu</option>
-                        </select>
+                            <select name="date" class="btn btn-secondary dropdown-toggle" >
+                                <option value="default">default</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                            </select>
 
+                        </div>
                     </div>
-                </div>
-                <div class="function-thir">
-                    <div class="function_search">
+                    <div class="function-thir">
+                        <div class="function_search">
 
                             <div class="wap_search">
 
-                                <input style="margin-right: 10px;" type="date" class="search_term"
-                                      name="textSearch" placeholder="Tên công trình">
+                                <input style="margin-right: 10px;" type="text" class="search_term"
+                                       name="textSearch" placeholder="Tên công trình">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
 
+                        </div>
                     </div>
-                </div>
                 </form>
             </div>
             <div class="table_content">
