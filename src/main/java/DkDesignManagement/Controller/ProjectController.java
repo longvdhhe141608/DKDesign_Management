@@ -34,11 +34,13 @@ public class ProjectController {
     private CategoryService categoryService;
 
     @RequestMapping(value = "/allProject", method = RequestMethod.GET)
-    public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("mess") String mess) {
+    public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("allProject");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId()));
+        String textSearch = request.getParameter("textSearch");
+        String option = request.getParameter("option");
+        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, option));
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("mess", mess);
         return view;
@@ -65,14 +67,15 @@ public class ProjectController {
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
+        Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
 
         //create model
         Project project = new Project(-1, name, startDate, closureDate, endDate
-                , account.getId(), categoryId, customerName, address, phone, detail, 1);
+                , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
 
         //add
-      int id =  projectService.addProject(project ,account);
-        if(id != 1){
+        int id = projectService.addProject(project, account);
+        if (id != 1) {
             redirect.addAttribute("mess", "add fail");
             return view;
         }
