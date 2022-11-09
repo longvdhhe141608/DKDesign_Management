@@ -76,28 +76,12 @@
                                             ${i.project_name}
                                     </div>
                                     <div class="links">
-                                        <a class="link-detail" href="${pageContext.request.contextPath}/allProject">
+                                        <a class="link-detail" href="edit_summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div>
-                                        <form action="${pageContext.request.contextPath}/project/summary?${i.id}">
-                                            <a>${i.project_name}</a>
-                                            <input type="submit" class="btn btn-outline-primary" style="float: right;">
-                                            Chi tiết
-                                            </input>
-                                        </form>
-                                    </div>
-                                </td>
-                                <c:if test="${i.type == 1}">
-                                <td>
-                                    Ngoại thất
-                                    >>>>>>> Stashed changes
-                                </td>
+
                                 <c:if test="${i.type == 1}">
                                     <td>
                                         Ngoại thất
@@ -115,7 +99,7 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                            ${i.ende_date}
+                                            ${i.end_date}
                                     </div>
                                 </td>
                                 <c:if test="${i.status == 2}">
@@ -130,6 +114,7 @@
                                 </c:if>
                             </tr>
                         </c:forEach>
+
                         <%--                        <tr>--%>
                         <%--                            <td style="justify-content: center;">--%>
 
@@ -473,12 +458,8 @@
                         <td><input required="" name="startDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
-                        <td>Ngày đóng dự án:</td>
-                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
-                    </tr>
-                    <tr>
                         <td>Ngày dự kiến kết thúc:</td>
-                        <td><input required="" name="endDate" class="info-text" type="date"></td>
+                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
                         <td>Tên khách hàng:</td>

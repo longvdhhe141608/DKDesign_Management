@@ -62,7 +62,7 @@ public class ProjectController {
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date closureDate = DateUtils.covertStringToDate(request.getParameter("closureDate"));
-        Date endDate = DateUtils.covertStringToDate(request.getParameter("endDate"));
+
         String customerName = request.getParameter("customerName");
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
@@ -70,7 +70,7 @@ public class ProjectController {
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
 
         //create model
-        Project project = new Project(-1, name, startDate, closureDate, endDate
+        Project project = new Project(-1, name, startDate, closureDate, null
                 , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
 
         //add
