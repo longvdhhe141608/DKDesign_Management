@@ -107,7 +107,7 @@ public class ProjectDao {
         params.put("name", project.getProject_name());
         params.put("start_date", project.getStart_date());
         params.put("closure_date", project.getClosure_date());
-        params.put("ended_date", project.getEnde_date());
+        params.put("ended_date", project.getEnd_date());
         params.put("creator", project.getCreator());
         params.put("type", project.getType());
         params.put("customer_name", project.getCusName());

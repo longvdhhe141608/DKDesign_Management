@@ -1,3 +1,4 @@
+<jsp:useBean id="profile" scope="request" type="DkDesignManagement.Entity.Employee"/>
 <%--
   Created by IntelliJ IDEA.
   User: Hoang Long
@@ -38,55 +39,56 @@
                     <img class="img_avatar_change" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                 </button>
             </div>
-            <div>
-                <table class="table table-borderless">
-                    <tr>
-                        <td>Họ và tên:</td>
-                        <td><input type="text" value="Hoàng Thị Thu Hương"></td>
-                    </tr>
-                    <tr>
-                        <td>Mã nhân viên:</td>
-                        <td><input type="text" value="huonghtt"></td>
-                    </tr>
-                    <tr>
-                        <td>Số CCCD/CMND:</td>
-                        <td><input type="text" value="1234567890123"></td>
-                    </tr>
-                    <tr>
-                        <td>Ngày sinh:</td>
-                        <td><input type="datetime" value="20/04/2000"></td>
-                    </tr>
-                    <tr>
-                        <td>Giới tính:</td>
-                        <td><select name="" id="">
-                            <option value="nam">Nam</option>
-                            <option value="nữ">Nữ</option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td>Số điện thoại:</td>
-                        <td><input type="text" value="0123456678"></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input type="text" value="huonghtthe141550@fpt.edu.vn"></td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ nhà:</td>
-                        <td><input type="text" value="Nam Định, Việt Nam"></td>
-                    </tr>
+           <form action="edit" method="post">
+               <div>
+                   <table class="table table-borderless">
+                       <tr>
+                           <td>Họ và tên:</td>
+                           <td><input type="text" id="name" name="name" value="${profile.name}"></td>
+                       </tr>
+                       <tr>
+                           <td>Mã nhân viên:</td>
+                           <td><input type="text" id="userid" name="userid" value="${profile.id}" ></td>
+                       </tr>
+                       <tr>
+                           <td>Số CCCD/CMND:</td>
+                           <td><input type="text" id="cccd" name="cccd" value="${profile.cccd}"></td>
+                       </tr>
+                       <tr>
+                           <td>Ngày sinh:</td>
+                           <td><input type="date" id="dob" name="dob" value="${profile.dob}"></td>
+                       </tr>
+                       <tr>
+                           <td>Giới tính:</td>
+                           <td><select name="gender" id="gender">
+                                   <option id="1" value="1" ${profile.gender==1?"Selected":""}>Nam</option>
+                                   <option id="2" value="2" ${profile.gender==2?"Selected":""}>Nữ</option>
+                           </select></td>
+                       </tr>
+                       <tr>
+                           <td>Số điện thoại:</td>
+                           <td><input type="text" id="phone" name="phone" value="${profile.phone}"></td>
+                       </tr>
+                       <tr>
+                           <td>Email:</td>
+                           <td><input type="text" id="email" name="email" value="${profile.mail}"></td>
+                       </tr>
+                       <tr>
+                           <td>Địa chỉ nhà:</td>
+                           <td><input type="text"id="address" name="address" value="${profile.address}"></td>
+                       </tr>
 
-                </table>
-            </div>
+                   </table>
+               </div>
+
+               <%-- button --%>
+               <div class="btn-edit">
+                   <button class="btn btn-secondary" style="margin-right: 10px;"><a href="${pageContext.request.contextPath}/profile/detail">Hủy</a></button>
+                   <input type="submit"  class="btn btn-primary" value="Lưu">
+               </div>
+           </form>
         </div>
-        <div class="btn-edit">
-            <form action="profile">
-                <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
-            </form>
-            <form action="profile">
-                <button class="btn btn-primary">Lưu</button>
-            </form>
-        </div>
+
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

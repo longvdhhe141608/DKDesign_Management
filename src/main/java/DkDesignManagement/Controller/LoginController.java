@@ -41,18 +41,24 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(@ModelAttribute("account") Account account, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        ModelAndView view;
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
 
-        account = accountDao.getAccount(username);
-        if (account.getPassword().equals(password)) {
-            session.setAttribute("loginUser", account);
-            view = new ModelAndView("redirect:headerHome");
-        } else {
-            request.setAttribute("message", "Invalid username or password!");
-            view = new ModelAndView("login");
-        }
+        ModelAndView view;
+            try {
+           String username = request.getParameter("username");
+           String password = request.getParameter("password");
+
+           account = accountDao.getAccount(username);
+           if (account != null && account.getPassword().equals(password)) {
+               session.setAttribute("loginUser", account);
+               view = new ModelAndView("redirect:headerHome");
+           } else {
+               request.setAttribute("message", "Invalid username or password!");
+               view = new ModelAndView("login");
+           }
+       } catch (Exception ex){
+                request.setAttribute("message", "Invalid username or password!");
+                view = new ModelAndView("login");
+       }
         return view;
     }
 

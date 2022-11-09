@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -19,7 +18,6 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
-
 <body>
 <jsp:include page="header.jsp"/>
 <div class="body_page">
@@ -34,22 +32,30 @@
                 </select></a>
             </div>
             <div class="list-task-head">
-                <a class="test" href="summary.html"><input class="btn btn-secondary" style="background: blue;"
-                                                           type="button" value="Sơ lược"></a>
-                <a class="test" href="list-task.html"><input class="btn btn-secondary" type="button"
-                                                             value="Công việc"></a>
-                <a class="test" href="list-task.html"><input class="btn btn-secondary" type="button"
-                                                             value="Duyệt công việc"></a>
-                <a class="test" href="calendar.html"><input class="btn btn-secondary" type="button"
-                                                            value="Lịch"></a>
-                <a class="test" href=" requirement.html"><input class="btn btn-secondary" type="button"
-                                                                value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="progress.html"><input class="btn btn-secondary" type="button"
-                                                            value="Tiến độ"></a>
-                <a class="test" href="member.html"><input class="btn btn-secondary" type="button"
-                                                          value="Thành viên"></a>
-                <a class="test" href="dashboard.html"><input class="btn btn-secondary" type="button"
-                                                             value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary"
+                                                                                         style="background: blue;"
+                                                                                         type="button" value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
+                                                                                               type="button"
+                                                                                               value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
+                                                                                             type="button"
+                                                                                             value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary"
+                                                                                        type="button"
+                                                                                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           value="Thống kê"></a>
             </div>
         </div>
         <div class="summary-main">
@@ -78,7 +84,6 @@
                                    data-toggle="dropdown" aria-expanded="false">
                                     Nội thất
                                 </a>
-
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="#">Nội thất</a>
                                     <a class="dropdown-item" href="#">Ngoại thất</a>
@@ -88,7 +93,7 @@
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
-                        <td><input type="text" value="500"> m<sup>2</sup></td>
+                        <td><input type="text" value="500m2"></td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
@@ -104,15 +109,12 @@
                         <td>Thời gian kết thúc:</td>
                         <td>-</td>
                     </tr>
-
                     <tr>
                         <td>Mô tả:</td>
                         <td>-</td>
                     </tr>
                 </table>
             </div>
-
-
             <div class="main-file">
                 <a>Hình vẽ 3D </a>
                 <a><i class="fa-solid fa-paperclip"></i></a>
@@ -120,18 +122,16 @@
             <form>
                 Hồ sơ thi công <input type="file" id="user_picture" onchange="update_image()">
             </form>
-
             <div id="meme_picture"><img src="" height="200" width="300"></div>
             <div class="btn-update-summary">
-                <form action="summary.html">
+                <form action="${pageContext.request.contextPath}/summary">
                     <button class="btn-update btn btn-secondary">Hủy bỏ</button>
                 </form>
-                <form action="summary.html">
+                <form action="${pageContext.request.contextPath}/summary">
                     <button class="btn-update btn btn-primary">Lưu</button>
                 </form>
             </div>
         </div>
-
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -142,13 +142,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    $(function () {--%>
-<%--        $("#header-include").load("header.html");--%>
-<%--        $("#narbar_menu").load("nav-left.html");--%>
-<%--    });--%>
-<%--</script>--%>
 </body>
-
-
 </html>
