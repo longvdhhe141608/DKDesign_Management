@@ -19,7 +19,6 @@
     <div class="container_content body_page">
         <jsp:include page="nav_left.jsp"/>
         <div class="summary  content_first">
-
             <div class="title">
                 <h4>Tất cả công trình</h4>
             </div>
@@ -30,29 +29,24 @@
                     </div>
                 </div>
                 <div></div>
-                <form action="allProject" method="get" >
-                <div class="function-two">
-                    <div class="dropdown">
-
-                        <select name="option" class="btn btn-secondary dropdown-toggle" >
-                            <option value="name">Tên</option>
-                            <option value="date">Ngày bắt đầu</option>
-                        </select>
-
+                <form action="allProject" method="get">
+                    <div class="function-two">
+                        <div class="dropdown">
+                            <select name="option" class="btn btn-secondary dropdown-toggle">
+                                <option value="name">Tên</option>
+                                <option value="date">Ngày bắt đầu</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-                <div class="function-thir">
-                    <div class="function_search">
-
+                    <div class="function-thir">
+                        <div class="function_search">
                             <div class="wap_search">
-
-                                <input style="margin-right: 10px;" type="date" class="search_term"
-                                      name="textSearch" placeholder="Tên công trình">
+                                <input style="margin-right: 10px;" type="text" class="search_term"
+                                       name="textSearch" placeholder="Tên công trình">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
-
+                        </div>
                     </div>
-                </div>
                 </form>
             </div>
             <div class="table_content">
@@ -428,11 +422,11 @@
 </div>
 <div class="popup hide__popup">
     <div class="popup__content">
-        <div class="title">
+        <div>
             <h4>Tạo công trình mới</h4>
         </div>
         <div class="info">
-            <form action="allProject/add" method="POST">
+            <form action="allProject/add" method="post">
                 <table class="table table-borderless">
                     <tr>
                         <td>Tên Công trình:</td>
@@ -442,7 +436,7 @@
                         <td>Loại công trình:</td>
                         <td>
                             <div class="dropdown">
-                                <select name="categoryId" class="btn btn-secondary dropdown-toggle" >
+                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">
                                     <c:forEach items="${listCategory}" var="category">
                                         <option value="${category.id}"> ${category.category_name}</option>
                                     </c:forEach>
@@ -455,7 +449,7 @@
                         <td><input required="" name="startDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
-                        <td>Ngày đóng cửa:</td>
+                        <td>Ngày đóng dự án:</td>
                         <td><input required="" name="closureDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
@@ -475,28 +469,28 @@
                         <td><input required="" class="info-text" name="phone" type="text"></td>
                     </tr>
                     <tr>
-                        <td>detail</td>
+                        <td>Detail</td>
                         <td><input required="" class="info-text" name="detail" type="text"></td>
                     </tr>
                     <tr>
-                        <td>diện tích</td>
+                        <td>Diện tích</td>
                         <td><input required="" class="info-text" name="constructionArea" type="number"></td>
                     </tr>
                 </table>
-        </div>
-        <div class="button_click">
-            <div></div>
-            <div class="btn_cancel">
-                <button type="button" class="btn btn-secondary close_popup">Hủy
-                    bỏ
-                </button>
-            </div>
-            <div class="btn_ok">
-                <button type="submit" class="btn btn-primary">Tạo</button>
-            </div>
+                <div class="button_click">
+                    <div></div>
+                    <div class="btn_cancel">
+                        <button type="button" class="btn btn-secondary close_popup">Hủy
+                            bỏ
+                        </button>
+                    </div>
+                    <div class="btn_ok">
+                        <button type="submit" class="btn btn-primary">Tạo</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
-    </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -519,7 +513,7 @@
         popup.classList.remove("hide__popup");
     })
     var mess = '${mess}'
-    if(mess !=''){
+    if (mess != '') {
         alert(mess);
     }
 </script>
