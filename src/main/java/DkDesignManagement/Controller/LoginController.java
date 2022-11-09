@@ -46,7 +46,7 @@ public class LoginController {
         String password = request.getParameter("password");
 
         account = accountDao.getAccount(username);
-        if (Objects.isNull(account) == false) {
+        if (account.getPassword().equals(password)) {
             session.setAttribute("loginUser", account);
             view = new ModelAndView("redirect:headerHome");
         } else {
