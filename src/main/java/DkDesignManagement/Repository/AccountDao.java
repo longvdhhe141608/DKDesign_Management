@@ -48,8 +48,4 @@ public class AccountDao {
         return check;
     }
 
-//    public static void main(String[] args) {
-//        AccountDao accountDao = new AccountDao();
-//        accountDao.Login("long","123456");
-//    }
 }

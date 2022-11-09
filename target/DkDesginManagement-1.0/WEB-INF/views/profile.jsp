@@ -18,9 +18,9 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 <div class="body_page">
-    <div id="narbar_menu"></div>
+    <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
         <span style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i>Thông tin cá nhân</span>
         <div class="information-main">
@@ -39,44 +39,49 @@
                 <table class="table table-borderless">
                     <tr>
                         <td>Họ và tên:</td>
-                        <td>Hoàng Thị Thu Hương</td>
+                        <td>${profile.name}</td>
                     </tr>
-                    <tr>
-                        <td>Mã nhân viên:</td>
-                        <td>huonghtt</td>
-                    </tr>
+<%--                    <tr>--%>
+<%--                        <td>Mã nhân viên:</td>--%>
+<%--                        <td>huonghtt</td>--%>
+<%--                    </tr>--%>
                     <tr>
                         <td>Số CCCD/CMND:</td>
-                        <td>1234567890123</td>
+                        <td>${profile.cccd}</td>
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
-                        <td>20/04/2000</td>
+                        <td>${profile.dob}</td>
                     </tr>
                     <tr>
                         <td>Giới tính:</td>
-                        <td>Nữ</td>
+                        <c:if test="${profile.gender==1}">
+                            <td>Nam</td>
+                        </c:if>
+                        <c:if test="${profile.gender==2}">
+                            <td>Nu</td>
+                        </c:if>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td>0123456678</td>
+                        <td>${profile.phone}</td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td>huonghtthe141550@fpt.edu.vn</td>
+                        <td>${profile.mail}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ nhà:</td>
-                        <td>Nam Định, Việt Nam</td>
+                        <td>${profile.address}</td>
                     </tr>
 
                 </table>
             </div>
         </div>
         <div>
-            <form action="${pageContext.request.contextPath}/edit_profile">
+            <a href="${pageContext.request.contextPath}/profile/edit">
                 <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
-            </form>
+            </a>
         </div>
     </div>
 </div>
