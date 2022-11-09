@@ -62,7 +62,6 @@ public class ProjectController {
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date closureDate = DateUtils.covertStringToDate(request.getParameter("closureDate"));
-
         String customerName = request.getParameter("customerName");
         String address = request.getParameter("address");
         String phone = request.getParameter("phone");
@@ -79,7 +78,6 @@ public class ProjectController {
             redirect.addAttribute("mess", "add fail");
             return view;
         }
-
 
         redirect.addAttribute("mess", "add successfully ");
 
