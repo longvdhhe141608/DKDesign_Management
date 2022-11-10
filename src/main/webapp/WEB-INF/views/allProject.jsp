@@ -190,13 +190,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Detail</td>
+                        <td>Mô tả</td>
                         <td>
                             <%--                            <input required="" class="info-text" name="detail" type="text">--%>
-                            <form method="get" id="input-detail">
-<%--                                <input type="submit"/>--%>
-                            </form>
-                            <textarea form="input-detail" name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>
+                            <textarea name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>
                         </td>
                     </tr>
 

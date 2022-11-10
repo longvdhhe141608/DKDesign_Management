@@ -35,7 +35,7 @@ public class EditSummaryController {
         ModelAndView view = new ModelAndView("edit_summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectDao.getProject(id);
-        request.setAttribute("profile", project);
+        request.setAttribute("project", project);
         view.addObject("listCategory", categoryService.getAllCategory());
 
         return view;
@@ -43,14 +43,13 @@ public class EditSummaryController {
 
     @RequestMapping(value = "/edit_summary/edit_project", method = RequestMethod.POST)
     public ModelAndView editSummary(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("redirect:/allProject");
+        ModelAndView view = new ModelAndView("redirect:/project/summary");
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
             redirect.addAttribute("mess", "Please login");
             return view;
         }
-
         Account account = (Account) session.getAttribute("loginUser");
         //get value
         int id = Integer.parseInt(request.getParameter("idProject"));
@@ -64,21 +63,19 @@ public class EditSummaryController {
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
-        int status = Integer.parseInt(request.getParameter("status"));
-
+//        int status = Integer.parseInt(request.getParameter("status"));
         //create model
         Project project = new Project(id, name, startDate, closureDate, endDate
-                , account.getId(), categoryId, customerName, address, phone, detail, status, constructionArea);
-
+                , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
         //add
         int statusEdit = projectService.editProject(project);
         if (statusEdit != 1) {
+            redirect.addAttribute("id", id);
             redirect.addAttribute("mess", "edit fail");
             return view;
         }
-
+        redirect.addAttribute("id", id);
         redirect.addAttribute("mess", "edit successfully ");
-
         return view;
     }
 }

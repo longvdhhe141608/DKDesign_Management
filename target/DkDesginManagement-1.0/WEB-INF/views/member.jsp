@@ -22,15 +22,16 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="body_page">
-
+    <jsp:include page="nav_left.jsp"/>
     <div class="top-details">
         <div class="list-top">
             <h3>${project.project_name}</h3>
-            <button class="btn project-detail"><select>
-                <option class="">Đang thực hiện</option>
-                <option class="">Đã hoàn thành</option>
-
-            </select></button>
+            <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                <select style="border: none; padding: 6px;">
+                    <option class="btn btn-secondary">Đang thực hiện</option>
+                    <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
+                </select>
+            </div>
         </div>
 
 
@@ -168,7 +169,7 @@
                     <td>
                         <select class="btn btn-success" name="status" id="status">
                             <option class="btn" value="1">Mở</option>
-                            <option class="btn" value="0" ${member.memberStatus==true?"selected":""}
+                            <option class="btn" value="0" ${member.memberStatus==false?"selected":""}
                                     style="background-color: red;">Chặn
                             </option>
                         </select>

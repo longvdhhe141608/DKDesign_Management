@@ -26,11 +26,13 @@
         <form action="edit_summary/edit_project" method="post">
             <div class="top-details">
                 <div class="list-top">
-                    <h3>Biệt thự nhà dân</h3>
-                    <select class="btn project-detail" name="status">
-                        <option value="1" class="btn btn-secondary">Đang thực hiện</option>
-                        <option value="2" class="btn btn-secondary">Đã hoàn thành</option>
-                    </select>
+                    <h3>${project.project_name}</h3>
+                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                        <select style="border: none; padding: 6px;">
+                            <option class="btn btn-secondary">Đang thực hiện</option>
+                            <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
+                        </select>
+                    </div>
                 </div>
 
 
@@ -38,10 +40,11 @@
                     <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
-                            value="Sơ lược"></a>
+                            value="Sơ lược" style="background: blue;"></a>
                     <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
                                                                                                type="button"
-                                                                                               value="Công việc"></a>
+                                                                                               value="Công việc"
+                    ></a>
                     <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input
                             class="btn btn-secondary"
                             type="button"
@@ -59,7 +62,6 @@
                     <a class="test" href="${pageContext.request.contextPath}/project/member"><input
                             class="btn btn-secondary"
                             type="button"
-                            style="background: blue;"
                             value="Thành viên"></a>
                     <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
                                                                                                type="button"
@@ -74,23 +76,23 @@
                     <div class="summary-main-header">
                         <h4>Chỉnh sửa sơ lược công trình</h4>
                     </div>
-                    <input type="text" class="" name="idProject" value="${profile.id}" hidden>
+                    <input type="text" class="" name="idProject" value="${project.id}" hidden>
                     <table class="table table-borderless">
                         <tr>
                             <td>Tên dự án:</td>
-                            <td><input type="text" name="name" value="${profile.project_name}"></td>
+                            <td><input type="text" name="name" value="${project.project_name}"></td>
                         </tr>
                         <tr>
                             <td>Chủ nhà:</td>
-                            <td><input type="text" name="customerName" value="${profile.cusName}"></td>
+                            <td><input type="text" name="customerName" value="${project.cusName}"></td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input type="text" name="phone" value="${profile.cusPhone}"></td>
+                            <td><input type="text" name="phone" value="${project.cusPhone}"></td>
                         </tr>
                         <tr>
                             <td>Địa chỉ công trình:</td>
-                            <td><input type="text" name="address" value="${profile.cusAddress}"></td>
+                            <td><input type="text" name="address" value="${project.cusAddress}"></td>
                         </tr>
                         <tr>
                             <td>Loại công trình:</td>
@@ -105,39 +107,42 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Diện tích xây dựng (m2):</td>
-                            <td><input type="text" name="constructionArea" value="${profile.construction_area}"></td>
+                            <td>Diện tích xây dựng (m<sup>2</sup>):</td>
+                            <td><input type="text" name="constructionArea" value="${project.construction_area}"></td>
                         </tr>
                         <tr>
                             <td>Thời gian bắt đầu:</td>
                             <td>
-                                <input type="date" name="startDate" value="${profile.start_date}">
+                                <input type="date" name="startDate" value="${project.start_date}">
                             </td>
                         </tr>
                         <tr>
                             <td>Thời gian dự kiến kết thúc:</td>
-                            <td><input type="date" name="closureDate" value="${profile.closure_date}"></td>
+                            <td><input type="date" name="closureDate" value="${project.closure_date}"></td>
                         </tr>
                         <tr>
                             <td>Thời gian kết thúc:</td>
-                            <td><input type="date" name="endDate" value="${profile.end_date}"></td>
+                            <td><input type="date" name="endDate" value="${project.end_date}"></td>
                         </tr>
                         <tr>
                             <td>Mô tả:</td>
                             <td>
-                                <input type="text" name="detail" value="${profile.detail}">
+                                <%--                            <input required="" class="info-text" name="detail" type="text">--%>
+                                <textarea name="detail"  style="height: 32px" cols="35" wrap="soft">${project.detail}</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Upload thị file:</td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="file" class="form-control" id="fileInput" multiple>
+                                </div>
                             </td>
                         </tr>
                     </table>
                 </div>
-                <div class="main-file">
-                    <a>Hình vẽ 3D </a>
-                    <a><i class="fa-solid fa-paperclip"></i></a>
-                </div>
-                Hồ sơ thi công <input type="file" id="user_picture" onchange="update_image()">
-                <div id="meme_picture"><img src="" height="200" width="300"></div>
                 <div class="btn-update-summary">
-                    <a href="allProject">
+                    <a href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
                         <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
                     </a>
                     <button type="submit" class="btn-update btn btn-primary">Lưu</button>
