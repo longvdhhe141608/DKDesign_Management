@@ -19,23 +19,30 @@
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 <body>
+
 <jsp:include page="header.jsp"/>
+
 <div class="body_page">
+
     <jsp:include page="nav_left.jsp"/>
+
     <div class="summary">
         <div class="top-details">
             <div class="list-top">
-                <h3>Biệt thự nhà dân</h3>
+
+                <h3>${project.project_name}</h3>
                 <a class="btn project-detail"><select>
                     <option class="btn btn-secondary">Đang thực hiện</option>
-                    <option class="btn btn-secondary">Đã hoàn thành</option>
+                    <option class="btn btn-secondary"  ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                 </select></a>
             </div>
+
+
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
-                <c:if test="${pageContext.page==summary.jsp}">style="background: blue"</c:if>
+                        <c:if test="${pageContext.page==summary.jsp}">style="background: blue"</c:if>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
                                                                                            type="button"
@@ -52,13 +59,15 @@
                 <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
                                                                                           type="button"
                                                                                           value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/project/member"><input class="btn btn-secondary"
-                                                                                                type="button"
-                                                                                                value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
                 <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
                                                                                            type="button"
                                                                                            value="Thống kê"></a>
             </div>
+
         </div>
         <div class="summary-main">
             <div class="main-Quickview">
