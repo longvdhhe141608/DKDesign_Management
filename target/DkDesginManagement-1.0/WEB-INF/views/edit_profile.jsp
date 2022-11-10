@@ -45,6 +45,7 @@
                         <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
                         <tr>
                             <td>Họ và tên:</td>
+<<<<<<< Updated upstream
                             <td><input type="text" id="name" name="name" value="${profile.name}" readonly=""></td>
                         </tr>
 <%--                        <tr>--%>
@@ -54,6 +55,17 @@
                         <tr>
                             <td>Số CCCD/CMND:</td>
                             <td><input pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd" value="${profile.cccd}"></td>
+=======
+                            <td><input type="text" id="name" name="name" value="${profile.name}"></td>
+                        </tr>
+                        <tr>
+                            <td>Mã nhân viên:</td>
+                            <td><input type="text" value="${profile.id}" disabled></td>
+                        </tr>
+                        <tr>
+                            <td>Số CCCD/CMND:</td>
+                            <td><input type="text" id="cccd" name="cccd" value="${profile.cccd}"></td>
+>>>>>>> Stashed changes
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
@@ -84,7 +96,11 @@
 
                 <%-- button --%>
                 <div class="btn-edit">
+<<<<<<< Updated upstream
                     <button class="btn btn-secondary" style="margin-right: 10px; color: white"><a
+=======
+                    <button class="btn btn-secondary" style="margin-right: 10px;"><a
+>>>>>>> Stashed changes
                             href="${pageContext.request.contextPath}/profile/detail">Hủy</a></button>
                     <input type="submit" onclick="alert('Sua profile thanh cong')" class="btn btn-primary" value="Lưu">
                 </div>

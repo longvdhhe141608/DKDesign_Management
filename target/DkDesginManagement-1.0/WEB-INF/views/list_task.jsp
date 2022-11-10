@@ -140,8 +140,12 @@
                     <div class="col-3 list-task-header">Thời gian bắt đầu</div>
                     <div class="col-3 list-task-header">Thời gian dự kiến kết thúc</div>
                 </div>
+
+                <c:forEach items="${listBigTask}" var="bigTask">
+                <!------big task item------>
                 <details>
                     <summary>
+<<<<<<< Updated upstream
                         <span>Thiết kế bản vẽ</span>
                     </summary>
                     <div class="row " style="background: rgba(0, 0, 0, 0.2);">
@@ -236,10 +240,17 @@
                 <details>
                     <summary>
                         <span>Lên hình ảnh 3D</span>
+=======
+                        <span>${bigTask.description}</span>
+>>>>>>> Stashed changes
                     </summary>
+
+                    <c:forEach items="${bigTask.listTask}" var="task">
+                    <!------task item------>
                     <div class="row " style="background: rgba(0, 0, 0, 0.2);">
                         <div class="col-4" style="border: 1px solid gray;">
                             <div class="">
+<<<<<<< Updated upstream
                                 <button onclick="myFunction('.sub-task-detail')">
                                     <i class="fa-solid fa-caret-down"></i></button>
                                 Thiết kế mặt sàn
@@ -264,8 +275,24 @@
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
+=======
+                                <button onclick="myFunction('.sub-task-detail')"><i
+                                        class="fa-solid fa-caret-down"></i></i></button>
+                                ${task.taskName}
+                            </div>
+                        </div>
+                        <div class="col-2" style="border: 1px solid gray;">${task.assignToName}</div>
+                        <div class="col-3" style="border: 1px solid gray;">${task.startDate}</div>
+                        <div class="col-3" style="border: 1px solid gray;">${task.deadline}</div>
+>>>>>>> Stashed changes
                     </div>
+                    <!------task item------>
+
+
+                    <c:forEach items="${task.listSubTask}" var="subTask">
+                    <!--------list sub task------------>
                     <div id="" class="row sub-task-detail">
+<<<<<<< Updated upstream
                         <div class="col-4 link-chi-tiet-cong-viec"
                              style="border: 1px solid gray; display: flex; justify-content: space-between; ">
                             <div class="">
@@ -324,8 +351,34 @@
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
+=======
+                        <div class="col-4" style="border: 1px solid gray;">
+                            <form class="" style="display: flex; justify-content: space-between;"
+                                  action="${pageContext.request.contextPath}/task_detail">
+                                <div class="">
+                                        ${subTask.taskName}
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary">Chi tiết</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-2" style="border: 1px solid gray;">${subTask.assignToName}</div>
+                        <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>
+                        <div class="col-3" style="border: 1px solid gray;">${subTask.deadline}</div>
+>>>>>>> Stashed changes
                     </div>
+                    <!--------list sub task------------>
+                    </c:forEach>
+
+
+                    </c:forEach>
+
                 </details>
+                <!------big task item------>
+                </c:forEach>
+
+
             </div>
             <div class="bot">
                 <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')" id="myBtn-project"
