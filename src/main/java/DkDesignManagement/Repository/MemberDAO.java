@@ -22,19 +22,13 @@ public class MemberDAO {
         return memberList;
     }
 
-    public void blockMemberInProject(int projectID, int memberID) {
+    public void updateStatusMemberInProject(int projectID, int memberID, int status) {
         String sql = "UPDATE `dkmanagement`.`project_participation` " +
-                "SET `status` = 0 " +
+                "SET `status` = ? " +
                 "WHERE (`project_id` = ?) and (`account_id` = ?)";
-        jdbcTemplate.update(sql, projectID, memberID);
+        jdbcTemplate.update(sql,status, projectID, memberID);
 
     }
 
-    public void unblockMemberInProject(int projectID, int memberID) {
-        String sql = "UPDATE `dkmanagement`.`project_participation` " +
-                "SET `status` = 1 " +
-                "WHERE (`project_id` = ?) and (`account_id` = ?)";
-        jdbcTemplate.update(sql, projectID, memberID);
 
-    }
 }

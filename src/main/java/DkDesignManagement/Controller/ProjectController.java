@@ -22,6 +22,7 @@ import java.net.http.HttpRequest;
 import java.util.Date;
 
 @Controller
+@RequestMapping(value = "/allProject")
 public class ProjectController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class ProjectController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = "/allProject", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("allProject");
         HttpSession session = request.getSession();
@@ -46,7 +47,7 @@ public class ProjectController {
         return view;
     }
 
-    @RequestMapping(value = "/allProject/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView loadAllProject(HttpServletRequest request, RedirectAttributes redirect) {
         ModelAndView view = new ModelAndView("redirect:/allProject");
         //check login
@@ -83,4 +84,6 @@ public class ProjectController {
 
         return view;
     }
+
+
 }
