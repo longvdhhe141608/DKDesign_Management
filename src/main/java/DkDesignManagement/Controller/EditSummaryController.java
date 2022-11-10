@@ -77,7 +77,6 @@ public class EditSummaryController {
             return view;
         }
 
-
         redirect.addAttribute("mess", "edit successfully ");
 
         return view;

@@ -32,9 +32,9 @@
                 </select></a>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${task.projectId}"><input class="btn btn-secondary" type="button"
                                                            value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/task/list_task"><input class="btn btn-secondary" type="button"
                                                              style="background: blue;" value="Công việc"></a>
                 <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary" type="button"
                                                                  value="Duyệt công việc"></a>

@@ -72,8 +72,9 @@
                                     <div class="name-project">
                                             ${i.project_name}
                                     </div>
+                                    <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
                                     <div class="links">
-                                        <a class="link-detail" href="edit_summary?id=${i.id}">
+                                        <a class="link-detail" href="${pageContext.request.contextPath}/project/summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>

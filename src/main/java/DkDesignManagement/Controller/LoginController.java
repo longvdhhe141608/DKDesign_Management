@@ -12,12 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Objects;
 
 @Controller
 @RequestMapping(value = "/")
@@ -43,22 +41,19 @@ public class LoginController {
         HttpSession session = request.getSession();
 
         ModelAndView view;
-            try {
-           String username = request.getParameter("username");
-           String password = request.getParameter("password");
 
-           account = accountDao.getAccount(username);
-           if (account != null && account.getPassword().equals(password)) {
-               session.setAttribute("loginUser", account);
-               view = new ModelAndView("redirect:headerHome");
-           } else {
-               request.setAttribute("message", "Invalid username or password!");
-               view = new ModelAndView("login");
-           }
-       } catch (Exception ex){
-                request.setAttribute("message", "Invalid username or password!");
-                view = new ModelAndView("login");
-       }
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+
+        account = accountDao.getAccount(username);
+        if (account != null && account.getPassword().equals(password)) {
+            session.setAttribute("loginUser", account);
+            view = new ModelAndView("redirect:headerHome");
+        } else {
+            request.setAttribute("message", "Invalid username or password!");
+            view = new ModelAndView("login");
+        }
+
         return view;
     }
 
