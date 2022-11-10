@@ -50,6 +50,7 @@ public class EditSummaryController {
             redirect.addAttribute("mess", "Please login");
             return view;
         }
+
         Account account = (Account) session.getAttribute("loginUser");
         //get value
         int id = Integer.parseInt(request.getParameter("idProject"));
@@ -63,19 +64,21 @@ public class EditSummaryController {
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
-//        int status = Integer.parseInt(request.getParameter("status"));
+        int status = Integer.parseInt(request.getParameter("status"));
+
         //create model
         Project project = new Project(id, name, startDate, closureDate, endDate
-                , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
+                , account.getId(), categoryId, customerName, address, phone, detail, status, constructionArea);
+
         //add
         int statusEdit = projectService.editProject(project);
         if (statusEdit != 1) {
-            redirect.addAttribute("id", id);
             redirect.addAttribute("mess", "edit fail");
             return view;
         }
-        redirect.addAttribute("id", id);
+        redirect.addAttribute("id",id);
         redirect.addAttribute("mess", "edit successfully ");
+
         return view;
     }
 }

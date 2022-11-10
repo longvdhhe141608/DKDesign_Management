@@ -26,13 +26,11 @@
         <form action="edit_summary/edit_project" method="post">
             <div class="top-details">
                 <div class="list-top">
-                    <h3>${project.project_name}</h3>
-                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                        <select style="border: none; padding: 6px;">
-                            <option class="btn btn-secondary">Đang thực hiện</option>
-                            <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                        </select>
-                    </div>
+                    <h3>Biệt thự nhà dân</h3>
+                    <select class="btn project-detail" name="status">
+                        <option value="1" class="btn btn-secondary">Đang thực hiện</option>
+                        <option value="2" class="btn btn-secondary">Đã hoàn thành</option>
+                    </select>
                 </div>
 
 
@@ -40,11 +38,10 @@
                     <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
-                            value="Sơ lược" style="background: blue;"></a>
+                            value="Sơ lược"></a>
                     <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
                                                                                                type="button"
-                                                                                               value="Công việc"
-                    ></a>
+                                                                                               value="Công việc"></a>
                     <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input
                             class="btn btn-secondary"
                             type="button"
@@ -62,6 +59,7 @@
                     <a class="test" href="${pageContext.request.contextPath}/project/member"><input
                             class="btn btn-secondary"
                             type="button"
+                            style="background: blue;"
                             value="Thành viên"></a>
                     <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
                                                                                                type="button"
@@ -107,7 +105,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Diện tích xây dựng (m<sup>2</sup>):</td>
+                            <td>Diện tích xây dựng (m2):</td>
                             <td><input type="text" name="constructionArea" value="${project.construction_area}"></td>
                         </tr>
                         <tr>
@@ -127,20 +125,17 @@
                         <tr>
                             <td>Mô tả:</td>
                             <td>
-                                <%--                            <input required="" class="info-text" name="detail" type="text">--%>
-                                <textarea name="detail"  style="height: 32px" cols="35" wrap="soft">${project.detail}</textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Upload thị file:</td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="file" class="form-control" id="fileInput" multiple>
-                                </div>
+                                <input type="text" name="detail" value="${project.detail}">
                             </td>
                         </tr>
                     </table>
                 </div>
+                <div class="main-file">
+                    <a>Hình vẽ 3D </a>
+                    <a><i class="fa-solid fa-paperclip"></i></a>
+                </div>
+                Hồ sơ thi công <input type="file" id="user_picture" onchange="update_image()">
+                <div id="meme_picture"><img src="" height="200" width="300"></div>
                 <div class="btn-update-summary">
                     <a href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
                         <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
