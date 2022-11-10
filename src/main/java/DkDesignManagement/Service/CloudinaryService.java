@@ -21,7 +21,6 @@ public class CloudinaryService {
         Map uploadMap = cloudinary.uploader().upload(FileUtils.convertMultiPartToFile(file), com.cloudinary.utils.ObjectUtils.asMap("resource_type", "auto"
                 , "public_id", "" + catalog + "/" + folder + "/" + name + ""));
         return uploadMap.get("url").toString();
-
     }
 
     private String generateFileName(MultipartFile multiPart) {
