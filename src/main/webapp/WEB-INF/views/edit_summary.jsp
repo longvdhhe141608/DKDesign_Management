@@ -32,8 +32,6 @@
                         <option value="2" class="btn btn-secondary">Đã hoàn thành</option>
                     </select>
                 </div>
-
-
                 <div class="list-task-head">
                     <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                             class="btn btn-secondary"
@@ -65,10 +63,7 @@
                                                                                                type="button"
                                                                                                value="Thống kê"></a>
                 </div>
-
-
             </div>
-
             <div class="summary-main">
                 <div class="main-Quickview">
                     <div class="summary-main-header">
@@ -128,14 +123,17 @@
                                 <input type="text" name="detail" value="${project.detail}">
                             </td>
                         </tr>
+                        <tr>
+                            <td>Upload thị file:</td>
+                            <td>
+                                <div class="form-group">
+
+                                    <input type="file" class="form-control" id="fileInput" multiple>
+                                </div>
+                            </td>
+                        </tr>
                     </table>
                 </div>
-                <div class="main-file">
-                    <a>Hình vẽ 3D </a>
-                    <a><i class="fa-solid fa-paperclip"></i></a>
-                </div>
-                Hồ sơ thi công <input type="file" id="user_picture" onchange="update_image()">
-                <div id="meme_picture"><img src="" height="200" width="300"></div>
                 <div class="btn-update-summary">
                     <a href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
                         <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
