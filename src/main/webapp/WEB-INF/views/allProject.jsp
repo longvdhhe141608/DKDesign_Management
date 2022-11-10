@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,18 +24,19 @@
                 <h4>Tất cả công trình</h4>
             </div>
             <div class="content-function">
-                <div class="function-one">
-                    <div class="add" id="show">
-                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
+                <div style="display: flex">
+                    <div class="function-one">
+                        <div class="add" id="show">
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
+                        </div>
                     </div>
+                    <div></div>
                 </div>
-                <div></div>
-                <form action="allProject" method="get" >
+                <form action="allProject" method="get" class="block-search">
                     <div class="function-two">
                         <div class="dropdown">
-
-                            <select name="date" class="btn btn-secondary dropdown-toggle" >
-                                <option value="default">default</option>
+                            <select name="date" class="btn btn-secondary dropdown-toggle" style="height: 38px">
+                                <option value="default">Default</option>
                                 <option value="2022">2022</option>
                                 <option value="2021">2021</option>
                                 <option value="2020">2020</option>
@@ -45,7 +47,7 @@
                     <div class="function-thir">
                         <div class="function_search">
                             <div class="wap_search">
-                                <input style="margin-right: 10px;" type="text" class="search_term"
+                                <input style="margin-right: 2px;" type="text" class="search_term"
                                        name="textSearch" placeholder="Tên công trình">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
@@ -72,10 +74,14 @@
                                     <div class="name-project">
                                             ${i.project_name}
                                     </div>
-                                    <div class="links">
-                                        <a class="link-detail" href="edit_summary?id=${i.id}">
-                                            <button class="btn-chi-tiet">Chi tiết</button>
-                                        </a>
+                                    <div class="block-link">
+                                        <div></div>
+                                        <div class="links">
+                                            <a class="link-detail"
+                                               href="${pageContext.request.contextPath}/edit_summary?id=${i.id}">
+                                                <button class="btn-chi-tiet">Chi tiết</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </td>
                                 <c:if test="${i.type == 1}">
@@ -181,12 +187,18 @@
                         <td><input required="" class="info-text" name="phone" type="text"></td>
                     </tr>
                     <tr>
-                        <td>detail</td>
-                        <td><input required="" class="info-text" name="detail" type="text"></td>
+                        <td>Diện tích</td>
+                        <td><input required="" class="info-text" name="constructionArea" type="number"></td>
                     </tr>
                     <tr>
-                        <td>diện tích</td>
-                        <td><input required="" class="info-text" name="constructionArea" type="number"></td>
+                        <td>Mô tả</td>
+                        <td>
+                            <form method="get" id="text-input">
+<%--                                <input type="submit"/>--%>
+                            </form>
+                            <textarea form="text-input" name="detail" cols="35" wrap="soft" style="height: 32px"></textarea>
+<%--                            <textarea required="" class="info-text" name="detail" type=""/>--%>
+                        </td>
                     </tr>
                 </table>
                 <div class="button_click">

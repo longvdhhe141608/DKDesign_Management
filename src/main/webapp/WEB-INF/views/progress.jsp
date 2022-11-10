@@ -1,4 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,9 +19,9 @@
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 <body>
-<div id="header-include"></div>
+<jsp:include page="header.jsp"/>
 <div class="body_page">
-    <div id="narbar_menu"></div>
+    <jsp:include page="nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
