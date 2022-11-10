@@ -3,6 +3,7 @@ package DkDesignManagement.Entity;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,7 +21,11 @@ public class Task {
     private Date endDate;
     private String gallery;
     private String description;
-    private  String creator;
-    private String assignTo;
-    private String projectName;
+    private int creator;
+    private int assignTo;
+
+    //model
+    //sub task
+    private List<Task> ListSubTask;
+    private String assignToName;
 }

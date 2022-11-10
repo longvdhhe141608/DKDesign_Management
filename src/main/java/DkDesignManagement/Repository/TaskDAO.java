@@ -32,6 +32,22 @@ public class TaskDAO {
         return taskList;
     }
 
+    public List<Task> getTaskByBigTaskId(int bigTaskId) {
+
+        String sql = "select t.* from big_task bt ,task t where bt.id =t.big_task_id and bt.id  = ? ";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), bigTaskId);
+        return taskList;
+    }
+
+    public List<Task> getListSubTask(int taskId) {
+
+        String sql = "select * from task t where t.task_id = ?";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), taskId);
+        return taskList;
+    }
+
     //Lay ra toan bo task cua mot account
     public List<Task> getAllTaskInPhaseByAssignedUser(int acc_id) {
 
