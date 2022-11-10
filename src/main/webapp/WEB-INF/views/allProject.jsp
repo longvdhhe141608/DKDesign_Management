@@ -23,18 +23,20 @@
                 <h4>Tất cả công trình</h4>
             </div>
             <div class="content-function">
-                <div class="function-one">
-                    <div class="add" id="show">
-                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
+                <div>
+                    <div class="function-one">
+                        <div class="add" id="show" style="display: flex">
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
+                        </div>
                     </div>
+                    <div></div>
                 </div>
-                <div></div>
-                <form action="allProject" method="get" >
+                <form action="allProject" method="get"
+                      style="display: flex; justify-content: space-evenly; margin-left: 28%">
                     <div class="function-two">
                         <div class="dropdown">
-
-                            <select name="date" class="btn btn-secondary dropdown-toggle" >
-                                <option value="default">default</option>
+                            <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle">
+                                <option value="default">Default</option>
                                 <option value="2022">2022</option>
                                 <option value="2021">2021</option>
                                 <option value="2020">2020</option>
@@ -45,7 +47,7 @@
                     <div class="function-thir">
                         <div class="function_search">
                             <div class="wap_search">
-                                <input style="margin-right: 10px;" type="text" class="search_term"
+                                <input style="margin-right: 2px;" type="text" class="search_term"
                                        name="textSearch" placeholder="Tên công trình">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
@@ -74,7 +76,8 @@
                                     </div>
                                     <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
                                     <div class="links">
-                                        <a class="link-detail" href="${pageContext.request.contextPath}/project/summary?id=${i.id}">
+                                        <a class="link-detail"
+                                           href="${pageContext.request.contextPath}/project/summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>
                                         </a>
                                     </div>
@@ -146,7 +149,7 @@
             <form method="post" action="allProject/add">
                 <table class="table table-borderless">
                     <tr>
-                        <td>Tên Công trình:</td>
+                        <td>Tên công trình:</td>
                         <td><input required="" class="info-text" name="name" type="text"></td>
                     </tr>
                     <tr>
@@ -182,13 +185,21 @@
                         <td><input required="" class="info-text" name="phone" type="text"></td>
                     </tr>
                     <tr>
-                        <td>detail</td>
-                        <td><input required="" class="info-text" name="detail" type="text"></td>
+                        <td>Diện tích</td>
+                        <td><input required="" class="info-text" name="constructionArea" type="number"> m<sup>2</sup>
+                        </td>
                     </tr>
                     <tr>
-                        <td>diện tích</td>
-                        <td><input required="" class="info-text" name="constructionArea" type="number"></td>
+                        <td>Detail</td>
+                        <td>
+                            <%--                            <input required="" class="info-text" name="detail" type="text">--%>
+                            <form method="get" id="input-detail">
+<%--                                <input type="submit"/>--%>
+                            </form>
+                            <textarea form="input-detail" name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>
+                        </td>
                     </tr>
+
                 </table>
                 <div class="button_click">
                     <div></div>

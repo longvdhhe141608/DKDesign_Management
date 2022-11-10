@@ -130,8 +130,8 @@
                     <div class="row " style="background: rgba(0, 0, 0, 0.2);">
                         <div class="col-4" style="border: 1px solid gray;">
                             <div class="">
-                                <button onclick="myFunction('.sub-task-detail')"><i
-                                        class="fa-solid fa-caret-down"></i></i></button>
+                                <button onclick="myFunction('.sub-task-detail')">
+                                    <i class="fa-solid fa-caret-down"></i></button>
                                 Thiết kế mặt sàn
                             </div>
                         </div>
@@ -368,7 +368,6 @@
         // When the user clicks on <span> (x), close the modal
         // When the user clicks anywhere outside of the modal, close it
     }
-
     function myFunction(task) {
         var x = document.querySelectorAll(task);
         for (let index = 0; index < x.length; index++) {
