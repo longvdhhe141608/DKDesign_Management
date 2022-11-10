@@ -35,7 +35,7 @@ public class EditSummaryController {
         ModelAndView view = new ModelAndView("edit_summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectDao.getProject(id);
-        request.setAttribute("profile", project);
+        request.setAttribute("project", project);
         view.addObject("listCategory", categoryService.getAllCategory());
 
         return view;
@@ -43,7 +43,7 @@ public class EditSummaryController {
 
     @RequestMapping(value = "/edit_summary/edit_project", method = RequestMethod.POST)
     public ModelAndView editSummary(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("redirect:/allProject");
+        ModelAndView view = new ModelAndView("redirect:/project/summary");
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
@@ -76,7 +76,7 @@ public class EditSummaryController {
             redirect.addAttribute("mess", "edit fail");
             return view;
         }
-
+        redirect.addAttribute("id",id);
         redirect.addAttribute("mess", "edit successfully ");
 
         return view;
