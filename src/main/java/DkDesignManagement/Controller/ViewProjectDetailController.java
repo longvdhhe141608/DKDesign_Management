@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/project")
@@ -29,6 +30,8 @@ public class ViewProjectDetailController {
         ModelAndView view = new ModelAndView("summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectDao.getProject(id);
+        HttpSession session = request.getSession();
+        session.setAttribute("project", project);
         view.addObject("project",project);
         return view;
     }

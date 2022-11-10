@@ -22,53 +22,84 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="body_page">
-    <jsp:include page="nav_left.jsp"/>
+
     <div class="top-details">
         <div class="list-top">
-            <h3>Biệt thự nhà dân</h3>
+            <h3>${project.project_name}</h3>
             <button class="btn project-detail"><select>
-                <option class=" ">Đang thực hiện</option>
+                <option class="">Đang thực hiện</option>
                 <option class="">Đã hoàn thành</option>
 
             </select></button>
         </div>
+
+
         <div class="list-task-head">
-            <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
-                    class="btn btn-secondary"
-                    type="button"
-                    value="Sơ lược"></a>
-            <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
-                                                                                       type="button"
-                                                                                       value="Công việc"></a>
-            <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           value="Duyệt công việc"></a>
-            <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
-                                                                                      type="button"
-                                                                                      value="Lịch"></a>
-            <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
-                                                                                         type="button"
-                                                                                         value="Yêu cầu của khách hàng"></a>
-            <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
-                                                                                      type="button"
-                                                                                      value="Tiến độ"></a>
-            <a class="test" href="${pageContext.request.contextPath}/project/member"><input class="btn btn-secondary"
-                                                                                            type="button"
-                                                                                            style="background: blue;"
-                                                                                            value="Thành viên"></a>
-            <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
-                                                                                       type="button"
-                                                                                       value="Thống kê"></a>
+            <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
+                <input class="btn btn-secondary" type="button" value="Sơ lược">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/list_task">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Công việc">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/plan_approval">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Duyệt công việc">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/plan_approval">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Duyệt công việc">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/plan_approval">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Duyệt công việc">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/calendar">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Lịch">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/requirement">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Yêu cầu của khách hàng">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/progress">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Tiến độ">
+            </a>
+            <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}">
+                <input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
+            <a class="test" href="${pageContext.request.contextPath}/dashboard">
+                <input class="btn btn-secondary"
+                       type="button"
+                       value="Thống kê">
+            </a>
         </div>
+
+
     </div>
+
     <h4>Thành viên dự án</h4>
     <div class="all-member">
         <div class="content-function-member">
+
+            <%-- them thanh vien --%>
             <div class="function-one">
                 <div class="add" id="show-member">
                     <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
                 </div>
             </div>
+
+            <%-- tim kiem thanh vien --%>
             <div style="display: flex;">
                 <div class="function-two" style="margin-right:20px ;">
                     <div class="dropdown">
@@ -96,6 +127,8 @@
             </div>
         </div>
     </div>
+
+    <%-- bang thanh vien --%>
     <div>
         <table class="table table-bordered">
             <tr>
@@ -124,23 +157,20 @@
                     </select>
                 </td>
             </tr>
+
             <c:forEach items="${memberList}" var="member">
                 <tr>
                     <td>${member.memberName}</td>
-
-                    <c:if test="${member.memberRole==2}">
-                        <td>Leader</td>
-                    </c:if>
-                    <c:if test="${member.memberRole==3}">
-                        <td>thiết kế</td>
-                    </c:if>
+                    <td>${member.memberRole}</td>
                     <td>${member.memberPhone}</td>
                     <td>${member.memberMail}</td>
                     <td>${member.memberAddress}</td>
                     <td>
                         <select class="btn btn-success" name="status" id="status">
-                            <option class="btn"  value="1">Mở</option>
-                            <option class="btn" style="background-color: red;" value="0" ${member.memberStatus==0?"Selected":""} >Chặn</option>
+                            <option class="btn" value="1">Mở</option>
+                            <option class="btn" value="0" ${member.memberStatus==true?"selected":""}
+                                    style="background-color: red;">Chặn
+                            </option>
                         </select>
                     </td>
                 </tr>
