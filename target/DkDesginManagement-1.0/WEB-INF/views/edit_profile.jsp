@@ -45,7 +45,7 @@
                         <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
                         <tr>
                             <td>Họ và tên:</td>
-                            <td><input type="text" id="name" name="name" value="${profile.name}"></td>
+                            <td><input type="text" id="name" name="name" value="${profile.name}" readonly=""></td>
                         </tr>
 <%--                        <tr>--%>
 <%--                            <td>Mã nhân viên:</td>--%>
@@ -53,7 +53,7 @@
 <%--                        </tr>--%>
                         <tr>
                             <td>Số CCCD/CMND:</td>
-                            <td><input type="text" id="cccd" name="cccd" value="${profile.cccd}"></td>
+                            <td><input pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd" value="${profile.cccd}"></td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>

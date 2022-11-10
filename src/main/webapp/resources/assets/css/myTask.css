@@ -4,7 +4,6 @@ body {
 }
 
 
-
 .container_content .content_first {
     max-width: 1100px;
     margin: auto;
@@ -13,9 +12,35 @@ body {
 
 .container_content .content_first .content-function {
     display: grid;
-    grid-template-columns: 1fr 170px 170px 170px;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
     text-align: center;
+}
+
+.tung-hang .tung-o {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tung-hang .tung-o .block-link {
+    display: flex;
+    justify-content: end;
+}
+
+.tung-hang .tung-o .block-link .links .link-cong-viec .btn-chi-tiet {
+    border: none;
+    border-radius: 50px;
+    font-size: 80%;
+}
+
+.tung-hang .tung-o .block-link .links a .btn-chi-tiet {
+    color: white;
+    background-color: #b7bacb;
+}
+
+.tung-hang .tung-o .block-link .links a:hover .btn-chi-tiet {
+    color: black;
+    background-color: #b7bacb;
 }
 
 .container_content .content_first .content-function .dropdown .btn-secondary {
@@ -43,9 +68,6 @@ body {
     margin-top: 20px;
     margin-bottom: 30px;
 }
-
-
-
 
 
 .container_content .content_first .table_content .pagination {
@@ -76,7 +98,6 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
 
 .name-project:hover {
@@ -86,4 +107,8 @@ body {
 .form-name-project {
     display: flex;
     justify-content: space-between;
+}
+
+.tung-hang .tung-o {
+
 }
