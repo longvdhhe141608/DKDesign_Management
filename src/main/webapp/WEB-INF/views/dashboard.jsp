@@ -32,62 +32,62 @@
                     <option class="btn btn-secondary">Đã hoàn thành</option>
                 </select></a>
             </div>
-            <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary"
+            <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
+                    class="btn btn-secondary"
+                    type="button"
+                    value="Sơ lược"></a>
+            <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
+                                                                                       type="button"
+                                                                                       value="Công việc"></a>
+            <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           value="Duyệt công việc"></a>
+            <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
+                                                                                      type="button"
+                                                                                      value="Lịch"></a>
+            <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
                                                                                          type="button"
-                                                                                         value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
-                                                                                               type="button"
-                                                                                               value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
-                                                                                             type="button"
-                                                                                             value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary"
-                                                                                        type="button"
-                                                                                        value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           style="background: blue;"
-                                                                                           value="Thống kê"></a>
-            </div>
+                                                                                         value="Yêu cầu của khách hàng"></a>
+            <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
+                                                                                      type="button"
+                                                                                      value="Tiến độ"></a>
+            <a class="test" href="${pageContext.request.contextPath}/project/member"><input class="btn btn-secondary"
+                                                                                            type="button"
+                                                                                            style="background: blue;"
+                                                                                            value="Thành viên"></a>
+            <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
+                                                                                       type="button"
+                                                                                       value="Thống kê"></a>
         </div>
-        <div>
-            <h1>Thống kê công trình</h1>
-            <div class="row">
-                <div class="col-2 row-dashboard">
-                    <p>Tổng số công việc</p>
-                    <h4>5</h4>
-                </div>
-                <div class="col-2 row-dashboard">
-                    <p>Công việc đang làm
-                    </p>
-                    <h4>5</h4>
-                </div>
-                <div class="col-2 row-dashboard">
-                    <p>Công việc hoàn thành đúng hạn</p>
-                    <h4>5</h4>
-                </div>
-                <div class="col-2 row-dashboard">
-                    <p>Công việc trễ hạn</p>
-                    <h4>5</h4>
-                </div>
-                <div class="col-2 row-dashboard">
-                    <p>Công việc hoàn thành chậm tiến độ</p>
-                    <h4>5</h4>
-                </div>
-            </div>
-        </div>
-        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
     </div>
+    <div>
+        <h1>Thống kê công trình</h1>
+        <div class="row">
+            <div class="col-2 row-dashboard">
+                <p>Tổng số công việc</p>
+                <h4>5</h4>
+            </div>
+            <div class="col-2 row-dashboard">
+                <p>Công việc đang làm
+                </p>
+                <h4>5</h4>
+            </div>
+            <div class="col-2 row-dashboard">
+                <p>Công việc hoàn thành đúng hạn</p>
+                <h4>5</h4>
+            </div>
+            <div class="col-2 row-dashboard">
+                <p>Công việc trễ hạn</p>
+                <h4>5</h4>
+            </div>
+            <div class="col-2 row-dashboard">
+                <p>Công việc hoàn thành chậm tiến độ</p>
+                <h4>5</h4>
+            </div>
+        </div>
+    </div>
+    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+</div>
 </div>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
 </script>
