@@ -15,7 +15,12 @@ import java.util.List;
  * TaskDAO xu ly 2 bang big_task va task
  * TaskDAO co the xem toan bo task va big_task theo project_id, xem detail task theo task_id
  * TaskDAO co them moi big_task, task, sub-task(task co khoa ngoai la 1 task cu)
- *
+ * task_status :
+ * 1 - pending
+ * 2 - doing
+ * 3 - done
+ * 4 - approved
+ * 5 - rejected
  */
 
 @Repository
@@ -26,7 +31,10 @@ public class TaskDAO {
     // Lay ra toan bo big_task trong project
     public List<Task> getAllBigTaskInProject(int project_id) {
 
-        String sql = "SELECT *,(SELECT project_name FROM project WHERE id = ?) as projectname FROM big_task where big_task.project_id = ?";
+        String sql = "SELECT *,(SELECT project_name FROM project WHERE id = ?) as projectName, " +
+                "null as big_task_id, " +
+                "null as task_id " +
+                "FROM big_task where big_task.project_id = ?";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), project_id, project_id);
         return taskList;

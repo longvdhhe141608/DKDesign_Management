@@ -30,8 +30,8 @@ public class MapperTask implements RowMapper<Task> {
         task.setGallery(rs.getString("gallery"));
         task.setDescription(rs.getString("description"));
         task.setCreator(rs.getString("creator"));
-        task.setAssignTo(rs.getString("assignedto"));
-        task.setProjectName(rs.getString("projectname"));
+        task.setAssignTo(rs.getString("assigned_to"));
+        task.setProjectName(rs.getString("projectName"));
         return task;
     }
 }
