@@ -39,29 +39,29 @@
                             class="btn btn-secondary"
                             type="button"
                             value="Sơ lược"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input class="btn btn-secondary"
                                                                                                type="button"
                                                                                                value="Công việc"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input
+                    <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
                             value="Duyệt công việc"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary"
                                                                                               type="button"
                                                                                               value="Lịch"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/requirement"><input
+                    <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
                             value="Yêu cầu của khách hàng"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary"
                                                                                               type="button"
                                                                                               value="Tiến độ"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/project/member"><input
+                    <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
                             style="background: blue;"
                             value="Thành viên"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary"
                                                                                                type="button"
                                                                                                value="Thống kê"></a>
                 </div>
