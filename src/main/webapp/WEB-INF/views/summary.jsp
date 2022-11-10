@@ -19,20 +19,25 @@
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 <body>
+
 <jsp:include page="header.jsp"/>
+
 <div class="body_page">
+
     <jsp:include page="nav_left.jsp"/>
+
     <div class="summary">
         <div class="top-details">
             <div class="list-top">
-                <h3>Biệt thự nhà dân</h3>
-                <a class="btn project-detail">
-                    <select style="border: none; background-color: #b7bacb; border-radius: 25px; height: 24px">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary">Đã hoàn thành</option>
-                    </select>
-                </a>
+
+                <h3>${project.project_name}</h3>
+                <a class="btn project-detail"><select>
+                    <option class="btn btn-secondary">Đang thực hiện</option>
+                    <option class="btn btn-secondary"  ${project.status==1?"selected":""}}>Đã hoàn thành</option>
+                </select></a>
             </div>
+
+
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                         class="btn btn-secondary"
@@ -54,7 +59,7 @@
                 <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
                                                                                           type="button"
                                                                                           value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/project/member"><input
+                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -62,6 +67,7 @@
                                                                                            type="button"
                                                                                            value="Thống kê"></a>
             </div>
+
         </div>
         <div class="summary-main">
             <div class="main-Quickview">
@@ -122,14 +128,9 @@
                     </tr>
                 </table>
             </div>
-            <div style="display: flex">
-                <div></div>
-                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">
-                    <button class="btn" style="border: none; color: white; background-color: royalblue">
-                        Chỉnh sửa
-                    </button>
-                </a>
-            </div>
+            <button class="btn-update btn btn-primary" style="margin-top: 10px; text-align: end; margin-right: 5%;">
+                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">Chỉnh sửa</a>
+            </button>
         </div>
     </div>
 </div>

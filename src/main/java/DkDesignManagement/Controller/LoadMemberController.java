@@ -28,14 +28,14 @@ public class LoadMemberController {
     public ModelAndView LoadMember(HttpServletRequest request, HttpServletResponse response) {
 
         ModelAndView view = new ModelAndView("member");
-
         int id = Integer.parseInt(request.getParameter("id"));
+
         Project project = projectDao.getProject(id);
-
-        List<Member> memberList = new ArrayList<>();
-
+        List<Member> memberList = new ArrayList<Member>();
         memberList = memberDAO.getMemberInProject(id);
+
         view.addObject("project", project);
+
         view.addObject("memberList", memberList);
 
         return view;
