@@ -56,7 +56,6 @@ public class ProjectController {
             redirect.addAttribute("mess", "Please login");
             return view;
         }
-
         Account account = (Account) session.getAttribute("loginUser");
         //get value
         String name = request.getParameter("name");
@@ -68,20 +67,16 @@ public class ProjectController {
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
-
         //create model
         Project project = new Project(-1, name, startDate, closureDate, null
                 , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
-
         //add
         int id = projectService.addProject(project, account);
         if (id != 1) {
             redirect.addAttribute("mess", "add fail");
             return view;
         }
-
         redirect.addAttribute("mess", "add successfully ");
-
         return view;
     }
 
