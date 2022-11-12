@@ -29,11 +29,11 @@ public class ViewListTaskController {
         int id = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("account");
-        Project project = projectDao.getProject(id);
-        List<Task> taskList = taskDAO.getAllBigTaskInProject(id);
-
-        view.addObject("project", project);
-        view.addObject("taskList", taskList);
+//        Project project = projectDao.getProject(id);
+//        List<Task> taskList = taskDAO.getAllBigTaskInProject(id);
+//
+//        view.addObject("project", project);
+//        view.addObject("taskList", taskList);
         return view;
     }
 }
