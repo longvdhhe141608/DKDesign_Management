@@ -27,56 +27,50 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.project_name}</h3>
-                <a class="btn project-detail"><select>
-                    <option class="btn btn-secondary">Đang thực hiện</option>
-                    <option class="btn btn-secondary" ${project.status==2?"selected":""}>Đã hoàn thành</option>
-                </select></a>
+                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                    <select style="border: none; border-radius: 15px; height: 23px; background-color: #b7bacb">
+                        <option class="btn btn-secondary">Đang thực hiện</option>
+                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
+                    </select>
+                </div>
             </div>
-            <%-- list link in project           --%>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        style="background: blue;" value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           style="background: blue;"
+                                                                                           value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
+                                                                                               type="button"
+                                                                                               value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
+                                                                                             type="button"
+                                                                                             value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary"
+                                                                                        type="button"
+                                                                                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           value="Thống kê"></a>
             </div>
-            <%--end of link in project--%>
         </div>
-        <%--end of task head--%>
-
-        <%--        start of task main--%>
         <div class="list-task-main">
-
-            <%--button add big task--%>
-            <button onclick="modallistproject('#myBtn','#myModal','#close1')"
-                    id="myBtn"
-                    class="btn btn-primary add-work">+Thêm công việc
+            <button onclick="modallistproject('#myBtn','#myModal','#close1')" id="myBtn"
+                    class="btn btn-primary add-work">
+                +Thêm công việc
             </button>
-            <%--end of button add--%>
-
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div class="modal-content" style="width: 60%">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
                         <form class="form-inline my-2 my-lg-0">
@@ -84,8 +78,15 @@
                                    placeholder="Tên công việc" aria-label="Text"/>
                             <table class="table table-borderless">
                                 <tr>
-                                    <td>Nhiệm vụ:</td>
-                                    <td>Chưa phân công</td>
+                                    <td>Người nhận nhiệm vụ</td>
+                                    <td>
+                                        <select>
+                                            <option>Chưa được giao</option>
+                                            <option>Nam</option>
+                                            <option>Huấn</option>
+                                            <option>Hương</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Công trình:</td>
@@ -93,13 +94,19 @@
                                 </tr>
                                 <tr>
                                     <td>Đầu mục công việc:</td>
-                                    <td>Chọn đầu mục công việc</td>
+                                    <td>
+                                        <select>
+                                            <option>List đầu mục công việc</option>
+                                            <option>Công việc 1</option>
+                                            <option>Công việc 2</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Thời gian bắt đầu:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input class="form-control" formControlName="dob" type="datetime"
+                                            <input class="form-control" formControlName="dob" type="date"
                                                    value="20/10/2022">
                                         </div>
                                     </td>
@@ -108,21 +115,15 @@
                                     <td>Thời gian dự kiến kết thúc:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input class="form-control" formControlName="dob" type="datetime"
+                                            <input class="form-control" formControlName="dob" type="date"
                                                    value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Ghi chú:</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>Kế hoạch công việc:</td>
-                                    <td>
-                                        <button class="btn btn-primary">+Thêm công việc phụ</button>
-                                    </td>
-                                </tr>
+                                <%--                                <tr>--%>
+                                <%--                                    <td>Ghi chú:</td>--%>
+                                <%--                                    <td></td>--%>
+                                <%--                                </tr>--%>
                             </table>
                             <div class="add-btn-work">
                                 <button class="btn btn-secondary btn-canel">Hủy bỏ</button>
@@ -132,32 +133,22 @@
                     </div>
                 </div>
             </div>
-            <%--end of modal--%>
-
-            <%--Table Task--%>
             <div class="">
-
-                <%--table header--%>
                 <div class="row list-task-detail">
                     <div class="col-4 list-task-header">Công việc</div>
                     <div class="col-2 list-task-header">Phân công</div>
                     <div class="col-3 list-task-header">Thời gian bắt đầu</div>
                     <div class="col-3 list-task-header">Thời gian dự kiến kết thúc</div>
                 </div>
-                <%--end table header--%>
-
-                <%--big task list--%>
                 <details>
                     <summary>
                         <span>Thiết kế bản vẽ</span>
                     </summary>
-
-
                     <div class="row " style="background: rgba(0, 0, 0, 0.2);">
                         <div class="col-4" style="border: 1px solid gray;">
                             <div class="">
-                                <button onclick="myFunction('.sub-task-detail')"><i
-                                        class="fa-solid fa-caret-down"></i></button>
+                                <button onclick="myFunction('.sub-task-detail')">
+                                    <i class="fa-solid fa-caret-down"></i></button>
                                 Thiết kế mặt sàn
                             </div>
                         </div>
@@ -165,43 +156,38 @@
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
-
                     <div id="" class="row sub-task-detail">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <a class="" style="display: flex; justify-content: space-between;"
-                               href="${pageContext.request.contextPath}/task_detail?id=${task.id}">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </a>
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
-
-
                     <div id="" class="row sub-task-detail">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <a class="" style="display: flex; justify-content: space-between;"
-                               href="${pageContext.request.contextPath}/task_detail?id=${task.idPhase}">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </a>
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
-
-                    <c:forEach items="${taskList}" var="task">
                     <div class="row " style="background: rgba(0, 0, 0, 0.2);">
                         <div class="col-4" style="border: 1px solid gray;">
                             <div class="">
@@ -210,48 +196,43 @@
                                 Thiết kế mặt sàn
                             </div>
                         </div>
-                        <div class="col-2" style="border: 1px solid gray;">${task.assignTo}</div>
-                        <div class="col-3" style="border: 1px solid gray;">${task.startDate}</div>
-                        <div class="col-3" style="border: 1px solid gray;">${task.deadline}</div>
+                        <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
+                        <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
+                        <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
-
-                        <%--task list in big task--%>
                     <div id="" class="row sub-task-detail-main">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <form class="" style="display: flex; justify-content: space-between;"
-                                  action="${pageContext.request.contextPath}/task_detail?id=${task.idPhase}">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </form>
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
                     <div id="" class="row sub-task-detail-main">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <form class="" style="display: flex; justify-content: space-between;"
-                                  action="${pageContext.request.contextPath}/task_detail">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </form>
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
                 </details>
-                </c:forEach>
-
-
                 <details>
                     <summary>
                         <span>Lên hình ảnh 3D</span>
@@ -259,8 +240,8 @@
                     <div class="row " style="background: rgba(0, 0, 0, 0.2);">
                         <div class="col-4" style="border: 1px solid gray;">
                             <div class="">
-                                <button onclick="myFunction('.sub-task-detail')"><i
-                                        class="fa-solid fa-caret-down"></i></button>
+                                <button onclick="myFunction('.sub-task-detail')">
+                                    <i class="fa-solid fa-caret-down"></i></button>
                                 Thiết kế mặt sàn
                             </div>
                         </div>
@@ -268,33 +249,33 @@
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
-                    <div id="1" class="row sub-task-detail">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <form class="" style="display: flex; justify-content: space-between;"
-                                  action="${pageContext.request.contextPath}/task_detail">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </form>
+                    <div id="" class="row sub-task-detail">
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
                     <div id="" class="row sub-task-detail">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <form class="" style="display: flex; justify-content: space-between;"
-                                  action="${pageContext.request.contextPath}/task_detail">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </form>
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
@@ -313,32 +294,32 @@
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
                     <div id="" class="row sub-task-detail-main">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <form class="" style="display: flex; justify-content: space-between;"
-                                  action="${pageContext.request.contextPath}/task_detail">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </form>
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
                         <div class="col-3" style="border: 1px solid gray;">25/10/2022</div>
                     </div>
                     <div id="" class="row sub-task-detail-main">
-                        <div class="col-4" style="border: 1px solid gray;">
-                            <form class="" style="display: flex; justify-content: space-between;"
-                                  action="${pageContext.request.contextPath}/task_detail">
-                                <div class="">
-                                    Biệt thự nhà dân
-                                </div>
-                                <div>
-                                    <button class="btn btn-primary">Chi tiết</button>
-                                </div>
-                            </form>
+                        <div class="col-4 link-chi-tiet-cong-viec"
+                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                            <div class="">
+                                Biệt thự nhà dân
+                            </div>
+                            <div>
+                                <a href="${pageContext.request.contextPath}/task_detail" class="chi-tiet-cong-viec">
+                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-2" style="border: 1px solid gray;">huonghoang</div>
                         <div class="col-3" style="border: 1px solid gray;">25/09/2022</div>
@@ -353,7 +334,7 @@
                 <!-- The Modal -->
                 <div id="myModal-footer" class="modal">
                     <!-- Modal content -->
-                    <div class="modal-content">
+                    <div class="modal-content" style="width: 60%;">
                         <span id="close2" class="close">&times;</span>
                         <div class="project-add-task">
                             <form class="form-inline my-2 my-lg-0">
@@ -373,14 +354,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- end of Modal content -->
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

@@ -32,43 +32,38 @@
                         <option value="2" class="btn btn-secondary">Đã hoàn thành</option>
                     </select>
                 </div>
-
-
                 <div class="list-task-head">
                     <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
                             value="Sơ lược"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input class="btn btn-secondary"
                                                                                                type="button"
                                                                                                value="Công việc"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input
+                    <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
                             value="Duyệt công việc"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary"
                                                                                               type="button"
                                                                                               value="Lịch"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/requirement"><input
+                    <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
                             value="Yêu cầu của khách hàng"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary"
                                                                                               type="button"
                                                                                               value="Tiến độ"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/project/member"><input
+                    <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
                             style="background: blue;"
                             value="Thành viên"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
+                    <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary"
                                                                                                type="button"
                                                                                                value="Thống kê"></a>
                 </div>
-
-
             </div>
-
             <div class="summary-main">
                 <div class="main-Quickview">
                     <div class="summary-main-header">
@@ -128,14 +123,17 @@
                                 <input type="text" name="detail" value="${project.detail}">
                             </td>
                         </tr>
+                        <tr>
+                            <td>Upload thị file:</td>
+                            <td>
+                                <div class="form-group">
+
+                                    <input type="file" class="form-control" id="fileInput" multiple>
+                                </div>
+                            </td>
+                        </tr>
                     </table>
                 </div>
-                <div class="main-file">
-                    <a>Hình vẽ 3D </a>
-                    <a><i class="fa-solid fa-paperclip"></i></a>
-                </div>
-                Hồ sơ thi công <input type="file" id="user_picture" onchange="update_image()">
-                <div id="meme_picture"><img src="" height="200" width="300"></div>
                 <div class="btn-update-summary">
                     <a href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
                         <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
