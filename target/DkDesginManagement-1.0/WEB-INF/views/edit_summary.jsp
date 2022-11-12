@@ -26,7 +26,7 @@
         <form action="edit_summary/edit_project" method="post">
             <div class="top-details">
                 <div class="list-top">
-                    <h3>Biệt thự nhà dân</h3>
+                    <h3>${project.name}</h3>
                     <select class="btn project-detail" name="status">
                         <option value="1" class="btn btn-secondary">Đang thực hiện</option>
                         <option value="2" class="btn btn-secondary">Đã hoàn thành</option>

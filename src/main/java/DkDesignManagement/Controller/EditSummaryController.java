@@ -73,6 +73,7 @@ public class EditSummaryController {
         //add
         int statusEdit = projectService.editProject(project);
         if (statusEdit != 1) {
+            redirect.addAttribute("id",id);
             redirect.addAttribute("mess", "edit fail");
             return view;
         }
