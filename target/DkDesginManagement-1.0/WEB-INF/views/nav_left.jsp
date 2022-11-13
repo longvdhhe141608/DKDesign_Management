@@ -14,25 +14,58 @@
     </script>
 </head>
 <body>
+
+<%--role leader+designer--%>
+<c:if test="${loginUser.role_id != 1}">
+    <div class="container-fluid" style="padding: 0">
+        <div id="tab_menu" class="tab_menu">
+            <button class="tab_button" class="tab_button">
+                <a href="${pageContext.request.contextPath}/headerHome">
+                    <i class="fa-solid fa-house"></i>
+                    Trang chủ
+                </a>
+            </button>
+            <button class="tab_button">
+                <a href="${pageContext.request.contextPath}/task/my_task">
+                    <i class="fa-solid fa-briefcase"></i>
+                    Công việc của tôi
+                </a>
+            </button>
+            <button class="tab_button">
+                <a href="${pageContext.request.contextPath}/allProject">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Công trình
+                </a>
+            </button>
+            <button class="tab_button">
+                <a href="${pageContext.request.contextPath}/notification">
+                    <i class="fa-solid fa-bell"></i>
+                    Thông báo
+                </a>
+            </button>
+        </div>
+    </div>
+</c:if>
+
+<%--role admin--%>
+<c:if test="${loginUser.role_id == 1}">
 <div class="container-fluid" style="padding: 0">
     <div id="tab_menu" class="tab_menu">
-        <button onclick="sendRedirect('${pageContext.request.contextPath}/headerHome')" class="tab_button">
-            <i class="fa-solid fa-house"></i>
-            Trang chủ
+        <button class="tab_button">
+            <a href="${pageContext.request.contextPath}/admin/memberlist">
+                <i class="fa-solid fa-house"></i>
+                Trang chủ
+            </a>
         </button>
-        <button onclick="sendRedirect('${pageContext.request.contextPath}/task/my_task')" class="tab_button">
-            <i class="fa-solid fa-briefcase"></i>
-            Công việc của tôi
+
+        <button class="tab_button">
+            <a href="${pageContext.request.contextPath}/notification">
+                <i class="fa-solid fa-bell"></i>
+                Thông báo
+            </a>
         </button>
-        <button onclick="sendRedirect('${pageContext.request.contextPath}/allProject')" class="tab_button">
-            <i class="fa-solid fa-clipboard-list"></i>
-            Công trình
-        </button>
-        <button onclick="sendRedirect('notification.html')" class="tab_button">
-            <i class="fa-solid fa-bell"></i>
-            Thông báo
-        </button>
+
     </div>
-</div>
+    </c:if>
 </body>
 </html>

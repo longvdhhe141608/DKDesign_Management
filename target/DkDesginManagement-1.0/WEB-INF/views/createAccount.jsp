@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Trang chủ</title>
+    <title>Create Account</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -24,42 +24,81 @@
     <div class="list-task body_page">
         <jsp:include page="nav_left.jsp"/>
         <div style="margin-left:20% ;">
-            </p>
+
+            <script>
+                function togglePassword(bypass, bytoggleBtn) {
+                    let password = document.getElementById(bypass);
+                    let toggleBtn = document.getElementById(bytoggleBtn);
+                    toggleBtn.onclick = (() => {
+                        if (password.type === "text") {
+                            password.type = "password";
+                            toggleBtn.classList.remove("bi bi-eye-slash-fill");
+                        } else {
+                            password.type = "text";
+                            toggleBtn.classList.add("bi bi-eye-slash-fill");
+                        }
+                    });
+                }
+            </script>
+
             <h4>Tạo tài khoản</h4>
-            <table class="table table-borderless" style="width: 40%;">
-                <tr>
-                    <td><a>Mã nhân viên:</a>
-                    <td><input type="text"></td>
-                    </td>
-                </tr>
-                <tr>
-                    <td><a>mật khẩu:</a></td>
-                    <td><input type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td><a>Nhập lại mật khẩu:</a></td>
-                    <td><input type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td><a>Vai trò:</a></td>
-                    <td>
-                        <form>
-                            <input name="gender" type="radio" value="trưởng nhóm"/>trưởng nhóm
-                            <input name="gender" type="radio" value="thiết kế"/>thiết kế
-                        </form>
-                    </td>
-                </tr>
-            </table>
-            <div style="margin-left: 25%; display: flex;">
-                <form action="${pageContext.request.contextPath}/memberAdmin">
-                    <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
-                </form>
-                <form action="<jsp:include page="nav_left.jsp"/>/memberAdmin">
-                    <button class="btn btn-primary">Lưu</button>
-                </form>
-            </div>
+            <form action="create" method="post">
+                <table class="table table-borderless" style="width: 40%;">
+                    <tr>
+                        <p class="text-danger">${error1}</p>
+                        <td>
+                            <a>Mã nhân viên:</a>
+                        </td>
+
+                        <td>
+                            <input hidden id="userList" name="userList" value="${accountList}">
+                            <input pattern="[a-z0-9]+$" id="username" name="username" type="text" required>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <p class="text-danger">${error2}</p>
+                        <td>
+                            <a>mật khẩu:</a>
+                        </td>
+                        <td>
+                            <input pattern="[a-z0-9]+$" value="${pass}" id="password" name="password" type="password" required>
+                            <i id="toggleBtn"
+                               onclick="togglePassword('password', 'toggleBtn')"
+                               class="fas fa-eye">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a>Nhập lại mật khẩu:</a>
+                        </td>
+                        <td>
+                            <input pattern="[a-z0-9]+$" value="${passCheck}" id="passwordCheck" name="passwordCheck" type="password" required>
+                            <i id="toggleBtnC"
+                               onclick="togglePassword('passwordCheck', 'toggleBtnC')"
+                               class="fas fa-eye">
+                            </i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a>Vai trò:</a>
+                        </td>
+                        <td>
+                            <input name="role" type="radio" value="2" required/>trưởng nhóm
+                            <input checked name="role" type="radio" value="3" required/>thiết kế
+                        </td>
+                    </tr>
+                </table>
+                <div style="margin-left: 25%; display: flex;">
+                    <a href="redirect:${pageContext.request.contextPath}/admin/memberAdmin">
+                        <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
+                    </a>
+                    <input type="submit" class="btn btn-primary" value="Lưu">
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

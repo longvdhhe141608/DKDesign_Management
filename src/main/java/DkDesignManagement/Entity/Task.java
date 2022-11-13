@@ -10,17 +10,19 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class Task {
-    private int idPhase;
-    private int idTask;
-    private int idTask_f;
+    private int taskId;
+    private int projectId;
+    private int sectionId;
+    private int taskfId;
+    private int creatorId;
+    private int assignToId;
+    private int requirementId;
     private String taskName;
-    private boolean taskStatus;
+    private int taskStatus;
     private Date startDate;
     private Date deadline;
     private Date endDate;
-    private String gallery;
     private String description;
-    private  String creator;
-    private String assignTo;
-    private String projectName;
+    private int fileNumber;
+
 }

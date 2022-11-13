@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Trang chủ</title>
+    <title>Chỉnh sửa thông tin cá nhân</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -52,13 +52,13 @@
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
-                        <td><input type="datetime" value="20/04/2000"></td>
+                        <td><input type="date" value="20/04/2000"></td>
                     </tr>
                     <tr>
                         <td>Giới tính:</td>
                         <td><select name="" id="">
-                            <option value="nam">Nam</option>
-                            <option value="nữ">Nữ</option>
+                            <option value="1">Nam</option>
+                            <option value="2">Nữ</option>
                         </select></td>
                     </tr>
                     <tr>
@@ -77,8 +77,8 @@
                         <td>Vai trò:</td>
                         <td>
                             <select>
-                                <option>thiết kế</option>
-                                <option>trưởng nhóm</option>
+                                <option value="1">thiết kế</option>
+                                <option value="2">trưởng nhóm</option>
                             </select>
                         </td>
                     </tr>
@@ -95,10 +95,10 @@
             </div>
         </div>
         <div class="btn-edit">
-            <form action="<c:url value="${pageContext.request.contextPath}/resources/assets/css/"/>">
+            <a href="redirect:${pageContext.request.contextPath}/information">
                 <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
-            </form>
-            <form action="<c:url value="${pageContext.request.contextPath}/resources/assets/css"/>">
+            </a>
+            <form action="${pageContext.request.contextPath}/">
                 <button class="btn btn-primary">Lưu</button>
             </form>
         </div>
@@ -112,12 +112,6 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
-</script>
-<script>
-    $(function () {
-        $("#header-include").load("header.html");
-        $("#narbar_menu").load("nav-left.html");
-    });
 </script>
 </body>
 

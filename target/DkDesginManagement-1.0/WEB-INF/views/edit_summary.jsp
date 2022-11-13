@@ -1,3 +1,4 @@
+<jsp:useBean id="project" scope="request" type="DkDesignManagement.Entity.Project"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@
         <form action="edit_summary/edit_project" method="post">
             <div class="top-details">
                 <div class="list-top">
-                    <h3>${project.name}</h3>
+                    <h3>${project.project_name}</h3>
                     <select class="btn project-detail" name="status">
                         <option value="1" class="btn btn-secondary">Đang thực hiện</option>
                         <option value="2" class="btn btn-secondary">Đã hoàn thành</option>

@@ -34,12 +34,13 @@
 
             <div class="content-function-member">
                 <div class="function-one">
-
-                    <form action="${pageContext.request.contextPath}/createAccount">
+                    <a href="${pageContext.request.contextPath}/admin/createAccount">
                         <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
-                    </form>
+                    </a>
                 </div>
+
                 <div style="display: flex;">
+                    <%--start searching by role--%>
                     <div class="function-two" style="margin-right:20px ;">
                         <div class="dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
@@ -50,124 +51,63 @@
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">thiết kế</a>
                                 <a class="dropdown-item" href="#">trưởng nhóm</a>
-
                             </div>
                         </div>
                     </div>
+                    <%--end searching by role--%>
+
+                    <%--start searching member by name--%>
                     <div class="function-thir">
                         <div class="function_search">
                             <form action="">
                                 <div class="wap_search">
-
                                     <input style="margin-right: 10px;" type="text" class="search_term"
                                            placeholder="tên thành viên">
-                                    <button type="submit" class="btn btn-primary"> tìm kiếm</button>
-
-
+                                    <input type="submit" class="btn btn-primary"> tìm kiếm</input>
                                 </div>
                             </form>
                         </div>
                     </div>
+                    <%--end seearching member by name--%>
+
                 </div>
             </div>
         </div>
+
+        <%-- start member list in table--%>
         <div>
             <table class="table table-bordered">
                 <tr>
                     <th scope="col">Tên</th>
-
                     <th scope="col">Chức danh</th>
-
                     <th scope="col">Số điện thoại</th>
-
                     <th scope="col">Email</th>
-
                     <th scope="col">Địa chỉ</th>
-
                     <th scope="col">Trạng thái</th>
-
                 </tr>
-                <c:forEach begin="1" end="5">
+
+                <c:forEach var="member" items="${memberList}">
                     <tr>
-                        <td style="display: flex;justify-content:space-between">Nguyễn như huấn
-                            <form action="${pageContext.request.contextPath}/informationAdmin">
-                                <button class="btn btn-primary">chi tiết</button>
-                            </form>
+                        <td style="display: flex;justify-content:space-between">${member.memberName}
+                            <a href="${pageContext.request.contextPath}/information">
+                                <input name="id" value="${member.memberId}" hidden>
+                                <input type="submit" class="btn btn-primary" value="chi tiết">
+                            </a>
                         </td>
-                        <td>thiết kế</td>
-                        <td>123456789</td>
-                        <td>huan@gmail.com</td>
-                        <td>Hà nội</td>
+                        <td>${member.memberRole}</td>
+                        <td>${member.memberPhone}</td>
+                        <td>${member.memberMail}</td>
+                        <td>${member.memberAddress}</td>
                         <td>
                             <button class="btn btn-success">mở</button>
                         </td>
                     </tr>
                 </c:forEach>
-                <%--                <tr>--%>
-                <%--                    <td style="display: flex;justify-content:space-between">Nguyễn như huấn--%>
-                <%--                        <form action="${pageContext.request.contextPath}/informationAdmin">--%>
-                <%--                            <button class="btn btn-primary">chi tiết</button>--%>
-                <%--                        </form>--%>
-                <%--                    </td>--%>
-                <%--                    <td>thiết kế</td>--%>
-                <%--                    <td>123456789</td>--%>
-                <%--                    <td>huan@gmail.com</td>--%>
-                <%--                    <td>Hà nội</td>--%>
-                <%--                    <td>--%>
-                <%--                        <button class="btn btn-warning">chặn</button>--%>
-                <%--                    </td>--%>
 
-                <%--                </tr>--%>
-                <%--                <tr>--%>
-                <%--                    <td style="display: flex;justify-content:space-between">Nguyễn như huấn--%>
-                <%--                        <form action="${pageContext.request.contextPath}/informationAdmin">--%>
-                <%--                            <button class="btn btn-primary">chi tiết</button>--%>
-                <%--                        </form>--%>
-                <%--                    </td>--%>
-                <%--                    <td>thiết kế</td>--%>
-                <%--                    <td>123456789</td>--%>
-                <%--                    <td>huan@gmail.com</td>--%>
-                <%--                    <td>Hà nội</td>--%>
-                <%--                    <td>--%>
-                <%--                        <button class="btn btn-status" style="background: green;">mở</button>--%>
-                <%--                    </td>--%>
-
-
-                <%--                </tr>--%>
-                <%--                <tr>--%>
-                <%--                    <td style="display: flex;justify-content:space-between">Nguyễn như huấn--%>
-                <%--                        <form action="informationAdmin.html">--%>
-                <%--                            <button class="btn btn-primary">chi tiết</button>--%>
-                <%--                        </form>--%>
-                <%--                    </td>--%>
-                <%--                    <td>thiết kế</td>--%>
-                <%--                    <td>123456789</td>--%>
-                <%--                    <td>huan@gmail.com</td>--%>
-                <%--                    <td>Hà nội</td>--%>
-                <%--                    <td>--%>
-                <%--                        <button class="btn btn-status" style="background: green;">mở</button>--%>
-                <%--                    </td>--%>
-
-
-                <%--                </tr>--%>
-                <%--                <tr>--%>
-                <%--                    <td style="display: flex;justify-content:space-between">Nguyễn như huấn--%>
-                <%--                        <form action="informationAdmin.html">--%>
-                <%--                            <button class="btn btn-primary">chi tiết</button>--%>
-                <%--                        </form>--%>
-                <%--                    </td>--%>
-                <%--                    <td>thiết kế</td>--%>
-                <%--                    <td>123456789</td>--%>
-                <%--                    <td>huan@gmail.com</td>--%>
-                <%--                    <td>Hà nội</td>--%>
-                <%--                    <td>--%>
-                <%--                        <button class="btn btn-status" style="background: green;">mở</button>--%>
-                <%--                    </td>--%>
-
-
-                <%--                </tr>--%>
             </table>
         </div>
+        <%-- end member list in table--%>
+        <%--start paging--%>
         <div class="pagination">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -187,8 +127,11 @@
                 </ul>
             </nav>
         </div>
+        <%--end paging--%>
     </div>
 </div>
+
+<%--start popup add member--%>
 <div class="popup hide__popup">
     <div class="popup__content">
         <div class="title">
@@ -215,6 +158,8 @@
         </div>
     </div>
 </div>
+<%--end popup add member--%>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -223,11 +168,9 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
+
 <script>
-    // $(function () {
-    //     $("#header-include").load("header.html");
-    //     $("#narbar_menu").load("nav-left.html");
-    // });
+
     const show = document.querySelector("#show-member");
 
     const popup = document.querySelector(".popup");
@@ -240,5 +183,6 @@
         popup.classList.remove("hide__popup");
     })
 </script>
+
 </body>
 </html>

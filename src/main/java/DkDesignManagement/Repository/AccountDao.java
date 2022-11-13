@@ -26,7 +26,6 @@ public class AccountDao {
         return null;
     }
 
-
     public List<Account> getAllAccount() {
         String sql = "SELECT * FROM `dkmanagement`.`accounts`";
         List<Account> accountList = new ArrayList<>();
