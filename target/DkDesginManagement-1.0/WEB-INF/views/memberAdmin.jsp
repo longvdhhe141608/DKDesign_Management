@@ -59,11 +59,11 @@
                     <%--start searching member by name--%>
                     <div class="function-thir">
                         <div class="function_search">
-                            <form action="">
+                            <form action="#findMember" method="post">
                                 <div class="wap_search">
                                     <input style="margin-right: 10px;" type="text" class="search_term"
                                            placeholder="tên thành viên">
-                                    <input type="submit" class="btn btn-primary"> tìm kiếm</input>
+                                    <input type="submit" class="btn btn-primary" value="tìm kiếm">
                                 </div>
                             </form>
                         </div>

@@ -52,11 +52,10 @@ public class MemberDAO {
         return memberList;
     }
 
-    public int addNewMember(String name, int acc_id){
-        String sql = "INSERT INTO `dkmanagement`.`employees` (`name`,  `id_acc`) " +
-                "VALUES (?, ?)";
-        int action = jdbcTemplate.update(sql,name,acc_id);
-        return action;
+    public int addNewMember(String name, String email, int acc_id) {
+        String sql = "INSERT INTO `dkmanagement`.`employees` (`name`,`email`, `id_acc`) " +
+                "VALUES (?,?)";
+        return jdbcTemplate.update(sql, name, email, acc_id);
     }
 
 }

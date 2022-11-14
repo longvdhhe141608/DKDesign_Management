@@ -1,4 +1,4 @@
-<jsp:useBean id="profile" scope="request" type="DkDesignManagement.Entity.Employee"/>
+
 <%--
   Created by IntelliJ IDEA.
   User: Hoang Long
@@ -26,7 +26,7 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
-        <a style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
+        <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
         <div class="information-main">
             <div class="information-main-avata">
                 <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
@@ -42,41 +42,39 @@
             <form action="edit" method="post">
                 <div>
                     <table class="table table-borderless">
-                        <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
+                        <input type="text" id="userid" name="userid" value="${profile.id}" >
                         <tr>
                             <td>Họ và tên:</td>
-                            <td><input type="text" id="name" name="name" value="${profile.name}" readonly=""></td>
+                            <td><input pattern="^[a-zA-Z]+(([',. -][a-zA-Z])?[a-zA-Z]*)*$" type="text" id="name" name="name" value="${profile.name}" required></td>
                         </tr>
-<%--                        <tr>--%>
-<%--                            <td>Mã nhân viên:</td>--%>
-<%--                            <td><input type="text" value="${profile.id}" disabled></td>--%>
-<%--                        </tr>--%>
+
                         <tr>
                             <td>Số CCCD/CMND:</td>
-                            <td><input pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd" value="${profile.cccd}"></td>
+                            <td><input pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd"
+                                       value="${profile.cccd}" required></td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
-                            <td><input type="date" id="dob" name="dob" value="${profile.dob}"></td>
+                            <td><input type="date" id="dob" name="dob" value="${profile.dob}" required></td>
                         </tr>
                         <tr>
                             <td>Giới tính:</td>
-                            <td><select name="gender" id="gender">
-                                <option id="1" value="1">Nam</option>
-                                <option id="2" value="2" ${profile.gender==2?"Selected":""}>Nữ</option>
+                            <td><select name="gender" id="gender" required>
+                                <option id="1" value="1" >Nam</option>
+                                <option id="2" value="2" ${profile.gender==2?"selected":""}>Nữ</option>
                             </select></td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input type="text" id="phone" name="phone" value="${profile.phone}"></td>
+                            <td><input pattern="^0[0-9]{9}$" type="text" id="phone" name="phone" value="${profile.phone}" required></td>
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td><input type="text" id="email" name="email" value="${profile.mail}"></td>
+                            <td><input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text" id="email" name="email" value="${profile.mail}" required></td>
                         </tr>
                         <tr>
                             <td>Địa chỉ nhà:</td>
-                            <td><input type="text" id="address" name="address" value="${profile.address}"></td>
+                            <td><input pattern="^[a-zA-Z0-9]+((,?[',. -][a-zA-Z0-9])?[a-zA-Z0-9]*\.?)*$" type="text" id="address" name="address" value="${profile.address}"></td>
                         </tr>
 
                     </table>
@@ -84,8 +82,9 @@
 
                 <%-- button --%>
                 <div class="btn-edit">
-                    <button class="btn btn-secondary" style="margin-right: 10px; color: white"><a
-                            href="${pageContext.request.contextPath}/profile/detail">Hủy</a></button>
+                    <button class="btn btn-secondary" style="margin-right: 10px; color: white">
+                        <a href="${pageContext.request.contextPath}/profile/detail">Hủy</a>
+                    </button>
                     <input type="submit" onclick="alert('Sua profile thanh cong')" class="btn btn-primary" value="Lưu">
                 </div>
             </form>

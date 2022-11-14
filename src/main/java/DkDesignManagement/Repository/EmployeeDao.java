@@ -13,7 +13,7 @@ public class EmployeeDao {
 
     public Employee getInformation(int id) {
         String sql = "select * from `dkmanagement`.`employees` where id_acc = ?";
-        Employee e = new Employee();
+        Employee e;
         e = jdbcTemplate.queryForObject(sql, new MapperEmployee(), id);
         return e;
     }
