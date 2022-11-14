@@ -42,7 +42,7 @@ public class BigTaskServiceImpl implements BigTaskService {
                         task.setAssignToName(assignToName);
 
                         //get list sub task
-                        task.setListSubTask(taskDAO.getListSubTask(task.getIdTask()));
+                        task.setListSubTask(taskDAO.getListSubTask(task.getTaskId()));
                         task.getListSubTask().stream().forEach(t->t.setAssignToName(assignToName));
                    }
                }
