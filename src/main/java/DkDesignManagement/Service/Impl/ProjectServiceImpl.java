@@ -9,6 +9,8 @@ import DkDesignManagement.Service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
@@ -19,8 +21,8 @@ public class ProjectServiceImpl implements ProjectService {
     ProjectParticipationDao projectParticipationDao;
 
     @Override
-    public Project getProject() {
-        return null;
+    public List<Project> getProject() {
+        return projectDao.getAll();
     }
 
 
