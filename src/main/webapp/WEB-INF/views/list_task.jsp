@@ -201,7 +201,7 @@
                                     </tr>
                                 </table>
                                 <div class="add-btn-work">
-                                    <button class="btn btn-secondary btn-canel">Hủy bỏ</button>
+                                    <button type="button" class="btn btn-secondary btn-canel">Hủy bỏ</button>
                                     <button class="btn btn-primary btn-add">Thêm</button>
                                 </div>
                             </form>
