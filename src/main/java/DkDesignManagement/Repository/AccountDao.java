@@ -26,6 +26,19 @@ public class AccountDao {
         return null;
     }
 
+    public Account getAccountById(int id) {
+        String sql = "Select * from `dkmanagement`.`accounts` where id = ?";
+
+        try {
+            Account account = jdbcTemplate.queryForObject(sql, new MapperAccount(), id);
+            return account;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     public List<Account> getAllAccount() {
         String sql = "SELECT * FROM `dkmanagement`.`accounts`";
         List<Account> accountList = new ArrayList<>();

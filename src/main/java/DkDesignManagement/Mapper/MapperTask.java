@@ -2,9 +2,11 @@ package DkDesignManagement.Mapper;
 
 import DkDesignManagement.Entity.Task;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 
 public class MapperTask implements RowMapper<Task> {
@@ -33,6 +35,10 @@ public class MapperTask implements RowMapper<Task> {
 
         task.setFileNumber(rs.getInt("number_of_file"));
         task.setDescription(rs.getString("description"));
+        task.setCreator(rs.getInt("creator"));
+        task.setAssignTo(rs.getInt("assignedto"));
+        task.setTaskStatus(rs.getInt("status"));
+
         task.setTaskStatus(rs.getInt("status"));
 
         return task;
