@@ -31,6 +31,13 @@ public class ProjectDao {
         return p;
     }
 
+    public List<Project> getAll() {
+        String sql = "select * from project ";
+        List<Project> projectList = new ArrayList<>();
+        projectList = jdbcTemplate.query(sql, new MapperProject());
+        return projectList;
+    }
+
     public List<Project> getProjectByAcc(int id) {
         String sql = "select `project`.* from project \n" +
                 "join `project_participation` on `project`.`id` = `project_participation`.`project_id` \n" +
