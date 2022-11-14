@@ -30,4 +30,8 @@ public class AccountServiceImpl implements AccountService {
         return false;
     }
 
+    @Override
+    public List<Account> getAccounts() {
+        return accountDao.getAllAccount();
+    }
 }

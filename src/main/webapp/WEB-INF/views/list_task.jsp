@@ -33,21 +33,30 @@
                 </select></a>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary"
+                                                                                         type="button"
                                                                                          value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary" type="button"
-                                                                                           style="background: blue;" value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           style="background: blue;"
+                                                                                           value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
+                                                                                               type="button"
                                                                                                value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
+                                                                                          type="button"
                                                                                           value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
+                                                                                             type="button"
                                                                                              value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
+                                                                                          type="button"
                                                                                           value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary"
+                                                                                        type="button"
                                                                                         value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary" type="button"
+                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
+                                                                                           type="button"
                                                                                            value="Thống kê"></a>
             </div>
         </div>
@@ -191,13 +200,26 @@
                     <div class="modal-content">
                         <span id="close2" class="close">&times;</span>
                         <div class="project-add-task">
-                            <form class="form-inline my-2 my-lg-0">
+                            <form action="add_section" method="post" class="form-inline my-2 my-lg-0">
                                 <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                       placeholder="Tên đầu mục công việc" aria-label="Text"/>
+                                       name="name" placeholder="Tên đầu mục công việc" aria-label="Text"/>
                                 <table class="table table-borderless">
                                     <tr>
                                         <td>Công trình:</td>
-                                        <td>Biệt thự nhà dân</td>
+                                        <td>
+                                            <select name="projectId" class="btn btn-secondary dropdown-toggle">
+                                                <c:forEach items="${listProject}" var="project">
+                                                    <option value="${project.id}"> ${project.project_name}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ghi chú:</td>
+                                        <td>
+                                            <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
+                                                 name="description"  placeholder="Ghi chú" aria-label="Text"/>
+                                        </td>
                                     </tr>
                                 </table>
                                 <div class="add-btn-work">
@@ -249,6 +271,10 @@
                 x[index].style.display = "none";
             }
         }
+    }
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
     }
 </script>
 </body>
