@@ -1,13 +1,13 @@
 package DkDesignManagement.Service.Impl;
 
 
-import DkDesignManagement.Entity.BigTask;
+import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.AccountDao;
-import DkDesignManagement.Repository.BigTaskDAO;
+import DkDesignManagement.Repository.SectionDAO;
 import DkDesignManagement.Repository.TaskDAO;
 import DkDesignManagement.Service.BigTaskService;
-import DkDesignManagement.model.BigTaskDto;
+import DkDesignManagement.model.SectionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -19,7 +19,7 @@ import java.util.List;
 public class BigTaskServiceImpl implements BigTaskService {
 
      @Autowired
-     BigTaskDAO bigTaskDAO;
+     SectionDAO sectionDAO;
 
      @Autowired
      TaskDAO taskDAO;
@@ -28,15 +28,15 @@ public class BigTaskServiceImpl implements BigTaskService {
      AccountDao accountDao;
 
      @Override
-     public List<BigTaskDto> getAll() {
-          List<BigTask> list = bigTaskDAO.getAll();
-          List<BigTaskDto> listBigTask = new ArrayList<>();
-          for(BigTask bigTask : list){
-               BigTaskDto bigTaskDto = BigTaskDto.toBigTaskDto(bigTask);
+     public List<SectionDto> getAll() {
+          List<Section> list = sectionDAO.getAll();
+          List<SectionDto> listBigTask = new ArrayList<>();
+          for(Section section : list){
+               SectionDto sectionDto = SectionDto.toBigTaskDto(section);
                //get list task
-               bigTaskDto.setListTask(taskDAO.getTaskByBigTaskId(bigTask.getId()));
-               if(!ObjectUtils.isEmpty(bigTaskDto.getListTask())){
-                   for(Task task : bigTaskDto.getListTask()){
+               sectionDto.setListTask(taskDAO.getTaskByBigTaskId(section.getSectionId()));
+               if(!ObjectUtils.isEmpty(sectionDto.getListTask())){
+                   for(Task task : sectionDto.getListTask()){
                         //get name assign
                         String assignToName = accountDao.getAccountById(task.getAssignTo()).getUsername();
                         task.setAssignToName(assignToName);
@@ -47,7 +47,7 @@ public class BigTaskServiceImpl implements BigTaskService {
                    }
                }
 
-               listBigTask.add(bigTaskDto);
+               listBigTask.add(sectionDto);
           }
           return listBigTask;
      }

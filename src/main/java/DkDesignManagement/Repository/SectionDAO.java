@@ -1,9 +1,7 @@
 package DkDesignManagement.Repository;
 
-import DkDesignManagement.Entity.BigTask;
-
-import DkDesignManagement.Mapper.MapperBigTask;
-
+import DkDesignManagement.Entity.Section;
+import DkDesignManagement.Mapper.MapperSection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -18,14 +16,14 @@ import java.util.List;
  */
 
 @Repository
-public class BigTaskDAO {
+public class SectionDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-   public List<BigTask> getAll() {
-       String sql = "select * from big_task bt ";
+   public List<Section> getAll() {
+       String sql = "select * from section bt ";
 
-       return jdbcTemplate.query(sql, new MapperBigTask());
+       return jdbcTemplate.query(sql, new MapperSection());
 
    }
 }
