@@ -72,28 +72,56 @@
                 <div class="modal-content">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
-                        <form class="form-inline my-2 my-lg-0">
+                        <form action="add-task" method="post" class="form-inline my-2 my-lg-0">
                             <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                   placeholder="Tên công việc" aria-label="Text"/>
+                                  name="name" placeholder="Tên công việc" aria-label="Text"/>
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Nhiệm vụ:</td>
-                                    <td>Chưa phân công</td>
+                                    <td>
+                                        <select name="requirementId" class="btn btn-secondary dropdown-toggle">
+                                        <c:forEach items="${listRequirement}" var="requirement">
+                                            <option value="${requirement.id}"> ${requirement.requirement_name}</option>
+                                        </c:forEach>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Người nhận việc:</td>
+                                    <td>
+                                        <select name="assignId" class="btn btn-secondary dropdown-toggle">
+                                        <c:forEach items="${listAccount}" var="account">
+                                            <option value="${account.id}"> ${account.username}</option>
+                                        </c:forEach>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Công trình:</td>
-                                    <td>Biệt thự nhà dân</td>
+                                    <td>
+                                        <select name="projectId" class="btn btn-secondary dropdown-toggle">
+                                        <c:forEach items="${listProject}" var="project">
+                                            <option value="${project.id}"> ${project.project_name}</option>
+                                        </c:forEach>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Đầu mục công việc:</td>
-                                    <td>Chọn đầu mục công việc</td>
+                                    <td>
+                                        <select name="sectionId" class="btn btn-secondary dropdown-toggle">
+                                        <c:forEach items="${listBigTask}" var="section">
+                                            <option value="${section.id}"> ${section.section_name}</option>
+                                        </c:forEach>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Thời gian bắt đầu:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input class="form-control" formControlName="dob" type="datetime"
-                                                   value="20/10/2022">
+                                            <input class="form-control" formControlName="dob" type="date"
+                                                 name="startDate"  value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
@@ -101,14 +129,15 @@
                                     <td>Thời gian dự kiến kết thúc:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input class="form-control" formControlName="dob" type="datetime"
-                                                   value="20/10/2022">
+                                            <input class="form-control" formControlName="dob" type="date"
+                                                   name="deadline"   value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Ghi chú:</td>
-                                    <td>-</td>
+                                    <td><input style="width: 30rem;" class="form-control mr-sm-2" type="text"
+                                               name="description" placeholder="miêu tả" aria-label="Text"/></td>
                                 </tr>
                                 <tr>
                                     <td>Kế hoạch công việc:</td>
@@ -118,8 +147,8 @@
                                 </tr>
                             </table>
                             <div class="add-btn-work">
-                                <button class="btn btn-secondary btn-canel">Hủy bỏ</button>
-                                <button class="btn btn-primary btn-add">Thêm</button>
+                                <button type="button" class="btn btn-secondary btn-canel">Hủy bỏ</button>
+                                <button type="submit" class="btn btn-primary btn-add">Thêm</button>
                             </div>
                         </form>
                     </div>

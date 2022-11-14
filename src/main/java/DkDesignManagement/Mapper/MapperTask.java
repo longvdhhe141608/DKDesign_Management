@@ -4,6 +4,8 @@ import DkDesignManagement.Entity.Task;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
@@ -24,7 +26,9 @@ public class MapperTask implements RowMapper<Task> {
         task.setTaskId(rs.getInt("id"));
         task.setProjectId(rs.getInt("project_id"));
         task.setSectionId(rs.getInt("section_id"));
-        task.setTaskfId(rs.getInt("task_id"));
+        BigDecimal decimalTaskId = rs.getBigDecimal("task_id");
+        BigInteger taskfId = (decimalTaskId == null ? null : decimalTaskId.toBigInteger());
+        task.setTaskfId(taskfId);
         task.setCreatorId(rs.getInt("creator"));
         task.setAssignToId(rs.getInt("assignedto"));
         task.setRequirementId(rs.getInt("requirement_id"));
@@ -35,10 +39,6 @@ public class MapperTask implements RowMapper<Task> {
 
         task.setFileNumber(rs.getInt("number_of_file"));
         task.setDescription(rs.getString("description"));
-        task.setCreator(rs.getInt("creator"));
-        task.setAssignTo(rs.getInt("assignedto"));
-        task.setTaskStatus(rs.getInt("status"));
-
         task.setTaskStatus(rs.getInt("status"));
 
         return task;

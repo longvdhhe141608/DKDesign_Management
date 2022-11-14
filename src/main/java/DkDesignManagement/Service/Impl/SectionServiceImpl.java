@@ -38,7 +38,7 @@ public class SectionServiceImpl implements SectionService {
             if (!ObjectUtils.isEmpty(sectionDto.getListTask())) {
                 for (Task task : sectionDto.getListTask()) {
                     //get name assign
-                    String assignToName = accountDao.getAccountById(task.getAssignTo()).getUsername();
+                    String assignToName = accountDao.getAccountById(task.getAssignToId()).getUsername();
                     task.setAssignToName(assignToName);
 
                     //get list sub task
