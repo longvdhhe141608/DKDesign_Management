@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class LoadHomeController {
+public class HomeController {
 
     @Autowired
     private AccountDao accountDao;

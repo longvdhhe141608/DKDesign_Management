@@ -7,5 +7,5 @@ import org.springframework.stereotype.Service;
 public interface AccountService {
     public Account getAccount();
 
-    public boolean isExists(String username);
+    public boolean isExisted(String username);
 }

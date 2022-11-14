@@ -9,8 +9,9 @@
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
-    <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
     <title>Tất cả công việc cá nhân</title>
 </head>
 <body>
@@ -22,37 +23,70 @@
             <div class="title">
                 <h4>Tất cả công công việc cá nhân</h4>
             </div>
+            <%--            <div class="content-function">--%>
+            <%--                <div class="function-one">--%>
+            <%--                    <div class="add" id="show">--%>
+            <%--                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc</button>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--                <div></div>--%>
+            <%--                <div class="function-two">--%>
+            <%--                    <div class="dropdown">--%>
+            <%--                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"--%>
+            <%--                           aria-expanded="false">--%>
+            <%--                            Tìm kiếm tên--%>
+            <%--                        </a>--%>
+            <%--                        <div class="dropdown-menu">--%>
+            <%--                            <a class="dropdown-item" href="#">Biệt thự nhà dân</a>--%>
+            <%--                            <a class="dropdown-item" href="#">Biệt thự nhà dân 1</a>--%>
+            <%--                            <a class="dropdown-item" href="#">Biệt thự nhà dân 2</a>--%>
+            <%--                        </div>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--                <div class="function-thir">--%>
+            <%--                    <div class="function_search">--%>
+            <%--                        <form action="">--%>
+            <%--                            <div class="wap_search">--%>
+            <%--                                <input style="margin-right: 10px;" type="text" class="search_term"--%>
+            <%--                                       placeholder="tên công việc">--%>
+            <%--                                <button type="submit" class="btn btn-primary"> tìm kiếm</button>--%>
+            <%--                            </div>--%>
+            <%--                        </form>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <%--            </div>--%>
             <div class="content-function">
-                <div class="function-one">
-                    <div class="add" id="show">
-                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc</button>
-                    </div>
-                </div>
-                <div></div>
-                <div class="function-two">
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                           aria-expanded="false">
-                            Tìm kiếm tên
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Biệt thự nhà dân</a>
-                            <a class="dropdown-item" href="#">Biệt thự nhà dân 1</a>
-                            <a class="dropdown-item" href="#">Biệt thự nhà dân 2</a>
+                <div style="display: flex">
+                    <div class="function-one">
+                        <div class="add" id="show">
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc</button>
                         </div>
                     </div>
+                    <div></div>
                 </div>
-                <div class="function-thir">
-                    <div class="function_search">
-                        <form action="">
-                            <div class="wap_search">
-                                <input style="margin-right: 10px;" type="text" class="search_term"
-                                       placeholder="tên công việc">
-                                <button type="submit" class="btn btn-primary"> tìm kiếm</button>
-                            </div>
-                        </form>
+                <form action="" method="get" class="block-search">
+                    <div class="function-two">
+                        <div class="dropdown">
+                            <select name="date" class="btn btn-secondary dropdown-toggle"
+                                    style="color: white; height: 38px">
+                                <option value="default">Default</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
+                    <div class="function-thir">
+                        <div class="function_search">
+                            <div class="wap_search">
+                                <input style="margin-right: 2px;" type="text" class="search_term"
+                                       name="textSearch" placeholder="Tên công trình">
+                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="table_content">
                 <div class=" table-responsive-sm">
@@ -66,202 +100,204 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td style="justify-content: center;">
-                                <form class="form-name-project" action="sub-task.html">
+                        <c:forEach begin="1" end="10">
+                            <tr class="tung-hang">
+                                <td class="tung-o">
                                     <div class="name-project">
                                         thiết kế phòng ngủ
                                     </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all"
-                                                style="float: right;">Chi
-                                            tiết
-                                        </button>
+                                    <div class="block-link">
+                                        <div></div>
+                                        <div class="links">
+                                            <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}" class="link-cong-viec">
+                                                <button class="btn-chi-tiet">
+                                                    Chi tiết
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
-                                </form>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/10/2022">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/11/2022">
-                                </div>
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-                                <form class="form-name-project" action="summary.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
+                                </td>
+                                <td>
+                                    <div class="name-input" style="width: 150px;">
+                                        20/10/2022
                                     </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all"
-                                                style="float: right;">Chi
-                                            tiết
-                                        </button>
+                                </td>
+                                <td>
+                                    <div class="name-input" style="width: 150px;">
+                                        20/11/2022
                                     </div>
-                                </form>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/10/2022">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/11/2022">
-                                </div>
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-                                <form class="form-name-project" action="summary.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all"
-                                                style="float: right;">Chi
-                                            tiết
-                                        </button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/10/2022">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/11/2022">
-                                </div>
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-                                <form class="form-name-project" action="summary.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all"
-                                                style="float: right;">Chi
-                                            tiết
-                                        </button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/10/2022">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/11/2022">
-                                </div>
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-                                <form class="form-name-project" action="summary.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all"
-                                                style="float: right;">Chi
-                                            tiết
-                                        </button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/10/2022">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/11/2022">
-                                </div>
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-                                <form class="form-name-project" action="summary.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all"
-                                                style="float: right;">Chi
-                                            tiết
-                                        </button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/10/2022">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/11/2022">
-                                </div>
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-                                <form class="form-name-project" action="summary.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all"
-                                                style="float: right;">Chi
-                                            tiết
-                                        </button>
-                                    </div>
-                                </form>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/10/2022">
-                                </div>
-                            </td>
-                            <td>
-                                <div class="name-input" style="width: 150px;">
-                                    <input class="form-control" formControlName="dob" type="datetime"
-                                           value="20/11/2022">
-                                </div>
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                        </tr>
+                                </td>
+                                <td> Biệt thự nhà dân</td>
+                            </tr>
+                        </c:forEach>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="summary.html">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        thiết kế phòng ngủ--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <div>--%>
+                        <%--                                        <button class="btn btn-primary summary-detail-all"--%>
+                        <%--                                                style="float: right;">Chi--%>
+                        <%--                                            tiết--%>
+                        <%--                                        </button>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td> Biệt thự nhà dân</td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="summary.html">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        thiết kế phòng ngủ--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <div>--%>
+                        <%--                                        <button class="btn btn-primary summary-detail-all"--%>
+                        <%--                                                style="float: right;">Chi--%>
+                        <%--                                            tiết--%>
+                        <%--                                        </button>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td> Biệt thự nhà dân</td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="summary.html">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        thiết kế phòng ngủ--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <div>--%>
+                        <%--                                        <button class="btn btn-primary summary-detail-all"--%>
+                        <%--                                                style="float: right;">Chi--%>
+                        <%--                                            tiết--%>
+                        <%--                                        </button>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td> Biệt thự nhà dân</td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="summary.html">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        thiết kế phòng ngủ--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <div>--%>
+                        <%--                                        <button class="btn btn-primary summary-detail-all"--%>
+                        <%--                                                style="float: right;">Chi--%>
+                        <%--                                            tiết--%>
+                        <%--                                        </button>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td> Biệt thự nhà dân</td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="summary.html">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        thiết kế phòng ngủ--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <div>--%>
+                        <%--                                        <button class="btn btn-primary summary-detail-all"--%>
+                        <%--                                                style="float: right;">Chi--%>
+                        <%--                                            tiết--%>
+                        <%--                                        </button>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td> Biệt thự nhà dân</td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="summary.html">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        thiết kế phòng ngủ--%>
+                        <%--                                    </div>--%>
+                        <%--                                    <div>--%>
+                        <%--                                        <button class="btn btn-primary summary-detail-all"--%>
+                        <%--                                                style="float: right;">Chi--%>
+                        <%--                                            tiết--%>
+                        <%--                                        </button>--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td> Biệt thự nhà dân</td>--%>
+                        <%--                        </tr>--%>
                         </tbody>
                     </table>
                 </div>

@@ -11,15 +11,18 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class Task {
-    private int idPhase;
-    private int idTask;
-    private int idTask_f;
+    private int taskId;
+    private int projectId;
+    private int sectionId;
+    private int taskfId;
+    private int creatorId;
+    private int assignToId;
+    private int requirementId;
     private String taskName;
-    private boolean taskStatus;
+    private int taskStatus;
     private Date startDate;
     private Date deadline;
     private Date endDate;
-    private String gallery;
     private String description;
     private int creator;
     private int assignTo;
@@ -28,4 +31,6 @@ public class Task {
     //sub task
     private List<Task> ListSubTask;
     private String assignToName;
+    private int fileNumber;
+
 }

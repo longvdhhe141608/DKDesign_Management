@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -26,7 +27,8 @@ public class ViewMyTaskController {
         ModelAndView view = new ModelAndView("my_task");
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        List<Task> myTaskList = taskDAO.getAllTaskInPhaseByAssignedUser(account.getId());
+        List<Task> myTaskList = new ArrayList<Task>();
+//       myTaskList = taskDAO.getAllTaskInPhaseByAssignedUser(account.getId());
         request.setAttribute("myTaskList", myTaskList);
         return view;
     }

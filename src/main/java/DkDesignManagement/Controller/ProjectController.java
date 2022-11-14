@@ -22,6 +22,7 @@ import java.net.http.HttpRequest;
 import java.util.Date;
 
 @Controller
+@RequestMapping(value = "/allProject")
 public class ProjectController {
 
     @Autowired
@@ -33,7 +34,7 @@ public class ProjectController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = "/allProject", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("allProject");
         HttpSession session = request.getSession();
@@ -46,7 +47,7 @@ public class ProjectController {
         return view;
     }
 
-    @RequestMapping(value = "/allProject/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView loadAllProject(HttpServletRequest request, RedirectAttributes redirect) {
         ModelAndView view = new ModelAndView("redirect:/allProject");
         //check login
@@ -55,7 +56,6 @@ public class ProjectController {
             redirect.addAttribute("mess", "Please login");
             return view;
         }
-
         Account account = (Account) session.getAttribute("loginUser");
         //get value
         String name = request.getParameter("name");
@@ -67,20 +67,18 @@ public class ProjectController {
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
-
         //create model
         Project project = new Project(-1, name, startDate, closureDate, null
                 , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
-
         //add
         int id = projectService.addProject(project, account);
         if (id != 1) {
             redirect.addAttribute("mess", "add fail");
             return view;
         }
-
         redirect.addAttribute("mess", "add successfully ");
-
         return view;
     }
+
+
 }

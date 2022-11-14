@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -13,12 +14,14 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/requirement.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
+
 <body>
 <jsp:include page="header.jsp"/>
 <div class="body_page">
@@ -27,37 +30,66 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>Biệt thự nhà dân</h3>
-                <a class="btn project-detail"><select>
-                    <option class="btn btn-secondary">Đang thực hiện</option>
-                    <option class="btn btn-secondary">Đã hoàn thành</option>
-                </select></a>
+                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                    <select style="border: none; padding: 6px;">
+                        <option class="btn btn-secondary">Đang thực hiện</option>
+                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
+                    </select>
+                </div>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary" type="button"
-                                                           value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary" type="button"
-                                                             value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary" type="button"
-                                                                 value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary" type="button"
-                                                            value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary" type="button"
-                                                               style="background: blue;" value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary" type="button"
-                                                            value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary" type="button"
-                                                          value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary" type="button"
-                                                             value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
+                    <input class="btn btn-secondary" type="button" value="Sơ lược">
+                </a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Công việc">
+                </a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Duyệt công việc">
+                </a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Lịch">
+                </a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Yêu cầu của khách hàng">
+                </a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Tiến độ">
+                </a>
+                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}">
+                    <input
+                            class="btn btn-secondary"
+                            type="button"
+                            value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Thống kê">
+                </a>
             </div>
         </div>
         <h4>Thông tin yêu cầu của khách hàng</h4>
-        <div>
-            <button class="btn btn-primary">+Thêm yêu cầu</button>
+
+
+        <div class="add" id="show-member">
+
+            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm yêu cầu</button>
         </div>
+
         <div class="table_content requiment-main ">
             <div class=" requiment-main-left">
                 <table class="table table-bordered ">
+
                     <thead>
                     <tr>
                         <th scope="col">Vị trí</th>
@@ -71,6 +103,7 @@
                         <td>Tầng 1</td>
                         <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch .
                             2 phòng ngủ : 10m2 , trần thạch cao .
+
                         </td>
                         <td>Đang xử lý</td>
                         <td>
@@ -147,6 +180,41 @@
                         </ul>
                     </nav>
                 </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="popup hide__popup">
+    <div class="popup__content">
+        <div class="title">
+            <h4>Thêm yêu cầu của khách hàng</h4>
+        </div>
+        <div class="info">
+            <table class="table table-borderless">
+                <tr>
+                    <td>Vị trí:</td>
+                    <td><input class="info-text" type="text" style="width: 500px;"></td>
+                </tr>
+                <tr>
+                    <td>Yêu cầu:</td>
+                    <td><textarea class="info-text" type="texta" style="width: 500px;"></textarea>
+                </tr>
+
+            </table>
+
+
+        </div>
+        <div class="button_click">
+            <div></div>
+            <div class="btn_cancel">
+                <button type="button" class="btn btn-secondary close_popup">Hủy
+                    bỏ
+                </button>
+            </div>
+            <div class="btn_ok">
+                <button type="button" class="btn btn-primary">Lưu</button>
             </div>
         </div>
     </div>
@@ -159,5 +227,21 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
+<script>
+    const show = document.querySelector("#show-member");
+
+    const popup = document.querySelector(".popup");
+    let close = document.querySelector('.close_popup');
+    close.addEventListener('click', function () {
+        popup.classList.add("hide__popup");
+    });
+
+    show.addEventListener('click', function () {
+        popup.classList.remove("hide__popup");
+    })
+</script>
+
+
 </body>
+
 </html>

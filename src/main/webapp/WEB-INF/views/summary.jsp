@@ -19,100 +19,121 @@
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 <body>
+
 <jsp:include page="header.jsp"/>
+
 <div class="body_page">
+
     <jsp:include page="nav_left.jsp"/>
+
     <div class="summary">
         <div class="top-details">
             <div class="list-top">
-                <h3>Biệt thự nhà dân</h3>
-                <a class="btn project-detail"><select>
-                    <option class="btn btn-secondary">Đang thực hiện</option>
-                    <option class="btn btn-secondary">Đã hoàn thành</option>
-                </select></a>
+                <h3>${project.project_name}</h3>
+                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                    <select style="border: none; padding: 6px;">
+                        <option class="btn btn-secondary">Đang thực hiện</option>
+                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
+                    </select>
+                </div>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary" style="background: blue;"
-                                                           type="button" value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary" type="button"
-                                                             value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary" type="button"
-                                                                 value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary" type="button"
-                                                            value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary" type="button"
-                                                               value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary" type="button"
-                                                            value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary" type="button"
-                                                          value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary" type="button"
-                                                             value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
+                        style="background: blue"
+                <%--                </c:if>--%>
+                        value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input class="btn btn-secondary"
+                                                                                               type="button"
+                                                                                               value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input class="btn btn-secondary"
+                                                                                             type="button"
+                                                                                             value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary"
+                                                                                          type="button"
+                                                                                          value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary"
+                                                                                           type="button"
+                                                                                           value="Thống kê"></a>
             </div>
         </div>
         <div class="summary-main">
             <div class="main-Quickview">
                 <div class="summary-main-header">
                     <h4>Sơ lược công trình</h4>
-
                 </div>
                 <table class="table table-borderless">
-
                     <tr>
                         <td>Chủ nhà:</td>
-                        <td>Nguyễn Văn A</td>
+                        <td>${project.cusName}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td>0123345678</td>
+                        <td>${project.cusPhone}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>
-                        <td>xóm 1, thôn tân xã,huyện thạch thất, hà nội</td>
+                        <td>${project.cusAddress}</td>
                     </tr>
                     <tr>
                         <td>Loại công trình:</td>
-                        <td>Ngoại thất</td>
+                        <c:if test="${project.type==1}">
+                            <td>Ngoại thất</td>
+                        </c:if>
+                        <c:if test="${project.type==2}">
+                            <td>Nội thất</td>
+                        </c:if>
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
-                        <td>500m2</td>
+                        <td>${project.construction_area}m<sup>2</sup></td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
-                        <td>
-                            20/11/2022
-                        </td>
+                        <td>${project.start_date}</td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
-                        <td>-</td>
+                        <td>${project.closure_date}</td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
-                        <td>-</td>
+                        <td>${project.end_date}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>
-                        <td>-</td>
+                        <td>${project.cusAddress}</td>
                     </tr>
                     <tr>
                         <td>Mô tả:</td>
-                        <td>-</td>
+                        <td>${project.detail}</td>
                     </tr>
                     <tr>
                         <td>Hiển thị file:</td>
-                        <td>-</td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
-            <form action="${pageContext.request.contextPath}/edit_profile">
-                <div style="text-align: end; margin-right: 5%;">
-                    <button class="btn-update btn btn-primary" style="margin-top: 10px;">Chỉnh
-                        sửa
+            <div style="display: flex; justify-content: space-between">
+                <div></div>
+                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">
+                    <button class="btn" style="background-color: royalblue; color: white">
+                        Chỉnh sửa
                     </button>
-                </div>
-            </form>
+                </a>
+            </div>
         </div>
     </div>
 </div>

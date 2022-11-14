@@ -66,7 +66,6 @@
     position: absolute;
 
 
-
     max-height: 100%;
 }
 
@@ -94,14 +93,53 @@
 }
 
 
-
 .add-btn-work {
 
-    margin-left: 40%;
+    margin-left: 83%;
 }
 
 .list-task-header {
     border: 1px solid gray;
     font-weight: bold;
 
+}
+
+.sub-task-detail .link-chi-tiet-cong-viec a .chi-tiet {
+    border: none;
+    font-size: 80%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    border-radius: 15px;
+    background-color: #b7bacb;
+    color: white;
+}
+
+.sub-task-detail-main .link-chi-tiet-cong-viec a .chi-tiet {
+    border: none;
+    font-size: 80%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    border-radius: 15px;
+    background-color: #b7bacb;
+    color: white;
+}
+
+.sub-task-detail .link-chi-tiet-cong-viec a:hover .chi-tiet {
+    border: none;
+    font-size: 80%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    border-radius: 15px;
+    background-color: #b7bacb;
+    color: black;
+}
+
+.sub-task-detail-main .link-chi-tiet-cong-viec a:hover .chi-tiet {
+    border: none;
+    font-size: 80%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    border-radius: 15px;
+    background-color: #b7bacb;
+    color: black;
 }
