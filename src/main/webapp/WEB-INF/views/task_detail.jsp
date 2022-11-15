@@ -64,25 +64,25 @@
         <div class="task-details-main">
             <table class="table table-borderless" style="border: 0;">
                 <tr>
-                    <h4>Thiết kế mặt bằng cấp điện</h4>
+                    <h4>${task.taskName}</h4>
                 </tr>
                 <tr>
                     <td>Nhiệm vụ:</td>
-                    <td>huonghuong</td>
+                    <td>${task.requirementName}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>
-                    <td>Biệt thự nhà dân</td>
+                    <td>${task.projectName}</td>
                 </tr>
                 <tr>
                     <td>Đầu mục công việc:</td>
-                    <td>Thiết kế bản vẽ</td>
+                    <td>${task.sectionName}</td>
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            20/10/2022
+                            ${task.startDate}
                         </div>
                     </td>
                 </tr>
@@ -90,7 +90,7 @@
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            20/11/2022
+                            ${task.deadline}
                         </div>
                     </td>
                 </tr>
@@ -98,34 +98,42 @@
                     <td>Thời gian kết thúc:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            20/11/2022
+                            ${task.endDate}
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>50/50</td>
+                    <td>${task.fileNumber}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>100%</td>
+                    <td>-</td>
                 </tr>
                 <tr>
                     <td>Ghi chú:</td>
-                    <td>-</td>
+                    <td>${task.description}</td>
+                </tr>
+                <tr>
+                    <td>Kế hoạch của công việc:</td>
+                    <td>${task.taskfName}</td>
                 </tr>
             </table>
+
             <div>
-                <p>Kế hoạch công việc:</p>
+                <p>Danh sách công việc phụ :</p>
                 <div class="add" id="show-member">
                     <button class="btn btn-primary">+ Thêm công việc phụ</button>
                 </div>
 
             </div>
             <div>
-                <a href="${pageContext.request.contextPath}/subtask">Cấp điện chiếu sáng tầng 2></a><br>
-                <a href="#">Cấp điện ổ cắm tầng 1></a>
+               <c:forEach items="${task.listSubTask}" var="subTask" >
+                   <a href="#">${subTask.taskName}</a>
+               </c:forEach>
+
             </div>
+
         </div>
         <div style=" text-align: end; margin-left: 10px;">
             <form action="${pageContext.request.contextPath}/editTaskDetail">

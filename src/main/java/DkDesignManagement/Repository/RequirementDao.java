@@ -3,8 +3,10 @@ package DkDesignManagement.Repository;
 
 import DkDesignManagement.Entity.Requirement;
 
+import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Mapper.MapperRequirement;
 
+import DkDesignManagement.Mapper.MapperTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,20 @@ public class RequirementDao {
         String sql = "select * from requirement";
 
         return jdbcTemplate.query(sql, new MapperRequirement());
+    }
+
+    public Requirement getRequirementById(int requirementId){
+
+        Requirement requirement = new Requirement();
+        String sql = "select * from requirement r where r.id  = ? ";
+
+        try {
+            requirement = jdbcTemplate.queryForObject(sql, new MapperRequirement(),requirementId);
+            return requirement;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public List<Requirement> getAllRequirementByProjectID(int projectID) {
