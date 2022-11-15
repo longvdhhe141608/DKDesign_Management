@@ -11,4 +11,6 @@ import org.springframework.stereotype.Service;
 public interface TaskService {
 
    int addTask(Task task);
+
+   Task getTaskById(int taskId);
 }

@@ -25,6 +25,7 @@ public class Task {
     private Date deadline;
     private Date endDate;
     private String description;
+    private int fileNumber;
 
     public Task(int taskId, int projectId, int sectionId, BigInteger taskfId, int creatorId, int assignToId, int requirementId, String taskName, int taskStatus, Date startDate, Date deadline, Date endDate, String description,int fileNumber) {
         this.taskId = taskId;
@@ -43,10 +44,23 @@ public class Task {
         this.fileNumber = fileNumber;
     }
 
-    //model
+    //model response
     //sub task
-    private List<Task> ListSubTask;
+    private List<Task> listSubTask;
     private String assignToName;
-    private int fileNumber;
+
+    //requirement
+    private String requirementName;
+
+    //project
+    private String projectName;
+
+    //section
+    private String sectionName;
+
+    //task
+    private String taskfName;
+
+
 
 }
