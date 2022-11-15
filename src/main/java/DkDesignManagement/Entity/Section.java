@@ -1,14 +1,13 @@
 package DkDesignManagement.Entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Builder
 @NoArgsConstructor
 @Data
 @AllArgsConstructor
+@Getter
+@Setter
 public class Section {
     private int sectionId;
     private String sectionName;

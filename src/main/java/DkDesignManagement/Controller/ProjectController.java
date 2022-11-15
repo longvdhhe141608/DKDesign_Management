@@ -19,7 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/allProject")
@@ -38,11 +40,30 @@ public class ProjectController {
     public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("allProject");
         HttpSession session = request.getSession();
+
+        String indexPage = request.getParameter("pageNo");
+        int page = 0;
+        if (indexPage != null) {
+            page = Integer.parseInt(indexPage);
+        }
+
+
         Account account = (Account) session.getAttribute("loginUser");
         String textSearch = request.getParameter("textSearch");
         String date = request.getParameter("date");
-        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, date));
+
+        int totalProject = projectDao.getSizeProjectByAcc(account.getId(), textSearch, date);
+        int totalPage = (totalProject % 10 == 0) ? totalProject / 10 : totalProject / 10 + 1;
+        List<Integer> lsPage = new ArrayList<>();
+        // for này có chức năng hiển thị list page
+        for (int i = 1; i <= totalPage; ++i) {
+            lsPage.add(i);
+        }
+
+        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, date, page));
         view.addObject("listCategory", categoryService.getAllCategory());
+        view.addObject("totalProject", totalProject);
+        view.addObject("lsPage", lsPage);
         view.addObject("mess", mess);
         return view;
     }

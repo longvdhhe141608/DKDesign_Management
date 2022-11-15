@@ -50,7 +50,7 @@ public class ProjectDao {
         return projectList;
     }
 
-    public List<Project> getAllProjectByAcc(int id, String textSearch,String date) {
+    public List<Project> getAllProjectByAcc(int id, String textSearch,String date, int pageNo) {
         String sql = "select\n" +
                 "\t`project` .*\n" +
                 "from\n" +
@@ -109,10 +109,10 @@ public class ProjectDao {
 
 
         Map<String, Object> params = new HashMap<>();
-        params.put("name", project.getProject_name());
-        params.put("start_date", project.getStart_date());
-        params.put("closure_date", project.getClosure_date());
-        params.put("ended_date", project.getEnd_date());
+        params.put("name", project.getProjectName());
+        params.put("start_date", project.getStartDate());
+        params.put("closure_date", project.getClosureDate());
+        params.put("ended_date", project.getEndDate());
         params.put("creator", project.getCreator());
         params.put("type", project.getType());
         params.put("customer_name", project.getCusName());
@@ -120,7 +120,7 @@ public class ProjectDao {
         params.put("customer_phone", project.getCusPhone());
         params.put("detail", project.getDetail());
         params.put("status", project.getStatus());
-        params.put("construction_area", project.getConstruction_area());
+        params.put("construction_area", project.getConstructionArea());
 
 
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
@@ -138,10 +138,10 @@ public class ProjectDao {
 
 
         Map<String, Object> params = new HashMap<>();
-        params.put("project_name", project.getProject_name());
-        params.put("start_date", project.getStart_date());
-        params.put("closure_date", project.getClosure_date());
-        params.put("ended_date", project.getEnd_date());
+        params.put("project_name", project.getProjectName());
+        params.put("start_date", project.getStartDate());
+        params.put("closure_date", project.getClosureDate());
+        params.put("ended_date", project.getEndDate());
         params.put("creator", project.getCreator());
         params.put("type", project.getType());
         params.put("customer_name", project.getCusName());
@@ -149,10 +149,38 @@ public class ProjectDao {
         params.put("customer_phone", project.getCusPhone());
         params.put("detail", project.getDetail());
         params.put("status", project.getStatus());
-        params.put("construction_area", project.getConstruction_area());
+        params.put("construction_area", project.getConstructionArea());
         params.put("id", project.getId());
 
         return namedParameterJdbcTemplate.update(sql, params);
     }
 
+    public int getSizeProjectByAcc(int id, String textSearch, String date) {
+        List<Project> projectList = new ArrayList<>();
+
+        String sql = "select\n" +
+                "\t`project` .*\n" +
+                "from\n" +
+                "\tproject\n" +
+                "join `project_participation` on\n" +
+                "\t`project`.`id` = `project_participation`.`project_id`\n" +
+                "join `accounts` on\n" +
+                "\t`project_participation`.`account_id` = `accounts`.`id`\n" +
+                "where\n" +
+                "\t`accounts`.`id` = " + id + " \n";
+
+        if (!ObjectUtils.isEmpty(textSearch)) {
+            sql += " and project.project_name like '%" + textSearch + "%' \n";
+        }
+        if (!ObjectUtils.isEmpty(date) && !date.equals("default")) {
+            sql += " and year(start_date) >= " + date + " ";
+        }
+        sql += " group by \n" +
+                "\t`project`.`id`\n" +
+                "order by\n" +
+                "\t`project`.`id` desc";
+        projectList = jdbcTemplate.query(sql, new MapperProject());
+
+        return projectList.size();
+    }
 }

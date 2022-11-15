@@ -81,7 +81,7 @@
                                     <td>
                                         <select name="requirementId" class="btn btn-secondary dropdown-toggle">
                                         <c:forEach items="${listRequirement}" var="requirement">
-                                            <option value="${requirement.id}"> ${requirement.requirement_name}</option>
+                                            <option value="${requirement.id}"> ${requirement.requirementName}</option>
                                         </c:forEach>
                                         </select>
                                     </td>
@@ -101,7 +101,7 @@
                                     <td>
                                         <select name="projectId" class="btn btn-secondary dropdown-toggle">
                                         <c:forEach items="${listProject}" var="project">
-                                            <option value="${project.id}"> ${project.project_name}</option>
+                                            <option value="${project.id}"> ${project.projectName}</option>
                                         </c:forEach>
                                         </select>
                                     </td>
@@ -176,7 +176,7 @@
                                 <div class="col-4" style="border: 1px solid gray;">
                                     <div class="">
                                         <button onclick="myFunction('.sub-task-detail')"><i
-                                                class="fa-solid fa-caret-down"></i></i></button>
+                                                class="fa-solid fa-caret-down"></i></button>
                                             ${task.taskName}
                                     </div>
                                 </div>
@@ -238,7 +238,7 @@
                                         <td>
                                             <select name="projectId" class="btn btn-secondary dropdown-toggle">
                                                 <c:forEach items="${listProject}" var="project">
-                                                    <option value="${project.id}"> ${project.project_name}</option>
+                                                    <option value="${project.id}"> ${project.projectName}</option>
                                                 </c:forEach>
                                             </select>
                                         </td>

@@ -11,10 +11,9 @@ import java.util.Date;
 @Builder
 public class Requirement {
     private int id;
-    private int project_id;
-    private String requirement_name;
-    private String requirement_detail;
-    private Date requirement_date;
+    private int projectId;
+    private String requirementName;
+    private String requirementDetail;
+    private Date requirementDate;
     private int status;
-
 }

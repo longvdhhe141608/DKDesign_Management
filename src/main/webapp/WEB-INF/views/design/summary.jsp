@@ -29,7 +29,7 @@
     <div class="summary">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.project_name}</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
@@ -97,19 +97,19 @@
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
-                        <td>${project.construction_area}m<sup>2</sup></td>
+                        <td>${project.constructionArea}m<sup>2</sup></td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
-                        <td>${project.start_date}</td>
+                        <td>${project.startDate}</td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
-                        <td>${project.closure_date}</td>
+                        <td>${project.closureDate}</td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
-                        <td>${project.end_date}</td>
+                        <td>${project.endDate}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>

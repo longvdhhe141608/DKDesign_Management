@@ -27,7 +27,7 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.project_name}</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
@@ -78,7 +78,7 @@
                 </tr>
                 <tr>
                     <td>Công trình:</td>
-                    <td>${project.project_name}</td>
+                    <td>${project.projectName}</td>
                 </tr>
                 <tr>
                     <td>Đầu mục công việc:</td>
@@ -130,7 +130,7 @@
             </div>
             <div>
                 <c:forEach items="${subTasksList}" var="i">
-                    <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.id}&task-id=${i.taskID}&sub-task-id=${i.id}">${i.taskName}</a><br>
+                    <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${i.taskID}&sub-task-id=${i.id}">${i.taskName}</a><br>
                 </c:forEach>
             </div>
         </div>
@@ -172,7 +172,7 @@
 </div>
 <div class="popup hide__popup">
 
-    <form action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.id}&task-id=${tasks.id}" method="post">
+    <form action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}" method="post">
         <div class="popup__content">
             <div class="title">
                 <h4>Thêm công việc phụ</h4>
@@ -198,7 +198,6 @@
                         <td>Yêu cầu của khách hàng:</td>
                         <td>
                             <select name="requirementID" id="">
-
                                 <c:forEach items="${requirements}" var="i">
                                     <option value="${i.id}">${i.requirementName}</option>
                                 </c:forEach>
