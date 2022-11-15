@@ -11,10 +11,10 @@ public class MapperProject implements RowMapper<Project> {
     public Project mapRow(ResultSet resultSet, int i) throws SQLException {
         Project p = new Project();
         p.setId(resultSet.getInt("id"));
-        p.setProject_name(resultSet.getString("project_name"));
-        p.setStart_date(resultSet.getDate("start_date"));
-        p.setClosure_date(resultSet.getDate("closure_date"));
-        p.setEnd_date(resultSet.getDate("ended_date"));
+        p.setProjectName(resultSet.getString("project_name"));
+        p.setStartDate(resultSet.getDate("start_date"));
+        p.setClosureDate(resultSet.getDate("closure_date"));
+        p.setEndDate(resultSet.getDate("ended_date"));
         p.setCreator(resultSet.getInt("creator"));
         p.setType(resultSet.getInt("type"));
         p.setCusName(resultSet.getString("customer_name"));
@@ -22,7 +22,7 @@ public class MapperProject implements RowMapper<Project> {
         p.setCusPhone(resultSet.getString("customer_phone"));
         p.setDetail(resultSet.getString("detail"));
         p.setStatus(resultSet.getInt("status"));
-        p.setConstruction_area(resultSet.getLong("construction_area"));
+        p.setConstructionArea(resultSet.getLong("construction_area"));
         return p;
     }
 }

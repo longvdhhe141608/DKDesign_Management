@@ -76,7 +76,7 @@
                             <tr class="each-project">
                                 <td class="name-and-link">
                                     <div class="name-project">
-                                            ${i.project_name}
+                                            ${i.projectName}
                                     </div>
                                     <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
                                     <div class="links">
@@ -98,12 +98,12 @@
                                 </c:if>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                            ${i.start_date}
+                                            ${i.startDate}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                            ${i.end_date}
+                                            ${i.endDate}
                                     </div>
                                 </td>
                                 <c:if test="${i.status == 2}">

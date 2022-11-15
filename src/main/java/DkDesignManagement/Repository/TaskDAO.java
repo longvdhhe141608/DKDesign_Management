@@ -2,7 +2,9 @@ package DkDesignManagement.Repository;
 
 import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Mapper.MapperTask;
+import DkDesignManagement.Mapper.MapperTasks;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,10 +15,7 @@ import org.springframework.stereotype.Repository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 /*
  * TaskDAO xu ly 2 bang big_task va task
  * TaskDAO co the xem toan bo task va big_task theo project_id, xem detail task theo task_id
@@ -43,7 +42,7 @@ public class TaskDAO {
         String sql = "SELECT *,(SELECT project_name FROM project WHERE id = ?) as projectName, " +
                 "null as big_task_id, " +
                 "null as task_id " +
-                "FROM big_task where big_task.project_id = ?";
+                "FROM section where section.project_id = ?";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), project_id, project_id);
         return taskList;
@@ -68,7 +67,7 @@ public class TaskDAO {
     //Lay ra toan bo task cua mot account
     public List<Task> getAllTaskInPhaseByAssignedUser(int acc_id) {
 
-        String sql = "SELECT *,task.big_task_id as task_in_phase, " + "(SELECT project.project_name from project where project.id = (SELECT big_task.project_id from big_task where big_task.id = task_in_phase)) as projectname " + "FROM task where task.assignedto = ?";
+        String sql = "SELECT *,task.section_id as task_in_phase, " + "(SELECT project.project_name from project where project.id = (SELECT section.project_id from section where section.id = task_in_phase)) as projectname " + "FROM task where task.assignedto = ?";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), acc_id);
         return taskList;
@@ -77,7 +76,7 @@ public class TaskDAO {
     // Lay ra task trong 1 big task
     public List<Task> getAllTaskInBigTask(int big_task_id) {
 
-        String sql = "SELECT *,(SELECT project_name FROM project WHERE id = (SELECT big_task.project_id from big_task where big_task.id = ?)) as projectname FROM task where big_task_id = ? and task_id is null";
+        String sql = "SELECT *,(SELECT project_name FROM project WHERE id = (SELECT section.project_id from section where section.id = ?)) as projectname FROM task where section_id = ? and task_id is null";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), big_task_id, big_task_id);
         return taskList;
@@ -89,9 +88,9 @@ public class TaskDAO {
         String sql = "SELECT *," +
                 "(SELECT project_name " +
                 "FROM project " +
-                "WHERE id = (SELECT big_task.project_id from big_task where big_task.id = ?)" +
+                "WHERE id = (SELECT section.project_id from section where section.id = ?)" +
                 ") as projectname " +
-                "FROM task WHERE big_task_id = ? AND task_id = ?";
+                "FROM task WHERE section_id = ? AND task_id = ?";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), big_task_id, big_task_id, task_id);
         return taskList;
@@ -144,7 +143,7 @@ public class TaskDAO {
 
     // Leader them mot task moi trong big_task va assign cho member
     public void createNewTaskAndAssignToMember(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, ?, 2 , ?, ?)";
+        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, ?, 2 , ?, ?)";
         try {
             jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
         } catch (Exception e) {
@@ -158,7 +157,7 @@ public class TaskDAO {
      * creator =  leader_id, assigned_to = null
      */
     public void createNewTaskNotAssigned(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(big_task_id`, `creator`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) " +
+        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) " +
                 "VALUES (?, ?, ?, 1 , ?, ?, ?)";
         try {
             jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
@@ -223,5 +222,106 @@ public class TaskDAO {
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
         return generatedKeyHolder.getKey().intValue();
+    }
+
+
+    public List<Tasks> getAllTasksByProjectIDAndSectionID(int projectID, int sectionID) {
+        List<Tasks> tasksList = new ArrayList<>();
+        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+                "left join project p on s.project_id = p.id \n" +
+                "left join task t on s.id = t.section_id\n" +
+                "left join project_participation pp on p.id = pp.project_id \n" +
+                "left join accounts a on a.id = pp.project_id \n" +
+                "left join employees e on a.id =e.id_acc\n" +
+                "left join requirement r on p.id = r.project_id\n" +
+                "where s.project_id= ? AND t.section_id= ? AND t.task_id is null \n" +
+                "Group By t.id;";
+
+        try {
+            tasksList = jdbcTemplate.query(sql, new MapperTasks(), projectID, sectionID);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Tasks> getAllSubTasksByProjectIDAndSectionIDAndTaskID(int projectID, int sectionID, int taskID) {
+        List<Tasks> tasksList = new ArrayList<>();
+        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+                "left join project p on s.project_id = p.id \n" +
+                "left join task t on s.id = t.section_id\n" +
+                "left join project_participation pp on p.id = pp.project_id \n" +
+                "left join accounts a on a.id = pp.project_id \n" +
+                "left join requirement r on p.id = r.project_id\n" +
+                "left join employees e on a.id =e.id_acc\n" +
+                "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n" +
+                "Group By t.id;";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTasks(), projectID, sectionID, taskID);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public Tasks getOneTasksByTaskID(int taskID) {
+
+        Tasks tasks = new Tasks();
+        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+                "                left join project p on s.project_id = p.id \n" +
+                "                left join task t on s.id = t.section_id\n" +
+                "                left join project_participation pp on p.id = pp.project_id\n" +
+                "                left join accounts a on a.id = pp.project_id\n" +
+                "                left join employees e on a.id =e.id_acc\n" +
+                "                left join requirement r on p.id = r.project_id\n" +
+                "                where t.id = ? AND t.task_id is null\n" +
+                "                Group By t.id;";
+        try {
+            tasks = jdbcTemplate.queryForObject(sql, new MapperTasks(), taskID);
+            return tasks;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Tasks getOneSubTaskBySubTaskID(int subTaskID, int taskID) {
+
+        Tasks tasks = new Tasks();
+        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+                "left join project p on s.project_id = p.id\n" +
+                "left join task t on s.id = t.section_id\n" +
+                "left join project_participation pp on p.id = pp.project_id\n" +
+                "left join accounts a on a.id = pp.project_id\n" +
+                "left join employees e on a.id =e.id_acc\n" +
+                "left join requirement r on p.id = r.project_id\n" +
+                "where t.id = ? AND t.task_id = ?\n" +
+                "Group By t.id";
+        try {
+            tasks = jdbcTemplate.queryForObject(sql, new MapperTasks(), subTaskID, taskID);
+            return tasks;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int insertSubTaskByDesign(Tasks tasks) {
+        int check = 0;
+
+        String sql = "INSERT INTO `dkmanagement`.`task` (`project_id`, `section_id`, `task_id`, `creator`," +
+                " `assignedto`, `requirement_id`, `task_name`, `starting_date`, `deadline`, `number_of_file`, `status`)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
+
+        try {
+            check = jdbcTemplate.update(sql, tasks.getProjectID(), tasks.getSectionID(), tasks.getTaskID(), tasks.getCreator(), tasks.getAssignedTo(),
+                    tasks.getRequirementID(), tasks.getTaskName(), tasks.getStartingDate(), tasks.getDeadline(), tasks.getNumberOfFile(), tasks.getStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
     }
 }

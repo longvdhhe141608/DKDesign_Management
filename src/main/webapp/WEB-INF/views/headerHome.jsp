@@ -41,7 +41,7 @@
                                 <div class="card_list_project">
                                     <c:forEach items="${listProDoing}" var="i">
                                         <div class="card_project">
-                                                ${i.project_name}
+                                                ${i.projectName}
                                         </div>
                                     </c:forEach>
                                 </div>

@@ -26,7 +26,7 @@
     <div class="summary ">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.project_name}</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; border-radius: 15px; height: 23px; background-color: #b7bacb">
                         <option class="btn btn-secondary">Đang thực hiện</option>

@@ -1,13 +1,10 @@
 package DkDesignManagement.Controller.Design;
 
-import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.*;
 import DkDesignManagement.Entity.DTO.TaskDto;
-import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Entity.Requirement;
-import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
-import DkDesignManagement.Repository.SectionDao;
+import DkDesignManagement.Repository.SectionDAO;
 import DkDesignManagement.Repository.TaskDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,7 +30,7 @@ public class TaskByDesignController {
     private TaskDAO taskDAO;
 
     @Autowired
-    private SectionDao sectionDao;
+    private SectionDAO sectionDao;
 
     @Autowired
     private RequirementDao requirementDao;
@@ -51,15 +48,15 @@ public class TaskByDesignController {
         List<TaskDto> taskDtoList = new ArrayList<>();
 
         sectionList.forEach(s -> {
-            List<Tasks> tasks = taskDAO.getAllTasksByProjectIDAndSectionID(id, s.getId());
+            List<Tasks> tasks = taskDAO.getAllTasksByProjectIDAndSectionID(id, s.getSectionId());
             List<Tasks> subTasks = new ArrayList<>();
             TaskDto dto = TaskDto.builder()
-                    .sectionID(s.getId())
+                    .sectionID(s.getSectionId())
                     .sectionName(s.getSectionName())
                     .tasksList(tasks)
                     .build();
             tasks.forEach(t -> {
-                List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(id, s.getId(), t.getId());
+                List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(id, s.getSectionId(), t.getId());
                 subTasksList.forEach(rs -> {
                     Tasks tk = Tasks.builder()
                             .id(rs.getId())
@@ -109,7 +106,7 @@ public class TaskByDesignController {
 
         int sectionID = Integer.parseInt(request.getParameter("section-id"));
         Section section = sectionDao.getOneSectionBySectionID(sectionID);
-        List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getId(), tasks.getId());
+        List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
 
         List<Requirement> requirements = requirementDao.getAllRequirementByProjectID(project.getId());
 

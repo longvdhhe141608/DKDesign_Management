@@ -5,7 +5,7 @@ import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Repository.ProjectDao;
-import DkDesignManagement.Repository.SectionDao;
+import DkDesignManagement.Repository.SectionDAO;
 import DkDesignManagement.Repository.TaskDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +26,7 @@ public class SubTaskByDesignController {
     private ProjectDao projectDao;
 
     @Autowired
-    private SectionDao sectionDao;
+    private SectionDAO sectionDao;
 
     @Autowired
     private TaskDAO taskDAO;
@@ -46,7 +46,7 @@ public class SubTaskByDesignController {
 
         int taskID = Integer.parseInt(request.getParameter("task-id"));
         Tasks tasks = taskDAO.getOneTasksByTaskID(taskID);
-        List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getId(), tasks.getId());
+        List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
 
         int subTaskID = Integer.parseInt(request.getParameter("sub-task-id"));
         Tasks subtask = taskDAO.getOneSubTaskBySubTaskID(subTaskID, tasks.getId());
