@@ -42,7 +42,7 @@
             <form action="edit" method="post">
                 <div>
                     <table class="table table-borderless">
-                        <input type="text" id="userid" name="userid" value="${profile.id}" >
+                        <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
                         <tr>
                             <td>Họ và tên:</td>
                             <td><input pattern="^[a-zA-Z]+(([',. -][a-zA-Z])?[a-zA-Z]*)*$" type="text" id="name" name="name" value="${profile.name}" required></td>
