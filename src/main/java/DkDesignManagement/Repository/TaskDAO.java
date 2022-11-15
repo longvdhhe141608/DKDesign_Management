@@ -3,6 +3,7 @@ package DkDesignManagement.Repository;
 import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Entity.Tasks;
+import DkDesignManagement.Mapper.MapperSection;
 import DkDesignManagement.Mapper.MapperTask;
 import DkDesignManagement.Mapper.MapperTasks;
 import DkDesignManagement.utils.DateUtils;
@@ -62,6 +63,20 @@ public class TaskDAO {
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), sectionId);
         return taskList;
+    }
+
+    public Task getTaskById(int taskId){
+
+        Task task = new Task();
+        String sql = "select * from task t where t.id  = ? ";
+
+        try {
+            task = jdbcTemplate.queryForObject(sql, new MapperTask(),taskId);
+            return task;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public List<Task> getListSubTask(int taskId) {

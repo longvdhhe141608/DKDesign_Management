@@ -196,15 +196,13 @@
                                 <!--------list sub task------------>
                                 <div id="" class="row sub-task-detail">
                                     <div class="col-4" style="border: 1px solid gray;">
-                                        <form class="" style="display: flex; justify-content: space-between;"
-                                              action="${pageContext.request.contextPath}/task_detail">
-                                            <div class="">
-                                                    ${subTask.taskName}
-                                            </div>
+                                        <div class="">
+                                                ${subTask.taskName}
+                                        </div>
                                             <div>
-                                                <button class="btn btn-primary">Chi tiết</button>
+                                                <a href="task_detail?taskId=${subTask.taskId}" ><button class="btn btn-primary">Chi tiết</button></a>
+
                                             </div>
-                                        </form>
                                     </div>
                                     <div class="col-2" style="border: 1px solid gray;">${subTask.assignToName}</div>
                                     <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>

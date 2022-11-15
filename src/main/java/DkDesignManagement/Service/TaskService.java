@@ -14,4 +14,6 @@ public interface TaskService {
    int addTask(Task task);
 
    List<Task>  getListTask();
+
+   Task getTaskById(int taskId);
 }
