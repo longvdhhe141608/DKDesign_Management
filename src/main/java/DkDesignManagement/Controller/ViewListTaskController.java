@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Controller
@@ -45,6 +46,7 @@ public class ViewListTaskController {
         view.addObject("listProject", projectService.getProject());
         view.addObject("listAccount", accountService.getAccounts());
         view.addObject("listRequirement", requirementService.getAll());
+        view.addObject("listTaskLevel2", taskService.getListTask());
         view.addObject("mess", mess);
         return view;
     }
@@ -88,13 +90,18 @@ public class ViewListTaskController {
         String name = request.getParameter("name");
         int requirementId = Integer.parseInt(request.getParameter("requirementId"));
         int assignId = Integer.parseInt(request.getParameter("assignId"));
+        String taskfIdString = request.getParameter("taskfId");
+        BigInteger taskfId = null;
+        if(!taskfIdString.equals("-1")){
+            taskfId =new BigInteger(taskfIdString);
+        }
         int projectId = Integer.parseInt(request.getParameter("projectId"));
         int sectionId = Integer.parseInt(request.getParameter("sectionId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
         String description = request.getParameter("description");
 
-        Task task = new Task(-1, projectId, sectionId, null, account.getId(), assignId, requirementId, name
+        Task task = new Task(-1, projectId, sectionId, taskfId, account.getId(), assignId, requirementId, name
                 , 1, startDate, deadline, null, description, 0);
 
         //add section

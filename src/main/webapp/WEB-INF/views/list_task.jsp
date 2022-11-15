@@ -142,7 +142,12 @@
                                 <tr>
                                     <td>Kế hoạch công việc:</td>
                                     <td>
-                                        <button class="btn btn-primary">+Thêm công việc phụ</button>
+                                        <select name="taskfId" class="btn btn-secondary dropdown-toggle">
+                                            <option value="-1"> None</option>
+                                            <c:forEach items="${listTaskLevel2}" var="task">
+                                                <option value="${task.taskId}"> ${task.taskName}</option>
+                                            </c:forEach>
+                                        </select>
                                     </td>
                                 </tr>
                             </table>

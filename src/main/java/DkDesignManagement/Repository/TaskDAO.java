@@ -49,6 +49,14 @@ public class TaskDAO {
         return taskList;
     }
 
+    public List<Task> getAllTaskLevel2() {
+
+        String sql = "select * from task t where t.task_id is null";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask());
+        return taskList;
+    }
+
     public List<Task> getTaskByBigTaskId(int sectionId) {
 
         String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null ";
