@@ -1,16 +1,22 @@
 package DkDesignManagement.Repository;
 
+import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Mapper.MapperTask;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 /*
  * TaskDAO xu ly 2 bang big_task va task
  * TaskDAO co the xem toan bo task va big_task theo project_id, xem detail task theo task_id
@@ -27,6 +33,9 @@ import java.util.List;
 public class TaskDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     // Lay ra toan bo big_task trong project
     public List<Task> getAllBigTaskInProject(int project_id) {
@@ -187,5 +196,32 @@ public class TaskDAO {
     public void updateTaskStatus(int id, int status) {
         String sql = "UPDATE `dkmanagement`.`task` SET `task_status` = ? WHERE (`id` = ?)";
         jdbcTemplate.update(sql, id, status);
+    }
+
+    public int addTask(Task task) {
+        String sql = "INSERT INTO dkmanagement.task\n" +
+                "(project_id, section_id, task_id, creator, assignedto, requirement_id" +
+                ", task_name, starting_date, deadline, ended_date, number_of_file, description, status)\n" +
+                "VALUES(:project_id, :section_id, :task_id, :creator, :assignedto, :requirement_id " +
+                " , :task_name , :starting_date , :deadline , :ended_date , :number_of_file, :description, :status);";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("project_id", task.getProjectId());
+        params.put("section_id", task.getSectionId());
+        params.put("task_id", task.getTaskfId());
+        params.put("creator", task.getCreatorId());
+        params.put("assignedto", task.getAssignToId());
+        params.put("requirement_id", task.getRequirementId());
+        params.put("task_name", task.getTaskName());
+        params.put("starting_date", task.getStartDate());
+        params.put("deadline", task.getDeadline());
+        params.put("ended_date", task.getEndDate());
+        params.put("number_of_file", task.getFileNumber());
+        params.put("description", task.getDescription());
+        params.put("status", task.getTaskStatus());
+
+        GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+        namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
+        return generatedKeyHolder.getKey().intValue();
     }
 }
