@@ -227,11 +227,11 @@ public class TaskDAO {
 
     public List<Tasks> getAllTasksByProjectIDAndSectionID(int projectID, int sectionID) {
         List<Tasks> tasksList = new ArrayList<>();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
                 "left join project p on s.project_id = p.id \n" +
                 "left join task t on s.id = t.section_id\n" +
                 "left join project_participation pp on p.id = pp.project_id \n" +
-                "left join accounts a on a.id = pp.project_id \n" +
+                "left join accounts a on a.id = t.assignedto \n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "where s.project_id= ? AND t.section_id= ? AND t.task_id is null \n" +
@@ -248,11 +248,11 @@ public class TaskDAO {
 
     public List<Tasks> getAllSubTasksByProjectIDAndSectionIDAndTaskID(int projectID, int sectionID, int taskID) {
         List<Tasks> tasksList = new ArrayList<>();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
                 "left join project p on s.project_id = p.id \n" +
                 "left join task t on s.id = t.section_id\n" +
                 "left join project_participation pp on p.id = pp.project_id \n" +
-                "left join accounts a on a.id = pp.project_id \n" +
+                "left join accounts a on a.id = t.assignedto \n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n" +
@@ -270,7 +270,7 @@ public class TaskDAO {
     public Tasks getOneTasksByTaskID(int taskID) {
 
         Tasks tasks = new Tasks();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*,a.username, r.requirement_name FROM section s\n" +
                 "                left join project p on s.project_id = p.id \n" +
                 "                left join task t on s.id = t.section_id\n" +
                 "                left join project_participation pp on p.id = pp.project_id\n" +
@@ -291,7 +291,7 @@ public class TaskDAO {
     public Tasks getOneSubTaskBySubTaskID(int subTaskID, int taskID) {
 
         Tasks tasks = new Tasks();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
                 "left join project p on s.project_id = p.id\n" +
                 "left join task t on s.id = t.section_id\n" +
                 "left join project_participation pp on p.id = pp.project_id\n" +
