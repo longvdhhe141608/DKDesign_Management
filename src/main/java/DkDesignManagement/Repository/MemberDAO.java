@@ -16,7 +16,7 @@ public class MemberDAO {
 
     public List<Member> getMemberInProject(int projectId) {
         List<Member> memberList = new ArrayList<Member>();
-        String sql = "SELECT `employees`.name as emp_name, \n" +
+        String sql = "SELECT `employees`.id,`employees`.name as emp_name, \n" +
                 "`roles`.name as role, \n" +
                 "`employees`.`phone`, \n" +
                 "`employees`.`email`,\n" +
@@ -38,5 +38,25 @@ public class MemberDAO {
 
     }
 
+    public List<Member> getAllMember() {
+        String sql = "SELECT `employees`.id,`employees`.name as emp_name,\n" +
+                "                `roles`.name as role,\n" +
+                "                `employees`.`phone`, \n" +
+                "                `employees`.`email`,\n" +
+                "                `employees`.`address`,\n" +
+                "                `accounts`.`status`\n" +
+                "FROM employees join accounts on employees.id_acc = accounts.id \n" +
+                "join roles on roles.id=accounts.role_id";
+
+        List<Member> memberList = jdbcTemplate.query(sql, new MapperMember());
+        return memberList;
+    }
+
+    public int addNewMember(String name, int acc_id){
+        String sql = "INSERT INTO `dkmanagement`.`employees` (`name`,  `id_acc`) " +
+                "VALUES (?, ?)";
+        int action = jdbcTemplate.update(sql,name,acc_id);
+        return action;
+    }
 
 }

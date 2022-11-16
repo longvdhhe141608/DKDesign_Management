@@ -11,10 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class Project {
     private int id;
-    private String project_name;
-    private Date start_date;
-    private Date closure_date;
-    private Date end_date;
+    private String projectName;
+    private Date startDate;
+    private Date closureDate;
+    private Date endDate;
     private int creator;
     private int type;
     private String cusName;
@@ -22,5 +22,5 @@ public class Project {
     private String cusPhone;
     private String detail;
     private int status;
-    private Long construction_area;
+    private Long constructionArea;
 }

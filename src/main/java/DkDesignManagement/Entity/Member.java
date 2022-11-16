@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member {
-
+    private int memberId;
     private String memberName;
     private String memberRole;
     private String memberPhone;

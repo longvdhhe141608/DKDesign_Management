@@ -17,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping(value = "/project")
-public class LoadMemberController {
+public class MemberController {
 
     @Autowired
     private MemberDAO memberDAO;

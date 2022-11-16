@@ -2,7 +2,9 @@ package DkDesignManagement.Entity;
 
 import lombok.*;
 
+import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -10,17 +12,55 @@ import java.util.Date;
 @AllArgsConstructor
 @Builder
 public class Task {
-    private int idPhase;
-    private int idTask;
-    private int idTask_f;
+    private int taskId;
+    private int projectId;
+    private int sectionId;
+    private BigInteger taskfId;
+    private int creatorId;
+    private int assignToId;
+    private int requirementId;
     private String taskName;
-    private boolean taskStatus;
+    private int taskStatus;
     private Date startDate;
     private Date deadline;
     private Date endDate;
-    private String gallery;
     private String description;
-    private  String creator;
-    private String assignTo;
+    private int fileNumber;
+
+    public Task(int taskId, int projectId, int sectionId, BigInteger taskfId, int creatorId, int assignToId, int requirementId, String taskName, int taskStatus, Date startDate, Date deadline, Date endDate, String description,int fileNumber) {
+        this.taskId = taskId;
+        this.projectId = projectId;
+        this.sectionId = sectionId;
+        this.taskfId = taskfId;
+        this.creatorId = creatorId;
+        this.assignToId = assignToId;
+        this.requirementId = requirementId;
+        this.taskName = taskName;
+        this.taskStatus = taskStatus;
+        this.startDate = startDate;
+        this.deadline = deadline;
+        this.endDate = endDate;
+        this.description = description;
+        this.fileNumber = fileNumber;
+    }
+
+    //model response
+    //sub task
+    private List<Task> listSubTask;
+    private String assignToName;
+
+    //requirement
+    private String requirementName;
+
+    //project
     private String projectName;
+
+    //section
+    private String sectionName;
+
+    //task
+    private String taskfName;
+
+
+
 }
