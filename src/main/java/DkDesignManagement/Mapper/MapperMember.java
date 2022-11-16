@@ -11,7 +11,7 @@ public class MapperMember implements RowMapper<Member> {
     public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
         Member member = new Member();
         member.setMemberId(rs.getInt("id"));
-        member.setMemberName(rs.getString("emp_name"));
+        member.setMemberName(rs.getString("name"));
         member.setMemberRole(rs.getString("role"));
         member.setMemberPhone(rs.getString("phone"));
         member.setMemberMail(rs.getString("email"));

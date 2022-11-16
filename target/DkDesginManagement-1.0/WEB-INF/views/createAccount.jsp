@@ -47,7 +47,7 @@
                     <tr>
                         <p class="text-danger">${error1}</p>
                         <td>
-                            <a>Mã nhân viên: <p class="text-danger">*</p></a>
+                            <p>Mã nhân viên: <i class="text-danger">*</i></p>
                         </td>
 
                         <td>
@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a>Email: <p class="text-danger">*</p></a>
+                            <p>Email: <i class="text-danger">*</i></p>
                         </td>
 
                         <td>
@@ -69,7 +69,7 @@
                     <tr>
                         <p class="text-danger">${error2}</p>
                         <td>
-                            <a>mật khẩu: <p class="text-danger">*</p></a>
+                            <p>mật khẩu: <i class="text-danger">*</i></p>
                         </td>
                         <td>
                             <input pattern="[a-z0-9]+$" value="${pass}" id="password" name="password" type="password"
@@ -82,7 +82,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a>Nhập lại mật khẩu: <p class="text-danger">*</p></a>
+                            <p>Nhập lại mật khẩu: <i class="text-danger">*</i></p>
                         </td>
                         <td>
                             <input pattern="[a-z0-9]+$" value="${passCheck}" id="passwordCheck" name="passwordCheck"
@@ -95,7 +95,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a>Vai trò: </a>
+                            <p>Vai trò: </p>
                         </td>
                         <td>
                             <input name="role" type="radio" value="2" required/>trưởng nhóm
@@ -109,6 +109,7 @@
                     </button>
                     <input type="submit" class="btn btn-primary" value="Lưu">
                 </div>
+            </form>
         </div>
     </div>
 </div>

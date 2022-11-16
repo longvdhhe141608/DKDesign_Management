@@ -38,18 +38,39 @@ public class MemberDAO {
 
     }
 
+    /*
+     * load out all member information except admin
+     */
     public List<Member> getAllMember() {
-        String sql = "SELECT `employees`.id,`employees`.name as emp_name,\n" +
+        String sql = "SELECT `employees`.id,`employees`.name,\n" +
                 "                `roles`.name as role,\n" +
                 "                `employees`.`phone`, \n" +
                 "                `employees`.`email`,\n" +
                 "                `employees`.`address`,\n" +
                 "                `accounts`.`status`\n" +
                 "FROM employees join accounts on employees.id_acc = accounts.id \n" +
-                "join roles on roles.id=accounts.role_id";
+                "join roles on roles.id=accounts.role_id \n" +
+                "WHERE accounts.role_id <>1";
 
         List<Member> memberList = jdbcTemplate.query(sql, new MapperMember());
         return memberList;
+    }
+
+    /*
+     * get member information by memberId (account_id in dao)
+     */
+    public Member getMemberById(int id) {
+        String sql = "SELECT `employees`.id,`employees`.name,\n" +
+                "                `roles`.name as role,\n" +
+                "                `employees`.`phone`, \n" +
+                "                `employees`.`email`,\n" +
+                "                `employees`.`address`,\n" +
+                "                `accounts`.`status`\n" +
+                "FROM employees join accounts on employees.id_acc = accounts.id \n" +
+                "join roles on roles.id=accounts.role_id \n" +
+                "WHERE `employees`.id = ?";
+        Member member = jdbcTemplate.queryForObject(sql, new MapperMember(), id);
+        return member;
     }
 
     public int addNewMember(String name, String email, int acc_id) {

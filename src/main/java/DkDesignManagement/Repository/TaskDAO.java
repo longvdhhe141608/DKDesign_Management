@@ -96,7 +96,7 @@ public class TaskDAO {
         return taskList;
     }
 
-    //tao big task moi ma co assign cho designer luon
+    //tao big task moi ma co assign cho designer
     public void addNewBigTaskHasAssignTo(Date start_date, Date deadline, String description, int project_id, int creator, int assigned_to) {
 
         String sql = "INSERT INTO `dkmanagement`.`big_task` \n" +

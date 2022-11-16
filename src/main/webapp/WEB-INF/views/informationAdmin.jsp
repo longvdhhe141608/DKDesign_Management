@@ -6,7 +6,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Trang chủ</title>
+    <title>Member</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -39,59 +39,65 @@
                 <table class="table table-borderless">
                     <tr>
                         <td>Họ và tên:</td>
-                        <td>Hoàng Thị Thu Hương</td>
+                        <td>${member.memberName}</td>
                     </tr>
                     <tr>
                         <td>Mã nhân viên:</td>
-                        <td>huonghtt</td>
+                        <td>${employee.id}</td>
                     </tr>
                     <tr>
                         <td>Số CCCD/CMND:</td>
-                        <td>1234567890123</td>
+                        <td>${employee.cccd}</td>
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
-                        <td>20/04/2000</td>
+                        <td>${employee.dob}</td>
                     </tr>
                     <tr>
                         <td>Giới tính:</td>
-                        <td>Nữ</td>
+                        <td>
+                            <c:if test="${employee.gender==1}">Nam</c:if>
+                            <c:if test="${employee.gender==2}">Nu</c:if>
+                        </td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td>0123456678</td>
+                        <td>${employee.phone}</td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td>huonghtthe141550@fpt.edu.vn</td>
+                        <td>${member.memberMail}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ nhà:</td>
-                        <td>Nam Định, Việt Nam</td>
+                        <td>${member.memberAddress}</td>
                     </tr>
                     <tr>
                         <td>Vai trò:</td>
                         <td>
-                            trưởng nhóm
+                            <c:if test="${member.memberRole==2}">Leader</c:if>
+                            <c:if test="${member.memberRole==3}">Designer</c:if>
                         </td>
                     </tr>
                     <tr>
                         <td>Trạng thái:</td>
                         <td>
-                            mở
+                           <c:if test="${member.memberStatus==1}"> mở</c:if>
+                           <c:if test="${member.memberStatus==0}"> blocked</c:if>
                         </td>
                     </tr>
                 </table>
             </div>
-        </div>
-        <div>
-            <form action="${pageContext.request.contextPath}/editAccoutAdmin">
-                <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
+            <form action="member/editAccountAdmin" method="get">
+                <input type="text" name="id" value="${member.memberId}" hidden>
+                <input class="btn btn-primary btn-edit" type="submit" value="Chỉnh sửa">
             </form>
         </div>
+        </div>
     </div>
-</div>
-</body>
+
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
