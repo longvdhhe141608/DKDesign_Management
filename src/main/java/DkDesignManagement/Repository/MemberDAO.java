@@ -39,7 +39,11 @@ public class MemberDAO {
     }
 
     /*
+<<<<<<< Updated upstream
      * load out all member information except admin
+=======
+    * load out all member information except admin
+>>>>>>> Stashed changes
      */
     public List<Member> getAllMember() {
         String sql = "SELECT `employees`.id,`employees`.name,\n" +
@@ -49,7 +53,11 @@ public class MemberDAO {
                 "                `employees`.`address`,\n" +
                 "                `accounts`.`status`\n" +
                 "FROM employees join accounts on employees.id_acc = accounts.id \n" +
+<<<<<<< Updated upstream
                 "join roles on roles.id=accounts.role_id \n" +
+=======
+                "join roles on roles.id=accounts.role_id" +
+>>>>>>> Stashed changes
                 "WHERE accounts.role_id <>1";
 
         List<Member> memberList = jdbcTemplate.query(sql, new MapperMember());
