@@ -16,7 +16,7 @@ public class MapperTasks implements RowMapper<Tasks> {
                 .sectionID(rs.getInt("section_id"))
                 .taskID(rs.getInt("task_id"))
                 .creator(rs.getInt("creator"))
-                .assignedTo(rs.getInt("section_id"))
+                .assignedTo(rs.getInt("assignedto"))
                 .requirementID(rs.getInt("requirement_id"))
                 .taskName(rs.getString("task_name"))
                 .startingDate(rs.getDate("starting_date"))
@@ -25,7 +25,7 @@ public class MapperTasks implements RowMapper<Tasks> {
                 .numberOfFile(rs.getInt("number_of_file"))
                 .description(rs.getString("description"))
                 .status(rs.getInt("status"))
-                .nameEmployee(rs.getString("name"))
+                .nameEmployee(rs.getString("username"))
                 .nameRequirement(rs.getString("requirement_name"))
                 .build();
         return tasks;
