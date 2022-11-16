@@ -39,15 +39,7 @@ public class MemberDAO {
     }
 
     /*
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
      * load out all member information except admin
-=======
-    * load out all member information except admin
->>>>>>> Stashed changes
-=======
-    * load out all member information except admin
->>>>>>> Stashed changes
      */
     public List<Member> getAllMember() {
         String sql = "SELECT `employees`.id,`employees`.name,\n" +
