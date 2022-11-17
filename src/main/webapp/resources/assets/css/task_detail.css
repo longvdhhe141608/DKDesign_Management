@@ -4,8 +4,9 @@
 }
 
 .task-cmt-details {
-    background: #D9D9D9;
+    background: #dbd5d54f;
     margin-top: 20px;
+    border-radius: 10px 0 0 10px;
 }
 
 .name-avatar {
@@ -20,4 +21,8 @@
 .task-detail-cmt {
     display: flex;
 
+}
+
+.cmt-details-total {
+    margin-left: 40px;
 }
