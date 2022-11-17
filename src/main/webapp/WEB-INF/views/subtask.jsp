@@ -138,11 +138,13 @@
             </c:if>
 
             <div class="task-detail-cmt">
-                <div>
+                <form action="add-comment" method="post" >
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                    <input class="input-cmt" type="text" placeholder="Bình luận....">
-                </div>
-                <button class="btn btn-primary">Gửi</button>
+                    <input name="taskId" type="text" value="${task.taskId}"  hidden="">
+                    <input name="operation" type="text" value="subTaskDetail"  hidden="">
+                    <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                    <button class="btn btn-primary">Gửi</button>
+                </form>
             </div>
         </div>
     </div>
@@ -154,6 +156,12 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+</script>
+<script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
 </script>
 </body>
 </html>

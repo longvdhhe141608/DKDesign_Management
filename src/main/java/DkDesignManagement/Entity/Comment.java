@@ -18,4 +18,5 @@ public class Comment {
     private Date commentTime;
     private int taskId ;
     private int accId;
+
 }

@@ -173,9 +173,13 @@
             </c:if>
 
             <div class="task-detail-cmt">
+                <form action="add-comment" method="post" >
                 <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <input class="input-cmt" type="text" placeholder="Bình luận....">
+                    <input name="taskId" type="text" value="${task.taskId}"  hidden="">
+                    <input name="operation" type="text" value="taskDetail"  hidden="">
+                <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
                 <button class="btn btn-primary">Gửi</button>
+                </form>
             </div>
         </div>
     </div>
@@ -223,6 +227,10 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
     const show = document.querySelector("#show-member");
 
     const popup = document.querySelector(".popup");
