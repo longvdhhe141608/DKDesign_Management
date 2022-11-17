@@ -27,25 +27,26 @@ public class ViewMemberInfoByAdmin {
         ModelAndView view = new ModelAndView("informationAdmin");
 
         int id = Integer.parseInt(request.getParameter("id"));
-        Employee employee = employeeDao.getInformation(id);
-        Member member = memberDAO.getMemberById(id);
+        Employee employee = employeeDao.getEmployeeByEmpId(id);
+        Member member = memberDAO.getMemberByMemberId(id);
 
         view.addObject("member",member);
         view.addObject("employee",employee);
         return view;
     }
-    @RequestMapping(value = "editAccoutAdmin",method = RequestMethod.GET)
+    @RequestMapping(value = "editAccount",method = RequestMethod.GET)
     public ModelAndView editMemberDetail(HttpServletRequest request, RedirectAttributes redirect){
         ModelAndView view = new ModelAndView("editAccountAdmin");
 
         int id = Integer.parseInt(request.getParameter("id"));
-        Member member = memberDAO.getMemberById(id);
 
-        Employee employee = employeeDao.getInformation(member.getMemberId());
+        Member member = memberDAO.getMemberByMemberId(id);
 
+        Employee employee = employeeDao.getEmployeeByEmpId(id);
 
         view.addObject("member",member);
         view.addObject("employee",employee);
+
         return view;
     }
 }

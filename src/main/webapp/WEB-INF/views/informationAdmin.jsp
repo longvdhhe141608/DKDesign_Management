@@ -1,5 +1,8 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,16 +25,14 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
-        <span style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i>Thông tin cá nhân</span>
+
+        <span style="font-size: 30px;"><a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>Thông tin cá nhân</span>
+
         <div class="information-main">
             <div class="information-main-avata">
                 <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="
-                      border-radius: 50%;
-                      background-color: white;
-                      border: none;
-                      outline: none;
-                    ">
+                        aria-expanded="false"
+                        style="border-radius: 50%; background-color: white; border: none;  outline: none;">
                     <img class="img_avatar_change" src="../image/a.jpg"/>
                 </button>
             </div>
@@ -43,7 +44,7 @@
                     </tr>
                     <tr>
                         <td>Mã nhân viên:</td>
-                        <td>${employee.id}</td>
+                        <td>${member.memberId}</td>
                     </tr>
                     <tr>
                         <td>Số CCCD/CMND:</td>
@@ -51,14 +52,14 @@
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
-                        <td>${employee.dob}</td>
+                        <td>
+                            <fmt:formatDate value="${employee.dob}" var="dob" pattern="dd/MM/yyyy"/>
+                            ${dob}
+                        </td>
                     </tr>
                     <tr>
                         <td>Giới tính:</td>
-                        <td>
-                            <c:if test="${employee.gender==1}">Nam</c:if>
-                            <c:if test="${employee.gender==2}">Nu</c:if>
-                        </td>
+                        <td>${employee.gender==1?"Nam":"Nu"}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
@@ -66,37 +67,34 @@
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td>${member.memberMail}</td>
+                        <td>${employee.mail}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ nhà:</td>
-                        <td>${member.memberAddress}</td>
+                        <td>${employee.address}</td>
                     </tr>
                     <tr>
                         <td>Vai trò:</td>
-                        <td>
-                            <c:if test="${member.memberRole==2}">Leader</c:if>
-                            <c:if test="${member.memberRole==3}">Designer</c:if>
-                        </td>
+                        <td>${member.memberRole}</td>
+
                     </tr>
                     <tr>
                         <td>Trạng thái:</td>
                         <td>
-                           <c:if test="${member.memberStatus==1}"> mở</c:if>
-                           <c:if test="${member.memberStatus==0}"> blocked</c:if>
+                            ${member.memberStatus==1?"active":"blocked"}
                         </td>
                     </tr>
                 </table>
             </div>
-            <form action="member/editAccountAdmin" method="get">
-                <input type="text" name="id" value="${member.memberId}" hidden>
-                <input class="btn btn-primary btn-edit" type="submit" value="Chỉnh sửa">
+        </div>
+        <div>
+            <form action="editAccount" method="get">
+                <input value="${employee.id}" name="id" hidden>
+                <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
             </form>
         </div>
-        </div>
     </div>
-
-
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -106,12 +104,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    $(function () {--%>
-<%--        $("#header-include").load("header.html");--%>
-<%--        $("#narbar_menu").load("nav-left.html");--%>
-<%--    });--%>
-<%--</script>--%>
+
 </body>
 
 

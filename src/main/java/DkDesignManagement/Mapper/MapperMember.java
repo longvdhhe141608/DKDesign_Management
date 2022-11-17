@@ -16,7 +16,7 @@ public class MapperMember implements RowMapper<Member> {
         member.setMemberPhone(rs.getString("phone"));
         member.setMemberMail(rs.getString("email"));
         member.setMemberAddress(rs.getString("address"));
-        member.setMemberStatus(rs.getBoolean("status"));
+        member.setMemberStatus(rs.getInt("status"));
         return member;
     }
 }

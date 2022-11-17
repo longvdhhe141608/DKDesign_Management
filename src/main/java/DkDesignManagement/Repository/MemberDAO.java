@@ -59,7 +59,7 @@ public class MemberDAO {
     /*
      * get member information by memberId (account_id in dao)
      */
-    public Member getMemberById(int id) {
+    public Member getMemberByMemberId(int id) {
         String sql = "SELECT `employees`.id,`employees`.name,\n" +
                 "                `roles`.name as role,\n" +
                 "                `employees`.`phone`, \n" +
