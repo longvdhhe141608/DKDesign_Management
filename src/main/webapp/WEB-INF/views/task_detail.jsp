@@ -132,7 +132,6 @@
                 </tr>
                 <tr>
                     <td>Kế hoạch của công việc:</td>
-                    <td>${task.taskfName}</td>
                 </tr>
             </table>
             <div>
