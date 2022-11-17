@@ -49,6 +49,11 @@ public class TaskDAO {
         return taskList;
     }
 
+    public int countFile(int taskId){
+        String sql = "select count(*) from image_and_file iaf where task_id = ? ";
+        return jdbcTemplate.queryForObject(sql,Integer.class,taskId);
+    }
+
     public List<Task> getTaskByBigTaskId(int sectionId) {
 
         String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null ";

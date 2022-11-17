@@ -27,9 +27,7 @@ public class ViewTaskDetailController {
         ModelAndView view = new ModelAndView("/task_detail");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskById(taskId);
-        Project project = projectService.getProject(task.getProjectId());
         view.addObject("task", task);
-        view.addObject("project", project);
         return view;
     }
 

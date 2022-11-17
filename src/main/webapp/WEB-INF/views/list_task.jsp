@@ -74,15 +74,15 @@
                     <div class="project-add-task">
                         <form action="add-task" method="post" class="form-inline my-2 my-lg-0">
                             <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                  name="name" placeholder="Tên công việc" aria-label="Text"/>
+                                   name="name" placeholder="Tên công việc" aria-label="Text"/>
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Nhiệm vụ:</td>
                                     <td>
                                         <select name="requirementId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listRequirement}" var="requirement">
-                                            <option value="${requirement.id}"> ${requirement.requirementName}</option>
-                                        </c:forEach>
+                                            <c:forEach items="${listRequirement}" var="requirement">
+                                                <option value="${requirement.id}"> ${requirement.requirementName}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
@@ -90,9 +90,9 @@
                                     <td>Người nhận việc:</td>
                                     <td>
                                         <select name="assignId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listAccount}" var="account">
-                                            <option value="${account.id}"> ${account.username}</option>
-                                        </c:forEach>
+                                            <c:forEach items="${listAccount}" var="account">
+                                                <option value="${account.id}"> ${account.username}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
@@ -100,9 +100,9 @@
                                     <td>Công trình:</td>
                                     <td>
                                         <select name="projectId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listProject}" var="project">
-                                            <option value="${project.id}"> ${project.projectName}</option>
-                                        </c:forEach>
+                                            <c:forEach items="${listProject}" var="project">
+                                                <option value="${project.id}"> ${project.projectName}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
@@ -110,9 +110,9 @@
                                     <td>Đầu mục công việc:</td>
                                     <td>
                                         <select name="sectionId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listBigTask}" var="section">
-                                            <option value="${section.id}"> ${section.section_name}</option>
-                                        </c:forEach>
+                                            <c:forEach items="${listBigTask}" var="section">
+                                                <option value="${section.id}"> ${section.section_name}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
@@ -121,7 +121,7 @@
                                     <td>
                                         <div class="name-input" style="width: 150px;">
                                             <input class="form-control" formControlName="dob" type="date"
-                                                 name="startDate"  value="20/10/2022">
+                                                   name="startDate" value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
@@ -130,7 +130,7 @@
                                     <td>
                                         <div class="name-input" style="width: 150px;">
                                             <input class="form-control" formControlName="dob" type="date"
-                                                   name="deadline"   value="20/10/2022">
+                                                   name="deadline" value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
@@ -178,6 +178,9 @@
                                         <button onclick="myFunction('.sub-task-detail')"><i
                                                 class="fa-solid fa-caret-down"></i></button>
                                             ${task.taskName}
+                                        <a href="task_detail?taskId=${task.taskId}">
+                                            <button class="btn btn-primary">Chi tiết</button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-2" style="border: 1px solid gray;">${task.assignToName}</div>
@@ -193,11 +196,11 @@
                                     <div class="col-4" style="border: 1px solid gray;">
                                         <div class="">
                                                 ${subTask.taskName}
+                                            <a href="task_detail?taskId=${subTask.taskId}">
+                                                <button class="btn btn-primary">Chi tiết</button>
+                                            </a>
                                         </div>
-                                            <div>
-                                                <a href="task_detail?taskId=${subTask.taskId}" ><button class="btn btn-primary">Chi tiết</button></a>
 
-                                            </div>
                                     </div>
                                     <div class="col-2" style="border: 1px solid gray;">${subTask.assignToName}</div>
                                     <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>
@@ -245,7 +248,7 @@
                                         <td>Ghi chú:</td>
                                         <td>
                                             <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                                 name="description"  placeholder="Ghi chú" aria-label="Text"/>
+                                                   name="description" placeholder="Ghi chú" aria-label="Text"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -299,6 +302,7 @@
             }
         }
     }
+
     var mess = '${mess}'
     if (mess != '') {
         alert(mess);

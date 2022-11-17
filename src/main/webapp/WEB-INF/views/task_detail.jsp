@@ -26,7 +26,7 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.projectName}</h3>
+                <h3>${task.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
@@ -61,6 +61,16 @@
                                                                                            value="Thống kê"></a>
             </div>
         </div>
+        <c:if test="${task.taskStatus == 3}" >
+            <div>
+                <h4>Bạn có muốn phê duyệt không (FE sửa hộ)</h4>
+                <button type="button" class="btn btn-primary">Đồng ý</button>
+                <button type="button" class="btn btn-primary">Không đồng ý</button>
+            </div>
+
+        </c:if>
+
+
         <div class="task-details-main">
             <table class="table table-borderless" style="border: 0;">
                 <tr>
@@ -68,7 +78,7 @@
                 </tr>
                 <tr>
                     <td>Nhiệm vụ:</td>
-                    <td>${task.requirementName}</td>
+                    <td>${task.assignToName}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>
@@ -104,11 +114,11 @@
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>${task.fileNumber}</td>
+                    <td>${task.numberFileCurrent} / ${task.fileNumber}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>-</td>
+                    <td>${task.workProgress}</td>
                 </tr>
                 <tr>
                     <td>Ghi chú:</td>
@@ -116,22 +126,18 @@
                 </tr>
                 <tr>
                     <td>Kế hoạch của công việc:</td>
-                    <td>${task.taskfName}</td>
                 </tr>
             </table>
 
             <div>
-                <p>Danh sách công việc phụ :</p>
                 <div class="add" id="show-member">
                     <button class="btn btn-primary">+ Thêm công việc phụ</button>
                 </div>
-
             </div>
             <div>
                <c:forEach items="${task.listSubTask}" var="subTask" >
-                   <a href="#">${subTask.taskName}</a>
+                   <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
                </c:forEach>
-
             </div>
 
         </div>
