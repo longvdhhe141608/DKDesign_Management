@@ -34,4 +34,9 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> getAccounts() {
         return accountDao.getAllAccount();
     }
+
+    @Override
+    public List<Account> getAccountsByProject(int projectId) {
+        return accountDao.getAllAccountByProject(projectId);
+    }
 }

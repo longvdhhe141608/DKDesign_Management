@@ -31,7 +31,9 @@ public class MapperTask implements RowMapper<Task> {
         task.setTaskfId(taskfId);
         task.setCreatorId(rs.getInt("creator"));
         task.setAssignToId(rs.getInt("assignedto"));
-        task.setRequirementId(rs.getInt("requirement_id"));
+        BigDecimal decimalRequirementId = rs.getBigDecimal("requirement_id");
+        BigInteger requirementId = (decimalRequirementId == null ? null : decimalRequirementId.toBigInteger());
+        task.setRequirementId(requirementId);
         task.setTaskName(rs.getString("task_name"));
         task.setStartDate(rs.getDate("starting_date"));
         task.setDeadline(rs.getDate("deadline"));
