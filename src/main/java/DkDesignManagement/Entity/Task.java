@@ -49,6 +49,8 @@ public class Task {
     private List<Task> listSubTask;
     private String assignToName;
 
+    private String requirementName;
+
     //project
     private String projectName;
 
