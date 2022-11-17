@@ -180,7 +180,6 @@
                 <input class="input-cmt" type="text" placeholder="Bình luận....">
                 <button class="btn btn-primary">Gửi</button>
             </div>
-
         </div>
     </div>
 </div>

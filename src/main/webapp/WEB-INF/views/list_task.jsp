@@ -121,17 +121,6 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Ghi chú:</td>
-                                    <td><input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                               name="description" placeholder="miêu tả" aria-label="Text"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Kế hoạch công việc:</td>
-                                    <td>
-                                        <button class="btn btn-primary">+Thêm công việc phụ</button>
-                                    </td>
-                                </tr>
                             </table>
                             <div class="add-btn-work">
                                 <button type="button" class="btn btn-secondary btn-canel">Hủy bỏ</button>
