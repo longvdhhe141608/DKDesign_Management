@@ -53,61 +53,67 @@
             </div>
         </div>
         <div class="task-details-main">
+            <c:if test="${task.taskStatus == 3}" >
             <div style="border-bottom: 1px solid grey; text-align: start;">
+                <h4>Bạn có muốn phê duyệt không (FE sửa hộ)</h4>
                 <button class="btn btn-primary">Đồng ý</button>
                 <button class="btn btn-secondary">Hủy bỏ</button>
-
             </div>
+            </c:if>
 
-            <h4>Cấp điện chiếu sáng tầng 1</h4>
+            <h4>${task.taskName}</h4>
             <div style="display: flex; font-size: 20px; margin-left: 10px;">
-                <a href="list-task.html">Biệt thự nhà dân></a><br>
-                <a href="task-detail.html">Thiết kế mặt bằng cấp điện></a><br>
-                <a href="sub-task.html">Cấp điện chiếu sáng tầng 1></a>
+                <a href="list_task?id=${task.projectId}">${task.projectName}></a><br>
+                <a href="task_detail?taskId=${task.taskfId}">${task.sectionName}></a><br>
+                <a href="subtask?taskId=${task.taskId}">${task.taskName}></a>
             </div>
             <table class="table table-borderless" style="border: 0;">
 
                 <tr>
                     <td>Nhiệm vụ:</td>
-                    <td>huonghuong</td>
+                    <td>${task.assignToName}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>
-                    <td>Biệt thự nhà dân</td>
+                    <td>${task.projectName}</td>
                 </tr>
                 <tr>
                     <td>Đầu mục công việc:</td>
-                    <td>Thiết kế bản vẽ</td>
+                    <td>${task.sectionName}</td>
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
                     <td>
-                        20/10/2022
+                        ${task.startDate}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
-                        20/11/2022
+                        ${task.deadline}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian kết thúc:</td>
                     <td>
-
+                        ${task.endDate}
                     </td>
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>50/50</td>
+                    <td>${task.numberFileCurrent} / ${task.fileNumber}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>100%</td>
+                    <td>${task.workProgress}</td>
+                </tr>
+                <tr>
+                    <td>Ghi chú:</td>
+                    <td>${task.description}</td>
                 </tr>
                 <tr>
                     <td>Yêu cầu khách hàng:</td>
-                    <td>Tầng 1</td>
+                    <td>${task.requirementName}</td>
                 </tr>
 
                 <tr>
