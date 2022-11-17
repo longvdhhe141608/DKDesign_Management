@@ -46,6 +46,15 @@ public class AccountDao {
         return accountList;
     }
 
+    public List<Account> getAllAccountByProject(int projectId) {
+        String sql = "select a.* from project_participation pp ,accounts a \n" +
+                "where pp.account_id  = a.id \n" +
+                "and pp.project_id = ? ";
+        List<Account> accountList = new ArrayList<>();
+        accountList = jdbcTemplate.query(sql, new MapperAccount(),projectId);
+        return accountList;
+    }
+
     public int addNewAccount(String username, String password, int role) {
         String sql = "insert into `dkmanagement`.`accounts`(Username, `Password`, `role_id`, `Status`) " + "values ('" + username + "', '" + password + "', '" + role + "', 1)";
         int check = 0;

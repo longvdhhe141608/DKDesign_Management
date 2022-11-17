@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface SectionService {
 
-     public List<SectionDto> getAll();
+     public List<SectionDto> getAll(int projectId);
 
      int addSection(Section section);
 }
