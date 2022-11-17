@@ -15,18 +15,23 @@ import java.util.stream.Collectors;
 @Service
 public class CommentServiceImpl implements CommentService {
 
-     @Autowired
-     CommentDao commentDao;
+    @Autowired
+    CommentDao commentDao;
 
-     @Autowired
-     AccountDao accountDao;
+    @Autowired
+    AccountDao accountDao;
 
-     @Override
-     public List<CommentDto> getAllCommentsByTaskId(int taskId) {
-          List<Comment> listComments = commentDao.getAllCommentsByTaskId(taskId);
-          //java 8
-          List<CommentDto> listCommentDto = listComments.stream().map(CommentDto::toCommentDto).collect(Collectors.toList());
-          listCommentDto.forEach(n->n.setAccountName(accountDao.getAccountById(n.getAccId()).getUsername()));
-          return listCommentDto;
-     }
+    @Override
+    public List<CommentDto> getAllCommentsByTaskId(int taskId) {
+        List<Comment> listComments = commentDao.getAllCommentsByTaskId(taskId);
+        //java 8
+        List<CommentDto> listCommentDto = listComments.stream().map(CommentDto::toCommentDto).collect(Collectors.toList());
+        listCommentDto.forEach(n -> n.setAccountName(accountDao.getAccountById(n.getAccId()).getUsername()));
+        return listCommentDto;
+    }
+
+    @Override
+    public void addComment(Comment comment) {
+        commentDao.addComment(comment);
+    }
 }
