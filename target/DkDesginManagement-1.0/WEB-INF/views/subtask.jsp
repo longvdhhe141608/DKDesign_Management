@@ -53,11 +53,20 @@
             </div>
         </div>
         <div class="task-details-main">
+            <div style="border-bottom: 1px solid grey; text-align: start;">
+                <button class="btn btn-primary">Đồng ý</button>
+                <button class="btn btn-secondary">Hủy bỏ</button>
+
+            </div>
+
             <h4>Cấp điện chiếu sáng tầng 1</h4>
-            <a style="font-size: 25px;" href="${pageContext.request.contextPath}/list_task">Biệt thự nhà dân></a><br>
-            <a style="font-size: 20px;" href="${pageContext.request.contextPath}/task_detail">Thiết kế mặt bằng cấp điện></a><br>
-            <a href="${pageContext.request.contextPath}/subtask">Cấp điện chiếu sáng tầng 1></a>
+            <div style="display: flex; font-size: 20px; margin-left: 10px;">
+                <a href="list-task.html">Biệt thự nhà dân></a><br>
+                <a href="task-detail.html">Thiết kế mặt bằng cấp điện></a><br>
+                <a href="sub-task.html">Cấp điện chiếu sáng tầng 1></a>
+            </div>
             <table class="table table-borderless" style="border: 0;">
+
                 <tr>
                     <td>Nhiệm vụ:</td>
                     <td>huonghuong</td>
@@ -73,25 +82,19 @@
                 <tr>
                     <td>Thời gian bắt đầu:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/10/2022">
-                        </div>
+                        20/10/2022
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
+                        20/11/2022
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
+
                     </td>
                 </tr>
                 <tr>
@@ -106,15 +109,11 @@
                     <td>Yêu cầu khách hàng:</td>
                     <td>Tầng 1</td>
                 </tr>
+
                 <tr>
-                    <td>Ghi chú:</td>
-                    <td>-</td>
-                </tr>
-                <tr>
+                    <td>Xem file:</td>
                     <td>
-                        Hiển thị file:
                     </td>
-                    <td></td>
                 </tr>
             </table>
         </div>

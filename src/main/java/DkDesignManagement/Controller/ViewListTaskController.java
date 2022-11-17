@@ -1,8 +1,10 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.*;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Controller
@@ -37,21 +40,28 @@ public class ViewListTaskController {
     @Autowired
     TaskService taskService;
 
+    @Autowired
+    private ProjectDao projectDao;
+
 
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
-    public ModelAndView viewListTask(@ModelAttribute("mess") String mess) {
+    public ModelAndView viewListTask(@ModelAttribute("mess") String mess,HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Project project = projectDao.getProject(id);
+
         ModelAndView view = new ModelAndView("list_task");
-        view.addObject("listBigTask", sectionService.getAll());
-        view.addObject("listProject", projectService.getProject());
-        view.addObject("listAccount", accountService.getAccounts());
-        view.addObject("listRequirement", requirementService.getAll());
+        view.addObject("project", project);
+        view.addObject("listBigTask", sectionService.getAll(id));
+        view.addObject("listAccount", accountService.getAccountsByProject(id));
+        view.addObject("listTaskLevel2", taskService.getListTask());
         view.addObject("mess", mess);
         return view;
     }
 
     @RequestMapping(value = "/add_section", method = RequestMethod.POST)
     public ModelAndView addSection(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("redirect:/list_task");
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        ModelAndView view = new ModelAndView("redirect:/list_task?id="+projectId);
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
@@ -62,10 +72,9 @@ public class ViewListTaskController {
 
         //get value
         String name = request.getParameter("name");
-        String description = request.getParameter("description");
-        int projectId = Integer.parseInt(request.getParameter("projectId"));
 
-        Section section = new Section(-1, name, description, projectId, account.getId());
+
+        Section section = new Section(-1, name, null, projectId, account.getId());
 
         //add section
         sectionService.addSection(section);
@@ -75,7 +84,8 @@ public class ViewListTaskController {
 
     @RequestMapping(value = "/add-task", method = RequestMethod.POST)
     public ModelAndView addTask(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("redirect:/list_task");
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        ModelAndView view = new ModelAndView("redirect:/list_task?id="+projectId);
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
@@ -86,16 +96,14 @@ public class ViewListTaskController {
 
         //get value
         String name = request.getParameter("name");
-        int requirementId = Integer.parseInt(request.getParameter("requirementId"));
         int assignId = Integer.parseInt(request.getParameter("assignId"));
-        int projectId = Integer.parseInt(request.getParameter("projectId"));
         int sectionId = Integer.parseInt(request.getParameter("sectionId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
-        String description = request.getParameter("description");
 
-        Task task = new Task(-1, projectId, sectionId, null, account.getId(), assignId, requirementId, name
-                , 1, startDate, deadline, null, description, 0);
+
+        Task task = new Task(-1, projectId, sectionId, null, account.getId(), assignId, null, name
+                , 1, startDate, deadline, null, null, 0);
 
         //add section
         taskService.addTask(task);

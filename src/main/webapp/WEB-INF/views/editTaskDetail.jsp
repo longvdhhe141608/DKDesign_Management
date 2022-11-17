@@ -42,46 +42,64 @@
                 <a class="test" href="${pageContext.request.contextPath}/task/list_task?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         style="background: blue;" value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input class="btn btn-secondary"
-                                                                                               type="button"
-                                                                                               value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input class="btn btn-secondary"
-                                                                                             type="button"
-                                                                                             value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input class="btn btn-secondary"
-                                                                                        type="button"
-                                                                                        value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
 
         <div class="summary-main">
             <div class="main-Quickview">
                 <div class="summary-main-header">
-                    <h4>Thiết kế mặt bằng cấp điện</h4>
+                    <h4><input type="text" value="Thiết kế mặt bằng cấp điện"></h4>
 
                 </div>
                 <table class="table table-borderless">
-
                     <tr>
                         <td>Nhiệm vụ:</td>
-                        <td><input type="text" value="huonghuong"></td>
+                        <td>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-expanded="false">
+                                    hoanghuong
+                                </a>
+
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">huannn</a>
+                                    <a class="dropdown-item" href="#">nambi</a>
+                                    <a class="dropdown-item" href="#">longvdh</a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td>Công trình:</td>
-                        <td><input type="text" value="Biệt thự nhà dân"></td>
+                        <td>Biệt thự nhà dân</td>
                     </tr>
                     <tr>
                         <td>Đầu mục công việc:</td>
-                        <td><input type="text" value="Thiết kế bản vẽ"></td>
+                        <td>Thiết kế bản vẽ</td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
@@ -90,7 +108,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Thời gian kết thúc:</td>
+                        <td>Thời gian dự kiến kết thúc:</td>
                         <td>
                             <input type="date" value="20/11/2022">
                         </td>
@@ -98,24 +116,15 @@
                     <tr>
                         <td>Số lượng file:</td>
                         <td>
-                            <input type="number" value="0">
+                            <input type="text" value="50">
                         </td>
                     </tr>
                     <tr>
                         <td>Tiến độ:</td>
                         <td>50%</td>
                     </tr>
-
-
-                    <tr>
-                        <td>Ghi chú:</td>
-                        <td></td>
-                    </tr>
-
                 </table>
             </div>
-
-
             <div class="btn-update-summary">
                 <form action="${pageContext.request.contextPath}/task_detail">
                     <button class="btn-update btn btn-secondary">Hủy bỏ</button>
@@ -143,6 +152,4 @@
     });
 </script>
 </body>
-
-
 </html>

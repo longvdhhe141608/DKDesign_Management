@@ -47,7 +47,7 @@
                     <tr>
                         <p class="text-danger">${error1}</p>
                         <td>
-                            <a>Mã nhân viên:</a>
+                            <p>Mã nhân viên: <i class="text-danger">*</i></p>
                         </td>
 
                         <td>
@@ -57,12 +57,23 @@
 
                     </tr>
                     <tr>
+                        <td>
+                            <p>Email: <i class="text-danger">*</i></p>
+                        </td>
+
+                        <td>
+                            <input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="mail" name="mail" type="text" required>
+                        </td>
+
+                    </tr>
+                    <tr>
                         <p class="text-danger">${error2}</p>
                         <td>
-                            <a>mật khẩu:</a>
+                            <p>mật khẩu: <i class="text-danger">*</i></p>
                         </td>
                         <td>
-                            <input pattern="[a-z0-9]+$" value="${pass}" id="password" name="password" type="password" required>
+                            <input pattern="[a-z0-9]+$" value="${pass}" id="password" name="password" type="password"
+                                   required>
                             <i id="toggleBtn"
                                onclick="togglePassword('password', 'toggleBtn')"
                                class="fas fa-eye">
@@ -71,10 +82,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <a>Nhập lại mật khẩu:</a>
+                            <p>Nhập lại mật khẩu: <i class="text-danger">*</i></p>
                         </td>
                         <td>
-                            <input pattern="[a-z0-9]+$" value="${passCheck}" id="passwordCheck" name="passwordCheck" type="password" required>
+                            <input pattern="[a-z0-9]+$" value="${passCheck}" id="passwordCheck" name="passwordCheck"
+                                   type="password" required>
                             <i id="toggleBtnC"
                                onclick="togglePassword('passwordCheck', 'toggleBtnC')"
                                class="fas fa-eye">
@@ -83,7 +95,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <a>Vai trò:</a>
+                            <p>Vai trò: </p>
                         </td>
                         <td>
                             <input name="role" type="radio" value="2" required/>trưởng nhóm
@@ -92,13 +104,12 @@
                     </tr>
                 </table>
                 <div style="margin-left: 25%; display: flex;">
-                    <a href="redirect:${pageContext.request.contextPath}/admin/memberAdmin">
-                        <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
-                    </a>
+                    <button class="btn btn-secondary" style="margin-right: 10px;">
+                        <a href="${pageContext.request.contextPath}/admin/memberlist">Hủy</a>
+                    </button>
                     <input type="submit" class="btn btn-primary" value="Lưu">
                 </div>
             </form>
-
         </div>
     </div>
 </div>

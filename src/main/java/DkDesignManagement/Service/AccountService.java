@@ -12,4 +12,6 @@ public interface AccountService {
     public boolean isExisted(String username);
 
     List<Account> getAccounts();
+
+    List<Account> getAccountsByProject(int projectId);
 }

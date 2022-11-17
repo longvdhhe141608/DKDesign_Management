@@ -26,7 +26,7 @@
     <div class="summary ">
         <div class="top-details">
             <div class="list-top">
-                <h3>Biệt thự nhà dân</h3>
+                <h3>${project.projectName}</h3>
                 <a class="btn project-detail"><select>
                     <option class="btn btn-secondary">Đang thực hiện</option>
                     <option class="btn btn-secondary">Đã hoàn thành</option>
@@ -74,20 +74,10 @@
                     <div class="project-add-task">
                         <form action="add-task" method="post" class="form-inline my-2 my-lg-0">
                             <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                   name="name" placeholder="Tên công việc" aria-label="Text"/>
+                                  name="name" placeholder="Tên công việc" aria-label="Text"/>
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Nhiệm vụ:</td>
-                                    <td>
-                                        <select name="requirementId" class="btn btn-secondary dropdown-toggle">
-                                            <c:forEach items="${listRequirement}" var="requirement">
-                                                <option value="${requirement.id}"> ${requirement.requirementName}</option>
-                                            </c:forEach>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Người nhận việc:</td>
                                     <td>
                                         <select name="assignId" class="btn btn-secondary dropdown-toggle">
                                             <c:forEach items="${listAccount}" var="account">
@@ -99,11 +89,8 @@
                                 <tr>
                                     <td>Công trình:</td>
                                     <td>
-                                        <select name="projectId" class="btn btn-secondary dropdown-toggle">
-                                            <c:forEach items="${listProject}" var="project">
-                                                <option value="${project.id}"> ${project.projectName}</option>
-                                            </c:forEach>
-                                        </select>
+                                     ${project.projectName}
+                                        <input type="text" class="" name="projectId" value="${project.id}" hidden>
                                     </td>
                                 </tr>
                                 <tr>
@@ -237,18 +224,8 @@
                                     <tr>
                                         <td>Công trình:</td>
                                         <td>
-                                            <select name="projectId" class="btn btn-secondary dropdown-toggle">
-                                                <c:forEach items="${listProject}" var="project">
-                                                    <option value="${project.id}"> ${project.projectName}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ghi chú:</td>
-                                        <td>
-                                            <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                                   name="description" placeholder="Ghi chú" aria-label="Text"/>
+                                            ${project.projectName}
+                                            <input type="text" class="" name="projectId" value="${project.id}" hidden>
                                         </td>
                                     </tr>
                                 </table>
@@ -302,7 +279,6 @@
             }
         }
     }
-
     var mess = '${mess}'
     if (mess != '') {
         alert(mess);

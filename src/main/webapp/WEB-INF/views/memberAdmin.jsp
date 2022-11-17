@@ -89,10 +89,10 @@
                 <c:forEach var="member" items="${memberList}">
                     <tr>
                         <td style="display: flex;justify-content:space-between">${member.memberName}
-                            <a href="${pageContext.request.contextPath}/information">
+                            <form action="${pageContext.request.contextPath}/member/information" method="get">
                                 <input name="id" value="${member.memberId}" hidden>
                                 <input type="submit" class="btn btn-primary" value="chi tiết">
-                            </a>
+                            </form>
                         </td>
                         <td>${member.memberRole}</td>
                         <td>${member.memberPhone}</td>

@@ -49,6 +49,14 @@ public class TaskDAO {
         return taskList;
     }
 
+    public List<Task> getAllTaskLevel2() {
+
+        String sql = "select * from task t where t.task_id is null";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask());
+        return taskList;
+    }
+
     public int countFile(int taskId){
         String sql = "select count(*) from image_and_file iaf where task_id = ? ";
         return jdbcTemplate.queryForObject(sql,Integer.class,taskId);

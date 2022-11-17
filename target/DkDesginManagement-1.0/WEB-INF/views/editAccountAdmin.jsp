@@ -1,5 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,7 +25,8 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
-        <a style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
+        <span style="font-size: 30px;"><a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>Chỉnh sửa thông tin cá nhân</span>
+
         <div class="information-main">
             <div class="information-main-avata">
                 <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
@@ -33,30 +36,34 @@
                       border: none;
                       outline: none;
                     ">
-                    <img class="img_avatar_change" src="../image/a.jpg"/>
+                    <img alt="" class="img_avatar_change" src="../image/a.jpg"/>
                 </button>
             </div>
             <div>
                 <table class="table table-borderless">
                     <tr>
-                        <td>Họ và tên:</td>
-                        <td><input type="text" value="Hoàng Thị Thu Hương"></td>
+                        <td><label>Họ và tên:</label></td>
+                        <td>
+                            <input name="name" type="text" value="${employee.name}">
+                        </td>
                     </tr>
                     <tr>
                         <td>Mã nhân viên:</td>
-                        <td><input type="text" value="huonghtt"></td>
+                        <td><input type="text" value="huonghtt" readonly></td>
                     </tr>
                     <tr>
                         <td>Số CCCD/CMND:</td>
-                        <td><input type="text" value="1234567890123"></td>
+                        <td><input name="cccd" type="text" value="${employee.cccd}"></td>
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
-                        <td><input type="date" value="20/04/2000"></td>
+                        <td>
+                            <input type="date" placeholder="dd-MM-yyyy" name="date" value="${employee.dob}">
+                        </td>
                     </tr>
                     <tr>
                         <td>Giới tính:</td>
-                        <td><select name="" id="">
+                        <td><select name="gender" id="">
                             <option value="1">Nam</option>
                             <option value="2">Nữ</option>
                         </select></td>
@@ -95,16 +102,15 @@
             </div>
         </div>
         <div class="btn-edit">
-            <a href="redirect:${pageContext.request.contextPath}/information">
+            <a href="javascript:history.back()">
                 <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
             </a>
-            <form action="${pageContext.request.contextPath}/">
+            <form action="${pageContext.request.contextPath}/admin/memberlist">
                 <button class="btn btn-primary">Lưu</button>
             </form>
         </div>
     </div>
 </div>
-</body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
