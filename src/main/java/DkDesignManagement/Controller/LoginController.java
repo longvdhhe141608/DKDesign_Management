@@ -48,8 +48,10 @@ public class LoginController {
         account = accountDao.getAccount(username);
         if (account != null && account.getPassword().equals(password)) {
             session.setAttribute("loginUser", account);
-            if(account.getRole_id()!=1){
+            if (account.getRole_id() == 2) {
                 view = new ModelAndView("redirect:headerHome");
+            } else if (account.getRole_id() == 3) {
+                view = new ModelAndView("redirect:design/home");
             } else {
                 view = new ModelAndView("redirect:admin/memberlist");
             }
