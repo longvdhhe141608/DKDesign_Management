@@ -1,8 +1,8 @@
 package DkDesignManagement.Controller;
 
 
-import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Service.CommentService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +22,15 @@ public class ViewTaskDetailController {
     @Autowired
     ProjectService projectService;
 
+    @Autowired
+    CommentService commentService;
+
     @RequestMapping(value = "/task_detail", method = RequestMethod.GET)
     public ModelAndView viewTaskDetail(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("/task_detail");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskById(taskId);
+        view.addObject("listComment",commentService.getAllCommentsByTaskId(taskId));
         view.addObject("task", task);
         return view;
     }
