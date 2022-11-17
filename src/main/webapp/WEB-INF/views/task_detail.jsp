@@ -41,24 +41,30 @@
                 <a class="test" href="${pageContext.request.contextPath}/task/list_task?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         style="background: blue;" value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input class="btn btn-secondary"
-                                                                                               type="button"
-                                                                                               value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input class="btn btn-secondary"
-                                                                                             type="button"
-                                                                                             value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input class="btn btn-secondary"
-                                                                                        type="button"
-                                                                                        value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Lịch"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="task-details-main">
@@ -119,19 +125,16 @@
                     <td>${task.taskfName}</td>
                 </tr>
             </table>
-
             <div>
                 <p>Danh sách công việc phụ :</p>
                 <div class="add" id="show-member">
                     <button class="btn btn-primary">+ Thêm công việc phụ</button>
                 </div>
-
             </div>
             <div>
-               <c:forEach items="${task.listSubTask}" var="subTask" >
-                   <a href="#">${subTask.taskName}</a>
-               </c:forEach>
-
+                <c:forEach items="${task.listSubTask}" var="subTask">
+                    <a href="#">${subTask.taskName}</a>
+                </c:forEach>
             </div>
 
         </div>
@@ -144,7 +147,8 @@
                 </a>
             </form>
         </div>
-        <div class="task-cmt-details">
+
+        <div class="task-cmt-details" style="margin-top: 20px; margin-left: 10px;">
             <div class="task-cmt-details-main">
                 <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                 <a class="name-avatar">Nam</a>
@@ -168,6 +172,7 @@
                 <input class="input-cmt" type="text" placeholder="Bình luận....">
                 <button class="btn btn-primary">Gửi</button>
             </div>
+
         </div>
     </div>
 </div>
