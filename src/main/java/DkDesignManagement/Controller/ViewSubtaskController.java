@@ -21,6 +21,7 @@ public class ViewSubtaskController {
         ModelAndView view = new ModelAndView("subtask");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskById(taskId);
+        view.addObject("task",task);
         return view;
     }
 }

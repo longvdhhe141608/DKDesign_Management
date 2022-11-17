@@ -17,5 +17,4 @@ public interface TaskService {
 
    Task getTaskById(int taskId);
 
-   Task getSubTaskById(int taskId);
 }
