@@ -42,7 +42,7 @@ public class TaskServiceImpl implements TaskService {
    @Override
    public Task getTaskById(int taskId) {
       Task task = taskDAO.getTaskById(taskId);
-      task.setRequirementName(requirementDao.getRequirementById(task.getRequirementId()).getRequirementName());
+      task.setRequirementName(requirementDao.getRequirementById(task.getRequirementId().intValue()).getRequirementName());
       task.setProjectName(projectDao.getProject(task.getProjectId()).getProjectName());
       task.setSectionName(section.getOneSectionBySectionID(task.getSectionId()).getSectionName());
       task.setListSubTask(taskDAO.getListSubTask(task.getTaskId()));
