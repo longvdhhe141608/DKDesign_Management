@@ -124,24 +124,19 @@
             </table>
         </div>
         <div class="task-cmt-details">
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
+            <c:if test="${listComment.size() > 0}">
+                <c:forEach items="${listComment}" var="commentDto" >
+                    <!----------item------------>
+                    <div class="task-cmt-details-main">
+                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                        <a class="name-avatar">${commentDto.accountName}</a>
+                        <a> ${commentDto.dateCountDown}</a></br>
+                        <p>${commentDto.content}</p>
+                    </div>
+                    <!----------item------------>
+                </c:forEach>
+            </c:if>
+
             <div class="task-detail-cmt">
                 <div>
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
