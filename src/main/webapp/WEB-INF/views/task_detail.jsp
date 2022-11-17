@@ -132,9 +132,11 @@
                 </tr>
                 <tr>
                     <td>Kế hoạch của công việc:</td>
+                    <td>${task.taskfName}</td>
                 </tr>
             </table>
             <div>
+                <p>Danh sách công việc phụ :</p>
                 <div class="add" id="show-member">
                     <button class="btn btn-primary">+ Thêm công việc phụ</button>
                 </div>
