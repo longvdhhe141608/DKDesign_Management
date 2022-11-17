@@ -28,8 +28,8 @@ public class SectionServiceImpl implements SectionService {
     AccountDao accountDao;
 
     @Override
-    public List<SectionDto> getAll() {
-        List<Section> list = sectionDAO.getAll();
+    public List<SectionDto> getAll(int projectId) {
+        List<Section> list = sectionDAO.getAllSectionByProjectID(projectId);
         List<SectionDto> listBigTask = new ArrayList<>();
         for (Section section : list) {
             SectionDto sectionDto = SectionDto.toBigTaskDto(section);

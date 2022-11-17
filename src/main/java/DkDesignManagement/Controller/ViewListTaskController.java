@@ -1,8 +1,10 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.*;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +40,19 @@ public class ViewListTaskController {
     @Autowired
     TaskService taskService;
 
+    @Autowired
+    private ProjectDao projectDao;
+
 
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
-    public ModelAndView viewListTask(@ModelAttribute("mess") String mess) {
+    public ModelAndView viewListTask(@ModelAttribute("mess") String mess,HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Project project = projectDao.getProject(id);
+
         ModelAndView view = new ModelAndView("list_task");
-        view.addObject("listBigTask", sectionService.getAll());
-        view.addObject("listProject", projectService.getProject());
+        view.addObject("project", project);
+        view.addObject("listBigTask", sectionService.getAll(id));
         view.addObject("listAccount", accountService.getAccounts());
-        view.addObject("listRequirement", requirementService.getAll());
         view.addObject("listTaskLevel2", taskService.getListTask());
         view.addObject("mess", mess);
         return view;
