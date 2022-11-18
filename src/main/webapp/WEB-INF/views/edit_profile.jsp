@@ -66,7 +66,7 @@
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input pattern="^0[0-9]{9}$" type="text" id="phone" name="phone" value="${profile.phone}" required></td>
+                            <td><input pattern="^0[0-9]{9}$" title="nhap sdt" type="text" id="phone" name="phone" value="${profile.phone}" required></td>
                         </tr>
                         <tr>
                             <td>Email:</td>
@@ -83,7 +83,7 @@
                 <%-- button --%>
                 <div class="btn-edit">
                     <button class="btn btn-secondary" style="margin-right: 10px; color: white">
-                        <a href="${pageContext.request.contextPath}/profile/detail">Hủy</a>
+                        <a href="javascript:history.back()">Hủy</a>
                     </button>
                     <input type="submit" onclick="alert('Sua profile thanh cong')" class="btn btn-primary" value="Lưu">
                 </div>
