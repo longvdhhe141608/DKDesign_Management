@@ -97,9 +97,9 @@
                                     <td>Đầu mục công việc:</td>
                                     <td>
                                         <select name="sectionId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listBigTask}" var="section">
-                                            <option value="${section.id}"> ${section.section_name}</option>
-                                        </c:forEach>
+                                            <c:forEach items="${listBigTask}" var="section">
+                                                <option value="${section.id}"> ${section.section_name}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
@@ -108,7 +108,7 @@
                                     <td>
                                         <div class="name-input" style="width: 150px;">
                                             <input class="form-control" formControlName="dob" type="date"
-                                                 name="startDate"  value="20/10/2022">
+                                                   name="startDate" value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
@@ -117,7 +117,7 @@
                                     <td>
                                         <div class="name-input" style="width: 150px;">
                                             <input class="form-control" formControlName="dob" type="date"
-                                                   name="deadline"   value="20/10/2022">
+                                                   name="deadline" value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
@@ -154,6 +154,9 @@
                                         <button onclick="myFunction('.sub-task-detail')"><i
                                                 class="fa-solid fa-caret-down"></i></button>
                                             ${task.taskName}
+                                        <a href="task_detail?taskId=${task.taskId}">
+                                            <button class="btn btn-primary">Chi tiết</button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-2" style="border: 1px solid gray;">${task.assignToName}</div>
@@ -169,11 +172,11 @@
                                     <div class="col-4" style="border: 1px solid gray;">
                                         <div class="">
                                                 ${subTask.taskName}
+                                            <a href="task_detail?taskId=${subTask.taskId}">
+                                                <button class="btn btn-primary">Chi tiết</button>
+                                            </a>
                                         </div>
-                                            <div>
-                                                <a href="task_detail?taskId=${subTask.taskId}" ><button class="btn btn-primary">Chi tiết</button></a>
 
-                                            </div>
                                     </div>
                                     <div class="col-2" style="border: 1px solid gray;">${subTask.assignToName}</div>
                                     <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>

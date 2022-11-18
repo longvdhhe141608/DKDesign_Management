@@ -13,18 +13,23 @@ public class EmployeeDao {
 
     public Employee getInformation(int id) {
         String sql = "select * from `dkmanagement`.`employees` where id_acc = ?";
-        Employee e = new Employee();
-        e = jdbcTemplate.queryForObject(sql, new MapperEmployee(), id);
-        return e;
+        Employee employee = jdbcTemplate.queryForObject(sql, new MapperEmployee(), id);
+        return employee;
     }
 
     /*
      * sua doi thong tin cua employee trong profile
      */
-    public void updateProfile(Employee employee){
+    public int updateProfile(Employee employee) {
         String sql = "UPDATE `dkmanagement`.`employees` " +
                 "SET `address` = ?, `gender` = ?, `dob` = ?, `cccd` = ?, `email` = ?, `phone` = ?" +
                 "WHERE (`id` = ?)";
-        jdbcTemplate.update(sql, employee.getAddress(), employee.getGender(), employee.getDob(), employee.getCccd(), employee.getMail(), employee.getPhone(),employee.getId());
+        return jdbcTemplate.update(sql, employee.getAddress(), employee.getGender(), employee.getDob(), employee.getCccd(), employee.getMail(), employee.getPhone(), employee.getId());
+    }
+
+    public Employee getEmployeeByEmpId(int id){
+        String sql = "select * from `dkmanagement`.`employees` where id = ?";
+        Employee employee = jdbcTemplate.queryForObject(sql, new MapperEmployee(), id);
+        return employee;
     }
 }

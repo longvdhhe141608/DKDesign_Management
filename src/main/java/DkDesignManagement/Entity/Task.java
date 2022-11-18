@@ -49,7 +49,6 @@ public class Task {
     private List<Task> listSubTask;
     private String assignToName;
 
-    //requirement
     private String requirementName;
 
     //project
@@ -58,9 +57,10 @@ public class Task {
     //section
     private String sectionName;
 
-    //task
-    private String taskfName;
+    //file current
+    private int numberFileCurrent;
 
-
+    //workProgress
+    private String workProgress;
 
 }
