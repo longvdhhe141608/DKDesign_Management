@@ -27,88 +27,90 @@
     <div style="margin-left: 20%;">
         <span style="font-size: 30px;"><a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>Chỉnh sửa thông tin cá nhân</span>
 
-        <div class="information-main">
-            <div class="information-main-avata">
-                <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="
+            <div class="information-main">
+                <div class="information-main-avata">
+                    <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false" style="
                       border-radius: 50%;
                       background-color: white;
                       border: none;
                       outline: none;
                     ">
-                    <img alt="" class="img_avatar_change" src="../image/a.jpg"/>
-                </button>
+                        <img alt="" class="img_avatar_change" src="../image/a.jpg"/>
+                    </button>
+                </div>
+                <div>
+                    <form action="editAccount" method="post">
+                    <table class="table table-borderless">
+                        <p class="text-danger">${error}</p>
+                        <tr>
+                            <input name="id" type="number" value="${member.memberId}" hidden/>
+                            <td><label>Họ và tên:</label></td>
+                            <td>
+                                <input name="name" type="text" value="${member.memberName}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Mã nhân viên:</td>
+                            <td><input name="username" type="text" value="${member.memberCode}" readonly></td>
+                        </tr>
+                        <tr>
+                            <td>Số CCCD/CMND:</td>
+                            <td><input name="cccd" type="text" value="${member.memberCccd}"></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh:</td>
+                            <td>
+                                <input type="date" name="dob" value="${member.memberDob}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Giới tính:</td>
+                            <td><select name="gender" id="gender" required>
+                                <option id="1" value="1">Nam</option>
+                                <option id="2" value="2" ${member.memberGender==2?"selected":""}>Nữ</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td><input name="phone" type="text" value="${member.memberPhone}"></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><input name="mail" type="text" value="${member.memberMail}"></td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ nhà:</td>
+                            <td><input name="address" type="text" value="${member.memberAddress}"></td>
+                        </tr>
+                        <tr>
+                            <td>Vai trò:</td>
+                            <td>
+                                <select id="role" name="role">
+                                    <option id="leader" value="2">thiết kế</option>
+                                    <option id="designer" value="1" ${member.memberRole==1?"selected":""}>trưởng nhóm
+                                    </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Trạng thái:</td>
+                            <td>
+                                <select name="status" id="status">
+                                    <option id="active" value="1">mở</option>
+                                    <option id="blocked" value="2" ${member.memberStatus==2?"selected":""}>Chặn</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="btn-edit">
+                        <a href="javascript:history.back()">
+                            <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
+                        </a>
+                        <input type="submit" value="Chỉnh sửa" class="btn btn-primary"/>
+                    </div> </form>
+                </div>
             </div>
-            <div>
-                <table class="table table-borderless">
-                    <tr>
-                        <td><label>Họ và tên:</label></td>
-                        <td>
-                            <input name="name" type="text" value="${employee.name}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mã nhân viên:</td>
-                        <td><input type="text" value="huonghtt" readonly></td>
-                    </tr>
-                    <tr>
-                        <td>Số CCCD/CMND:</td>
-                        <td><input name="cccd" type="text" value="${employee.cccd}"></td>
-                    </tr>
-                    <tr>
-                        <td>Ngày sinh:</td>
-                        <td>
-                            <input type="date" placeholder="dd-MM-yyyy" name="date" value="${employee.dob}">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Giới tính:</td>
-                        <td><select name="gender" id="">
-                            <option value="1">Nam</option>
-                            <option value="2">Nữ</option>
-                        </select></td>
-                    </tr>
-                    <tr>
-                        <td>Số điện thoại:</td>
-                        <td><input type="number" value="0123456678"></td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td><input type="text" value="huonghtthe141550@fpt.edu.vn"></td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ nhà:</td>
-                        <td><input type="text" value="Nam Định, Việt Nam"></td>
-                    </tr>
-                    <tr>
-                        <td>Vai trò:</td>
-                        <td>
-                            <select>
-                                <option value="1">thiết kế</option>
-                                <option value="2">trưởng nhóm</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Trạng thái:</td>
-                        <td>
-                            <select>
-                                <option>mở</option>
-                                <option>Chặn</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-        <div class="btn-edit">
-            <a href="javascript:history.back()">
-                <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
-            </a>
-            <form action="${pageContext.request.contextPath}/admin/memberlist">
-                <button class="btn btn-primary">Lưu</button>
-            </form>
-        </div>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

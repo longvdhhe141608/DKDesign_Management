@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: Hoang Long
@@ -25,8 +26,7 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
-        <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i
-                class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
+        <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
         <div class="information-main">
             <div class="information-main-avata">
                 <img class="img_avatar_change" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
@@ -41,8 +41,7 @@
                         <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
                         <tr>
                             <td>Họ và tên:</td>
-                            <td><input pattern="^[a-zA-Z]+(([',. -][a-zA-Z])?[a-zA-Z]*)*$" type="text" id="name"
-                                       name="name" value="${profile.name}" required></td>
+                            <td><input pattern="^[a-zA-Z]+(([',. -][a-zA-Z])?[a-zA-Z]*)*$" type="text" id="name" name="name" value="${profile.name}" required></td>
                         </tr>
 
                         <tr>
@@ -57,24 +56,21 @@
                         <tr>
                             <td>Giới tính:</td>
                             <td><select name="gender" id="gender" required>
-                                <option id="1" value="1">Nam</option>
+                                <option id="1" value="1" >Nam</option>
                                 <option id="2" value="2" ${profile.gender==2?"selected":""}>Nữ</option>
                             </select></td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input pattern="^0[0-9]{9}$" type="text" id="phone" name="phone"
-                                       value="${profile.phone}" required></td>
+                            <td><input pattern="^0[0-9]{9}$" title="nhap sdt" type="text" id="phone" name="phone" value="${profile.phone}" required></td>
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td><input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text" id="email"
-                                       name="email" value="${profile.mail}" required></td>
+                            <td><input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text" id="email" name="email" value="${profile.mail}" required></td>
                         </tr>
                         <tr>
                             <td>Địa chỉ nhà:</td>
-                            <td><input pattern="^[a-zA-Z0-9]+((,?[',. -][a-zA-Z0-9])?[a-zA-Z0-9]*\.?)*$" type="text"
-                                       id="address" name="address" value="${profile.address}"></td>
+                            <td><input pattern="^[a-zA-Z0-9]+((,?[',. -][a-zA-Z0-9])?[a-zA-Z0-9]*\.?)*$" type="text" id="address" name="address" value="${profile.address}"></td>
                         </tr>
 
                     </table>
@@ -83,7 +79,7 @@
                 <%-- button --%>
                 <div class="btn-edit">
                     <button class="btn btn-secondary" style="margin-right: 10px; color: white">
-                        <a href="${pageContext.request.contextPath}/profile/detail">Hủy</a>
+                        <a href="javascript:history.back()">Hủy</a>
                     </button>
                     <input type="submit" onclick="alert('Sua profile thanh cong')" class="btn btn-primary" value="Lưu">
                 </div>

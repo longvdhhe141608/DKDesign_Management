@@ -48,30 +48,30 @@
                     </tr>
                     <tr>
                         <td>Số CCCD/CMND:</td>
-                        <td>${employee.cccd}</td>
+                        <td>${member.memberCccd}</td>
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
                         <td>
-                            <fmt:formatDate value="${employee.dob}" var="dob" pattern="dd/MM/yyyy"/>
+                            <fmt:formatDate value="${member.memberDob}" var="dob" pattern="dd/MM/yyyy"/>
                             ${dob}
                         </td>
                     </tr>
                     <tr>
                         <td>Giới tính:</td>
-                        <td>${employee.gender==1?"Nam":"Nu"}</td>
+                        <td>${member.memberGender==1?"Nam":"Nu"}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td>${employee.phone}</td>
+                        <td>${member.memberPhone}</td>
                     </tr>
                     <tr>
                         <td>Email:</td>
-                        <td>${employee.mail}</td>
+                        <td>${member.memberMail}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ nhà:</td>
-                        <td>${employee.address}</td>
+                        <td>${member.memberAddress}</td>
                     </tr>
                     <tr>
                         <td>Vai trò:</td>
@@ -89,7 +89,7 @@
         </div>
         <div>
             <form action="editAccount" method="get">
-                <input value="${employee.id}" name="id" hidden>
+                <input value="${member.memberId}" name="id" hidden>
                 <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
             </form>
         </div>
@@ -106,6 +106,4 @@
 </script>
 
 </body>
-
-
 </html>
