@@ -81,7 +81,7 @@
                         <div class="function_search">
                             <div class="wap_search">
                                 <input style="margin-right: 2px;" type="text" class="search_term"
-                                       name="textSearch" placeholder="Tên công trình">
+                                       name="textSearch" placeholder="Tên công việc">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
                         </div>

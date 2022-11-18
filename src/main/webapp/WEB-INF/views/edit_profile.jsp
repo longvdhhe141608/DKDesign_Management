@@ -29,15 +29,11 @@
         <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
         <div class="information-main">
             <div class="information-main-avata">
-                <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" style="
-                      border-radius: 50%;
-                      background-color: white;
-                      border: none;
-                      outline: none;
-                    ">
-                    <img class="img_avatar_change" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                </button>
+                <img class="img_avatar_change" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                     style="display: flex"/>
+                <label class="btn btn-edit"
+                       style="display: flex; border: none; border-radius: 5px; background-color: royalblue; color: white; margin-right: 100px; margin-top: 5px;">Upload
+                    ảnh</label>
             </div>
             <form action="edit" method="post">
                 <div>

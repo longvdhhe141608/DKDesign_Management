@@ -143,3 +143,20 @@
     background-color: #b7bacb;
     color: black;
 }
+.row .row-task a .link-row-task{
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: darkgray;
+}
+.row .row-task a:hover .link-row-task{
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: darkgray;
+    color: black;
+}
