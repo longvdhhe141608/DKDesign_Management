@@ -34,22 +34,27 @@
                 </div>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input class="btn btn-secondary " type="button"
-                                                           value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                             value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                             style="background: blue;" value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                            value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                               value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                            value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                          value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                             value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
+                        class="btn btn-secondary " type="button"
+                        value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        style="background: blue;" value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="plan">
@@ -130,223 +135,223 @@
                             </tr>
                         </c:forEach>
 
-<%--                        <tr>--%>
-<%--                            <td style="justify-content: center;">--%>
-<%--                                <form class="form-name-project" action="">--%>
-<%--                                    <div class="name-project">--%>
-<%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
-<%--                                        thự--%>
-<%--                                        nhà dân Biệt thự nhà--%>
-<%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </td>--%>
-<%--                            <td>Nguyễn Như Huấn</td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/10/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/11/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>2</td>--%>
-<%--                            <td style="display: flex;">--%>
-<%--                                <button class="btn btn-primary">Đồng ý</button>--%>
-<%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
-<%--                            </td>--%>
-<%--                            <td><input type="text"></td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td style="justify-content: center;">--%>
-<%--                                <form class="form-name-project" action="">--%>
-<%--                                    <div class="name-project">--%>
-<%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
-<%--                                        thự--%>
-<%--                                        nhà dân Biệt thự nhà--%>
-<%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </td>--%>
-<%--                            <td>Nguyễn Như Huấn</td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/10/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/11/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>2</td>--%>
-<%--                            <td style="display: flex;">--%>
-<%--                                <button class="btn btn-primary">Đồng ý</button>--%>
-<%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
-<%--                            </td>--%>
-<%--                            <td><input type="text"></td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td style="justify-content: center;">--%>
-<%--                                <form class="form-name-project" action="">--%>
-<%--                                    <div class="name-project">--%>
-<%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
-<%--                                        thự--%>
-<%--                                        nhà dân Biệt thự nhà--%>
-<%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </td>--%>
-<%--                            <td>Nguyễn Như Huấn</td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/10/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/11/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>2</td>--%>
-<%--                            <td style="display: flex;">--%>
-<%--                                <button class="btn btn-primary">Đồng ý</button>--%>
-<%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
-<%--                            </td>--%>
-<%--                            <td><input type="text"></td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td style="justify-content: center;">--%>
-<%--                                <form class="form-name-project" action="">--%>
-<%--                                    <div class="name-project">--%>
-<%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
-<%--                                        thự--%>
-<%--                                        nhà dân Biệt thự nhà--%>
-<%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </td>--%>
-<%--                            <td>Nguyễn Như Huấn</td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/10/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/11/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>2</td>--%>
-<%--                            <td style="display: flex;">--%>
-<%--                                <button class="btn btn-primary">Đồng ý</button>--%>
-<%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
-<%--                            </td>--%>
-<%--                            <td><input type="text"></td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td style="justify-content: center;">--%>
-<%--                                <form class="form-name-project" action="">--%>
-<%--                                    <div class="name-project">--%>
-<%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
-<%--                                        thự--%>
-<%--                                        nhà dân Biệt thự nhà--%>
-<%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </td>--%>
-<%--                            <td>Nguyễn Như Huấn</td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/10/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/11/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>2</td>--%>
-<%--                            <td style="display: flex;">--%>
-<%--                                <button class="btn btn-primary">Đồng ý</button>--%>
-<%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
-<%--                            </td>--%>
-<%--                            <td><input type="text"></td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td style="justify-content: center;">--%>
-<%--                                <form class="form-name-project" action="">--%>
-<%--                                    <div class="name-project">--%>
-<%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
-<%--                                        thự--%>
-<%--                                        nhà dân Biệt thự nhà--%>
-<%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </td>--%>
-<%--                            <td>Nguyễn Như Huấn</td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/10/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/11/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>2</td>--%>
-<%--                            <td style="display: flex;">--%>
-<%--                                <button class="btn btn-primary">Đồng ý</button>--%>
-<%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
-<%--                            </td>--%>
-<%--                            <td><input type="text"></td>--%>
-<%--                        </tr>--%>
-<%--                        <tr>--%>
-<%--                            <td style="justify-content: center;">--%>
-<%--                                <form class="form-name-project" action="">--%>
-<%--                                    <div class="name-project">--%>
-<%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
-<%--                                        thự--%>
-<%--                                        nhà dân Biệt thự nhà--%>
-<%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
-<%--                                    </div>--%>
-<%--                                </form>--%>
-<%--                            </td>--%>
-<%--                            <td>Nguyễn Như Huấn</td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/10/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>--%>
-<%--                                <div class="name-input" style="width: 150px;">--%>
-<%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
-<%--                                           value="20/11/2022">--%>
-<%--                                </div>--%>
-<%--                            </td>--%>
-<%--                            <td>2</td>--%>
-<%--                            <td style="display: flex;">--%>
-<%--                                <button class="btn btn-primary">Đồng ý</button>--%>
-<%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
-<%--                            </td>--%>
-<%--                            <td><input type="text"></td>--%>
-<%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
+                        <%--                                        thự--%>
+                        <%--                                        nhà dân Biệt thự nhà--%>
+                        <%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>Nguyễn Như Huấn</td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>2</td>--%>
+                        <%--                            <td style="display: flex;">--%>
+                        <%--                                <button class="btn btn-primary">Đồng ý</button>--%>
+                        <%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td><input type="text"></td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
+                        <%--                                        thự--%>
+                        <%--                                        nhà dân Biệt thự nhà--%>
+                        <%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>Nguyễn Như Huấn</td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>2</td>--%>
+                        <%--                            <td style="display: flex;">--%>
+                        <%--                                <button class="btn btn-primary">Đồng ý</button>--%>
+                        <%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td><input type="text"></td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
+                        <%--                                        thự--%>
+                        <%--                                        nhà dân Biệt thự nhà--%>
+                        <%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>Nguyễn Như Huấn</td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>2</td>--%>
+                        <%--                            <td style="display: flex;">--%>
+                        <%--                                <button class="btn btn-primary">Đồng ý</button>--%>
+                        <%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td><input type="text"></td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
+                        <%--                                        thự--%>
+                        <%--                                        nhà dân Biệt thự nhà--%>
+                        <%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>Nguyễn Như Huấn</td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>2</td>--%>
+                        <%--                            <td style="display: flex;">--%>
+                        <%--                                <button class="btn btn-primary">Đồng ý</button>--%>
+                        <%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td><input type="text"></td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
+                        <%--                                        thự--%>
+                        <%--                                        nhà dân Biệt thự nhà--%>
+                        <%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>Nguyễn Như Huấn</td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>2</td>--%>
+                        <%--                            <td style="display: flex;">--%>
+                        <%--                                <button class="btn btn-primary">Đồng ý</button>--%>
+                        <%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td><input type="text"></td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
+                        <%--                                        thự--%>
+                        <%--                                        nhà dân Biệt thự nhà--%>
+                        <%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>Nguyễn Như Huấn</td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>2</td>--%>
+                        <%--                            <td style="display: flex;">--%>
+                        <%--                                <button class="btn btn-primary">Đồng ý</button>--%>
+                        <%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td><input type="text"></td>--%>
+                        <%--                        </tr>--%>
+                        <%--                        <tr>--%>
+                        <%--                            <td style="justify-content: center;">--%>
+                        <%--                                <form class="form-name-project" action="">--%>
+                        <%--                                    <div class="name-project">--%>
+                        <%--                                        Biệt thự nhà dân Biệt thự nhà dân Biệt--%>
+                        <%--                                        thự--%>
+                        <%--                                        nhà dân Biệt thự nhà--%>
+                        <%--                                        dân Biệt thự nhà dân Biệt thự nhà dân--%>
+                        <%--                                    </div>--%>
+                        <%--                                </form>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>Nguyễn Như Huấn</td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/10/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>--%>
+                        <%--                                <div class="name-input" style="width: 150px;">--%>
+                        <%--                                    <input class="form-control" formControlName="dob" type="datetime"--%>
+                        <%--                                           value="20/11/2022">--%>
+                        <%--                                </div>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td>2</td>--%>
+                        <%--                            <td style="display: flex;">--%>
+                        <%--                                <button class="btn btn-primary">Đồng ý</button>--%>
+                        <%--                                <button class="btn btn-secondary">Hủy bỏ</button>--%>
+                        <%--                            </td>--%>
+                        <%--                            <td><input type="text"></td>--%>
+                        <%--                        </tr>--%>
                         </tbody>
                     </table>
                 </div>

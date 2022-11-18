@@ -45,10 +45,6 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input
-                        class="btn btn-secondary"
-                        type="button"
-                        value="Lịch"></a>
                 <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
@@ -67,7 +63,7 @@
                         value="Thống kê"></a>
             </div>
         </div>
-        <c:if test="${task.taskStatus == 3}" >
+        <c:if test="${task.taskStatus == 3}">
             <div>
                 <h4>Bạn có muốn phê duyệt không (FE sửa hộ)</h4>
                 <button type="button" class="btn btn-primary">Đồng ý</button>
@@ -141,9 +137,9 @@
                 </div>
             </div>
             <div>
-               <c:forEach items="${task.listSubTask}" var="subTask" >
-                   <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
-               </c:forEach>
+                <c:forEach items="${task.listSubTask}" var="subTask">
+                    <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
+                </c:forEach>
             </div>
 
         </div>
@@ -159,7 +155,7 @@
 
         <div class="task-cmt-details" style="margin-top: 20px; margin-left: 10px;">
             <c:if test="${listComment.size() > 0}">
-                <c:forEach items="${listComment}" var="commentDto" >
+                <c:forEach items="${listComment}" var="commentDto">
                     <!----------item------------>
                     <div class="task-cmt-details-main">
                         <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
@@ -173,12 +169,12 @@
             </c:if>
 
             <div class="task-detail-cmt">
-                <form action="add-comment" method="post" >
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                    <input name="taskId" type="text" value="${task.taskId}"  hidden="">
-                    <input name="operation" type="text" value="taskDetail"  hidden="">
-                <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
-                <button class="btn btn-primary">Gửi</button>
+                <form action="add-comment" method="post">
+                    <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                    <input name="taskId" type="text" value="${task.taskId}" hidden="">
+                    <input name="operation" type="text" value="taskDetail" hidden="">
+                    <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                    <button class="btn btn-primary">Gửi</button>
                 </form>
             </div>
         </div>

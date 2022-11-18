@@ -43,9 +43,6 @@
                 <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
                                                                                                type="button"
                                                                                                value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Lịch"></a>
                 <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
                                                                                              type="button"
                                                                                              value="Yêu cầu của khách hàng"></a>
@@ -74,7 +71,7 @@
                     <div class="project-add-task">
                         <form action="add-task" method="post" class="form-inline my-2 my-lg-0">
                             <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                  name="name" placeholder="Tên công việc" aria-label="Text"/>
+                                   name="name" placeholder="Tên công việc" aria-label="Text"/>
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Nhiệm vụ:</td>
@@ -89,7 +86,7 @@
                                 <tr>
                                     <td>Công trình:</td>
                                     <td>
-                                     ${project.projectName}
+                                        ${project.projectName}
                                         <input type="text" class="" name="projectId" value="${project.id}" hidden>
                                     </td>
                                 </tr>
@@ -268,6 +265,7 @@
             }
         }
     }
+
     var mess = '${mess}'
     if (mess != '') {
         alert(mess);

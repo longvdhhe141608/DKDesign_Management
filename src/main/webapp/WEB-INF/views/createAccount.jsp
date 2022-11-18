@@ -62,7 +62,8 @@
                         </td>
 
                         <td>
-                            <input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="mail" name="mail" type="text" required>
+                            <input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="mail" name="mail"
+                                   type="text" required>
                         </td>
 
                     </tr>
