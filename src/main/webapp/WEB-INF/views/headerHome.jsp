@@ -45,18 +45,18 @@
                                         </div>
                                     </c:forEach>
                                 </div>
-<%--                                <table class=" table">--%>
-<%--                                    <c:forEach items="${listProDoing}" var="i">--%>
-<%--                                        <tr>--%>
-<%--                                            <td class="left-main">--%>
-<%--                                                    ${i.project_name}--%>
-<%--                                            </td>--%>
-<%--                                            <td class="left-main">--%>
-<%--                                                    ${i.project_name}--%>
-<%--                                            </td>--%>
-<%--                                        </tr>--%>
-<%--                                    </c:forEach>--%>
-<%--                                </table>--%>
+                                <%--                                <table class=" table">--%>
+                                <%--                                    <c:forEach items="${listProDoing}" var="i">--%>
+                                <%--                                        <tr>--%>
+                                <%--                                            <td class="left-main">--%>
+                                <%--                                                    ${i.project_name}--%>
+                                <%--                                            </td>--%>
+                                <%--                                            <td class="left-main">--%>
+                                <%--                                                    ${i.project_name}--%>
+                                <%--                                            </td>--%>
+                                <%--                                        </tr>--%>
+                                <%--                                    </c:forEach>--%>
+                                <%--                                </table>--%>
                             </div>
                         </div>
                         <%--Kết thúc bảng công trình đang làm--%>

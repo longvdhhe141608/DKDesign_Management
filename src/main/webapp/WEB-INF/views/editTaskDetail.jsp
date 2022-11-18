@@ -27,7 +27,7 @@
     <div class="summary">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.project_name}</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
@@ -46,10 +46,6 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input
-                        class="btn btn-secondary"
-                        type="button"
-                        value="Lịch"></a>
                 <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
@@ -145,11 +141,11 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<script>
-    $(function () {
-        $("#header-include").load("header.html");
-        $("#narbar_menu").load("nav-left.html");
-    });
-</script>
+<%--<script>--%>
+<%--    $(function () {--%>
+<%--        $("#header-include").load("header.html");--%>
+<%--        $("#narbar_menu").load("nav-left.html");--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 </html>

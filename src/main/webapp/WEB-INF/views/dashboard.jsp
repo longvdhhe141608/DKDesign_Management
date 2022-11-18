@@ -28,7 +28,7 @@
     <div class="summary container" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.project_name}</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
@@ -37,31 +37,35 @@
                 </div>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input class="btn btn-secondary"
-                                                                                         type="button"
-                                                                                         value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}list_task?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input class="btn btn-secondary"
-                                                                                               type="button"
-                                                                                               value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input class="btn btn-secondary"
-                                                                                             type="button"
-                                                                                             value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input class="btn btn-secondary"
-                                                                                        type="button"
-                                                                                        value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           style="background: blue;"
-                                                                                           value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}list_task?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        style="background: blue;"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div>
@@ -135,7 +139,6 @@
     });
 </script>
 </body>
-
 
 
 </html>

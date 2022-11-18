@@ -109,7 +109,8 @@
                                     <div class="block-link">
                                         <div></div>
                                         <div class="links">
-                                            <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}" class="link-cong-viec">
+                                            <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}"
+                                               class="link-cong-viec">
                                                 <button class="btn-chi-tiet">
                                                     Chi tiết
                                                 </button>
