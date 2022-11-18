@@ -41,7 +41,9 @@
                                 <div class="card_list_project">
                                     <c:forEach items="${listProDoing}" var="i">
                                         <div class="card_project">
-                                                ${i.projectName}
+                                            <a href="${pageContext.request.contextPath}/project/summary?id=${i.id}" style="color: black; text-decoration: none">
+                                                    ${i.projectName}
+                                            </a>
                                         </div>
                                     </c:forEach>
                                 </div>

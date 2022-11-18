@@ -122,7 +122,6 @@
                         </c:forEach>
                     </details>
                 </c:forEach>
-
             </div>
         </div>
     </div>
