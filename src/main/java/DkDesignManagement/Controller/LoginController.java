@@ -1,7 +1,7 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
-import DkDesignManagement.Repository.AccountDao;
+import DkDesignManagement.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,12 +21,13 @@ import java.io.IOException;
 @RequestMapping(value = "/")
 
 public class LoginController {
+
     @Autowired
-    private AccountDao accountDao;
+    private AccountService accountService;
 
     @GetMapping(value = "")
     public String login() {
-        return "login";
+        return "redirect:login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -45,21 +46,25 @@ public class LoginController {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        account = accountDao.getAccount(username);
-        if (account != null && account.getPassword().equals(password)) {
-            session.setAttribute("loginUser", account);
-            if (account.getRole_id() == 2) {
-                view = new ModelAndView("redirect:headerHome");
-            } else if (account.getRole_id() == 3) {
-                view = new ModelAndView("redirect:design/home");
+        if (accountService.isExisted(username)) {
+            account = accountService.getAccount(username);
+            if (account.getPassword().equals(password)) {
+                session.setAttribute("loginUser", account);
+                if (account.getRole_id() == 2) {
+                    view = new ModelAndView("redirect:headerHome");
+                } else if (account.getRole_id() == 3) {
+                    view = new ModelAndView("redirect:design/home");
+                } else {
+                    view = new ModelAndView("redirect:admin/memberlist");
+                }
             } else {
-                view = new ModelAndView("redirect:admin/memberlist");
+                request.setAttribute("message", "Invalid username or password!");
+                view = new ModelAndView("login");
             }
         } else {
-            request.setAttribute("message", "Invalid username or password!");
+            request.setAttribute("message", "Username Does Not Exist!");
             view = new ModelAndView("login");
         }
-
         return view;
     }
 

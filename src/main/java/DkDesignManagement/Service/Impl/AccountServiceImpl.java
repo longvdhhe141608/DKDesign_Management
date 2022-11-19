@@ -16,8 +16,8 @@ public class AccountServiceImpl implements AccountService {
     private List<Account> accountList = new ArrayList<>();
 
     @Override
-    public Account getAccount() {
-        return null;
+    public Account getAccount(String username) {
+        return accountDao.getAccount(username);
     }
 
     public boolean isExisted(String username) {
@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> getAccountsByProject(int projectId) {
+    public List<Account> getAccountsByProjectId(int projectId) {
         return accountDao.getAllAccountByProject(projectId);
     }
 }

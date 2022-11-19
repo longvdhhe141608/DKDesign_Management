@@ -97,7 +97,7 @@
                             <td>Trạng thái:</td>
                             <td>
                                 <select name="status" id="status">
-                                    <option id="active" value="1">mở</option>
+                                    <option id="active" value="1">Mở</option>
                                     <option id="blocked" value="2" ${member.memberStatus==2?"selected":""}>Chặn</option>
                                 </select>
                             </td>

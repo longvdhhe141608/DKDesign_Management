@@ -17,7 +17,7 @@ public class MemberDAO {
 
     public List<Member> getMemberInProject(int projectId) {
         List<Member> memberList = new ArrayList<Member>();
-        String sql = "SELECT `employees`.id,`employees`.name as emp_name, \n" +
+        String sql = "SELECT `employees`.id,`employees`.name, \n" +
                 "`roles`.name as role, \n" +
                 "`employees`.`phone`, \n" +
                 "`employees`.`email`,\n" +
@@ -55,8 +55,39 @@ public class MemberDAO {
                 "`employees`.`gender`,\n" +
                 "`employees`.`cccd`\n" +
                 "FROM `employees` JOIN `accounts` ON `employees`.`id_acc` = `accounts`.`id`\n" +
-                "WHERE `accounts`.`role_id` <>1";
+                "WHERE `accounts`.`role_id` <>1\n" +
+                "ORDER BY `accounts`.`role_id` ASC, `employees`.`id` ASC";
 
+        List<Member> memberList = jdbcTemplate.query(sql, new MapperMember());
+        return memberList;
+    }
+
+    /*
+     * load out all member information with chosen role and name like
+     */
+    public List<Member> getAllMemberInSearch(int role, String name) {
+        String sql = "SELECT `employees`.`id`,\n" +
+                "`employees`.`name`,\n" +
+                "`accounts`.`username`,\n" +
+                "`accounts`.`role_id`,\n" +
+                "`employees`.`phone`,\n" +
+                "`employees`.`email`,\n" +
+                "`employees`.`address`,\n" +
+                "`accounts`.`status`,\n" +
+                "`employees`.`dob`,\n" +
+                "`employees`.`gender`,\n" +
+                "`employees`.`cccd` \n" +
+                "FROM `employees` JOIN `accounts` ON `employees`.`id_acc` = `accounts`.`id` \n";
+        if (role != 0) {
+            sql += " WHERE `accounts`.`role_id` = " + role;
+        } else {
+            sql += "WHERE `accounts`.`role_id` <>1 ";
+        }
+        if (!name.isEmpty()) {
+            sql += " AND REPLACE(`employees`.`name`, 'Đ', 'D') like '%" + name + "%' ";
+        }
+        sql += " GROUP BY `accounts`.`role_id`, `employees`.`id` " +
+                "ORDER BY `accounts`.`role_id` ASC, `employees`.`id` ASC";
         List<Member> memberList = jdbcTemplate.query(sql, new MapperMember());
         return memberList;
     }
@@ -88,7 +119,7 @@ public class MemberDAO {
         return jdbcTemplate.update(sql, name, email, acc_id);
     }
 
-    public int updateMemberInfo(int id, String name, int gender, Date dob, String phone, String mail, String address,String cccd) {
+    public int updateMemberInfo(int id, String name, int gender, Date dob, String phone, String mail, String address, String cccd) {
         String sql = "UPDATE `dkmanagement`.`employees` " +
                 "SET `name` = ?, " +
                 "`address` = ?, " +
@@ -99,18 +130,18 @@ public class MemberDAO {
                 "`phone` = ? " +
                 "WHERE (`id` = ?)";
 
-
         int query = jdbcTemplate.update(sql, name, address, gender, dob, cccd, mail, phone, id);
         return query;
     }
 
-    public int updateMemberRole(int role, String username){
+    public int updateMemberRole(int role, String username) {
         String sql = "UPDATE `dkmanagement`.`accounts` " +
                 "SET `role_id` = ?" +
                 "WHERE (`username` = ?)";
-        int query = jdbcTemplate.update(sql, role,username);
+        int query = jdbcTemplate.update(sql, role, username);
         return query;
     }
+
     public int updateMemberStatus(int status, String username) {
         String sql = "UPDATE `dkmanagement`.`accounts` " +
                 "SET `status` = ?" +
