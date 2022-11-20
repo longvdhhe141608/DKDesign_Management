@@ -46,20 +46,16 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?project-id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
-                        value="Lịch"></a>
+                        value="Trạng thái"></a>
                 <a class="test"
                    href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
-                        class="btn btn-secondary"
-                        type="button"
-                        value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -75,8 +71,22 @@
                 <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">${subTask.taskName}
                     > </a>
             </div>
-            <form action="">
+            <form action="${pageContext.request.contextPath}/design/sub-task/edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
+                  method="post">
                 <table class="table table-borderless" style="border: 0;">
+                    <tr>
+                        <td>Sub-task-name:</td>
+                        <td>
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="exampleFormControlInput1"
+                                       value="${subTask.taskName}" name="sub-task-name">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nhiệm vụ:</td>
+                        <td>${subTask.nameEmployee}</td>
+                    </tr>
                     <tr>
                         <td>Nhiệm vụ:</td>
                         <td>${subTask.nameEmployee}</td>
@@ -115,7 +125,8 @@
                     <tr>
                         <td>Yêu cầu khách hàng:</td>
                         <td>
-                            <select name="requirement" id="" style="padding: 10px 10px; border: 1px solid #ccc;border-radius: 5px;background-color: gold;">
+                            <select name="requirement" id=""
+                                    style="padding: 10px 10px; border: 1px solid #ccc;border-radius: 5px;background-color: gold;">
                                 <c:forEach items="${requirements}" var="r">
                                     <option value="${r.id}" ${r.id == subTask.requirementID ? "selected" : ""}>${r.requirementName}</option>
                                 </c:forEach>
@@ -123,13 +134,17 @@
                         </td>
                     </tr>
                     <tr>
-                        <td></td>
+                        <td>
+                            <div class="alert alert-danger" role="alert" style="width: 400px;">
+                                ${mess}
+                            </div>
+                        </td>
                         <td>
                             <div style="display: flex; justify-content: end;">
-
-                                <a class="btn btn-secondary" style="margin-right: 10px;" href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">Hủy bỏ</a>
-
-                                <a class="btn btn-primary" href="${pageContext.request.contextPath}/design/sub-task/edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">Lưu</a>
+                                <a class="btn btn-secondary" style="margin-right: 10px;"
+                                   href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">Hủy
+                                    bỏ</a>
+                                <button type="submit" class="btn btn-primary">Lưu</button>
                             </div>
                         </td>
                     </tr>

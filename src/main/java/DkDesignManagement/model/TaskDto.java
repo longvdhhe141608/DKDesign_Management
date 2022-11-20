@@ -1,4 +1,4 @@
-package DkDesignManagement.Entity.DTO;
+package DkDesignManagement.model;
 
 import DkDesignManagement.Entity.Tasks;
 import lombok.*;

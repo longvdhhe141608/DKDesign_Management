@@ -49,7 +49,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -58,66 +59,85 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
             </div>
         </div>
-        <h4>Thông tin yêu cầu của khách hàng</h4>
+        <h4>Thành viên dự án</h4>
+        <div class="all-member">
 
+            <form action="${pageContext.request.contextPath}/design/project/member-active-search" method="get">
+                <div class="content-function-member">
+                    <div class="function-one">
 
-        <%--        <div class="add" id="show-member">--%>
+                    </div>
+                    <div style="display: flex;">
+                        <div class="function-two" style="margin-right:20px ;">
+                            <div class="dropdown">
+                                <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
+                                        name="role">
+                                    <option  value="default">Default</option>
+                                    <c:forEach items="${roles}" var="i">
+                                        <option value="${i.id}">${i.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="function-thir">
+                            <div class="function_search">
+                                <div class="wap_search">
 
-        <%--            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm yêu cầu</button>--%>
-        <%--        </div>--%>
-
-        <div class="table_content requiment-main ">
-            <div class=" requiment-main-left">
-                <table class="table table-bordered ">
-                    <thead>
-                    <tr>
-                        <th scope="col">Vị trí</th>
-                        <th scope="col">Yêu cầu</th>
-                        <th scope="col">Trạng thái</th>
-                        <%--                        <th scope="col"></th>--%>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${requirements}" var="i">
-                        <tr>
-                            <td>${i.requirementName}</td>
-                            <td>${i.requirementDetail}</td>
-                            <td>
-                                <c:if test="${i.status == 1}">ss</c:if>
-                                <c:if test="${i.status == 2}">ns</c:if>
-                            </td>
-                                <%--                            <td>--%>
-                                <%--                                <div style="display: flex; justify-content: space-between;">--%>
-                                <%--                                    <button><i--%>
-                                <%--                                            class="fa-regular fa-pen-to-square"></i></button>--%>
-                                <%--                                    <button><i class="fa-regular fa-trash-can"></i></button>--%>
-                                <%--                                </div>--%>
-                                <%--                            </td>--%>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-end">
-                            <c:forEach items="${requestScope.lsPage}" var="page">
-                                <li class="page-item ${requestScope.page == page ? "active" : ""}">
-                                    <a class="page-link"
-                                       href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}&pageNo=${page}">${page}</a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </nav>
+                                    <input style="margin-right: 10px;" type="text" class="search_term"
+                                           placeholder="tên thành viên" name="textSearch">
+                                    <input style="margin-right: 10px;" type="text" class="search_term"
+                                           placeholder="tên thành viên" name="project-id" hidden value="${project.id}">
+                                    <button type="submit" class="btn btn-primary"> tìm kiếm</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </form>
+        </div>
+        <div>
+            <table class="table table-bordered">
+                <tr>
+                    <th scope="col">Tên</th>
 
-            </div>
+                    <th scope="col">Chức danh</th>
 
+                    <th scope="col">Số điện thoại</th>
+
+                    <th scope="col">Email</th>
+
+                    <th scope="col">Địa chỉ</th>
+                </tr>
+                <c:forEach items="${memberActiveDtos}" var="i">
+                    <tr>
+                        <td>${i.employeeName}</td>
+                        <td>${i.roleName}</td>
+                        <td>${i.mobile}</td>
+                        <td>${i.email}</td>
+                        <td>${i.address}</td>
+                    </tr>
+                </c:forEach>
+
+            </table>
+        </div>
+        <div class="pagination">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <c:forEach items="${lsPage}" var="page">
+                        <li class="page-item ${requestScope.page == page ? "active" : ""}">
+                            <a class="page-link"
+                               href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}&pageNo=${page}">${page}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

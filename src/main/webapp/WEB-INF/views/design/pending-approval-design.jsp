@@ -49,7 +49,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -58,66 +59,114 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
             </div>
         </div>
-        <h4>Thông tin yêu cầu của khách hàng</h4>
+        <div>
+            <h4>Công việc chờ phê duyệt</h4>
+            <div class="my-task-search">
+                <form action="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task">
+                    <div class="my-task-search-name" style="margin-right:10px ;">
+                        <div class="dropdown">
+                            <select style="height: 38px"  class="btn btn-secondary dropdown-toggle"
+                                    name="status">
+                                <option ${status == "default" ? "selected": ""} value="default">Default</option>
+                                <c:forEach items="${statusList}" var="i">
+                                    <option ${status == i.id ? "selected": ""} value="${i.id}">${i.statusTask}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="function_search">
+                            <form action="">
+                                <div class="wap_search">
 
-
-        <%--        <div class="add" id="show-member">--%>
-
-        <%--            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm yêu cầu</button>--%>
-        <%--        </div>--%>
-
-        <div class="table_content requiment-main ">
-            <div class=" requiment-main-left">
-                <table class="table table-bordered ">
-                    <thead>
-                    <tr>
-                        <th scope="col">Vị trí</th>
-                        <th scope="col">Yêu cầu</th>
-                        <th scope="col">Trạng thái</th>
-                        <%--                        <th scope="col"></th>--%>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach items="${requirements}" var="i">
-                        <tr>
-                            <td>${i.requirementName}</td>
-                            <td>${i.requirementDetail}</td>
-                            <td>
-                                <c:if test="${i.status == 1}">ss</c:if>
-                                <c:if test="${i.status == 2}">ns</c:if>
-                            </td>
-                                <%--                            <td>--%>
-                                <%--                                <div style="display: flex; justify-content: space-between;">--%>
-                                <%--                                    <button><i--%>
-                                <%--                                            class="fa-regular fa-pen-to-square"></i></button>--%>
-                                <%--                                    <button><i class="fa-regular fa-trash-can"></i></button>--%>
-                                <%--                                </div>--%>
-                                <%--                            </td>--%>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-                <div class="pagination">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-end">
-                            <c:forEach items="${requestScope.lsPage}" var="page">
-                                <li class="page-item ${requestScope.page == page ? "active" : ""}">
-                                    <a class="page-link"
-                                       href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}&pageNo=${page}">${page}</a>
-                                </li>
-                            </c:forEach>
-                        </ul>
-                    </nav>
-                </div>
-
+                                    <input style="margin-right: 10px;" type="text" class="search_term"
+                                           placeholder="tên công việc" name="textSearch">
+                                    <input style="margin-right: 10px;" type="text" class="search_term"
+                                           placeholder="tên công việc" name="project-id" hidden value="${project.id}">
+                                    <button type="submit" class="btn btn-primary"> tìm kiếm</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </form>
             </div>
 
+        </div>
+        <div>
+            <table class="table table-bordered">
+                <tr>
+                    <th scope="col">Công việc</th>
+                    <th scope="col">Người thực hiện</th>
+                    <th scope="col">Ngày bắt đầu</th>
+                    <th scope="col">Ngày dự kiến kết thúc</th>
+                    <th scope="col">Số lượng fie:</th>
+                    <th scope="col">Phê duyệt</th>
+                    <th scope="col">Ghi chú</th>
+                </tr>
+                <c:forEach items="${waitDtoList}" var="i">
+                    <tr>
+                        <td>${i.taskName}</td>
+                        <td>${i.username}</td>
+                        <td>
+                                ${i.startDate}
+                        </td>
+                        <td>
+                                ${i.endDate}
+                        </td>
+                        <td>
+                                ${i.numberOfFile}
+                        </td>
+                        <td>
+                            <c:if test="${i.status == 1}">
+                                <div class="alert alert-secondary" role="alert" style="width: 250px;">
+                                    <h2 style="color:#383d41; font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                </div>
+                            </c:if>
+                            <c:if test="${i.status == 2}">
+                                <div class="alert alert-success" role="alert" style="width: 250px;">
+                                    <h2 style="color:#0f5132;font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                </div>
+                            </c:if>
+                            <c:if test="${i.status == 3}">
+                                <div class="alert alert-warning" role="alert" style="width: 250px;">
+                                    <h2 style="color:#664d03;font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                </div>
+                            </c:if>
+                            <c:if test="${i.status == 4}">
+                                <div class="alert alert-info" role="alert" style="width: 250px;">
+                                    <h2 style="color:#055160;font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                </div>
+                            </c:if>
+                            <c:if test="${i.status == 5}">
+                                <div class="alert alert-danger" role="alert" style="width: 200px;">
+                                    <h2 style="color:#842029;font-size: 18px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                </div>
+                            </c:if>
+                        </td>
+                        <td></td>
+                    </tr>
+                </c:forEach>
+
+            </table>
+        </div>
+        <div class="pagination">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-end">
+                    <c:forEach items="${requestScope.lsPage}" var="page">
+                        <li class="page-item ${requestScope.page == page ? "active" : ""}">
+                            <a class="page-link"
+                               href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}&pageNo=${page}&status=${status}">${page}</a>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>

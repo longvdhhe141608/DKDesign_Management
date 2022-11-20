@@ -1,7 +1,7 @@
 package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.*;
-import DkDesignManagement.Entity.DTO.TaskDto;
+import DkDesignManagement.model.TaskDto;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
 import DkDesignManagement.Repository.SectionDAO;
