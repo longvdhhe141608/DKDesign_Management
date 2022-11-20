@@ -51,7 +51,7 @@ public class TaskServiceImpl implements TaskService {
         task.setNumberFileCurrent(taskDAO.countFile(task.getTaskId()));
         double workProgress = (task.getNumberFileCurrent() / (double) task.getFileNumber()) * 100;
         task.setWorkProgress(workProgress + "%");
-        if(ObjectUtils.isEmpty(task.getRequirementId())){
+        if(!ObjectUtils.isEmpty(task.getRequirementId())){
             task.setRequirementName(requirementDao.getRequirementById(task.getRequirementId().intValue()).getRequirementName());
         }
 

@@ -21,6 +21,7 @@ public class CommentDto {
     //model new
     private String accountName ;
     private String dateCountDown;
+    private boolean isPin;
 
     public static CommentDto toCommentDto(Comment comment){
         return CommentDto.builder()
@@ -30,6 +31,7 @@ public class CommentDto {
                 .taskId(comment.getTaskId())
                 .accId(comment.getAccId())
                 .dateCountDown(DateUtils.getDateString(comment.getCommentTime()))
+                .isPin(comment.isPin())
                 .build();
     }
 }
