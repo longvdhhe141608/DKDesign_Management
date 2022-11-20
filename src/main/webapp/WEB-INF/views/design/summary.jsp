@@ -49,20 +49,16 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?project-id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
-                        value="Lịch"></a>
+                        value="Trạng thái"></a>
                 <a class="test"
                    href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
-                        class="btn btn-secondary"
-                        type="button"
-                        value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
