@@ -190,45 +190,46 @@
     </div>
 </div>
 <div class="popup hide__popup">
+    <form action="add-sub-task" method="post">
     <div class="popup__content">
         <div class="title">
-            <h4><input class="info-text" type="text" value="" placeholder="Tên công việc phụ"></h4>
+            <h4><input class="info-text" type="text" name="name" value="" placeholder="Tên công việc phụ"></h4>
         </div>
         <div class="info">
+            <input type="text" name="projectId" hidden="" value="${task.projectId}" >
+            <input type="text" name="sectionId" hidden="" value="${task.sectionId}" >
+            <input type="text" name="taskId" hidden="" value="${task.taskId}" >
             <table class="table table-borderless">
                 <tr>
                     <td>Nhiệm vụ:</td>
                     <td>
-                        Đây là tên acc người nhận task
+                        ${task.assignToName}
+                        <input type="text" name="assignTo" hidden="" value="${task.assignToId}" >
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
-                    <td> <input class="info-text" type="date"></td>
+                    <td> <input class="info-text" name="startDate" type="date"></td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
-                    <td> <input class="info-text" type="date"></td>
+                    <td> <input class="info-text" name="deadline" type="date"></td>
                 </tr>
                 <tr>
                     <td>Yêu cầu của khách hàng:</td>
                     <td>
                         <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-expanded="false">
-                                tang1
-                            </a>
-
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#"> tang2</a>
-                                <a class="dropdown-item" href="#">tang3</a>
-                            </div>
+                            <select name="requirementId" class="btn btn-secondary dropdown-toggle">
+                                <c:forEach items="${listRequirement}" var="requirement">
+                                    <option value="${requirement.id}"> ${requirement.requirementName}</option>
+                                </c:forEach>
+                            </select>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td> <input type="text" value=""></td>
+                    <td> <input type="number" name="fileNumber" value=""></td>
                 </tr>
             </table>
         </div>
@@ -239,10 +240,11 @@
                     bỏ</button>
             </div>
             <div class="btn_ok">
-                <button type="button" class="btn btn-primary">Lưu</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </div>
     </div>
+  </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

@@ -11,4 +11,5 @@ public interface RequirementService {
 
     List<Requirement> getAll();
 
+    List<Requirement> getRequirementByProjectId(int projectId);
 }
