@@ -63,8 +63,10 @@
                             <th scope="col">Tên công trình</th>
                             <th scope="col">Loại công trình</th>
                             <th scope="col">Thời gian bắt đầu</th>
+                            <th scope="col">Thời gian dự kiến kết thúc</th>
                             <th scope="col">Thời gian kết thúc</th>
                             <th scope="col">Trạng thái</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody class="list-project">
@@ -99,6 +101,11 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
+                                            ${i.closureDate}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="name-input" style="width: 150px;">
                                             ${i.endDate}
                                     </div>
                                 </td>
@@ -112,6 +119,12 @@
                                         Đang thực hiện
                                     </td>
                                 </c:if>
+                                <td>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                        <button><i class="fa-regular fa-trash-can"></i></button>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
