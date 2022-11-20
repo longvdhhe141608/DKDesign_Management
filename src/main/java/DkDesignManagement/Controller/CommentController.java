@@ -40,7 +40,7 @@ public class CommentController {
         String content = request.getParameter("content");
 
         //create model
-        Comment comment = new Comment(-1,  content, new Date(),  taskId, account.getId());
+        Comment comment = new Comment(-1,  content, new Date(),  taskId, account.getId(),false);
 
         //add
         commentService.addComment(comment);
@@ -48,5 +48,39 @@ public class CommentController {
         redirect.addAttribute("mess", "Add comment success");
 
         return view;
+    }
+
+    @RequestMapping(value = "/pin-comment",method = RequestMethod.GET)
+    public ModelAndView pinComment(HttpServletRequest request, RedirectAttributes redirect){
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+        ModelAndView view = new ModelAndView("redirect:/task_detail?taskId="+taskId);
+        //check login
+        HttpSession session = request.getSession();
+        if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
+            redirect.addAttribute("mess", "Please login");
+            view = new ModelAndView("redirect:/login");
+            return view;
+        }
+        //check previous page
+        String operation = request.getParameter("operation");
+        if(operation.equals("subTaskDetail")){
+            view = new ModelAndView("redirect:/subtask?taskId="+taskId);
+        }
+        Account account = (Account) session.getAttribute("loginUser");
+        //check role
+        if(account.getRole_id() != 2 ){
+            redirect.addAttribute("mess", "You are not authorized");
+            view = new ModelAndView("redirect:/task_detail?taskId="+taskId);
+            return view;
+        }
+
+        //update
+        int commentId = Integer.parseInt(request.getParameter("commentId"));
+
+        commentService.updatePinComment(commentId);
+
+        redirect.addAttribute("mess", "Pin comment success");
+
+        return view ;
     }
 }
