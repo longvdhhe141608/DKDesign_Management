@@ -43,7 +43,12 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void updatePinComment(int commentId) {
         Comment comment = commentDao.getCommentById(commentId);
-        comment.setPin(true);
+        if(comment.isPin()){
+            comment.setPin(false);
+        }else{
+            comment.setPin(true);
+        }
+
         commentDao.updateComment(comment);
     }
 }

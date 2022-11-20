@@ -128,6 +128,7 @@
                 </tr>
             </table>
         </div>
+        <p style="font-size: 20px;">Bình luận</p>
         <div class="task-cmt-details">
             <c:if test="${listComment.size() > 0}">
                 <c:forEach items="${listComment}" var="comment">
@@ -138,29 +139,20 @@
                         <a> ${comment.dateCountDown}</a></br>
                         <p>${comment.content}</p>
                         <c:if test="${comment.isPin() ==true}">
-                            <p>Đây là đã pin , FE sửa giúp với :))))</p>
-                            <img src="https://www.nicepng.com/png/detail/95-952853_pin-pushpin-comments-air-transat-logo-neu.png" height="20px" width="20px">
+                            <i class="fa-solid fa-thumbtack"></i>
                             <br>
                         </c:if>
                         <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
-                            <a href="pin-comment?taskId=${task.taskId}&operation=subTaskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a>
+                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a>
                         </c:if>
+
 
                     </div>
                     <!----------item------------>
                 </c:forEach>
             </c:if>
-            <p style="font-size: 20px;">Bình luận</p>
-            <div class="task-cmt-details-main">
-                <div style="display: flex;">
-                    <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-                    <div class="task-cmt-details-member">
-                        <span class="name-avatar">Nam</span>
-                        <span> 4 phút trước</span></br>
-                        <span class="cmt-details-total">ok đấy</span>
-                    </div>
-                </div>
-            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>
+
+
             <div class="task-detail-cmt">
                 <form action="add-comment" method="post">
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
