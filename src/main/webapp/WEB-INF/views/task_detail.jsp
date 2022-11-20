@@ -174,9 +174,18 @@
                     </div>
                     <!----------item------------>
                 </c:forEach>
-
             </c:if>
-
+            <p style="font-size: 20px;">Bình luận</p>
+            <div class="task-cmt-details-main">
+                <div style="display: flex;">
+                    <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                    <div class="task-cmt-details-member">
+                        <span class="name-avatar">Nam</span>
+                        <span> 4 phút trước</span></br>
+                        <span class="cmt-details-total">ok đấy</span>
+                    </div>
+                </div>
+            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>
             <div class="task-detail-cmt">
                 <form action="add-comment" method="post">
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
@@ -190,38 +199,57 @@
     </div>
 </div>
 <div class="popup hide__popup">
-    <div class="popup__content">
-        <div class="title">
-            <h4>Thêm công việc phụ</h4>
-        </div>
-        <div class="info">
-            <table class="table table-borderless">
-                <tr>
-                    <td>Thời gian bắt đầu:</td>
-                    <td><input class="info-text" type="text" style="width: 500px;"></td>
-                </tr>
-                <tr>
-                    <td>Thời gian dự kiến kết thúc:</td>
-                    <td><input class="info-text" type="text" style="width: 500px;"></td>
-                </tr>
-                <tr>
-                    <td>Số lượng file:</td>
-                    <td><input class="info-text" type="number"></td>
-                </tr>
-            </table>
-        </div>
-        <div class="button_click">
-            <div></div>
-            <div class="btn_cancel">
-                <button type="button" class="btn btn-secondary close_popup">
-                    Hủy bỏ
-                </button>
+    <form action="" method="post">
+        <div class="popup__content">
+            <div class="title">
+                <h4>Thêm công việc phụ</h4>
+                <p>Biệt thự nhà dân</p>
+                <p>Thiết kế mặt bằng cấp điện</p>
+                <input type="text" placeholder="Tên công việc con" name="sub-task-name">
             </div>
-            <div class="btn_ok">
-                <button type="button" class="btn btn-primary">Lưu</button>
+            <div class="info">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Nhiệm vụ:</td>
+                        <td>Đây là tên acc của người đang làm task đó</td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian bắt đầu:</td>
+                        <td><input name="startDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian dự kiến kết thúc:</td>
+                        <td><input class="info-text" type="date" name="endDate"></td>
+                    </tr>
+                    <tr>
+                        <td>Yêu cầu của khách hàng:</td>
+                        <td>
+                            <select name="requirementID" id="">
+                                <c:forEach items="${requirements}" var="i">
+                                    <option value="${i.id}">${i.requirementName}</option>
+                                </c:forEach>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Số lượng file:</td>
+                        <td><input class="info-text" type="number" name="numberOfFile"></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button_click">
+                <div></div>
+                <div class="btn_cancel">
+                    <button type="button" class="btn btn-secondary close_popup">Hủy
+                        bỏ
+                    </button>
+                </div>
+                <div class="btn_ok">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
