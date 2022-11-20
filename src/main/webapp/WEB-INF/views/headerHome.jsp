@@ -67,7 +67,7 @@
                             <h4>Công việc của tôi</h4>
                             <div class="tab">
                                 <button class="btn btn-secondary tablinks" onclick="openProject(event , 'project')">
-                                    Cộng việc
+                                    Công việc
                                 </button>
                                 <button class="btn btn-secondary tablinks" onclick="openProject(event , 'overdue')">
                                     Quá hạn
