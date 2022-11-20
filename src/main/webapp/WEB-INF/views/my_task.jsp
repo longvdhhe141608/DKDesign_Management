@@ -95,8 +95,10 @@
                         <tr>
                             <th scope="col">Công việc</th>
                             <th scope="col">Thời gian bắt đầu</th>
+                            <th scope="col">Thời gian dự kiến kết thúc</th>
                             <th scope="col">Thời gian kết thúc</th>
-                            <th scope="col">Tên công việc</th>
+                            <th scope="col">Tên công trình</th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -125,10 +127,21 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
+                                        20/10/2022
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="name-input" style="width: 150px;">
                                         20/11/2022
                                     </div>
                                 </td>
                                 <td> Biệt thự nhà dân</td>
+                                <td>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                        <button><i class="fa-regular fa-trash-can"></i></button>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                         <%--                        <tr>--%>
