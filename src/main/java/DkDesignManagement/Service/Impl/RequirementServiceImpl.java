@@ -19,4 +19,9 @@ public class RequirementServiceImpl implements RequirementService {
     public List<Requirement> getAll() {
         return requirementDao.getAll();
     }
+
+    @Override
+    public List<Requirement> getRequirementByProjectId(int projectId){
+        return  requirementDao.getAllRequirementByProjectID(projectId);
+    }
 }
