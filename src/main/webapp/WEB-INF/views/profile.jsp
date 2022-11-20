@@ -1,5 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +52,10 @@
                     </tr>
                     <tr>
                         <td>Ngày sinh:</td>
-                        <td>${profile.dob}</td>
+                        <td>
+                            <fmt:formatDate value="${profile.dob}" var="dob" pattern="dd/MM/yyyy"/>
+                            ${dob}
+                        </td>
                     </tr>
                     <tr>
                         <td>Giới tính:</td>

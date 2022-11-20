@@ -31,10 +31,22 @@ public class AdminController {
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("memberAdmin");
-
         List<Member> memberList = memberDAO.getAllMember();
         view.addObject("memberList", memberList);
         return view;
+    }
+    @RequestMapping(value = "/searchMember",method = RequestMethod.GET)
+    public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request){
+        ModelAndView view = new ModelAndView("memberAdmin");
+
+        int role = Integer.parseInt(request.getParameter("roleSearch"));
+        String name = request.getParameter("nameSearch");
+
+        List<Member> memberList = memberDAO.getAllMemberInSearch(role,name);
+        view.addObject("memberList",memberList);
+        view.addObject("roleSearch",role);
+        view.addObject("nameSearch",name);
+        return  view;
     }
 
     @RequestMapping(value = "/createAccount", method = RequestMethod.GET)

@@ -7,11 +7,11 @@ import java.util.List;
 
 @Service
 public interface AccountService {
-    public Account getAccount();
+    public Account getAccount(String username);
 
     public boolean isExisted(String username);
 
     List<Account> getAccounts();
 
-    List<Account> getAccountsByProject(int projectId);
+    List<Account> getAccountsByProjectId(int projectId);
 }

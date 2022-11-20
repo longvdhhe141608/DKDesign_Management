@@ -9,7 +9,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Member</title>
+    <title>Thành viên công ty</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -44,7 +44,7 @@
                     </tr>
                     <tr>
                         <td>Mã nhân viên:</td>
-                        <td>${member.memberId}</td>
+                        <td>${member.memberCode}</td>
                     </tr>
                     <tr>
                         <td>Số CCCD/CMND:</td>
@@ -75,13 +75,16 @@
                     </tr>
                     <tr>
                         <td>Vai trò:</td>
-                        <td>${member.memberRole}</td>
+                        <td>
+                            <c:if test="${member.memberRole==2}">Trưởng nhóm</c:if>
+                            <c:if test="${member.memberRole==3}">Thiết kế</c:if>
+                        </td>
 
                     </tr>
                     <tr>
                         <td>Trạng thái:</td>
                         <td>
-                            ${member.memberStatus==1?"active":"blocked"}
+                            ${member.memberStatus==1?"Mở":"Chặn"}
                         </td>
                     </tr>
                 </table>
