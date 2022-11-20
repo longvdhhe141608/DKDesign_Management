@@ -17,9 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.math.BigInteger;
 import java.util.Date;
 
 @Controller
@@ -52,7 +50,7 @@ public class ViewListTaskController {
         ModelAndView view = new ModelAndView("list_task");
         view.addObject("project", project);
         view.addObject("listBigTask", sectionService.getAll(id));
-        view.addObject("listAccount", accountService.getAccountsByProject(id));
+        view.addObject("listAccount", accountService.getAccountsByProjectId(id));
         view.addObject("listTaskLevel2", taskService.getListTask());
         view.addObject("mess", mess);
         return view;

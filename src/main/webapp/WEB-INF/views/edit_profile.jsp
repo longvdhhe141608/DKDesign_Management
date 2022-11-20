@@ -29,7 +29,7 @@
         <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
         <div class="information-main">
             <div class="information-main-avata">
-                <img class="img_avatar_change" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                <img alt="avatar" class="img_avatar_change" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
                      style="display: flex"/>
                 <label class="btn btn-edit"
                        style="display: flex; border: none; border-radius: 5px; background-color: royalblue; color: white; margin-right: 100px; margin-top: 5px;">Upload
@@ -79,9 +79,9 @@
                 <%-- button --%>
                 <div class="btn-edit">
                     <button class="btn btn-secondary" style="margin-right: 10px; color: white">
-                        <a href="javascript:history.back()">Hủy</a>
+                        <a href="javascript:history.back() ">Hủy</a>
                     </button>
-                    <input type="submit" onclick="alert('Sua profile thanh cong')" class="btn btn-primary" value="Lưu">
+                    <input type="submit" onclick="" class="btn btn-primary" value="Lưu">
                 </div>
             </form>
         </div>
