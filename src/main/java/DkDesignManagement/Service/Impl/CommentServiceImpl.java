@@ -34,4 +34,16 @@ public class CommentServiceImpl implements CommentService {
     public void addComment(Comment comment) {
         commentDao.addComment(comment);
     }
+
+    @Override
+    public Comment getCommentById(int id) {
+        return commentDao.getCommentById(id);
+    }
+
+    @Override
+    public void updatePinComment(int commentId) {
+        Comment comment = commentDao.getCommentById(commentId);
+        comment.setPin(true);
+        commentDao.updateComment(comment);
+    }
 }

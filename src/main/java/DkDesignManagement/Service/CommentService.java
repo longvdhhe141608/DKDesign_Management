@@ -13,4 +13,7 @@ public interface CommentService {
 
      void addComment(Comment comment);
 
+     Comment getCommentById(int id);
+
+     void updatePinComment(int commentId);
 }

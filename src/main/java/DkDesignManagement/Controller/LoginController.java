@@ -31,10 +31,12 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(ModelMap modelMap) {
+    public ModelAndView login(ModelMap modelMap, @ModelAttribute("mess") String mess) {
+        ModelAndView view = new ModelAndView("/login");
         Account account = new Account();
         modelMap.put("account", account);
-        return new ModelAndView("login");
+        view.addObject("mess", mess);
+        return view;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
