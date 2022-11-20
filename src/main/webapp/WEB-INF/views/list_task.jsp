@@ -73,7 +73,7 @@
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div class="modal-content" style="width: 60%">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
                         <form action="add-task" method="post" class="form-inline my-2 my-lg-0">
@@ -255,7 +255,7 @@
                 <!-- The Modal -->
                 <div id="myModal-footer" class="modal">
                     <!-- Modal content -->
-                    <div class="modal-content">
+                    <div class="modal-content" style="width: 60%;">
                         <span id="close2" class="close">&times;</span>
                         <div class="project-add-task">
                             <form action="add_section" method="post" class="form-inline my-2 my-lg-0">
