@@ -46,33 +46,58 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?project-id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
-                        value="Lịch"></a>
+                        value="Trạng thái"></a>
                 <a class="test"
                    href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
-                        class="btn btn-secondary"
-                        type="button"
-                        value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
             </div>
         </div>
         <div class="task-details-main">
-            <h4>${subTask.taskName}</h4>
-            <c:forEach items="${subTasksList}" var="i">
-                <c:if test="${i.id != subTask.id}">
-                    <a style="font-size: 25px;"
-                       href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${i.taskID}&sub-task-id=${i.id}">${i.taskName}</a><br>
+            <div>
+                <c:if test="${subTask.status == 1}">
+                    <div class="alert alert-secondary" role="alert" style="width: 250px;">
+                        <h2 style="color:#383d41; font-size: 20px; margin: 0; padding: 0;">Chưa phê duyệt</h2>
+                    </div>
                 </c:if>
-            </c:forEach>
+                <c:if test="${subTask.status == 2}">
+                    <div class="alert alert-success" role="alert" style="width: 250px;">
+                        <h2 style="color:#0f5132;font-size: 20px; margin: 0; padding: 0;">Đang thực hiện</h2>
+                    </div>
+                </c:if>
+                <c:if test="${subTask.status == 3}">
+                    <div class="alert alert-warning" role="alert" style="width: 250px;">
+                        <h2 style="color:#664d03;font-size: 20px; margin: 0; padding: 0;">Chờ phê duyệt</h2>
+                    </div>
+                </c:if>
+                <c:if test="${subTask.status == 4}">
+                    <div class="alert alert-info" role="alert" style="width: 250px;">
+                        <h2 style="color:#055160;font-size: 20px; margin: 0; padding: 0;">Đã hoàn thành</h2>
+                    </div>
+                </c:if>
+                <c:if test="${subTask.status == 5}">
+                    <div class="alert alert-danger" role="alert" style="width: 250px;">
+                        <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
+                    </div>
+                </c:if>
+            </div>
+            <h4>${subTask.taskName}</h4>
+            <div style="font-size: 20px;">
+                <a href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}">${project.projectName}
+                    > </a>
+                <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}">${tasks.taskName}
+                    > </a>
+                <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">${subTask.taskName}
+                    > </a>
+            </div>
             <table class="table table-borderless" style="border: 0;">
 
                 <tr>
@@ -85,62 +110,81 @@
                 </tr>
                 <tr>
                     <td>Đầu mục công việc:</td>
-                    <td>${tasks.taskName}</td>
+                    <td>${section.sectionName}</td>
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime"
-                                   value="${subTask.startingDate}">
-                        </div>
+                        ${subTask.startingDate}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime"
-                                   value="${subTask.deadline}">
-                        </div>
+                        ${subTask.deadline}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime"
-                                   value="${subTask.endedDate}">
-                        </div>
+                        <c:if test="${subTask.endedDate != null}">
+                            ${subTask.endedDate}
+                        </c:if>
                     </td>
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>${subTask.numberOfFile}</td>
+                    <td>${totalFile}/${subTask.numberOfFile}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>100%</td>
+                    <td>${progressPercent} %</td>
                 </tr>
                 <tr>
                     <td>Yêu cầu khách hàng:</td>
                     <td>${subTask.nameRequirement}</td>
                 </tr>
-                <tr>
-                    <td>Ghi chú:</td>
-                    <td>-</td>
-                </tr>
-                <tr>
-                    <td>Upload thị file:</td>
-                    <td>
-                        <div class="form-group">
 
-                            <input type="file" class="form-control" id="fileInput" multiple>
+                <tr>
+                    <td>upload file:</td>
+                    <td>
+                        <c:if test="${progressPercent != 100 && subTask.status == 2 }">
+                            <form action="${pageContext.request.contextPath}/design/sub-task/update-file-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
+                                  class="update_file" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="file" class="form-control" id="fileInput" multiple name="file">
+                                </div>
+                                <div>
+                                    <input class="btn btn-primary" type="submit" value="Update File">
+                                </div>
+                            </form>
+                        </c:if>
+                        <div class="container js-file-list">
+                            <c:if test="${status == 2}">
+                                <div class="alert alert-danger" role="alert">
+                                    <h2 style="color:#664d03;font-size: 20px; margin: 0; padding: 0;">${mess}</h2>
+                                </div>
+                            </c:if>
+                            <c:if test="${status == 1}">
+                                <div class="alert alert-success" role="alert">
+                                    <h2 style="color:#0f5132;font-size: 18px; margin: 0; padding: 0;">${mess}</h2>
+                                </div>
+                            </c:if>
                         </div>
                     </td>
                 </tr>
             </table>
+            <div style="display: flex; justify-content: space-between;">
+                <c:if test="${progressPercent == 100 && subTask.status == 2}">
+                    <form action="">
+                        <button class="btn btn-primary">Nộp</button>
+                    </form>
+                </c:if>
+                <c:if test="${subTask.status == 1}">
 
+                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/design/sub-task/view-edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">Chỉnh sửa</a>
+                </c:if>
+            </div>
         </div>
         <%--        <div style=" text-align: end; margin-left: 10px;">--%>
         <%--            <form action="${pageContext.request.contextPath}/editTaskDetail">--%>

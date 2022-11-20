@@ -2,9 +2,13 @@ package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Entity.Roles;
 import DkDesignManagement.Repository.ProjectDao;
+import DkDesignManagement.Repository.ProjectParticipationDao;
+import DkDesignManagement.Repository.RoleDao;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.model.MemberActiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,6 +36,11 @@ public class ProjectByDesignController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private ProjectParticipationDao projectParticipationDao;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @RequestMapping(value = "/view-all-project", method = RequestMethod.GET)
     public ModelAndView loadAllProject(HttpServletRequest request,
@@ -79,4 +88,68 @@ public class ProjectByDesignController {
         return view;
     }
 
+    @RequestMapping(value = "/member-active", method = RequestMethod.GET)
+    public ModelAndView getAllMemberActiveByProjectID(HttpServletRequest request, RedirectAttributes redirect) {
+        ModelAndView view = new ModelAndView("design/member-active");
+
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("account");
+
+        int projectID = Integer.parseInt(request.getParameter("project-id"));
+        Project project = projectDao.getProject(projectID);
+
+        String indexPage = request.getParameter("pageNo");
+        int page = 0;
+        if (indexPage != null) {
+            page = Integer.parseInt(indexPage);
+        }
+
+        String roleID = (request.getParameter("role"));
+        String textSearch = request.getParameter("textSearch");
+
+        int totalMember = projectParticipationDao.totalAllMember(project.getId(), roleID, textSearch);
+        int totalPages = (totalMember % 10 == 0) ? totalMember / 10 : totalMember / 10 + 1;
+
+        List<MemberActiveDto> memberActiveDtos = projectParticipationDao.getAllMember(projectID, page, roleID, textSearch);
+
+        List<Integer> lsPage = new ArrayList<>();
+        // for này có chức năng hiển thị list page
+        for (int i = 1; i <= totalPages; ++i) {
+            lsPage.add(i);
+        }
+
+        List<Roles> roles = roleDao.getAllRole();
+
+        view.addObject("project", project);
+        view.addObject("memberActiveDtos", memberActiveDtos);
+        view.addObject("lsPage", lsPage);
+        view.addObject("roles", roles);
+        view.addObject("page", page);
+
+        return view;
+    }
+
+    @RequestMapping(value = "/member-active-search", method = RequestMethod.GET)
+    public ModelAndView searchMemberActiveByProjectID(HttpServletRequest request, RedirectAttributes redirect) {
+        ModelAndView view = new ModelAndView("redirect:/design/project/member-active");
+
+        int projectID = Integer.parseInt(request.getParameter("project-id"));
+        Project project = projectDao.getProject(projectID);
+
+        String indexPage = request.getParameter("pageNo");
+        int page = 0;
+        if (indexPage != null) {
+            page = Integer.parseInt(indexPage);
+        }
+
+        String roleID = (request.getParameter("role"));
+        String textSearch = request.getParameter("textSearch");
+
+        view.addObject("project-id", projectID);
+        view.addObject("pageNo", page);
+        view.addObject("role", roleID);
+        view.addObject("textSearch", textSearch);
+
+        return view;
+    }
 }
