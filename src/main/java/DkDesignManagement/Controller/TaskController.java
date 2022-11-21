@@ -76,10 +76,27 @@ public class TaskController {
             view = new ModelAndView("redirect:/subtask?taskId=" + taskId);
             return view;
         }
+        //check and update task level 2 100%
+        if (task.getTaskStatus() != 4) {
+            //update done
+            task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
+        }
+
         //load infor add sub task
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
         view.addObject("listRequirement", requirementService.getRequirementByProjectId(task.getProjectId()));
 
+        view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
+        view.addObject("task", task);
+        view.addObject("mess", mess);
+        return view;
+    }
+
+    @RequestMapping(value = "/subtask", method = RequestMethod.GET)
+    public ModelAndView viewSubTaskDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
+        ModelAndView view = new ModelAndView("subtask");
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+        Task task = taskService.getTaskById(taskId);
         view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);

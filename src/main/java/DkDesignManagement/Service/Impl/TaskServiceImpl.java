@@ -10,6 +10,8 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
+import static DkDesignManagement.utils.Constant.COMPLETE_STATUS;
+
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -61,5 +63,17 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public int updateTask(Task task) {
         return taskDAO.updateTask(task);
+    }
+
+    @Override
+    public int checkAndUpdateTaskDone(Task task) {
+        int count = taskDAO.countTaskNoDone(task.getTaskId());
+        //no done
+        if(count == 0){
+            //update
+            task.setTaskStatus(COMPLETE_STATUS);//done status
+            taskDAO.updateTask(task);
+        }
+        return task.getTaskStatus();
     }
 }
