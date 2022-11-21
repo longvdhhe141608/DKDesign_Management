@@ -51,7 +51,8 @@
                            type="button"
                            value="Duyệt công việc">
                 </a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            style="background: blue;"
@@ -96,27 +97,27 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${requirements}" var="requirement">
-                    <!-------item------------------------>
-                    <tr>
-                        <td>${requirement.requirementName}</td>
-                        <td>${requirement.requirementDetail}</td>
-                        <td>
-                            <c:if test="${requirement.status == 1}" >
-                                Đang xử lý
-                            </c:if>
-                            <c:if test="${requirement.status == 2}" >
-                                Đã đáp ứng
-                            </c:if>
-                        </td>
-                        <td>
-                            <div style="display: flex; justify-content: space-between;">
-                                <button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-------item------------------------>
+                        <!-------item------------------------>
+                        <tr>
+                            <td>${requirement.requirementName}</td>
+                            <td>${requirement.requirementDetail}</td>
+                            <td>
+                                <c:if test="${requirement.status == 1}">
+                                    Đang xử lý
+                                </c:if>
+                                <c:if test="${requirement.status == 2}">
+                                    Đã đáp ứng
+                                </c:if>
+                            </td>
+                            <td>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <button><i
+                                            class="fa-regular fa-pen-to-square"></i></button>
+                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-------item------------------------>
                     </c:forEach>
                     </tbody>
                 </table>
@@ -137,37 +138,36 @@
     </div>
 </div>
 <div class="popup hide__popup">
-    <div class="popup__content">
-        <div class="title">
-            <h4>Thêm yêu cầu của khách hàng</h4>
-        </div>
-        <div class="info">
-            <table class="table table-borderless">
-                <tr>
-                    <td>Vị trí:</td>
-                    <td><input class="info-text" type="text" style="width: 500px;"></td>
-                </tr>
-                <tr>
-                    <td>Yêu cầu:</td>
-                    <td><textarea class="info-text" type="texta" style="width: 500px;"></textarea>
-                </tr>
-
-            </table>
-
-
-        </div>
-        <div class="button_click">
-            <div></div>
-            <div class="btn_cancel">
-                <button type="button" class="btn btn-secondary close_popup">Hủy
-                    bỏ
-                </button>
+    <form action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}" method="post">
+        <div class="popup__content">
+            <div class="title">
+                <h4>Thêm yêu cầu của khách hàng</h4>
             </div>
-            <div class="btn_ok">
-                <button type="button" class="btn btn-primary">Lưu</button>
+            <div class="info">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Vị trí:</td>
+                        <td><input class="info-text" type="text" style="width: 500px;" name="ten-vi-tri"></td>
+                    </tr>
+                    <tr>
+                        <td>Yêu cầu:</td>
+                        <td><textarea class="info-text" type="text" style="width: 500px;" name="noi-dung-yeu-cau"></textarea>
+                    </tr>
+                </table>
+            </div>
+            <div class="button_click">
+                <div></div>
+                <div class="btn_cancel">
+                    <button type="button" class="btn btn-secondary close_popup">
+                        Hủy bỏ
+                    </button>
+                </div>
+                <div class="btn_ok">
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

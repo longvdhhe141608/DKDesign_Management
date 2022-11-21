@@ -171,8 +171,6 @@
         <div class="popup__content">
             <div class="title">
                 <h4>Thêm công việc phụ</h4>
-                <p>Biệt thự nhà dân</p>
-                <p>Thiết kế mặt bằng cấp điện</p>
                 <input type="text" placeholder="Tên công việc con" name="sub-task-name">
             </div>
             <div class="info">

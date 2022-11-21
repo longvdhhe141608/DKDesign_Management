@@ -32,13 +32,13 @@ public class RequirementDao {
         return jdbcTemplate.query(sql, new MapperRequirement());
     }
 
-    public Requirement getRequirementById(int requirementId){
+    public Requirement getRequirementById(int requirementId) {
 
         Requirement requirement = new Requirement();
         String sql = "select * from requirement r where r.id  = ? ";
 
         try {
-            requirement = jdbcTemplate.queryForObject(sql, new MapperRequirement(),requirementId);
+            requirement = jdbcTemplate.queryForObject(sql, new MapperRequirement(), requirementId);
             return requirement;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -96,5 +96,19 @@ public class RequirementDao {
         params.put("id", requirement.getId());
 
         return namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    //    Hàm tạo một requirement mới
+    public int insertRequirement(Requirement requirement) {
+        int check = 0;
+        String sql = "insert into `dkmanagement`.`requirement`(`project_id`,`requirement_name`, `requirement_detail`, `requirement_date`, `status`) \n" +
+                "values (?,?,?,?,?)";
+        try {
+            check = jdbcTemplate.update(sql, requirement.getProjectId(),requirement.getRequirementName(),
+                    requirement.getRequirementDetail(),requirement.getRequirementDate(),requirement.getStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
     }
 }
