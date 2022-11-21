@@ -4,6 +4,7 @@ import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Requirement;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
+import DkDesignManagement.Service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +25,11 @@ public class RequirementController {
     @Autowired
     private ProjectDao projectDao;
 
+    @Autowired
+    private RequirementService requirementService;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView viewRequirement(HttpServletRequest request){
+    public ModelAndView viewRequirement(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("requirement");
 
         int projectID = Integer.parseInt(request.getParameter("id"));
@@ -41,6 +45,10 @@ public class RequirementController {
         int totalPages = (totalRequirement % 10 == 0) ? totalRequirement / 10 : totalRequirement / 10 + 1;
 
         List<Requirement> requirements = requirementDao.getPaginationRequirementByProjectID(projectID, page);
+        //check and update status
+        for (Requirement requirement : requirements) {
+            requirement.setStatus(requirementService.checkAndUpdaterRequirementDone(requirement));
+        }
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page
@@ -53,4 +61,6 @@ public class RequirementController {
         view.addObject("project", project);
         return view;
     }
+
+
 }

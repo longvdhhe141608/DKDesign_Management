@@ -9,16 +9,22 @@ import DkDesignManagement.Mapper.MapperRequirement;
 import DkDesignManagement.Mapper.MapperTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class RequirementDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public List<Requirement> getAll() {
         String sql = "select * from requirement";
@@ -68,5 +74,27 @@ public class RequirementDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int countTaskNoDone(int requirementId) {
+        String sql = "select count(1) from task t where requirement_id = ? and status !=4  and task_id is not NULL";
+        return jdbcTemplate.queryForObject(sql, Integer.class, requirementId);
+    }
+
+    public int updateRequirement(Requirement requirement) {
+        String sql = "UPDATE dkmanagement.requirement\n" +
+                "SET project_id=:project_id , requirement_name=:requirement_name, requirement_detail=:requirement_detail" +
+                ", requirement_date=:requirement_date, status=:status\n" +
+                "WHERE id=:id;\n";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("project_id", requirement.getProjectId());
+        params.put("requirement_name", requirement.getRequirementName());
+        params.put("requirement_detail", requirement.getRequirementDetail());
+        params.put("requirement_date", requirement.getRequirementDate());
+        params.put("status", requirement.getStatus());
+        params.put("id", requirement.getId());
+
+        return namedParameterJdbcTemplate.update(sql, params);
     }
 }

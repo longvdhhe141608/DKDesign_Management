@@ -99,7 +99,14 @@
                     <tr>
                         <td>${requirement.requirementName}</td>
                         <td>${requirement.requirementDetail}</td>
-                        <td>Đang xử lý</td>
+                        <td>
+                            <c:if test="${requirement.status == 1}" >
+                                Đang xử lý
+                            </c:if>
+                            <c:if test="${requirement.status == 2}" >
+                                Đã đáp ứng
+                            </c:if>
+                        </td>
                         <td>
                             <div style="display: flex; justify-content: space-between;">
                                 <button><i
