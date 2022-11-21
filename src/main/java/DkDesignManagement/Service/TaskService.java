@@ -19,4 +19,6 @@ public interface TaskService {
 
    int updateTask(Task task);
 
+   int checkAndUpdateTaskDone(Task task);
+
 }

@@ -76,10 +76,26 @@ public class TaskController {
             view = new ModelAndView("redirect:/subtask?taskId=" + taskId);
             return view;
         }
+        //check and update task level 2 100%
+        //update done
+        task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
+
+
         //load infor add sub task
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
         view.addObject("listRequirement", requirementService.getRequirementByProjectId(task.getProjectId()));
 
+        view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
+        view.addObject("task", task);
+        view.addObject("mess", mess);
+        return view;
+    }
+
+    @RequestMapping(value = "/subtask", method = RequestMethod.GET)
+    public ModelAndView viewSubTaskDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
+        ModelAndView view = new ModelAndView("subtask");
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+        Task task = taskService.getTaskById(taskId);
         view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
@@ -141,8 +157,14 @@ public class TaskController {
         Task task = new Task(-1, projectId, sectionId, BigInteger.valueOf(taskId), account.getId(), assignId, BigInteger.valueOf(requirementId), name
                 , 1, startDate, deadline, null, null, fileNumber);
 
-        //add section
+        //add task
         taskService.addTask(task);
+        //update number file of task level 2
+        Task taskLevel2 = taskService.getTaskById(taskId);
+        int fileNumberOld = ObjectUtils.isEmpty(taskLevel2.getFileNumber()) ? 0 : taskLevel2.getFileNumber();
+        taskLevel2.setFileNumber(fileNumberOld + fileNumber);
+        taskService.updateTask(taskLevel2);
+
         redirect.addAttribute("mess", "add sub task successfully ");
         return view;
     }
@@ -159,7 +181,7 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/edit-task", method = RequestMethod.POST)
-    public ModelAndView viewEditTaskPage(HttpServletRequest request,RedirectAttributes redirect) {
+    public ModelAndView viewEditTaskPage(HttpServletRequest request, RedirectAttributes redirect) {
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         ModelAndView view = new ModelAndView("redirect:/task_detail?taskId=" + taskId);
         //check login
@@ -190,6 +212,34 @@ public class TaskController {
         //update
         taskService.updateTask(task);
         redirect.addAttribute("mess", "update task successfully ");
+
+        return view;
+    }
+
+    @RequestMapping(value = "task/change-status", method = RequestMethod.GET)
+    public ModelAndView changeStatusTask(HttpServletRequest request, RedirectAttributes redirect) {
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+        ModelAndView view = new ModelAndView("redirect:/task_detail?taskId=" + taskId);
+        //check login
+        HttpSession session = request.getSession();
+        if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
+            redirect.addAttribute("mess", "Please login");
+            return view;
+        }
+
+        // agree or cancel
+        String operation = request.getParameter("operation");
+        int status = 5;
+        if (operation.equals("agree")) {
+            status = 4;
+        }
+
+        // update
+        Task task = taskService.getTaskById(taskId);
+        task.setTaskStatus(status);
+        taskService.updateTask(task);
+
+        redirect.addAttribute("mess", "" + operation + " task successfully ");
 
         return view;
     }

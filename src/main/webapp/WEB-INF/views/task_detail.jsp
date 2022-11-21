@@ -63,16 +63,6 @@
                         value="Thống kê"></a>
             </div>
         </div>
-        <c:if test="${task.taskStatus == 3}">
-            <div>
-                <h4>Bạn có muốn phê duyệt không (FE sửa hộ)</h4>
-                <button type="button" class="btn btn-primary">Đồng ý</button>
-                <button type="button" class="btn btn-primary">Không đồng ý</button>
-            </div>
-
-        </c:if>
-
-
         <div class="task-details-main">
             <table class="table table-borderless" style="border: 0;">
                 <tr>
@@ -121,6 +111,26 @@
                 <tr>
                     <td>Tiến độ:</td>
                     <td>${task.workProgress}</td>
+                </tr>
+                <tr>
+                    <td>Trạng thái:</td>
+                    <td>
+                        <c:if test="${task.taskStatus == 1}">
+                            Chưa phê duyệt
+                        </c:if>
+                        <c:if test="${task.taskStatus == 2}">
+                            Đang thực hiện
+                        </c:if>
+                        <c:if test="${task.taskStatus == 3}">
+                            Chờ phê duyệt
+                        </c:if>
+                        <c:if test="${task.taskStatus == 4}">
+                            Đã hoàn thành
+                        </c:if>
+                        <c:if test="${task.taskStatus == 5}">
+                            Hủy bỏ
+                        </c:if>
+                    </td>
                 </tr>
                 <tr>
                     <td>Ghi chú:</td>
