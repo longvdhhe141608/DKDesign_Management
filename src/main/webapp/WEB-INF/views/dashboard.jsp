@@ -41,7 +41,7 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}list_task?id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
