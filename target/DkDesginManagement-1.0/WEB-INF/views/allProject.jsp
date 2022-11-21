@@ -65,6 +65,7 @@
                             <th scope="col">Thời gian bắt đầu</th>
                             <th scope="col">Thời gian kết thúc</th>
                             <th scope="col">Trạng thái</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody class="list-project">
@@ -72,7 +73,7 @@
                             <tr class="each-project">
                                 <td class="name-and-link">
                                     <div class="name-project">
-                                            ${i.project_name}
+                                            ${i.projectName}
                                     </div>
                                     <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
                                     <div class="links">
@@ -94,12 +95,12 @@
                                 </c:if>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                            ${i.start_date}
+                                            ${i.startDate}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                            ${i.end_date}
+                                            ${i.endDate}
                                     </div>
                                 </td>
                                 <c:if test="${i.status == 2}">
@@ -112,6 +113,12 @@
                                         Đang thực hiện
                                     </td>
                                 </c:if>
+                                <td>
+                                    <div style="display: flex; justify-content: space-between;"><button><i
+                                            class="fa-regular fa-pen-to-square"></i></button>
+                                        <button><i class="fa-regular fa-trash-can"></i></button>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
@@ -149,51 +156,74 @@
             <form method="post" action="allProject/add">
                 <table class="table table-borderless">
                     <tr>
-                        <td>Tên công trình:</td>
-                        <td><input required="" class="info-text" name="name" type="text"></td>
+                        <td>Tên Công trình <label class="text-danger">*</label>:</td>
+                        <td> <input id="inputaddname" class="info-text" type="text">
+                            <div class="text-danger error"></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Loại công trình:</td>
+                        <td>Chủ nhà: <label class="text-danger">*</label>:</td>
+                        <td> <input id="" class="info-text" type="text">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:<label class="text-danger">*</label>:</td>
+                        <td> <input id="" class="info-text" type="text">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ công trình:<label class="text-danger">*</label>:</td>
+                        <td> <input id="" class="info-text" type="text">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Diện tích xây dựng:<label class="text-danger">*</label>:</td>
+                        <td> <input id="" class="info-text" type="text">m2
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chi phí thiết kế:<label class="text-danger">*</label>:</td>
+                        <td> <input id="" class="info-text" type="text">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Loại công trình<label class="text-danger">*</label>:</td>
                         <td>
                             <div class="dropdown">
-                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">
-                                    <c:forEach items="${listCategory}" var="category">
-                                        <option value="${category.id}"> ${category.category_name}</option>
-                                    </c:forEach>
-                                </select>
+                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                   data-toggle="dropdown" aria-expanded="false">
+                                    Nội thất
+                                </a>
+
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#"> Nội thất</a>
+                                    <a class="dropdown-item" href="#">Ngoại thất</a>
+                                    <a class="dropdown-item" href="#">Nội thất và ngoại thất</a>
+                                </div>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Ngày bắt đầu:</td>
-                        <td><input required="" name="startDate" class="info-text" type="date"></td>
-                    </tr>
-                    <tr>
-                        <td>Ngày dự kiến kết thúc:</td>
-                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
-                    </tr>
-                    <tr>
-                        <td>Tên khách hàng:</td>
-                        <td><input required="" class="info-text" name="customerName" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ:</td>
-                        <td><input required="" class="info-text" name="address" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Số điện thoại:</td>
-                        <td><input required="" class="info-text" name="phone" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Diện tích</td>
-                        <td><input required="" class="info-text" name="constructionArea" type="number"> m<sup>2</sup>
+                        <td>Ngày bắt đầu<label class="text-danger">*</label>:</td>
+                        <td><input id="inputstartdate" class="info-text" type="date">
+                            <div class="text-danger error"></div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Mô tả</td>
-                        <td>
-                            <%--                            <input required="" class="info-text" name="detail" type="text">--%>
-                            <textarea name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>
+                        <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:</td>
+                        <td><input id="inputenddate" class="info-text" type="date">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mô tả:<label class="text-danger">*</label>:</td>
+                        <td> <input id="" class="info-text" type="textarea">
+                            <div class="text-danger error"></div>
                         </td>
                     </tr>
 
