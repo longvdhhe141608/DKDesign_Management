@@ -144,13 +144,11 @@
 
         </div>
         <div style=" text-align: end; margin-left: 10px;">
-            <form action="${pageContext.request.contextPath}/editTaskDetail">
-                <a href="">
+                <a href="edit-task?taskId=${task.taskId}">
                     <button class="btn btn-primary">
                         Chỉnh sửa
                     </button>
                 </a>
-            </form>
         </div>
         <p style="font-size: 20px;">Bình luận</p>
         <div class="task-cmt-details" style="margin-top: 20px; margin-left: 10px;">

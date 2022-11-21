@@ -17,4 +17,6 @@ public interface TaskService {
 
    Task getTaskById(int taskId);
 
+   int updateTask(Task task);
+
 }

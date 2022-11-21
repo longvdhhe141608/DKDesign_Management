@@ -57,9 +57,9 @@ public class TaskDAO {
         return taskList;
     }
 
-    public int countFile(int taskId){
+    public int countFile(int taskId) {
         String sql = "select count(*) from image_and_file iaf where task_id = ? ";
-        return jdbcTemplate.queryForObject(sql,Integer.class,taskId);
+        return jdbcTemplate.queryForObject(sql, Integer.class, taskId);
     }
 
     public List<Task> getTaskByBigTaskId(int sectionId) {
@@ -70,13 +70,13 @@ public class TaskDAO {
         return taskList;
     }
 
-    public Task getTaskById(int taskId){
+    public Task getTaskById(int taskId) {
 
         Task task = new Task();
         String sql = "select * from task t where t.id  = ? ";
 
         try {
-            task = jdbcTemplate.queryForObject(sql, new MapperTask(),taskId);
+            task = jdbcTemplate.queryForObject(sql, new MapperTask(), taskId);
             return task;
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -351,5 +351,31 @@ public class TaskDAO {
             e.printStackTrace();
         }
         return check;
+    }
+
+    public int updateTask(Task task) {
+        String sql = "UPDATE dkmanagement.task\n" +
+                "SET project_id=:project_id, section_id=:section_id, task_id=:task_id , creator=:creator , assignedto=:assignedto" +
+                ", requirement_id=:requirement_id, task_name=:task_name, starting_date=:starting_date, deadline=:deadline " +
+                ", ended_date=:ended_date, number_of_file=:number_of_file, description=:description, status=:status\n" +
+                "WHERE id=:taskId;\n";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("project_id", task.getProjectId());
+        params.put("section_id", task.getSectionId());
+        params.put("task_id", task.getTaskfId());
+        params.put("creator", task.getCreatorId());
+        params.put("assignedto", task.getAssignToId());
+        params.put("requirement_id", task.getRequirementId());
+        params.put("task_name", task.getTaskName());
+        params.put("starting_date", task.getStartDate());
+        params.put("deadline", task.getDeadline());
+        params.put("ended_date", task.getEndDate());
+        params.put("number_of_file", task.getFileNumber());
+        params.put("description", task.getDescription());
+        params.put("status", task.getTaskStatus());
+        params.put("taskId", task.getTaskId());
+
+        return namedParameterJdbcTemplate.update(sql, params);
     }
 }
