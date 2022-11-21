@@ -5,7 +5,9 @@ import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Mapper.MapperSection;
 import DkDesignManagement.Mapper.MapperTask;
+import DkDesignManagement.Mapper.MapperTaskWaitDto;
 import DkDesignManagement.Mapper.MapperTasks;
+import DkDesignManagement.model.TaskWaitDto;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +15,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.ObjectUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -298,7 +301,7 @@ public class TaskDAO {
     public Tasks getOneTasksByTaskID(int taskID) {
 
         Tasks tasks = new Tasks();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
                 "                left join project p on s.project_id = p.id \n" +
                 "                left join task t on s.id = t.section_id\n" +
                 "                left join project_participation pp on p.id = pp.project_id\n" +
@@ -319,7 +322,7 @@ public class TaskDAO {
     public Tasks getOneSubTaskBySubTaskID(int subTaskID, int taskID) {
 
         Tasks tasks = new Tasks();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
                 "left join project p on s.project_id = p.id\n" +
                 "left join task t on s.id = t.section_id\n" +
                 "left join project_participation pp on p.id = pp.project_id\n" +
@@ -377,5 +380,79 @@ public class TaskDAO {
         params.put("taskId", task.getTaskId());
 
         return namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    public int updateSubTaskByDesign(int subTaskID, Tasks tasks) {
+
+        int check = 0;
+        String sql = "UPDATE `dkmanagement`.`task` SET `task_name` = ?," +
+                " `starting_date` = ?, `deadline` = ?," +
+                " `number_of_file` = ? WHERE (`id` = ?);\n";
+
+        try {
+            check = jdbcTemplate.update(sql, tasks.getTaskName(), tasks.getStartingDate(), tasks.getDeadline(),
+                    tasks.getNumberOfFile(), subTaskID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+
+    public int totalTaskWait(int projectID, String statusID, String textSearch) {
+
+        int totalPage = 0;
+        List<TaskWaitDto> waitDtoList = new ArrayList<>();
+        String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline," +
+                " t.number_of_file, st.status_task, t.status FROM dkmanagement.task t\n" +
+                "left join project p on t.project_id = p.id\n" +
+                "left join section s on t.section_id = s.id\n" +
+                "left join accounts a on t.assignedto = a.id\n" +
+                "left join status st on t.status = st.id where t.project_id = ?\n";
+
+        if (!ObjectUtils.isEmpty(statusID) && !statusID.equals("default")) {
+            sql += " and st.id =  " + statusID;
+        }
+
+        if (!ObjectUtils.isEmpty(textSearch)) {
+            sql += " and t.task_name like '" + textSearch + "' ";
+        }
+        try {
+            waitDtoList = jdbcTemplate.query(sql, new MapperTaskWaitDto(), projectID);
+            totalPage = waitDtoList.size();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return totalPage;
+    }
+
+    public List<TaskWaitDto> getAllTaskWaitByDesign(int projectID, int indexPage, String statusID, String textSearch) {
+
+        List<TaskWaitDto> waitDtoList = new ArrayList<>();
+        String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline," +
+                " t.number_of_file, st.status_task, t.status FROM dkmanagement.task t\n" +
+                "left join project p on t.project_id = p.id\n" +
+                "left join section s on t.section_id = s.id\n" +
+                "left join accounts a on t.assignedto = a.id\n" +
+                "left join status st on t.status = st.id where t.project_id = ?\n";
+
+        if (!ObjectUtils.isEmpty(statusID) && !statusID.equals("default")) {
+            sql += " and st.id =  " + statusID;
+        }
+
+        if (!ObjectUtils.isEmpty(textSearch)) {
+            sql += " and t.task_name like '" + textSearch + "' ";
+        }
+
+        sql += " group by t.id limit ?,10;";
+
+        try {
+            waitDtoList = jdbcTemplate.query(sql, new MapperTaskWaitDto(), projectID, indexPage);
+            return waitDtoList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
