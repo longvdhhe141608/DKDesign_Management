@@ -70,11 +70,11 @@ public class TaskServiceImpl implements TaskService {
     public int checkAndUpdateTaskDone(Task task) {
         int count = taskDAO.countTaskNoDone(task.getTaskId());
         //no done
-        if(count == 0){
+        if(count == 0 && task.getTaskStatus() != 4){
             //update
             task.setTaskStatus(COMPLETE_STATUS);//done status
             taskDAO.updateTask(task);
-        }else{
+        }else if(count != 0 && task.getTaskStatus() == 4){
             task.setTaskStatus(PROCESS_STATUS);//done status
             taskDAO.updateTask(task);
         }
