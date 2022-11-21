@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,5 +63,27 @@ public class RequirementController {
         return view;
     }
 
-
+    @RequestMapping(value = "/add-new-requirement", method = RequestMethod.POST)
+    public ModelAndView insertRequirement(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView view;
+        int projectID = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("ten-vi-tri").trim();
+        String detail = request.getParameter("noi-dung-yeu-cau").trim();
+        Requirement requirement = Requirement.builder()
+                .projectId(projectID)
+                .requirementName(name)
+                .requirementDetail(detail)
+                .status(1)
+                .build();
+        int saveRequirement = requirementDao.insertRequirement(requirement);
+        if (saveRequirement == 0) {
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+            view.addObject("mess", "Save failed");
+        } else {
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+            view.addObject("mess", "Save success");
+        }
+        view.addObject("id", projectID);
+        return view;
+    }
 }

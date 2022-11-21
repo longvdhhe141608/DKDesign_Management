@@ -154,10 +154,10 @@ public class TaskByDesignController {
 
         if(saveSubtask == 0){
             view = new ModelAndView("redirect:/design/task/view-detail-task");
-            view.addObject("mess", "save not success");
+            view.addObject("mess", "Save failed");
         } else {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
-            view.addObject("mess", "save success");
+            view.addObject("mess", "Save success");
         }
 
         view.addObject("project-id", projectID);
