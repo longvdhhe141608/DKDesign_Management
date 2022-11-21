@@ -94,84 +94,41 @@
                     </tr>
                     </thead>
                     <tbody>
+                    <c:forEach items="${requirements}" var="requirement">
+                    <!-------item------------------------>
                     <tr>
-                        <td>Tầng 1</td>
-                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch .
-                            2 phòng ngủ : 10m2 , trần thạch cao .
+                        <td>${requirement.requirementName}</td>
+                        <td>${requirement.requirementDetail}</td>
+                        <td>
+                            <c:if test="${requirement.status == 1}" >
+                                Đang xử lý
+                            </c:if>
+                            <c:if test="${requirement.status == 2}" >
+                                Đã đáp ứng
+                            </c:if>
+                        </td>
+                        <td>
+                            <div style="display: flex; justify-content: space-between;">
+                                <button><i
+                                        class="fa-regular fa-pen-to-square"></i></button>
+                                <button><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-------item------------------------>
+                    </c:forEach>
 
-                        </td>
-                        <td>Đang xử lý</td>
-                        <td>
-                            <div style="display: flex; justify-content: space-between;">
-                                <button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tầng 2</td>
-                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch
-                            2 phòng ngủ : 10m2 , trần thạch cao
-                            1 nhà vệ sinh : 12m2 , 1 bồn tắm
-                        </td>
-                        <td>Đang xử lý</td>
-                        <td>
-                            <div style="display: flex; justify-content: space-between;">
-                                <button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tầng 3</td>
-                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch
-                            2 phòng ngủ : 10m2 , trần thạch cao
-                            1 nhà vệ sinh : 12m2 , 1 bồn tắm
-                        </td>
-                        <td>Đang xử lý</td>
-                        <td>
-                            <div style="display: flex; justify-content: space-between;">
-                                <button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tầng 4</td>
-                        <td>1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch
-                            2 phòng ngủ : 10m2 , trần thạch cao
-                            1 nhà vệ sinh : 12m2 , 1 bồn tắm
-                        </td>
-                        <td>Đang xử lý</td>
-                        <td>
-                            <div style="display: flex; justify-content: space-between;">
-                                <button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                <button><i class="fa-regular fa-trash-can"></i></button>
-                            </div>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
                 <div class="pagination">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
+                        <ul class="pagination justify-content-end">
+                            <c:forEach items="${requestScope.lsPage}" var="page">
+                                <li class="page-item ${requestScope.page == page ? "active" : ""}">
+                                    <a class="page-link"
+                                       href="${pageContext.request.contextPath}/requirement?project-id=${project.id}&pageNo=${page}">${page}</a>
+                                </li>
+                            </c:forEach>
                         </ul>
                     </nav>
                 </div>

@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static DkDesignManagement.utils.Constant.COMPLETE_REQUIREMENT_STATUS;
+import static DkDesignManagement.utils.Constant.PROCESS_REQUIREMENT_STATUS;
+
 @Service
 public class RequirementServiceImpl implements RequirementService {
 
@@ -23,5 +26,19 @@ public class RequirementServiceImpl implements RequirementService {
     @Override
     public List<Requirement> getRequirementByProjectId(int projectId){
         return  requirementDao.getAllRequirementByProjectID(projectId);
+    }
+
+    @Override
+    public int checkAndUpdaterRequirementDone(Requirement requirement) {
+        int count = requirementDao.countTaskNoDone(requirement.getId());
+        if (count==0 && requirement.getStatus() != COMPLETE_REQUIREMENT_STATUS){
+            requirement.setStatus(COMPLETE_REQUIREMENT_STATUS);
+            requirementDao.updateRequirement(requirement);
+        }else if(count != 0 && requirement.getStatus() == COMPLETE_REQUIREMENT_STATUS){
+            requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
+            requirementDao.updateRequirement(requirement);
+        }
+
+        return requirement.getStatus();
     }
 }
