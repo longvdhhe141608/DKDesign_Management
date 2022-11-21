@@ -46,20 +46,16 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?project-id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
-                        value="Lịch"></a>
+                        value="Trạng thái"></a>
                 <a class="test"
                    href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
-                        class="btn btn-secondary"
-                        type="button"
-                        value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -79,23 +75,25 @@
                             <span>${i.sectionName}</span>
                         </summary>
                         <c:forEach items="${i.tasksList}" var="t">
-                            <div class="row " style="background: rgba(0, 0, 0, 0.2);">
-                                <div class="col-4" style="border: 1px solid gray;">
-                                    <div class="" style="display: grid; grid-template-columns: 1fr 100px;">
-                                        <button style="border: none; background-color: #cccccc; justify-self: start;"
-                                                onclick="myFunction('.sub-task-detail')">
-                                            <i class="fa-solid fa-caret-down"
-                                               style="padding-right: 10px;"></i>${t.taskName}</button>
-                                        <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${i.sectionID}&task-id=${t.id}"
-                                           class="chi-tiet-cong-viec" style="justify-self: end;">
-                                            <button class="btn btn-primary chi-tiet">Chi tiết</button>
-                                        </a>
+<%--                            <c:if test="${ t.assignedTo == sessionScope.loginUser.id}">--%>
+                                <div class="row " style="background: rgba(0, 0, 0, 0.2);">
+                                    <div class="col-4" style="border: 1px solid gray;">
+                                        <div class="" style="display: grid; grid-template-columns: 1fr 100px;">
+                                            <button style="border: none; background-color: #cccccc; justify-self: start;"
+                                                    onclick="myFunction('.sub-task-detail')">
+                                                <i class="fa-solid fa-caret-down"
+                                                   style="padding-right: 10px;"></i>${t.taskName}</button>
+                                            <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${i.sectionID}&task-id=${t.id}"
+                                               class="chi-tiet-cong-viec" style="justify-self: end;">
+                                                <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                            </a>
+                                        </div>
                                     </div>
+                                    <div class="col-2" style="border: 1px solid gray;">${t.nameEmployee}</div>
+                                    <div class="col-3" style="border: 1px solid gray;">${t.startingDate}</div>
+                                    <div class="col-3" style="border: 1px solid gray;">${t.endedDate}</div>
                                 </div>
-                                <div class="col-2" style="border: 1px solid gray;">${t.nameEmployee}</div>
-                                <div class="col-3" style="border: 1px solid gray;">${t.startingDate}</div>
-                                <div class="col-3" style="border: 1px solid gray;">${t.endedDate}</div>
-                            </div>
+<%--                            </c:if>--%>
                             <c:forEach items="${i.subTasksList}" var="s">
                                 <c:if test="${s.taskID == t.id}">
                                     <div id="" class="row sub-task-detail" style="display: none;">

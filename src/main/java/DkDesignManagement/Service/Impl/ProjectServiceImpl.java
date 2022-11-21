@@ -25,6 +25,10 @@ public class ProjectServiceImpl implements ProjectService {
         return projectDao.getAll();
     }
 
+    @Override
+    public Project getProject(int projectId) {
+        return projectDao.getProject(projectId);
+    }
 
     @Override
     public int addProject(Project project, Account account) {

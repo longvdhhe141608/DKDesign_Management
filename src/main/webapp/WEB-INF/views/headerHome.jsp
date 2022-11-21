@@ -41,22 +41,24 @@
                                 <div class="card_list_project">
                                     <c:forEach items="${listProDoing}" var="i">
                                         <div class="card_project">
-                                                ${i.projectName}
+                                            <a href="${pageContext.request.contextPath}/project/summary?id=${i.id}" style="color: black; text-decoration: none">
+                                                    ${i.projectName}
+                                            </a>
                                         </div>
                                     </c:forEach>
                                 </div>
-<%--                                <table class=" table">--%>
-<%--                                    <c:forEach items="${listProDoing}" var="i">--%>
-<%--                                        <tr>--%>
-<%--                                            <td class="left-main">--%>
-<%--                                                    ${i.project_name}--%>
-<%--                                            </td>--%>
-<%--                                            <td class="left-main">--%>
-<%--                                                    ${i.project_name}--%>
-<%--                                            </td>--%>
-<%--                                        </tr>--%>
-<%--                                    </c:forEach>--%>
-<%--                                </table>--%>
+                                <%--                                <table class=" table">--%>
+                                <%--                                    <c:forEach items="${listProDoing}" var="i">--%>
+                                <%--                                        <tr>--%>
+                                <%--                                            <td class="left-main">--%>
+                                <%--                                                    ${i.project_name}--%>
+                                <%--                                            </td>--%>
+                                <%--                                            <td class="left-main">--%>
+                                <%--                                                    ${i.project_name}--%>
+                                <%--                                            </td>--%>
+                                <%--                                        </tr>--%>
+                                <%--                                    </c:forEach>--%>
+                                <%--                                </table>--%>
                             </div>
                         </div>
                         <%--Kết thúc bảng công trình đang làm--%>
@@ -65,7 +67,7 @@
                             <h4>Công việc của tôi</h4>
                             <div class="tab">
                                 <button class="btn btn-secondary tablinks" onclick="openProject(event , 'project')">
-                                    Cộng việc
+                                    Công việc
                                 </button>
                                 <button class="btn btn-secondary tablinks" onclick="openProject(event , 'overdue')">
                                     Quá hạn

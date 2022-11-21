@@ -10,6 +10,8 @@ import java.util.List;
 public interface ProjectService {
     public List<Project> getProject();
 
+    Project getProject(int projectId);
+
     public int addProject(Project project, Account account);
 
     public int editProject(Project project);

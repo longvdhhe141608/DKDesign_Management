@@ -51,11 +51,6 @@
                            type="button"
                            value="Duyệt công việc">
                 </a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}">
-                    <input class="btn btn-secondary"
-                           type="button"
-                           value="Lịch">
-                </a>
                 <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"

@@ -1,15 +1,12 @@
 package DkDesignManagement.Service.Impl;
 
 
-
 import DkDesignManagement.Entity.Task;
-import DkDesignManagement.Repository.ProjectDao;
-import DkDesignManagement.Repository.RequirementDao;
-import DkDesignManagement.Repository.SectionDAO;
-import DkDesignManagement.Repository.TaskDAO;
+import DkDesignManagement.Repository.*;
 import DkDesignManagement.Service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -17,37 +14,47 @@ import java.util.List;
 @Service
 public class TaskServiceImpl implements TaskService {
 
-   @Autowired
-   TaskDAO taskDAO;
+    @Autowired
+    TaskDAO taskDAO;
 
-   @Autowired
-   RequirementDao requirementDao;
+    @Autowired
+    ProjectDao projectDao;
 
-   @Autowired
-   ProjectDao projectDao;
+    @Autowired
+    SectionDAO section;
 
-   @Autowired
-   SectionDAO section;
+    @Autowired
+    AccountDao accountDao;
 
-   @Override
-   public int addTask(Task task) {
-      return taskDAO.addTask(task);
-   }
+    @Autowired
+    RequirementDao requirementDao;
 
-   @Override
-   public List<Task> getListTask() {
-      return taskDAO.getAllTaskLevel2();
-   }
+    @Override
+    public int addTask(Task task) {
+        return taskDAO.addTask(task);
+    }
 
-   @Override
-   public Task getTaskById(int taskId) {
-      Task task = taskDAO.getTaskById(taskId);
-      task.setRequirementName(requirementDao.getRequirementById(task.getRequirementId()).getRequirementName());
-      task.setProjectName(projectDao.getProject(task.getProjectId()).getProjectName());
-      task.setSectionName(section.getOneSectionBySectionID(task.getSectionId()).getSectionName());
-      task.setListSubTask(taskDAO.getListSubTask(task.getTaskId()));
-      task.setTaskfName(taskDAO.getTaskById(task.getTaskfId().intValue()).getTaskName());
+    @Override
+    public List<Task> getListTask() {
+        return taskDAO.getAllTaskLevel2();
+    }
 
-      return task ;
-   }
+    @Override
+    public Task getTaskById(int taskId) {
+        Task task = taskDAO.getTaskById(taskId);
+
+        //set value send FE
+        task.setProjectName(projectDao.getProject(task.getProjectId()).getProjectName());
+        task.setSectionName(section.getOneSectionBySectionID(task.getSectionId()).getSectionName());
+        task.setListSubTask(taskDAO.getListSubTask(task.getTaskId()));
+        task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
+        task.setNumberFileCurrent(taskDAO.countFile(task.getTaskId()));
+        double workProgress = (task.getNumberFileCurrent() / (double) task.getFileNumber()) * 100;
+        task.setWorkProgress(workProgress + "%");
+        if(!ObjectUtils.isEmpty(task.getRequirementId())){
+            task.setRequirementName(requirementDao.getRequirementById(task.getRequirementId().intValue()).getRequirementName());
+        }
+
+        return task;
+    }
 }

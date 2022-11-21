@@ -19,7 +19,7 @@
     <jsp:include page="header.jsp"/>
     <div class="container_content body_page">
         <jsp:include page="nav_left.jsp"/>
-        <div class="summary content_first">
+        <div class="summary  content_first">
             <div class="title">
                 <h4>Tất cả công công việc cá nhân</h4>
             </div>
@@ -81,7 +81,7 @@
                         <div class="function_search">
                             <div class="wap_search">
                                 <input style="margin-right: 2px;" type="text" class="search_term"
-                                       name="textSearch" placeholder="Tên công trình">
+                                       name="textSearch" placeholder="Tên công việc">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <th scope="col">Thời gian dự kiến kết thúc</th>
                             <th scope="col">Thời gian kết thúc</th>
                             <th scope="col">Tên công trình</th>
-                            <th scope="col"></th>
+                            <th></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -111,7 +111,8 @@
                                     <div class="block-link">
                                         <div></div>
                                         <div class="links">
-                                            <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}" class="link-cong-viec">
+                                            <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}"
+                                               class="link-cong-viec">
                                                 <button class="btn-chi-tiet">
                                                     Chi tiết
                                                 </button>
@@ -126,7 +127,7 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        20/11/2022
+                                        20/10/2022
                                     </div>
                                 </td>
                                 <td>
@@ -136,8 +137,8 @@
                                 </td>
                                 <td> Biệt thự nhà dân</td>
                                 <td>
-                                    <div style="display: flex; justify-content: space-between;"><button><i
-                                            class="fa-regular fa-pen-to-square"></i></button>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
                                         <button><i class="fa-regular fa-trash-can"></i></button>
                                     </div>
                                 </td>
@@ -340,29 +341,13 @@
 <div class="popup hide__popup">
     <div class="popup__content">
         <div class="title">
-            <h4>Tạo công việc mới</h4>
+            <h4>Tạo công trình mới</h4>
         </div>
         <div class="info">
             <table class="table table-borderless">
                 <tr>
-                    <td>Nhiệm vụ:</td>
-                    <td><input class="info-text" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Công trình:</td>
-                    <td><input class="info-text" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Đầu mục công việc:</td>
-                    <td><input class="info-text" type="text"></td>
-                </tr>
-                <tr>
                     <td>Tên công việc:</td>
-                    <td> <input class="info-text" type="text"></td>
-                </tr>
-                <tr>
-                    <td>Tên công việc phụ:</td>
-                    <td> <input class="info-text" type="text"></td>
+                    <td><input class="info-text" type="text"></td>
                 </tr>
                 <tr>
                     <td>Loại công trình:</td>
@@ -372,11 +357,10 @@
                                data-toggle="dropdown" aria-expanded="false">
                                 Nội thất
                             </a>
-
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Ngoại thất</a>
-                                <a class="dropdown-item" href="#">Nội thất và ngoại thất</a>
-
+                                <a class="dropdown-item" href="#">Phòng ngủ</a>
+                                <a class="dropdown-item" href="#">Phòng khách</a>
+                                <a class="dropdown-item" href="#">Phòng ăn</a>
                             </div>
                         </div>
                     </td>

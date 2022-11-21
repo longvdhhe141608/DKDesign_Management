@@ -31,10 +31,22 @@ public class AdminController {
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("memberAdmin");
-
         List<Member> memberList = memberDAO.getAllMember();
         view.addObject("memberList", memberList);
         return view;
+    }
+    @RequestMapping(value = "/searchMember",method = RequestMethod.GET)
+    public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request){
+        ModelAndView view = new ModelAndView("memberAdmin");
+
+        int role = Integer.parseInt(request.getParameter("roleSearch"));
+        String name = request.getParameter("nameSearch");
+
+        List<Member> memberList = memberDAO.getAllMemberInSearch(role,name);
+        view.addObject("memberList",memberList);
+        view.addObject("roleSearch",role);
+        view.addObject("nameSearch",name);
+        return  view;
     }
 
     @RequestMapping(value = "/createAccount", method = RequestMethod.GET)
@@ -49,6 +61,7 @@ public class AdminController {
     public ModelAndView createAccount(HttpServletRequest request, RedirectAttributes redirect) {
         HttpSession session = request.getSession();
         String username = request.getParameter("username").trim().toLowerCase();
+        String mail = request.getParameter("mail").trim().toLowerCase();
         String password = request.getParameter("password");
         String passwordCheck = request.getParameter("passwordCheck");
         int role = Integer.parseInt(request.getParameter("role"));
@@ -57,7 +70,7 @@ public class AdminController {
             if (password.equals(passwordCheck)) {
                 accountDAO.addNewAccount(username, password, role);
                 Account account = accountDAO.getAccount(username);
-                memberDAO.addNewMember(username, account.getId());
+                memberDAO.addNewMember(username,mail, account.getId());
                 redirect.addAttribute("mess", "Add new member successfully");
                 return new ModelAndView("redirect:/admin/memberlist");
             } else {
@@ -72,5 +85,7 @@ public class AdminController {
         }
         return new ModelAndView("createAccount");
     }
+
+
 }
 

@@ -63,6 +63,7 @@
                             <th scope="col">Tên công trình</th>
                             <th scope="col">Loại công trình</th>
                             <th scope="col">Thời gian bắt đầu</th>
+                            <th scope="col">Thời gian dự kiến kết thúc</th>
                             <th scope="col">Thời gian kết thúc</th>
                             <th scope="col">Trạng thái</th>
                             <th scope="col"></th>
@@ -100,6 +101,11 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
+                                            ${i.closureDate}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="name-input" style="width: 150px;">
                                             ${i.endDate}
                                     </div>
                                 </td>
@@ -114,8 +120,8 @@
                                     </td>
                                 </c:if>
                                 <td>
-                                    <div style="display: flex; justify-content: space-between;"><button><i
-                                            class="fa-regular fa-pen-to-square"></i></button>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
                                         <button><i class="fa-regular fa-trash-can"></i></button>
                                     </div>
                                 </td>
@@ -156,74 +162,51 @@
             <form method="post" action="allProject/add">
                 <table class="table table-borderless">
                     <tr>
-                        <td>Tên Công trình <label class="text-danger">*</label>:</td>
-                        <td> <input id="inputaddname" class="info-text" type="text">
-                            <div class="text-danger error"></div>
-                        </td>
+                        <td>Tên công trình:</td>
+                        <td><input required="" class="info-text" name="name" type="text"></td>
                     </tr>
                     <tr>
-                        <td>Chủ nhà: <label class="text-danger">*</label>:</td>
-                        <td> <input id="" class="info-text" type="text">
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Số điện thoại:<label class="text-danger">*</label>:</td>
-                        <td> <input id="" class="info-text" type="text">
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ công trình:<label class="text-danger">*</label>:</td>
-                        <td> <input id="" class="info-text" type="text">
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Diện tích xây dựng:<label class="text-danger">*</label>:</td>
-                        <td> <input id="" class="info-text" type="text">m2
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Chi phí thiết kế:<label class="text-danger">*</label>:</td>
-                        <td> <input id="" class="info-text" type="text">
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Loại công trình<label class="text-danger">*</label>:</td>
+                        <td>Loại công trình:</td>
                         <td>
                             <div class="dropdown">
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-expanded="false">
-                                    Nội thất
-                                </a>
-
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#"> Nội thất</a>
-                                    <a class="dropdown-item" href="#">Ngoại thất</a>
-                                    <a class="dropdown-item" href="#">Nội thất và ngoại thất</a>
-                                </div>
+                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">
+                                    <c:forEach items="${listCategory}" var="category">
+                                        <option value="${category.id}"> ${category.category_name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td>Ngày bắt đầu<label class="text-danger">*</label>:</td>
-                        <td><input id="inputstartdate" class="info-text" type="date">
-                            <div class="text-danger error"></div>
+                        <td>Ngày bắt đầu:</td>
+                        <td><input required="" name="startDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Ngày dự kiến kết thúc:</td>
+                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
+                    </tr>
+                    <tr>
+                        <td>Tên khách hàng:</td>
+                        <td><input required="" class="info-text" name="customerName" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ:</td>
+                        <td><input required="" class="info-text" name="address" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại:</td>
+                        <td><input required="" class="info-text" name="phone" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Diện tích</td>
+                        <td><input required="" class="info-text" name="constructionArea" type="number"> m<sup>2</sup>
                         </td>
                     </tr>
                     <tr>
-                        <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                        <td><input id="inputenddate" class="info-text" type="date">
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mô tả:<label class="text-danger">*</label>:</td>
-                        <td> <textarea name="" id="" cols="30" rows="3"></textarea>
-                            <div class="text-danger error"></div>
+                        <td>Mô tả</td>
+                        <td>
+                            <%--                            <input required="" class="info-text" name="detail" type="text">--%>
+                            <textarea name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>
                         </td>
                     </tr>
 

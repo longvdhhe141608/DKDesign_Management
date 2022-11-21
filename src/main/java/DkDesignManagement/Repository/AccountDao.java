@@ -41,8 +41,17 @@ public class AccountDao {
 
     public List<Account> getAllAccount() {
         String sql = "SELECT * FROM `dkmanagement`.`accounts`";
-        List<Account> accountList = new ArrayList<>();
+        List<Account> accountList;
         accountList = jdbcTemplate.query(sql, new MapperAccount());
+        return accountList;
+    }
+
+    public List<Account> getAllAccountByProject(int projectId) {
+        String sql = "select a.* from project_participation pp ,accounts a \n" +
+                "where pp.account_id  = a.id \n" +
+                "and pp.project_id = ? ";
+        List<Account> accountList;
+        accountList = jdbcTemplate.query(sql, new MapperAccount(),projectId);
         return accountList;
     }
 

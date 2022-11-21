@@ -7,7 +7,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Trang chủ</title>
+    <title>Thành viên công ty</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -40,36 +40,30 @@
                 </div>
 
                 <div style="display: flex;">
+                    <form action="searchMember">
                     <%--start searching by role--%>
-                    <div class="function-two" style="margin-right:20px ;">
-                        <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                               data-toggle="dropdown" aria-expanded="false">
-                                Tìm kiếm
-                            </a>
+                    <div class="function-two" style="margin-right:20px;">
+                                    <select onchange="this.form.submit()" style="height: 38px" name="roleSearch" class="btn btn-secondary dropdown-toggle">
+                                        <option value="0">Thành viên</option>
+                                        <option value="3" ${roleSearch==3?"selected":""} >Thiết Kế</option>
+                                        <option value="2" ${roleSearch==2?"selected":""} >Trưởng Nhóm</option>
+                                    </select>
 
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">thiết kế</a>
-                                <a class="dropdown-item" href="#">trưởng nhóm</a>
-                            </div>
-                        </div>
                     </div>
                     <%--end searching by role--%>
 
                     <%--start searching member by name--%>
                     <div class="function-thir">
                         <div class="function_search">
-                            <form action="#findMember" method="post">
                                 <div class="wap_search">
-                                    <input style="margin-right: 10px;" type="text" class="search_term"
+                                    <input name="nameSearch" value="${nameSearch}" style="margin-right: 10px;" type="text" class="search_term"
                                            placeholder="tên thành viên">
                                     <input type="submit" class="btn btn-primary" value="tìm kiếm">
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <%--end seearching member by name--%>
-
+                    </form>
                 </div>
             </div>
         </div>
@@ -89,12 +83,15 @@
                 <c:forEach var="member" items="${memberList}">
                     <tr>
                         <td style="display: flex;justify-content:space-between">${member.memberName}
-                            <a href="${pageContext.request.contextPath}/information">
+                            <form action="${pageContext.request.contextPath}/member/information" method="get">
                                 <input name="id" value="${member.memberId}" hidden>
                                 <input type="submit" class="btn btn-primary" value="chi tiết">
-                            </a>
+                            </form>
                         </td>
-                        <td>${member.memberRole}</td>
+                        <td>
+                            <c:if test="${member.memberRole==2}">Trưởng nhóm</c:if>
+                            <c:if test="${member.memberRole==3}">Thiết kế</c:if>
+                        </td>
                         <td>${member.memberPhone}</td>
                         <td>${member.memberMail}</td>
                         <td>${member.memberAddress}</td>

@@ -31,11 +31,8 @@ public class SectionDAO {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
    public List<Section> getAll() {
-
        String sql = "select * from section bt ";
-
        return jdbcTemplate.query(sql, new MapperSection());
-
    }
 
     public int addSection(Section section) {

@@ -18,7 +18,7 @@ public class Task {
     private BigInteger taskfId;
     private int creatorId;
     private int assignToId;
-    private int requirementId;
+    private BigInteger requirementId;
     private String taskName;
     private int taskStatus;
     private Date startDate;
@@ -27,7 +27,7 @@ public class Task {
     private String description;
     private int fileNumber;
 
-    public Task(int taskId, int projectId, int sectionId, BigInteger taskfId, int creatorId, int assignToId, int requirementId, String taskName, int taskStatus, Date startDate, Date deadline, Date endDate, String description,int fileNumber) {
+    public Task(int taskId, int projectId, int sectionId, BigInteger taskfId, int creatorId, int assignToId, BigInteger requirementId, String taskName, int taskStatus, Date startDate, Date deadline, Date endDate, String description,int fileNumber) {
         this.taskId = taskId;
         this.projectId = projectId;
         this.sectionId = sectionId;
@@ -49,7 +49,6 @@ public class Task {
     private List<Task> listSubTask;
     private String assignToName;
 
-    //requirement
     private String requirementName;
 
     //project
@@ -58,9 +57,10 @@ public class Task {
     //section
     private String sectionName;
 
-    //task
-    private String taskfName;
+    //file current
+    private int numberFileCurrent;
 
-
+    //workProgress
+    private String workProgress;
 
 }

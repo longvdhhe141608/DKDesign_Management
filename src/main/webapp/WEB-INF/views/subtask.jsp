@@ -25,7 +25,7 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.project_name}</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
@@ -34,115 +34,133 @@
                 </div>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                           value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                             style="background: blue;" value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                                 value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                            value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                               value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                            value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                          value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary" type="button"
-                                                             value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/summary?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        style="background: blue;" value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary" type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="task-details-main">
-            <h4>Cấp điện chiếu sáng tầng 1</h4>
-            <a style="font-size: 25px;" href="${pageContext.request.contextPath}/list_task">Biệt thự nhà dân></a><br>
-            <a style="font-size: 20px;" href="${pageContext.request.contextPath}/task_detail">Thiết kế mặt bằng cấp điện></a><br>
-            <a href="${pageContext.request.contextPath}/subtask">Cấp điện chiếu sáng tầng 1></a>
+            <c:if test="${task.taskStatus == 3}">
+                <div style="border-bottom: 1px solid grey; text-align: start;">
+                    <h4>Bạn có muốn phê duyệt không (FE sửa hộ)</h4>
+                    <button class="btn btn-primary">Đồng ý</button>
+                    <button class="btn btn-secondary">Hủy bỏ</button>
+                </div>
+            </c:if>
+
+            <h4>${task.taskName}</h4>
+            <div style="display: flex; font-size: 20px; margin-left: 10px;">
+                <a href="list_task?id=${task.projectId}">${task.projectName}></a><br>
+                <a href="task_detail?taskId=${task.taskfId}">${task.sectionName}></a><br>
+                <a href="subtask?taskId=${task.taskId}">${task.taskName}></a>
+            </div>
             <table class="table table-borderless" style="border: 0;">
+
                 <tr>
                     <td>Nhiệm vụ:</td>
-                    <td>huonghuong</td>
+                    <td>${task.assignToName}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>
-                    <td>Biệt thự nhà dân</td>
+                    <td>${task.projectName}</td>
                 </tr>
                 <tr>
                     <td>Đầu mục công việc:</td>
-                    <td>Thiết kế bản vẽ</td>
+                    <td>${task.sectionName}</td>
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/10/2022">
-                        </div>
+                        ${task.startDate}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
+                        ${task.deadline}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
+                        ${task.endDate}
                     </td>
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>50/50</td>
+                    <td>${task.numberFileCurrent} / ${task.fileNumber}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>100%</td>
-                </tr>
-                <tr>
-                    <td>Yêu cầu khách hàng:</td>
-                    <td>Tầng 1</td>
+                    <td>${task.workProgress}</td>
                 </tr>
                 <tr>
                     <td>Ghi chú:</td>
-                    <td>-</td>
+                    <td>${task.description}</td>
                 </tr>
                 <tr>
+                    <td>Yêu cầu khách hàng:</td>
+                    <td>${task.requirementName}</td>
+                </tr>
+
+                <tr>
+                    <td>Xem file:</td>
                     <td>
-                        Hiển thị file:
                     </td>
-                    <td></td>
                 </tr>
             </table>
         </div>
+        <p style="font-size: 20px;">Bình luận</p>
         <div class="task-cmt-details">
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
+            <c:if test="${listComment.size() > 0}">
+                <c:forEach items="${listComment}" var="comment">
+                    <!----------item------------>
+                    <div class="task-cmt-details-main">
+                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                        <a class="name-avatar">${comment.accountName}</a>
+                        <a> ${comment.dateCountDown}</a></br>
+                        <p>${comment.content}</p>
+                        <c:if test="${comment.isPin() ==true}">
+                            <i class="fa-solid fa-thumbtack"></i>
+                            <br>
+                        </c:if>
+                        <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a>
+                        </c:if>
+
+
+                    </div>
+                    <!----------item------------>
+                </c:forEach>
+            </c:if>
+
+
             <div class="task-detail-cmt">
-                <div>
+                <form action="add-comment" method="post">
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                    <input class="input-cmt" type="text" placeholder="Bình luận....">
-                </div>
-                <button class="btn btn-primary">Gửi</button>
+                    <input name="taskId" type="text" value="${task.taskId}" hidden="">
+                    <input name="operation" type="text" value="subTaskDetail" hidden="">
+                    <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                    <button class="btn btn-primary">Gửi</button>
+                </form>
             </div>
         </div>
     </div>
@@ -154,6 +172,12 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
+</script>
+<script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
 </script>
 </body>
 </html>

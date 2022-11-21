@@ -1,6 +1,5 @@
 
-/target/
-*.class
-*.class
-*.class
-*.class
+/target/classes/
+/target/DkDesginManagement-1.0
+/target/generated-sources/
+

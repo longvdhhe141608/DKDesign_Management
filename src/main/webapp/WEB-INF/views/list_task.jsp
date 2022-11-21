@@ -26,38 +26,42 @@
     <div class="summary ">
         <div class="top-details">
             <div class="list-top">
-                <h3>Biệt thự nhà dân</h3>
+                <h3>${project.projectName}</h3>
                 <a class="btn project-detail"><select>
                     <option class="btn btn-secondary">Đang thực hiện</option>
                     <option class="btn btn-secondary">Đã hoàn thành</option>
                 </select></a>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary"><input class="btn btn-secondary"
-                                                                                         type="button"
-                                                                                         value="Sơ lược"></a>
-                <a class="test" href="${pageContext.request.contextPath}/list_task"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           style="background: blue;"
-                                                                                           value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval"><input class="btn btn-secondary"
-                                                                                               type="button"
-                                                                                               value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement"><input class="btn btn-secondary"
-                                                                                             type="button"
-                                                                                             value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member"><input class="btn btn-secondary"
-                                                                                        type="button"
-                                                                                        value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/summary?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        style="background: blue;"
+                        value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="list-task-main">
@@ -69,50 +73,37 @@
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div class="modal-content" style="width: 60%">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
                         <form action="add-task" method="post" class="form-inline my-2 my-lg-0">
                             <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                  name="name" placeholder="Tên công việc" aria-label="Text"/>
+                                   name="name" placeholder="Tên công việc" aria-label="Text"/>
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Nhiệm vụ:</td>
                                     <td>
-                                        <select name="requirementId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listRequirement}" var="requirement">
-                                            <option value="${requirement.id}"> ${requirement.requirementName}</option>
-                                        </c:forEach>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Người nhận việc:</td>
-                                    <td>
                                         <select name="assignId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listAccount}" var="account">
-                                            <option value="${account.id}"> ${account.username}</option>
-                                        </c:forEach>
+                                            <c:forEach items="${listAccount}" var="account">
+                                                <option value="${account.id}"> ${account.username}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Công trình:</td>
                                     <td>
-                                        <select name="projectId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listProject}" var="project">
-                                            <option value="${project.id}"> ${project.projectName}</option>
-                                        </c:forEach>
-                                        </select>
+                                        ${project.projectName}
+                                        <input type="text" class="" name="projectId" value="${project.id}" hidden>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Đầu mục công việc:</td>
                                     <td>
                                         <select name="sectionId" class="btn btn-secondary dropdown-toggle">
-                                        <c:forEach items="${listBigTask}" var="section">
-                                            <option value="${section.id}"> ${section.section_name}</option>
-                                        </c:forEach>
+                                            <c:forEach items="${listBigTask}" var="section">
+                                                <option value="${section.id}"> ${section.section_name}</option>
+                                            </c:forEach>
                                         </select>
                                     </td>
                                 </tr>
@@ -121,7 +112,7 @@
                                     <td>
                                         <div class="name-input" style="width: 150px;">
                                             <input class="form-control" formControlName="dob" type="date"
-                                                 name="startDate"  value="20/10/2022">
+                                                   name="startDate" value="20/10/2022">
                                         </div>
                                     </td>
                                 </tr>
@@ -130,24 +121,8 @@
                                     <td>
                                         <div class="name-input" style="width: 150px;">
                                             <input class="form-control" formControlName="dob" type="date"
-                                                   name="deadline"   value="20/10/2022">
+                                                   name="deadline" value="20/10/2022">
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Ghi chú:</td>
-                                    <td><input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                               name="description" placeholder="miêu tả" aria-label="Text"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Kế hoạch công việc:</td>
-                                    <td>
-                                        <select name="taskfId" class="btn btn-secondary dropdown-toggle">
-                                            <option value="-1"> None</option>
-                                            <c:forEach items="${listTaskLevel2}" var="task">
-                                                <option value="${task.taskId}"> ${task.taskName}</option>
-                                            </c:forEach>
-                                        </select>
                                     </td>
                                 </tr>
                             </table>
@@ -162,9 +137,11 @@
             <div class="">
                 <div class="row list-task-detail">
                     <div class="col-4 list-task-header">Công việc</div>
-                    <div class="col-2 list-task-header">Phân công</div>
-                    <div class="col-3 list-task-header">Thời gian bắt đầu</div>
-                    <div class="col-3 list-task-header">Thời gian dự kiến kết thúc</div>
+                    <div class="col-1 list-task-header">Phân công</div>
+                    <div class="col-2 list-task-header">Thời gian bắt đầu</div>
+                    <div class="col-2 list-task-header">Thời gian dự kiến kết thúc</div>
+                    <div class="col-2 list-task-header">Thời gian kết thúc</div>
+                    <div class="col-1 list-task-header"></div>
                 </div>
 
 
@@ -173,54 +150,103 @@
                     <details>
                         <summary>
                             <span>${bigTask.section_name}</span>
+                            <button><i class="fa-regular fa-pen-to-square"></i></button>
+                            <button><i class="fa-regular fa-trash-can"></i></button>
                         </summary>
-
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>
+                            <%--                            <div class="row " style="background: rgba(0, 0, 0, 0.2);">--%>
+                            <%--                                <div class="col-3" style="border: 1px solid gray;">--%>
+                            <%--                                    <div class="">--%>
+                            <%--                                        <button onclick="myFunction('.sub-task-detail')"><i--%>
+                            <%--                                                class="fa-solid fa-caret-down"></i></button>--%>
+                            <%--                                            ${task.taskName}--%>
+                            <%--                                        <a href="task_detail?taskId=${task.taskId}">--%>
+                            <%--                                            <button class="btn btn-primary">Chi tiết</button>--%>
+                            <%--                                        </a>--%>
+                            <%--                                    </div>--%>
+                            <%--                                </div>--%>
+                            <%--                                <div class="col-2" style="border: 1px solid gray;">${task.assignToName}</div>--%>
+                            <%--                                <div class="col-3" style="border: 1px solid gray;">${task.startDate}</div>--%>
+                            <%--                                <div class="col-3" style="border: 1px solid gray;">${task.deadline}</div>--%>
+                            <%--                            </div>--%>
                             <div class="row " style="background: rgba(0, 0, 0, 0.2);">
-                                <div class="col-4" style="border: 1px solid gray;">
+                                <div class="col-4 row-task"
+                                     style="display: flex;justify-content: space-between; border: 1px solid gray;">
                                     <div class="">
                                         <button onclick="myFunction('.sub-task-detail')"><i
-                                                class="fa-solid fa-caret-down"></i></button>
+                                                class="fa-solid fa-caret-down"></i>
+                                        </button>
                                             ${task.taskName}
                                     </div>
+                                    <a href="${pageContext.request.contextPath}/task_detail?taskId=${task.taskId}">
+                                        <button class="btn btn-primary link-row-task">Chi tiết</button>
+                                    </a>
                                 </div>
-                                <div class="col-2" style="border: 1px solid gray;">${task.assignToName}</div>
-                                <div class="col-3" style="border: 1px solid gray;">${task.startDate}</div>
-                                <div class="col-3" style="border: 1px solid gray;">${task.deadline}</div>
+                                <div class="col-1" style="border: 1px solid gray;">${task.assignToName}</div>
+                                <div class="col-2" style="border: 1px solid gray;">${task.startDate}</div>
+                                <div class="col-2" style="border: 1px solid gray;">${task.deadline}</div>
+                                <div class="col-2" style="border: 1px solid gray;">${task.endDate}</div>
+                                <div class="col-1" style="border: 1px solid gray;">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <button><i
+                                                class="fa-regular fa-pen-to-square"></i></button>
+                                        <button><i class="fa-regular fa-trash-can"></i></button>
+                                    </div>
+                                </div>
                             </div>
                             <!------task item------>
 
 
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <!--------list sub task------------>
+                                <%--                                <div id="" class="row sub-task-detail">--%>
+                                <%--                                    <div class="col-4" style="border: 1px solid gray;">--%>
+                                <%--                                        <div class="">--%>
+                                <%--                                                ${subTask.taskName}--%>
+                                <%--                                            <a href="task_detail?taskId=${subTask.taskId}">--%>
+                                <%--                                                <button class="btn btn-primary">Chi tiết</button>--%>
+                                <%--                                            </a>--%>
+                                <%--                                        </div>--%>
+
+                                <%--                                    </div>--%>
+                                <%--                                    <div class="col-2" style="border: 1px solid gray;">${subTask.assignToName}</div>--%>
+                                <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>--%>
+                                <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.deadline}</div>--%>
+                                <%--                                </div>--%>
+
                                 <div id="" class="row sub-task-detail">
-                                    <div class="col-4" style="border: 1px solid gray;">
+                                    <div class="col-4 link-chi-tiet-cong-viec" style="border: 1px solid gray; display: flex; justify-content: space-between; ">
                                         <div class="">
                                                 ${subTask.taskName}
                                         </div>
-                                            <div>
-                                                <a href="task_detail?taskId=${subTask.taskId}" ><button class="btn btn-primary">Chi tiết</button></a>
-
-                                            </div>
+                                        <div>
+                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${subTask.taskId}" class="chi-tiet-cong-viec">
+                                                <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col-2" style="border: 1px solid gray;">${subTask.assignToName}</div>
-                                    <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>
-                                    <div class="col-3" style="border: 1px solid gray;">${subTask.deadline}</div>
+                                    <div class="col-1" style="border: 1px solid gray;">${subTask.assignToName}</div>
+                                    <div class="col-2" style="border: 1px solid gray;">${subTask.startDate}</div>
+                                    <div class="col-2" style="border: 1px solid gray;">${subTask.deadline}</div>
+                                    <div class="col-2" style="border: 1px solid gray;">${subTask.endDate}</div>
+                                    <div class="col-1" style="border: 1px solid gray;">
+                                        <div style="display: flex; justify-content: space-between;">
+                                            <button>
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </button>
+                                            <button>
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-
-
                                 <!--------list sub task------------>
                             </c:forEach>
-
-
                         </c:forEach>
-
                     </details>
                     <!------big task item------>
                 </c:forEach>
-
-
             </div>
             <div class="bot">
                 <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')" id="myBtn-project"
@@ -229,7 +255,7 @@
                 <!-- The Modal -->
                 <div id="myModal-footer" class="modal">
                     <!-- Modal content -->
-                    <div class="modal-content">
+                    <div class="modal-content" style="width: 60%;">
                         <span id="close2" class="close">&times;</span>
                         <div class="project-add-task">
                             <form action="add_section" method="post" class="form-inline my-2 my-lg-0">
@@ -239,18 +265,8 @@
                                     <tr>
                                         <td>Công trình:</td>
                                         <td>
-                                            <select name="projectId" class="btn btn-secondary dropdown-toggle">
-                                                <c:forEach items="${listProject}" var="project">
-                                                    <option value="${project.id}"> ${project.projectName}</option>
-                                                </c:forEach>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ghi chú:</td>
-                                        <td>
-                                            <input style="width: 30rem;" class="form-control mr-sm-2" type="text"
-                                                 name="description"  placeholder="Ghi chú" aria-label="Text"/>
+                                            ${project.projectName}
+                                            <input type="text" class="" name="projectId" value="${project.id}" hidden>
                                         </td>
                                     </tr>
                                 </table>
@@ -304,6 +320,7 @@
             }
         }
     }
+
     var mess = '${mess}'
     if (mess != '') {
         alert(mess);

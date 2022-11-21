@@ -26,7 +26,7 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>${project.project_name}</h3>
+                <h3>${task.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
@@ -41,26 +41,38 @@
                 <a class="test" href="${pageContext.request.contextPath}/task/list_task?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         style="background: blue;" value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input class="btn btn-secondary"
-                                                                                               type="button"
-                                                                                               value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/calendar?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Lịch"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input class="btn btn-secondary"
-                                                                                             type="button"
-                                                                                             value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input class="btn btn-secondary"
-                                                                                          type="button"
-                                                                                          value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input class="btn btn-secondary"
-                                                                                        type="button"
-                                                                                        value="Thành viên"></a>
-                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input class="btn btn-secondary"
-                                                                                           type="button"
-                                                                                           value="Thống kê"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Duyệt công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
+        <c:if test="${task.taskStatus == 3}">
+            <div>
+                <h4>Bạn có muốn phê duyệt không (FE sửa hộ)</h4>
+                <button type="button" class="btn btn-primary">Đồng ý</button>
+                <button type="button" class="btn btn-primary">Không đồng ý</button>
+            </div>
+
+        </c:if>
+
+
         <div class="task-details-main">
             <table class="table table-borderless" style="border: 0;">
                 <tr>
@@ -68,7 +80,7 @@
                 </tr>
                 <tr>
                     <td>Nhiệm vụ:</td>
-                    <td>${task.requirementName}</td>
+                    <td>${task.assignToName}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>
@@ -104,11 +116,11 @@
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>${task.fileNumber}</td>
+                    <td>${task.numberFileCurrent} / ${task.fileNumber}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>-</td>
+                    <td>${task.workProgress}</td>
                 </tr>
                 <tr>
                     <td>Ghi chú:</td>
@@ -116,22 +128,18 @@
                 </tr>
                 <tr>
                     <td>Kế hoạch của công việc:</td>
-                    <td>${task.taskfName}</td>
                 </tr>
             </table>
-
             <div>
                 <p>Danh sách công việc phụ :</p>
                 <div class="add" id="show-member">
                     <button class="btn btn-primary">+ Thêm công việc phụ</button>
                 </div>
-
             </div>
             <div>
-               <c:forEach items="${task.listSubTask}" var="subTask" >
-                   <a href="#">${subTask.taskName}</a>
-               </c:forEach>
-
+                <c:forEach items="${task.listSubTask}" var="subTask">
+                    <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
+                </c:forEach>
             </div>
 
         </div>
@@ -144,66 +152,99 @@
                 </a>
             </form>
         </div>
-        <div class="task-cmt-details">
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
-            <div class="task-cmt-details-main">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <a class="name-avatar">Nam</a>
-                <a> 4 phút trước</a></br>
-                <p>ok đấy</p>
-            </div>
+        <p style="font-size: 20px;">Bình luận</p>
+        <div class="task-cmt-details" style="margin-top: 20px; margin-left: 10px;">
+            <c:if test="${listComment.size() > 0}">
+                <c:forEach items="${listComment}" var="comment">
+                    <!----------item------------>
+                    <div class="task-cmt-details-main">
+                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                        <a class="name-avatar">${comment.accountName}</a>
+                        <a> ${comment.dateCountDown}</a></br>
+                        <p>${comment.content}</p>
+                        <c:if test="${comment.isPin() ==true}">
+                            <i class="fa-solid fa-thumbtack"></i>
+                            <br>
+                        </c:if>
+                        <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a>
+                        </c:if>
+
+
+                    </div>
+                    <!----------item------------>
+                </c:forEach>
+            </c:if>
+
+
             <div class="task-detail-cmt">
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <input class="input-cmt" type="text" placeholder="Bình luận....">
-                <button class="btn btn-primary">Gửi</button>
+                <form action="add-comment" method="post">
+                    <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                    <input name="taskId" type="text" value="${task.taskId}" hidden="">
+                    <input name="operation" type="text" value="taskDetail" hidden="">
+                    <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                    <button class="btn btn-primary">Gửi</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 <div class="popup hide__popup">
+    <form action="add-sub-task" method="post">
     <div class="popup__content">
         <div class="title">
-            <h4>Thêm công việc phụ</h4>
+            <h4><input class="info-text" type="text" name="name" value="" placeholder="Tên công việc phụ"></h4>
         </div>
         <div class="info">
+            <input type="text" name="projectId" hidden="" value="${task.projectId}" >
+            <input type="text" name="sectionId" hidden="" value="${task.sectionId}" >
+            <input type="text" name="taskId" hidden="" value="${task.taskId}" >
             <table class="table table-borderless">
                 <tr>
+                    <td>Nhiệm vụ:</td>
+                    <td>
+                        ${task.assignToName}
+                        <input type="text" name="assignTo" hidden="" value="${task.assignToId}" >
+                    </td>
+                </tr>
+                <tr>
                     <td>Thời gian bắt đầu:</td>
-                    <td><input class="info-text" type="text" style="width: 500px;"></td>
+                    <td> <input class="info-text" name="startDate" type="date"></td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
-                    <td><input class="info-text" type="text" style="width: 500px;"></td>
+                    <td> <input class="info-text" name="deadline" type="date"></td>
+                </tr>
+                <tr>
+                    <td>Yêu cầu của khách hàng:</td>
+                    <td>
+                        <div class="dropdown">
+                            <select name="requirementId" class="btn btn-secondary dropdown-toggle">
+                                <c:forEach items="${listRequirement}" var="requirement">
+                                    <option value="${requirement.id}"> ${requirement.requirementName}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td><input class="info-text" type="number"></td>
+                    <td> <input type="number" name="fileNumber" value=""></td>
                 </tr>
             </table>
         </div>
         <div class="button_click">
             <div></div>
             <div class="btn_cancel">
-                <button type="button" class="btn btn-secondary close_popup">
-                    Hủy bỏ
-                </button>
+                <button type="button" class="btn btn-secondary close_popup">Hủy
+                    bỏ</button>
             </div>
             <div class="btn_ok">
-                <button type="button" class="btn btn-primary">Lưu</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </div>
     </div>
+  </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
@@ -214,6 +255,10 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
     const show = document.querySelector("#show-member");
 
     const popup = document.querySelector(".popup");

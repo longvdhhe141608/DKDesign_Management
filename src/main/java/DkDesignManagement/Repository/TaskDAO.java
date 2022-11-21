@@ -57,6 +57,11 @@ public class TaskDAO {
         return taskList;
     }
 
+    public int countFile(int taskId){
+        String sql = "select count(*) from image_and_file iaf where task_id = ? ";
+        return jdbcTemplate.queryForObject(sql,Integer.class,taskId);
+    }
+
     public List<Task> getTaskByBigTaskId(int sectionId) {
 
         String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null ";
@@ -120,74 +125,74 @@ public class TaskDAO {
     }
 
     //tao big task moi ma co assign cho designer luon
-    public void addNewBigTaskHasAssignTo(Date start_date, Date deadline, String description, int project_id, int creator, int assigned_to) {
-
-        String sql = "INSERT INTO `dkmanagement`.`big_task` \n" +
-                "(`start_date`, `deadline`, `description`, `project_id`, `creator`, `assigned_to`)" +
-                "VALUES (?, ?, ?, ?, ?, ?)";
-        try {
-            jdbcTemplate.update(sql, start_date, deadline, description, project_id, creator, assigned_to);
-        } catch (Exception e) {
-
-        }
-
-    }
+//    public void addNewBigTaskHasAssignTo(Date start_date, Date deadline, String description, int project_id, int creator, int assigned_to) {
+//
+//        String sql = "INSERT INTO `dkmanagement`.`big_task` \n" +
+//                "(`start_date`, `deadline`, `description`, `project_id`, `creator`, `assigned_to`)" +
+//                "VALUES (?, ?, ?, ?, ?, ?)";
+//        try {
+//            jdbcTemplate.update(sql, start_date, deadline, description, project_id, creator, assigned_to);
+//        } catch (Exception e) {
+//
+//        }
+//
+//    }
 
     // tao big task moi ma chua assign cho designer
-    public void addNewBigTaskHasNotAssigned(Date start_date, Date deadline, String description, int project_id, int creator) {
-        int task = 0;
-        String sql = "INSERT INTO `dkmanagement`.`big_task` " +
-                "(`start_date`, `deadline`, `description`, `project_id`, `creator`) " +
-                "VALUES (?,?,?,?,?);\n";
-
-        jdbcTemplate.update(sql, start_date, deadline, description, project_id, creator);
-
-    }
+//    public void addNewBigTaskHasNotAssigned(Date start_date, Date deadline, String description, int project_id, int creator) {
+//        int task = 0;
+//        String sql = "INSERT INTO `dkmanagement`.`big_task` " +
+//                "(`start_date`, `deadline`, `description`, `project_id`, `creator`) " +
+//                "VALUES (?,?,?,?,?);\n";
+//
+//        jdbcTemplate.update(sql, start_date, deadline, description, project_id, creator);
+//
+//    }
 
     //assign mot big task cho member
-    public void assignNewTaskToNewMember(int id, int assigned_to) {
-        String sql = "UPDATE `dkmanagement`.`big_task` SET `assigned_to` = ? WHERE (`id` = ?)";
-        try {
-            jdbcTemplate.update(sql, assigned_to, id);
-        } catch (Exception e) {
-
-        }
-    }
+//    public void assignNewTaskToNewMember(int id, int assigned_to) {
+//        String sql = "UPDATE `dkmanagement`.`big_task` SET `assigned_to` = ? WHERE (`id` = ?)";
+//        try {
+//            jdbcTemplate.update(sql, assigned_to, id);
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
     // xoa BigTask theo ID
-    public void deleteBigTaskById(int id) {
-        String sql = "DELETE FROM `dkmanagement`.`big_task` WHERE (`id` = ?);\n";
-        try {
-            jdbcTemplate.update(sql, id);
-        } catch (Exception e) {
-
-        }
-    }
+//    public void deleteBigTaskById(int id) {
+//        String sql = "DELETE FROM `dkmanagement`.`big_task` WHERE (`id` = ?);\n";
+//        try {
+//            jdbcTemplate.update(sql, id);
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
     // Leader them mot task moi trong big_task va assign cho member
-    public void createNewTaskAndAssignToMember(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, ?, 2 , ?, ?)";
-        try {
-            jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
-        } catch (Exception e) {
-
-        }
-    }
+//    public void createNewTaskAndAssignToMember(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
+//        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, ?, 2 , ?, ?)";
+//        try {
+//            jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
     /*
      * Leader them mot task moi trong big_task ma chua assign cho member
      * status mac dinh la 1 (pending)
      * creator =  leader_id, assigned_to = null
      */
-    public void createNewTaskNotAssigned(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) " +
-                "VALUES (?, ?, ?, 1 , ?, ?, ?)";
-        try {
-            jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
-        } catch (Exception e) {
-
-        }
-    }
+//    public void createNewTaskNotAssigned(int big_task_id, int creator, int assignedto, String task_name, Date start_date, Date deadline, String description) {
+//        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) " +
+//                "VALUES (?, ?, ?, 1 , ?, ?, ?)";
+//        try {
+//            jdbcTemplate.update(sql, big_task_id, creator, assignedto, task_name, start_date, deadline, description);
+//        } catch (Exception e) {
+//
+//        }
+//    }
 
     /*
      * member assign a task that no one has assigned yet
@@ -203,10 +208,10 @@ public class TaskDAO {
      * status mac dinh la 1 (pending)
      * creator = assignedTo = member_id
      */
-    public void createNewTaskByMember(int big_task_id, int creator, int assignedTo, String task_name, Date start_date, Date deadline, String description) {
-        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, 1, ?, ?, ?)";
-        jdbcTemplate.update(sql, big_task_id, creator, assignedTo, task_name, start_date, deadline, description);
-    }
+//    public void createNewTaskByMember(int big_task_id, int creator, int assignedTo, String task_name, Date start_date, Date deadline, String description) {
+//        String sql = "INSERT INTO `dkmanagement`.`task` \n" + "(`big_task_id`, `creator`, `assignedto`, `task_name`, `task_status`, `starting_date`, `deadline`, `description`) \n" + "VALUES (?, ?, ?, ?, 1, ?, ?, ?)";
+//        jdbcTemplate.update(sql, big_task_id, creator, assignedTo, task_name, start_date, deadline, description);
+//    }
 
     /*
      * Update task_status theo trang thai hien tai cua cong viec
@@ -216,7 +221,7 @@ public class TaskDAO {
      * Member retry task bi reject -> status tu 5(reject) thanh 2(doing)
      */
     public void updateTaskStatus(int id, int status) {
-        String sql = "UPDATE `dkmanagement`.`task` SET `task_status` = ? WHERE (`id` = ?)";
+        String sql = "UPDATE `dkmanagement`.`task` SET `status` = ? WHERE (`id` = ?)";
         jdbcTemplate.update(sql, id, status);
     }
 
@@ -250,11 +255,11 @@ public class TaskDAO {
 
     public List<Tasks> getAllTasksByProjectIDAndSectionID(int projectID, int sectionID) {
         List<Tasks> tasksList = new ArrayList<>();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
                 "left join project p on s.project_id = p.id \n" +
                 "left join task t on s.id = t.section_id\n" +
                 "left join project_participation pp on p.id = pp.project_id \n" +
-                "left join accounts a on a.id = pp.project_id \n" +
+                "left join accounts a on a.id = t.assignedto \n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "where s.project_id= ? AND t.section_id= ? AND t.task_id is null \n" +
@@ -271,11 +276,11 @@ public class TaskDAO {
 
     public List<Tasks> getAllSubTasksByProjectIDAndSectionIDAndTaskID(int projectID, int sectionID, int taskID) {
         List<Tasks> tasksList = new ArrayList<>();
-        String sql = "SELECT t.*, e.name, r.requirement_name FROM section s\n" +
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
                 "left join project p on s.project_id = p.id \n" +
                 "left join task t on s.id = t.section_id\n" +
                 "left join project_participation pp on p.id = pp.project_id \n" +
-                "left join accounts a on a.id = pp.project_id \n" +
+                "left join accounts a on a.id = t.assignedto \n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n" +
