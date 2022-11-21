@@ -28,7 +28,7 @@ public class RequirementController {
     @Autowired
     private RequirementService requirementService;
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = "/requirement-for-leader", method = RequestMethod.GET)
     public ModelAndView viewRequirement(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("requirement");
 

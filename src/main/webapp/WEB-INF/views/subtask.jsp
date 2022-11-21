@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="list-task-head">
-                <a class="test" href="${pageContext.request.contextPath}/summary?id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
@@ -43,13 +43,15 @@
                 <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}"><input
-                        class="btn btn-secondary" type="button"
-                        value="Yêu cầu của khách hàng"></a>
+                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Yêu cầu của khách hàng">
+                </a>
                 <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         value="Tiến độ"></a>
-                <a class="test" href="${pageContext.request.contextPath}/member?id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         value="Thành viên"></a>
                 <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input

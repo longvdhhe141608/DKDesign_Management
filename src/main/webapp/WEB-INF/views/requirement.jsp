@@ -51,9 +51,10 @@
                            type="button"
                            value="Duyệt công việc">
                 </a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement?id=${project.id}">
+                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
+                           style="background: blue;"
                            value="Yêu cầu của khách hàng">
                 </a>
                 <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}">
@@ -117,7 +118,6 @@
                     </tr>
                     <!-------item------------------------>
                     </c:forEach>
-
                     </tbody>
                 </table>
                 <div class="pagination">
@@ -132,9 +132,7 @@
                         </ul>
                     </nav>
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>
