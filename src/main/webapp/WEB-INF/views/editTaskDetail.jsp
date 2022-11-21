@@ -64,73 +64,63 @@
                         value="Thống kê"></a>
             </div>
         </div>
+        <form action="edit-task" method="post">
+            <input type="text" hidden="" name="taskId" value="${task.taskId}">
+            <div class="summary-main">
+                <div class="main-Quickview">
+                    <div class="summary-main-header">
+                        <h4><input type="text" name="name" value="${task.taskName}"></h4>
 
-        <div class="summary-main">
-            <div class="main-Quickview">
-                <div class="summary-main-header">
-                    <h4><input type="text" value="Thiết kế mặt bằng cấp điện"></h4>
-
+                    </div>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td>Nhiệm vụ:</td>
+                            <td>
+                                <select name="assignId" class="btn btn-secondary dropdown-toggle">
+                                    <c:forEach items="${listAccount}" var="account">
+                                        <option value="${account.id}" ${account.id== task.assignToId ? 'selected' : ''} > ${account.username}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Công trình:</td>
+                            <td> ${task.projectName}</td>
+                        </tr>
+                        <tr>
+                            <td>Đầu mục công việc:</td>
+                            <td>${task.sectionName}</td>
+                        </tr>
+                        <tr>
+                            <td>Thời gian bắt đầu:</td>
+                            <td>
+                                <input type="date" name="startDate" value="${task.startDate}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Thời gian dự kiến kết thúc:</td>
+                            <td>
+                                <input type="date" name="deadline" value="${task.deadline}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Số lượng file:</td>
+                            <td>
+                                <input type="text" name="fileNumber" value="${task.fileNumber}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tiến độ:</td>
+                            <td>${task.workProgress}</td>
+                        </tr>
+                    </table>
                 </div>
-                <table class="table table-borderless">
-                    <tr>
-                        <td>Nhiệm vụ:</td>
-                        <td>
-                            <div class="dropdown">
-                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                   data-toggle="dropdown" aria-expanded="false">
-                                    hoanghuong
-                                </a>
-
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="#">huannn</a>
-                                    <a class="dropdown-item" href="#">nambi</a>
-                                    <a class="dropdown-item" href="#">longvdh</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Công trình:</td>
-                        <td>Biệt thự nhà dân</td>
-                    </tr>
-                    <tr>
-                        <td>Đầu mục công việc:</td>
-                        <td>Thiết kế bản vẽ</td>
-                    </tr>
-                    <tr>
-                        <td>Thời gian bắt đầu:</td>
-                        <td>
-                            <input type="date" value="20/10/2022">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Thời gian dự kiến kết thúc:</td>
-                        <td>
-                            <input type="date" value="20/11/2022">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Số lượng file:</td>
-                        <td>
-                            <input type="text" value="50">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Tiến độ:</td>
-                        <td>50%</td>
-                    </tr>
-                </table>
+                <div class="btn-update-summary">
+                    <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
+                    <button type="submit" class="btn-update btn btn-primary">Lưu</button>
+                </div>
             </div>
-            <div class="btn-update-summary">
-                <form action="${pageContext.request.contextPath}/task_detail">
-                    <button class="btn-update btn btn-secondary">Hủy bỏ</button>
-                </form>
-                <form action="${pageContext.request.contextPath}/task_detail">
-                    <button class="btn-update btn btn-primary">Lưu</button>
-                </form>
-            </div>
-        </div>
-
+        </form>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

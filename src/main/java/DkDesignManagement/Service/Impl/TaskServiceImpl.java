@@ -57,4 +57,9 @@ public class TaskServiceImpl implements TaskService {
 
         return task;
     }
+
+    @Override
+    public int updateTask(Task task) {
+        return taskDAO.updateTask(task);
+    }
 }
