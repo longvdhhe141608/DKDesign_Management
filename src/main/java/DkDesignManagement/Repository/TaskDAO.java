@@ -455,4 +455,9 @@ public class TaskDAO {
 
         return null;
     }
+
+    public int countTaskNoDone(int taskId) {
+        String sql = "select count(1) from task t where t.task_id =? and status != 4";
+        return jdbcTemplate.queryForObject(sql, Integer.class, taskId);
+    }
 }
