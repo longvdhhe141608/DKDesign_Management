@@ -199,4 +199,32 @@ public class TaskController {
 
         return view;
     }
+
+    @RequestMapping(value = "task/change-status", method = RequestMethod.GET)
+    public ModelAndView changeStatusTask(HttpServletRequest request, RedirectAttributes redirect) {
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+        ModelAndView view = new ModelAndView("redirect:/task_detail?taskId=" + taskId);
+        //check login
+        HttpSession session = request.getSession();
+        if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
+            redirect.addAttribute("mess", "Please login");
+            return view;
+        }
+
+        // agree or cancel
+        String operation = request.getParameter("operation");
+        int status = 5;
+        if (operation.equals("agree")) {
+            status = 4;
+        }
+
+        // update
+        Task task = taskService.getTaskById(taskId);
+        task.setTaskStatus(status);
+        taskService.updateTask(task);
+
+        redirect.addAttribute("mess", "" + operation + " task successfully ");
+
+        return view;
+    }
 }

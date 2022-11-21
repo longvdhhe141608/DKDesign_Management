@@ -58,11 +58,12 @@
             </div>
         </div>
         <div class="task-details-main">
-            <c:if test="${task.taskStatus == 3}">
+            <c:if test="${task.taskStatus == 3 && loginUser.role_id == 2}">
                 <div style="border-bottom: 1px solid grey; text-align: start;">
                     <h4>Bạn có muốn phê duyệt không (FE sửa hộ)</h4>
-                    <button class="btn btn-primary">Đồng ý</button>
-                    <button class="btn btn-secondary">Hủy bỏ</button>
+                    <a href="task/change-status?taskId=${task.taskId}&operation=agree" > <button class="btn btn-primary">Đồng ý</button></a>
+
+                    <a href="task/change-status?taskId=${task.taskId}&operation=cancel" > <button class="btn btn-secondary">Hủy bỏ</button></a>
                 </div>
             </c:if>
 
@@ -111,6 +112,26 @@
                 <tr>
                     <td>Tiến độ:</td>
                     <td>${task.workProgress}</td>
+                </tr>
+                <tr>
+                    <td>Trạng thái:</td>
+                    <td>
+                        <c:if test="${task.taskStatus == 1}">
+                            Chưa phê duyệt
+                        </c:if>
+                        <c:if test="${task.taskStatus == 2}">
+                            Đang thực hiện
+                        </c:if>
+                        <c:if test="${task.taskStatus == 3}">
+                            Chờ phê duyệt
+                        </c:if>
+                        <c:if test="${task.taskStatus == 4}">
+                            Đã hoàn thành
+                        </c:if>
+                        <c:if test="${task.taskStatus == 5}">
+                            Hủy bỏ
+                        </c:if>
+                    </td>
                 </tr>
                 <tr>
                     <td>Ghi chú:</td>
