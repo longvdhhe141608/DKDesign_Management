@@ -141,8 +141,14 @@ public class TaskController {
         Task task = new Task(-1, projectId, sectionId, BigInteger.valueOf(taskId), account.getId(), assignId, BigInteger.valueOf(requirementId), name
                 , 1, startDate, deadline, null, null, fileNumber);
 
-        //add section
+        //add task
         taskService.addTask(task);
+        //update number file of task level 2
+        Task taskLevel2 = taskService.getTaskById(taskId);
+        int fileNumberOld = ObjectUtils.isEmpty(taskLevel2.getFileNumber()) ? 0 : taskLevel2.getFileNumber();
+        taskLevel2.setFileNumber(fileNumberOld + fileNumber);
+        taskService.updateTask(taskLevel2);
+
         redirect.addAttribute("mess", "add sub task successfully ");
         return view;
     }
@@ -159,7 +165,7 @@ public class TaskController {
     }
 
     @RequestMapping(value = "/edit-task", method = RequestMethod.POST)
-    public ModelAndView viewEditTaskPage(HttpServletRequest request,RedirectAttributes redirect) {
+    public ModelAndView viewEditTaskPage(HttpServletRequest request, RedirectAttributes redirect) {
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         ModelAndView view = new ModelAndView("redirect:/task_detail?taskId=" + taskId);
         //check login
