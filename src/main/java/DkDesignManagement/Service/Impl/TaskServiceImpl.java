@@ -11,6 +11,7 @@ import org.springframework.util.ObjectUtils;
 import java.util.List;
 
 import static DkDesignManagement.utils.Constant.COMPLETE_STATUS;
+import static DkDesignManagement.utils.Constant.PROCESS_STATUS;
 
 
 @Service
@@ -72,6 +73,9 @@ public class TaskServiceImpl implements TaskService {
         if(count == 0){
             //update
             task.setTaskStatus(COMPLETE_STATUS);//done status
+            taskDAO.updateTask(task);
+        }else{
+            task.setTaskStatus(PROCESS_STATUS);//done status
             taskDAO.updateTask(task);
         }
         return task.getTaskStatus();

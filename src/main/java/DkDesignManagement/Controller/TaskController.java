@@ -77,10 +77,9 @@ public class TaskController {
             return view;
         }
         //check and update task level 2 100%
-        if (task.getTaskStatus() != 4) {
-            //update done
-            task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
-        }
+        //update done
+        task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
+
 
         //load infor add sub task
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
