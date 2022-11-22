@@ -12,6 +12,7 @@ import java.util.Date;
 public class Employee {
     private int id;
     private String name;
+
     private int age;
     private String address;
     private int gender;
@@ -22,7 +23,7 @@ public class Employee {
 
     private int id_acc;
 
-    public Employee(int id,String name, String address, int gender, Date dob, String cccd, String email, String phone) {
+    public Employee(int id, String name, String address, int gender, Date dob, String cccd, String email, String phone) {
         this.id = id;
         this.name = name;
         this.address = address;
