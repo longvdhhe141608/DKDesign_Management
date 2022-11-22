@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+import static DkDesignManagement.utils.ValidateUtils.*;
+
 @Controller
 @RequestMapping(value = "/admin")
 public class AdminController {
@@ -59,18 +61,20 @@ public class AdminController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView createAccount(HttpServletRequest request, RedirectAttributes redirect) {
         HttpSession session = request.getSession();
-        String username = request.getParameter("username").trim().toLowerCase();
+        String name = request.getParameter("name").trim().toLowerCase();
         String mail = request.getParameter("mail").trim().toLowerCase();
         int role = Integer.parseInt(request.getParameter("role"));
-        String password = "";
+
+
+        String username = generateEmployeeCode(removeAccent(name.toLowerCase()));
+        String password = generateCommonLangPassword();
 
         if (accountService.isExisted(username) == false) {
                 accountDAO.addNewAccount(username, password, role);
                 Account account = accountDAO.getAccount(username);
-                memberDAO.addNewMember(username,mail, account.getId());
+                memberDAO.addNewMember(name,mail, account.getId());
                 redirect.addAttribute("mess", "Add new member successfully");
                 return new ModelAndView("redirect:/admin/memberlist");
-
         } else {
             String error = "Username has existed";
             request.setAttribute("error2",error);

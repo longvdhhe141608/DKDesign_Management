@@ -51,7 +51,7 @@
                         </td>
 
                         <td>
-                            <input id="username" name="username" type="text" required>
+                            <input id="name" name="name" type="text" required>
                         </td>
                     </tr>
                     <tr>
