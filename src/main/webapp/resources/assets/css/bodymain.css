@@ -13,6 +13,10 @@ body {
 
     text-align: left;
     overflow: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 50px;
 
 }
 
@@ -153,4 +157,7 @@ h4 {
 
 .table-main-right {
     text-align: center;
+}
+.info-text {
+    border: 1px solid black;
 }

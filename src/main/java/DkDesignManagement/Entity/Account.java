@@ -13,6 +13,7 @@ public class Account {
     private String password;
     private int role_id;
     private int status;
+    private String avatar_url;
 
     public Account(String nameAcc, String passAcc) {
         this.username = nameAcc;
