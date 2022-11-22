@@ -143,9 +143,9 @@
                 <div class="pagination">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <c:if test="${page} != 1" >
+                            <c:if test="${page != 1}" >
                             <li class="page-item">
-                                <a class="page-link" href="plan_approval?id=${projectId}&page=${page}-1" aria-label="Previous">
+                                <a class="page-link" href="plan_approval?id=${projectId}&page=${page-1}" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -154,9 +154,9 @@
                             <li class="page-item"><a class="page-link" href="plan_approval?id=${projectId}&page=${i}">${i}</a></li>
                             </c:forEach>
 
-                            <c:if test="${page} != ${endPage}" >
+                            <c:if test="${page != endPage}" >
                             <li class="page-item">
-                                <a class="page-link" href="plan_approval?id=${projectId}&page=${page}+1" aria-label="Next">
+                                <a class="page-link" href="plan_approval?id=${projectId}&page=${page+1}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>

@@ -36,6 +36,7 @@ public class PlanController {
 
         TaskPageResponse taskPageResponse = taskService.getListSubTask(page,NOT_APPROVED_TASK_STATUS);
         view.addObject("project", project);
+        view.addObject("page", page);
         view.addObject("listTask", taskPageResponse.getTasksList());
         view.addObject("endPage", taskPageResponse.getEndPage());
         view.addObject("projectId", id);
