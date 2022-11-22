@@ -34,7 +34,7 @@
                       border: none;
                       outline: none;
                     ">
-                    <img class="img_avatar_change" src="${profile.avatar}"/>
+                    <img class="img_avatar_change" src="${sessionScope.loginUser.avatar_url}"/>
                 </button>
             </div>
             <div>

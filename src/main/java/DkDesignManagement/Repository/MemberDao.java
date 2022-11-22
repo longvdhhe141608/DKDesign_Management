@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class MemberDAO {
+public class MemberDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 

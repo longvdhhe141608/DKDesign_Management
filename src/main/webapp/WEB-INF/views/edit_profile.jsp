@@ -35,9 +35,9 @@
                     <td>
 
                         <div class="information-main-avata">
-                            <img alt="avatar" class="img_avatar_change" src="${profile.avatar}"
+                            <img alt="avatar" class="img_avatar_change" src="${sessionScope.loginUser.avatar_url}"
                                  style="display: flex"/>
-                            <input value="${profile.avatar}" type="text" name="oldAvatar" hidden/>
+                            <input value="${sessionScope.loginUser.avatar_url}" type="text" name="oldAvatar" hidden/>
                             <label class="btn btn-edit"
                                    style="display: flex; border: none; border-radius: 5px; background-color: royalblue; color: white; margin-right: 100px; margin-top: 5px;">
                                 <input type="file" name="newAvatar" title="Upload avatar"/>

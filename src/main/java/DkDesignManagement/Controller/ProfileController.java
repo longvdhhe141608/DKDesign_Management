@@ -2,8 +2,9 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Employee;
+import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.EmployeeDao;
-import DkDesignManagement.Repository.MemberDAO;
+import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.CloudinaryService;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,12 @@ public class ProfileController {
     @Autowired
     private EmployeeDao employeeDao;
     @Autowired
-    MemberDAO memberDAO;
+    private MemberDao memberDAO;
+    @Autowired
+    private AccountDao accountDao;
 
     @Autowired
-    CloudinaryService cloudinary;
+   private CloudinaryService cloudinary;
 
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView loadProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
@@ -66,6 +69,7 @@ public class ProfileController {
     @RequestMapping(value = "/editProfile", method = RequestMethod.POST)
     public ModelAndView updateProfile(HttpServletRequest request, @RequestParam("newAvatar") MultipartFile file) {
         HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("loginUser");
         int id = Integer.parseInt(request.getParameter("userid"));
         String name = request.getParameter("name");
         String address = request.getParameter("address").trim();
@@ -85,9 +89,10 @@ public class ProfileController {
         }
 
         //tao mot Employee va cast no vao update
-        Employee employee = new Employee(id, name, avatar, address, gender, dob, cccd, email, phone);
+        Employee employee = new Employee(id, name, address, gender, dob, cccd, email, phone);
         employeeDao.updateProfile(employee);
-        request.setAttribute("avatar",avatar);
+        accountDao.updateAvatar(account.getId(),avatar);
+        session.setAttribute("loginUser",account);
         return new ModelAndView("redirect:/profile/detail");
     }
 }

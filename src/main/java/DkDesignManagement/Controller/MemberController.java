@@ -2,7 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Repository.MemberDAO;
+import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Repository.ProjectDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +19,7 @@ import java.util.List;
 public class MemberController {
 
     @Autowired
-    private MemberDAO memberDAO;
+    private MemberDao memberDAO;
     @Autowired
     private ProjectDao projectDao;
 

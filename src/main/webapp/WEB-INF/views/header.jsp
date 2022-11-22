@@ -52,7 +52,7 @@
                 border: none;
                 outline: none;
               ">
-                        <img class="img_avatar" src="${sessionScope.avatar}"/>
+                        <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/detail"><i

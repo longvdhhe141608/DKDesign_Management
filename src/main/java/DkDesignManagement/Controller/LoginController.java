@@ -6,6 +6,7 @@ import DkDesignManagement.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,13 +56,7 @@ public class LoginController {
             account = accountService.getAccount(username);
             if (account.getPassword().equals(password)) {
                 session.setAttribute("loginUser", account);
-                String avatar;
-                try {
-                    avatar = employeeDao.getInformation(account.getId()).getAvatar();
-                } catch (Exception e) {
-                    avatar = "https://ssl.gstatic.com/accounts/ui/avatar_2x.png";
-                }
-                session.setAttribute("avatar", avatar);
+
                 if (account.getRole_id() == 2) {
                     view = new ModelAndView("redirect:headerHome");
                 } else if (account.getRole_id() == 3) {

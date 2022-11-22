@@ -3,7 +3,7 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.AccountDao;
-import DkDesignManagement.Repository.MemberDAO;
+import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.Impl.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Locale;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -26,7 +25,7 @@ public class AdminController {
     @Autowired
     AccountServiceImpl accountService;
     @Autowired
-    MemberDAO memberDAO;
+    MemberDao memberDAO;
 
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
