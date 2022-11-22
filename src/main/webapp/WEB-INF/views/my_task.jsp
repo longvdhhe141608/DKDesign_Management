@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
+    <script src="<c:url value="/resources/assets/js/my-task.js"/>"></script>
     <title>Tất cả công việc cá nhân</title>
 </head>
 <body>
