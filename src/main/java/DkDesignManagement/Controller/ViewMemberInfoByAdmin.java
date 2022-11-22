@@ -2,7 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.EmployeeDao;
-import DkDesignManagement.Repository.MemberDAO;
+import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class ViewMemberInfoByAdmin {
     @Autowired
     EmployeeDao employeeDao;
     @Autowired
-    MemberDAO memberDAO;
+    MemberDao memberDAO;
 
 
     @RequestMapping(value = "/information", method = RequestMethod.GET)

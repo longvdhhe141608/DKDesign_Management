@@ -22,9 +22,9 @@ public class EmployeeDao {
      */
     public int updateProfile(Employee employee) {
         String sql = "UPDATE `dkmanagement`.`employees` " +
-                "SET `address` = ?, `gender` = ?, `dob` = ?, `cccd` = ?, `email` = ?, `phone` = ?" +
+                "SET `name` = ?, `address` = ?, `gender` = ?, `dob` = ?, `cccd` = ?, `email` = ?, `phone` = ?" +
                 "WHERE (`id` = ?)";
-        return jdbcTemplate.update(sql, employee.getAddress(), employee.getGender(), employee.getDob(), employee.getCccd(), employee.getMail(), employee.getPhone(), employee.getId());
+        return jdbcTemplate.update(sql, employee.getName(), employee.getAddress(), employee.getGender(), employee.getDob(), employee.getCccd(), employee.getMail(), employee.getPhone(), employee.getId());
     }
 
     public Employee getEmployeeByEmpId(int id){

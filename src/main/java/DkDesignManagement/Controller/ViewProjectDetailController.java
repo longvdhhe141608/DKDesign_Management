@@ -32,7 +32,6 @@ public class ViewProjectDetailController {
         Project project = projectDao.getProject(id);
         HttpSession session = request.getSession();
         session.setAttribute("project", project);
-        view.addObject("project",project);
         return view;
     }
 }

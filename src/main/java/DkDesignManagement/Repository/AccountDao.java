@@ -38,7 +38,6 @@ public class AccountDao {
         return null;
     }
 
-
     public List<Account> getAllAccount() {
         String sql = "SELECT * FROM `dkmanagement`.`accounts`";
         List<Account> accountList;
@@ -62,10 +61,18 @@ public class AccountDao {
         return check;
     }
 
-    public int updateAccount(String acc, int role, int status) {
-        String sql = "update `dkmanagement`.`accounts` set `role_id` = " + role + ", `Status` = " + status + " " + "where `accounts`.`Username` = '" + acc + "';";
+    public int updateAccountStatus(String acc, int role, int status) {
+        String sql = "update `dkmanagement`.`accounts` set `role_id` = " + role + ", `status` = " + status + " " + "where `accounts`.`Username` = '" + acc + "';";
         int check = 0;
         check = jdbcTemplate.update(sql);
+        return check;
+    }
+
+    public int updateAvatar(int id, String avatar){
+        String sql = "UPDATE `dkmanagement`.`accounts` " +
+                "SET `avatar_url` = ? WHERE (`id` = ?)";
+
+        int check = jdbcTemplate.update(sql,avatar,id);
         return check;
     }
 
