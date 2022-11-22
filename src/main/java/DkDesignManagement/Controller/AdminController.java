@@ -61,23 +61,16 @@ public class AdminController {
         HttpSession session = request.getSession();
         String username = request.getParameter("username").trim().toLowerCase();
         String mail = request.getParameter("mail").trim().toLowerCase();
-        String password = request.getParameter("password");
-        String passwordCheck = request.getParameter("passwordCheck");
         int role = Integer.parseInt(request.getParameter("role"));
+        String password = "";
 
         if (accountService.isExisted(username) == false) {
-            if (password.equals(passwordCheck)) {
                 accountDAO.addNewAccount(username, password, role);
                 Account account = accountDAO.getAccount(username);
                 memberDAO.addNewMember(username,mail, account.getId());
                 redirect.addAttribute("mess", "Add new member successfully");
                 return new ModelAndView("redirect:/admin/memberlist");
-            } else {
-                String error = "Password does not match";
-                request.setAttribute("error1",error);
-                request.setAttribute("pass",password);
-                request.setAttribute("passCheck",passwordCheck);
-            }
+
         } else {
             String error = "Username has existed";
             request.setAttribute("error2",error);
