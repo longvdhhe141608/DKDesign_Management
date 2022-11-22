@@ -98,25 +98,50 @@
                     <tbody>
                     <c:forEach items="${requirements}" var="requirement">
                         <!-------item------------------------>
-                        <tr>
-                            <td>${requirement.requirementName}</td>
-                            <td>${requirement.requirementDetail}</td>
-                            <td>
-                                <c:if test="${requirement.status == 1}">
-                                    Đang xử lý
-                                </c:if>
-                                <c:if test="${requirement.status == 2}">
-                                    Đã đáp ứng
-                                </c:if>
-                            </td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;">
-                                    <button><i
-                                            class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
+                        <c:if test="${requirement.status == 3}">
+                            <tr style="display: none">
+                                <td>${requirement.requirementName}</td>
+                                <td>${requirement.requirementDetail}</td>
+                                <td>
+                                    <c:if test="${requirement.status == 1}">
+                                        Đang xử lý
+                                    </c:if>
+                                    <c:if test="${requirement.status == 2}">
+                                        Đã đáp ứng
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                        <a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?id=${requirement.id}&project-id=${requirement.projectId}">
+                                            <button><i class="fa-regular fa-trash-can"></i></button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:if>
+                        <c:if test="${requirement.status != 3}">
+                            <tr>
+                                <td>${requirement.requirementName}</td>
+                                <td>${requirement.requirementDetail}</td>
+                                <td>
+                                    <c:if test="${requirement.status == 1}">
+                                        Đang xử lý
+                                    </c:if>
+                                    <c:if test="${requirement.status == 2}">
+                                        Đã đáp ứng
+                                    </c:if>
+                                </td>
+                                <td>
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                        <a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?requirement-id=${requirement.id}&project-id=${requirement.projectId}">
+                                            <button><i class="fa-regular fa-trash-can"></i></button>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:if>
                         <!-------item------------------------>
                     </c:forEach>
                     </tbody>
@@ -151,7 +176,8 @@
                     </tr>
                     <tr>
                         <td>Yêu cầu:</td>
-                        <td><textarea class="info-text" type="text" style="width: 500px;" name="noi-dung-yeu-cau"></textarea>
+                        <td><textarea class="info-text" type="text" style="width: 500px;"
+                                      name="noi-dung-yeu-cau"></textarea>
                     </tr>
                 </table>
             </div>

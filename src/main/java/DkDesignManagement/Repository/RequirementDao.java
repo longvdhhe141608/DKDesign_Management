@@ -104,8 +104,21 @@ public class RequirementDao {
         String sql = "insert into `dkmanagement`.`requirement`(`project_id`,`requirement_name`, `requirement_detail`, `requirement_date`, `status`) \n" +
                 "values (?,?,?,?,?)";
         try {
-            check = jdbcTemplate.update(sql, requirement.getProjectId(),requirement.getRequirementName(),
-                    requirement.getRequirementDetail(),requirement.getRequirementDate(),requirement.getStatus());
+            check = jdbcTemplate.update(sql, requirement.getProjectId(), requirement.getRequirementName(),
+                    requirement.getRequirementDetail(), requirement.getRequirementDate(), requirement.getStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+
+    //Xóa một requirement trên màn hình
+    public int deleteRequirement(Requirement requirement) {
+        int check = 0;
+        String sql = "update `dkmanagement`.`requirement` set `status` = ? " +
+                "where `requirement`.`id` = ? and `requirement`.`project_id` = ?";
+        try {
+            check = jdbcTemplate.update(sql, 3, requirement.getId(), requirement.getProjectId());
         } catch (Exception e) {
             e.printStackTrace();
         }

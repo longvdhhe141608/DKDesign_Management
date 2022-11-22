@@ -86,4 +86,22 @@ public class RequirementController {
         view.addObject("id", projectID);
         return view;
     }
+
+    @RequestMapping("/delete-requirement-by-leader")
+    public ModelAndView deleteRequirement(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView view;
+        int requirementID = Integer.parseInt(request.getParameter("requirement-id"));
+        int projectID = Integer.parseInt(request.getParameter("project-id"));
+        Requirement requirement = requirementDao.getRequirementById(requirementID);
+        int delete = requirementDao.deleteRequirement(requirement);
+        if (delete == 0) {
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+            view.addObject("mess", "Delete failed");
+        } else {
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+            view.addObject("mess", "Delete success");
+        }
+        view.addObject("id", projectID);
+        return view;
+    }
 }
