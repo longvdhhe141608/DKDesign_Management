@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -38,5 +39,14 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<Account> getAccountsByProjectId(int projectId) {
         return accountDao.getAllAccountByProject(projectId);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public HashMap<Account, Integer> getAccountList() {
+        HashMap<Account,Integer> accountMap = null;
+        return accountMap;
     }
 }

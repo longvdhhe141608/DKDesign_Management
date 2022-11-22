@@ -3,7 +3,7 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.AccountDao;
-import DkDesignManagement.Repository.MemberDAO;
+import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.Impl.AccountServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Locale;
+
+import static DkDesignManagement.utils.ValidateUtils.*;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -26,7 +27,7 @@ public class AdminController {
     @Autowired
     AccountServiceImpl accountService;
     @Autowired
-    MemberDAO memberDAO;
+    MemberDao memberDAO;
 
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
@@ -60,25 +61,20 @@ public class AdminController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView createAccount(HttpServletRequest request, RedirectAttributes redirect) {
         HttpSession session = request.getSession();
-        String username = request.getParameter("username").trim().toLowerCase();
+        String name = request.getParameter("name").trim().toLowerCase();
         String mail = request.getParameter("mail").trim().toLowerCase();
-        String password = request.getParameter("password");
-        String passwordCheck = request.getParameter("passwordCheck");
         int role = Integer.parseInt(request.getParameter("role"));
 
+
+        String username = generateEmployeeCode(removeAccent(name.toLowerCase()));
+        String password = generateCommonLangPassword();
+
         if (accountService.isExisted(username) == false) {
-            if (password.equals(passwordCheck)) {
                 accountDAO.addNewAccount(username, password, role);
                 Account account = accountDAO.getAccount(username);
-                memberDAO.addNewMember(username,mail, account.getId());
+                memberDAO.addNewMember(name,mail, account.getId());
                 redirect.addAttribute("mess", "Add new member successfully");
                 return new ModelAndView("redirect:/admin/memberlist");
-            } else {
-                String error = "Password does not match";
-                request.setAttribute("error1",error);
-                request.setAttribute("pass",password);
-                request.setAttribute("passCheck",passwordCheck);
-            }
         } else {
             String error = "Username has existed";
             request.setAttribute("error2",error);

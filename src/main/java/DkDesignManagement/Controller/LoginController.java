@@ -1,10 +1,12 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Repository.EmployeeDao;
 import DkDesignManagement.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +26,8 @@ public class LoginController {
 
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @GetMapping(value = "")
     public String login() {
@@ -52,6 +56,7 @@ public class LoginController {
             account = accountService.getAccount(username);
             if (account.getPassword().equals(password)) {
                 session.setAttribute("loginUser", account);
+
                 if (account.getRole_id() == 2) {
                     view = new ModelAndView("redirect:headerHome");
                 } else if (account.getRole_id() == 3) {
