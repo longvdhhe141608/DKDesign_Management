@@ -326,7 +326,7 @@ public class TaskDAO {
                 "left join project p on s.project_id = p.id\n" +
                 "left join task t on s.id = t.section_id\n" +
                 "left join project_participation pp on p.id = pp.project_id\n" +
-                "left join accounts a on a.id = pp.project_id\n" +
+                "left join accounts a on a.id = t.assignedto\n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "where t.id = ? AND t.task_id = ?\n" +

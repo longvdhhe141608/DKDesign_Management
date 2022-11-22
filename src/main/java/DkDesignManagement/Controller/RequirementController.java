@@ -73,7 +73,7 @@ public class RequirementController {
                 .projectId(projectID)
                 .requirementName(name)
                 .requirementDetail(detail)
-                .status(1)
+                .status(4)
                 .build();
         int saveRequirement = requirementDao.insertRequirement(requirement);
         if (saveRequirement == 0) {

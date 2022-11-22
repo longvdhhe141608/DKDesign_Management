@@ -89,21 +89,21 @@
                 <div class="modal-content">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
-                        <form  id="add-project1" class="">
+                        <form  id="add-project1" class="" action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}" method="post">
 
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Vị trí:</td>
                                     <td>
                                         <input style="width: 500px;"  class="info-text" type="text"
-                                               value="">
+                                               value="" name="ten-vi-tri">
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Yêu cầu:</td>
                                     <td>
-                                        <textarea name=""  cols="60" rows="3"></textarea>
+                                        <textarea name="noi-dung-yeu-cau"  cols="60" rows="3"></textarea>
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
@@ -261,39 +261,39 @@
         </div>
     </div>
 </div>
-<div class="popup hide__popup">
-    <form action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}" method="post">
-        <div class="popup__content">
-            <div class="title">
-                <h4>Thêm yêu cầu của khách hàng</h4>
-            </div>
-            <div class="info">
-                <table class="table table-borderless">
-                    <tr>
-                        <td>Vị trí:</td>
-                        <td><input class="info-text" type="text" style="width: 500px;" name="ten-vi-tri"></td>
-                    </tr>
-                    <tr>
-                        <td>Yêu cầu:</td>
-                        <td><textarea class="info-text" type="text" style="width: 500px;"
-                                      name="noi-dung-yeu-cau"></textarea>
-                    </tr>
-                </table>
-            </div>
-            <div class="button_click">
-                <div></div>
-                <div class="btn_cancel">
-                    <button type="button" class="btn btn-secondary close_popup">
-                        Hủy bỏ
-                    </button>
-                </div>
-                <div class="btn_ok">
-                    <button type="submit" class="btn btn-primary">Lưu</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+<%--<div class="popup hide__popup">--%>
+<%--    <form action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}" method="post">--%>
+<%--        <div class="popup__content">--%>
+<%--            <div class="title">--%>
+<%--                <h4>Thêm yêu cầu của khách hàng</h4>--%>
+<%--            </div>--%>
+<%--            <div class="info">--%>
+<%--                <table class="table table-borderless">--%>
+<%--                    <tr>--%>
+<%--                        <td>Vị trí:</td>--%>
+<%--                        <td><input class="info-text" type="text" style="width: 500px;" name="ten-vi-tri"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Yêu cầu:</td>--%>
+<%--                        <td><textarea class="info-text" type="text" style="width: 500px;"--%>
+<%--                                      name="noi-dung-yeu-cau"></textarea>--%>
+<%--                    </tr>--%>
+<%--                </table>--%>
+<%--            </div>--%>
+<%--            <div class="button_click">--%>
+<%--                <div></div>--%>
+<%--                <div class="btn_cancel">--%>
+<%--                    <button type="button" class="btn btn-secondary close_popup">--%>
+<%--                        Hủy bỏ--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--                <div class="btn_ok">--%>
+<%--                    <button type="submit" class="btn btn-primary">Lưu</button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </form>--%>
+<%--</div>--%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
