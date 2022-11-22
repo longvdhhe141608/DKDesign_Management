@@ -81,7 +81,7 @@
 
         <div class="add" id="show-member">
 
-            button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
+            <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
             class="btn btn-primary"><i class="fa-solid fa-plus"></i>Thêm yêu cầu</button>
             <div id="myModal-add" class="modal">
 
