@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
+    <script src="<c:url value="/resources/assets/js/list-task.js"/>"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -151,8 +152,58 @@
                     <details>
                         <summary>
                             <span>${bigTask.section_name}</span>
-                            <button><i class="fa-regular fa-pen-to-square"></i></button>
-                            <button><i class="fa-regular fa-trash-can"></i></button>
+                            <button onclick="modallistproject('#btn-edit','#myModal-edit','#close3')" id="btn-edit"
+                                    class=""><i class="fa-regular fa-pen-to-square"></i></button>
+                            <div id="myModal-edit" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <span id="close3" class="close">&times;</span>
+                                    <div class="project-add-task">
+                                        <form id="add-project2">
+                                            <h4 style="text-align: center;"> Chỉnh sửa đầu mục công việc
+                                            </h4>
+                                            <table class="table table-borderless">
+                                                <tr>
+                                                    <td>Tên đầu mục công việc:</td>
+                                                    <td> <input class="info-text" type="text" value="Thiết kế bản vẽ">
+                                                        <div class="text-danger error"></div>
+                                                </tr>
+
+                                            </table>
+                                            <div class="add-btn-work">
+                                                <button class="btn btn-secondary ">Hủy bỏ</button>
+                                                <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
+                                                        class="btn btn-primary">Lưu</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
+                                    class="fa-regular fa-trash-can"></i></button>
+                            <div id="myModal1" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <span id="close4" class="close">&times;</span>
+                                    <div class="project-add-task">
+                                        <form id="add-project1" class="">
+
+                                            <p>Bạn chắc chắn muốn xóa dữ liệu này!</p>
+                                            <div class="add-btn-work">
+                                                <button class="btn btn-secondary ">Hủy bỏ</button>
+                                                <button
+                                                        onclick="return checkvalidatenumber('#add-project1')"
+                                                        type="submit" class="btn btn-primary">Lưu</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>

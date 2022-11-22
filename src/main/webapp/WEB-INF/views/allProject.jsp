@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
+    <script src="<c:url value="/resources/assets/js/allProject.js"/>"></script>
     <title>Tất cả công trình</title>
 </head>
 <body>
