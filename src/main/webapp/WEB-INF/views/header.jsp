@@ -52,7 +52,7 @@
                 border: none;
                 outline: none;
               ">
-                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                        <img class="img_avatar" src="${sessionScope.avatar}"/>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/detail"><i

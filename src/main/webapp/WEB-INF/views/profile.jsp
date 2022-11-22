@@ -1,3 +1,4 @@
+<jsp:useBean id="profile" scope="request" type="DkDesignManagement.Entity.Employee"/>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -33,7 +34,7 @@
                       border: none;
                       outline: none;
                     ">
-                    <img class="img_avatar_change" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                    <img class="img_avatar_change" src="${profile.avatar}"/>
                 </button>
             </div>
             <div>
@@ -42,10 +43,6 @@
                         <td>Họ và tên:</td>
                         <td>${profile.name}</td>
                     </tr>
-                    <%--                    <tr>--%>
-                    <%--                        <td>Mã nhân viên:</td>--%>
-                    <%--                        <td>huonghtt</td>--%>
-                    <%--                    </tr>--%>
                     <tr>
                         <td>Số CCCD/CMND:</td>
                         <td>${profile.cccd}</td>
@@ -78,14 +75,16 @@
                         <td>Địa chỉ nhà:</td>
                         <td>${profile.address}</td>
                     </tr>
-
+                    <tr>
+                        <td></td>
+                        <td>
+                                <a href="${pageContext.request.contextPath}/profile/editProfile">
+                                    <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
+                                </a>
+                        </td>
+                    </tr>
                 </table>
             </div>
-        </div>
-        <div>
-            <a href="${pageContext.request.contextPath}/profile/edit">
-                <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
-            </a>
         </div>
     </div>
 </div>

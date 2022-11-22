@@ -47,14 +47,12 @@
                     <tr>
                         <p class="text-danger">${error1}</p>
                         <td>
-                            <p>Mã nhân viên: <i class="text-danger">*</i></p>
+                            <p>Tên nhân viên: <i class="text-danger">*</i></p>
                         </td>
 
                         <td>
-                            <input hidden id="userList" name="userList" value="${accountList}">
-                            <input pattern="[a-z0-9]+$" id="username" name="username" type="text" required>
+                            <input id="username" name="username" type="text" required>
                         </td>
-
                     </tr>
                     <tr>
                         <td>
@@ -68,35 +66,8 @@
 
                     </tr>
                     <tr>
-                        <p class="text-danger">${error2}</p>
                         <td>
-                            <p>mật khẩu: <i class="text-danger">*</i></p>
-                        </td>
-                        <td>
-                            <input pattern="[a-z0-9]+$" value="${pass}" id="password" name="password" type="password"
-                                   required>
-                            <i id="toggleBtn"
-                               onclick="togglePassword('password', 'toggleBtn')"
-                               class="fas fa-eye">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>Nhập lại mật khẩu: <i class="text-danger">*</i></p>
-                        </td>
-                        <td>
-                            <input pattern="[a-z0-9]+$" value="${passCheck}" id="passwordCheck" name="passwordCheck"
-                                   type="password" required>
-                            <i id="toggleBtnC"
-                               onclick="togglePassword('passwordCheck', 'toggleBtnC')"
-                               class="fas fa-eye">
-                            </i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p>Vai trò: </p>
+                            <p>Vai trò: <i class="text-danger">*</i></p>
                         </td>
                         <td>
                             <input name="role" type="radio" value="2" required/>trưởng nhóm
