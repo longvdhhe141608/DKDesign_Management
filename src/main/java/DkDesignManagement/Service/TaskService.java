@@ -3,6 +3,7 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,12 +14,14 @@ public interface TaskService {
 
    int addTask(Task task);
 
-   List<Task>  getListTask();
+   List<Task> getListSubTask();
 
    Task getTaskById(int taskId);
 
    int updateTask(Task task);
 
    int checkAndUpdateTaskDone(Task task);
+
+   TaskPageResponse getListSubTask(int indexPage, int status);
 
 }
