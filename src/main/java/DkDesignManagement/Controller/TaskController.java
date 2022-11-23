@@ -250,9 +250,9 @@ public class TaskController {
 
         // agree or cancel
         String operation = request.getParameter("operation");
-        int status = 5;
+        int status = PROCESS_TASK_STATUS;
         if (operation.equals("agree")) {
-            status = 4;
+            status = COMPLETE_TASK_STATUS;
         }
 
         // update
