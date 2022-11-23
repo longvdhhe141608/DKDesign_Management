@@ -251,7 +251,7 @@
                             <c:forEach items="${requestScope.lsPage}" var="page">
                                 <li class="page-item ${requestScope.page == page ? "active" : ""}">
                                     <a class="page-link"
-                                       href="${pageContext.request.contextPath}/requirement?project-id=${project.id}&pageNo=${page}">${page}</a>
+                                       href="requirement-for-leader?id=${project.id}&pageNo=${page}">${page}</a>
                                 </li>
                             </c:forEach>
                         </ul>

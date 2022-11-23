@@ -60,6 +60,30 @@ public class TaskDAO {
         return taskList;
     }
 
+    public List<Task> getAllSubTask(int pageNumber, int page,String status) {
+
+        String sql = "select * from task t where (1=1)  ";
+
+        if (!ObjectUtils.isEmpty(status)) {
+            sql += " and status = " + status;
+        }
+
+        sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask());
+        return taskList;
+    }
+
+    public int countSubTask(String status) {
+        String sql = "select count(*)  from task t where (1=1) ";
+
+        if (!ObjectUtils.isEmpty(status)) {
+            sql += " and status = " + status;
+        }
+
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
     public int countFile(int taskId) {
         String sql = "select count(*) from image_and_file iaf where task_id = ? ";
         return jdbcTemplate.queryForObject(sql, Integer.class, taskId);

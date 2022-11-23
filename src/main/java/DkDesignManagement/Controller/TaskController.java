@@ -2,7 +2,6 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.*;
@@ -54,7 +53,7 @@ public class TaskController {
         view.addObject("project", project);
         view.addObject("listBigTask", sectionService.getAll(id));
         view.addObject("listAccount", accountService.getAccountsByProjectId(id));
-        view.addObject("listTaskLevel2", taskService.getListTask());
+        view.addObject("listTaskLevel2", taskService.getListSubTask());
         view.addObject("mess", mess);
         return view;
     }
