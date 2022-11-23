@@ -442,7 +442,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'Mở','Đang thực hiện','Đang xử lí','Chưa phê duyệt'),(2,'Chặn','Đang bàn giao','Đã đáp ứng','Đang thực hiện'),(3,NULL,'Đã hoàn thành','Đã xóa','Chờ phê duyệt'),(4,NULL,NULL,NULL,'Đã hoàn thành'),(5,NULL,NULL,NULL,'Hủy bỏ');
+INSERT INTO `status` VALUES (1,'Mở','Đang thực hiện','Đang xử lí','Chưa phê duyệt'),(2,'Chặn','Đang bàn giao','Đã đáp ứng','Đang thực hiện'),(3,NULL,'Đã hoàn thành','Đã xóa','Chờ phê duyệt'),(4,NULL,NULL,'Chưa được đáp ứng','Đã hoàn thành'),(5,NULL,NULL,NULL,'Hủy bỏ');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -506,4 +506,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-23 16:59:22
+-- Dump completed on 2022-11-23 18:28:08
