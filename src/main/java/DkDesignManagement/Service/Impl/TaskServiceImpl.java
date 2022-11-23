@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import static DkDesignManagement.utils.Constant.*;
@@ -44,6 +45,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task getTaskById(int taskId) {
+        return taskDAO.getTaskById(taskId);
+    }
+
+    @Override
+    public Task getTaskByIdFullModel(int taskId) {
         Task task = taskDAO.getTaskById(taskId);
 
         //set value send FE
@@ -107,5 +113,18 @@ public class TaskServiceImpl implements TaskService {
         }
 
         return TaskPageResponse.builder().endPage(endPage).tasksList(listTask).build();
+    }
+
+    @Override
+    public boolean isLastTask(Task task) {
+       //get list sub task of task level 2
+        List<Task> listSubTask = taskDAO.getListSubTask(task.getTaskfId().intValue());
+        boolean checkIsLastTask = true;
+        for (Task subTask : listSubTask) {
+            if(subTask.getTaskStatus() != COMPLETE_TASK_STATUS){
+                checkIsLastTask = false;
+            }
+        }
+        return checkIsLastTask;
     }
 }
