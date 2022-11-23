@@ -69,6 +69,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public int checkAndUpdateTaskDone(Task task) {
         int count = taskDAO.countTaskNoDone(task.getTaskId());
+        if(task.getTaskStatus()==NOT_APPROVED_TASK_STATUS ){
+            return task.getTaskStatus();
+        }
+
         //no done
         if (count == 0 && task.getTaskStatus() != 4) {
             //update

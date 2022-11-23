@@ -13,4 +13,8 @@ public class Constant {
     public static final int COMPLETE_REQUIREMENT_STATUS = 2;
 
     public static final int NEW_REQUIREMENT_STATUS = 4;
+
+    public static final int LEADER_ROLE = 2;
+
+    public static final int ADMIN_ROLE = 1;
 }

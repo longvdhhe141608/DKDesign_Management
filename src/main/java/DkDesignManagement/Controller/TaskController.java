@@ -21,8 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.util.Date;
 
-import static DkDesignManagement.utils.Constant.NEW_REQUIREMENT_STATUS;
-import static DkDesignManagement.utils.Constant.PROCESS_REQUIREMENT_STATUS;
+import static DkDesignManagement.utils.Constant.*;
 
 @Controller
 public class TaskController {
@@ -124,6 +123,12 @@ public class TaskController {
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
 
+        //decentralize when adding task
+        // leader have status 2
+//        int status = NOT_APPROVED_TASK_STATUS;
+//        if(account.getRole_id() == LEADER_ROLE) {
+//            status = PROCESS_TASK_STATUS;
+//        }
 
         Task task = new Task(-1, projectId, sectionId, null, account.getId(), assignId, null, name
                 , 1, startDate, deadline, null, null, 0);
@@ -156,6 +161,12 @@ public class TaskController {
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
 
+        //decentralize when adding task
+        // leader have status 2
+//        int status = NOT_APPROVED_TASK_STATUS;
+//        if(account.getRole_id() == LEADER_ROLE) {
+//            status = PROCESS_TASK_STATUS;
+//        }
 
         Task task = new Task(-1, projectId, sectionId, BigInteger.valueOf(taskId), account.getId(), assignId, BigInteger.valueOf(requirementId), name
                 , 1, startDate, deadline, null, null, fileNumber);
@@ -169,10 +180,11 @@ public class TaskController {
         taskService.updateTask(taskLevel2);
         //update requirement to status 1 PROCESS_REQUIREMENT_STATUS
         Requirement requirement = requirementService.getRequirementById(requirementId);
-        if(requirement.getStatus() == NEW_REQUIREMENT_STATUS){
+        if (requirement.getStatus() == NEW_REQUIREMENT_STATUS) {
             requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
             requirementService.updateRequirement(requirement);
         }
+
 
         redirect.addAttribute("mess", "add sub task successfully ");
         return view;
