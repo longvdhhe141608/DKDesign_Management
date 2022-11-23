@@ -68,10 +68,16 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public int checkAndUpdateTaskDone(Task task) {
-        int count = taskDAO.countTaskNoDone(task.getTaskId());
-        if(task.getTaskStatus()==NOT_APPROVED_TASK_STATUS ){
+        //check task new create
+        if (task.getTaskStatus() == NOT_APPROVED_TASK_STATUS) {
             return task.getTaskStatus();
         }
+        //check new task create of leader
+        if (task.getTaskStatus() == PROCESS_TASK_STATUS && ObjectUtils.isEmpty(task.getListSubTask())) {
+            return task.getTaskStatus();
+        }
+
+        int count = taskDAO.countTaskNoDone(task.getTaskId());
 
         //no done
         if (count == 0 && task.getTaskStatus() != 4) {
@@ -90,13 +96,13 @@ public class TaskServiceImpl implements TaskService {
     public TaskPageResponse getListSubTask(int indexPage, int status) {
         int pageNumber = 10;
         int count = taskDAO.countSubTask(String.valueOf(status));
-        List<Task> listTask = taskDAO.getAllSubTask(pageNumber,indexPage,String.valueOf(status));
+        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage, String.valueOf(status));
         int endPage = count / pageNumber;
-        if(count % pageNumber != 0){
+        if (count % pageNumber != 0) {
             endPage++;
         }
 
-        for(Task task : listTask){
+        for (Task task : listTask) {
             task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
         }
 

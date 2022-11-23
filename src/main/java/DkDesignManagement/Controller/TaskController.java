@@ -125,13 +125,13 @@ public class TaskController {
 
         //decentralize when adding task
         // leader have status 2
-//        int status = NOT_APPROVED_TASK_STATUS;
-//        if(account.getRole_id() == LEADER_ROLE) {
-//            status = PROCESS_TASK_STATUS;
-//        }
+        int status = NOT_APPROVED_TASK_STATUS;
+        if(account.getRole_id() == LEADER_ROLE) {
+            status = PROCESS_TASK_STATUS;
+        }
 
         Task task = new Task(-1, projectId, sectionId, null, account.getId(), assignId, null, name
-                , 1, startDate, deadline, null, null, 0);
+                , status, startDate, deadline, null, null, 0);
 
         //add section
         taskService.addTask(task);
@@ -163,13 +163,13 @@ public class TaskController {
 
         //decentralize when adding task
         // leader have status 2
-//        int status = NOT_APPROVED_TASK_STATUS;
-//        if(account.getRole_id() == LEADER_ROLE) {
-//            status = PROCESS_TASK_STATUS;
-//        }
+        int status = NOT_APPROVED_TASK_STATUS;
+        if(account.getRole_id() == LEADER_ROLE) {
+            status = PROCESS_TASK_STATUS;
+        }
 
         Task task = new Task(-1, projectId, sectionId, BigInteger.valueOf(taskId), account.getId(), assignId, BigInteger.valueOf(requirementId), name
-                , 1, startDate, deadline, null, null, fileNumber);
+                , status, startDate, deadline, null, null, fileNumber);
 
         //add task
         taskService.addTask(task);
