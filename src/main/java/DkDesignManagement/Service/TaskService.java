@@ -18,10 +18,13 @@ public interface TaskService {
 
    Task getTaskById(int taskId);
 
+   Task getTaskByIdFullModel(int taskId);
+
    int updateTask(Task task);
 
    int checkAndUpdateTaskDone(Task task);
 
    TaskPageResponse getListSubTask(int indexPage, int status);
 
+   boolean isLastTask(Task task);
 }

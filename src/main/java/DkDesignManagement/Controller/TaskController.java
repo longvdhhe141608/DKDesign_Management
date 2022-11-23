@@ -72,7 +72,7 @@ public class TaskController {
             return view;
         }
         int taskId = Integer.parseInt(request.getParameter("taskId"));
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         //check sub task
         if (task.getTaskfId() != null) {
             view = new ModelAndView("redirect:/subtask?taskId=" + taskId);
@@ -97,7 +97,7 @@ public class TaskController {
     public ModelAndView viewSubTaskDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("subtask");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
@@ -126,7 +126,7 @@ public class TaskController {
         //decentralize when adding task
         // leader have status 2
         int status = NOT_APPROVED_TASK_STATUS;
-        if(account.getRole_id() == LEADER_ROLE) {
+        if (account.getRole_id() == LEADER_ROLE) {
             status = PROCESS_TASK_STATUS;
         }
 
@@ -164,7 +164,7 @@ public class TaskController {
         //decentralize when adding task
         // leader have status 2
         int status = NOT_APPROVED_TASK_STATUS;
-        if(account.getRole_id() == LEADER_ROLE) {
+        if (account.getRole_id() == LEADER_ROLE) {
             status = PROCESS_TASK_STATUS;
         }
 
@@ -174,7 +174,7 @@ public class TaskController {
         //add task
         taskService.addTask(task);
         //update number file of task level 2
-        Task taskLevel2 = taskService.getTaskById(taskId);
+        Task taskLevel2 = taskService.getTaskByIdFullModel(taskId);
         int fileNumberOld = ObjectUtils.isEmpty(taskLevel2.getFileNumber()) ? 0 : taskLevel2.getFileNumber();
         taskLevel2.setFileNumber(fileNumberOld + fileNumber);
         taskService.updateTask(taskLevel2);
@@ -195,7 +195,7 @@ public class TaskController {
     public ModelAndView viewEditTaskPage(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("editTaskDetail");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         view.addObject("task", task);
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
         return view;
@@ -223,7 +223,7 @@ public class TaskController {
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
 
         //find by Id
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         task.setTaskName(name);
         task.setAssignToId(assignId);
         task.setFileNumber(fileNumber);
@@ -247,18 +247,28 @@ public class TaskController {
             redirect.addAttribute("mess", "Please login");
             return view;
         }
-
+        Task task = taskService.getTaskByIdFullModel(taskId);
         // agree or cancel
         String operation = request.getParameter("operation");
         int status = PROCESS_TASK_STATUS;
         if (operation.equals("agree")) {
             status = COMPLETE_TASK_STATUS;
+            //set end date of sub-task when complete
+            task.setEndDate(new Date());
         }
 
         // update
-        Task task = taskService.getTaskById(taskId);
         task.setTaskStatus(status);
         taskService.updateTask(task);
+
+        //check last sub-task
+        if (taskService.isLastTask(task)) {
+            //update end date for task
+            Task taskLevel2 = taskService.getTaskById(task.getTaskfId().intValue());
+            taskLevel2.setEndDate(new Date());
+            taskService.updateTask(taskLevel2);
+
+        }
 
         redirect.addAttribute("mess", "" + operation + " task successfully ");
 
