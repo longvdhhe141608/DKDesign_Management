@@ -2,6 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Entity.Requirement;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.*;
@@ -19,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.util.Date;
+
+import static DkDesignManagement.utils.Constant.NEW_REQUIREMENT_STATUS;
+import static DkDesignManagement.utils.Constant.PROCESS_REQUIREMENT_STATUS;
 
 @Controller
 public class TaskController {
@@ -163,6 +167,12 @@ public class TaskController {
         int fileNumberOld = ObjectUtils.isEmpty(taskLevel2.getFileNumber()) ? 0 : taskLevel2.getFileNumber();
         taskLevel2.setFileNumber(fileNumberOld + fileNumber);
         taskService.updateTask(taskLevel2);
+        //update requirement to status 1 PROCESS_REQUIREMENT_STATUS
+        Requirement requirement = requirementService.getRequirementById(requirementId);
+        if(requirement.getStatus() == NEW_REQUIREMENT_STATUS){
+            requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
+            requirementService.updateRequirement(requirement);
+        }
 
         redirect.addAttribute("mess", "add sub task successfully ");
         return view;

@@ -73,14 +73,14 @@ public class RequirementController {
                 .projectId(projectID)
                 .requirementName(name)
                 .requirementDetail(detail)
-                .status(1)
+                .status(4)
                 .build();
         int saveRequirement = requirementDao.insertRequirement(requirement);
         if (saveRequirement == 0) {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id="+projectID);
             view.addObject("mess", "Save failed");
         } else {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id="+projectID);
             view.addObject("mess", "Save success");
         }
         view.addObject("id", projectID);
