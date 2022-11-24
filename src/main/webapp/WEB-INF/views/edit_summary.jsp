@@ -18,6 +18,7 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
+    <script src="<c:url value="/resources/assets/js/allProject.js"/>"></script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -67,27 +68,33 @@
                 </div>
             </div>
             <div class="summary-main">
+                <form id="addProject" action="">
                 <div class="main-Quickview">
+
                     <div class="summary-main-header">
                         <h4>Chỉnh sửa sơ lược công trình</h4>
                     </div>
                     <input type="text" class="" name="idProject" value="${project.id}" hidden>
                     <table class="table table-borderless">
                         <tr>
-                            <td>Tên dự án:</td>
-                            <td><input type="text" name="name" value="${project.projectName}"></td>
+                            <td>Tên công trình:</td>
+                            <td><input class="info-text" type="text" name="name" value="${project.projectName}">
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Chủ nhà:</td>
-                            <td><input type="text" name="customerName" value="${project.cusName}"></td>
+                            <td><input class="info-text" type="text" name="customerName" value="${project.cusName}">
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input type="text" name="phone" value="${project.cusPhone}"></td>
+                            <td><input class="info-text" type="text" name="phone" value="${project.cusPhone}">
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Địa chỉ công trình:</td>
-                            <td><input type="text" name="address" value="${project.cusAddress}"></td>
+                            <td><input class="info-text" type="text" name="address" value="${project.cusAddress}">
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Loại công trình:</td>
@@ -103,26 +110,31 @@
                         </tr>
                         <tr>
                             <td>Diện tích xây dựng (m2):</td>
-                            <td><input type="text" name="constructionArea" value="${project.constructionArea}"></td>
+                            <td><input class="info-text" type="text" name="constructionArea" value="${project.constructionArea}">
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Thời gian bắt đầu:</td>
                             <td>
-                                <input type="date" name="startDate" value="${project.startDate}">
+                                <input class="info-text" type="date" name="startDate" value="${project.startDate}">
+                                <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Thời gian dự kiến kết thúc:</td>
-                            <td><input type="date" name="closureDate" value="${project.closureDate}"></td>
+                            <td><input class="info-text" type="date" name="closureDate" value="${project.closureDate}">
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Thời gian kết thúc:</td>
-                            <td><input type="date" name="endDate" value="${project.endDate}"></td>
+                            <td><input type="date" name="endDate" value="${project.endDate}">
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Mô tả:</td>
                             <td>
-                                <input type="text" name="detail" value="${project.detail}">
+                                <input class="info-text" type="text" name="detail" value="${project.detail}">
+                                <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
@@ -143,8 +155,10 @@
                     <a href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
                         <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
                     </a>
-                    <button type="submit" class="btn-update btn btn-primary">Lưu</button>
+                    <button onclick="return checkvalidate('#addProject')"
+                            type="submit" class="btn-update btn btn-primary">Lưu</button>
                 </div>
+                </form>
             </div>
         </form>
     </div>
@@ -157,6 +171,29 @@
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
     </script>
         <script>
+            // function modallistproject(idbtn, idmodal, closemain) {
+            //     // Get the modal
+            //     var modal = document.querySelector(idmodal);
+            //
+            //     // Get the button that opens the modal
+            //     var btn = document.querySelector(idbtn);
+            //
+            //     // Get the <span> element that closes the modal
+            //     var span = document.querySelector(closemain);
+            //     // span.addEventListener('click', event){
+            //     //     event.style.display = "none";
+            //     // }
+            //     // When the user clicks the button, open the modal
+            //
+            //     modal.style.display = "block";
+            //
+            //     span.addEventListener("click", function () {
+            //         modal.style.display = "none";
+            //     });
+            //
+            //
+            //
+            // }
             $(document).ready(function () {
                 $('#fileInput').on('change', function () {
                     var files = $(this)[0].files;

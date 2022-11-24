@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="/resources/assets/js/forgotPassword.js"></script>
 </head>
 <body>
 <div class="container">
@@ -19,13 +20,15 @@
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
         <p id="profile-name" class="profile-name-card"></p>
-        <form class="form-signin">
-            <input type="email" class="form-control" placeholder="Nhập Email">
+        <form id="addProject" class="form-signin">
+            <input type="email" class="info-text form-control" placeholder="Nhập Email">
+            <div class="text-danger error"></div>
             <div style="display: flex;">
                 <form action="#">
                     <button class="btn btn-secondary" style="margin-right: 20px;" type="submit">Hủy</button>
                 </form>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Quên mật khẩu</button>
+                <button onclick="return checkvalidate('#addProject')"
+                        class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Quên mật khẩu</button>
             </div>
         </form><!-- /form -->
 

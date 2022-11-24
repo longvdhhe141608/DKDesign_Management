@@ -116,7 +116,7 @@ function checkvalidatenumber(id) {
     }
     console.log(numberEmpty);
 
-    numberprocess = numberEmpty;
+    numberprocess = numberEmpty + numberdate;
     if (numberprocess > 0) {
         return false;
     } else {

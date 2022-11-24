@@ -26,14 +26,17 @@
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
         <p id="profile-name" class="profile-name-card"></p>
-        <form class="form-signin" action="login" method="post">
+        <form id="addProject" class="form-signin" action="login" method="post">
             <p class="text-danger">${message}</p>
-            <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Tên đăng nhập"
+            <input type="text" id="inputEmail" name="username" class="info-text form-control" placeholder="Tên đăng nhập"
                    required="" autofocus="">
-            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Mật khẩu"
+            <div class="text-danger error"></div>
+            <input type="password" id="inputPassword" name="password" class="info-text form-control" placeholder="Mật khẩu"
                    required="">
+            <div class="text-danger error"></div>
 
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập</button>
+            <button onclick="return checkvalidate('#addProject')"
+                    class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập</button>
         </form>
         <!-- end form -->
         <a href="change_password" class="forgot-password">

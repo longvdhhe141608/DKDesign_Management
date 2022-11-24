@@ -1,6 +1,7 @@
 function checkvalidate(id) {
     var form = document.querySelector(id);
     console.log(form);
+    var regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
     var name = form.querySelector('#inputaddname');
     var start = form.querySelector('#inputstartdate');
     var end = form.querySelector('#inputenddate');
@@ -9,27 +10,59 @@ function checkvalidate(id) {
     var startdate = new Date(start.value);
     var enddate = new Date(end.value);
     var input = form.querySelectorAll('.info-text');
+    let numberprocess = 0;
     console.log(today);
     console.log(startdate);
     console.log(enddate);
+
     let numberEmpty = 0;
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
     numberdate = checkdate(today, startdate, enddate);
     let numberchecknumber = 0;
     numberchecknumber = checkNumber(input);
+    let numbercheckphone = 0;
+    numbercheckphone = checkNumberPhone(input, regex);
+
+
+
+    function checkNumberPhone(input, regex) {
+        let a = 0;
+        if (input[2].value.length > 0) {
+
+            if (input[2].value.match(regex)) {
+
+                console.log(input[2].value);
+                return a;
+            } else {
+                a++;
+                error[2].innerHTML = "Nhập đúng dạng số điện thoại";
+                // console.log(input[2].value);
+            }
+
+        }
+
+        return a;
+    }
 
     function checkNumber(input) {
         let a = 0;
-        for (var i = 0; i < input.length; i++) {
-            if (isNaN(input[4].value.trim())) {
-                a++;
-                error[4].innerHTML = "Chỉ được nhập số";
-            } else if (isNaN(input[5].value.trim())) {
-                a++;
-                error[5].innerHTML = "Chỉ được nhập số";
-            }
+        if (input[4].value.length > 0 || input[5].value.length > 0) {
+            for (var i = 0; i < input.length; i++) {
+                if (isNaN(input[4].value.trim())) {
+                    a++;
+                    error[4].innerHTML = "Chỉ được nhập số";
+                } else if (isNaN(input[5].value.trim())) {
+                    a++;
+                    error[5].innerHTML = "Chỉ được nhập số";
+                } else if (input[4].value <= 0) {
+                    a++;
+                    error[4].innerHTML = "Cần nhập số lớn hơn 0";
+                } else if (input[5].value <= 0) {
+                    error[5].innerHTML = "Cần nhập số lớn hơn 0";
+                }
 
+            }
         }
         return a;
     }
@@ -85,6 +118,11 @@ function checkvalidate(id) {
         return b;
     }
     console.log(numberdate);
-    return false;
-
+    numberprocess = numberEmpty + numberchecknumber + numbercheckphone + numberdate;
+    console.log(numberprocess);
+    if (numberprocess > 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
