@@ -266,7 +266,7 @@
                                 <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>--%>
                                 <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.deadline}</div>--%>
                                 <%--                                </div>--%>
-
+<%--<c:if test="${subTask.taskStatus == }"--%>
                                 <div id="" class="row sub-task-detail">
                                     <div class="col-4 link-chi-tiet-cong-viec" style="border: 1px solid gray; display: flex; justify-content: space-between; ">
                                         <div class="">

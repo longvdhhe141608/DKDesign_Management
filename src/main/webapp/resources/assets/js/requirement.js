@@ -46,6 +46,7 @@ function checkvalidate(id) {
         // }
         return a;
     }
+
     console.log(numberEmpty);
 
     // console.log(startdate.getFullYear());
@@ -56,19 +57,48 @@ function checkvalidate(id) {
             b++;
             error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
 
-        }
-        else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        } else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
             b++;
             error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
 
-        }
-        else {
+        } else {
 
             return b;
         }
         return b;
     }
+
     console.log(numberdate);
     return false;
 
+}
+
+function onClickDelete(id) {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa yêu cầu này?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Xóa',
+        denyButtonText: `Hủy`,
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "post",
+                url: "delete-requirement-by-leader",
+                data: {
+                    requirementId: id,
+                },
+                success: function () {
+                    location.reload();
+                },
+                error: function (jqXHR, exception) {
+                    console.log(jqXHR)
+                    console.log(exception)
+                }
+            });
+        } else if (result.isDenied) {
+            Swal.fire('Yêu cầu đã được giữ lại', '', 'info')
+        }
+    })
 }

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,21 +89,23 @@ public class RequirementController {
         return view;
     }
 
-    @RequestMapping("/delete-requirement-by-leader")
-    public ModelAndView deleteRequirement(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView view;
-        int requirementID = Integer.parseInt(request.getParameter("requirement-id"));
-        int projectID = Integer.parseInt(request.getParameter("project-id"));
+    @RequestMapping(value = "/delete-requirement-by-leader", method = RequestMethod.POST)
+    public void deleteRequirement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        ModelAndView view;
+        int requirementID = Integer.parseInt(request.getParameter("requirementId"));
+//        int projectID = Integer.parseInt(request.getParameter("projectID"));
         Requirement requirement = requirementDao.getRequirementById(requirementID);
         int delete = requirementDao.deleteRequirement(requirement);
         if (delete == 0) {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
-            view.addObject("mess", "Delete failed");
+            response.getWriter().println("Đã hủy");
+//            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+//            view.addObject("mess", "Delete failed");
         } else {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
-            view.addObject("mess", "Delete success");
+            response.getWriter().println("Đã xóa");
+//            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
+//            view.addObject("mess", "Delete success");
+
         }
-        view.addObject("id", projectID);
-        return view;
+//        view.addObject("id", projectID);
     }
 }

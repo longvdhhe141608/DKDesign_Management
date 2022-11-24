@@ -43,7 +43,8 @@
                 <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         style="background: blue;" value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            value="Yêu cầu của khách hàng">
@@ -109,7 +110,7 @@
                                 <td style="justify-content: center;">
                                     <form class="form-name-project" action="">
                                         <div class="name-project">
-                                           ${task.taskName}
+                                                ${task.taskName}
                                         </div>
                                     </form>
                                 </td>
@@ -121,17 +122,35 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        ${task.deadline}
+                                            ${task.deadline}
                                     </div>
                                 </td>
                                 <td>${task.fileNumber}</td>
+
                                 <td style="display: flex;justify-content: space-between;">
-                                    <button
-                                            class="btn btn-primary">Đồng ý
-                                    </button>
-                                    <button class="btn btn-secondary">Hủy bỏ</button>
+                                    <c:if test="${task.taskStatus == 1}">
+                                    <a href="plan_approval/agree?taskId=${task.taskId}">
+                                        <button
+                                                class="btn btn-primary">Đồng ý
+                                        </button>
+                                    </a>
+                                    <form action="plan_approval/cancel" method="post">
+                                        <input hidden type="text" name="taskId" value="${task.taskId}">
+                                        <button class="btn btn-secondary">Hủy bỏ</button>
+                                        </c:if>
+
+                                        <c:if test="${task.taskStatus == 5}">Đã hủy bỏ</c:if>
+
                                 </td>
-                                <td><input type="text"></td>
+                                <td>
+                                    <c:if test="${task.taskStatus == 1}">
+                                        <input required name="description" type="text">
+                                    </c:if>
+                                    <c:if test="${task.taskStatus == 5}">
+                                        ${task.description}
+                                    </c:if>
+                                </td>
+                                </form>
                             </tr>
                         </c:forEach>
 
@@ -141,23 +160,26 @@
                 <div class="pagination">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
-                            <c:if test="${page != 1}" >
-                            <li class="page-item">
-                                <a class="page-link" href="plan_approval?id=${projectId}&page=${page-1}" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
+                            <c:if test="${page != 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="plan_approval?id=${projectId}&page=${page-1}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
                             </c:if>
                             <c:forEach begin="1" end="${endPage}" var="i">
-                            <li class="page-item"><a class="page-link" href="plan_approval?id=${projectId}&page=${i}">${i}</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="plan_approval?id=${projectId}&page=${i}">${i}</a></li>
                             </c:forEach>
 
-                            <c:if test="${page != endPage}" >
-                            <li class="page-item">
-                                <a class="page-link" href="plan_approval?id=${projectId}&page=${page+1}" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
+                            <c:if test="${page != endPage}">
+                                <li class="page-item">
+                                    <a class="page-link" href="plan_approval?id=${projectId}&page=${page+1}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
                             </c:if>
                         </ul>
                     </nav>
@@ -173,6 +195,12 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
+</script>
+<script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
 </script>
 </body>
 

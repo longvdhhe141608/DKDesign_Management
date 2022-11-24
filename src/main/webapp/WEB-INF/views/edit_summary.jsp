@@ -25,7 +25,7 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary">
-        <form action="edit_summary/edit_project" method="post">
+        <form  id="addProject" action="edit_summary/edit_project" method="post">
             <div class="top-details">
                 <div class="list-top">
                     <h3>${project.projectName}</h3>
@@ -42,6 +42,7 @@
                     <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
+                            style="background: blue;"
                             value="Công việc"></a>
                     <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
                             class="btn btn-secondary"
@@ -59,7 +60,7 @@
                     <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
-                            style="background: blue;"
+
                             value="Thành viên"></a>
                     <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
                             class="btn btn-secondary"
@@ -68,7 +69,7 @@
                 </div>
             </div>
             <div class="summary-main">
-                <form id="addProject" action="">
+
                 <div class="main-Quickview">
 
                     <div class="summary-main-header">
@@ -97,6 +98,11 @@
                                 <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
+                            <td>Diện tích xây dựng (m2):</td>
+                            <td><input class="info-text" type="text" name="constructionArea" value="${project.constructionArea}">
+                                <div class="text-danger error"></div></td>
+                        </tr>
+                        <tr>
                             <td>Loại công trình:</td>
                             <td>
                                 <div class="dropdown">
@@ -108,32 +114,25 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Diện tích xây dựng (m2):</td>
-                            <td><input class="info-text" type="text" name="constructionArea" value="${project.constructionArea}">
-                                <div class="text-danger error"></div></td>
-                        </tr>
+
                         <tr>
                             <td>Thời gian bắt đầu:</td>
                             <td>
-                                <input class="info-text" type="date" name="startDate" value="${project.startDate}">
+                                <input class="info-text" id="inputstartdate" type="date"  name="startDate" value="${project.startDate}">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Thời gian dự kiến kết thúc:</td>
-                            <td><input class="info-text" type="date" name="closureDate" value="${project.closureDate}">
+                            <td><input class="info-text" id="inputenddate" type="date" name="closureDate" value="${project.closureDate}">
                                 <div class="text-danger error"></div></td>
                         </tr>
-                        <tr>
-                            <td>Thời gian kết thúc:</td>
-                            <td><input type="date" name="endDate" value="${project.endDate}">
-                                <div class="text-danger error"></div></td>
-                        </tr>
+
                         <tr>
                             <td>Mô tả:</td>
                             <td>
-                                <input class="info-text" type="text" name="detail" value="${project.detail}">
+                                <textarea class="info-text" name="detail" cols="30" rows="3" value="${project.detail}"></textarea>
+
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
@@ -158,7 +157,7 @@
                     <button onclick="return checkvalidate('#addProject')"
                             type="submit" class="btn-update btn btn-primary">Lưu</button>
                 </div>
-                </form>
+
             </div>
         </form>
     </div>

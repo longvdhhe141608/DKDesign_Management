@@ -184,8 +184,6 @@ public class TaskController {
             requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
             requirementService.updateRequirement(requirement);
         }
-
-
         redirect.addAttribute("mess", "add sub task successfully ");
         return view;
     }
