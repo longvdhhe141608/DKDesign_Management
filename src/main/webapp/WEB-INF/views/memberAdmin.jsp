@@ -40,7 +40,7 @@
                 </div>
 
                 <div style="display: flex;">
-                    <form action="searchMember">
+                    <form action="searchMember" style="display: flex">
                     <%--start searching by role--%>
                     <div class="function-two" style="margin-right:20px;">
                                     <select onchange="this.form.submit()" style="height: 38px" name="roleSearch" class="btn btn-secondary dropdown-toggle">

@@ -77,7 +77,7 @@
                 </table>
                 <div style="margin-left: 25%; display: flex;">
                     <button class="btn btn-secondary" style="margin-right: 10px;">
-                        <a href="${pageContext.request.contextPath}/admin/memberlist">Hủy</a>
+                        <a style="color: white" href="${pageContext.request.contextPath}/admin/memberlist">Hủy</a>
                     </button>
                     <input type="submit" class="btn btn-primary" value="Lưu">
                 </div>
