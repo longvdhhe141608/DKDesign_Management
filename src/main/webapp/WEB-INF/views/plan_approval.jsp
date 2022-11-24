@@ -116,14 +116,12 @@
                                 <td>${task.assignToName}</td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        <input class="form-control" formControlName="dob" type="date"
-                                               value="${task.startDate}">
+                                            ${task.startDate}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        <input class="form-control" formControlName="dob" type="date"
-                                               value="${task.deadline}">
+                                        ${task.deadline}
                                     </div>
                                 </td>
                                 <td>${task.fileNumber}</td>
