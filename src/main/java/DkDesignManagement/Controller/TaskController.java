@@ -2,6 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Entity.Requirement;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.*;
@@ -19,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.util.Date;
+
+import static DkDesignManagement.utils.Constant.*;
 
 @Controller
 public class TaskController {
@@ -69,7 +72,7 @@ public class TaskController {
             return view;
         }
         int taskId = Integer.parseInt(request.getParameter("taskId"));
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         //check sub task
         if (task.getTaskfId() != null) {
             view = new ModelAndView("redirect:/subtask?taskId=" + taskId);
@@ -94,7 +97,7 @@ public class TaskController {
     public ModelAndView viewSubTaskDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("subtask");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
@@ -120,9 +123,15 @@ public class TaskController {
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
 
+        //decentralize when adding task
+        // leader have status 2
+        int status = NOT_APPROVED_TASK_STATUS;
+        if (account.getRole_id() == LEADER_ROLE) {
+            status = PROCESS_TASK_STATUS;
+        }
 
         Task task = new Task(-1, projectId, sectionId, null, account.getId(), assignId, null, name
-                , 1, startDate, deadline, null, null, 0);
+                , status, startDate, deadline, null, null, 0);
 
         //add section
         taskService.addTask(task);
@@ -152,17 +161,30 @@ public class TaskController {
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
 
+        //decentralize when adding task
+        // leader have status 2
+        int status = NOT_APPROVED_TASK_STATUS;
+        if (account.getRole_id() == LEADER_ROLE) {
+            status = PROCESS_TASK_STATUS;
+        }
 
         Task task = new Task(-1, projectId, sectionId, BigInteger.valueOf(taskId), account.getId(), assignId, BigInteger.valueOf(requirementId), name
-                , 1, startDate, deadline, null, null, fileNumber);
+                , status, startDate, deadline, null, null, fileNumber);
 
         //add task
         taskService.addTask(task);
         //update number file of task level 2
-        Task taskLevel2 = taskService.getTaskById(taskId);
+        Task taskLevel2 = taskService.getTaskByIdFullModel(taskId);
         int fileNumberOld = ObjectUtils.isEmpty(taskLevel2.getFileNumber()) ? 0 : taskLevel2.getFileNumber();
         taskLevel2.setFileNumber(fileNumberOld + fileNumber);
         taskService.updateTask(taskLevel2);
+        //update requirement to status 1 PROCESS_REQUIREMENT_STATUS
+        Requirement requirement = requirementService.getRequirementById(requirementId);
+        if (requirement.getStatus() == NEW_REQUIREMENT_STATUS) {
+            requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
+            requirementService.updateRequirement(requirement);
+        }
+
 
         redirect.addAttribute("mess", "add sub task successfully ");
         return view;
@@ -173,7 +195,7 @@ public class TaskController {
     public ModelAndView viewEditTaskPage(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("editTaskDetail");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         view.addObject("task", task);
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
         return view;
@@ -201,7 +223,7 @@ public class TaskController {
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
 
         //find by Id
-        Task task = taskService.getTaskById(taskId);
+        Task task = taskService.getTaskByIdFullModel(taskId);
         task.setTaskName(name);
         task.setAssignToId(assignId);
         task.setFileNumber(fileNumber);
@@ -225,18 +247,28 @@ public class TaskController {
             redirect.addAttribute("mess", "Please login");
             return view;
         }
-
+        Task task = taskService.getTaskByIdFullModel(taskId);
         // agree or cancel
         String operation = request.getParameter("operation");
-        int status = 5;
+        int status = PROCESS_TASK_STATUS;
         if (operation.equals("agree")) {
-            status = 4;
+            status = COMPLETE_TASK_STATUS;
+            //set end date of sub-task when complete
+            task.setEndDate(new Date());
         }
 
         // update
-        Task task = taskService.getTaskById(taskId);
         task.setTaskStatus(status);
         taskService.updateTask(task);
+
+        //check last sub-task
+        if (taskService.isLastTask(task)) {
+            //update end date for task
+            Task taskLevel2 = taskService.getTaskById(task.getTaskfId().intValue());
+            taskLevel2.setEndDate(new Date());
+            taskService.updateTask(taskLevel2);
+
+        }
 
         redirect.addAttribute("mess", "" + operation + " task successfully ");
 

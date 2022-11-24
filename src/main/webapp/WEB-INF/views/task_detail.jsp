@@ -238,7 +238,7 @@
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td> <input type="number" name="fileNumber" value=""></td>
+                    <td> <input required="" type="number" name="fileNumber" value=""></td>
                 </tr>
             </table>
         </div>

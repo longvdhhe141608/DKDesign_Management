@@ -147,6 +147,13 @@
                                     <c:if test="${requirement.status == 2}">
                                         Đã đáp ứng
                                     </c:if>
+                                    <c:if test="${requirement.status == 3}">
+                                        Đã xóa
+                                    </c:if>
+                                    <c:if test="${requirement.status == 4}">
+                                        Chưa được đáp ứng
+                                    </c:if>
+
                                 </td>
                                 <td>
                                     <div style="display: flex; justify-content: space-between;">
@@ -229,6 +236,12 @@
                                     </c:if>
                                     <c:if test="${requirement.status == 2}">
                                         Đã đáp ứng
+                                    </c:if>
+                                    <c:if test="${requirement.status == 3}">
+                                        Đã xóa
+                                    </c:if>
+                                    <c:if test="${requirement.status == 4}">
+                                        Chưa được đáp ứng
                                     </c:if>
                                 </td>
                                 <td>

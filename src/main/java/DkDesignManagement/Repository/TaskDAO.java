@@ -116,6 +116,7 @@ public class TaskDAO {
         String sql = "select * from task t where t.task_id = ?";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), taskId);
+
         return taskList;
     }
 
