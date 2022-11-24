@@ -88,7 +88,7 @@
             <div id="myModal-add" class="modal">
 
                 <!-- Modal content -->
-                <div class="modal-content">
+                <div class="modal-content" style=" width: 50%;height: 40%;">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
                         <form id="add-project2" class=""
@@ -97,7 +97,7 @@
 
                             <table class="table table-borderless">
                                 <tr>
-                                    <td>Vị trí:</td>
+                                    <td>Vị trí<label class="text-danger">*</label>:</td>
                                     <td>
                                         <input style="width: 500px;" id="inputaddname" class="info-text" type="text"
                                                value="">
@@ -105,7 +105,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Yêu cầu:</td>
+                                    <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                     <td>
                                         <textarea class="info-text" name="" cols="60" rows="3"></textarea>
                                         <div class="text-danger error"></div>
@@ -113,9 +113,9 @@
                                 </tr>
 
                             </table>
-                            <div class="add-btn-work">
-                                <button class="btn btn-secondary ">Hủy bỏ</button>
-                                <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
+                            <div class="add-btn-work" style="display: flex; justify-content: end">
+                                <button class="btn btn-secondary " style="margin-right: 5px">Hủy bỏ</button>
+                                <button onclick="return checkvalidatenumber('#add-project2')" style="margin-right:5px " type="submit"
                                         class="btn btn-primary">Thêm
                                 </button>
                             </div>
@@ -249,13 +249,13 @@
                                                 id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>
                                         <div id="myModal-footer" class="modal">
                                             <!-- Modal content -->
-                                            <div class="modal-content">
+                                            <div class="modal-content"  style=" width: 50%;height: 40%;">
                                                 <span id="close2" class="close">&times;</span>
                                                 <div class="project-add-task">
                                                     <form id="add-project1" class="">
                                                         <table class="table table-borderless">
                                                             <tr>
-                                                                <td>Vị trí:</td>
+                                                                <td>Vị trí<label class="text-danger">*</label>:</td>
                                                                 <td>
                                                                     <input style="width: 500px;" class="info-text"
                                                                            type="text" value="Tầng1">
@@ -263,7 +263,7 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Yêu cầu:</td>
+                                                                <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                                                 <td>
                                                                     <textarea class="info-text" name="" id="" cols="60"
                                                                               rows="3">1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch . 2 phòng ngủ : 10m2 , trần thạch cao .</textarea>
@@ -290,7 +290,7 @@
                                             <!-- Modal content -->
                                             <form action="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?requirement-id=${requirement.id}&project-id=${requirement.projectId}"
                                                   method="post">
-                                                <div class="modal-content">
+                                                <div class="modal-content" style="width: 30%">
                                                     <span id="close" class="close">&times;</span>
                                                     <div class="project-add-task">
                                                         <form id="add-project3" class="">
