@@ -173,11 +173,16 @@ public class TaskController {
 
         //add task
         taskService.addTask(task);
+
         //update number file of task level 2
         Task taskLevel2 = taskService.getTaskByIdFullModel(taskId);
         int fileNumberOld = ObjectUtils.isEmpty(taskLevel2.getFileNumber()) ? 0 : taskLevel2.getFileNumber();
         taskLevel2.setFileNumber(fileNumberOld + fileNumber);
+        //update task level 2 deadline is null
+        taskLevel2.setEndDate(null);
+
         taskService.updateTask(taskLevel2);
+
         //update requirement to status 1 PROCESS_REQUIREMENT_STATUS
         Requirement requirement = requirementService.getRequirementById(requirementId);
         if (requirement.getStatus() == NEW_REQUIREMENT_STATUS) {

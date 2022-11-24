@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
     public boolean isExisted(String username) {
         accountList = accountDao.getAllAccount();
         for (Account a : accountList) {
-            if (a.getUsername().equals(username) == true){
+            if (a.getUsername().equals(username) == true) {
                 return true;
             }
         }
@@ -46,7 +46,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Override
     public HashMap<Account, Integer> getAccountList() {
-        HashMap<Account,Integer> accountMap = null;
-        return accountMap;
+//        HashMap<Account,Integer> accountMap = null;
+        return null;
     }
 }

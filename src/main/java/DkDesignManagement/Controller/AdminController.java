@@ -4,7 +4,10 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.MemberDao;
+import DkDesignManagement.Service.AccountService;
+import DkDesignManagement.Service.EmployeeService;
 import DkDesignManagement.Service.Impl.AccountServiceImpl;
+import DkDesignManagement.Service.Impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,8 @@ public class AdminController {
     AccountDao accountDAO;
     @Autowired
     AccountServiceImpl accountService;
+    @Autowired
+    EmployeeServiceImpl employeeService;
     @Autowired
     MemberDao memberDAO;
 
@@ -61,23 +66,31 @@ public class AdminController {
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ModelAndView createAccount(HttpServletRequest request, RedirectAttributes redirect) {
         HttpSession session = request.getSession();
-        String name = request.getParameter("name").trim().toLowerCase();
+        String name = request.getParameter("name").trim();
         String mail = request.getParameter("mail").trim().toLowerCase();
         int role = Integer.parseInt(request.getParameter("role"));
 
 
-        String username = generateEmployeeCode(removeAccent(name.toLowerCase()));
+        String preCode = generateEmployeeCode(removeAccent(name.toLowerCase()));
         String password = generateCommonLangPassword();
 
-        if (accountService.isExisted(username) == false) {
+        int postNumber = 1;
+        String username = preCode+postNumber;
+        while (accountService.isExisted(username)==true){
+            postNumber++;
+            username=preCode+postNumber;
+        }
+
+        if (employeeService.emailIsExisted(mail)==false) {
                 accountDAO.addNewAccount(username, password, role);
                 Account account = accountDAO.getAccount(username);
                 memberDAO.addNewMember(name,mail, account.getId());
                 redirect.addAttribute("mess", "Add new member successfully");
                 return new ModelAndView("redirect:/admin/memberlist");
         } else {
-            String error = "Username has existed";
-            request.setAttribute("error2",error);
+            String error = "Email has existed";
+            request.setAttribute("name",name);
+            request.setAttribute("error1",error);
         }
         return new ModelAndView("createAccount");
     }
