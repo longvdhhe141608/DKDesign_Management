@@ -55,7 +55,7 @@ public class AccountDao {
     }
 
     public int addNewAccount(String username, String password, int role) {
-        String sql = "insert into `dkmanagement`.`accounts`(Username, `Password`, `role_id`, `Status`) " + "values ('" + username + "', '" + password + "', '" + role + "', 1)";
+        String sql = "insert into `dkmanagement`.`accounts`(Username, `Password`, `role_id`, `Status`, `avatar_url`) " + "values ('" + username + "', '" + password + "', '" + role + "', 1, 'https://ssl.gstatic.com/accounts/ui/avatar_2x.png')";
         int check = 0;
         check = jdbcTemplate.update(sql);
         return check;
