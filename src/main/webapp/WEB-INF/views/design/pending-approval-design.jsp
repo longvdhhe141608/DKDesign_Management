@@ -87,7 +87,7 @@
                                 <div class="wap_search">
 
                                     <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="tên công việc" name="textSearch">
+                                           placeholder="tên công việc" name="textSearch" value="${textSearch}">
                                     <input style="margin-right: 10px;" type="text" class="search_term"
                                            placeholder="tên công việc" name="project-id" hidden value="${project.id}">
                                     <button type="submit" class="btn btn-primary"> tìm kiếm</button>
@@ -162,7 +162,7 @@
                     <c:forEach items="${requestScope.lsPage}" var="page">
                         <li class="page-item ${requestScope.page == page ? "active" : ""}">
                             <a class="page-link"
-                               href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}&pageNo=${page}&status=${status}">${page}</a>
+                               href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}&pageNo=${page}&status=${status}&textSearch=${textSearch}">${page}</a>
                         </li>
                     </c:forEach>
                 </ul>
