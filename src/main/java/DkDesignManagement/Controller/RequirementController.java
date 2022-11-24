@@ -104,6 +104,7 @@ public class RequirementController {
             response.getWriter().println("Đã xóa");
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete success");
+
         }
 //        view.addObject("id", projectID);
     }

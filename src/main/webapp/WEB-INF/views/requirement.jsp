@@ -91,7 +91,6 @@
                     class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm yêu cầu
             </button>
             <div id="myModal-add" class="modal">
-
                 <!-- Modal content -->
                 <div class="modal-content" style=" width: 50%;height: 40%;">
                     <span id="close1" class="close">&times;</span>
@@ -120,14 +119,13 @@
                             </table>
                             <div class="add-btn-work" style="display: flex; justify-content: end">
                                 <button class="btn btn-secondary " style="margin-right: 5px">Hủy bỏ</button>
-                                <button onclick="return checkvalidatenumber('#add-project2')" style="margin-right:5px " type="submit"
+                                <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
                                         class="btn btn-primary">Thêm
                                 </button>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -166,9 +164,9 @@
 
                                         <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')"
                                                 id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>
-                                        <div id="myModal-footer" class="modal">
+                                        <div id="myModal-footer" class="modal" >
                                             <!-- Modal content -->
-                                            <div class="modal-content"  style=" width: 50%;height: 40%;">
+                                            <div class="modal-content" style=" width: 50%;height: 40%;">
                                                 <span id="close2" class="close">&times;</span>
                                                 <div class="project-add-task">
                                                     <form id="add-project1" class="">
@@ -200,10 +198,8 @@
                                                     </form>
                                                 </div>
                                             </div>
-
                                         </div>
                                             <%--<a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?id=${requirement.id}&project-id=${requirement.projectId}">--%>
-
 <%--                                        <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn">--%>
 <%--                                            <i class="fa-regular fa-trash-can"></i></button>--%>
 <%--                                        <div id="myModal" class="modal">--%>
@@ -228,7 +224,7 @@
 <%--                                        </div>--%>
                                         <button onclick="onClickDelete(this.getAttribute('data-id'))"
                                                 data-id="${requirement.id}" data-project-id="${requirement.projectId}"><i class="fa-regular fa-trash-can"></i></button>
-                         <%--</a>--%>
+                                            <%--</a>--%>
                                     </div>
                                 </td>
                             </tr>
