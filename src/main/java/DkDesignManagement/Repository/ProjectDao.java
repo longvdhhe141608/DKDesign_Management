@@ -42,7 +42,7 @@ public class ProjectDao {
         String sql = "select `project`.* from project \n" +
                 "join `project_participation` on `project`.`id` = `project_participation`.`project_id` \n" +
                 "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` \n" +
-                "where `accounts`.`id` = ? and `project`.`status` = 2\n" +
+                "where `accounts`.`id` = ? and `project`.`status` = 1\n" +
                 "GROUP BY `project`.`id` \n" +
                 "order by `project`.`id` desc \n";
         List<Project> projectList = new ArrayList<>();
