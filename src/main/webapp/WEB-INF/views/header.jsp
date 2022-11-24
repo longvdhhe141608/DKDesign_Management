@@ -54,14 +54,22 @@
               ">
                         <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/detail"><i
-                                class="fa-solid fa-user"></i> Thông tin cá nhân</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/changepassword"><i
-                                class="fa-solid fa-key"></i> Đổi mật khẩu</a>
-                        <a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i
-                                class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
-                    </div>
+                    <c:if test="${sessionScope.loginUser.role_id != 1}">
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/profile/detail"><i
+                                    class="fa-solid fa-user"></i> Thông tin cá nhân</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/changepassword"><i
+                                    class="fa-solid fa-key"></i> Đổi mật khẩu</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i
+                                    class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+                        </div>
+                    </c:if>
+                    <c:if test="${sessionScope.loginUser.role_id == 1}">
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/logout"><i
+                                    class="fa-solid fa-right-from-bracket"></i>Đăng xuất</a>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>
