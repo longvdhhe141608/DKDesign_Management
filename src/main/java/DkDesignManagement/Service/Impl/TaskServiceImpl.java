@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import static DkDesignManagement.utils.Constant.*;
@@ -44,6 +45,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task getTaskById(int taskId) {
+        return taskDAO.getTaskById(taskId);
+    }
+
+    @Override
+    public Task getTaskByIdFullModel(int taskId) {
         Task task = taskDAO.getTaskById(taskId);
 
         //set value send FE
@@ -68,7 +74,17 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public int checkAndUpdateTaskDone(Task task) {
+        //check task new create
+        if (task.getTaskStatus() == NOT_APPROVED_TASK_STATUS) {
+            return task.getTaskStatus();
+        }
+        //check new task create of leader
+        if (task.getTaskStatus() == PROCESS_TASK_STATUS && ObjectUtils.isEmpty(task.getListSubTask())) {
+            return task.getTaskStatus();
+        }
+
         int count = taskDAO.countTaskNoDone(task.getTaskId());
+
         //no done
         if (count == 0 && task.getTaskStatus() != 4) {
             //update
@@ -86,16 +102,29 @@ public class TaskServiceImpl implements TaskService {
     public TaskPageResponse getListSubTask(int indexPage, int status) {
         int pageNumber = 10;
         int count = taskDAO.countSubTask(String.valueOf(status));
-        List<Task> listTask = taskDAO.getAllSubTask(pageNumber,indexPage,String.valueOf(status));
+        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage, String.valueOf(status));
         int endPage = count / pageNumber;
-        if(count % pageNumber != 0){
+        if (count % pageNumber != 0) {
             endPage++;
         }
 
-        for(Task task : listTask){
+        for (Task task : listTask) {
             task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
         }
 
         return TaskPageResponse.builder().endPage(endPage).tasksList(listTask).build();
+    }
+
+    @Override
+    public boolean isLastTask(Task task) {
+       //get list sub task of task level 2
+        List<Task> listSubTask = taskDAO.getListSubTask(task.getTaskfId().intValue());
+        boolean checkIsLastTask = true;
+        for (Task subTask : listSubTask) {
+            if(subTask.getTaskStatus() != COMPLETE_TASK_STATUS){
+                checkIsLastTask = false;
+            }
+        }
+        return checkIsLastTask;
     }
 }
