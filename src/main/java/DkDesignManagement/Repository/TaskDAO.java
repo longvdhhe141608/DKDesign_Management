@@ -3,10 +3,8 @@ package DkDesignManagement.Repository;
 import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Entity.Tasks;
-import DkDesignManagement.Mapper.MapperSection;
-import DkDesignManagement.Mapper.MapperTask;
-import DkDesignManagement.Mapper.MapperTaskWaitDto;
-import DkDesignManagement.Mapper.MapperTasks;
+import DkDesignManagement.Mapper.*;
+import DkDesignManagement.model.MyTaskDto;
 import DkDesignManagement.model.TaskWaitDto;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +58,7 @@ public class TaskDAO {
         return taskList;
     }
 
-    public List<Task> getAllSubTask(int pageNumber, int page,String status,String name ,String accountId) {
+    public List<Task> getAllSubTask(int pageNumber, int page, String status, String name, String accountId) {
 
         String sql = "select * from task t where (1=1)  ";
 
@@ -69,10 +67,10 @@ public class TaskDAO {
         }
 
         if (!ObjectUtils.isEmpty(name)) {
-            sql += " and task_name like '%"+name+"%' ";
+            sql += " and task_name like '%" + name + "%' ";
         }
         if (!ObjectUtils.isEmpty(accountId)) {
-            sql += " and assignedto = "+accountId+" ";
+            sql += " and assignedto = " + accountId + " ";
         }
 
         sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
@@ -81,17 +79,17 @@ public class TaskDAO {
         return taskList;
     }
 
-    public int countSubTask(String status,String name ,String accountId) {
+    public int countSubTask(String status, String name, String accountId) {
         String sql = "select count(*)  from task t where (1=1) ";
 
         if (!ObjectUtils.isEmpty(status)) {
             sql += " and ( status = " + status + " or status = 5) ";
         }
         if (!ObjectUtils.isEmpty(name)) {
-            sql += " and task_name like '%"+name+"%' ";
+            sql += " and task_name like '%" + name + "%' ";
         }
         if (!ObjectUtils.isEmpty(accountId)) {
-            sql += " and assignedto = "+accountId+" ";
+            sql += " and assignedto = " + accountId + " ";
         }
 
         return jdbcTemplate.queryForObject(sql, Integer.class);
@@ -507,4 +505,52 @@ public class TaskDAO {
         return jdbcTemplate.queryForObject(sql, Integer.class, taskId);
     }
 
+    public int getTotalAllMyTask(int accID, String textSearch) {
+        List<MyTaskDto> myTaskDtoList = new ArrayList<>();
+        String sql = "SELECT t.task_id, t.id, t.task_name, p.project_name,\n" +
+                " t.starting_date, t.deadline, t.ended_date,\n" +
+                " t.status, s.status_task, t.project_id, t.section_id FROM dkmanagement.task t\n" +
+                "left join project p on t.project_id = p.id\n" +
+                "left join accounts a on t.assignedto = a.id " +
+                "left join section sc on t.section_id = sc.id \n" +
+                "left join status s on t.status = s.id where t.assignedto = ? and t.task_id is not null " +
+                "group by t.id ";
+        try {
+            myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID);
+            return myTaskDtoList.size();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<MyTaskDto> getAllMyTask(int accID, int indexPage, String textSearch) {
+        List<MyTaskDto> myTaskDtoList = new ArrayList<>();
+        String sql = "SELECT t.task_id, t.id, t.task_name, p.project_name,\n" +
+                " t.starting_date, t.deadline, t.ended_date,\n" +
+                " t.status, s.status_task, t.project_id, t.section_id FROM dkmanagement.task t\n" +
+                "left join project p on t.project_id = p.id\n" +
+                "left join accounts a on t.assignedto = a.id " +
+                "left join section sc on t.section_id = sc.id \n" +
+                "left join status s on t.status = s.id where t.assignedto = ? and t.task_id is not null " +
+                "group by t.id limit ?, 10";
+        try {
+            myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID, indexPage);
+            return myTaskDtoList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public int updateStatusSubTaskByDesign(int subTaskID, int status) {
+        int check = 0;
+        String sql = "UPDATE `dkmanagement`.`task` SET `status` = ? WHERE (`id` = ?);";
+        try {
+            check = jdbcTemplate.update(sql, status, subTaskID);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
 }
