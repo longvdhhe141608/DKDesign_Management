@@ -129,3 +129,29 @@ body {
 .all-project-header-right {
     display: flex;
 }
+.list-project .each-project .name-and-link {
+    display: flex;
+    justify-content: space-around;
+}
+
+.list-project .each-project .name-and-link .block-link {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.list-project .each-project .name-and-link .links .link-detail .btn-chi-tiet {
+    border: none;
+    border-radius: 50px;
+    font-size: 80%;
+}
+
+.list-project .each-project .name-and-link .links a .btn-chi-tiet {
+    color: white;
+    background-color: #b7bacb;
+}
+
+.list-project .each-project .name-and-link .links a:hover .btn-chi-tiet {
+    color: black;
+    background-color: #b7bacb;
+}
+
