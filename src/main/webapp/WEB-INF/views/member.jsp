@@ -86,8 +86,8 @@
                 <%--ket thuc them thanh vien--%>
 
                 <%-- tim kiem thanh vien --%>
-                <div style="display: flex;">
-                    <form action="searchMemberInProject">
+                <div >
+                    <form action="searchMemberInProject" style="display: flex;">
                         <input value="${project.id}" type="text" name="id" hidden>
                         <%--start searching by role--%>
                         <div class="function-two" style="margin-right:20px;">
@@ -231,12 +231,15 @@
         crossorigin="anonymous">
 </script>
 <script>
+
     const show = document.querySelector("#show-member");
+
     const popup = document.querySelector(".popup");
     let close = document.querySelector('.close_popup');
     close.addEventListener('click', function () {
         popup.classList.add("hide__popup");
     });
+
     show.addEventListener('click', function () {
         popup.classList.remove("hide__popup");
     })
