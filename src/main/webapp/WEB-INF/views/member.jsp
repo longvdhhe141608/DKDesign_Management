@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Thành viên dự án</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
@@ -40,7 +40,7 @@
                         class="btn btn-secondary"
                         type="button"
                 <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-                        style="background: blue"
+
                 <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
@@ -64,6 +64,7 @@
                 <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
+                        style="background: blue"
                         value="Thành viên"></a>
                 <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
                         class="btn btn-secondary"
@@ -143,16 +144,31 @@
                             <td>${member.memberMail}</td>
                             <td>${member.memberAddress}</td>
                             <td>
-                                <form action="changeMemberStatus" method="get">
-                                    <select class="btn btn-success" name="status" id="status">
-                                        <option class="btn" value="1" ${member.memberStatus==1?"selected":""}>Mở
-                                        </option>
-                                        <option class="btn"
-                                                style="background-color: red;" ${member.memberStatus==2?"selected":""}
-                                                value="2">Chặn
-                                        </option>
-                                    </select>
-                                </form>
+                                <c:if test="${member.memberStatus==1}">
+                                    <form action="changeMemberStatus" method="get">
+                                        <select class="btn btn-success" name="status" >
+                                            <option class="btn btn-success" value="1" ${member.memberStatus==1?"selected":""}>Mở
+                                            </option>
+                                            <option class="btn btn-danger"
+                                                ${member.memberStatus==2?"selected":""}
+                                                    value="2">Chặn
+                                            </option>
+                                        </select>
+                                    </form>
+                                </c:if>
+                                <c:if test="${member.memberStatus==2}">
+                                    <form action="changeMemberStatus" method="get">
+                                        <select class="btn btn-success" name="status">
+                                            <option class="btn" value="1" ${member.memberStatus==1?"selected":""}>Mở
+                                            </option>
+                                            <option class="btn btn-danger"
+                                                ${member.memberStatus==2?"selected":""}
+                                                    value="2">Chặn
+                                            </option>
+                                        </select>
+                                    </form>
+                                </c:if>
+
                             </td>
                         </tr>
                     </c:forEach>
@@ -205,7 +221,7 @@
                     </table>
                 </div>
                 <div class="button_click">
-                    <div>
+
                         <div class="btn_cancel">
                             <button type="button" class="btn btn-secondary close_popup">Hủy
                                 bỏ
@@ -214,10 +230,11 @@
                         <div class="btn_ok">
                             <input type="submit" class="btn btn-primary" value="Lưu">
                         </div>
-                    </div>
+
                 </div>
             </form>
         </div>
+    </div>
         <%--end Pop-up add member--%>
 
 
