@@ -47,41 +47,43 @@
                             <input name="id" type="number" value="${member.memberId}" hidden/>
                             <td><label>Họ và tên:</label></td>
                             <td>
-                                <input name="name" type="text" value="${member.memberName}">
-                            </td>
+<%--                                <input name="name" type="text" value="${member.memberName}">--%>
+                          <td> ${member.memberName}</td>
+
                         </tr>
                         <tr>
                             <td>Mã nhân viên:</td>
-                            <td><input name="username" type="text" value="${member.memberCode}" readonly></td>
+<%--                            <td><input name="username" type="text" value="${member.memberCode}" readonly></td>--%>
+
+                            <td> ${member.memberCode}</td>
                         </tr>
                         <tr>
                             <td>Số CCCD/CMND:</td>
-                            <td><input name="cccd" type="text" value="${member.memberCccd}"></td>
+<%--                            <td><input name="cccd" type="text" value="${member.memberCccd}"></td>--%>
+                            <td> "${member.memberCccd}</td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
                             <td>
-                                <input type="date" name="dob" value="${member.memberDob}">
+                                <fmt:formatDate value="${member.memberDob}" var="dob" pattern="dd/MM/yyyy"/>
+                                ${dob}
                             </td>
                         </tr>
                         <tr>
                             <td>Giới tính:</td>
-                            <td><select name="gender" id="gender" required>
-                                <option id="1" value="1">Nam</option>
-                                <option id="2" value="2" ${member.memberGender==2?"selected":""}>Nữ</option>
-                            </select></td>
+                            <td>${member.memberGender==1?"Nam":"Nu"}</td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input name="phone" type="text" value="${member.memberPhone}"></td>
+                            <td>${member.memberPhone}</td>
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td><input name="mail" type="text" value="${member.memberMail}"></td>
+                            <td>${member.memberMail}</td>
                         </tr>
                         <tr>
                             <td>Địa chỉ nhà:</td>
-                            <td><input name="address" type="text" value="${member.memberAddress}"></td>
+                            <td>${member.memberAddress}</td>
                         </tr>
                         <tr>
                             <td>Vai trò:</td>
