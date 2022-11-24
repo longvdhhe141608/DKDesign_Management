@@ -116,9 +116,9 @@ public class RequirementDao {
     public int deleteRequirement(Requirement requirement) {
         int check = 0;
         String sql = "update `dkmanagement`.`requirement` set `status` = ? " +
-                "where `requirement`.`id` = ? and `requirement`.`project_id` = ?";
+                "where `requirement`.`id` = ?";
         try {
-            check = jdbcTemplate.update(sql, 3, requirement.getId(), requirement.getProjectId());
+            check = jdbcTemplate.update(sql, 3, requirement.getId());
         } catch (Exception e) {
             e.printStackTrace();
         }

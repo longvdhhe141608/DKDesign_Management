@@ -41,7 +41,7 @@ public class RequirementServiceImpl implements RequirementService {
     public int checkAndUpdaterRequirementDone(Requirement requirement) {
         int count = requirementDao.countTaskNoDone(requirement.getId());
         //requirement mới tạo
-        if(requirement.getStatus() == NEW_REQUIREMENT_STATUS){
+        if(requirement.getStatus() == NEW_REQUIREMENT_STATUS || requirement.getStatus() == DELETE_REQUIREMENT_STATUS){
             return requirement.getStatus();
         }
 
