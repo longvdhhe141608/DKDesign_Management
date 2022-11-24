@@ -27,12 +27,14 @@
             <div class="all-project-header">
                 <div>
                     <div>
-                        <div >
-                            <button onclick="modallistproject('#myBtn1','#myModal1','#close1')" id="myBtn1" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
+                        <div>
+                            <button onclick="modallistproject('#myBtn1','#myModal1','#close1')" id="myBtn1"
+                                    class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình
+                            </button>
                             <div id="myModal1" class="modal">
 
                                 <!-- Modal content -->
-                                <div class="modal-content" style="width: 50%;">
+                                <div class="modal-content">
                                     <span id="close1" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form method="post" action="allProject/add" id="addProject">
@@ -43,37 +45,38 @@
                                                 <table class="table table-borderless">
                                                     <tr>
                                                         <td>Tên Công trình <label class="text-danger">*</label>:</td>
-                                                        <td> <input  class="info-text" type="text" name="name">
+                                                        <td><input class="info-text" type="text" name="name">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Tên khách hàng <label class="text-danger">*</label>:</td>
-                                                        <td> <input name="customerName" class="info-text" type="text">
+                                                        <td><input name="customerName" class="info-text" type="text">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Số điện thoại<label class="text-danger">*</label>:</td>
-                                                        <td> <input class="info-text" name="phone" type="text">
+                                                        <td><input class="info-text" name="phone" type="text">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Địa chỉ công trình<label class="text-danger">*</label>:</td>
-                                                        <td> <input class="info-text" type="text" name="address">
+                                                        <td><input class="info-text" type="text" name="address">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Diện tích xây dựng<label class="text-danger">*</label>:</td>
-                                                        <td> <input name="constructionArea" class="info-text" type="text"> m<sup>2</sup>
+                                                        <td><input name="constructionArea" class="info-text"
+                                                                   type="text"> m<sup>2</sup>
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Chi phí thiết kế<label class="text-danger">*</label>:</td>
-                                                        <td> <input class="info-text" type="text">
+                                                        <td><input class="info-text" type="text">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
@@ -81,7 +84,8 @@
                                                         <td>Loại công trình<label class="text-danger">*</label>:</td>
                                                         <td>
                                                             <div class="dropdown">
-                                                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">
+                                                                <select name="categoryId"
+                                                                        class="btn btn-secondary dropdown-toggle">
                                                                     <c:forEach items="${listCategory}" var="category">
                                                                         <option value="${category.id}"> ${category.category_name}</option>
                                                                     </c:forEach>
@@ -91,13 +95,16 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Ngày bắt đầu<label class="text-danger">*</label>:</td>
-                                                        <td><input  name="startDate" id="inputstartdate" class="info-text" type="date">
+                                                        <td><input name="startDate" id="inputstartdate"
+                                                                   class="info-text" type="date">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                                                        <td><input name="closureDate" id="inputenddate" class="info-text" type="date">
+                                                        <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:
+                                                        </td>
+                                                        <td><input name="closureDate" id="inputenddate"
+                                                                   class="info-text" type="date">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
@@ -111,18 +118,18 @@
                                                 </table>
 
 
-
-
                                             </div>
-                                            <div class="button_click" style="display: flex;justify-content: end" >
-
-                                                <div class="btn_cancel" style="margin-right: 10px">
-                                                    <button type="button" class="btn btn-secondary">Hủy
-                                                        bỏ</button>
+                                            <div class="button_click">
+                                                <div></div>
+                                                <div class="btn_cancel">
+                                                    <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                        bỏ
+                                                    </button>
                                                 </div>
                                                 <div class="btn_ok">
                                                     <button onclick="return checkvalidate('#addProject')" type="submit"
-                                                            class="btn btn-primary">Tạo</button>
+                                                            class="btn btn-primary">Tạo
+                                                    </button>
                                                 </div>
                                             </div>
                                         </form>
@@ -134,9 +141,8 @@
                     </div>
                     <div></div>
                 </div>
-                <form action="allProject" method="get" class="all-project-header-right"
-                      >
-                    <div  style="margin-right: 20px;" >
+                <form action="allProject" method="get" class="all-project-header-right">
+                    <div style="margin-right: 20px;">
                         <div class="dropdown">
                             <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle">
                                 <option value="default">Default</option>
@@ -147,7 +153,7 @@
                             </select>
                         </div>
                     </div>
-                    <div >
+                    <div>
                         <div class="function_search">
                             <div class="wap_search">
                                 <input style="margin-right: 2px;" type="text" class="search_term"
@@ -187,16 +193,17 @@
                                         </a>
                                     </div>
                                 </td>
-                                <c:if test="${i.type == 1}">
-                                    <td>
-                                        Ngoại thất
-                                    </td>
-                                </c:if>
-                                <c:if test="${i.type == 2}">
-                                    <td>
-                                        Nội thất
-                                    </td>
-                                </c:if>
+                                <td>
+                                    <c:if test="${i.type == 1}">
+                                        Thiết kế ngoại thất
+                                    </c:if>
+                                    <c:if test="${i.type == 2}">
+                                        Thiết kế nội thất
+                                    </c:if>
+                                    <c:if test="${i.type == 3}">
+                                        Thiết kế ngoại thất + Thiết kế nội thất
+                                    </c:if>
+                                </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
                                             ${i.startDate}
@@ -212,16 +219,17 @@
                                             ${i.endDate}
                                     </div>
                                 </td>
-                                <c:if test="${i.status == 2}">
-                                    <td>
-                                        Đã hoàn thành
-                                    </td>
-                                </c:if>
-                                <c:if test="${i.status == 1}">
-                                    <td>
+                                <td>
+                                    <c:if test="${i.status == 2}">
+                                        Đang bàn giao
+                                    </c:if>
+                                    <c:if test="${i.status == 1}">
                                         Đang thực hiện
-                                    </td>
-                                </c:if>
+                                    </c:if>
+                                    <c:if test="${i.status == 3}">
+                                        Đã hoàn thành
+                                    </c:if>
+                                </td>
                                 <td>
                                     <div style="display: flex; justify-content: space-between;">
                                         <button><i class="fa-regular fa-pen-to-square"></i></button>
@@ -240,7 +248,8 @@
                                                             <button class="btn btn-secondary ">Hủy bỏ</button>
                                                             <button
                                                                     onclick="return checkvalidatenumber('#add-project1')"
-                                                                    type="submit" class="btn btn-primary">Lưu</button>
+                                                                    type="submit" class="btn btn-primary">Lưu
+                                                            </button>
                                                         </div>
                                                     </form>
                                                 </div>
@@ -380,8 +389,6 @@
         });
 
         // When the user clicks on <span> (x), close the modal
-
-
 
 
         // When the user clicks anywhere outside of the modal, close it
