@@ -77,28 +77,28 @@ public class ProjectDao {
         return projectList;
     }
 
-    public List<Project> getAllProjectByYear(String acc, int year) {
-//        String sql = "select `project`.`project_Name`, `category`.`Category_Name`, `project`.`Start_Date`, `project`.`Ended_Date`, `project`.`Status` from project " +
-//                "join `project_participation` on `project`.`id` = `project_participation`.`project_id` " +
-//                "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` " +
-//                "join category on project.`Type`= category.`id` " +
-//                "where `accounts`.`Username` = ? && YEAR(`project`.`Start_Date`) = ?";
-        List<Project> projectList = new ArrayList<>();
-//        projectList = jdbcTemplate.query(sql, new MapperProject(), acc, year);
-        return projectList;
-    }
+//    public List<Project> getAllProjectByYear(String acc, int year) {
+////        String sql = "select `project`.`project_Name`, `category`.`Category_Name`, `project`.`Start_Date`, `project`.`Ended_Date`, `project`.`Status` from project " +
+////                "join `project_participation` on `project`.`id` = `project_participation`.`project_id` " +
+////                "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` " +
+////                "join category on project.`Type`= category.`id` " +
+////                "where `accounts`.`Username` = ? && YEAR(`project`.`Start_Date`) = ?";
+//        List<Project> projectList = new ArrayList<>();
+////        projectList = jdbcTemplate.query(sql, new MapperProject(), acc, year);
+//        return projectList;
+//    }
 
-    public List<Project> getAllProjectByString(String acc, String s) {
-//        String sql = "select DISTINCT `project`.`project_Name`, `category`.`Category_Name`, `project`.`Start_Date`, `project`.`Ended_Date`, `project`.`Status` from project " +
-//                "join `project_participation` on `project`.`id` = `project_participation`.`project_id` " +
-//                "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` " +
-//                "join category on project.`Type`= category.`id` " +
-//                "where `accounts`.`Username` = ? " +
-//                "&& `project`.`Project_Name` like '%" + s + "%' or `category`.`Category_Name` like '%" + s + "%'";
-        List<Project> projectList = new ArrayList<>();
-//        projectList = jdbcTemplate.query(sql, new MapperProject(), acc);
-        return projectList;
-    }
+//    public List<Project> getAllProjectByString(String acc, String s) {
+////        String sql = "select DISTINCT `project`.`project_Name`, `category`.`Category_Name`, `project`.`Start_Date`, `project`.`Ended_Date`, `project`.`Status` from project " +
+////                "join `project_participation` on `project`.`id` = `project_participation`.`project_id` " +
+////                "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` " +
+////                "join category on project.`Type`= category.`id` " +
+////                "where `accounts`.`Username` = ? " +
+////                "&& `project`.`Project_Name` like '%" + s + "%' or `category`.`Category_Name` like '%" + s + "%'";
+//        List<Project> projectList = new ArrayList<>();
+////        projectList = jdbcTemplate.query(sql, new MapperProject(), acc);
+//        return projectList;
+//    }
 
 
     public int addNewProject(Project project) {
