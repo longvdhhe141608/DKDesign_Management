@@ -65,7 +65,7 @@ public class TaskDAO {
         String sql = "select * from task t where (1=1)  ";
 
         if (!ObjectUtils.isEmpty(status)) {
-            sql += " and status = " + status;
+            sql += " and (status = " + status + " or status = 5) ";
         }
 
         sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
