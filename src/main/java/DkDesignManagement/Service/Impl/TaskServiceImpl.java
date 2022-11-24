@@ -127,4 +127,9 @@ public class TaskServiceImpl implements TaskService {
         }
         return checkIsLastTask;
     }
+
+    @Override
+    public List<Task> getAllTaskByRequirementId(int requirementId) {
+        return taskDAO.getAllTaskByRequirementId(requirementId);
+    }
 }

@@ -27,4 +27,6 @@ public interface TaskService {
    TaskPageResponse getListSubTask(int indexPage, int status,String name ,String accountId);
 
    boolean isLastTask(Task task);
+
+   List<Task> getAllTaskByRequirementId(int requirementId);
 }
