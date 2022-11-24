@@ -98,7 +98,7 @@ function onClickDelete(id) {
                 }
             });
         } else if (result.isDenied) {
-            Swal.fire('Changes are not saved', '', 'info')
+            Swal.fire('Yêu cầu đã được giữ lại', '', 'info')
         }
     })
 }
