@@ -99,10 +99,10 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public TaskPageResponse getListSubTask(int indexPage, int status) {
+    public TaskPageResponse getListSubTask(int indexPage, int status,String name ,String accountId) {
         int pageNumber = 10;
-        int count = taskDAO.countSubTask(String.valueOf(status));
-        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage, String.valueOf(status));
+        int count = taskDAO.countSubTask(String.valueOf(status), name , accountId);
+        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage, String.valueOf(status), name , accountId);
         int endPage = count / pageNumber;
         if (count % pageNumber != 0) {
             endPage++;
