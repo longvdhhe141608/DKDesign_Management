@@ -60,12 +60,19 @@ public class TaskDAO {
         return taskList;
     }
 
-    public List<Task> getAllSubTask(int pageNumber, int page,String status) {
+    public List<Task> getAllSubTask(int pageNumber, int page,String status,String name ,String accountId) {
 
         String sql = "select * from task t where (1=1)  ";
 
         if (!ObjectUtils.isEmpty(status)) {
             sql += " and (status = " + status + " or status = 5) ";
+        }
+
+        if (!ObjectUtils.isEmpty(name)) {
+            sql += " and task_name like '%"+name+"%' ";
+        }
+        if (!ObjectUtils.isEmpty(accountId)) {
+            sql += " and assignedto = "+accountId+" ";
         }
 
         sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
@@ -74,11 +81,17 @@ public class TaskDAO {
         return taskList;
     }
 
-    public int countSubTask(String status) {
+    public int countSubTask(String status,String name ,String accountId) {
         String sql = "select count(*)  from task t where (1=1) ";
 
         if (!ObjectUtils.isEmpty(status)) {
             sql += " and status = " + status;
+        }
+        if (!ObjectUtils.isEmpty(name)) {
+            sql += " and task_name like '%"+name+"%' ";
+        }
+        if (!ObjectUtils.isEmpty(accountId)) {
+            sql += " and assignedto = "+accountId+" ";
         }
 
         return jdbcTemplate.queryForObject(sql, Integer.class);
