@@ -168,28 +168,29 @@
                                             <div class="modal-content" style=" width: 50%;height: 40%;">
                                                 <span id="close2" class="close">&times;</span>
                                                 <div class="project-add-task">
-                                                    <form id="add-project1" class="">
+                                                    <form action="update-requirement" method="post" id="add-project1" class="">
+                                                        <input type="text" name="requirementId" hidden value="${requirement.id}">
                                                         <table class="table table-borderless">
                                                             <tr>
                                                                 <td>Vị trí<label class="text-danger">*</label>:</td>
                                                                 <td>
                                                                     <input style="width: 500px;" class="info-text"
-                                                                           type="text" value="Tầng1">
+                                                                          name="name" type="text" value="${requirement.requirementName}">
                                                                     <div class="text-danger error"></div>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                                                 <td>
-                                                                    <textarea class="info-text" name="" id="" cols="60"
-                                                                              rows="3">1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch . 2 phòng ngủ : 10m2 , trần thạch cao .</textarea>
+                                                                    <textarea class="info-text" name="detail" id="" cols="60"
+                                                                              rows="3">${requirement.requirementDetail}</textarea>
                                                                     <div class="text-danger error"></div>
                                                                 </td>
                                                             </tr>
 
                                                         </table>
                                                         <div class="add-btn-work">
-                                                            <button class="btn btn-secondary ">Hủy bỏ</button>
+                                                            <button type="button"class="btn btn-secondary ">Hủy bỏ</button>
                                                             <button onclick="return checkvalidate('#add-project1')"
                                                                     type="submit" class="btn btn-primary">Lưu
                                                             </button>

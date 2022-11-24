@@ -83,7 +83,7 @@ public class TaskDAO {
         String sql = "select count(*)  from task t where (1=1) ";
 
         if (!ObjectUtils.isEmpty(status)) {
-            sql += " and status = " + status;
+            sql += " and ( status = " + status + " or status = 5) ";
         }
         if (!ObjectUtils.isEmpty(name)) {
             sql += " and task_name like '%" + name + "%' ";
@@ -105,6 +105,14 @@ public class TaskDAO {
         String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null ";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), sectionId);
+        return taskList;
+    }
+
+    public List<Task> getAllTaskByRequirementId(int requirementId) {
+
+        String sql = "select * from task t where t.requirement_id =? and t.task_id  is not null";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), requirementId);
         return taskList;
     }
 
