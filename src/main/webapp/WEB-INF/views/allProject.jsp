@@ -32,7 +32,7 @@
                             <div id="myModal1" class="modal">
 
                                 <!-- Modal content -->
-                                <div class="modal-content">
+                                <div class="modal-content" style="width: 50%;">
                                     <span id="close1" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form method="post" action="allProject/add" id="addProject">
@@ -114,10 +114,10 @@
 
 
                                             </div>
-                                            <div class="button_click">
-                                                <div></div>
-                                                <div class="btn_cancel">
-                                                    <button type="button" class="btn btn-secondary close_popup">Hủy
+                                            <div class="button_click" style="display: flex;justify-content: end" >
+
+                                                <div class="btn_cancel" style="margin-right: 10px">
+                                                    <button type="button" class="btn btn-secondary">Hủy
                                                         bỏ</button>
                                                 </div>
                                                 <div class="btn_ok">
