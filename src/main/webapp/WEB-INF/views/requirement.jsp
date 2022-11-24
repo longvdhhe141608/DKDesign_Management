@@ -27,7 +27,7 @@
 <jsp:include page="header.jsp"/>
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
-    <div class="requiment summary" style="margin-left: 20%;">
+    <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
                 <h3>Biệt thự nhà dân</h3>
@@ -79,31 +79,32 @@
         <h4>Thông tin yêu cầu của khách hàng</h4>
 
 
-        <div class="add" id="show-member">
+        <div>
+
 
             <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
-            class="btn btn-primary"><i class="fa-solid fa-plus"></i>Thêm yêu cầu</button>
+                    class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm yêu cầu</button>
             <div id="myModal-add" class="modal">
 
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
-                        <form  id="add-project1" class="" action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}" method="post">
+                        <form id="add-project2" class="" action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}" method="post">
 
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Vị trí:</td>
                                     <td>
-                                        <input style="width: 500px;"  class="info-text" type="text"
-                                               value="" name="ten-vi-tri">
+                                        <input style="width: 500px;" id="inputaddname" class="info-text" type="text"
+                                               value="">
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Yêu cầu:</td>
                                     <td>
-                                        <textarea name="noi-dung-yeu-cau"  cols="60" rows="3"></textarea>
+                                        <textarea class="info-text" name="" cols="60" rows="3"></textarea>
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
@@ -111,7 +112,7 @@
                             </table>
                             <div class="add-btn-work">
                                 <button class="btn btn-secondary ">Hủy bỏ</button>
-                                <button onclick="return checkvalidatenumber('#add-project1')" type="submit"
+                                <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
                                         class="btn btn-primary">Thêm</button>
                             </div>
                         </form>
@@ -161,42 +162,41 @@
                                                 id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>
                                         <div id="myModal-footer" class="modal">
 
-                                        <!-- Modal content -->
-                                        <div class="modal-content">
-                                            <span id="close2" class="close">&times;</span>
-                                            <div class="project-add-task">
-                                                <form id="add-project2" class="">
+                                            <!-- Modal content -->
+                                            <div class="modal-content">
+                                                <span id="close2" class="close">&times;</span>
+                                                <div class="project-add-task">
+                                                    <form id="add-project1" class="">
 
-                                                    <table class="table table-borderless">
-                                                        <tr>
-                                                            <td>Vị trí:</td>
-                                                            <td>
-                                                                <input style="width: 500px;"
-                                                                       class="info-text" type="text" value="Tầng1">
-                                                                <div class="text-danger error"></div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Yêu cầu:</td>
-                                                            <td>
-                                                                    <textarea name="" id="" cols="60"
+                                                        <table class="table table-borderless">
+                                                            <tr>
+                                                                <td>Vị trí:</td>
+                                                                <td>
+                                                                    <input style="width: 500px;" class="info-text"
+                                                                           type="text" value="Tầng1">
+                                                                    <div class="text-danger error"></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Yêu cầu:</td>
+                                                                <td>
+                                                                    <textarea class="info-text" name="" id="" cols="60"
                                                                               rows="3">1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch . 2 phòng ngủ : 10m2 , trần thạch cao .</textarea>
-                                                                <div class="text-danger error"></div>
-                                                            </td>
-                                                        </tr>
+                                                                    <div class="text-danger error"></div>
+                                                                </td>
+                                                            </tr>
 
-                                                    </table>
-                                                    <div class="add-btn-work">
-                                                        <button class="btn btn-secondary ">Hủy bỏ</button>
-                                                        <button
-                                                                onclick="return checkvalidatenumber('#add-project2')"
-                                                                type="submit" class="btn btn-primary">Lưu</button>
-                                                    </div>
-                                                </form>
+                                                        </table>
+                                                        <div class="add-btn-work">
+                                                            <button class="btn btn-secondary ">Hủy bỏ</button>
+                                                            <button onclick="return checkvalidate('#add-project1')"
+                                                                    type="submit" class="btn btn-primary">Lưu</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </div>
+                                        </div>
 
                                         <a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?id=${requirement.id}&project-id=${requirement.projectId}">
                                             <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"><i
@@ -212,9 +212,7 @@
                                                             <p>Bạn chắc chắn muốn xóa dữ liệu này!</p>
                                                             <div class="add-btn-work">
                                                                 <button class="btn btn-secondary ">Hủy bỏ</button>
-                                                                <button
-                                                                        onclick="return checkvalidatenumber('#add-project3')"
-                                                                        type="submit" class="btn btn-primary">Lưu</button>
+                                                                <button type="submit" class="btn btn-primary">Lưu</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -258,7 +256,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <div class="pagination">
+                <div class="pagination"  style="display: flex; justify-content: end">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             <c:forEach items="${requestScope.lsPage}" var="page">

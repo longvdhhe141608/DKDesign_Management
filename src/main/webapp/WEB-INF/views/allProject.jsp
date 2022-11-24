@@ -11,30 +11,132 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <script src="<c:url value="/resources/assets/js/allProject.js"/>"></script>
     <title>Tất cả công trình</title>
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
     <jsp:include page="header.jsp"/>
-    <div class="container_content body_page">
+    <div class="body_page">
         <jsp:include page="nav_left.jsp"/>
-        <div class="summary  content_first">
+        <div class="summary ">
             <div class="title">
                 <h4>Tất cả công trình</h4>
             </div>
-            <div class="content-function">
+            <div class="all-project-header">
                 <div>
-                    <div class="function-one">
-                        <div class="add" id="show" style="display: flex">
-                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
+                    <div>
+                        <div >
+                            <button onclick="modallistproject('#myBtn1','#myModal1','#close1')" id="myBtn1" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình</button>
+                            <div id="myModal1" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                    <span id="close1" class="close">&times;</span>
+                                    <div class="project-add-task">
+                                        <form method="post" action="allProject/add" id="addProject">
+                                            <div class="title">
+                                                <h4>Tạo công trình mới</h4>
+                                            </div>
+                                            <div class="info">
+                                                <table class="table table-borderless">
+                                                    <tr>
+                                                        <td>Tên Công trình <label class="text-danger">*</label>:</td>
+                                                        <td> <input  class="info-text" type="text" name="name">
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Tên khách hàng <label class="text-danger">*</label>:</td>
+                                                        <td> <input name="customerName" class="info-text" type="text">
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Số điện thoại<label class="text-danger">*</label>:</td>
+                                                        <td> <input class="info-text" name="phone" type="text">
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Địa chỉ công trình<label class="text-danger">*</label>:</td>
+                                                        <td> <input class="info-text" type="text" name="address">
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Diện tích xây dựng<label class="text-danger">*</label>:</td>
+                                                        <td> <input name="constructionArea" class="info-text" type="text"> m<sup>2</sup>
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Chi phí thiết kế<label class="text-danger">*</label>:</td>
+                                                        <td> <input class="info-text" type="text">
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Loại công trình<label class="text-danger">*</label>:</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">
+                                                                    <c:forEach items="${listCategory}" var="category">
+                                                                        <option value="${category.id}"> ${category.category_name}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ngày bắt đầu<label class="text-danger">*</label>:</td>
+                                                        <td><input  name="startDate" id="inputstartdate" class="info-text" type="date">
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:</td>
+                                                        <td><input name="closureDate" id="inputenddate" class="info-text" type="date">
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mô tả<label class="text-danger">*</label>:</td>
+                                                        <td> <textarea name="detail" class="info-text" name="" cols="60"
+                                                                       rows="3"></textarea>
+                                                            <div class="text-danger error"></div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+
+
+
+                                            </div>
+                                            <div class="button_click">
+                                                <div></div>
+                                                <div class="btn_cancel">
+                                                    <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                        bỏ</button>
+                                                </div>
+                                                <div class="btn_ok">
+                                                    <button onclick="return checkvalidate('#addProject')" type="submit"
+                                                            class="btn btn-primary">Tạo</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                     <div></div>
                 </div>
-                <form action="allProject" method="get"
-                      style="display: flex; justify-content: space-evenly; margin-left: 28%">
-                    <div class="function-two">
+                <form action="allProject" method="get" class="all-project-header-right"
+                      >
+                    <div  style="margin-right: 20px;" >
                         <div class="dropdown">
                             <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle">
                                 <option value="default">Default</option>
@@ -45,7 +147,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="function-thir">
+                    <div >
                         <div class="function_search">
                             <div class="wap_search">
                                 <input style="margin-right: 2px;" type="text" class="search_term"
@@ -123,7 +225,28 @@
                                 <td>
                                     <div style="display: flex; justify-content: space-between;">
                                         <button><i class="fa-regular fa-pen-to-square"></i></button>
-                                        <button><i class="fa-regular fa-trash-can"></i></button>
+                                        <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"><i
+                                                class="fa-regular fa-trash-can"></i></button>
+                                        <div id="myModal" class="modal">
+
+                                            <!-- Modal content -->
+                                            <div class="modal-content" style="width: 50%; height: 200px;">
+                                                <span id="close" class="close">&times;</span>
+                                                <div class="project-add-task">
+                                                    <form id="add-project1" class="">
+
+                                                        <p>Bạn chắc chắn muốn xóa dữ liệu này!</p>
+                                                        <div class="add-btn-work">
+                                                            <button class="btn btn-secondary ">Hủy bỏ</button>
+                                                            <button
+                                                                    onclick="return checkvalidatenumber('#add-project1')"
+                                                                    type="submit" class="btn btn-primary">Lưu</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </td>
                             </tr>
@@ -154,79 +277,79 @@
         </div>
     </div>
 </div>
-<div class="popup hide__popup">
-    <div class="popup__content">
-        <div>
-            <h4>Tạo công trình mới</h4>
-        </div>
-        <div class="info">
-            <form method="post" action="allProject/add">
-                <table class="table table-borderless">
-                    <tr>
-                        <td>Tên công trình:</td>
-                        <td><input required="" class="info-text" name="name" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Loại công trình:</td>
-                        <td>
-                            <div class="dropdown">
-                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">
-                                    <c:forEach items="${listCategory}" var="category">
-                                        <option value="${category.id}"> ${category.category_name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ngày bắt đầu:</td>
-                        <td><input required="" name="startDate" class="info-text" type="date"></td>
-                    </tr>
-                    <tr>
-                        <td>Ngày dự kiến kết thúc:</td>
-                        <td><input required="" name="closureDate" class="info-text" type="date"></td>
-                    </tr>
-                    <tr>
-                        <td>Tên khách hàng:</td>
-                        <td><input required="" class="info-text" name="customerName" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Địa chỉ:</td>
-                        <td><input required="" class="info-text" name="address" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Số điện thoại:</td>
-                        <td><input required="" class="info-text" name="phone" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Diện tích</td>
-                        <td><input required="" class="info-text" name="constructionArea" type="number"> m<sup>2</sup>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Mô tả</td>
-                        <td>
-                            <%--                            <input required="" class="info-text" name="detail" type="text">--%>
-                            <textarea name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>
-                        </td>
-                    </tr>
+<%--<div class="popup hide__popup">--%>
+<%--    <div class="popup__content">--%>
+<%--        <div>--%>
+<%--            <h4>Tạo công trình mới</h4>--%>
+<%--        </div>--%>
+<%--        <div class="info">--%>
+<%--            <form method="post" action="allProject/add">--%>
+<%--                <table class="table table-borderless">--%>
+<%--                    <tr>--%>
+<%--                        <td>Tên công trình:</td>--%>
+<%--                        <td><input required="" class="info-text" name="name" type="text"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Loại công trình:</td>--%>
+<%--                        <td>--%>
+<%--                            <div class="dropdown">--%>
+<%--                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">--%>
+<%--                                    <c:forEach items="${listCategory}" var="category">--%>
+<%--                                        <option value="${category.id}"> ${category.category_name}</option>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Ngày bắt đầu:</td>--%>
+<%--                        <td><input required="" name="startDate" class="info-text" type="date"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Ngày dự kiến kết thúc:</td>--%>
+<%--                        <td><input required="" name="closureDate" class="info-text" type="date"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Tên khách hàng:</td>--%>
+<%--                        <td><input required="" class="info-text" name="customerName" type="text"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Địa chỉ:</td>--%>
+<%--                        <td><input required="" class="info-text" name="address" type="text"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Số điện thoại:</td>--%>
+<%--                        <td><input required="" class="info-text" name="phone" type="text"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Diện tích</td>--%>
+<%--                        <td><input required="" class="info-text" name="constructionArea" type="number"> m<sup>2</sup>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Mô tả</td>--%>
+<%--                        <td>--%>
+<%--                            &lt;%&ndash;                            <input required="" class="info-text" name="detail" type="text">&ndash;%&gt;--%>
+<%--                            <textarea name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
 
-                </table>
-                <div class="button_click">
-                    <div></div>
-                    <div class="btn_cancel">
-                        <button type="button" class="btn btn-secondary close_popup">Hủy
-                            bỏ
-                        </button>
-                    </div>
-                    <div class="btn_ok">
-                        <button type="submit" class="btn btn-primary">Tạo</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+<%--                </table>--%>
+<%--                <div class="button_click">--%>
+<%--                    <div></div>--%>
+<%--                    <div class="btn_cancel">--%>
+<%--                        <button type="button" class="btn btn-secondary close_popup">Hủy--%>
+<%--                            bỏ--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                    <div class="btn_ok">--%>
+<%--                        <button type="submit" class="btn btn-primary">Tạo</button>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </form>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</div>--%>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -236,20 +359,33 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script>
-    const show = document.querySelector("#show");
+    function modallistproject(idbtn, idmodal, closemain) {
+        // Get the modal
+        var modal = document.querySelector(idmodal);
 
-    const popup = document.querySelector(".popup");
-    let close = document.querySelector('.close_popup');
-    close.addEventListener('click', function () {
-        popup.classList.add("hide__popup");
-    });
+        // Get the button that opens the modal
+        var btn = document.querySelector(idbtn);
 
-    show.addEventListener('click', function () {
-        popup.classList.remove("hide__popup");
-    })
-    var mess = '${mess}'
-    if (mess != '') {
-        alert(mess);
+        // Get the <span> element that closes the modal
+        var span = document.querySelector(closemain);
+        // span.addEventListener('click', event){
+        //     event.style.display = "none";
+        // }
+        // When the user clicks the button, open the modal
+
+        modal.style.display = "block";
+
+        span.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // When the user clicks on <span> (x), close the modal
+
+
+
+
+        // When the user clicks anywhere outside of the modal, close it
+
     }
 </script>
 </body>
