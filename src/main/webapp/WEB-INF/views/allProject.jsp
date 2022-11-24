@@ -134,8 +134,7 @@
                     </div>
                     <div></div>
                 </div>
-                <form action="allProject" method="get" class="all-project-header-right"
-                      >
+                <form action="allProject" method="get" class="all-project-header-right">
                     <div  style="margin-right: 20px;" >
                         <div class="dropdown">
                             <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle">
