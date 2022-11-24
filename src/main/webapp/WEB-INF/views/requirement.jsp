@@ -98,20 +98,19 @@
                         <form id="add-project2" class=""
                               action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}"
                               method="post">
-
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Vị trí<label class="text-danger">*</label>:</td>
                                     <td>
                                         <input style="width: 500px;" id="inputaddname" class="info-text" type="text"
-                                               value="">
+                                               value="" name="ten-vi-tri">
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                     <td>
-                                        <textarea class="info-text" name="" cols="60" rows="3"></textarea>
+                                        <textarea class="info-text" name="noi-dung-yeu-cau" cols="60" rows="3"></textarea>
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
