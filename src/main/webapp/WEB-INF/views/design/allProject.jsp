@@ -67,6 +67,7 @@
                             <th scope="col">Tên công trình</th>
                             <th scope="col">Loại công trình</th>
                             <th scope="col">Thời gian bắt đầu</th>
+                            <th scope="col">Thời gian dự kiến kết thúc</th>
                             <th scope="col">Thời gian kết thúc</th>
                             <th scope="col">Trạng thái</th>
                         </tr>
@@ -86,16 +87,17 @@
                                         </a>
                                     </div>
                                 </td>
-                                <c:if test="${i.type == 1}">
-                                    <td>
-                                        Ngoại thất
-                                    </td>
-                                </c:if>
-                                <c:if test="${i.type == 2}">
-                                    <td>
-                                        Nội thất
-                                    </td>
-                                </c:if>
+                                <td>
+                                    <c:if test="${i.type == 1}">
+                                        Thiết kế ngoại thất
+                                    </c:if>
+                                    <c:if test="${i.type == 2}">
+                                        Thiết kế nội thất
+                                    </c:if>
+                                    <c:if test="${i.type == 3}">
+                                        Thiết kế ngoại thất + Thiết kế nội thất
+                                    </c:if>
+                                </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
                                             ${i.startDate}
@@ -103,19 +105,25 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
+                                            ${i.closureDate}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="name-input" style="width: 150px;">
                                             ${i.endDate}
                                     </div>
                                 </td>
-                                <c:if test="${i.status == 2}">
-                                    <td>
-                                        Đã hoàn thành
-                                    </td>
-                                </c:if>
-                                <c:if test="${i.status == 1}">
-                                    <td>
+                                <td>
+                                    <c:if test="${i.status == 2}">
+                                        Đang bàn giao
+                                    </c:if>
+                                    <c:if test="${i.status == 1}">
                                         Đang thực hiện
-                                    </td>
-                                </c:if>
+                                    </c:if>
+                                    <c:if test="${i.status == 3}">
+                                        Đã hoàn thành
+                                    </c:if>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

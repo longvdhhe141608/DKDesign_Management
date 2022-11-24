@@ -158,7 +158,6 @@
                                     <c:if test="${requirement.status == 4}">
                                         Chưa được đáp ứng
                                     </c:if>
-
                                 </td>
                                 <td>
                                         <%--                                    <div style="display: flex; justify-content: space-between;">--%>
@@ -249,7 +248,6 @@
                                         <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')"
                                                 id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>
                                         <div id="myModal-footer" class="modal">
-
                                             <!-- Modal content -->
                                             <div class="modal-content">
                                                 <span id="close2" class="close">&times;</span>

@@ -41,22 +41,25 @@
                                 <div class="card_list_project">
                                     <c:forEach items="${listProDoing}" var="i">
                                         <div class="card_project">
-                                                ${i.projectName}
+                                            <a href="${pageContext.request.contextPath}/design/project/summary?id=${i.id}"
+                                               style="color: black; text-decoration: none">
+                                                    ${i.projectName}
+                                            </a>
                                         </div>
                                     </c:forEach>
                                 </div>
-<%--                                <table class=" table">--%>
-<%--                                    <c:forEach items="${listProDoing}" var="i">--%>
-<%--                                        <tr>--%>
-<%--                                            <td class="left-main">--%>
-<%--                                                    ${i.project_name}--%>
-<%--                                            </td>--%>
-<%--                                            <td class="left-main">--%>
-<%--                                                    ${i.project_name}--%>
-<%--                                            </td>--%>
-<%--                                        </tr>--%>
-<%--                                    </c:forEach>--%>
-<%--                                </table>--%>
+                                <%--                                <table class=" table">--%>
+                                <%--                                    <c:forEach items="${listProDoing}" var="i">--%>
+                                <%--                                        <tr>--%>
+                                <%--                                            <td class="left-main">--%>
+                                <%--                                                    ${i.project_name}--%>
+                                <%--                                            </td>--%>
+                                <%--                                            <td class="left-main">--%>
+                                <%--                                                    ${i.project_name}--%>
+                                <%--                                            </td>--%>
+                                <%--                                        </tr>--%>
+                                <%--                                    </c:forEach>--%>
+                                <%--                                </table>--%>
                             </div>
                         </div>
                         <%--Kết thúc bảng công trình đang làm--%>
@@ -65,7 +68,7 @@
                             <h4>Công việc của tôi</h4>
                             <div class="tab">
                                 <button class="btn btn-secondary tablinks" onclick="openProject(event , 'project')">
-                                    Công việc
+                                    Đang làm
                                 </button>
                                 <button class="btn btn-secondary tablinks" onclick="openProject(event , 'overdue')">
                                     Quá hạn
@@ -77,60 +80,84 @@
                             <div id="project" class="tabcontent">
                                 <table class=" table ">
                                     <tr class=" right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 3</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 3</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                 </table>
                             </div>
                             <div id="overdue" class="tabcontent" style="display: none">
                                 <table class=" table ">
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 1</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 1</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                 </table>
                             </div>
                             <div id="complete" class="tabcontent" style="display: none">
                                 <table class=" table ">
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                     <tr class="right-detail">
-                                        <td style="font-size: 20px;">Mặt bằng tầng 2</td>
-                                        <td style="font-size: 20px;">03/09</td>
+                                        <a href="#" style="color: black; text-decoration: none">
+                                            <td style="font-size: 20px;">Mặt bằng tầng 2</td>
+                                            <td style="font-size: 20px;">03/09</td>
+                                        </a>
                                     </tr>
                                 </table>
                             </div>
