@@ -73,26 +73,45 @@
             <h4>Thống kê công trình</h4>
             <div class="row">
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Tổng số công việc</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc đang làm
-
+                    </div>
+                    <div>
                     </p>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc hoàn thành đúng hạn</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc trễ hạn</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc hoàn thành chậm tiến độ</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
             </div>
         </div>
