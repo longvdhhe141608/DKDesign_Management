@@ -35,9 +35,10 @@
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
-                    <div>
-                    <button class="btn btn-secondary">Lưu</button>
-                    </div>
+
+                </div>
+                <div>
+                    <button class="btn btn-primary">Lưu</button>
                 </div>
             </div>
             <div class="list-task-head">
