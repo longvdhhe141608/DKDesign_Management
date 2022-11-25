@@ -161,7 +161,6 @@
                             <button onclick="modallistproject('#btn-edit','#myModal-edit','#close3')" id="btn-edit"
                                     class=""><i class="fa-regular fa-pen-to-square"></i></button>
                             <div id="myModal-edit" class="modal">
-
                                 <!-- Modal content -->
                                 <div class="modal-content">
                                     <span id="close3" class="close">&times;</span>
@@ -196,7 +195,6 @@
                                     <span id="close4" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form id="add-project2" class="">
-
                                             <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>
                                             <div class="add-btn-work" style="display: flex;justify-content: end">
                                                 <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ</button>
