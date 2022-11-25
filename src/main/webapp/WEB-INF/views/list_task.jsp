@@ -69,9 +69,8 @@
         </div>
         <div class="list-task-main">
             <button onclick="modallistproject('#myBtn','#myModal','#close1')" id="myBtn"
-                    class="btn btn-primary add-work">+Thêm
-                công
-                việc
+                    class="btn btn-primary add-work">
+                +Thêm công việc
             </button>
             <!-- The Modal -->
             <div id="myModal" class="modal">
