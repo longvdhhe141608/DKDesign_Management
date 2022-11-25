@@ -50,7 +50,7 @@ public class ProjectDao {
         return projectList;
     }
 
-    public List<Project> getAllProjectByAcc(int id, String textSearch,String date, int pageNo) {
+    public List<Project> getAllProjectByAcc(int id, String textSearch, String date, int pageNo) {
         String sql = "select\n" +
                 "\t`project` .*\n" +
                 "from\n" +
@@ -65,8 +65,8 @@ public class ProjectDao {
         if (!ObjectUtils.isEmpty(textSearch)) {
             sql += " and project.project_name like '%" + textSearch + "%' \n";
         }
-        if(!ObjectUtils.isEmpty(date) && !date.equals("default") ){
-            sql += " and year(start_date) >= "+date+" ";
+        if (!ObjectUtils.isEmpty(date) && !date.equals("default")) {
+            sql += " and year(start_date) >= " + date + " ";
         }
         sql += " group by \n" +
                 "\t`project`.`id`\n" +
@@ -103,9 +103,9 @@ public class ProjectDao {
 
     public int addNewProject(Project project) {
         String sql = "INSERT INTO dkmanagement.project\n" +
-                "(project_name, start_date, closure_date, ended_date, creator, `type`, customer_name, customer_address, customer_phone, detail, status,construction_area)\n" +
+                "(project_name, start_date, closure_date, ended_date, creator, `type`, customer_name, customer_address, customer_phone, detail, status,construction_area,`expected_cost`)\n" +
                 "VALUES(:name, :start_date, :closure_date, :ended_date, :creator, :type, :customer_name " +
-                " , :customer_address , :customer_phone , :detail , :status , :construction_area);\n";
+                " , :customer_address , :customer_phone , :detail , :status , :construction_area, :expected_cost);\n";
 
 
         Map<String, Object> params = new HashMap<>();
@@ -121,7 +121,7 @@ public class ProjectDao {
         params.put("detail", project.getDetail());
         params.put("status", project.getStatus());
         params.put("construction_area", project.getConstructionArea());
-
+        params.put("expected_cost", project.getExpectedCost());
 
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
@@ -133,7 +133,7 @@ public class ProjectDao {
                 "SET project_name = :project_name , start_date = :start_date, closure_date = :closure_date, ended_date =:ended_date " +
                 ", creator = :creator, `type`=:type" +
                 ", customer_name = :customer_name, customer_address = :customer_address, customer_phone = :customer_phone" +
-                ", construction_area= :construction_area , detail= :detail, status = :status \n" +
+                ", construction_area= :construction_area , detail= :detail, status = :status, expected_code = :expected_code \n" +
                 "WHERE id= :id ;\n";
 
 
@@ -150,6 +150,7 @@ public class ProjectDao {
         params.put("detail", project.getDetail());
         params.put("status", project.getStatus());
         params.put("construction_area", project.getConstructionArea());
+        params.put("expected_cost", project.getExpectedCost());
         params.put("id", project.getId());
 
         return namedParameterJdbcTemplate.update(sql, params);

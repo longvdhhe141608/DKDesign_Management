@@ -88,9 +88,10 @@ public class ProjectController {
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
+        Long expectedCost = Long.parseLong(request.getParameter("expectedCost"));
         //create model
         Project project = new Project(-1, name, startDate, closureDate, null
-                , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea);
+                , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea, expectedCost);
         //add
         int id = projectService.addProject(project, account);
         if (id != 1) {

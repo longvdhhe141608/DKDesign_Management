@@ -105,7 +105,7 @@
                     </tr>
                     <tr>
                         <td>Chi phí thiết kế:</td>
-                        <td></td>
+                        <td>${project.expectedCost}</td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
