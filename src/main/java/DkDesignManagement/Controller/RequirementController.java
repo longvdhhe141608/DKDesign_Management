@@ -38,6 +38,7 @@ public class RequirementController {
 
     @Autowired
     private TaskService taskService;
+    private List<Task> taskList;
 
     @RequestMapping(value = "/requirement-for-leader", method = RequestMethod.GET)
     public ModelAndView viewRequirement(HttpServletRequest request) {
@@ -87,10 +88,10 @@ public class RequirementController {
                 .build();
         int saveRequirement = requirementDao.insertRequirement(requirement);
         if (saveRequirement == 0) {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id="+projectID);
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + projectID);
             view.addObject("mess", "Save failed");
         } else {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id="+projectID);
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + projectID);
             view.addObject("mess", "Save success");
         }
         view.addObject("id", projectID);
@@ -104,24 +105,28 @@ public class RequirementController {
 //        int projectID = Integer.parseInt(request.getParameter("projectID"));
         Requirement requirement = requirementDao.getRequirementById(requirementID);
         int delete = requirementDao.deleteRequirement(requirement);
+        List<Task> taskList = taskService.getAllTaskByRequirementId(requirementID);
         if (delete == 0) {
             response.getWriter().println("Đã hủy");
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete failed");
         } else {
+            for (Task task : taskList) {
+                task.setTaskStatus(CANCEL_TASK_STATUS);
+                taskService.updateTask(task);
+            }
             response.getWriter().println("Đã xóa");
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete success");
-
         }
 //        view.addObject("id", projectID);
     }
 
     @RequestMapping(value = "/update-requirement", method = RequestMethod.POST)
-    public ModelAndView updateRequirement(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView updateRequirement(HttpServletRequest request, HttpServletResponse response) {
         int requirementId = Integer.parseInt(request.getParameter("requirementId"));
         Requirement requirement = requirementService.getRequirementById(requirementId);
-        ModelAndView view = new ModelAndView("redirect:/requirement/requirement-for-leader?id="+requirement.getProjectId());
+        ModelAndView view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + requirement.getProjectId());
 
         //update
         String name = request.getParameter("name");
@@ -129,14 +134,14 @@ public class RequirementController {
 
         requirement.setRequirementName(name);
         requirement.setRequirementDetail(detail);
-        if(requirement.getStatus() == COMPLETE_REQUIREMENT_STATUS){
+        if (requirement.getStatus() == COMPLETE_REQUIREMENT_STATUS) {
             requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
         }
 
         //update status task
         List<Task> tasksList = taskService.getAllTaskByRequirementId(requirementId);
-        for(Task task : tasksList){
-            if(task.getTaskStatus() == COMPLETE_TASK_STATUS){
+        for (Task task : tasksList) {
+            if (task.getTaskStatus() == COMPLETE_TASK_STATUS) {
                 task.setTaskStatus(PROCESS_TASK_STATUS);
                 taskService.updateTask(task);
             }
