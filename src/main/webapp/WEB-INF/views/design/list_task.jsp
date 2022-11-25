@@ -76,9 +76,9 @@
                         </summary>
                         <c:forEach items="${i.tasksList}" var="t">
 <%--                            <c:if test="${ t.assignedTo == sessionScope.loginUser.id}">--%>
-                                <div class="row " style="background: rgba(0, 0, 0, 0.2);">
+                                <div class="row designer-table" style="background: rgba(0, 0, 0, 0.2); height: 40px">
                                     <div class="col-4" style="border: 1px solid gray;">
-                                        <div class="" style="display: grid; grid-template-columns: 1fr 100px;">
+                                        <div class="" style="display: grid; grid-template-columns: 1fr 100px; margin-top: 5px">
                                             <button style="border: none; background-color: #cccccc; justify-self: start;"
                                                     onclick="myFunction('.sub-task-detail')">
                                                 <i class="fa-solid fa-caret-down"
@@ -96,7 +96,7 @@
 <%--                            </c:if>--%>
                             <c:forEach items="${i.subTasksList}" var="s">
                                 <c:if test="${s.taskID == t.id}">
-                                    <div id="" class="row sub-task-detail" style="display: none;">
+                                    <div id="" class="row sub-task-detail" style="display: none; height: 30px">
                                         <div class="col-4 link-chi-tiet-cong-viec"
                                              style="border: 1px solid gray; display: flex; justify-content: space-between; ">
                                             <div class="">
