@@ -35,9 +35,9 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>Biệt thự nhà dân</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
@@ -92,7 +92,7 @@
             </button>
             <div id="myModal-add" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content" style=" width: 50%;height: 40%;">
+                <div class="modal-content" style=" width: 50%;height: 65%;">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
                         <form id="add-project2" class=""
