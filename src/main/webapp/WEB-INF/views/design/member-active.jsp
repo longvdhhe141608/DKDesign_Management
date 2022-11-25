@@ -69,7 +69,7 @@
         <h4>Thành viên dự án</h4>
         <div class="all-member">
 
-            <form action="${pageContext.request.contextPath}/design/project/member-active-search" method="get">
+            <form action="${pageContext.request.contextPath}/design/project/member-active" method="get">
                 <div class="content-function-member">
                     <div class="function-one">
 
@@ -79,9 +79,9 @@
                             <div class="dropdown">
                                 <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
                                         name="role">
-                                    <option  value="default">Default</option>
+                                    <option ${role == "default" ? "selected" :""} value="default">Default</option>
                                     <c:forEach items="${roles}" var="i">
-                                        <option value="${i.id}">${i.name}</option>
+                                        <option ${role == i.id ? "selected" :""} value="${i.id}">${i.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -89,12 +89,11 @@
                         <div class="function-thir">
                             <div class="function_search">
                                 <div class="wap_search">
-
                                     <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="tên thành viên" name="textSearch">
+                                           placeholder="Tên thành viên" name="textSearch">
                                     <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="tên thành viên" name="project-id" hidden value="${project.id}">
-                                    <button type="submit" class="btn btn-primary"> tìm kiếm</button>
+                                           placeholder="Tên thành viên" name="project-id" hidden value="${project.id}">
+                                    <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                                 </div>
                             </div>
                         </div>
@@ -133,7 +132,8 @@
                     <c:forEach items="${lsPage}" var="page">
                         <li class="page-item ${requestScope.page == page ? "active" : ""}">
                             <a class="page-link"
-                               href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}&pageNo=${page}">${page}</a>
+                               href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}&pageNo=${page}&role=${role}&textSearch=${textSearch}">${page}
+                            </a>
                         </li>
                     </c:forEach>
                 </ul>

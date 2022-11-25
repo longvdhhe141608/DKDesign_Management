@@ -64,11 +64,12 @@ public class EditSummaryController {
         String phone = request.getParameter("phone");
         String detail = request.getParameter("detail");
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
+        Long expectedCost = Long.parseLong(request.getParameter("expectedCost"));
         int status = Integer.parseInt(request.getParameter("status"));
 
         //create model
         Project project = new Project(id, name, startDate, closureDate, endDate
-                , account.getId(), categoryId, customerName, address, phone, detail, status, constructionArea);
+                , account.getId(), categoryId, customerName, address, phone, detail, status, constructionArea,expectedCost);
 
         //add
         int statusEdit = projectService.editProject(project);

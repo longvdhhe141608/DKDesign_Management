@@ -20,7 +20,7 @@
             <i class="fa-solid fa-house"></i>
             Trang chủ
         </button>
-        <button onclick="sendRedirect('${pageContext.request.contextPath}/task/my_task')" class="tab_button">
+        <button onclick="sendRedirect('${pageContext.request.contextPath}/design/my-task')" class="tab_button">
             <i class="fa-solid fa-briefcase"></i>
             Công việc của tôi
         </button>

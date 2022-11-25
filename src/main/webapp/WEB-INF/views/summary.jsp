@@ -31,7 +31,7 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
@@ -93,15 +93,22 @@
                     <tr>
                         <td>Loại công trình:</td>
                         <c:if test="${project.type==1}">
-                            <td>Ngoại thất</td>
+                            <td>Thiết kế ngoại thất</td>
                         </c:if>
                         <c:if test="${project.type==2}">
-                            <td>Nội thất</td>
+                            <td>Thiết kế nội thất</td>
+                        </c:if>
+                        <c:if test="${project.type==3}">
+                            <td>Thiết kế ngoại thất + Thiết kế nội thất</td>
                         </c:if>
                     </tr>
                     <tr>
                         <td>Diện tích xây dựng:</td>
                         <td>${project.constructionArea}m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>Chi phí thiết kế:</td>
+                        <td>${project.expectedCost}</td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>

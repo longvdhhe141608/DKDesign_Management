@@ -46,7 +46,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -55,7 +56,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -176,13 +178,14 @@
             </table>
             <div style="display: flex; justify-content: space-between;">
                 <c:if test="${progressPercent == 100 && subTask.status == 2}">
-                    <form action="">
-                        <button class="btn btn-primary">Nộp</button>
-                    </form>
+                    <a href="${pageContext.request.contextPath}/design/sub-task/submit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
+                       class="btn btn-primary">Nộp</a>
                 </c:if>
                 <c:if test="${subTask.status == 1}">
-
-                    <a class="btn btn-primary" href="${pageContext.request.contextPath}/design/sub-task/view-edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">Chỉnh sửa</a>
+                    <a class="btn btn-primary"
+                       href="${pageContext.request.contextPath}/design/sub-task/view-edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">
+                        Chỉnh sửa
+                    </a>
                 </c:if>
             </div>
         </div>

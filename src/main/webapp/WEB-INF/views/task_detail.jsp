@@ -28,7 +28,7 @@
             <div class="list-top">
                 <h3>${task.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
@@ -161,48 +161,55 @@
                     </button>
                 </a>
         </div>
+        <div class="task-cmt-details">
         <p style="font-size: 20px;">Bình luận</p>
-        <div class="task-cmt-details" style="margin-top: 20px; margin-left: 10px;">
+            <div class="task-cmt-details-main" >
             <c:if test="${listComment.size() > 0}">
                 <c:forEach items="${listComment}" var="comment">
                     <!----------item------------>
-                    <div class="task-cmt-details-main">
+
+                    <div class="cmt-details" style="display: flex;">
                         <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                        <a class="name-avatar">${comment.accountName}</a>
-                        <a> ${comment.dateCountDown}</a></br>
-                        <p>${comment.content}</p>
+                        <div class="task-cmt-details-member">
+                        <span class="name-avatar">${comment.accountName}</span>
+                        <span> ${comment.dateCountDown}</span></br>
+                        <span>${comment.content}</span>
+                        </div>
+                    </div>
                         <c:if test="${comment.isPin() ==true}">
                             <i class="fa-solid fa-thumbtack"></i>
-                            <br>
+
                         </c:if>
                         <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
-                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a>
+                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a></br>
                         </c:if>
 
 
-                    </div>
+
                     <!----------item------------>
                 </c:forEach>
             </c:if>
 
-
-            <div class="task-detail-cmt">
-                <form action="add-comment" method="post">
+            </div>
+            <div class="task-cmt-details-main">
+                <form style="display: flex" action="add-comment" method="post">
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     <input name="taskId" type="text" value="${task.taskId}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
-                    <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                    <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text" placeholder="Bình luận....">
                     <button class="btn btn-primary">Gửi</button>
                 </form>
             </div>
-        </div>
+
+    </div>
     </div>
 </div>
 <div class="popup hide__popup">
-    <form action="add-sub-task" method="post">
+    <form id="add-sub-task" action="add-sub-task" method="post">
     <div class="popup__content">
         <div class="title">
-            <h4><input class="info-text" type="text" name="name" value="" placeholder="Tên công việc phụ"></h4>
+            <h4><input class="info-text" type="text" name="name" value="" placeholder="Tên công việc phụ">
+                <div class="text-danger error"></div></h4>
         </div>
         <div class="info">
             <input type="text" name="projectId" hidden="" value="${task.projectId}" >
@@ -210,22 +217,24 @@
             <input type="text" name="taskId" hidden="" value="${task.taskId}" >
             <table class="table table-borderless">
                 <tr>
-                    <td>Nhiệm vụ:</td>
+                    <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
                     <td>
                         ${task.assignToName}
                         <input type="text" name="assignTo" hidden="" value="${task.assignToId}" >
                     </td>
                 </tr>
                 <tr>
-                    <td>Thời gian bắt đầu:</td>
-                    <td> <input class="info-text" name="startDate" type="date"></td>
+                    <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
+                    <td> <input id="inputstartdate" class="info-text" name="startDate" type="date">
+                        <div class="text-danger error"></div></td>
                 </tr>
                 <tr>
-                    <td>Thời gian dự kiến kết thúc:</td>
-                    <td> <input class="info-text" name="deadline" type="date"></td>
+                    <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
+                    <td> <input id="inputenddate" class="info-text" name="deadline" type="date">
+                        <div class="text-danger error"></div></td>
                 </tr>
                 <tr>
-                    <td>Yêu cầu của khách hàng:</td>
+                    <td>Yêu cầu của khách hàng<label class="text-danger">*</label>:</td>
                     <td>
                         <div class="dropdown">
                             <select name="requirementId" class="btn btn-secondary dropdown-toggle">
@@ -237,8 +246,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Số lượng file:</td>
-                    <td> <input required="" type="number" name="fileNumber" value=""></td>
+                    <td>Số lượng file<label class="text-danger">*</label>:</td>
+                    <td> <input class="info-text" type="number" name="fileNumber" value="">
+                        <div class="text-danger error"></div></td>
                 </tr>
             </table>
         </div>
@@ -249,7 +259,7 @@
                     bỏ</button>
             </div>
             <div class="btn_ok">
-                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu</button>
             </div>
         </div>
     </div>

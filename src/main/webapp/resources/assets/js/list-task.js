@@ -68,9 +68,12 @@ function checkvalidate(id) {
         }
         return b;
     }
-    console.log(numberdate);
-    return false;
-
+    numberprocess = numberEmpty + numberdate;
+    if (numberprocess > 0) {
+        return false;
+    } else {
+        return true;
+    }
 }
 function checkvalidatenumber(id) {
     var form = document.querySelector(id);
@@ -95,28 +98,14 @@ function checkvalidatenumber(id) {
             } else {
                 error[i].innerHTML = "";
             }
-            // input[i].addEventListener('click', function () {
-            //     error[i].innerHTML = "";
-            // })
-        }
-        // if (name.value.trim() == "") {
-        //     a++;
-        //     error[0].innerHTML = "Không được để trống";
 
-        // } else if (startdate === "") {
-        //     a++;
-        //     error[1].innerHTML = "Không được để trống";
-        // } else if (enddate === "") {
-        //     a++;
-        //     error[2].innerHTML = "Không được để trống";
-        // } else {
-        //     return a;
-        // }
+        }
+
         return a;
     }
     console.log(numberEmpty);
 
-    numberprocess = numberEmpty + numberdate;
+    numberprocess = numberEmpty;
     if (numberprocess > 0) {
         return false;
     } else {

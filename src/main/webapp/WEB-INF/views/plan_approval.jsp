@@ -27,7 +27,7 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
@@ -65,30 +65,31 @@
                 <h4>Phê duyệt công việc</h4>
             </div>
             <div class="my-task-search">
+                <form action="plan_approval" method="get" style="display: flex" >
+                    <input hidden name="id" value="${projectId}" >
                 <div class="my-task-search-name" style="margin-right:10px ;">
                     <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                           aria-expanded="false">
-                            Tìm kiếm tên
-                        </a>
-                        <div class=" dropdown-menu">
-                            <a class="dropdown-item" href="#">Nguyễn Như Huấn</a>
-                            <a class=" dropdown-item" href="#">Hoàng Thị Thu Hương</a>
-                            <a class=" dropdown-item" href="#">Vũ Đình Hoàng Long</a>
-                        </div>
+                            <select name="accountId" class="btn btn-secondary dropdown-toggle">
+                                <option value=""> Tất cả</option>
+                                <c:forEach items="${listAccount}" var="account">
+                                    <option value="${account.id}" ${account.id== accountId ? 'selected' : ''} > ${account.username}</option>
+                                </c:forEach>
+                            </select>
                     </div>
+
                 </div>
                 <div class="">
                     <div class="function_search">
-                        <form action="">
+
                             <div class="wap_search">
-                                <input style="margin-right: 10px;" type="text" class="search_term"
-                                       placeholder="tên công việc">
+                                <input style="margin-right: 10px;" type="text" name="name" class="search_term"
+                                      value="${name}" placeholder="tên công việc">
                                 <button type="submit" class="btn btn-primary"> tìm kiếm</button>
                             </div>
-                        </form>
+
                     </div>
                 </div>
+                </form>
             </div>
             <div class="table_content">
                 <div class="">
@@ -162,7 +163,7 @@
                         <ul class="pagination">
                             <c:if test="${page != 1}">
                                 <li class="page-item">
-                                    <a class="page-link" href="plan_approval?id=${projectId}&page=${page-1}"
+                                    <a class="page-link" href="plan_approval?id=${projectId}&page=${page-1}&name=${name}&accountId=${accountId}"
                                        aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
@@ -170,12 +171,12 @@
                             </c:if>
                             <c:forEach begin="1" end="${endPage}" var="i">
                                 <li class="page-item"><a class="page-link"
-                                                         href="plan_approval?id=${projectId}&page=${i}">${i}</a></li>
+                                                         href="plan_approval?id=${projectId}&page=${i}&name=${name}&accountId=${accountId}">${i}</a></li>
                             </c:forEach>
 
                             <c:if test="${page != endPage}">
                                 <li class="page-item">
-                                    <a class="page-link" href="plan_approval?id=${projectId}&page=${page+1}"
+                                    <a class="page-link" href="plan_approval?id=${projectId}&page=${page+1}&name=${name}&accountId=${accountId}"
                                        aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>

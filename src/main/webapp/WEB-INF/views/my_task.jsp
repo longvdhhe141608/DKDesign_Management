@@ -60,7 +60,7 @@
                 <div style="display: flex">
                     <div class="function-one">
                         <div class="add" id="show">
-                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc</button>
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>+ Thêm công việc</button>
                         </div>
                     </div>
                     <div></div>
@@ -103,16 +103,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach begin="1" end="10">
+                        <c:forEach items="${myTask}" var="i">
                             <tr class="tung-hang">
                                 <td class="tung-o">
                                     <div class="name-project">
-                                        thiết kế phòng ngủ
+                                        ${i.subTaskName}
                                     </div>
                                     <div class="block-link">
                                         <div></div>
                                         <div class="links">
-                                            <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}"
+                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${i.taskID}"
                                                class="link-cong-viec">
                                                 <button class="btn-chi-tiet">
                                                     Chi tiết
@@ -123,20 +123,20 @@
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        20/10/2022
+                                        ${i.startDate}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        20/10/2022
+                                        ${i.deadline}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" style="width: 150px;">
-                                        20/11/2022
+                                        ${i.endDate}
                                     </div>
                                 </td>
-                                <td> Biệt thự nhà dân</td>
+                                <td>${i.projectName}</td>
                                 <td>
                                     <div style="display: flex; justify-content: space-between;">
                                         <button><i class="fa-regular fa-pen-to-square"></i></button>

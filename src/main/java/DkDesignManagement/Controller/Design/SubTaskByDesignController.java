@@ -52,7 +52,7 @@ public class SubTaskByDesignController {
         ModelAndView view = new ModelAndView("design/sub-task-design");
 
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
+        Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         Project project = projectDao.getProject(projectID);
@@ -92,7 +92,7 @@ public class SubTaskByDesignController {
         ModelAndView view = new ModelAndView("redirect:/design/sub-task/view-sub-task-detail");
 
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
+        Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         Project project = projectDao.getProject(projectID);
@@ -117,7 +117,10 @@ public class SubTaskByDesignController {
                 request.setAttribute("mess", "upload fail");
                 view.addObject("status", 2);
             } else {
-                int checkSaveFile = imageAndFileDao.updateFileBySubTaskID(url, project.getId(), subtask.getId());
+                int sizeFile = imageAndFileDao.getTotalFileBySubTaskID(project.getId(), subtask.getId());
+                if (sizeFile <= subtask.getNumberOfFile()) {
+                    int checkSaveFile = imageAndFileDao.updateFileBySubTaskID(url, project.getId(), subtask.getId());
+                }
             }
 
             request.setAttribute("mess", "upload file successfully");
@@ -138,7 +141,7 @@ public class SubTaskByDesignController {
         ModelAndView view = new ModelAndView("design/edit-sub-task");
 
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
+        Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         Project project = projectDao.getProject(projectID);
@@ -173,7 +176,7 @@ public class SubTaskByDesignController {
         ModelAndView view;
 
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
+        Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         Project project = projectDao.getProject(projectID);
@@ -225,7 +228,7 @@ public class SubTaskByDesignController {
         ModelAndView view = new ModelAndView("design/pending-approval-design");
 
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
+        Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         Project project = projectDao.getProject(projectID);
@@ -260,7 +263,29 @@ public class SubTaskByDesignController {
         view.addObject("waitDtoList", waitDtoList);
         view.addObject("statusList", statusList);
         view.addObject("status", statusID);
+        view.addObject("textSearch", textSearch);
+        return view;
+    }
 
+    @RequestMapping(value = "/submit-sub-task", method = RequestMethod.GET)
+    public ModelAndView submitSubTask(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView view = new ModelAndView("redirect:/design/sub-task/view-sub-task-detail");
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("loginUser");
+        int projectID = Integer.parseInt(request.getParameter("project-id"));
+        int sectionID = Integer.parseInt(request.getParameter("section-id"));
+        int taskID = Integer.parseInt(request.getParameter("task-id"));
+        int subTaskID = Integer.parseInt(request.getParameter("sub-task-id"));
+        int updateStatus = taskDAO.updateStatusSubTaskByDesign(subTaskID, 3);
+        if (updateStatus == 0) {
+            view.addObject("mess", "Nộp không thành công! Vui lòng thử lại");
+        } else {
+            view.addObject("mess", "Nộp thành công");
+        }
+        view.addObject("project-id", projectID);
+        view.addObject("section-id", sectionID);
+        view.addObject("task-id", taskID);
+        view.addObject("sub-task-id", subTaskID);
         return view;
     }
 }

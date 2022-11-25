@@ -34,7 +34,7 @@
                             <div id="myModal1" class="modal">
 
                                 <!-- Modal content -->
-                                <div class="modal-content">
+                                <div class="modal-content" style="width: 60%;">
                                     <span id="close1" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form method="post" action="allProject/add" id="addProject">
@@ -50,7 +50,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Tên khách hàng <label class="text-danger">*</label>:</td>
+                                                        <td>Chủ nhà<label class="text-danger">*</label>:</td>
                                                         <td><input name="customerName" class="info-text" type="text">
                                                             <div class="text-danger error"></div>
                                                         </td>
@@ -182,11 +182,12 @@
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
                                 <td class="name-and-link">
-                                    <div class="name-project">
+                                    <div class="name-project col-8">
                                             ${i.projectName}
                                     </div>
+                                    <div></div>
                                     <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
-                                    <div class="links">
+                                    <div class="links col-4">
                                         <a class="link-detail"
                                            href="${pageContext.request.contextPath}/project/summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>
@@ -263,7 +264,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination">
+                <div class="pagination" style="display: flex;justify-content: end">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination">
                             <li class="page-item">

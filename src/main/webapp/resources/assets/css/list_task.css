@@ -41,6 +41,7 @@
     z-index: 1;
     /* Sit on top */
     padding-top: 100px;
+    padding-bottom: 100px;
     /* Location of the box */
     left: 0;
     top: 0;
@@ -99,7 +100,8 @@
 
 .add-btn-work {
 
-    margin-left: 40%;
+   display: flex;
+    justify-content: end;
 }
 
 .list-task-header {
@@ -156,6 +158,25 @@
     background-color: darkgray;
 }
 .row .row-task a:hover .link-row-task{
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: darkgray;
+    color: black;
+}
+
+.designer-table .col-4 a .chi-tiet{
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: darkgray;
+}
+
+.designer-table .col-4 a:hover .chi-tiet{
     font-size: 80%;
     border: none;
     border-radius: 50px;

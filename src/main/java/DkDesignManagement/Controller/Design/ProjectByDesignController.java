@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/design/project")
@@ -72,8 +73,8 @@ public class ProjectByDesignController {
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("totalProject", totalProject);
         view.addObject("lsPage", lsPage);
-        view.addObject("mess", mess);
-        view.addObject("status", 0);
+        view.addObject("textSearch", textSearch);
+        view.addObject("date", date);
         return view;
     }
 
@@ -93,7 +94,7 @@ public class ProjectByDesignController {
         ModelAndView view = new ModelAndView("design/member-active");
 
         HttpSession session = request.getSession();
-        Account account = (Account) session.getAttribute("account");
+        Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         Project project = projectDao.getProject(projectID);
@@ -110,7 +111,7 @@ public class ProjectByDesignController {
         int totalMember = projectParticipationDao.totalAllMember(project.getId(), roleID, textSearch);
         int totalPages = (totalMember % 10 == 0) ? totalMember / 10 : totalMember / 10 + 1;
 
-        List<MemberActiveDto> memberActiveDtos = projectParticipationDao.getAllMember(projectID, page, roleID, textSearch);
+        List<MemberActiveDto> memberActiveDtos = projectParticipationDao.getAllMember(project.getId(), page, roleID, textSearch);
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page
@@ -125,7 +126,8 @@ public class ProjectByDesignController {
         view.addObject("lsPage", lsPage);
         view.addObject("roles", roles);
         view.addObject("page", page);
-
+        view.addObject("role", roleID);
+        view.addObject("textSearch", textSearch);
         return view;
     }
 

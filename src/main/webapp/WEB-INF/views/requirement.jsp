@@ -35,9 +35,9 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>Biệt thự nhà dân</h3>
+                <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
@@ -92,26 +92,25 @@
             </button>
             <div id="myModal-add" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content" style=" width: 50%;height: 40%;">
+                <div class="modal-content" style=" width: 50%;height: 65%;">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
                         <form id="add-project2" class=""
                               action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}"
                               method="post">
-
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Vị trí<label class="text-danger">*</label>:</td>
                                     <td>
                                         <input style="width: 500px;" id="inputaddname" class="info-text" type="text"
-                                               value="">
+                                               value="" name="ten-vi-tri">
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                     <td>
-                                        <textarea class="info-text" name="" cols="60" rows="3"></textarea>
+                                        <textarea class="info-text" name="noi-dung-yeu-cau" cols="60" rows="3"></textarea>
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
@@ -169,28 +168,29 @@
                                             <div class="modal-content" style=" width: 50%;height: 40%;">
                                                 <span id="close2" class="close">&times;</span>
                                                 <div class="project-add-task">
-                                                    <form id="add-project1" class="">
+                                                    <form action="update-requirement" method="post" id="add-project1" class="">
+                                                        <input type="text" name="requirementId" hidden value="${requirement.id}">
                                                         <table class="table table-borderless">
                                                             <tr>
                                                                 <td>Vị trí<label class="text-danger">*</label>:</td>
                                                                 <td>
                                                                     <input style="width: 500px;" class="info-text"
-                                                                           type="text" value="Tầng1">
+                                                                          name="name" type="text" value="${requirement.requirementName}">
                                                                     <div class="text-danger error"></div>
                                                                 </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                                                 <td>
-                                                                    <textarea class="info-text" name="" id="" cols="60"
-                                                                              rows="3">1 Phòng khách: diện tích 20m2 , sơn trắng , sàn gạch . 2 phòng ngủ : 10m2 , trần thạch cao .</textarea>
+                                                                    <textarea class="info-text" name="detail" id="" cols="60"
+                                                                              rows="3">${requirement.requirementDetail}</textarea>
                                                                     <div class="text-danger error"></div>
                                                                 </td>
                                                             </tr>
 
                                                         </table>
                                                         <div class="add-btn-work">
-                                                            <button class="btn btn-secondary ">Hủy bỏ</button>
+                                                            <button type="button"class="btn btn-secondary ">Hủy bỏ</button>
                                                             <button onclick="return checkvalidate('#add-project1')"
                                                                     type="submit" class="btn btn-primary">Lưu
                                                             </button>

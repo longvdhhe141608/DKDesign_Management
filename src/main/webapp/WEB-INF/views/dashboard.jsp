@@ -30,7 +30,7 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
@@ -70,29 +70,48 @@
             </div>
         </div>
         <div>
-            <h1>Thống kê công trình</h1>
+            <h4>Thống kê công trình</h4>
             <div class="row">
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Tổng số công việc</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc đang làm
-
+                    </div>
+                    <div>
                     </p>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc hoàn thành đúng hạn</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc trễ hạn</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
                 <div class="col-2 row-dashboard">
+                    <div style="height: 20%">
                     <p>Công việc hoàn thành chậm tiến độ</p>
+                    </div>
+                    <div>
                     <h4>5</h4>
+                    </div>
                 </div>
             </div>
         </div>

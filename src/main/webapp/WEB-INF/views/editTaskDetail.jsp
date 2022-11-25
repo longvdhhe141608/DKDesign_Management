@@ -18,6 +18,7 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
+    <script src="<c:url value="/resources/assets/js/task-details.js"/>"></script>
 </head>
 
 <body>
@@ -29,7 +30,7 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
@@ -65,17 +66,19 @@
                         value="Thống kê"></a>
             </div>
         </div>
-        <form action="edit-task" method="post">
-            <input type="text" hidden="" name="taskId" value="${task.taskId}">
+        <form id="add-sub-task" action="edit-task" method="post">
+            <input  type="text" hidden="" name="taskId" value="${task.taskId}">
             <div class="summary-main">
                 <div class="main-Quickview">
                     <div class="summary-main-header">
-                        <h4><input type="text" name="name" value="${task.taskName}"></h4>
+                        <h4><input class="info-text" type="text" name="name" value="${task.taskName}">
+                            <div class="text-danger error"></div>
+                        </h4>
 
                     </div>
                     <table class="table table-borderless">
                         <tr>
-                            <td>Nhiệm vụ:</td>
+                            <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
                             <td>
                                 <select name="assignId" class="btn btn-secondary dropdown-toggle">
                                     <c:forEach items="${listAccount}" var="account">
@@ -85,29 +88,32 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Công trình:</td>
+                            <td>Công trình<label class="text-danger">*</label>:</td>
                             <td> ${task.projectName}</td>
                         </tr>
                         <tr>
-                            <td>Đầu mục công việc:</td>
+                            <td>Đầu mục công việc<label class="text-danger">*</label>:</td>
                             <td>${task.sectionName}</td>
                         </tr>
                         <tr>
-                            <td>Thời gian bắt đầu:</td>
+                            <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
                             <td>
-                                <input type="date" name="startDate" value="${task.startDate}">
+                                <input id="inputstartdate" class="info-text" type="date" name="startDate" value="${task.startDate}">
+                                <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
-                            <td>Thời gian dự kiến kết thúc:</td>
+                            <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
                             <td>
-                                <input type="date" name="deadline" value="${task.deadline}">
+                                <input id="inputenddate" class="info-text" type="date" name="deadline" value="${task.deadline}">
+                                <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
-                            <td>Số lượng file:</td>
+                            <td>Số lượng file<label class="text-danger">*</label>:</td>
                             <td>
-                                <input type="text" name="fileNumber" value="${task.fileNumber}">
+                                <input class="info-text" type="text" name="fileNumber" value="${task.fileNumber}">
+                                <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
@@ -117,8 +123,8 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
-                    <button type="submit" class="btn-update btn btn-primary">Lưu</button>
+                    <button type="submit" class="btn-update btn btn-secondary">Hủy bỏ</button>
+                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn-update btn btn-primary">Lưu</button>
                 </div>
             </div>
         </form>

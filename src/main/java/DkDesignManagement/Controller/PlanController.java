@@ -3,6 +3,7 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
+import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,10 @@ public class PlanController {
     @Autowired
     private TaskService taskService;
 
+    @Autowired
+    AccountService accountService;
+
+
     @RequestMapping(value = "/plan_approval", method = RequestMethod.GET)
     public ModelAndView viewPlanAproval(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("plan_approval");
@@ -38,13 +43,19 @@ public class PlanController {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        TaskPageResponse taskPageResponse = taskService.getListSubTask(page, NOT_APPROVED_TASK_STATUS);
+        String accountId = request.getParameter("accountId");
+        String name = request.getParameter("name");
+
+        TaskPageResponse taskPageResponse = taskService.getListSubTask(page, NOT_APPROVED_TASK_STATUS,name,accountId);
         view.addObject("project", project);
         view.addObject("page", page);
         view.addObject("listTask", taskPageResponse.getTasksList());
         view.addObject("endPage", taskPageResponse.getEndPage());
         view.addObject("projectId", id);
         view.addObject("mess", mess);
+        view.addObject("listAccount", accountService.getAccountsByProjectId(id));
+        view.addObject("accountId", accountId);
+        view.addObject("name", name);
         return view;
     }
 
