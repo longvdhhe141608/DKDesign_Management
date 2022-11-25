@@ -66,7 +66,7 @@ public class ProjectDao {
             sql += " and project.project_name like '%" + textSearch + "%' \n";
         }
         if (!ObjectUtils.isEmpty(date) && !date.equals("default")) {
-            sql += " and year(start_date) >= " + date + " ";
+            sql += " and year(start_date) = " + date + " ";
         }
         sql += " group by \n" +
                 "\t`project`.`id`\n" +
@@ -174,7 +174,7 @@ public class ProjectDao {
             sql += " and project.project_name like '%" + textSearch + "%' \n";
         }
         if (!ObjectUtils.isEmpty(date) && !date.equals("default")) {
-            sql += " and year(start_date) >= " + date + " ";
+            sql += " and year(start_date) = " + date + " ";
         }
         sql += " group by \n" +
                 "\t`project`.`id`\n" +

@@ -46,7 +46,7 @@ public class PlanController {
         String accountId = request.getParameter("accountId");
         String name = request.getParameter("name");
 
-        TaskPageResponse taskPageResponse = taskService.getListSubTask(page, NOT_APPROVED_TASK_STATUS,name,accountId);
+        TaskPageResponse taskPageResponse = taskService.getListSubTask(page ,id, NOT_APPROVED_TASK_STATUS,name,accountId);
         view.addObject("project", project);
         view.addObject("page", page);
         view.addObject("listTask", taskPageResponse.getTasksList());

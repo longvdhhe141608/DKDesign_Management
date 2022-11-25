@@ -58,9 +58,9 @@ public class TaskDAO {
         return taskList;
     }
 
-    public List<Task> getAllSubTask(int pageNumber, int page, String status, String name, String accountId) {
+    public List<Task> getAllSubTask(int pageNumber, int page,int projectId, String status, String name, String accountId) {
 
-        String sql = "select * from task t where (1=1)  ";
+        String sql = "select * from task t where (1=1) and t.project_id = "+projectId+"  ";
 
         if (!ObjectUtils.isEmpty(status)) {
             sql += " and (status = " + status + " or status = 5) ";
@@ -79,8 +79,8 @@ public class TaskDAO {
         return taskList;
     }
 
-    public int countSubTask(String status, String name, String accountId) {
-        String sql = "select count(*)  from task t where (1=1) ";
+    public int countSubTask(int projectId, String status, String name, String accountId) {
+        String sql = "select count(*)  from task t where (1=1) and t.project_id = "+projectId+" ";
 
         if (!ObjectUtils.isEmpty(status)) {
             sql += " and ( status = " + status + " or status = 5) ";
