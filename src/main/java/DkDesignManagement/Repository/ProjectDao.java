@@ -133,7 +133,7 @@ public class ProjectDao {
                 "SET project_name = :project_name , start_date = :start_date, closure_date = :closure_date, ended_date =:ended_date " +
                 ", creator = :creator, `type`=:type" +
                 ", customer_name = :customer_name, customer_address = :customer_address, customer_phone = :customer_phone" +
-                ", construction_area= :construction_area , detail= :detail, status = :status, expected_code = :expected_code \n" +
+                ", construction_area= :construction_area , detail= :detail, status = :status, expected_cost = :expected_cost \n" +
                 "WHERE id= :id ;\n";
 
 
