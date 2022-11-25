@@ -65,7 +65,7 @@
                 <h4>Phê duyệt công việc</h4>
             </div>
             <div class="my-task-search">
-                <form action="plan_approval" method="get" >
+                <form action="plan_approval" method="get" style="display: flex" >
                     <input hidden name="id" value="${projectId}" >
                 <div class="my-task-search-name" style="margin-right:10px ;">
                     <div class="dropdown">
