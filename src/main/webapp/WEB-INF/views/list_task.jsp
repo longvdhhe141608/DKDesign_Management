@@ -28,7 +28,7 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <a class="btn project-detail">
+                <a class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                     <select style="border-radius: 5px; padding: 6px;">
                     <option class="btn btn-secondary">Đang thực hiện</option>
                     <option class="btn btn-secondary">Đã hoàn thành</option>
@@ -75,14 +75,15 @@
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content" style="width: 60%">
+                <div class="modal-content" style="width: 60% ; height: 80%;">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
-                        <form id="add-project" action="add-task" method="post" class="form-inline my-2 my-lg-0">
-                            <input style="width: 30rem;" class="info-text" type="text"
+                        <form id="add-project" action="add-task" method="post" >
+                            <h4>
+                            <input  class="info-text" type="text"
                                    name="name" placeholder="Tên công việc" aria-label="Text"/>
                             <div class="text-danger error"></div>
-
+                            </h4>
                             <table class="table table-borderless">
                                 <tr>
                                     <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
@@ -175,8 +176,8 @@
                                                 </tr>
 
                                             </table>
-                                            <div class="add-btn-work">
-                                                <button class="btn btn-secondary ">Hủy bỏ</button>
+                                            <div class="add-btn-work" style="display: flex ; justify-content: end">
+                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ</button>
                                                 <button onclick="return checkvalidatenumber('#add-project1')" type="submit"
                                                         class="btn btn-primary">Lưu</button>
                                             </div>
@@ -190,14 +191,13 @@
                             <div id="myModal1" class="modal">
 
                                 <!-- Modal content -->
-                                <div class="modal-content">
+                                <div class="modal-content" style="width: 60%;height: 30%;">
                                     <span id="close4" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form id="add-project2" class="">
-
-                                            <p>Bạn chắc chắn mốn xóa dữ liệu này!</p>
-                                            <div class="add-btn-work">
-                                                <button class="btn btn-secondary ">Hủy bỏ</button>
+                                            <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>
+                                            <div class="add-btn-work" style="display: flex;justify-content: end">
+                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ</button>
                                                 <button
                                                         onclick="return checkvalidatenumber('#add-project2')"
                                                         type="submit" class="btn btn-primary">Lưu</button>
@@ -311,13 +311,14 @@
                 <!-- The Modal -->
                 <div id="myModal-footer" class="modal">
                     <!-- Modal content -->
-                    <div class="modal-content" style="width: 60%;">
+                    <div class="modal-content" style="width: 60%; height: 40%">
                         <span id="close2" class="close">&times;</span>
                         <div class="project-add-task">
-                            <form  id="add-project3" action="add_section" method="post" class="form-inline my-2 my-lg-0">
-                                <input style="width: 30rem;" class="info-text" type="text"
+                            <form  id="add-project3" action="add_section" method="post">
+                               <h4><input class="info-text" type="text"
                                        name="name" placeholder="Tên đầu mục công việc" aria-label="Text"/>
                                 <div class="text-danger error"></div>
+                               </h4>
                                 <table class="table table-borderless">
                                     <tr>
                                         <td>Công trình:</td>
@@ -327,8 +328,8 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <div class="add-btn-work">
-                                    <button type="button" class="btn btn-secondary btn-canel">Hủy bỏ</button>
+                                <div class="add-btn-work" >
+                                    <button style="margin-right: 10px" type="button" class="btn btn-secondary btn-canel">Hủy bỏ</button>
                                     <button onclick="return checkvalidatenumber('#add-project3')" class="btn btn-primary btn-add">Thêm</button>
                                 </div>
                             </form>

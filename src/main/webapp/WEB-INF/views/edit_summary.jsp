@@ -38,11 +38,12 @@
                     <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
+                            style="background: blue;"
                             value="Sơ lược"></a>
                     <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
                             class="btn btn-secondary"
                             type="button"
-                            style="background: blue;"
+
                             value="Công việc"></a>
                     <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
                             class="btn btn-secondary"
