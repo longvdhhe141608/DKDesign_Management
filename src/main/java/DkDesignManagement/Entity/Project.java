@@ -23,4 +23,5 @@ public class Project {
     private String detail;
     private int status;
     private Long constructionArea;
+    private Long expectedCost;
 }

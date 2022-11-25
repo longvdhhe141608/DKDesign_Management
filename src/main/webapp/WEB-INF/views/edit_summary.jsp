@@ -104,7 +104,7 @@
                         </tr>
                         <tr>
                             <td>Chi phí thiết kế<label class="text-danger">*</label>:</td>
-                            <td><input class="info-text" type="text">
+                            <td><input class="info-text" type="text" name="expectedCost" value="${project.expectedCost}">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
