@@ -120,7 +120,7 @@
                     </tr>
                     <tr>
                         <td>Số lượng file:</td>
-                        <td><input type="text" value="50" name="numberOfFile"></td>
+                        <td><input type="text" value="${subTask.numberOfFile}" name="numberOfFile"></td>
                     </tr>
                     <tr>
                         <td>Yêu cầu khách hàng:</td>

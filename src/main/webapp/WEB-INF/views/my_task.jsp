@@ -60,7 +60,7 @@
                 <div style="display: flex">
                     <div class="function-one">
                         <div class="add" id="show">
-                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>+ Thêm công việc</button>
+                            <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc</button>
                         </div>
                     </div>
                     <div></div>
