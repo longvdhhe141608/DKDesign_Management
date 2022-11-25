@@ -103,113 +103,62 @@
                     <td>Thiết kế mặt sàn tầng 1</td>
                     <td>Nguyễn như huấn</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/10/2022">
-                        </div>
+                        20/10/2022
                     </td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
+                        20/11/2022
                     </td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
+                        20/11/2022
                     </td>
                     <td>90%</td>
-                    <td></td>
+                    <td>đang thực hiện</td>
                 </tr>
                 <tr>
-                    <td>Thiết kế mặt sàn tầng 2</td>
-                    <td>Nguyễn như huấn</td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/10/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>100%</td>
-                    <td style="display: flex; justify-content: center;">
-                        <button class="btn btn-primary">Đồng
-                            ý
-                        </button>
-                        <button class="btn btn-secondary">Hủy bỏ</button>
-                    </td>
+                <td>Thiết kế mặt sàn tầng 1</td>
+                <td>Nguyễn như huấn</td>
+                <td>
+                    20/10/2022
+                </td>
+                <td>
+                    20/11/2022
+                </td>
+                <td>
+                    20/11/2022
+                </td>
+                <td>90%</td>
+                <td>đang thực hiện</td>
                 </tr>
                 <tr>
-                    <td>Thiết kế mặt sàn tầng 1</td>
-                    <td>Nguyễn như huấn</td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>90%</td>
-                    <td></td>
+                <td>Thiết kế mặt sàn tầng 1</td>
+                <td>Nguyễn như huấn</td>
+                <td>
+                    20/10/2022
+                </td>
+                <td>
+                    20/11/2022
+                </td>
+                <td>
+                    20/11/2022
+                </td>
+                <td>90%</td>
+                <td>đang thực hiện</td>
                 </tr>
                 <tr>
-                    <td>Thiết kế mặt sàn tầng 1</td>
-                    <td>Nguyễn như huấn</td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>90%</td>
-                    <td></td>
+                <td>Thiết kế mặt sàn tầng 1</td>
+                <td>Nguyễn như huấn</td>
+                <td>
+                    20/10/2022
+                </td>
+                <td>
+                    20/11/2022
+                </td>
+                <td>
+                    20/11/2022
+                </td>
+                <td>90%</td>
+                <td>đang thực hiện</td>
                 </tr>
-                <tr>
-                    <td>Thiết kế mặt sàn tầng 1</td>
-                    <td>Nguyễn như huấn</td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>
-                        <div class="name-input" style="width: 150px;">
-                            <input class="form-control" formControlName="dob" type="datetime" value="20/11/2022">
-                        </div>
-                    </td>
-                    <td>90%</td>
-                    <td></td>
-                </tr>
-
             </table>
         </div>
         <div class="pagination">

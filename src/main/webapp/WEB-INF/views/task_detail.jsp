@@ -163,11 +163,12 @@
         </div>
         <div class="task-cmt-details">
         <p style="font-size: 20px;">Bình luận</p>
-        <div class="task-cmt-details-main" >
+            <div class="task-cmt-details-main" >
             <c:if test="${listComment.size() > 0}">
                 <c:forEach items="${listComment}" var="comment">
                     <!----------item------------>
-                    <div style="display: flex;">
+
+                    <div class="cmt-details" style="display: flex;">
                         <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                         <div class="task-cmt-details-member">
                         <span class="name-avatar">${comment.accountName}</span>
@@ -189,17 +190,17 @@
                 </c:forEach>
             </c:if>
 
-
+            </div>
             <div class="task-cmt-details-main">
                 <form style="display: flex" action="add-comment" method="post">
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     <input name="taskId" type="text" value="${task.taskId}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
-                    <input style="width: 500px; margin-right: 10px;" name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                    <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text" placeholder="Bình luận....">
                     <button class="btn btn-primary">Gửi</button>
                 </form>
             </div>
-        </div>
+
     </div>
     </div>
 </div>
