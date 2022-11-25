@@ -28,7 +28,7 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary">Đã hoàn thành</option>
                     </select>
@@ -158,7 +158,7 @@
                                 </c:if>
                                 <c:if test="${member.memberStatus==2}">
                                     <form action="changeMemberStatus" method="get">
-                                        <select class="btn btn-success" name="status">
+                                        <select class="btn btn-danger" name="status">
                                             <option class="btn" value="1" ${member.memberStatus==1?"selected":""}>Mở
                                             </option>
                                             <option class="btn btn-danger"

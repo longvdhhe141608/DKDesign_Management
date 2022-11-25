@@ -29,7 +29,7 @@
             <div class="top-details">
                 <div class="list-top">
                     <h3>${project.projectName}</h3>
-                    <select class="btn project-detail" name="status">
+                    <select style="border-radius: 5px; padding: 6px;" class="btn project-detail" name="status">
                         <option value="1" class="btn btn-secondary">Đang thực hiện</option>
                         <option value="2" class="btn btn-secondary">Đã hoàn thành</option>
                     </select>
@@ -98,9 +98,15 @@
                                 <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
-                            <td>Diện tích xây dựng (m2):</td>
-                            <td><input class="info-text" type="text" name="constructionArea" value="${project.constructionArea}">
+                            <td>Diện tích xây dựng:</td>
+                            <td><input class="info-text" type="text" name="constructionArea" value="${project.constructionArea}">m<sup>2</sup>
                                 <div class="text-danger error"></div></td>
+                        </tr>
+                        <tr>
+                            <td>Chi phí thiết kế<label class="text-danger">*</label>:</td>
+                            <td><input class="info-text" type="text">
+                                <div class="text-danger error"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Loại công trình:</td>
