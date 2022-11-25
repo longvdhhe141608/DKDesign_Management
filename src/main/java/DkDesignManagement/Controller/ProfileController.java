@@ -92,6 +92,7 @@ public class ProfileController {
         Employee employee = new Employee(id, name, address, gender, dob, cccd, email, phone);
         employeeDao.updateProfile(employee);
         accountDao.updateAvatar(account.getId(),avatar);
+        account = accountDao.getAccount(account.getUsername());
         session.setAttribute("loginUser",account);
         return new ModelAndView("redirect:/profile/detail");
     }

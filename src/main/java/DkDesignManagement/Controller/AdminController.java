@@ -4,8 +4,6 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.MemberDao;
-import DkDesignManagement.Service.AccountService;
-import DkDesignManagement.Service.EmployeeService;
 import DkDesignManagement.Service.Impl.AccountServiceImpl;
 import DkDesignManagement.Service.Impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,18 +39,19 @@ public class AdminController {
         view.addObject("memberList", memberList);
         return view;
     }
-    @RequestMapping(value = "/searchMember",method = RequestMethod.GET)
-    public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request){
+
+    @RequestMapping(value = "/searchMember", method = RequestMethod.GET)
+    public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("memberAdmin");
 
         int role = Integer.parseInt(request.getParameter("roleSearch"));
         String name = request.getParameter("nameSearch");
 
-        List<Member> memberList = memberDAO.getAllMemberInSearch(role,name);
-        view.addObject("memberList",memberList);
-        view.addObject("roleSearch",role);
-        view.addObject("nameSearch",name);
-        return  view;
+        List<Member> memberList = memberDAO.getAllMemberInSearch(role, name);
+        view.addObject("memberList", memberList);
+        view.addObject("roleSearch", role);
+        view.addObject("nameSearch", name);
+        return view;
     }
 
     @RequestMapping(value = "/createAccount", method = RequestMethod.GET)
@@ -75,26 +74,43 @@ public class AdminController {
         String password = generateCommonLangPassword();
 
         int postNumber = 1;
-        String username = preCode+postNumber;
-        while (accountService.isExisted(username)==true){
+        String username = preCode + postNumber;
+        while (accountService.isExisted(username) == true) {
             postNumber++;
-            username=preCode+postNumber;
+            username = preCode + postNumber;
         }
 
-        if (employeeService.emailIsExisted(mail)==false) {
-                accountDAO.addNewAccount(username, password, role);
-                Account account = accountDAO.getAccount(username);
-                memberDAO.addNewMember(name,mail, account.getId());
-                redirect.addAttribute("mess", "Add new member successfully");
-                return new ModelAndView("redirect:/admin/memberlist");
+        if (employeeService.emailIsExisted(mail) == false) {
+            accountDAO.addNewAccount(username, password, role);
+            Account account = accountDAO.getAccount(username);
+            memberDAO.addNewMember(name, mail, account.getId());
+            redirect.addAttribute("mess", "Add new member successfully");
+            return new ModelAndView("redirect:/admin/memberlist");
         } else {
             String error = "Email has existed";
-            request.setAttribute("name",name);
-            request.setAttribute("error1",error);
+            request.setAttribute("name", name);
+            request.setAttribute("error1", error);
         }
         return new ModelAndView("createAccount");
     }
 
+    @RequestMapping(value = "/changeMemberStatus")
+    public ModelAndView changeStatusMemberByAdmin(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("memberAdmin");
 
+        int status = Integer.parseInt(request.getParameter("status"));
+        if (status == 1) {
+            status = 2;
+        } else {
+            status = 1;
+        }
+        String username = request.getParameter("username");
+
+        memberDAO.updateMemberStatus(status, username);
+        List<Member> memberList = memberDAO.getAllMember();
+        view.addObject("memberList", memberList);
+
+        return view;
+    }
 }
 

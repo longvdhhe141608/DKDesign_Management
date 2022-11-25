@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Thành viên dự án</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
@@ -28,7 +28,7 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border-radius: 5px; padding: 6px;">
+                    <select style="border: none; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary">Đã hoàn thành</option>
                     </select>
@@ -87,7 +87,7 @@
                 <%--ket thuc them thanh vien--%>
 
                 <%-- tim kiem thanh vien --%>
-                <div >
+                <div>
                     <form action="searchMemberInProject" style="display: flex;">
                         <input value="${project.id}" type="text" name="id" hidden>
                         <%--start searching by role--%>
@@ -144,31 +144,21 @@
                             <td>${member.memberMail}</td>
                             <td>${member.memberAddress}</td>
                             <td>
-                                <c:if test="${member.memberStatus==1}">
-                                    <form action="changeMemberStatus" method="get">
-                                        <select class="btn btn-success" name="status" >
-                                            <option class="btn btn-success" value="1" ${member.memberStatus==1?"selected":""}>Mở
+                                <form action="changeMemberStatus">
+                                    <input value="${project.id}" type="text" name="id" hidden>
+                                    <input value="${member.memberCode}" type="text" name="username" hidden>
+                                    <c:if test="${!member.memberCode.equals(sessionScope.loginUser.username)}">
+                                        <select class="btn btn-success" name="status" onchange="this.form.submit()">
+                                            <option class="btn" value="1" ${member.memberStatus==1?"selected":""}>
+                                                Mở
                                             </option>
-                                            <option class="btn btn-danger"
-                                                ${member.memberStatus==2?"selected":""}
-                                                    value="2">Chặn
-                                            </option>
-                                        </select>
-                                    </form>
-                                </c:if>
-                                <c:if test="${member.memberStatus==2}">
-                                    <form action="changeMemberStatus" method="get">
-                                        <select class="btn btn-danger" name="status">
-                                            <option class="btn" value="1" ${member.memberStatus==1?"selected":""}>Mở
-                                            </option>
-                                            <option class="btn btn-danger"
-                                                ${member.memberStatus==2?"selected":""}
-                                                    value="2">Chặn
+                                            <option class="btn btn-danger" ${member.memberStatus==2?"selected":""}
+                                                    value="2">
+                                                Chặn
                                             </option>
                                         </select>
-                                    </form>
-                                </c:if>
-
+                                    </c:if>
+                                </form>
                             </td>
                         </tr>
                     </c:forEach>
@@ -222,20 +212,20 @@
                 </div>
                 <div class="button_click">
 
-                        <div class="btn_cancel">
-                            <button type="button" class="btn btn-secondary close_popup">Hủy
-                                bỏ
-                            </button>
-                        </div>
-                        <div class="btn_ok">
-                            <input type="submit" class="btn btn-primary" value="Lưu">
-                        </div>
+                    <div class="btn_cancel">
+                        <button type="button" class="btn btn-secondary close_popup">Hủy
+                            bỏ
+                        </button>
+                    </div>
+                    <div class="btn_ok">
+                        <input type="submit" class="btn btn-primary" value="Lưu">
+                    </div>
 
                 </div>
             </form>
         </div>
     </div>
-        <%--end Pop-up add member--%>
+    <%--end Pop-up add member--%>
 
 
 </body>

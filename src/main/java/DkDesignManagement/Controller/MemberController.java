@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+
 @Controller
 @RequestMapping(value = "/project")
 public class MemberController {
@@ -62,16 +63,34 @@ public class MemberController {
         String username = request.getParameter("memberToAdd");
         int memberId = memberDAO.getAccountIdByUsername(username);
 
-       try{
-           memberDAO.addMemberToProject(projectId, memberId);
-       } catch (Exception e){
+        try {
+            memberDAO.addMemberToProject(projectId, memberId);
+        } catch (Exception e) {
 
-       }
+        }
 
         Project project = projectDao.getProject(projectId);
         List<Member> memberList = memberDAO.getMemberInProject(projectId);
         view.addObject("memberList", memberList);
         view.addObject("project", project);
+        return view;
+    }
+
+    @RequestMapping(value = "/changeMemberStatus", method = RequestMethod.GET)
+    public ModelAndView changeMemberStatus(HttpServletRequest request) {
+        ModelAndView view = new ModelAndView("member");
+        int id = Integer.parseInt(request.getParameter("id"));
+        Project project = projectDao.getProject(id);
+
+        int status = Integer.parseInt(request.getParameter("status"));
+        String username = request.getParameter("username");
+        int memberId = memberDAO.getAccountIdByUsername(username);
+
+        memberDAO.updateStatusMemberInProject(id,memberId,status);
+        List<Member> memberList = memberDAO.getMemberInProject(id);
+
+        view.addObject("project", project);
+        view.addObject("memberList", memberList);
         return view;
     }
 }
