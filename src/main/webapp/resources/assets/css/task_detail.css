@@ -6,7 +6,7 @@
 .task-cmt-details {
     background: #dbd5d54f;
     margin-top: 20px;
-    border-radius: 10px 0 0 10px;
+    border-radius: 10px;
 }
 
 .name-avatar {
@@ -23,6 +23,18 @@
 
 }
 
-.cmt-details-total {
-    margin-left: 40px;
+
+.img_avatar {
+
+    margin-right: 10px;
+}
+
+.task-cmt-details-main {
+    background: lightgray;
+    display: flex;
+    margin-bottom: 10px;
+    border: 1px solid gray;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 5px;
 }

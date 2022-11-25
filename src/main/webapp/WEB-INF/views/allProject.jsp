@@ -34,7 +34,7 @@
                             <div id="myModal1" class="modal">
 
                                 <!-- Modal content -->
-                                <div class="modal-content">
+                                <div class="modal-content" style="width: 60%;">
                                     <span id="close1" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form method="post" action="allProject/add" id="addProject">
@@ -50,7 +50,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Tên khách hàng <label class="text-danger">*</label>:</td>
+                                                        <td>Chủ nhà<label class="text-danger">*</label>:</td>
                                                         <td><input name="customerName" class="info-text" type="text">
                                                             <div class="text-danger error"></div>
                                                         </td>
