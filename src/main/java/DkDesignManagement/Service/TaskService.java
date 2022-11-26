@@ -24,7 +24,7 @@ public interface TaskService {
 
    int checkAndUpdateTaskDone(Task task);
 
-   TaskPageResponse getListSubTask(int indexPage, int status,String name ,String accountId);
+   TaskPageResponse getListSubTask(int indexPage,int projectId, int status,String name ,String accountId);
 
    boolean isLastTask(Task task);
 
