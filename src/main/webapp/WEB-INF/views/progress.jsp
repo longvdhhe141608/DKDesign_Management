@@ -102,8 +102,8 @@
                 </tr>
                 <c:forEach items="${listTask}" var="task">
                     <tr>
-                        <td>  ${task.taskName}</td>
-                        <td>  ${task.assignToName}</td>
+                        <td> <a href="task_detail?taskId=${task.taskId}">${task.taskName}</a> </td>
+                        <td> ${task.assignToName}</td>
                         <td>
                                 ${task.startDate}
                         </td>
