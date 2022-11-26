@@ -28,11 +28,28 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <a class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border-radius: 5px; padding: 6px;">
-                    <option class="btn btn-secondary">Đang thực hiện</option>
-                    <option class="btn btn-secondary">Đã hoàn thành</option>
-                </select></a>
+
+                <form action="${pageContext.request.contextPath}/project/change-status" method="post">
+                    <input type="text" name="projectId" value="${project.id}" hidden="">
+                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle">
+                            <c:forEach items="${listStatus}" var="status">
+                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <c:if test="${sessionScope.loginUser.role_id == 2}">
+                            <c:if test="${project.status != 3 }">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </c:if>
+                            <c:if test="${project.status == 3 }">
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
+                            </c:if>
+                        </c:if>
+                    </div>
+                </form>
+
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
@@ -48,7 +65,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            value="Yêu cầu của khách hàng">
@@ -68,21 +86,23 @@
             </div>
         </div>
         <div class="list-task-main">
-            <button onclick="modallistproject('#myBtn','#myModal','#close1')" id="myBtn"
-                    class="btn btn-primary add-work">
-                +Thêm công việc
-            </button>
+            <c:if test="${project.status == 1}">
+                <button onclick="modallistproject('#myBtn','#myModal','#close1')" id="myBtn"
+                        class="btn btn-primary add-work">
+                    +Thêm công việc
+                </button>
+            </c:if>
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
                 <div class="modal-content" style="width: 60% ; height: 100%;">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
-                        <form id="add-project" action="add-task" method="post" >
+                        <form id="add-project" action="add-task" method="post">
                             <h4>
-                            <input  class="info-text" type="text"
-                                   name="name" placeholder="Tên công việc" aria-label="Text"/>
-                            <div class="text-danger error"></div>
+                                <input class="info-text" type="text"
+                                       name="name" placeholder="Tên công việc" aria-label="Text"/>
+                                <div class="text-danger error"></div>
                             </h4>
                             <table class="table table-borderless">
                                 <tr>
@@ -116,7 +136,8 @@
                                     <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input id="inputstartdate" class="info-text" formControlName="dob" type="date"
+                                            <input id="inputstartdate" class="info-text" formControlName="dob"
+                                                   type="date"
                                                    name="startDate" value="20/10/2022">
                                             <div class="text-danger error"></div>
                                         </div>
@@ -126,7 +147,7 @@
                                     <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input id="inputenddate"  class="info-text" formControlName="dob" type="date"
+                                            <input id="inputenddate" class="info-text" formControlName="dob" type="date"
                                                    name="deadline" value="20/10/2022">
                                             <div class="text-danger error"></div>
                                         </div>
@@ -134,9 +155,12 @@
                                 </tr>
                             </table>
                             <div class="add-btn-work">
-                                <button type="submit" class="btn btn-secondary btn-canel" style="margin-right: 10px;">Hủy bỏ</button>
+                                <button type="submit" class="btn btn-secondary btn-canel" style="margin-right: 10px;">
+                                    Hủy bỏ
+                                </button>
                                 <button onclick="return checkvalidate('#add-project')"
-                                        type="submit" class="btn btn-primary">Thêm</button>
+                                        type="submit" class="btn btn-primary">Thêm
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -171,15 +195,18 @@
                                             <table class="table table-borderless">
                                                 <tr>
                                                     <td>Tên đầu mục công việc:</td>
-                                                    <td> <input class="info-text" type="text" value="Thiết kế bản vẽ">
+                                                    <td><input class="info-text" type="text" value="Thiết kế bản vẽ">
                                                         <div class="text-danger error"></div>
                                                 </tr>
 
                                             </table>
                                             <div class="add-btn-work" style="display: flex ; justify-content: end">
-                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ</button>
-                                                <button onclick="return checkvalidatenumber('#add-project1')" type="submit"
-                                                        class="btn btn-primary">Lưu</button>
+                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ
+                                                </button>
+                                                <button onclick="return checkvalidatenumber('#add-project1')"
+                                                        type="submit"
+                                                        class="btn btn-primary">Lưu
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -197,10 +224,12 @@
                                         <form id="add-project2" class="">
                                             <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>
                                             <div class="add-btn-work" style="display: flex;justify-content: end">
-                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ</button>
+                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ
+                                                </button>
                                                 <button
                                                         onclick="return checkvalidatenumber('#add-project2')"
-                                                        type="submit" class="btn btn-primary">Lưu</button>
+                                                        type="submit" class="btn btn-primary">Lưu
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -236,9 +265,9 @@
                                             ${task.taskName}
                                     </div>
                                     <div>
-                                    <a href="${pageContext.request.contextPath}/task_detail?taskId=${task.taskId}">
-                                        <button class="btn btn-primary link-row-task">Chi tiết</button>
-                                    </a>
+                                        <a href="${pageContext.request.contextPath}/task_detail?taskId=${task.taskId}">
+                                            <button class="btn btn-primary link-row-task">Chi tiết</button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="col-1" style="border: 1px solid gray;">${task.assignToName}</div>
@@ -272,14 +301,16 @@
                                 <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>--%>
                                 <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.deadline}</div>--%>
                                 <%--                                </div>--%>
-<%--<c:if test="${subTask.taskStatus == }"--%>
+                                <%--<c:if test="${subTask.taskStatus == }"--%>
                                 <div id="" class="row sub-task-detail">
-                                    <div class="col-4 link-chi-tiet-cong-viec" style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                                    <div class="col-4 link-chi-tiet-cong-viec"
+                                         style="border: 1px solid gray; display: flex; justify-content: space-between; ">
                                         <div class="name-project">
                                                 ${subTask.taskName}
                                         </div>
                                         <div>
-                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${subTask.taskId}" class="chi-tiet-cong-viec">
+                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${subTask.taskId}"
+                                               class="chi-tiet-cong-viec">
                                                 <button class="btn btn-primary chi-tiet">Chi tiết</button>
                                             </a>
                                         </div>
@@ -307,20 +338,22 @@
                 </c:forEach>
             </div>
             <div class="bot">
-                <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')" id="myBtn-project"
-                        class="btn btn-primary add-work">+Thêm đầu mục công việc
-                </button>
+                <c:if test="${project.status == 1}">
+                    <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')" id="myBtn-project"
+                            class="btn btn-primary add-work">+Thêm đầu mục công việc
+                    </button>
+                </c:if>
                 <!-- The Modal -->
                 <div id="myModal-footer" class="modal">
                     <!-- Modal content -->
                     <div class="modal-content" style="width: 60%; height: 60%">
                         <span id="close2" class="close">&times;</span>
                         <div class="project-add-task">
-                            <form  id="add-project3" action="add_section" method="post">
-                               <h4><input class="info-text" type="text"
-                                       name="name" placeholder="Tên đầu mục công việc" aria-label="Text"/>
-                                <div class="text-danger error"></div>
-                               </h4>
+                            <form id="add-project3" action="add_section" method="post">
+                                <h4><input class="info-text" type="text"
+                                           name="name" placeholder="Tên đầu mục công việc" aria-label="Text"/>
+                                    <div class="text-danger error"></div>
+                                </h4>
                                 <table class="table table-borderless">
                                     <tr>
                                         <td>Công trình:</td>
@@ -330,9 +363,13 @@
                                         </td>
                                     </tr>
                                 </table>
-                                <div class="add-btn-work" >
-                                    <button style="margin-right: 10px" type="submit" class="btn btn-secondary btn-canel">Hủy bỏ</button>
-                                    <button onclick="return checkvalidatenumber('#add-project3')" class="btn btn-primary btn-add">Thêm</button>
+                                <div class="add-btn-work">
+                                    <button style="margin-right: 10px" type="submit"
+                                            class="btn btn-secondary btn-canel">Hủy bỏ
+                                    </button>
+                                    <button onclick="return checkvalidatenumber('#add-project3')"
+                                            class="btn btn-primary btn-add">Thêm
+                                    </button>
                                 </div>
                             </form>
                         </div>
