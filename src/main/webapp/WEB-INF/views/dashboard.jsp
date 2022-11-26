@@ -93,7 +93,7 @@
                     <p>Tổng số công việc</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countTask}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -102,7 +102,7 @@
                     </div>
                     <div>
                     </p>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countSubTaskProcess}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -110,7 +110,7 @@
                     <p>Công việc hoàn thành đúng hạn</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countCorrectDeadline}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -118,7 +118,7 @@
                     <p>Công việc trễ hạn</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countOverDeadline}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -126,7 +126,7 @@
                     <p>Công việc hoàn thành chậm tiến độ</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countOverDeadlineDoneTask}</h4>
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ package DkDesignManagement.Service.Impl;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.*;
 import DkDesignManagement.Service.TaskService;
+import DkDesignManagement.model.DashboardResponse;
 import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -151,5 +152,27 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getAllTaskByRequirementId(int requirementId) {
         return taskDAO.getAllTaskByRequirementId(requirementId);
+    }
+
+    @Override
+    public DashboardResponse getDashboard(int projectId) {
+        //Tổng số công việc
+        int countTask = taskDAO.countAllSubTaskByProjectId(projectId);
+        //Công việc đang làm
+        int countSubTaskProcess = taskDAO.countAllSubTaskProcess(projectId);
+        //Công việc hoàn thành đúng hạn
+        int countCorrectDeadline = taskDAO.countAllSubTaskCorrectDeadline(projectId);
+        //Công việc trễ hạn
+        int countOverDeadline = taskDAO.countAllSubTaskOverDeadline(projectId);
+        //Công việc hoàn thành chậm tiến độ
+        int countOverDeadlineDoneTask = taskDAO.countAllSubTaskOverDeadlineAndFinish(projectId);
+
+        return DashboardResponse.builder()
+                .countTask(countTask)
+                .countSubTaskProcess(countSubTaskProcess)
+                .countCorrectDeadline(countCorrectDeadline)
+                .countOverDeadline(countOverDeadline)
+                .countOverDeadlineDoneTask(countOverDeadlineDoneTask)
+                .build();
     }
 }
