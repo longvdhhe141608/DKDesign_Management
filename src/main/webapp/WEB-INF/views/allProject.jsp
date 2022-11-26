@@ -145,7 +145,7 @@
                     <div style="margin-right: 20px;">
                         <div class="dropdown">
                             <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle">
-                                <option value="default">Default</option>
+                                <option value="default">Tất cả</option>
                                 <option value="2022">2022</option>
                                 <option value="2021">2021</option>
                                 <option value="2020">2020</option>

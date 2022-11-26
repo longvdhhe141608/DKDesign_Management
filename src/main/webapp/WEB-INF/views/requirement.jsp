@@ -20,11 +20,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="<c:url value="/resources/assets/js/requirement.js"/>"></script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
             integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="<c:url value="/resources/assets/js/requirement.js"/>"></script>
 </head>
 
 <body>
@@ -102,7 +103,7 @@
                                 <tr>
                                     <td>Vị trí<label class="text-danger">*</label>:</td>
                                     <td>
-                                        <input style="width: 500px;" id="inputaddname" class="info-text" type="text"
+                                        <input style="width: 500px;"  class="info-text" type="text"
                                                value="" name="ten-vi-tri">
                                         <div class="text-danger error"></div>
                                     </td>
@@ -118,7 +119,7 @@
                             </table>
                             <div class="add-btn-work" style="display: flex; justify-content: end">
                                 <button class="btn btn-secondary " style="margin-right: 5px">Hủy bỏ</button>
-                                <button onclick="return checkvalidate('#add-project2')" type="submit"
+                                <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
                                         class="btn btn-primary">Thêm
                                 </button>
                             </div>
@@ -159,16 +160,16 @@
                                     </c:if>
                                 </td>
                                 <td>
-                                    <div style="display: flex; justify-content: space-between;">
+                                    <div style="display: flex;">
 
                                         <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')"
                                                 id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>
                                         <div id="myModal-footer" class="modal" >
                                             <!-- Modal content -->
                                             <div class="modal-content" style=" width: 50%;height: 70%;">
-                                                <span id="close2" class="close">&times;</span>
+                                                <span id="close2" class="close">&times</span>
                                                 <div class="project-add-task">
-                                                    <form action="update-requirement" method="post" id="add-project1" class="">
+                                                    <form id="add-project1" action="update-requirement" method="post"  class="">
                                                         <input type="text" name="requirementId" hidden value="${requirement.id}">
                                                         <table class="table table-borderless">
                                                             <tr>
@@ -182,7 +183,7 @@
                                                             <tr>
                                                                 <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                                                 <td>
-                                                                    <textarea class="info-text" name="detail" id="" cols="60"
+                                                                    <textarea class="info-text" name="detail" cols="60"
                                                                               rows="3">${requirement.requirementDetail}</textarea>
                                                                     <div class="text-danger error"></div>
                                                                 </td>
