@@ -43,7 +43,8 @@
                 <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
                         class="btn btn-secondary" type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            value="Yêu cầu của khách hàng">
@@ -99,84 +100,67 @@
                     <th scope="col">Tiến độ</th>
                     <th scope="col">Trạng thái</th>
                 </tr>
-                <tr>
-                    <td>Thiết kế mặt sàn tầng 1</td>
-                    <td>Nguyễn như huấn</td>
-                    <td>
-                        20/10/2022
-                    </td>
-                    <td>
-                        20/11/2022
-                    </td>
-                    <td>
-                        20/11/2022
-                    </td>
-                    <td>90%</td>
-                    <td>đang thực hiện</td>
-                </tr>
-                <tr>
-                <td>Thiết kế mặt sàn tầng 1</td>
-                <td>Nguyễn như huấn</td>
-                <td>
-                    20/10/2022
-                </td>
-                <td>
-                    20/11/2022
-                </td>
-                <td>
-                    20/11/2022
-                </td>
-                <td>90%</td>
-                <td>đang thực hiện</td>
-                </tr>
-                <tr>
-                <td>Thiết kế mặt sàn tầng 1</td>
-                <td>Nguyễn như huấn</td>
-                <td>
-                    20/10/2022
-                </td>
-                <td>
-                    20/11/2022
-                </td>
-                <td>
-                    20/11/2022
-                </td>
-                <td>90%</td>
-                <td>đang thực hiện</td>
-                </tr>
-                <tr>
-                <td>Thiết kế mặt sàn tầng 1</td>
-                <td>Nguyễn như huấn</td>
-                <td>
-                    20/10/2022
-                </td>
-                <td>
-                    20/11/2022
-                </td>
-                <td>
-                    20/11/2022
-                </td>
-                <td>90%</td>
-                <td>đang thực hiện</td>
-                </tr>
+                <c:forEach items="${listTask}" var="task">
+                    <tr>
+                        <td> <a href="task_detail?taskId=${task.taskId}">${task.taskName}</a> </td>
+                        <td> ${task.assignToName}</td>
+                        <td>
+                                ${task.startDate}
+                        </td>
+                        <td>
+                                ${task.deadline}
+                        </td>
+                        <td>
+                                ${task.endDate}
+                        </td>
+                        <td>${task.workProgress}</td>
+                        <td>
+                            <c:if test="${task.taskStatus == 1}">
+                                Chưa phê duyệt
+                            </c:if>
+                            <c:if test="${task.taskStatus == 2}">
+                                Đang thực hiện
+                            </c:if>
+                            <c:if test="${task.taskStatus == 3}">
+                                Chờ phê duyệt
+                            </c:if>
+                            <c:if test="${task.taskStatus == 4}">
+                                Đã hoàn thành
+                            </c:if>
+                            <c:if test="${task.taskStatus == 5}">
+                                Hủy bỏ
+                            </c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+
             </table>
         </div>
         <div class="pagination">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+                    <c:if test="${page != 1}">
+                        <li class="page-item">
+                            <a class="page-link" href="progress?id=${projectId}&page=${page-1}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
+                    <c:forEach begin="1" end="${endPage}" var="i">
+                        <li class="page-item"><a class="page-link"
+                                                 href="progress?id=${projectId}&page=${i}">${i}</a></li>
+                    </c:forEach>
+
+                    <c:if test="${page != endPage}">
+                        <li class="page-item">
+                            <a class="page-link" href="progress?id=${projectId}&page=${page+1}"
+                               aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </c:if>
                 </ul>
             </nav>
         </div>

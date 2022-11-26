@@ -116,6 +116,26 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public TaskPageResponse getListSubTaskProcess(int indexPage, int projectId) {
+        int pageNumber = 10;
+        int count = taskDAO.countSubTaskViewProcess(projectId);
+        List<Task> listTask = taskDAO.getAllSubTaskViewProcess(pageNumber, indexPage,projectId);
+        int endPage = count / pageNumber;
+        if (count % pageNumber != 0) {
+            endPage++;
+        }
+
+        for (Task task : listTask) {
+            task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
+            task.setNumberFileCurrent(taskDAO.countFile(task.getTaskId()));
+            double workProgress = (task.getNumberFileCurrent() / (double) task.getFileNumber()) * 100;
+            task.setWorkProgress(workProgress + "%");
+        }
+
+        return TaskPageResponse.builder().endPage(endPage).tasksList(listTask).build();
+    }
+
+    @Override
     public boolean isLastTask(Task task) {
        //get list sub task of task level 2
         List<Task> listSubTask = taskDAO.getListSubTask(task.getTaskfId().intValue());
