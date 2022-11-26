@@ -3,6 +3,7 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.model.DashboardResponse;
 import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +32,6 @@ public interface TaskService {
    boolean isLastTask(Task task);
 
    List<Task> getAllTaskByRequirementId(int requirementId);
+
+   DashboardResponse getDashboard(int projectId);
 }
