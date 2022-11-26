@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +37,7 @@
                         <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
                     </select>
                     <div>
-                    <button class="btn btn-secondary">Lưu</button>
+                        <button class="btn btn-secondary">Lưu</button>
                     </div>
                 </div>
             </div>
@@ -56,7 +57,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            value="Yêu cầu của khách hàng">
@@ -111,7 +113,9 @@
                     </tr>
                     <tr>
                         <td>Chi phí thiết kế:</td>
-                        <td>${project.expectedCost}</td>
+                        <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${project.expectedCost}"/>
+                            đồng
+                        </td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
@@ -135,7 +139,17 @@
                     </tr>
                     <tr>
                         <td>Hiển thị file:</td>
-                        <td><div id="fileInput" class="container js-file-list"></div></td>
+                        <td>
+                            <div id="fileInput" class="container js-file-list">
+<%--                                <iframe--%>
+<%--                                        src="http://res.cloudinary.com/dgbzprb8l/image/upload/v1669132728/image/default/1669132726032-Capstone_Fa22_G4-SWP493-ERD_Diagram.pdf.pdf"--%>
+<%--                                        frameBorder="0"--%>
+<%--                                        scrolling="auto"--%>
+<%--                                        height="100%"--%>
+<%--                                        width="100%"--%>
+<%--                                ></iframe>--%>
+                            </div>
+                        </td>
                     </tr>
                 </table>
             </div>

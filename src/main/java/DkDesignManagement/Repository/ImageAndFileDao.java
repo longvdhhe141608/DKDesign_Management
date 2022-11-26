@@ -41,4 +41,16 @@ public class ImageAndFileDao {
         }
         return check;
     }
+
+    public int uploadFileSummary(String url, int projectID) {
+        int check = 0;
+        String sql = "INSERT INTO `dkmanagement`.`image_and_file` (`project_id`, `file_url`) VALUES (?, ?);\n";
+
+        try {
+            check = jdbcTemplate.update(sql, projectID, url);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
 }
