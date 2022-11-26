@@ -136,31 +136,28 @@
         <%--                </a>--%>
         <%--            </form>--%>
         <%--        </div>--%>
-        <%--        <div class="task-cmt-details">--%>
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <a class="name-avatar">Nam</a>--%>
-        <%--                <a> 4 phút trước</a></br>--%>
-        <%--                <p>ok đấy</p>--%>
-        <%--            </div>--%>
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <a class="name-avatar">Nam</a>--%>
-        <%--                <a> 4 phút trước</a></br>--%>
-        <%--                <p>ok đấy</p>--%>
-        <%--            </div>--%>
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <a class="name-avatar">Nam</a>--%>
-        <%--                <a> 4 phút trước</a></br>--%>
-        <%--                <p>ok đấy</p>--%>
-        <%--            </div>--%>
-        <%--            <div class="task-detail-cmt">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <input class="input-cmt" type="text" placeholder="Bình luận....">--%>
-        <%--                <button class="btn btn-primary">Gửi</button>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
+<%--        <div class="task-cmt-details">--%>
+<%--            <p style="font-size: 20px;">Bình luận</p>--%>
+<%--            <div class="task-cmt-details-main">--%>
+<%--                <div style="display: flex;">--%>
+<%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
+<%--                    <div class="task-cmt-details-member">--%>
+<%--                        <span class="name-avatar">Nam</span>--%>
+<%--                        <span> 4 phút trước</span></br>--%>
+<%--                        <span class="cmt-details-total">ok đấy</span>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>--%>
+
+<%--            <div class="task-cmt-details-main">--%>
+<%--                <div style="display: flex;">--%>
+<%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
+
+<%--                    <input style="width: 500px; margin-right: 10px;" type="text" placeholder="Viết bình luận...">--%>
+<%--                    <button>Gửi</button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
     </div>
 </div>
 <div class="popup hide__popup">
