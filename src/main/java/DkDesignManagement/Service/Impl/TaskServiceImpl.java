@@ -99,10 +99,10 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public TaskPageResponse getListSubTask(int indexPage, int status,String name ,String accountId) {
+    public TaskPageResponse getListSubTask(int indexPage,int projectId, int status,String name ,String accountId) {
         int pageNumber = 10;
-        int count = taskDAO.countSubTask(String.valueOf(status), name , accountId);
-        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage, String.valueOf(status), name , accountId);
+        int count = taskDAO.countSubTask(projectId,String.valueOf(status), name , accountId);
+        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage,projectId, String.valueOf(status), name , accountId);
         int endPage = count / pageNumber;
         if (count % pageNumber != 0) {
             endPage++;
@@ -110,6 +110,26 @@ public class TaskServiceImpl implements TaskService {
 
         for (Task task : listTask) {
             task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
+        }
+
+        return TaskPageResponse.builder().endPage(endPage).tasksList(listTask).build();
+    }
+
+    @Override
+    public TaskPageResponse getListSubTaskProcess(int indexPage, int projectId) {
+        int pageNumber = 10;
+        int count = taskDAO.countSubTaskViewProcess(projectId);
+        List<Task> listTask = taskDAO.getAllSubTaskViewProcess(pageNumber, indexPage,projectId);
+        int endPage = count / pageNumber;
+        if (count % pageNumber != 0) {
+            endPage++;
+        }
+
+        for (Task task : listTask) {
+            task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
+            task.setNumberFileCurrent(taskDAO.countFile(task.getTaskId()));
+            double workProgress = (task.getNumberFileCurrent() / (double) task.getFileNumber()) * 100;
+            task.setWorkProgress(workProgress + "%");
         }
 
         return TaskPageResponse.builder().endPage(endPage).tasksList(listTask).build();
