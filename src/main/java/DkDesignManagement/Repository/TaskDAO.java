@@ -79,6 +79,16 @@ public class TaskDAO {
         return taskList;
     }
 
+    public List<Task> getAllSubTaskViewProcess(int pageNumber, int page,int projectId) {
+
+        String sql = "select * from task t where (1=1) and t.project_id = "+projectId+"   and t.task_id is not null ";
+
+        sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask());
+        return taskList;
+    }
+
     public int countSubTask(int projectId, String status, String name, String accountId) {
         String sql = "select count(*)  from task t where (1=1) and t.project_id = "+projectId+" ";
 
@@ -91,6 +101,12 @@ public class TaskDAO {
         if (!ObjectUtils.isEmpty(accountId)) {
             sql += " and assignedto = " + accountId + " ";
         }
+
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    public int countSubTaskViewProcess(int projectId) {
+        String sql = "select count(*)  from task t where (1=1) and t.project_id = "+projectId+"  and t.task_id is not null  ";
 
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
