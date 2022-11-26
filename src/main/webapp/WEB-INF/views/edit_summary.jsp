@@ -25,7 +25,7 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary">
-        <form  id="addProject" action="edit_summary/edit_project" method="post">
+        <form id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
             <div class="top-details">
                 <div class="list-top">
                     <h3>${project.projectName}</h3>
@@ -49,7 +49,8 @@
                             class="btn btn-secondary"
                             type="button"
                             value="Duyệt công việc"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                    <a class="test"
+                       href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                         <input class="btn btn-secondary"
                                type="button"
                                value="Yêu cầu của khách hàng">
@@ -80,32 +81,43 @@
                     <table class="table table-borderless">
                         <tr>
                             <td>Tên công trình:</td>
-                            <td><input class="info-text" type="text" name="name" value="${project.projectName}">
-                                <div class="text-danger error"></div></td>
+                            <td><input class="info-text" type="text" name="name" value="${project.projectName}"
+                                       style="width: 50%">
+                                <div class="text-danger error"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Chủ nhà:</td>
-                            <td><input class="info-text" type="text" name="customerName" value="${project.cusName}">
-                                <div class="text-danger error"></div></td>
+                            <td><input class="info-text" type="text" name="customerName" value="${project.cusName}"
+                                       style="width: 50%">
+                                <div class="text-danger error"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input class="info-text" type="text" name="phone" value="${project.cusPhone}">
-                                <div class="text-danger error"></div></td>
+                            <td><input class="info-text" type="text" name="phone" value="${project.cusPhone}"
+                                       style="width: 50%">
+                                <div class="text-danger error"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Địa chỉ công trình:</td>
-                            <td><input class="info-text" type="text" name="address" value="${project.cusAddress}">
-                                <div class="text-danger error"></div></td>
+                            <td><input class="info-text" type="text" name="address" value="${project.cusAddress}"
+                                       style="width: 50%">
+                                <div class="text-danger error"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Diện tích xây dựng:</td>
-                            <td><input class="info-text" type="text" name="constructionArea" value="${project.constructionArea}">m<sup>2</sup>
-                                <div class="text-danger error"></div></td>
+                            <td><input class="info-text" type="text" name="constructionArea"
+                                       value="${project.constructionArea}" style="width: 50%"> m<sup>2</sup>
+                                <div class="text-danger error"></div>
+                            </td>
                         </tr>
                         <tr>
                             <td>Chi phí thiết kế<label class="text-danger">*</label>:</td>
-                            <td><input class="info-text" type="text" name="expectedCost" value="${project.expectedCost}">
+                            <td><input class="info-text" type="text" name="expectedCost"
+                                       value="${project.expectedCost}" style="width: 50%"> đồng
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
@@ -113,9 +125,16 @@
                             <td>Loại công trình:</td>
                             <td>
                                 <div class="dropdown">
-                                    <select name="categoryId" class="btn btn-secondary dropdown-toggle">
+                                    <select name="categoryId" class="btn btn-secondary dropdown-toggle"
+                                            style="width: 50%">
                                         <c:forEach items="${listCategory}" var="category">
-                                            <option value="${category.id}"> ${category.category_name}</option>
+                                            <c:if test="${category.id == project.type}">
+                                                <option value="${category.id}"
+                                                        selected> ${category.category_name}</option>
+                                            </c:if>
+                                            <c:if test="${category.id != project.type}">
+                                                <option value="${category.id}"> ${category.category_name}</option>
+                                            </c:if>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -125,20 +144,24 @@
                         <tr>
                             <td>Thời gian bắt đầu:</td>
                             <td>
-                                <input class="info-text" id="inputstartdate" type="date"  name="startDate" value="${project.startDate}">
+                                <input class="info-text" id="inputstartdate" type="date" name="startDate"
+                                       value="${project.startDate}" style="width: 50%">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Thời gian dự kiến kết thúc:</td>
-                            <td><input class="info-text" id="inputenddate" type="date" name="closureDate" value="${project.closureDate}">
-                                <div class="text-danger error"></div></td>
+                            <td><input class="info-text" id="inputenddate" type="date" name="closureDate"
+                                       value="${project.closureDate}" style="width: 50%">
+                                <div class="text-danger error"></div>
+                            </td>
                         </tr>
 
                         <tr>
                             <td>Mô tả:</td>
                             <td>
-                                <textarea class="info-text" name="detail" cols="30" rows="3" value="${project.detail}"></textarea>
+                                <textarea class="info-text" name="detail" cols="30"
+                                          rows="3" style="width: 50%">${project.detail}</textarea>
 
                                 <div class="text-danger error"></div>
                             </td>
@@ -148,8 +171,8 @@
                             <td>
                                 <form>
                                     <div class="form-group">
-
-                                        <input type="file" class="form-control" id="fileInput" multiple>
+                                        <input type="file" class="form-control" id="fileInput" multiple
+                                               style="width: 50%" name="file">
                                     </div>
                                 </form>
                                 <div class="container js-file-list"></div>
@@ -162,7 +185,8 @@
                         <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
                     </a>
                     <button onclick="return checkvalidate('#addProject')"
-                            type="submit" class="btn-update btn btn-primary">Lưu</button>
+                            type="submit" class="btn-update btn btn-primary">Lưu
+                    </button>
                 </div>
 
             </div>
@@ -176,64 +200,64 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
     </script>
-        <script>
-            // function modallistproject(idbtn, idmodal, closemain) {
-            //     // Get the modal
-            //     var modal = document.querySelector(idmodal);
-            //
-            //     // Get the button that opens the modal
-            //     var btn = document.querySelector(idbtn);
-            //
-            //     // Get the <span> element that closes the modal
-            //     var span = document.querySelector(closemain);
-            //     // span.addEventListener('click', event){
-            //     //     event.style.display = "none";
-            //     // }
-            //     // When the user clicks the button, open the modal
-            //
-            //     modal.style.display = "block";
-            //
-            //     span.addEventListener("click", function () {
-            //         modal.style.display = "none";
-            //     });
-            //
-            //
-            //
-            // }
-            $(document).ready(function () {
-                $('#fileInput').on('change', function () {
-                    var files = $(this)[0].files;
+    <script>
+        // function modallistproject(idbtn, idmodal, closemain) {
+        //     // Get the modal
+        //     var modal = document.querySelector(idmodal);
+        //
+        //     // Get the button that opens the modal
+        //     var btn = document.querySelector(idbtn);
+        //
+        //     // Get the <span> element that closes the modal
+        //     var span = document.querySelector(closemain);
+        //     // span.addEventListener('click', event){
+        //     //     event.style.display = "none";
+        //     // }
+        //     // When the user clicks the button, open the modal
+        //
+        //     modal.style.display = "block";
+        //
+        //     span.addEventListener("click", function () {
+        //         modal.style.display = "none";
+        //     });
+        //
+        //
+        //
+        // }
+        $(document).ready(function () {
+            $('#fileInput').on('change', function () {
+                var files = $(this)[0].files;
 
-                    for (var i = 0; i < files.length; i++) {
-                        var file = files[i];
-                        var fileReader = new FileReader();
-                        fileReader.onload = (function (fileParams) {
-                            return function (event) {
-                                var str = '<div class="col-md-2">' +
-                                    '<span id="upload" class="js-file-name"></span><br>' +
+                for (var i = 0; i < files.length; i++) {
+                    var file = files[i];
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function (fileParams) {
+                        return function (event) {
+                            var str = '<div class="col-md-2">' +
+                                '<span id="upload" class="js-file-name"></span><br>' +
 
-                                    '<span class="js-file-size"></span> (Byte)<br>' +
-                                    '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
-                                    '</div>';
-                                $('.js-file-list').append(str);
+                                '<span class="js-file-size"></span> (Byte)<br>' +
+                                '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
+                                '</div>';
+                            $('.js-file-list').append(str);
 
-                                var imageSrc = event.target.result;
-                                var fileName = fileParams.name;
+                            var imageSrc = event.target.result;
+                            var fileName = fileParams.name;
 
-                                var fileSize = fileParams.size;
+                            var fileSize = fileParams.size;
 
-                                $('.js-file-name').last().text(fileName);
+                            $('.js-file-name').last().text(fileName);
 
-                                $('.js-file-size').last().text(fileSize);
-                                $('.js-file-image').last().attr('src', imageSrc);
+                            $('.js-file-size').last().text(fileSize);
+                            $('.js-file-image').last().attr('src', imageSrc);
 
 
-                            };
-                        })(file);
-                        fileReader.readAsDataURL(file);
-                    }
-                });
+                        };
+                    })(file);
+                    fileReader.readAsDataURL(file);
+                }
             });
-        </script>
+        });
+    </script>
 </body>
 </html>
