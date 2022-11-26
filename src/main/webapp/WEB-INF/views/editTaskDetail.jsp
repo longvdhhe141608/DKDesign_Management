@@ -123,7 +123,7 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <button type="submit" class="btn-update btn btn-secondary">Hủy bỏ</button>
+                    <button type="submit" class="btn btn-secondary">Hủy bỏ</button>
                     <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn-update btn btn-primary">Lưu</button>
                 </div>
             </div>

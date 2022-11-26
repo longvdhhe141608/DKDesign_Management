@@ -163,34 +163,6 @@
         </div>
         <div class="task-cmt-details">
         <p style="font-size: 20px;">Bình luận</p>
-            <div class="task-cmt-details-main" >
-            <c:if test="${listComment.size() > 0}">
-                <c:forEach items="${listComment}" var="comment">
-                    <!----------item------------>
-
-                    <div class="cmt-details" style="display: flex;">
-                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                        <div class="task-cmt-details-member">
-                        <span class="name-avatar">${comment.accountName}</span>
-                        <span> ${comment.dateCountDown}</span></br>
-                        <span>${comment.content}</span>
-                        </div>
-                    </div>
-                        <c:if test="${comment.isPin() ==true}">
-                            <i class="fa-solid fa-thumbtack"></i>
-
-                        </c:if>
-                        <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
-                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a></br>
-                        </c:if>
-
-
-
-                    <!----------item------------>
-                </c:forEach>
-            </c:if>
-
-            </div>
             <div class="task-cmt-details-main">
                 <form style="display: flex" action="add-comment" method="post">
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
@@ -200,6 +172,35 @@
                     <button class="btn btn-primary">Gửi</button>
                 </form>
             </div>
+            <div class="task-cmt-details" >
+            <c:if test="${listComment.size() > 0}">
+                <c:forEach items="${listComment}" var="comment">
+                    <!----------item------------>
+                <div style="display: flex">
+                    <div class="task-cmt-details-main">
+                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                        <span class="name-avatar">${comment.accountName}</span>
+                        <span> ${comment.dateCountDown}</span></br>
+                        <span>${comment.content}</span>
+
+                    </div>
+                    <div>
+                        <c:if test="${comment.isPin() ==true}">
+                            <i class="fa-solid fa-thumbtack"></i>
+
+                        </c:if>
+                        <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a></br>
+                        </c:if>
+                    </div>
+                </div>
+
+                    <!----------item------------>
+                </c:forEach>
+            </c:if>
+
+            </div>
+
 
     </div>
     </div>

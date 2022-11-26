@@ -12,7 +12,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Trang chủ</title>
+    <title>Chỉnh sửa thông tin cá nhân</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/profile.css"/>"/>
@@ -24,14 +24,14 @@
 <jsp:include page="header.jsp"/>
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
-    <div style="margin-left: 20%;">
+    <div class="summary" style="margin-left: 20%;">
         <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i
                 class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
-        <div class="information-main">
 
-            <form action="editProfile" method="post" enctype="multipart/form-data">
-                <table class="table table-borderless">
-                    <td>
+
+            <form  action="editProfile" method="post" enctype="multipart/form-data">
+
+                      <div class="information-main">
                         <div class="information-main-avata">
                             <img alt="avatar" class="img_avatar_change" src="${sessionScope.loginUser.avatar_url}"
                                  style="display: flex"/>
@@ -41,10 +41,11 @@
                                 <input type="file" name="newAvatar" title="Upload avatar" accept="image/*"/>
                             </label>
                         </div>
-                    </td>
-                    <td>
+
+
                         <div>
                             <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
+                            <table class="table table-borderless">
                             <tr>
                                 <td>Họ và tên:</td>
                                 <td><input type="text" id="name"
@@ -84,19 +85,20 @@
                                            id="address" name="address" value="${profile.address}">
                                 </td>
                             </tr>
+                            </table>
                         </div>
-                    </td>
-                </table>
+                      </div>
+
                 <%-- button --%>
                 <div class="btn-edit">
                     <button class="btn btn-secondary" style="margin-right: 10px; color: white">
-                        <a href="javascript:history.back() ">Hủy</a>
+                        <a style="color: white" href="javascript:history.back() ">Hủy</a>
                     </button>
                     <input type="submit" class="btn btn-primary" value="Lưu">
                 </div>
 
             </form>
-        </div>
+
 
     </div>
 

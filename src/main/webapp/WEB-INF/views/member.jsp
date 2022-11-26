@@ -28,7 +28,7 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
+                    <select style="border-radius: 5px; padding: 6px;">
                         <option class="btn btn-secondary">Đang thực hiện</option>
                         <option class="btn btn-secondary">Đã hoàn thành</option>
                     </select>
@@ -79,9 +79,45 @@
             <div class="content-function-member">
 
                 <%--Bat dau them thanh vien--%>
-                <div class="function-one">
-                    <div class="add" id="show-member">
-                        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
+                <div>
+                    <div >
+                        <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
+                                class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content" style="width: 50%; height: 40%;">
+                                <span id="close" class="close">&times;</span>
+                                <div class="project-add-task">
+                                    <form action="addMember" method="get">
+                                        <div class="info">
+                                            <table class="table table-borderless">
+                                                <tr>
+                                                    <td>Tên thành viên:</td>
+                                                    <td>
+                                                        <input name="memberToAdd" class="info-text" type="text" style="width: 550px;">
+                                                        <input name="id" value="${project.id}" type="text" hidden>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="button_click">
+
+                                            <div class="btn_cancel">
+                                                <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                    bỏ
+                                                </button>
+                                            </div>
+                                            <div class="btn_ok">
+                                                <input type="submit" class="btn btn-primary" value="Lưu">
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
                 <%--ket thuc them thanh vien--%>
@@ -238,17 +274,39 @@
         crossorigin="anonymous">
 </script>
 <script>
+    function modallistproject(idbtn, idmodal, closemain) {
+        // Get the modal
+        var modal = document.querySelector(idmodal);
 
-    const show = document.querySelector("#show-member");
+        // Get the button that opens the modal
+        var btn = document.querySelector(idbtn);
 
-    const popup = document.querySelector(".popup");
-    let close = document.querySelector('.close_popup');
-    close.addEventListener('click', function () {
-        popup.classList.add("hide__popup");
-    });
+        // Get the <span> element that closes the modal
+        var span = document.querySelector(closemain);
+        // span.addEventListener('click', event){
+        //     event.style.display = "none";
+        // }
+        // When the user clicks the button, open the modal
 
-    show.addEventListener('click', function () {
-        popup.classList.remove("hide__popup");
-    })
+        modal.style.display = "block";
+
+        span.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+
+
+    }
+    // const show = document.querySelector("#show-member");
+    //
+    // const popup = document.querySelector(".popup");
+    // let close = document.querySelector('.close_popup');
+    // close.addEventListener('click', function () {
+    //     popup.classList.add("hide__popup");
+    // });
+    //
+    // show.addEventListener('click', function () {
+    //     popup.classList.remove("hide__popup");
+    // })
 </script>
 </html>

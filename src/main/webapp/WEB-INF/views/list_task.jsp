@@ -75,7 +75,7 @@
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- Modal content -->
-                <div class="modal-content" style="width: 60% ; height: 80%;">
+                <div class="modal-content" style="width: 60% ; height: 100%;">
                     <span id="close1" class="close">&times;</span>
                     <div class="project-add-task">
                         <form id="add-project" action="add-task" method="post" >
@@ -96,14 +96,14 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Công trình<label class="text-danger">*</label>:</td>
+                                    <td>Công trình:</td>
                                     <td>
                                         ${project.projectName}
                                         <input type="text" class="" name="projectId" value="${project.id}" hidden>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Đầu mục công <label class="text-danger">*</label>:</td>
+                                    <td>Đầu mục công việc<label class="text-danger">*</label>:</td>
                                     <td>
                                         <select name="sectionId" class="btn btn-secondary dropdown-toggle">
                                             <c:forEach items="${listBigTask}" var="section">
@@ -116,7 +116,7 @@
                                     <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input class="info-text" formControlName="dob" type="date"
+                                            <input id="inputstartdate" class="info-text" formControlName="dob" type="date"
                                                    name="startDate" value="20/10/2022">
                                             <div class="text-danger error"></div>
                                         </div>
@@ -126,7 +126,7 @@
                                     <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
                                     <td>
                                         <div class="name-input" style="width: 150px;">
-                                            <input class="info-text" formControlName="dob" type="date"
+                                            <input id="inputenddate"  class="info-text" formControlName="dob" type="date"
                                                    name="deadline" value="20/10/2022">
                                             <div class="text-danger error"></div>
                                         </div>
@@ -134,7 +134,7 @@
                                 </tr>
                             </table>
                             <div class="add-btn-work">
-                                <button type="button" class="btn btn-secondary btn-canel">Hủy bỏ</button>
+                                <button type="submit" class="btn btn-secondary btn-canel" style="margin-right: 10px;">Hủy bỏ</button>
                                 <button onclick="return checkvalidate('#add-project')"
                                         type="submit" class="btn btn-primary">Thêm</button>
                             </div>
@@ -162,7 +162,7 @@
                                     class=""><i class="fa-regular fa-pen-to-square"></i></button>
                             <div id="myModal-edit" class="modal">
                                 <!-- Modal content -->
-                                <div class="modal-content">
+                                <div class="modal-content" style="height: 60%;width: 60%">
                                     <span id="close3" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form id="add-project1">
@@ -229,15 +229,17 @@
                             <div class="row " style="background: rgba(0, 0, 0, 0.2);">
                                 <div class="col-4 row-task"
                                      style="display: flex;justify-content: space-between; border: 1px solid gray;">
-                                    <div class="">
+                                    <div class="name-project">
                                         <button onclick="myFunction('.sub-task-detail')"><i
                                                 class="fa-solid fa-caret-down"></i>
                                         </button>
                                             ${task.taskName}
                                     </div>
+                                    <div>
                                     <a href="${pageContext.request.contextPath}/task_detail?taskId=${task.taskId}">
                                         <button class="btn btn-primary link-row-task">Chi tiết</button>
                                     </a>
+                                    </div>
                                 </div>
                                 <div class="col-1" style="border: 1px solid gray;">${task.assignToName}</div>
                                 <div class="col-2" style="border: 1px solid gray;">${task.startDate}</div>
@@ -273,7 +275,7 @@
 <%--<c:if test="${subTask.taskStatus == }"--%>
                                 <div id="" class="row sub-task-detail">
                                     <div class="col-4 link-chi-tiet-cong-viec" style="border: 1px solid gray; display: flex; justify-content: space-between; ">
-                                        <div class="">
+                                        <div class="name-project">
                                                 ${subTask.taskName}
                                         </div>
                                         <div>
@@ -311,7 +313,7 @@
                 <!-- The Modal -->
                 <div id="myModal-footer" class="modal">
                     <!-- Modal content -->
-                    <div class="modal-content" style="width: 60%; height: 40%">
+                    <div class="modal-content" style="width: 60%; height: 60%">
                         <span id="close2" class="close">&times;</span>
                         <div class="project-add-task">
                             <form  id="add-project3" action="add_section" method="post">
@@ -329,7 +331,7 @@
                                     </tr>
                                 </table>
                                 <div class="add-btn-work" >
-                                    <button style="margin-right: 10px" type="button" class="btn btn-secondary btn-canel">Hủy bỏ</button>
+                                    <button style="margin-right: 10px" type="submit" class="btn btn-secondary btn-canel">Hủy bỏ</button>
                                     <button onclick="return checkvalidatenumber('#add-project3')" class="btn btn-primary btn-add">Thêm</button>
                                 </div>
                             </form>
