@@ -58,9 +58,9 @@ public class LoginController {
                 session.setAttribute("loginUser", account);
 
                 if (account.getRole_id() == 2) {
-                    view = new ModelAndView("redirect:headerHome");
+                    view = new ModelAndView("redirect:/allProject");
                 } else if (account.getRole_id() == 3) {
-                    view = new ModelAndView("redirect:design/home");
+                    view = new ModelAndView("redirect:design/project/view-all-project");
                 } else {
                     view = new ModelAndView("redirect:admin/memberlist");
                 }
