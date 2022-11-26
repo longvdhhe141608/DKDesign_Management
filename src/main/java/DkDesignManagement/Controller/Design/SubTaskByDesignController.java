@@ -118,7 +118,7 @@ public class SubTaskByDesignController {
                 view.addObject("status", 2);
             } else {
                 int sizeFile = imageAndFileDao.getTotalFileBySubTaskID(project.getId(), subtask.getId());
-                if (sizeFile <= subtask.getNumberOfFile()) {
+                if (sizeFile < subtask.getNumberOfFile()) {
                     int checkSaveFile = imageAndFileDao.updateFileBySubTaskID(url, project.getId(), subtask.getId());
                 }
             }
@@ -235,20 +235,26 @@ public class SubTaskByDesignController {
 
         String indexPage = request.getParameter("pageNo");
 
-        int page = 0;
+        int page = 1;
         if (indexPage != null) {
             page = Integer.parseInt(indexPage);
         }
 
 
+        int statusTask = 0;
         String statusID = (request.getParameter("status"));
+        if(statusID != null){
+            statusTask = Integer.parseInt(statusID);
+        }
 
         String textSearch = request.getParameter("textSearch");
 
-        int totalSubTaskWait = taskDAO.totalTaskWait(project.getId(), statusID, textSearch);
+        int totalSubTaskWait = taskDAO.totalTaskWait(project.getId(), statusTask, textSearch, account.getId());
         int totalPages = (totalSubTaskWait % 10 == 0) ? totalSubTaskWait / 10 : totalSubTaskWait / 10 + 1;
 
-        List<TaskWaitDto> waitDtoList = taskDAO.getAllTaskWaitByDesign(project.getId(), page, statusID, textSearch);
+        int index = page * 10 - 10;
+
+        List<TaskWaitDto> waitDtoList = taskDAO.getAllTaskWaitByDesign(project.getId(), index, statusTask, textSearch, account.getId());
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page
@@ -262,7 +268,7 @@ public class SubTaskByDesignController {
         view.addObject("lsPage", lsPage);
         view.addObject("waitDtoList", waitDtoList);
         view.addObject("statusList", statusList);
-        view.addObject("status", statusID);
+        view.addObject("status", statusTask);
         view.addObject("textSearch", textSearch);
         return view;
     }

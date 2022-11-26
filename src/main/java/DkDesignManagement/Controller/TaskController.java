@@ -1,9 +1,7 @@
 package DkDesignManagement.Controller;
 
-import DkDesignManagement.Entity.Account;
-import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Entity.Requirement;
-import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Entity.*;
+import DkDesignManagement.Repository.ImageAndFileDao;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.TaskDAO;
 import DkDesignManagement.Service.*;
@@ -54,6 +52,9 @@ public class TaskController {
     @Autowired
     private TaskDAO taskDAO;
 
+    @Autowired
+    private ImageAndFileDao imageAndFileDao;
+
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(@ModelAttribute("mess") String mess, HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -89,7 +90,17 @@ public class TaskController {
         //update done
         task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
 
+        List<Tasks> subTasksList = taskDAO.getAllSubTasksByTaskID(taskId);
 
+        int totalSubmitFile = 0;
+        int totalFile = 0;
+
+        for (int i = 0; i < subTasksList.size() ; i++) {
+            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
+            totalFile += subTasksList.get(i).getNumberOfFile();
+        }
+
+        float progressPercent = Math.round((totalSubmitFile / (1.0 * totalFile)) * 100);
         //load infor add sub task
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
         view.addObject("listRequirement", requirementService.getRequirementByProjectId(task.getProjectId()));
@@ -97,6 +108,9 @@ public class TaskController {
         view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
+        view.addObject("totalSubmitFile", totalSubmitFile);
+        view.addObject("totalFile", totalFile);
+        view.addObject("progressPercent", progressPercent);
         return view;
     }
 

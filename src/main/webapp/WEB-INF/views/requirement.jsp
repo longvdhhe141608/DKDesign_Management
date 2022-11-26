@@ -110,7 +110,8 @@
                                 <tr>
                                     <td>Yêu cầu<label class="text-danger">*</label>:</td>
                                     <td>
-                                        <textarea class="info-text" name="noi-dung-yeu-cau" cols="60" rows="3"></textarea>
+                                        <textarea class="info-text" name="noi-dung-yeu-cau" cols="60"
+                                                  rows="3"></textarea>
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
@@ -118,7 +119,7 @@
                             </table>
                             <div class="add-btn-work" style="display: flex; justify-content: end">
                                 <button class="btn btn-secondary " style="margin-right: 5px">Hủy bỏ</button>
-                                <button onclick="return checkvalidate('#add-project2')" type="submit"
+                                <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
                                         class="btn btn-primary">Thêm
                                 </button>
                             </div>
@@ -160,71 +161,14 @@
                                 </td>
                                 <td>
                                     <div style="display: flex; justify-content: space-between;">
-
-                                        <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')"
-                                                id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>
-                                        <div id="myModal-footer" class="modal" >
-                                            <!-- Modal content -->
-                                            <div class="modal-content" style=" width: 50%;height: 70%;">
-                                                <span id="close2" class="close">&times;</span>
-                                                <div class="project-add-task">
-                                                    <form action="update-requirement" method="post" id="add-project1" class="">
-                                                        <input type="text" name="requirementId" hidden value="${requirement.id}">
-                                                        <table class="table table-borderless">
-                                                            <tr>
-                                                                <td>Vị trí<label class="text-danger">*</label>:</td>
-                                                                <td>
-                                                                    <input style="width: 500px;" class="info-text"
-                                                                          name="name" type="text" value="${requirement.requirementName}">
-                                                                    <div class="text-danger error"></div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Yêu cầu<label class="text-danger">*</label>:</td>
-                                                                <td>
-                                                                    <textarea class="info-text" name="detail" id="" cols="60"
-                                                                              rows="3">${requirement.requirementDetail}</textarea>
-                                                                    <div class="text-danger error"></div>
-                                                                </td>
-                                                            </tr>
-
-                                                        </table>
-                                                        <div class="add-btn-work">
-                                                            <button type="button"class="btn btn-secondary" style="margin-right: 10px">Hủy bỏ</button>
-                                                            <button onclick="return checkvalidate('#add-project1')"
-                                                                    type="submit" class="btn btn-primary">Lưu
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                            <%--<a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?id=${requirement.id}&project-id=${requirement.projectId}">--%>
-<%--                                        <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn">--%>
-<%--                                            <i class="fa-regular fa-trash-can"></i></button>--%>
-<%--                                        <div id="myModal" class="modal">--%>
-<%--                                            <!-- Modal content -->--%>
-<%--                                            <div class="modal-content">--%>
-<%--                                                <span id="close" class="close">&times;</span>--%>
-<%--                                                <div class="project-add-task">--%>
-<%--                                                    <form id="add-project3" class=""--%>
-<%--                                                          action="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?requirement-id=${requirement.id}&project-id=${requirement.projectId}"--%>
-<%--                                                          method="post">--%>
-<%--                                                        <p>Bạn chắc chắn muốn xóa dữ liệu này!</p>--%>
-<%--                                                        <div class="add-btn-work">--%>
-<%--                                                            <button class="btn btn-secondary ">Hủy bỏ</button>--%>
-<%--                                                            <a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?requirement-id=${requirement.id}&project-id=${requirement.projectId}"--%>
-<%--                                                               type="submit" class="btn btn-primary">--%>
-<%--                                                                Xóa--%>
-<%--                                                            </a>--%>
-<%--                                                        </div>--%>
-<%--                                                    </form>--%>
-<%--                                                </div>--%>
-<%--                                            </div>--%>
-<%--                                        </div>--%>
+<%--                                        <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')"--%>
+<%--                                                id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>--%>
+                                                <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
+                                                        id="myBtn-project" data-id="${requirement.id}" data-place="${requirement.requirementName}"
+                                                data-detail="${requirement.requirementDetail}"><i class="fa-regular fa-pen-to-square"></i></button>
                                         <button onclick="onClickDelete(this.getAttribute('data-id'))"
-                                                data-id="${requirement.id}" data-project-id="${requirement.projectId}"><i class="fa-regular fa-trash-can"></i></button>
-                                            <%--</a>--%>
+                                                data-id="${requirement.id}" data-project-id="${requirement.projectId}">
+                                            <i class="fa-regular fa-trash-can"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -249,39 +193,49 @@
         </div>
     </div>
 </div>
-<%--<div class="popup hide__popup">--%>
-<%--    <form action="${pageContext.request.contextPath}/requirement/add-new-requirement?id=${project.id}" method="post">--%>
-<%--        <div class="popup__content">--%>
-<%--            <div class="title">--%>
-<%--                <h4>Thêm yêu cầu của khách hàng</h4>--%>
-<%--            </div>--%>
-<%--            <div class="info">--%>
+<div id="myModal-footer" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" style=" width: 50%;height: 40%;">
+        <span id="close2" class="close">&times;</span>
+        <div id="showHtml" class="project-add-task">
+<%--            <form action="update-requirement" method="post" id="add-project1"--%>
+<%--                  class="">--%>
+<%--                <input type="text" name="requirementId" hidden--%>
+<%--                       value="${requirement.id}">--%>
 <%--                <table class="table table-borderless">--%>
 <%--                    <tr>--%>
-<%--                        <td>Vị trí:</td>--%>
-<%--                        <td><input class="info-text" type="text" style="width: 500px;" name="ten-vi-tri"></td>--%>
+<%--                        <td>Vị trí<label class="text-danger">*</label>:</td>--%>
+<%--                        <td>--%>
+<%--                            <input style="width: 500px;" class="info-text"--%>
+<%--                                   name="name" type="text"--%>
+<%--                                   value="${requirement.requirementName}">--%>
+<%--                            <div class="text-danger error"></div>--%>
+<%--                        </td>--%>
 <%--                    </tr>--%>
 <%--                    <tr>--%>
-<%--                        <td>Yêu cầu:</td>--%>
-<%--                        <td><textarea class="info-text" type="text" style="width: 500px;"--%>
-<%--                                      name="noi-dung-yeu-cau"></textarea>--%>
+<%--                        <td>Yêu cầu<label class="text-danger">*</label>:</td>--%>
+<%--                        <td>--%>
+<%--                                                                    <textarea class="info-text" name="detail" id=""--%>
+<%--                                                                              cols="60"--%>
+<%--                                                                              rows="3">${requirement.requirementDetail}</textarea>--%>
+<%--                            <div class="text-danger error"></div>--%>
+<%--                        </td>--%>
 <%--                    </tr>--%>
+
 <%--                </table>--%>
-<%--            </div>--%>
-<%--            <div class="button_click">--%>
-<%--                <div></div>--%>
-<%--                <div class="btn_cancel">--%>
-<%--                    <button type="button" class="btn btn-secondary close_popup">--%>
-<%--                        Hủy bỏ--%>
+<%--                <div class="add-btn-work">--%>
+<%--                    <button type="button" class="btn btn-secondary ">Hủy bỏ--%>
+<%--                    </button>--%>
+<%--                    <button onclick="return checkvalidate('#add-project1')"--%>
+<%--                            type="submit" class="btn btn-primary">--%>
+<%--                        Lưu--%>
 <%--                    </button>--%>
 <%--                </div>--%>
-<%--                <div class="btn_ok">--%>
-<%--                    <button type="submit" class="btn btn-primary">Lưu</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </form>--%>
-<%--</div>--%>
+<%--            </form>--%>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -302,6 +256,12 @@
     // show.addEventListener('click', function () {
     //     popup.classList.remove("hide__popup");
     // })
+    let modalFooter = document.querySelector("#myModal-footer");
+    var span = document.querySelector("#close2");
+    span.addEventListener("click", function () {
+        modalFooter.style.display = "none";
+    });
+
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal
         var modal = document.querySelector(idmodal);

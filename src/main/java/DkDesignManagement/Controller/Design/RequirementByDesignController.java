@@ -32,15 +32,17 @@ public class RequirementByDesignController {
         Project project = projectDao.getProject(projectID);
 
         String indexPage = request.getParameter("pageNo");
-        int page = 0;
+        int page = 1;
         if (indexPage != null) {
             page = Integer.parseInt(indexPage);
         }
 
+        int index = page * 10 - 10;
+
         int totalRequirement = requirementDao.getAllRequirementByProjectID(projectID).size();
         int totalPages = (totalRequirement % 10 == 0) ? totalRequirement / 10 : totalRequirement / 10 + 1;
 
-        List<Requirement> requirements = requirementDao.getPaginationRequirementByProjectID(projectID, page);
+        List<Requirement> requirements = requirementDao.getPaginationRequirementByProjectID(projectID, index);
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page

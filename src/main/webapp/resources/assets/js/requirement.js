@@ -102,3 +102,50 @@ function onClickDelete(id) {
         }
     })
 }
+
+function showPopUp(id, name, detail) {
+
+    let html = "<form action=\"update-requirement\" method=\"post\" id=\"add-project1\"\n" +
+        "                  class=\"\">\n" +
+        "                <input type=\"text\" name=\"requirementId\" hidden\n" +
+        "                       value=\"" + id + "\">\n" +
+        "                <table class=\"table table-borderless\">\n" +
+        "                    <tr>\n" +
+        "                        <td>Vị trí<label class=\"text-danger\">*</label>:</td>\n" +
+        "                        <td>\n" +
+        "                            <input style=\"width: 500px;\" class=\"info-text\"\n" +
+        "                                   name=\"name\" type=\"text\"\n" +
+        "                                   value=\"" + name + "\">\n" +
+        "                            <div class=\"text-danger error\"></div>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "                    <tr>\n" +
+        "                        <td>Yêu cầu<label class=\"text-danger\">*</label>:</td>\n" +
+        "                        <td>\n" +
+        "                                                                    <textarea class=\"info-text\" name=\"detail\" id=\"\"\n" +
+        "                                                                              cols=\"60\"\n" +
+        "                                                                              rows=\"3\">" + detail + "</textarea>\n" +
+        "                            <div class=\"text-danger error\"></div>\n" +
+        "                        </td>\n" +
+        "                    </tr>\n" +
+        "\n" +
+        "                </table>\n" +
+        "                <div class=\"add-btn-work\">\n" +
+        "                    <button type=\"button\" class=\"btn btn-secondary \">Hủy bỏ\n" +
+        "                    </button>\n" +
+        "                    <button onclick=\"return checkvalidate('#add-project1')\"\n" +
+        "                            type=\"submit\" class=\"btn btn-primary\">\n" +
+        "                        Lưu\n" +
+        "                    </button>\n" +
+        "                </div>\n" +
+        "            </form>";
+
+    let showHtml = document.querySelector("#showHtml");
+
+    let btnClick = document.getElementById("myBtn-project");
+    let modalFooter = document.querySelector("#myModal-footer");
+    console.log(modalFooter)
+    modalFooter.style.display = "block";
+    console.log(html);
+    showHtml.innerHTML = html;
+}
