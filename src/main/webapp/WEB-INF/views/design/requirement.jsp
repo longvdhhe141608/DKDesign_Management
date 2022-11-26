@@ -30,19 +30,19 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
-                </div>
+<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+<%--                    <select style="border: none; padding: 6px;">--%>
+<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+<%--                    </select>--%>
+<%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                 <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-                        style="background: blue"
+
                 <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
@@ -57,6 +57,7 @@
                    href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
+                        style="background: blue"
                         value="Yêu cầu của khách hàng"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"

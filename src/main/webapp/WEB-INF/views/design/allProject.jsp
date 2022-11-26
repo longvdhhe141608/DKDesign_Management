@@ -16,20 +16,18 @@
 <body>
 <div class="container-fluid" style="padding: 0">
     <jsp:include page="header.jsp"/>
-    <div class="container_content body_page">
+    <div class="body_page">
         <jsp:include page="nav_left.jsp"/>
-        <div class="summary  content_first">
+        <div class="summary">
             <div class="title">
                 <h4>Tất cả công trình</h4>
             </div>
-            <div class="content-function">
-                <div>
+            <div class="">
 
-                </div>
-                <div style="display: flex; justify-content: space-evenly; margin-left: 28%;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 20px">
                     <form action="${pageContext.request.contextPath}/design/project/view-all-project" method="get"
-                          style="display: flex; justify-content: space-evenly;">
-                        <div class="function-two">
+                          style="display: flex; justify-content: end;">
+                        <div style="margin-right: 10px">
                             <div class="dropdown">
                                 <%--                            <form action="${pageContext.request.contextPath}/design/project/search-by-year"--%>
                                 <%--                                  method="post">--%>
@@ -44,7 +42,7 @@
                                 <%--                            </form>--%>
                             </div>
                         </div>
-                        <div class="function-thir">
+                        <div class="">
                             <div class="function_search">
                                 <%--                            <form action="${pageContext.request.contextPath}/design/project/search-by-name"--%>
                                 <%--                                  method="post">--%>
@@ -129,7 +127,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination">
+                <div class="pagination" style="display: flex;justify-content: end">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             <c:forEach items="${requestScope.lsPage}" var="page">

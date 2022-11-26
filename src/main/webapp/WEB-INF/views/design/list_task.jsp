@@ -6,7 +6,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Trang chủ</title>
+    <title>Danh sách công việc</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
           integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -28,10 +28,10 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; border-radius: 15px; height: 23px; background-color: #b7bacb">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
+<%--                    <select style="border-radius: 5px; padding: 6px;">--%>
+<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+<%--                    </select>--%>
                 </div>
             </div>
             <div class="list-task-head">
@@ -39,12 +39,13 @@
                         class="btn btn-secondary"
                         type="button"
                 <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-                        style="background: blue"
+
                 <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
+                        style="background: blue"
                         value="Công việc"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
@@ -64,10 +65,14 @@
         <div class="list-task-main">
             <div class="">
                 <div class="row list-task-detail">
-                    <div class="col-4 list-task-header">Công việc</div>
+                    <div class="col-3 list-task-header">Công việc</div>
                     <div class="col-2 list-task-header">Phân công</div>
-                    <div class="col-3 list-task-header">Thời gian bắt đầu</div>
-                    <div class="col-3 list-task-header">Thời gian dự kiến kết thúc</div>
+                    <div class="col-2 list-task-header">Thời gian bắt đầu</div>
+
+                    <div class="col-2 list-task-header">Thời gian dự kiến kết thúc</div>
+                    <div class="col-2 list-task-header">Thời gian kết thúc</div>
+                    <div class="col-1 list-task-header">Trạng thái</div>
+
                 </div>
                 <c:forEach items="${taskDtoList}" var="i">
                     <details>
@@ -77,7 +82,7 @@
                         <c:forEach items="${i.tasksList}" var="t">
 <%--                            <c:if test="${ t.assignedTo == sessionScope.loginUser.id}">--%>
                                 <div class="row designer-table" style="background: rgba(0, 0, 0, 0.2); height: 40px">
-                                    <div class="col-4" style="border: 1px solid gray;">
+                                    <div class="col-3" style="border: 1px solid gray;">
                                         <div class="" style="display: grid; grid-template-columns: 1fr 100px; margin-top: 5px">
                                             <button style="border: none; background-color: #cccccc; justify-self: start;"
                                                     onclick="myFunction('.sub-task-detail')">
@@ -90,14 +95,16 @@
                                         </div>
                                     </div>
                                     <div class="col-2" style="border: 1px solid gray;">${t.nameEmployee}</div>
-                                    <div class="col-3" style="border: 1px solid gray;">${t.startingDate}</div>
-                                    <div class="col-3" style="border: 1px solid gray;">${t.endedDate}</div>
+                                    <div class="col-2" style="border: 1px solid gray;">${t.startingDate}</div>
+                                    <div class="col-2" style="border: 1px solid gray;">${t.endedDate}</div>
+                                    <div class="col-2" style="border: 1px solid gray;"></div>
+                                    <div class="col-1" style="border: 1px solid gray;"></div>
                                 </div>
 <%--                            </c:if>--%>
                             <c:forEach items="${i.subTasksList}" var="s">
                                 <c:if test="${s.taskID == t.id}">
                                     <div id="" class="row sub-task-detail" style="display: none; height: 30px">
-                                        <div class="col-4 link-chi-tiet-cong-viec"
+                                        <div class="col-3 link-chi-tiet-cong-viec"
                                              style="border: 1px solid gray; display: flex; justify-content: space-between; ">
                                             <div class="">
                                                     ${s.taskName}
@@ -110,8 +117,10 @@
                                             </div>
                                         </div>
                                         <div class="col-2" style="border: 1px solid gray;">${s.nameEmployee}</div>
-                                        <div class="col-3" style="border: 1px solid gray;">${s.startingDate}</div>
-                                        <div class="col-3" style="border: 1px solid gray;">${s.startingDate}</div>
+                                        <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
+                                        <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
+                                        <div class="col-2" style="border: 1px solid gray;"></div>
+                                        <div class="col-1" style="border: 1px solid gray;">đồng ý</div>
                                     </div>
                                 </c:if>
                             </c:forEach>
