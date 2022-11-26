@@ -31,15 +31,21 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border-radius: 5px; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
-                </div>
-                <div>
-                    <button class="btn btn-primary">Lưu</button>
-                </div>
+
+                <form action="change-status" method="post">
+                    <input type="text" name="projectId" value="${project.id}" hidden="">
+                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle">
+                            <c:forEach items="${listStatus}" var="status">
+                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
+
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
@@ -141,13 +147,13 @@
                         <td>Hiển thị file:</td>
                         <td>
                             <div id="fileInput" class="container js-file-list">
-<%--                                <iframe--%>
-<%--                                        src="http://res.cloudinary.com/dgbzprb8l/image/upload/v1669132728/image/default/1669132726032-Capstone_Fa22_G4-SWP493-ERD_Diagram.pdf.pdf"--%>
-<%--                                        frameBorder="0"--%>
-<%--                                        scrolling="auto"--%>
-<%--                                        height="100%"--%>
-<%--                                        width="100%"--%>
-<%--                                ></iframe>--%>
+                                <%--                                <iframe--%>
+                                <%--                                        src="http://res.cloudinary.com/dgbzprb8l/image/upload/v1669132728/image/default/1669132726032-Capstone_Fa22_G4-SWP493-ERD_Diagram.pdf.pdf"--%>
+                                <%--                                        frameBorder="0"--%>
+                                <%--                                        scrolling="auto"--%>
+                                <%--                                        height="100%"--%>
+                                <%--                                        width="100%"--%>
+                                <%--                                ></iframe>--%>
                             </div>
                         </td>
                     </tr>
@@ -173,6 +179,10 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
     $(document).ready(function () {
         $('#fileInput').on('change', function () {
             var files = $(this)[0].files;
