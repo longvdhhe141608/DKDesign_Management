@@ -53,4 +53,18 @@ public class ImageAndFileDao {
         }
         return check;
     }
+
+    public int getTotalFile(int subTaskID) {
+
+        List<ImageAndFile> files = new ArrayList<>();
+        String sql = "SELECT * FROM dkmanagement.image_and_file where task_id = ?;";
+
+        try {
+            files = jdbcTemplate.query(sql, new MapperImageAndFile(), subTaskID);
+            return files.size();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

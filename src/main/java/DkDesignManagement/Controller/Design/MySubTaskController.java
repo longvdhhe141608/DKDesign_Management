@@ -32,15 +32,17 @@ public class MySubTaskController {
         String textSearch = request.getParameter("textSearch");
         String indexPage = request.getParameter("pageNo");
 
-        int page = 0;
+        int page = 1;
         if (indexPage != null) {
             page = Integer.parseInt(indexPage);
         }
 
+        int index = page * 10 - 10;
+
         int totalMyTask = taskDAO.getTotalAllMyTask(a.getId(), textSearch);
         int totalPages = (totalMyTask % 10 == 0) ? totalMyTask / 10 : totalMyTask / 10 + 1;
 
-        List<MyTaskDto> myTaskDtoList = taskDAO.getAllMyTask(a.getId(), page, textSearch);
+        List<MyTaskDto> myTaskDtoList = taskDAO.getAllMyTask(a.getId(), index, textSearch);
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page

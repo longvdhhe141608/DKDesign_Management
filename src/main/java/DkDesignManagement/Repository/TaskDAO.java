@@ -6,6 +6,7 @@ import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Mapper.*;
 import DkDesignManagement.model.MyTaskDto;
 import DkDesignManagement.model.TaskWaitDto;
+import DkDesignManagement.utils.Constant;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,9 +59,9 @@ public class TaskDAO {
         return taskList;
     }
 
-    public List<Task> getAllSubTask(int pageNumber, int page,int projectId, String status, String name, String accountId) {
+    public List<Task> getAllSubTask(int pageNumber, int page, int projectId, String status, String name, String accountId) {
 
-        String sql = "select * from task t where (1=1) and t.project_id = "+projectId+"  ";
+        String sql = "select * from task t where (1=1) and t.project_id = " + projectId + "  ";
 
         if (!ObjectUtils.isEmpty(status)) {
             sql += " and (status = " + status + " or status = 5) ";
@@ -79,9 +80,9 @@ public class TaskDAO {
         return taskList;
     }
 
-    public List<Task> getAllSubTaskViewProcess(int pageNumber, int page,int projectId) {
+    public List<Task> getAllSubTaskViewProcess(int pageNumber, int page, int projectId) {
 
-        String sql = "select * from task t where (1=1) and t.project_id = "+projectId+"   and t.task_id is not null ";
+        String sql = "select * from task t where (1=1) and t.project_id = " + projectId + "   and t.task_id is not null ";
 
         sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 
@@ -90,7 +91,7 @@ public class TaskDAO {
     }
 
     public int countSubTask(int projectId, String status, String name, String accountId) {
-        String sql = "select count(*)  from task t where (1=1) and t.project_id = "+projectId+" ";
+        String sql = "select count(*)  from task t where (1=1) and t.project_id = " + projectId + " ";
 
         if (!ObjectUtils.isEmpty(status)) {
             sql += " and ( status = " + status + " or status = 5) ";
@@ -106,7 +107,7 @@ public class TaskDAO {
     }
 
     public int countSubTaskViewProcess(int projectId) {
-        String sql = "select count(*)  from task t where (1=1) and t.project_id = "+projectId+"  and t.task_id is not null  ";
+        String sql = "select count(*)  from task t where (1=1) and t.project_id = " + projectId + "  and t.task_id is not null  ";
 
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
@@ -346,7 +347,7 @@ public class TaskDAO {
                 "left join accounts a on a.id = t.assignedto \n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "left join employees e on a.id =e.id_acc\n" +
-                "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n" +
+                "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n AND t.status != 5 " +
                 "Group By t.id;";
         try {
 
@@ -458,7 +459,7 @@ public class TaskDAO {
         return check;
     }
 
-    public int totalTaskWait(int projectID, String statusID, String textSearch) {
+    public int totalTaskWait(int projectID, int statusID, String textSearch, int accID) {
 
         int totalPage = 0;
         List<TaskWaitDto> waitDtoList = new ArrayList<>();
@@ -467,17 +468,20 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ?\n";
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =?\n";
 
-        if (!ObjectUtils.isEmpty(statusID) && !statusID.equals("default")) {
-            sql += " and st.id =  " + statusID;
+        if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
+            sql += " and t.status =  " + statusID;
         }
 
         if (!ObjectUtils.isEmpty(textSearch)) {
-            sql += " and t.task_name like '" + textSearch + "' ";
+            sql += " and t.task_name like '%" + textSearch + "%' ";
         }
+
+        sql += " group by t.id";
+
         try {
-            waitDtoList = jdbcTemplate.query(sql, new MapperTaskWaitDto(), projectID);
+            waitDtoList = jdbcTemplate.query(sql, new MapperTaskWaitDto(), projectID, accID);
             totalPage = waitDtoList.size();
         } catch (Exception e) {
             e.printStackTrace();
@@ -486,28 +490,29 @@ public class TaskDAO {
         return totalPage;
     }
 
-    public List<TaskWaitDto> getAllTaskWaitByDesign(int projectID, int indexPage, String statusID, String textSearch) {
+    public List<TaskWaitDto> getAllTaskWaitByDesign(int projectID, int indexPage, int statusID, String textSearch, int accID) {
 
         List<TaskWaitDto> waitDtoList = new ArrayList<>();
+
         String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline," +
                 " t.number_of_file, st.status_task, t.status FROM dkmanagement.task t\n" +
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ?\n";
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? \n";
 
-        if (!ObjectUtils.isEmpty(statusID) && !statusID.equals("default")) {
-            sql += " and st.id =  " + statusID;
+        if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
+            sql += " and t.status =  " + statusID;
         }
 
         if (!ObjectUtils.isEmpty(textSearch)) {
-            sql += " and t.task_name like '" + textSearch + "' ";
+            sql += " and t.task_name like '%" + textSearch + "%' ";
         }
-
+//        limit ?,10
         sql += " group by t.id limit ?,10;";
 
         try {
-            waitDtoList = jdbcTemplate.query(sql, new MapperTaskWaitDto(), projectID, indexPage);
+            waitDtoList = jdbcTemplate.query(sql, new MapperTaskWaitDto(), projectID, accID, indexPage);
             return waitDtoList;
         } catch (Exception e) {
             e.printStackTrace();
@@ -568,5 +573,26 @@ public class TaskDAO {
             e.printStackTrace();
         }
         return check;
+    }
+
+    public List<Tasks> getAllSubTasksByTaskID(int taskID) {
+        List<Tasks> tasksList = new ArrayList<>();
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
+                "left join project p on s.project_id = p.id \n" +
+                "left join task t on s.id = t.section_id\n" +
+                "left join project_participation pp on p.id = pp.project_id \n" +
+                "left join accounts a on a.id = t.assignedto \n" +
+                "left join requirement r on p.id = r.project_id\n" +
+                "left join employees e on a.id =e.id_acc\n" +
+                "where t.task_id= ?\n AND t.status != 5 " +
+                "Group By t.id;";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTasks(), taskID);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }
