@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/member.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -101,7 +102,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <div class="button_click">
+                                        <div class="button_click" style="display: flex;justify-content: end">
 
                                             <div class="btn_cancel">
                                                 <button type="button" class="btn btn-secondary close_popup">Hủy
