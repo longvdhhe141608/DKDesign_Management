@@ -205,9 +205,9 @@ public class MemberDao {
     }
 
     public int updateMemberStatus(int status, String username) {
-        String sql = "UPDATE `dkmanagement`.`accounts` " +
-                "SET `status` = ?" +
-                "WHERE (`username` = ?)";
+        String sql = "UPDATE `dkmanagement`.`accounts`  " +
+                " SET `status` = ? " +
+                " WHERE (`username` = ?)";
         int query = jdbcTemplate.update(sql, status, username);
         return query;
     }

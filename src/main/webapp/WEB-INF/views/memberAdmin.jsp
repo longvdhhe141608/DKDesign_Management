@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js" type="text/javascript"></script>
+    <script src="sorttable.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -41,28 +42,30 @@
 
                 <div style="display: flex;">
                     <form action="searchMember" style="display: flex">
-                    <%--start searching by role--%>
-                    <div class="function-two" style="margin-right:20px;">
-                                    <select onchange="this.form.submit()" style="height: 38px" name="roleSearch" class="btn btn-secondary dropdown-toggle">
-                                        <option value="0">Thành viên</option>
-                                        <option value="3" ${roleSearch==3?"selected":""} >Thiết Kế</option>
-                                        <option value="2" ${roleSearch==2?"selected":""} >Trưởng Nhóm</option>
-                                    </select>
+                        <%--start searching by role--%>
+                        <div class="function-two" style="margin-right:20px;">
+                            <select onchange="this.form.submit()" style="height: 38px" name="roleSearch"
+                                    class="btn btn-secondary dropdown-toggle">
+                                <option value="0">Thành viên</option>
+                                <option value="3" ${roleSearch==3?"selected":""} >Thiết Kế</option>
+                                <option value="2" ${roleSearch==2?"selected":""} >Trưởng Nhóm</option>
+                            </select>
 
-                    </div>
-                    <%--end searching by role--%>
+                        </div>
+                        <%--end searching by role--%>
 
-                    <%--start searching member by name--%>
-                    <div class="function-thir">
-                        <div class="function_search">
+                        <%--start searching member by name--%>
+                        <div class="function-thir">
+                            <div class="function_search">
                                 <div class="wap_search">
-                                    <input name="nameSearch" value="${nameSearch}" style="margin-right: 10px;" type="text" class="search_term"
+                                    <input name="nameSearch" value="${nameSearch}" style="margin-right: 10px;"
+                                           type="text" class="search_term"
                                            placeholder="tên thành viên">
                                     <input type="submit" class="btn btn-primary" value="tìm kiếm">
                                 </div>
+                            </div>
                         </div>
-                    </div>
-                    <%--end seearching member by name--%>
+                        <%--end seearching member by name--%>
                     </form>
                 </div>
             </div>
@@ -70,14 +73,15 @@
 
         <%-- start member list in table--%>
         <div>
-            <table class="table table-bordered">
+            <table class="table table-bordered sortable">
+
                 <tr>
-                    <th scope="col">Tên</th>
-                    <th scope="col">Chức danh</th>
-                    <th scope="col">Số điện thoại</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Địa chỉ</th>
-                    <th scope="col">Trạng thái</th>
+                    <th>Tên</th>
+                    <th>Chức danh</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Địa chỉ</th>
+                    <th>Trạng thái</th>
                 </tr>
 
                 <c:forEach var="member" items="${memberList}">
@@ -165,7 +169,6 @@
     </div>
 </div>
 <%--end popup add member--%>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
