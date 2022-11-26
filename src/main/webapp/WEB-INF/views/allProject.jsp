@@ -76,7 +76,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Chi phí thiết kế<label class="text-danger">*</label>:</td>
-                                                        <td><input class="info-text" type="text" name="expectedCost">
+                                                        <td><input class="info-text" type="text" name="expectedCost">đồng
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
@@ -122,7 +122,7 @@
                                             <div class="button_click" style="display: flex;justify-content: end">
 
                                                 <div class="btn_cancel" style="margin-right: 10px">
-                                                    <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                    <button type="submit" class="btn btn-secondary">Hủy
                                                         bỏ
                                                     </button>
                                                 </div>
@@ -182,12 +182,12 @@
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
                                 <td class="name-and-link">
-                                    <div class="name-project col-8">
+                                    <div class="name-project">
                                             ${i.projectName}
                                     </div>
-                                    <div></div>
+
                                     <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
-                                    <div class="links col-4">
+                                    <div class="links">
                                         <a class="link-detail"
                                            href="${pageContext.request.contextPath}/project/summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>

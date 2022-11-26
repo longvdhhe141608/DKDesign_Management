@@ -478,7 +478,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Trang chủ</title>
+    <title>Công việc cá nhân</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -495,12 +495,12 @@
 <jsp:include page="header.jsp"/>
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
-    <div class=" body_page">
-        <div id="narbar_menu"></div>
-        <div class="summary  " style="margin-top: 20px;">
+
+
+        <div class="summary" style="margin-top: 20px;">
 
             <div class="title">
-                <h4>Tất cả công công việc cá nhân</h4>
+                <h4>Công việc cá nhân</h4>
             </div>
             <div class="table_content">
                 <div class=" table-responsive-sm">
@@ -513,7 +513,7 @@
                             <th scope="col">Thời gian dự kiến kết thúc</th>
                             <th scope="col">Thời gian kết thúc</th>
                             <th scope="col">Tên công trình</th>
-                            <th scope="col"></th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -545,19 +545,19 @@
                                         ${i.endDate}
                                 </td>
                                 <td> ${i.projectName}</td>
-                                <td>
-                                    <c:if test="${i.status == 1}">
-                                        <a href="${pageContext.request.contextPath}/design/sub-task/view-edit-sub-task?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}"><i
-                                                class="fa-regular fa-pen-to-square"></i></a>
-                                    </c:if>
-                                </td>
+<%--                                <td>--%>
+<%--                                    <c:if test="${i.status == 1}">--%>
+<%--                                        <a href="${pageContext.request.contextPath}/design/sub-task/view-edit-sub-task?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}"><i--%>
+<%--                                                class="fa-regular fa-pen-to-square"></i></a>--%>
+<%--                                    </c:if>--%>
+<%--                                </td>--%>
                             </tr>
                         </c:forEach>
 
                         </tbody>
                     </table>
                 </div>
-                <div class="pagination">
+                <div class="pagination" style="display: flex;justify-content: end">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             <c:forEach items="${lsPage}" var="page">
@@ -571,7 +571,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

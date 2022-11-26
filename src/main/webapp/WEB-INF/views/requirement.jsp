@@ -118,7 +118,7 @@
                             </table>
                             <div class="add-btn-work" style="display: flex; justify-content: end">
                                 <button class="btn btn-secondary " style="margin-right: 5px">Hủy bỏ</button>
-                                <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
+                                <button onclick="return checkvalidate('#add-project2')" type="submit"
                                         class="btn btn-primary">Thêm
                                 </button>
                             </div>
@@ -165,7 +165,7 @@
                                                 id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>
                                         <div id="myModal-footer" class="modal" >
                                             <!-- Modal content -->
-                                            <div class="modal-content" style=" width: 50%;height: 40%;">
+                                            <div class="modal-content" style=" width: 50%;height: 70%;">
                                                 <span id="close2" class="close">&times;</span>
                                                 <div class="project-add-task">
                                                     <form action="update-requirement" method="post" id="add-project1" class="">
@@ -190,7 +190,7 @@
 
                                                         </table>
                                                         <div class="add-btn-work">
-                                                            <button type="button"class="btn btn-secondary ">Hủy bỏ</button>
+                                                            <button type="button"class="btn btn-secondary" style="margin-right: 10px">Hủy bỏ</button>
                                                             <button onclick="return checkvalidate('#add-project1')"
                                                                     type="submit" class="btn btn-primary">Lưu
                                                             </button>

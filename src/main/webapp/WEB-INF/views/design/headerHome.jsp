@@ -22,13 +22,13 @@
     <script src="<c:url value="/resources/assets/js/bodyAdmin.js"/>"></script>
 </head>
 <body>
-<div class="container-fluid" style="padding: 0">
+
     <jsp:include page="header.jsp"/>
-    <!-- body -->
+
     <div class="body_page">
-        <div class="nav-left">
+
             <jsp:include page="nav_left.jsp"/>
-        </div>
+
         <div class="tab_content ">
             <div id="London" class="city">
                 <div class="container-fluid">
@@ -167,7 +167,7 @@
             </div>
         </div>
     </div>
-</div>
+
 <!-- footer -->
 <!-- <div class="footer_page"></div> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

@@ -18,7 +18,7 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
-    <script src="<c:url value="/resources/assets/js/allProject.js"/>"></script>
+    <script src="<c:url value="/resources/assets/js/summary-edit.js"/>"></script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>

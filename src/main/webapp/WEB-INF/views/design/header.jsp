@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="container-fluid" style="padding: 0;">
-    <div class="header_page row " style="background-color: #383F51; height: 53px">
+    <div class="header_page row" style="background-color: #383F51; height: 50px;z-index: 1">
         <div class="header_right col-1">
             <div class="logo">
                 <a href="">
