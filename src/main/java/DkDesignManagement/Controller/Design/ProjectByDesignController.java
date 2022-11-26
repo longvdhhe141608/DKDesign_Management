@@ -51,10 +51,12 @@ public class ProjectByDesignController {
         HttpSession session = request.getSession();
 
         String indexPage = request.getParameter("pageNo");
-        int page = 0;
+        int page = 1;
         if (indexPage != null) {
             page = Integer.parseInt(indexPage);
         }
+
+        int index = page * 10 - 10;
 
 
         Account account = (Account) session.getAttribute("loginUser");
@@ -69,7 +71,7 @@ public class ProjectByDesignController {
             lsPage.add(i);
         }
 
-        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, date, page));
+        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, date, index));
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("totalProject", totalProject);
         view.addObject("lsPage", lsPage);
@@ -100,10 +102,12 @@ public class ProjectByDesignController {
         Project project = projectDao.getProject(projectID);
 
         String indexPage = request.getParameter("pageNo");
-        int page = 0;
+        int page = 1;
         if (indexPage != null) {
             page = Integer.parseInt(indexPage);
         }
+
+        int index = page * 10 - 10;
 
         String roleID = (request.getParameter("role"));
         String textSearch = request.getParameter("textSearch");
@@ -111,7 +115,7 @@ public class ProjectByDesignController {
         int totalMember = projectParticipationDao.totalAllMember(project.getId(), roleID, textSearch);
         int totalPages = (totalMember % 10 == 0) ? totalMember / 10 : totalMember / 10 + 1;
 
-        List<MemberActiveDto> memberActiveDtos = projectParticipationDao.getAllMember(project.getId(), page, roleID, textSearch);
+        List<MemberActiveDto> memberActiveDtos = projectParticipationDao.getAllMember(project.getId(), index, roleID, textSearch);
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page

@@ -74,7 +74,7 @@
                         <div class="dropdown">
                             <select style="height: 38px"  class="btn btn-secondary dropdown-toggle"
                                     name="status">
-                                <option ${status == "default" ? "selected": ""} value="default">Default</option>
+                                <option ${status == 0 ? "selected": ""} value="0">Default</option>
                                 <c:forEach items="${statusList}" var="i">
                                     <option ${status == i.id ? "selected": ""} value="${i.id}">${i.statusTask}</option>
                                 </c:forEach>
@@ -111,6 +111,7 @@
                     <th scope="col">Ghi chú</th>
                 </tr>
                 <c:forEach items="${waitDtoList}" var="i">
+
                     <tr>
                         <td>${i.taskName}</td>
                         <td>${i.username}</td>
