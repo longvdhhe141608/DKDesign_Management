@@ -27,12 +27,26 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${task.projectName}</h3>
-                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border-radius: 5px; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
-                </div>
+                <form action="${pageContext.request.contextPath}/project/change-status" method="post">
+                    <input type="text" name="projectId" value="${project.id}" hidden="">
+                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle">
+                            <c:forEach items="${listStatus}" var="status">
+                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <c:if test="${sessionScope.loginUser.role_id == 2}">
+                            <c:if test="${project.status != 3 }">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </c:if>
+                            <c:if test="${project.status == 3 }">
+                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                            </c:if>
+                        </c:if>
+                    </div>
+                </form>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${task.projectId}"><input
@@ -143,9 +157,11 @@
             </table>
             <div>
                 <p>Danh sách công việc phụ :</p>
+                <c:if test="${project.status == 1}">
                 <div class="add" id="show-member">
                     <button class="btn btn-primary">+ Thêm công việc phụ</button>
                 </div>
+                </c:if>
             </div>
             <div>
                 <c:forEach items="${task.listSubTask}" var="subTask">
@@ -155,11 +171,13 @@
 
         </div>
         <div style=" text-align: end; margin-left: 10px;">
+            <c:if test="${project.status == 1}">
                 <a href="edit-task?taskId=${task.taskId}">
                     <button class="btn btn-primary">
                         Chỉnh sửa
                     </button>
                 </a>
+            </c:if>
         </div>
         <div class="task-cmt-details">
         <p style="font-size: 20px;">Bình luận</p>

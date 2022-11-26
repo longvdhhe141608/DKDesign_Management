@@ -32,7 +32,8 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
 
-                <form action="change-status" method="post">
+
+                <form action="${pageContext.request.contextPath}/project/change-status" method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle">
@@ -42,9 +43,17 @@
                         </select>
                     </div>
                     <div>
-                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <c:if test="${sessionScope.loginUser.role_id == 2}">
+                            <c:if test="${project.status != 3 }">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </c:if>
+                            <c:if test="${project.status == 3 }">
+                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                            </c:if>
+                        </c:if>
                     </div>
                 </form>
+
 
             </div>
             <div class="list-task-head">
@@ -161,11 +170,13 @@
             </div>
             <div style="display: flex; justify-content: space-between">
                 <div></div>
-                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">
-                    <button class="btn" style="background-color: royalblue; color: white">
-                        Chỉnh sửa
-                    </button>
-                </a>
+                <c:if test="${project.status == 1}">
+                    <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">
+                        <button class="btn" style="background-color: royalblue; color: white">
+                            Chỉnh sửa
+                        </button>
+                    </a>
+                </c:if>
             </div>
         </div>
     </div>
