@@ -145,8 +145,8 @@
                                 <div class="wap_search">
                                     <input name="nameSearch" value="${nameSearch}" style="margin-right: 10px;"
                                            type="text" class="search_term"
-                                           placeholder="tên thành viên">
-                                    <input type="submit" class="btn btn-primary" value="tìm kiếm">
+                                           placeholder="Tên thành viên">
+                                    <input type="submit" class="btn btn-primary" value="Tìm kiếm">
                                 </div>
                             </div>
                         </div>

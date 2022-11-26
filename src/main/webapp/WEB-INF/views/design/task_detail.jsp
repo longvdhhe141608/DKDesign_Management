@@ -41,12 +41,13 @@
                         class="btn btn-secondary"
                         type="button"
                 <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-                        style="background: blue"
+
                 <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
+                        style="background: blue"
                         value="Công việc"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
@@ -114,7 +115,7 @@
                 </tr>
 
             </table>
-            <div>
+            <div style="margin-left: 10px">
                 <p>Kế hoạch công việc:</p>
                 <div class="add" id="show-member">
                     <button class="btn btn-primary">+ Thêm công việc phụ</button>
@@ -172,7 +173,7 @@
             <div class="info">
                 <table class="table table-borderless">
                     <tr>
-                        <td>nhiệm vụ:</td>
+                        <td>Nhiệm vụ:</td>
                         <td>${sessionScope.loginUser.username}</td>
                     </tr>
                     <tr>
@@ -188,7 +189,7 @@
                     <tr>
                         <td>Yêu cầu của khách hàng<label class="text-danger">*</label>:</td>
                         <td>
-                            <select name="requirementID" id="">
+                            <select class="btn btn-secondary" name="requirementID" id="">
                                 <c:forEach items="${requirements}" var="i">
                                     <option value="${i.id}">${i.requirementName}</option>
                                 </c:forEach>

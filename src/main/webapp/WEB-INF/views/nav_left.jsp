@@ -75,7 +75,7 @@
 <%--role admin--%>
 <c:if test="${loginUser.role_id == 1}">
 <div class="container-fluid" style="padding: 0">
-    <div id="tab_menu" class="tab_menu">
+    <div  class="tab_menu">
         <button class="tab_button">
             <a href="${pageContext.request.contextPath}/admin/memberlist">
                 <i class="fa-solid fa-house"></i>
