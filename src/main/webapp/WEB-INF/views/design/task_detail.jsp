@@ -19,6 +19,7 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<c:url value="/resources/assets/js/task-details.js"/>"></script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -28,12 +29,12 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
-                </div>
+<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+<%--                    <select style="border-radius: 5px; padding: 6px;">--%>
+<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+<%--                    </select>--%>
+<%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -63,7 +64,7 @@
             </div>
         </div>
         <div class="task-details-main">
-            <table class="table table-borderless" style="border: 0;">
+            <table class="table table-borderless">
                 <tr>
                     <h4>${tasks.taskName}</h4>
                 </tr>
@@ -111,10 +112,7 @@
                     <td>Tiến độ:</td>
                     <td>100%</td>
                 </tr>
-                <tr>
-                    <td>Ghi chú:</td>
-                    <td>-</td>
-                </tr>
+
             </table>
             <div>
                 <p>Kế hoạch công việc:</p>
@@ -167,11 +165,12 @@
 </div>
 <div class="popup hide__popup">
 
-    <form action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}" method="post">
+    <form id="add-sub-task" action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}" method="post">
         <div class="popup__content">
             <div class="title">
-                <h4>Thêm công việc phụ</h4>
-                <input type="text" placeholder="Tên công việc con" name="sub-task-name">
+                <h4>
+                <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">
+                    <div class="text-danger error"></div></h4>
             </div>
             <div class="info">
                 <table class="table table-borderless">
@@ -180,15 +179,17 @@
                         <td>${sessionScope.loginUser.username}</td>
                     </tr>
                     <tr>
-                        <td>Thời gian bắt đầu:</td>
-                        <td><input name="startDate" class="info-text" type="date"></td>
+                        <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
+                        <td><input id="inputstartdate" name="startDate" class="info-text" type="date"></td>
                     </tr>
                     <tr>
-                        <td>Thời gian dự kiến kết thúc:</td>
-                        <td><input class="info-text" type="date" name="endDate"></td>
+                        <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
+                        <td><input id="inputenddate" class="info-text" type="date" name="endDate">
+                            <div class="text-danger error"></div>
+                        </td>
                     </tr>
                     <tr>
-                        <td>Yêu cầu của khách hàng:</td>
+                        <td>Yêu cầu của khách hàng<label class="text-danger">*</label>:</td>
                         <td>
                             <select name="requirementID" id="">
                                 <c:forEach items="${requirements}" var="i">
@@ -198,8 +199,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Số lượng file:</td>
-                        <td><input class="info-text" type="number" name="numberOfFile"></td>
+                        <td>Số lượng file<label class="text-danger">*</label>:</td>
+                        <td><input class="info-text" type="number" name="numberOfFile">
+                            <div class="text-danger error"></div>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -211,7 +214,7 @@
                     </button>
                 </div>
                 <div class="btn_ok">
-                    <button type="submit" class="btn btn-primary">Lưu</button>
+                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu</button>
                 </div>
             </div>
         </div>

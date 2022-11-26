@@ -93,17 +93,17 @@ body {
     justify-content: end;
 }
 
-.name-project {
-    height: 25px;
-    width: 230px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+/*.name-project {*/
+/*    height: 25px;*/
+/*    width: 230px;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
 
-.name-project:hover {
-    overflow: visible;
-}
+/*.name-project:hover {*/
+/*    overflow: visible;*/
+/*}*/
 
 .form-name-project {
     display: flex;

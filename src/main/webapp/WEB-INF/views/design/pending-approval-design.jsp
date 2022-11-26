@@ -31,10 +31,10 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
+<%--                    <select style="border: none; padding: 6px;">--%>
+<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+<%--                    </select>--%>
                 </div>
             </div>
             <div class="list-task-head">
@@ -42,7 +42,7 @@
                         class="btn btn-secondary"
                         type="button"
                 <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-                        style="background: blue"
+
                 <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
@@ -53,6 +53,7 @@
                    href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
+                        style="background: blue"
                         value="Trạng thái"></a>
                 <a class="test"
                    href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}"><input
@@ -69,7 +70,7 @@
         <div>
             <h4>Công việc chờ phê duyệt</h4>
             <div class="my-task-search">
-                <form action="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task">
+                <form style="display: flex" action="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task">
                     <div class="my-task-search-name" style="margin-right:10px ;">
                         <div class="dropdown">
                             <select style="height: 38px"  class="btn btn-secondary dropdown-toggle"

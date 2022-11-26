@@ -26,23 +26,23 @@
 <jsp:include page="header.jsp"/>
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
-    <div class="requiment summary" style="margin-left: 20%;">
+    <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border: none; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
-                </div>
+<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+<%--                    <select style="border: none; padding: 6px;">--%>
+<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+<%--                    </select>--%>
+<%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                 <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-                        style="background: blue"
+
                 <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
@@ -63,6 +63,7 @@
                    href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
+                        style="background: blue"
                         value="Thành viên"></a>
             </div>
         </div>
@@ -70,11 +71,11 @@
         <div class="all-member">
 
             <form action="${pageContext.request.contextPath}/design/project/member-active" method="get">
-                <div class="content-function-member">
+                <div class="content-function-member" >
                     <div class="function-one">
 
                     </div>
-                    <div style="display: flex;">
+                    <div style="display: flex; justify-content: end">
                         <div class="function-two" style="margin-right:20px ;">
                             <div class="dropdown">
                                 <select style="height: 38px" class="btn btn-secondary dropdown-toggle"

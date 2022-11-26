@@ -187,41 +187,47 @@
             </div>
             <p style="font-size: 20px;">Bình luận</p>
             <c:if test="${task.taskStatus != 1}">
+                <div class=" task-cmt-details-main">
+                    <form class="task-detail-cmt" action="add-comment" method="post">
+                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                        <input name="taskId" type="text" value="${task.taskId}" hidden="">
+                        <input name="operation" type="text" value="subTaskDetail" hidden="">
+                        <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                        <button class="btn btn-primary">Gửi</button>
+                    </form>
+                </div>
                 <div class="task-cmt-details">
                     <c:if test="${listComment.size() > 0}">
                         <c:forEach items="${listComment}" var="comment">
                             <!----------item------------>
+                           <div style="display: flex">
                             <div class="task-cmt-details-main">
                                 <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                                <a class="name-avatar">${comment.accountName}</a>
-                                <a> ${comment.dateCountDown}</a></br>
-                                <p>${comment.content}</p>
+                                <span class="name-avatar">${comment.accountName}</span>
+                                <span> ${comment.dateCountDown}</span></br>
+                                <span>${comment.content}</span>
+
+                            </div>
+
+                            <div>
                                 <c:if test="${comment.isPin() ==true}">
-                                    <i class="fa-solid fa-thumbtack"></i>
-                                    <br>
-                                </c:if>
-                                <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                                <i class="fa-solid fa-thumbtack"></i>
+
+                                    </c:if>
+                                    <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
                                     <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
                                         <button type="button" class=" btn-primary">Pin</button>
                                     </a>
-                                </c:if>
-
-
+                                    </c:if>
+                              </div>
                             </div>
+                            </br>
                             <!----------item------------>
                         </c:forEach>
                     </c:if>
 
 
-                    <div class="task-detail-cmt">
-                        <form action="add-comment" method="post">
-                            <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                            <input name="taskId" type="text" value="${task.taskId}" hidden="">
-                            <input name="operation" type="text" value="subTaskDetail" hidden="">
-                            <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
-                            <button class="btn btn-primary">Gửi</button>
-                        </form>
-                    </div>
+
                 </div>
             </c:if>
 
