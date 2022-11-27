@@ -51,7 +51,7 @@
                         </td>
 
                         <td>
-                            <input id="name" name="name" type="text" required>
+                            <input value="${name}" id="name" name="name" type="text" required>
                         </td>
                     </tr>
                     <tr>

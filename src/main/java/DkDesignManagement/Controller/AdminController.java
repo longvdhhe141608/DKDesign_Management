@@ -7,12 +7,18 @@ import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.Impl.AccountServiceImpl;
 import DkDesignManagement.Service.Impl.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,13 +30,15 @@ import static DkDesignManagement.utils.ValidateUtils.*;
 @RequestMapping(value = "/admin")
 public class AdminController {
     @Autowired
-    AccountDao accountDAO;
+    private AccountDao accountDAO;
     @Autowired
-    AccountServiceImpl accountService;
+    private AccountServiceImpl accountService;
     @Autowired
-    EmployeeServiceImpl employeeService;
+    private EmployeeServiceImpl employeeService;
     @Autowired
-    MemberDao memberDAO;
+    private JavaMailSender mailSender;
+    @Autowired
+    private MemberDao memberDAO;
 
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
@@ -74,13 +82,43 @@ public class AdminController {
         String password = generateCommonLangPassword();
 
         int postNumber = 1;
-        String username = preCode + postNumber;
-        while (accountService.isExisted(username) == true) {
+        String usernameBuilder = preCode + postNumber;
+        while (accountService.isExisted(usernameBuilder) == true) {
             postNumber++;
-            username = preCode + postNumber;
+            usernameBuilder = preCode + postNumber;
         }
-
+        String username = usernameBuilder;
         if (employeeService.emailIsExisted(mail) == false) {
+            //send mail
+            String message = "Xin chào " + name + ",</br>" +
+                    "Tài khoản dkmanagement của bạn đã được tạo</br>" +
+                    "Tài khoản: " + username + "</br>" +
+                    "Mật Khẩu: " + password + "</br>" +
+                    "Vui lòng đăng nhập và đổi mật khẩu lần đầu để sử dụng tài khoản.</br>" +
+                    "Thân,</br>" +
+                    "Dkmangament Admin";
+
+//            SimpleMailMessage mailMessage = new SimpleMailMessage();
+//            mailMessage.setTo(mail);
+//            mailMessage.setSubject("New Account Created");
+//            mailMessage.setText(message);
+
+            mailSender.send(new MimeMessagePreparator() {
+                public void prepare(MimeMessage mimeMessage) throws MessagingException {
+                    MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+                    message.setTo(mail);
+                    message.setSubject("New Account Created");
+                    message.setText("Xin chào " + name + ",<br>" +
+                            "Tài khoản dkmanagement của bạn đã được tạo<br>" +
+                            "Tài khoản: " + username + "<br>" +
+                            "Mật Khẩu: " + password + "<br>" +
+                            "Vui lòng đăng nhập và đổi mật khẩu lần đầu để sử dụng tài khoản.<br>" +
+                            "Thân,<br>" +
+                            "Dkmangament Admin", true);
+
+                }
+            });
+
             accountDAO.addNewAccount(username, password, role);
             Account account = accountDAO.getAccount(username);
             memberDAO.addNewMember(name, mail, account.getId());
