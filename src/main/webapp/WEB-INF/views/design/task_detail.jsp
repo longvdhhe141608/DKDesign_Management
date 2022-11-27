@@ -29,12 +29,12 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-<%--                    <select style="border-radius: 5px; padding: 6px;">--%>
-<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-<%--                    </select>--%>
-<%--                </div>--%>
+                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+                <%--                    <select style="border-radius: 5px; padding: 6px;">--%>
+                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -49,7 +49,8 @@
                         type="button"
                         style="background: blue"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -58,7 +59,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -113,20 +115,22 @@
                     <td>Tiến độ:</td>
                     <td>${progressPercent} %</td>
                 </tr>
-
+                <tr>
+                    <td><p>Kế hoạch công việc:</p></td>
+                    <td>
+                        <div style="margin-left: 10px">
+                            <div class="add" id="show-member">
+                                <button class="btn btn-primary">+ Thêm công việc phụ</button>
+                            </div>
+                        </div>
+                        <div style="margin-left: 10px">
+                            <c:forEach items="${subTasksList}" var="i">
+                                <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${i.taskID}&sub-task-id=${i.id}">${i.taskName}</a><br>
+                            </c:forEach>
+                        </div>
+                    </td>
+                </tr>
             </table>
-            <div style="margin-left: 10px">
-                <p>Kế hoạch công việc:</p>
-                <div class="add" id="show-member">
-                    <button class="btn btn-primary">+ Thêm công việc phụ</button>
-                </div>
-
-            </div>
-            <div style="margin-left: 10px">
-                <c:forEach items="${subTasksList}" var="i">
-                    <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${i.taskID}&sub-task-id=${i.id}">${i.taskName}</a><br>
-                </c:forEach>
-            </div>
         </div>
         <%--        <div style=" text-align: end; margin-left: 10px;">--%>
         <%--            <form action="${pageContext.request.contextPath}/editTaskDetail">--%>
@@ -137,38 +141,41 @@
         <%--                </a>--%>
         <%--            </form>--%>
         <%--        </div>--%>
-<%--        <div class="task-cmt-details">--%>
-<%--            <p style="font-size: 20px;">Bình luận</p>--%>
-<%--            <div class="task-cmt-details-main">--%>
-<%--                <div style="display: flex;">--%>
-<%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
-<%--                    <div class="task-cmt-details-member">--%>
-<%--                        <span class="name-avatar">Nam</span>--%>
-<%--                        <span> 4 phút trước</span></br>--%>
-<%--                        <span class="cmt-details-total">ok đấy</span>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>--%>
+        <%--        <div class="task-cmt-details">--%>
+        <%--            <p style="font-size: 20px;">Bình luận</p>--%>
+        <%--            <div class="task-cmt-details-main">--%>
+        <%--                <div style="display: flex;">--%>
+        <%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
+        <%--                    <div class="task-cmt-details-member">--%>
+        <%--                        <span class="name-avatar">Nam</span>--%>
+        <%--                        <span> 4 phút trước</span></br>--%>
+        <%--                        <span class="cmt-details-total">ok đấy</span>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
+        <%--            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>--%>
 
-<%--            <div class="task-cmt-details-main">--%>
-<%--                <div style="display: flex;">--%>
-<%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
+        <%--            <div class="task-cmt-details-main">--%>
+        <%--                <div style="display: flex;">--%>
+        <%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
 
-<%--                    <input style="width: 500px; margin-right: 10px;" type="text" placeholder="Viết bình luận...">--%>
-<%--                    <button>Gửi</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <%--                    <input style="width: 500px; margin-right: 10px;" type="text" placeholder="Viết bình luận...">--%>
+        <%--                    <button>Gửi</button>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
     </div>
 </div>
 <div class="popup hide__popup">
 
-    <form id="add-sub-task" action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}" method="post">
+    <form id="add-sub-task"
+          action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}"
+          method="post">
         <div class="popup__content">
             <div class="title">
                 <h4>
-                <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">
-                    <div class="text-danger error"></div></h4>
+                    <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">
+                    <div class="text-danger error"></div>
+                </h4>
             </div>
             <div class="info">
                 <table class="table table-borderless">
@@ -212,7 +219,8 @@
                     </button>
                 </div>
                 <div class="btn_ok">
-                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu</button>
+                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu
+                    </button>
                 </div>
             </div>
         </div>
