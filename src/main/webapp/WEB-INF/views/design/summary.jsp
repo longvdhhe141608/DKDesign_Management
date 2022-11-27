@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,12 +30,12 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-                <%--                    <select style="border-radius: 5px; padding: 6px;">--%>
-                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-                <%--                    </select>--%>
-                <%--                </div>--%>
+<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+<%--                    <select style="border-radius: 5px; padding: 6px;">--%>
+<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+<%--                    </select>--%>
+<%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -50,8 +49,7 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test"
-                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -60,8 +58,7 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test"
-                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -100,9 +97,7 @@
                     </tr>
                     <tr>
                         <td>Chi phí xây dựng:</td>
-                        <td>
-                            <fmt:formatNumber type="number" maxFractionDigits="3" value="${project.expectedCost}"/> VNĐ
-                        </td>
+                        <td>2000000 đồng</td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
@@ -130,14 +125,14 @@
                     </tr>
                 </table>
             </div>
-            <%--            <div style="display: flex; justify-content: space-between">--%>
-            <%--                <div></div>--%>
-            <%--                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">--%>
-            <%--                    <button class="btn" style="background-color: royalblue; color: white">--%>
-            <%--                        Chỉnh sửa--%>
-            <%--                    </button>--%>
-            <%--                </a>--%>
-            <%--            </div>--%>
+<%--            <div style="display: flex; justify-content: space-between">--%>
+<%--                <div></div>--%>
+<%--                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">--%>
+<%--                    <button class="btn" style="background-color: royalblue; color: white">--%>
+<%--                        Chỉnh sửa--%>
+<%--                    </button>--%>
+<%--                </a>--%>
+<%--            </div>--%>
         </div>
     </div>
 </div>

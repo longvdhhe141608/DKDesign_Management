@@ -122,7 +122,7 @@
                 </div>
 
             </div>
-            <div>
+            <div style="margin-left: 10px">
                 <c:forEach items="${subTasksList}" var="i">
                     <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${i.taskID}&sub-task-id=${i.id}">${i.taskName}</a><br>
                 </c:forEach>
