@@ -25,79 +25,82 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
-        <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i
-                class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
+        <a href="${pageContext.request.contextPath}/profile/detail"
+           style="font-size: 30px;color: black;text-decoration: none"><i
+                class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân
+        </a>
 
+        <form action="editProfile" method="post" enctype="multipart/form-data">
 
-            <form  action="editProfile" method="post" enctype="multipart/form-data">
-
-                      <div class="information-main">
-                        <div class="information-main-avata">
-                            <img alt="avatar" class="img_avatar_change" src="${sessionScope.loginUser.avatar_url}"
-                                 style="display: flex"/>
-                            <input value="${sessionScope.loginUser.avatar_url}" type="text" name="oldAvatar" hidden/>
-                            <label class="btn btn-edit"
-                                   style="display: flex; border: none; border-radius: 5px; background-color: royalblue; color: white; margin-right: 100px; margin-top: 5px;">
-                                <input type="file" name="newAvatar" title="Upload avatar" accept="image/*"/>
-                            </label>
-                        </div>
-
-
-                        <div>
-                            <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
-                            <table class="table table-borderless">
-                            <tr>
-                                <td>Họ và tên:</td>
-                                <td><input type="text" id="name"
-                                           name="name" value="${profile.name}" required></td>
-                            </tr>
-
-                            <tr>
-                                <td>Số CCCD/CMND:</td>
-                                <td><input pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd"
-                                           value="${profile.cccd}" required></td>
-                            </tr>
-                            <tr>
-                                <td>Ngày sinh:</td>
-                                <td><input type="date" id="dob" name="dob" value="${profile.dob}" required></td>
-                            </tr>
-                            <tr>
-                                <td>Giới tính:</td>
-                                <td><select name="gender" id="gender" required>
-                                    <option id="1" value="1">Nam</option>
-                                    <option id="2" value="2" ${profile.gender==2?"selected":""}>Nữ</option>
-                                </select></td>
-                            </tr>
-                            <tr>
-                                <td>Số điện thoại:</td>
-                                <td><input pattern="^0[0-9]{9}$" title="nhap sdt" type="text" id="phone" name="phone"
-                                           value="${profile.phone}" required></td>
-                            </tr>
-                            <tr>
-                                <td>Email:</td>
-                                <td><input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text"
-                                           id="email"
-                                           name="email" value="${profile.mail}" required></td>
-                            </tr>
-                            <tr>
-                                <td>Địa chỉ nhà:</td>
-                                <td><input type="text"
-                                           id="address" name="address" value="${profile.address}">
-                                </td>
-                            </tr>
-                            </table>
-                        </div>
-                      </div>
-
-                <%-- button --%>
-                <div class="btn-edit">
-                    <button class="btn btn-secondary" style="margin-right: 10px; color: white">
-                        <a style="color: white" href="javascript:history.back() ">Hủy</a>
-                    </button>
-                    <input type="submit" class="btn btn-primary" value="Lưu">
+            <div class="information-main">
+                <div class="information-main-avata">
+                    <img alt="avatar" class="img_avatar_change" src="${sessionScope.loginUser.avatar_url}"
+                         style="display: flex"/>
+                    <input value="${sessionScope.loginUser.avatar_url}" type="text" name="oldAvatar" hidden/>
+                    <label class="btn btn-edit"
+                           style="display: flex; border: none; border-radius: 5px; background-color: royalblue; color: white; margin-right: 100px; margin-top: 5px;">
+                        <input type="file" name="newAvatar" title="Upload avatar" accept="image/*"/>
+                    </label>
                 </div>
 
-            </form>
+
+                <div>
+                    <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
+                    <table class="table table-borderless">
+                        <tr>
+                            <td>Họ và tên:</td>
+                            <td><input type="text" id="name"
+                                       name="name" value="${profile.name}" required></td>
+                        </tr>
+
+                        <tr>
+                            <td>Số CCCD/CMND:</td>
+                            <td><input pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd"
+                                       value="${profile.cccd}" required></td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh:</td>
+                            <td><input type="date" id="dob" name="dob" value="${profile.dob}" required></td>
+                        </tr>
+                        <tr>
+                            <td>Giới tính:</td>
+                            <td><select name="gender" id="gender" required>
+                                <option id="1" value="1">Nam</option>
+                                <option id="2" value="2" ${profile.gender==2?"selected":""}>Nữ</option>
+                            </select></td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại:</td>
+                            <td><input pattern="^0[0-9]{9}$" title="nhap sdt" type="text" id="phone" name="phone"
+                                       value="${profile.phone}" required></td>
+                        </tr>
+                        <tr>
+                            <td>Email:</td>
+                            <td><input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text"
+                                       id="email"
+                                       name="email" value="${profile.mail}" required></td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ nhà:</td>
+                            <td><input type="text"
+                                       id="address" name="address" value="${profile.address}">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <%-- button --%>
+            <div class="btn-edit">
+                <a style="color: white" href="javascript:history.back() ">
+                    <button class="btn btn-secondary" style="margin-right: 10px; color: white">
+                        Hủy
+                    </button>
+                </a>
+                <input type="submit" class="btn btn-primary" value="Lưu">
+            </div>
+
+        </form>
 
 
     </div>
