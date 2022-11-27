@@ -183,10 +183,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Ghi chú:</td>
-                        <td>${task.description}</td>
-                    </tr>
-                    <tr>
                         <td>Yêu cầu khách hàng:</td>
                         <td>${task.requirementName}</td>
                     </tr>
