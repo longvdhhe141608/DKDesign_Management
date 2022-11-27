@@ -534,7 +534,7 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join accounts a on t.assignedto = a.id " +
                 "left join section sc on t.section_id = sc.id \n" +
-                "left join status s on t.status = s.id where t.assignedto = ? and t.task_id is not null " +
+                "left join status s on t.status = s.id where t.assignedto = ? and t.status != 5 and t.task_id is not null " +
                 "group by t.id ";
         try {
             myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID);
@@ -553,7 +553,7 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join accounts a on t.assignedto = a.id " +
                 "left join section sc on t.section_id = sc.id \n" +
-                "left join status s on t.status = s.id where t.assignedto = ? and t.task_id is not null " +
+                "left join status s on t.status = s.id where t.assignedto = ? and t.status != 5 and t.task_id is not null " +
                 "group by t.id limit ?, 10";
         try {
             myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID, indexPage);
