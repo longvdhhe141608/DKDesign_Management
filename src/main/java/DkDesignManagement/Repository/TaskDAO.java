@@ -366,7 +366,7 @@ public class TaskDAO {
                 "                left join project p on s.project_id = p.id \n" +
                 "                left join task t on s.id = t.section_id\n" +
                 "                left join project_participation pp on p.id = pp.project_id\n" +
-                "                left join accounts a on a.id = pp.project_id\n" +
+                "                left join accounts a on a.id = t.assignedto\n" +
                 "                left join employees e on a.id =e.id_acc\n" +
                 "                left join requirement r on p.id = r.project_id\n" +
                 "                where t.id = ? AND t.task_id is null\n" +
@@ -464,7 +464,7 @@ public class TaskDAO {
         int totalPage = 0;
         List<TaskWaitDto> waitDtoList = new ArrayList<>();
         String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline," +
-                " t.number_of_file, st.status_task, t.status FROM dkmanagement.task t\n" +
+                " t.number_of_file, st.status_task, t.status, t.description FROM dkmanagement.task t\n" +
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
@@ -495,7 +495,7 @@ public class TaskDAO {
         List<TaskWaitDto> waitDtoList = new ArrayList<>();
 
         String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline," +
-                " t.number_of_file, st.status_task, t.status FROM dkmanagement.task t\n" +
+                " t.number_of_file, st.status_task, t.status, t.description FROM dkmanagement.task t\n" +
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
@@ -534,7 +534,8 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join accounts a on t.assignedto = a.id " +
                 "left join section sc on t.section_id = sc.id \n" +
-                "left join status s on t.status = s.id where t.assignedto = ? and t.status != 5 and t.task_id is not null " +
+                "left join status s on t.status = s.id where t.assignedto = ? AND (t.status in (2,3,4)) " +
+                "and t.task_id is not null " +
                 "group by t.id ";
         try {
             myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID);
@@ -553,8 +554,9 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join accounts a on t.assignedto = a.id " +
                 "left join section sc on t.section_id = sc.id \n" +
-                "left join status s on t.status = s.id where t.assignedto = ? and t.status != 5 and t.task_id is not null " +
-                "group by t.id limit ?, 10";
+                "left join status s on t.status = s.id where t.assignedto = ? " +
+                "AND (t.status in (2,3,4)) and t.task_id is not null " +
+                "group by t.id order by t.status asc limit ?, 10";
         try {
             myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID, indexPage);
             return myTaskDtoList;

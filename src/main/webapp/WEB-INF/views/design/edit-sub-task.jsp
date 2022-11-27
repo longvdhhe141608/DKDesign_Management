@@ -27,12 +27,12 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-<%--                    <select style="border-radius: 5px; padding: 6px;">--%>
-<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-<%--                    </select>--%>
-<%--                </div>--%>
+                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+                <%--                    <select style="border-radius: 5px; padding: 6px;">--%>
+                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -46,7 +46,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -55,38 +56,38 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
             </div>
         </div>
         <div class="task-details-main">
-            <h4>${subTask.taskName}</h4>
-            <div style="font-size: 20px;">
-                <a href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}">${project.projectName}
-                    > </a>
-                <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}">${tasks.taskName}
-                    > </a>
-                <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">${subTask.taskName}
-                    > </a>
-            </div>
             <form action="${pageContext.request.contextPath}/design/sub-task/edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
                   method="post">
+                <div class="mb-3">
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                           value="${subTask.taskName}" name="sub-task-name">
+                </div>
+                <div style="font-size: 20px;">
+                    <a href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}">${project.projectName}
+                        > </a>
+                    <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}">${tasks.taskName}
+                        > </a>
+                    <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">${subTask.taskName}
+                        > </a>
+                </div>
                 <table class="table table-borderless" style="border: 0;">
-                    <tr>
-                        <td>Sub-task-name:</td>
-                        <td>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" id="exampleFormControlInput1"
-                                       value="${subTask.taskName}" name="sub-task-name">
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Nhiệm vụ:</td>
-                        <td>${subTask.nameEmployee}</td>
-                    </tr>
+                    <%--                    <tr>--%>
+                    <%--                        <td>Sub-task-name:</td>--%>
+                    <%--                        <td>--%>
+                    <%--                            <div class="mb-3">--%>
+                    <%--                                <input type="text" class="form-control" id="exampleFormControlInput1"--%>
+                    <%--                                       value="${subTask.taskName}" name="sub-task-name">--%>
+                    <%--                            </div>--%>
+                    <%--                        </td>--%>
+                    <%--                    </tr>--%>
                     <tr>
                         <td>Nhiệm vụ:</td>
                         <td>${subTask.nameEmployee}</td>
@@ -135,9 +136,11 @@
                     </tr>
                     <tr>
                         <td>
-                            <div class="alert alert-danger" role="alert" style="width: 400px;">
-                                ${mess}
-                            </div>
+                            <c:if test="${mess != null}">
+                                <div class="alert alert-danger" role="alert" style="width: 400px;">
+                                        ${mess}
+                                </div>
+                            </c:if>
                         </td>
                         <td>
                             <div style="display: flex; justify-content: end;">
@@ -150,7 +153,6 @@
                     </tr>
                 </table>
             </form>
-
         </div>
         <%--        <div style=" text-align: end; margin-left: 10px;">--%>
         <%--            <form action="${pageContext.request.contextPath}/editTaskDetail">--%>

@@ -31,10 +31,10 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
                 <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-<%--                    <select style="border: none; padding: 6px;">--%>
-<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-<%--                    </select>--%>
+                    <%--                    <select style="border: none; padding: 6px;">--%>
+                    <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+                    <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+                    <%--                    </select>--%>
                 </div>
             </div>
             <div class="list-task-head">
@@ -70,10 +70,11 @@
         <div>
             <h4>Trạng thái công việc</h4>
             <div class="my-task-search">
-                <form style="display: flex" action="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task">
+                <form style="display: flex"
+                      action="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task">
                     <div class="my-task-search-name" style="margin-right:10px ;">
                         <div class="dropdown">
-                            <select style="height: 38px"  class="btn btn-secondary dropdown-toggle"
+                            <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
                                     name="status">
                                 <option ${status == 0 ? "selected": ""} value="0">Tất cả</option>
                                 <c:forEach items="${statusList}" var="i">
@@ -152,7 +153,7 @@
                                 </div>
                             </c:if>
                         </td>
-                        <td></td>
+                        <td>${i.description}</td>
                     </tr>
                 </c:forEach>
 

@@ -279,7 +279,7 @@
                                                     ${subTask.taskName}
                                             </div>
                                             <div>
-                                                <a href="${pageContext.request.contextPath}/task_detail?taskId=${subTask.taskId}"
+                                                <a href="${pageContext.request.contextPath}/subtask?taskId=${subTask.taskId}"
                                                    class="chi-tiet-cong-viec">
                                                     <button class="btn btn-primary chi-tiet">Chi tiết</button>
                                                 </a>

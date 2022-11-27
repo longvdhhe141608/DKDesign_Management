@@ -16,4 +16,5 @@ public class Requirement {
     private String requirementDetail;
     private Date requirementDate;
     private int status;
+    private String statusName;
 }
