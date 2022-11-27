@@ -30,7 +30,8 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
 
-                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
@@ -45,7 +46,7 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </c:if>
                             <c:if test="${project.status == 3 }">
-                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
                             </c:if>
                         </c:if>
                     </div>
@@ -65,7 +66,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            value="Yêu cầu của khách hàng">
@@ -90,51 +92,50 @@
             <div class="row">
                 <div class="col-2 row-dashboard">
                     <div style="height: 20%">
-                    <p>Tổng số công việc</p>
+                        <p>Tổng số công việc</p>
                     </div>
                     <div>
-                    <h4>${dashboardResponse.countTask}</h4>
+                        <h4>${dashboardResponse.countTask}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
                     <div style="height: 20%">
-                    <p>Công việc đang làm
+                        <p>Công việc đang làm
                     </div>
                     <div>
-                    </p>
-                    <h4>${dashboardResponse.countSubTaskProcess}</h4>
+                        </p>
+                        <h4>${dashboardResponse.countSubTaskProcess}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
                     <div style="height: 20%">
-                    <p>Công việc hoàn thành đúng hạn</p>
+                        <p>Công việc hoàn thành đúng hạn</p>
                     </div>
                     <div>
-                    <h4>${dashboardResponse.countCorrectDeadline}</h4>
+                        <h4>${dashboardResponse.countCorrectDeadline}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
                     <div style="height: 20%">
-                    <p>Công việc trễ hạn</p>
+                        <p>Công việc trễ hạn</p>
                     </div>
                     <div>
-                    <h4>${dashboardResponse.countOverDeadline}</h4>
+                        <h4>${dashboardResponse.countOverDeadline}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
                     <div style="height: 20%">
-                    <p>Công việc hoàn thành chậm tiến độ</p>
+                        <p>Công việc hoàn thành chậm tiến độ</p>
                     </div>
                     <div>
-                    <h4>${dashboardResponse.countOverDeadlineDoneTask}</h4>
+                        <h4>${dashboardResponse.countOverDeadlineDoneTask}</h4>
                     </div>
                 </div>
             </div>
         </div>
-            <div style="text-align: center">
-
-        <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-            </div>
+        <div style="display: flex; justify-content: center">
+            <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
+        </div>
 
     </div>
 
