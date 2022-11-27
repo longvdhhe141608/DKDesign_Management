@@ -78,18 +78,18 @@
                 <table class="table table-bordered ">
                     <thead>
                     <tr>
-                        <th scope="col">Vị trí</th>
-                        <th scope="col">Yêu cầu</th>
-                        <th scope="col">Trạng thái</th>
+                        <th scope="col-2">Vị trí</th>
+                        <th scope="col-8">Yêu cầu</th>
+                        <th scope="col-2">Trạng thái</th>
                         <%--                        <th scope="col"></th>--%>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach items="${requirements}" var="i">
                         <tr>
-                            <td>${i.requirementName}</td>
-                            <td>${i.requirementDetail}</td>
-                            <td>
+                            <td class="col-2">${i.requirementName}</td>
+                            <td class="col-8">${i.requirementDetail}</td>
+                            <td class="col-2">
                                 <c:if test="${i.status == 1}">ss</c:if>
                                 <c:if test="${i.status == 2}">ns</c:if>
                             </td>

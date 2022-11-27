@@ -97,7 +97,7 @@
                     </tr>
                     <tr>
                         <td>Chi phí xây dựng:</td>
-                        <td>${project.constructionArea}m<sup>2</sup></td>
+                        <td>2000000 đồng</td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>

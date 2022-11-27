@@ -36,10 +36,10 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <form action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex" action="${pageContext.request.contextPath}/project/change-status" method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
-                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                        <select name="statusId" class="btn btn-secondary dropdown-toggle">
+                    <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
                             <c:forEach items="${listStatus}" var="status">
                                 <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
                             </c:forEach>
@@ -151,10 +151,10 @@
 
                     <thead>
                     <tr>
-                        <th scope="col">Vị trí</th>
-                        <th scope="col">Yêu cầu</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col"></th>
+                        <th scope="col-2">Vị trí</th>
+                        <th scope="col-7">Yêu cầu</th>
+                        <th scope="col-2">Trạng thái</th>
+                        <th scope="col-1"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -162,9 +162,9 @@
                         <!-------item------------------------>
                         <c:if test="${requirement.status != 3}">
                             <tr>
-                                <td>${requirement.requirementName}</td>
-                                <td>${requirement.requirementDetail}</td>
-                                <td>
+                                <td class="col-2">${requirement.requirementName}</td>
+                                <td class="col-7">${requirement.requirementDetail}</td>
+                                <td class="col-2">
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý
                                     </c:if>
@@ -175,8 +175,8 @@
                                         Chưa được đáp ứng
                                     </c:if>
                                 </td>
-                                <td>
-                                    <div style="display: flex; justify-content: space-between;">
+                                <td class="col-1">
+                                    <div style="display: flex; ">
                                             <%--                                        <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')"--%>
                                             <%--                                                id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>--%>
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
