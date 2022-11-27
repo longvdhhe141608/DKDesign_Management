@@ -261,8 +261,7 @@
                                 <div class="col-2" style="border: 1px solid gray;">${task.endDate}</div>
                                 <div class="col-1" style="border: 1px solid gray;">
                                     <div style="display: flex; justify-content: space-between;">
-                                        <button><i
-                                                class="fa-regular fa-pen-to-square"></i></button>
+                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
                                         <button><i class="fa-regular fa-trash-can"></i></button>
                                     </div>
                                 </div>
