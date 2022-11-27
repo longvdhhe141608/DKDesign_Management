@@ -24,34 +24,34 @@
 
 <%--role leader--%>
 <c:if test="${loginUser.role_id == 2}">
-<%--    <div class="container-fluid" style="padding: 0">--%>
-<%--        <div id="tab_menu" class="tab_menu">--%>
-<%--            <button class="tab_button" class="tab_button">--%>
-<%--                <a href="${pageContext.request.contextPath}/headerHome">--%>
-<%--                    <i class="fa-solid fa-house"></i>--%>
-<%--                    Trang chủ--%>
-<%--                </a>--%>
-<%--            </button>--%>
-<%--            <button class="tab_button">--%>
-<%--                <a href="${pageContext.request.contextPath}/task/my_task">--%>
-<%--                    <i class="fa-solid fa-briefcase"></i>--%>
-<%--                    Công việc của tôi--%>
-<%--                </a>--%>
-<%--            </button>--%>
-<%--            <button class="tab_button">--%>
-<%--                <a href="${pageContext.request.contextPath}/allProject">--%>
-<%--                    <i class="fa-solid fa-clipboard-list"></i>--%>
-<%--                    Công trình--%>
-<%--                </a>--%>
-<%--            </button>--%>
-<%--            <button class="tab_button">--%>
-<%--                <a href="${pageContext.request.contextPath}/notification">--%>
-<%--                    <i class="fa-solid fa-bell"></i>--%>
-<%--                    Thông báo--%>
-<%--                </a>--%>
-<%--            </button>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <%--    <div class="container-fluid" style="padding: 0">--%>
+    <%--        <div id="tab_menu" class="tab_menu">--%>
+    <%--            <button class="tab_button" class="tab_button">--%>
+    <%--                <a href="${pageContext.request.contextPath}/headerHome">--%>
+    <%--                    <i class="fa-solid fa-house"></i>--%>
+    <%--                    Trang chủ--%>
+    <%--                </a>--%>
+    <%--            </button>--%>
+    <%--            <button class="tab_button">--%>
+    <%--                <a href="${pageContext.request.contextPath}/task/my_task">--%>
+    <%--                    <i class="fa-solid fa-briefcase"></i>--%>
+    <%--                    Công việc của tôi--%>
+    <%--                </a>--%>
+    <%--            </button>--%>
+    <%--            <button class="tab_button">--%>
+    <%--                <a href="${pageContext.request.contextPath}/allProject">--%>
+    <%--                    <i class="fa-solid fa-clipboard-list"></i>--%>
+    <%--                    Công trình--%>
+    <%--                </a>--%>
+    <%--            </button>--%>
+    <%--            <button class="tab_button">--%>
+    <%--                <a href="${pageContext.request.contextPath}/notification">--%>
+    <%--                    <i class="fa-solid fa-bell"></i>--%>
+    <%--                    Thông báo--%>
+    <%--                </a>--%>
+    <%--            </button>--%>
+    <%--        </div>--%>
+    <%--    </div>--%>
     <div class="container-fluid" style="padding: 0">
         <div id="tab_menu" class="tab_menu">
             <button onclick="sendRedirect('${pageContext.request.contextPath}/allProject')"
@@ -59,7 +59,8 @@
                 <i class="fa-solid fa-clipboard-list"></i>
                 Công trình
             </button>
-            <button onclick="sendRedirect('${pageContext.request.contextPath}/task/my-task-for-leader')" class="tab_button">
+            <button onclick="sendRedirect('${pageContext.request.contextPath}/task/my-task-for-leader')"
+                    class="tab_button">
                 <i class="fa-solid fa-briefcase"></i>
                 Công việc của tôi
             </button>
@@ -75,20 +76,17 @@
 <%--role admin--%>
 <c:if test="${loginUser.role_id == 1}">
 <div class="container-fluid" style="padding: 0">
-    <div id="tab_menu" class="tab_menu">
-        <button class="tab_button">
-            <a href="${pageContext.request.contextPath}/admin/memberlist">
-                <i class="fa-solid fa-house"></i>
-                Trang chủ
-            </a>
-        </button>
-
-        <button class="tab_button">
-            <a href="${pageContext.request.contextPath}/notification">
-                <i class="fa-solid fa-bell"></i>
-                Thông báo
-            </a>
-        </button>
+    <div id="" class="tab_menu">
+        <a href="${pageContext.request.contextPath}/admin/memberlist">
+            <button class="tab_button">
+                <i class="fa-solid fa-house"></i>Trang chủ
+            </button>
+        </a>
+        <a href="${pageContext.request.contextPath}/notification">
+            <button class="tab_button">
+                <i class="fa-solid fa-bell"></i>Thông báo
+            </button>
+        </a>
     </div>
     </c:if>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

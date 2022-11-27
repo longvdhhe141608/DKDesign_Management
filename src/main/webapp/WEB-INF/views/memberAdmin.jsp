@@ -20,7 +20,6 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js" type="text/javascript"></script>
-    <script src="sorttable.js" type="text/javascript"></script>
 </head>
 
 <body>

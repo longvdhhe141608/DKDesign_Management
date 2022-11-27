@@ -76,9 +76,10 @@
                     </tr>
                 </table>
                 <div style="margin-left: 25%; display: flex;">
-                    <button class="btn btn-secondary" style="margin-right: 10px;">
-                        <a style="color: white" href="${pageContext.request.contextPath}/admin/memberlist">Hủy</a>
-                    </button>
+                    <a class="btn btn-secondary" style="margin-right: 10px;color: white;text-decoration: none"
+                       href="${pageContext.request.contextPath}/admin/memberlist">
+                            Hủy
+                    </a>
                     <input type="submit" class="btn btn-primary" value="Lưu">
                 </div>
             </form>
