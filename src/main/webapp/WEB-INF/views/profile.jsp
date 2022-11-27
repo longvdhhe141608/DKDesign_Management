@@ -24,7 +24,8 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
-        <a href="${pageContext.request.contextPath}/allProject" style="text-decoration: none; color: black"><span style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i>Thông tin cá nhân</span></a>
+        <a href="${pageContext.request.contextPath}/allProject" style="text-decoration: none; color: black"><span
+                style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i>Thông tin cá nhân</span></a>
         <div class="information-main">
             <div class="information-main-avata">
                 <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
@@ -78,9 +79,9 @@
                     <tr>
                         <td></td>
                         <td>
-                                <a href="${pageContext.request.contextPath}/profile/editProfile">
-                                    <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
-                                </a>
+                            <a href="${pageContext.request.contextPath}/profile/editProfile">
+                                <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
+                            </a>
                         </td>
                     </tr>
                 </table>

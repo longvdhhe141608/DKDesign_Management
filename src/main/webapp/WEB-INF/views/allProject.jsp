@@ -45,38 +45,43 @@
                                                 <table class="table table-borderless">
                                                     <tr>
                                                         <td>Tên Công trình <label class="text-danger">*</label>:</td>
-                                                        <td><input class="info-text" type="text" name="name">
+                                                        <td><input class="info-text" type="text" name="name"
+                                                                   style="width: 47%">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Chủ nhà<label class="text-danger">*</label>:</td>
-                                                        <td><input name="customerName" class="info-text" type="text">
+                                                        <td><input name="customerName" class="info-text" type="text"
+                                                                   style="width: 47%">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Số điện thoại<label class="text-danger">*</label>:</td>
-                                                        <td><input class="info-text" name="phone" type="text">
+                                                        <td><input class="info-text" name="phone" type="text"
+                                                                   style="width: 47%">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Địa chỉ công trình<label class="text-danger">*</label>:</td>
-                                                        <td><input class="info-text" type="text" name="address">
+                                                        <td><input class="info-text" type="text" name="address"
+                                                                   style="width: 47%">
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Diện tích xây dựng<label class="text-danger">*</label>:</td>
                                                         <td><input name="constructionArea" class="info-text"
-                                                                   type="text"> m<sup>2</sup>
+                                                                   type="text" style="width: 47%"> m<sup>2</sup>
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Chi phí thiết kế<label class="text-danger">*</label>:</td>
-                                                        <td><input class="info-text" type="text" name="expectedCost">đồng
+                                                        <td><input class="info-text" type="text" name="expectedCost"
+                                                                   style="width: 47%"> đồng
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
@@ -233,7 +238,16 @@
                                 </td>
                                 <td>
                                     <div style="display: flex; justify-content: space-between;">
-                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                        <c:if test="${i.status == 1}">
+                                            <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}">
+                                                <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${i.status != 1}">
+                                            <a href="${pageContext.request.contextPath}/project/summary?id=${i.id}">
+                                                <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                            </a>
+                                        </c:if>
                                         <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"><i
                                                 class="fa-regular fa-trash-can"></i></button>
                                         <div id="myModal" class="modal">
@@ -255,7 +269,6 @@
                                                     </form>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </td>

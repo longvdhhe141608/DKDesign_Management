@@ -77,7 +77,7 @@ public class RequirementDao {
     }
 
     public int countTaskNoDone(int requirementId) {
-        String sql = "select count(1) from task t where requirement_id = ? and status !=4  and task_id is not NULL";
+        String sql = "select count(1) from task t where requirement_id = ? and status !=4 and status!=5 and task_id is not NULL";
         return jdbcTemplate.queryForObject(sql, Integer.class, requirementId);
     }
 

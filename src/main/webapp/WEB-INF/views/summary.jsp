@@ -104,7 +104,7 @@
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
-                        <td>${project.cusPhone}</td>
+                        <td id="phone">${project.cusPhone}</td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>
@@ -229,5 +229,9 @@
         });
     });
 </script>
+<%--<script>--%>
+<%--    var el = document.getElementById('phone');--%>
+<%--    phone.innerText = phone.innerText.replace(/^(\d{4})/, '($1) ');--%>
+<%--</script>--%>
 </body>
 </html>
