@@ -22,7 +22,12 @@
         <jsp:include page="nav_left.jsp"/>
         <div class="summary ">
             <div class="title">
+                <div>
+                    <h2 style="color: #842029; margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
+                </div>
+                <div>
                 <h4>Tất cả công trình</h4>
+                </div>
             </div>
             <div class="all-project-header">
                 <div>
@@ -187,12 +192,12 @@
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
                                 <td class="name-and-link">
-                                    <div class="name-project">
+                                    <div class="name-project col-8">
                                             ${i.projectName}
                                     </div>
 
                                     <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
-                                    <div class="links">
+                                    <div class="links col-4">
                                         <a class="link-detail"
                                            href="${pageContext.request.contextPath}/project/summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>

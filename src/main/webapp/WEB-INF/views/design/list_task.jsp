@@ -65,8 +65,8 @@
         <div class="list-task-main">
             <div class="">
                 <div class="row list-task-detail">
-                    <div class="col-3 list-task-header">Công việc</div>
-                    <div class="col-2 list-task-header">Phân công</div>
+                    <div class="col-4 list-task-header">Công việc</div>
+                    <div class="col-1 list-task-header">Phân công</div>
                     <div class="col-2 list-task-header">Thời gian bắt đầu</div>
 
                     <div class="col-2 list-task-header">Thời gian dự kiến kết thúc</div>
@@ -81,20 +81,22 @@
                         </summary>
                         <c:forEach items="${i.tasksList}" var="t">
 <%--                            <c:if test="${ t.assignedTo == sessionScope.loginUser.id}">--%>
-                                <div class="row designer-table" style="background: rgba(0, 0, 0, 0.2); height: 40px">
-                                    <div class="col-3" style="border: 1px solid gray;">
-                                        <div class="" style="display: grid; grid-template-columns: 1fr 100px; margin-top: 5px">
+                                <div class="row " style="background: rgba(0, 0, 0, 0.2); height: 40px">
+                                    <div class="col-4 row-task" style="display: flex;justify-content: space-between;border: 1px solid gray;">
+                                        <div class="name-project">
                                             <button style="border: none; background-color: #cccccc; justify-self: start;"
                                                     onclick="myFunction('.sub-task-detail')">
                                                 <i class="fa-solid fa-caret-down"
-                                                   style="padding-right: 10px;"></i>${t.taskName}</button>
+                                                   style="border: none; background-color: #cccccc; justify-self: start;"></i>${t.taskName}</button>
+                                        </div>
+                                            <div>
                                             <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${i.sectionID}&task-id=${t.id}"
                                                class="chi-tiet-cong-viec" style="justify-self: end;">
-                                                <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                                <button class="btn btn-primary link-row-task">Chi tiết</button>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col-2" style="border: 1px solid gray;">${t.nameEmployee}</div>
+                                    <div class="col-1" style="border: 1px solid gray;">${t.nameEmployee}</div>
                                     <div class="col-2" style="border: 1px solid gray;">${t.startingDate}</div>
                                     <div class="col-2" style="border: 1px solid gray;">${t.endedDate}</div>
                                     <div class="col-2" style="border: 1px solid gray;"></div>
@@ -103,10 +105,10 @@
 <%--                            </c:if>--%>
                             <c:forEach items="${i.subTasksList}" var="s">
                                 <c:if test="${s.taskID == t.id}">
-                                    <div id="" class="row sub-task-detail" style="display: none; height: 30px">
-                                        <div class="col-3 link-chi-tiet-cong-viec"
+                                    <div id="" class="row sub-task-detail" >
+                                        <div class="col-4 link-chi-tiet-cong-viec"
                                              style="border: 1px solid gray; display: flex; justify-content: space-between; ">
-                                            <div class="">
+                                            <div class="name-project">
                                                     ${s.taskName}
                                             </div>
                                             <div>
@@ -116,7 +118,7 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <div class="col-2" style="border: 1px solid gray;">${s.nameEmployee}</div>
+                                        <div class="col-1" style="border: 1px solid gray;">${s.nameEmployee}</div>
                                         <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
                                         <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
                                         <div class="col-2" style="border: 1px solid gray;"></div>

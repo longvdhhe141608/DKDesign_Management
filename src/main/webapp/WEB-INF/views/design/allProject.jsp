@@ -20,11 +20,16 @@
         <jsp:include page="nav_left.jsp"/>
         <div class="summary">
             <div class="title">
+                <div>
+                    <h2 style="color: #842029; margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
+                </div>
+                    <div>
                 <h4>Tất cả công trình</h4>
+                    </div>
             </div>
             <div class="">
 
-                <div style="display: flex; justify-content: space-between; margin-bottom: 20px">
+                <div style="display: flex; justify-content: end; margin-bottom: 20px">
                     <form action="${pageContext.request.contextPath}/design/project/view-all-project" method="get"
                           style="display: flex; justify-content: end;">
                         <div style="margin-right: 10px">
@@ -33,7 +38,7 @@
                                 <%--                                  method="post">--%>
                                 <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle"
                                         name="date">
-                                    <option ${status == 0 ? "selected":""} value="default">Default</option>
+                                    <option ${status == 0 ? "selected":""} value="default">Tất cả</option>
                                     <option ${status == 2022 ? "selected":""} value="2022">2022</option>
                                     <option ${status == 2021 ? "selected":""} value="2021">2021</option>
                                     <option ${status == 2020 ? "selected":""} value="2020">2020</option>
@@ -74,11 +79,11 @@
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
                                 <td class="name-and-link">
-                                    <div class="name-project">
+                                    <div class="name-project col-8">
                                             ${i.projectName}
                                     </div>
                                     <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
-                                    <div class="links">
+                                    <div class="links col-4">
                                         <a class="link-detail"
                                            href="${pageContext.request.contextPath}/design/project/summary?id=${i.id}">
                                             <button class="btn-chi-tiet">Chi tiết</button>

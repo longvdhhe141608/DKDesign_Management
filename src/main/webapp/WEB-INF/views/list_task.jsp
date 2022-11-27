@@ -239,7 +239,7 @@
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>
-                            <div class="row " style="background: rgba(0, 0, 0, 0.2);">
+                            <div class="row " style="background: rgba(0, 0, 0, 0.2);height: 40px">
                                 <div class="col-4 row-task"
                                      style="display: flex;justify-content: space-between; border: 1px solid gray;">
                                     <div class="name-project">

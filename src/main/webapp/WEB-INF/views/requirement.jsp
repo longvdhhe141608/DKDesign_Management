@@ -151,10 +151,10 @@
 
                     <thead>
                     <tr>
-                        <th scope="col">Vị trí</th>
-                        <th scope="col">Yêu cầu</th>
-                        <th scope="col">Trạng thái</th>
-                        <th scope="col"></th>
+                        <th scope="col-2">Vị trí</th>
+                        <th scope="col-8">Yêu cầu</th>
+                        <th scope="col-1">Trạng thái</th>
+                        <th scope="col-1"></th>
                     </tr>
                     </thead>
                     <tbody>
