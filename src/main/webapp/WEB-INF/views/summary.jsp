@@ -129,7 +129,7 @@
                     <tr>
                         <td>Chi phí thiết kế:</td>
                         <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${project.expectedCost}"/>
-                            đồng
+                            VNĐ
                         </td>
                     </tr>
                     <tr>

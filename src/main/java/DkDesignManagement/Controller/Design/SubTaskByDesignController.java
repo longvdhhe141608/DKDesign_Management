@@ -240,7 +240,6 @@ public class SubTaskByDesignController {
             page = Integer.parseInt(indexPage);
         }
 
-
         int statusTask = 0;
         String statusID = (request.getParameter("status"));
         if(statusID != null){

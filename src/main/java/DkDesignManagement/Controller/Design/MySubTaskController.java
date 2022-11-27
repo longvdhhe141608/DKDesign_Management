@@ -12,6 +12,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +42,11 @@ public class MySubTaskController {
 
         int index = page * 10 - 10;
 
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LocalDate localDate = localDateTime.toLocalDate();
+
+        Date nowDate = Date.valueOf(localDate);
+
         int totalMyTask = taskDAO.getTotalAllMyTask(a.getId(), textSearch);
         int totalPages = (totalMyTask % 10 == 0) ? totalMyTask / 10 : totalMyTask / 10 + 1;
 
@@ -51,9 +59,11 @@ public class MySubTaskController {
         }
 
 
+
         view.addObject("myTask", myTaskDtoList);
         view.addObject("lsPage", lsPage);
         view.addObject("page", page);
+        view.addObject("nowDate", nowDate);
 
         return view;
     }

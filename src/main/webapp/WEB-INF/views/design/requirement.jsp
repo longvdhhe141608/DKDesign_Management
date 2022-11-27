@@ -90,8 +90,7 @@
                             <td>${i.requirementName}</td>
                             <td>${i.requirementDetail}</td>
                             <td>
-                                <c:if test="${i.status == 1}">ss</c:if>
-                                <c:if test="${i.status == 2}">ns</c:if>
+                                <c:if test="${i.status != 3}">${i.statusName}</c:if>
                             </td>
                                 <%--                            <td>--%>
                                 <%--                                <div style="display: flex; justify-content: space-between;">--%>

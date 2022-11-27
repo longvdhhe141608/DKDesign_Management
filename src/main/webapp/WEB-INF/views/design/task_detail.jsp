@@ -71,7 +71,7 @@
                 </tr>
                 <tr>
                     <td>Nhiệm vụ:</td>
-                    <td>huonghuong</td>
+                    <td>${tasks.nameEmployee}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>
@@ -107,11 +107,11 @@
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>${tasks.numberOfFile}</td>
+                    <td>${totalSubmitFile} / ${totalFile}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>100%</td>
+                    <td>${progressPercent} %</td>
                 </tr>
 
             </table>

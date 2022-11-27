@@ -96,8 +96,7 @@ public class TaskController {
         int totalFile = 0;
 
         for (int i = 0; i < subTasksList.size() ; i++) {
-            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
-            totalFile += subTasksList.get(i).getNumberOfFile();
+            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());totalFile += subTasksList.get(i).getNumberOfFile();
         }
 
         float progressPercent = Math.round((totalSubmitFile / (1.0 * totalFile)) * 100);

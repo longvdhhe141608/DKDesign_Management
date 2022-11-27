@@ -1,11 +1,8 @@
 package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.*;
+import DkDesignManagement.Repository.*;
 import DkDesignManagement.model.TaskDto;
-import DkDesignManagement.Repository.ProjectDao;
-import DkDesignManagement.Repository.RequirementDao;
-import DkDesignManagement.Repository.SectionDAO;
-import DkDesignManagement.Repository.TaskDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +31,9 @@ public class TaskByDesignController {
 
     @Autowired
     private RequirementDao requirementDao;
+
+    @Autowired
+    private ImageAndFileDao imageAndFileDao;
 
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response) {
@@ -110,11 +110,24 @@ public class TaskByDesignController {
 
         List<Requirement> requirements = requirementDao.getAllRequirementByProjectID(project.getId());
 
+        int totalSubmitFile = 0;
+        int totalFile = 0;
+
+        for (int i = 0; i < subTasksList.size() ; i++) {
+            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
+            totalFile += subTasksList.get(i).getNumberOfFile();
+        }
+
+        float progressPercent = Math.round((totalSubmitFile / (1.0 * totalFile)) * 100);
+
         view.addObject("project", project);
         view.addObject("tasks", tasks);
         view.addObject("section", section);
         view.addObject("subTasksList", subTasksList);
         view.addObject("requirements", requirements);
+        view.addObject("progressPercent", progressPercent);
+        view.addObject("totalSubmitFile", totalSubmitFile);
+        view.addObject("totalFile", totalFile);
 
         return view;
     }

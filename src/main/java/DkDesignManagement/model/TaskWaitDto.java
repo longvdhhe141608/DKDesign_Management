@@ -18,4 +18,5 @@ public class TaskWaitDto {
     private int numberOfFile;
     private int status;
     private String statusTask;
+    private String description;
 }

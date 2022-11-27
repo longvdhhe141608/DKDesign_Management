@@ -18,6 +18,7 @@ public class MapperTaskWaitDto implements RowMapper<TaskWaitDto> {
                 .numberOfFile(rs.getInt("number_of_file"))
                 .status(rs.getInt("status"))
                 .statusTask(rs.getString("status_task"))
+                .description(rs.getString("description"))
                 .build();
         return dto;
     }

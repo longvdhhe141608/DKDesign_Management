@@ -122,11 +122,11 @@
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>${task.numberFileCurrent} / ${task.fileNumber}</td>
+                    <td>${totalSubmitFile} / ${totalFile}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>
-                    <td>${task.workProgress}</td>
+                    <td>${progressPercent} %</td>
                 </tr>
                 <tr>
                     <td>Trạng thái:</td>
@@ -143,14 +143,7 @@
                         <c:if test="${task.taskStatus == 4}">
                             Đã hoàn thành
                         </c:if>
-                        <c:if test="${task.taskStatus == 5}">
-                            Hủy bỏ
-                        </c:if>
                     </td>
-                </tr>
-                <tr>
-                    <td>Ghi chú:</td>
-                    <td>${task.description}</td>
                 </tr>
                 <tr>
                     <td>Kế hoạch của công việc:</td>

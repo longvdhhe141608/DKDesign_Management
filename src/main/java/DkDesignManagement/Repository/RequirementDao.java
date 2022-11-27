@@ -27,7 +27,8 @@ public class RequirementDao {
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     public List<Requirement> getAll() {
-        String sql = "select * from requirement";
+        String sql = "SELECT r.*, s.status_requirement FROM dkmanagement.requirement r \n" +
+                "left join status s on r.status = s.id";
 
         return jdbcTemplate.query(sql, new MapperRequirement());
     }
@@ -35,7 +36,8 @@ public class RequirementDao {
     public Requirement getRequirementById(int requirementId) {
 
         Requirement requirement = new Requirement();
-        String sql = "select * from requirement r where r.id  = ? ";
+        String sql = "SELECT r.*, s.status_requirement FROM dkmanagement.requirement r \n" +
+                "left join status s on r.status = s.id where r.id  = ? ";
 
         try {
             requirement = jdbcTemplate.queryForObject(sql, new MapperRequirement(), requirementId);
@@ -49,7 +51,8 @@ public class RequirementDao {
     public List<Requirement> getAllRequirementByProjectID(int projectID) {
 
         List<Requirement> requirements = new ArrayList<>();
-        String sql = "SELECT * FROM dkmanagement.requirement where project_id= ?;";
+        String sql = "SELECT r.*, s.status_requirement FROM dkmanagement.requirement r \n" +
+                "left join status s on r.status = s.id where project_id= ?;";
 
         try {
             requirements = jdbcTemplate.query(sql, new MapperRequirement(), projectID);
@@ -64,7 +67,8 @@ public class RequirementDao {
     public List<Requirement> getPaginationRequirementByProjectID(int projectID, int indexPage) {
 
         List<Requirement> requirements = new ArrayList<>();
-        String sql = "SELECT * FROM dkmanagement.requirement where project_id= ? ORDER BY id DESC LIMIT " + indexPage + ", 10;";
+        String sql = "SELECT r.*, s.status_requirement FROM dkmanagement.requirement r \n" +
+                "left join status s on r.status = s.id where project_id= ? LIMIT " + indexPage + ", 10;";
 
         try {
             requirements = jdbcTemplate.query(sql, new MapperRequirement(), projectID);

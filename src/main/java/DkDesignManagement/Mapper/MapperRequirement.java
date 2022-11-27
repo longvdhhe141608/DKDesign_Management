@@ -17,6 +17,7 @@ public class MapperRequirement implements RowMapper<Requirement> {
         requirement.setRequirementDetail(resultSet.getString("requirement_detail"));
         requirement.setRequirementDate(resultSet.getDate("requirement_date"));
         requirement.setStatus(resultSet.getInt("status"));
+        requirement.setStatusName(resultSet.getString("status_requirement"));
         return requirement;
     }
 }
