@@ -36,7 +36,8 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <form style="display: flex" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
@@ -97,14 +98,11 @@
             </div>
         </div>
         <h4>Thông tin yêu cầu của khách hàng</h4>
-
-
         <div>
-
             <c:if test="${project.status == 1}">
-            <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
-                    class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm yêu cầu
-            </button>
+                <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
+                        class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm yêu cầu
+                </button>
             </c:if>
             <div id="myModal-add" class="modal">
                 <!-- Modal content -->
@@ -134,7 +132,7 @@
 
                             </table>
                             <div class="add-btn-work" style="display: flex; justify-content: end">
-                                <button class="btn btn-secondary " style="margin-right: 5px">Hủy bỏ</button>
+                                <span id="close3" class="close"><button class="btn btn-secondary" style="margin-right: 5px">Hủy bỏ</button></span>
                                 <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
                                         class="btn btn-primary">Thêm
                                 </button>
@@ -177,8 +175,6 @@
                                 </td>
                                 <td class="col-1">
                                     <div style="display: flex; ">
-                                            <%--                                        <button onclick="modallistproject('#myBtn-project','#myModal-footer','#close2')"--%>
-                                            <%--                                                id="myBtn-project"><i class="fa-regular fa-pen-to-square"></i></button>--%>
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"
                                                 data-place="${requirement.requirementName}"
@@ -216,40 +212,6 @@
     <div class="modal-content" style=" width: 50%;height: 40%;">
         <span id="close2" class="close">&times;</span>
         <div id="showHtml" class="project-add-task">
-                <%--            <form action="update-requirement" method="post" id="add-project1"--%>
-                <%--                  class="">--%>
-                <%--                <input type="text" name="requirementId" hidden--%>
-                <%--                       value="${requirement.id}">--%>
-                <%--                <table class="table table-borderless">--%>
-                <%--                    <tr>--%>
-                <%--                        <td>Vị trí<label class="text-danger">*</label>:</td>--%>
-                <%--                        <td>--%>
-                <%--                            <input style="width: 500px;" class="info-text"--%>
-                <%--                                   name="name" type="text"--%>
-                <%--                                   value="${requirement.requirementName}">--%>
-                <%--                            <div class="text-danger error"></div>--%>
-                <%--                        </td>--%>
-                <%--                    </tr>--%>
-                <%--                    <tr>--%>
-                <%--                        <td>Yêu cầu<label class="text-danger">*</label>:</td>--%>
-                <%--                        <td>--%>
-                <%--                                                                    <textarea class="info-text" name="detail" id=""--%>
-                <%--                                                                              cols="60"--%>
-                <%--                                                                              rows="3">${requirement.requirementDetail}</textarea>--%>
-                <%--                            <div class="text-danger error"></div>--%>
-                <%--                        </td>--%>
-                <%--                    </tr>--%>
-
-                <%--                </table>--%>
-                <%--                <div class="add-btn-work">--%>
-                <%--                    <button type="button" class="btn btn-secondary ">Hủy bỏ--%>
-                <%--                    </button>--%>
-                <%--                    <button onclick="return checkvalidate('#add-project1')"--%>
-                <%--                            type="submit" class="btn btn-primary">--%>
-                <%--                        Lưu--%>
-                <%--                    </button>--%>
-                <%--                </div>--%>
-                <%--            </form>--%>
         </div>
     </div>
 </div>
@@ -307,8 +269,6 @@
 
     }
 </script>
-
-
 </body>
 
 </html>
