@@ -25,7 +25,7 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary">
-        <form id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
+        <form style="display: flex;" id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
             <div class="top-details">
                 <div class="list-top">
                     <h3>${project.projectName}</h3>

@@ -21,10 +21,10 @@
         <div class="summary">
             <div class="title">
                 <div>
-                    <h2 style="color: #842029; margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
+                    <h2 style=" margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
                 </div>
                     <div>
-                <h4>Tất cả công trình</h4>
+<%--                <h4>Tất cả công trình</h4>--%>
                     </div>
             </div>
             <div class="">

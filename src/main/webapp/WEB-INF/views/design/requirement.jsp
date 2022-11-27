@@ -87,9 +87,9 @@
                     <tbody>
                     <c:forEach items="${requirements}" var="i">
                         <tr>
-                            <td>${i.requirementName}</td>
-                            <td>${i.requirementDetail}</td>
-                            <td>
+                            <td class="col-2">${i.requirementName}</td>
+                            <td class="col-8">${i.requirementDetail}</td>
+                            <td class="col-2">
                                 <c:if test="${i.status == 1}">ss</c:if>
                                 <c:if test="${i.status == 2}">ns</c:if>
                             </td>

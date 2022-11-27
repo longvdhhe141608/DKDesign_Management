@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -27,10 +29,10 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
 
-                <form action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
-                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                        <select name="statusId" class="btn btn-secondary dropdown-toggle">
+                    <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
                             <c:forEach items="${listStatus}" var="status">
                                 <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
                             </c:forEach>
@@ -96,7 +98,7 @@
                         <form action="">
                             <div class="wap_search">
                                 <input style="margin-right: 10px;" type="text" class="search_term"
-                                       placeholder="tên công việc">
+                                       placeholder="Tên công việc">
                                 <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
                         </form>
@@ -107,7 +109,7 @@
         <div>
             <table class="table table-bordered table-progress">
                 <tr>
-                    <th scope="col">Công việc</th>
+                    <th scope="col">Công việc phụ</th>
                     <th scope="col">Người thực hiện</th>
                     <th scope="col">Ngày bắt đầu</th>
                     <th scope="col">Ngày dự kiến kết thúc</th>
@@ -118,14 +120,14 @@
                 <c:forEach items="${listTask}" var="task">
                     <c:if test="${task.taskStatus != 5}">
                         <tr>
-                            <td>
+                            <td class="col-4">
                                     <%--                                <a href="task_detail?taskId=${task.taskId}">${task.taskName}</a>--%>
                                 <div class="link-chi-tiet-cong-viec"
                                      style="display: flex; justify-content: space-between; ">
-                                    <div class="name-project">
+                                    <div class="name-project col-8">
                                             ${task.taskName}
                                     </div>
-                                    <div>
+                                    <div class="col-4">
                                         <a href="${pageContext.request.contextPath}/task_detail?taskId=${task.taskId}"
                                            class="chi-tiet-cong-viec">
                                             <button class="btn btn-primary chi-tiet">Chi tiết</button>
