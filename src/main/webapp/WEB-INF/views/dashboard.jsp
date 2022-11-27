@@ -29,12 +29,28 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border-radius: 5px; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
-                </div>
+
+                <form action="${pageContext.request.contextPath}/project/change-status" method="post">
+                    <input type="text" name="projectId" value="${project.id}" hidden="">
+                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle">
+                            <c:forEach items="${listStatus}" var="status">
+                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <c:if test="${sessionScope.loginUser.role_id == 2}">
+                            <c:if test="${project.status != 3 }">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </c:if>
+                            <c:if test="${project.status == 3 }">
+                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                            </c:if>
+                        </c:if>
+                    </div>
+                </form>
+
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
@@ -77,7 +93,7 @@
                     <p>Tổng số công việc</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countTask}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -86,7 +102,7 @@
                     </div>
                     <div>
                     </p>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countSubTaskProcess}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -94,7 +110,7 @@
                     <p>Công việc hoàn thành đúng hạn</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countCorrectDeadline}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -102,7 +118,7 @@
                     <p>Công việc trễ hạn</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countOverDeadline}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -110,7 +126,7 @@
                     <p>Công việc hoàn thành chậm tiến độ</p>
                     </div>
                     <div>
-                    <h4>5</h4>
+                    <h4>${dashboardResponse.countOverDeadlineDoneTask}</h4>
                     </div>
                 </div>
             </div>

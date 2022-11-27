@@ -145,14 +145,14 @@
                             <td>Thời gian bắt đầu:</td>
                             <td>
                                 <input class="info-text" id="inputstartdate" type="date" name="startDate"
-                                       value="${project.startDate}" style="width: 50%">
+                                       value="${project.startDate}" >
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Thời gian dự kiến kết thúc:</td>
                             <td><input class="info-text" id="inputenddate" type="date" name="closureDate"
-                                       value="${project.closureDate}" style="width: 50%">
+                                       value="${project.closureDate}" >
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>

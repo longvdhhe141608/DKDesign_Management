@@ -22,13 +22,14 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary">
-        <h1>Thông báo</h1>
-        <div class="notification">
-            <div>
-                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                <span> Huấn đã thêm công việc</span>
-                <a class="notification_time" href="">15 phút trước </a>
-            </div>
+        <h4>Thông báo</h4>
+        <div style="margin-bottom: 10px;">
+            <button style=" width: 100%;" type="submit">
+                <div style="display: flex;justify-content: space-between;">
+                    <p> Huấn đã thêm công việc</p>
+                    <a>15 phút trước </a>
+                </div>
+            </button>
         </div>
     </div>
 </div>

@@ -113,3 +113,43 @@ body {
 .tung-hang .tung-o {
 
 }
+
+.table-progress .link-chi-tiet-cong-viec a .chi-tiet {
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: darkgray;
+}
+
+.table-progress .link-chi-tiet-cong-viec a:hover .chi-tiet {
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: darkgray;
+    color: black;
+}
+
+.my-task-for-leader a .summary-detail-all {
+    float: right;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: none;
+    border-radius: 50px;
+    background-color: darkgray
+}
+
+.my-task-for-leader a:hover .summary-detail-all {
+    float: right;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: none;
+    border-radius: 50px;
+    background-color: darkgray;
+    color: black;
+}

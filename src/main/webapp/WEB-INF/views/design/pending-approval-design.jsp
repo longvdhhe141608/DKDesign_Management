@@ -68,14 +68,14 @@
             </div>
         </div>
         <div>
-            <h4>Công việc chờ phê duyệt</h4>
+            <h4>Trạng thái công việc</h4>
             <div class="my-task-search">
                 <form style="display: flex" action="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task">
                     <div class="my-task-search-name" style="margin-right:10px ;">
                         <div class="dropdown">
                             <select style="height: 38px"  class="btn btn-secondary dropdown-toggle"
                                     name="status">
-                                <option ${status == 0 ? "selected": ""} value="0">Default</option>
+                                <option ${status == 0 ? "selected": ""} value="0">Tất cả</option>
                                 <c:forEach items="${statusList}" var="i">
                                     <option ${status == i.id ? "selected": ""} value="${i.id}">${i.statusTask}</option>
                                 </c:forEach>
@@ -88,10 +88,10 @@
                                 <div class="wap_search">
 
                                     <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="tên công việc" name="textSearch" value="${textSearch}">
+                                           placeholder="Tên công việc" name="textSearch" value="${textSearch}">
                                     <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="tên công việc" name="project-id" hidden value="${project.id}">
-                                    <button type="submit" class="btn btn-primary"> tìm kiếm</button>
+                                           placeholder="Tên công việc" name="project-id" hidden value="${project.id}">
+                                    <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                                 </div>
                             </form>
                         </div>

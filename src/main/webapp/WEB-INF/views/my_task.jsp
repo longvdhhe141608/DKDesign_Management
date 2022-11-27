@@ -18,462 +18,190 @@
 </head>
 <body>
 
-    <jsp:include page="header.jsp"/>
-    <div class="body_page">
-        <jsp:include page="nav_left.jsp"/>
-        <div class="summary">
+<jsp:include page="header.jsp"/>
+<div class="body_page">
+    <jsp:include page="nav_left.jsp"/>
+    <div class="summary">
 
-            <div class="title">
-                <h4>Công việc cá nhân</h4>
-            </div>
-            <div style="display: flex;justify-content: space-between; margin-bottom: 20px;">
+        <div class="title">
+            <h4>Công việc cá nhân</h4>
+        </div>
+        <div style="display: flex;justify-content: space-between; margin-bottom: 20px;">
+            <div>
                 <div>
-                    <div>
-                        <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
-                                class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc</button>
-                        <div id="myModal" class="modal">
+                    <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
+                            class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc
+                    </button>
 
-                            <!-- Modal content -->
-                            <div class="modal-content" style="width: 60%;height: 70%; ">
-                                <span id="close" class="close">&times;</span>
-                                <div class="project-add-task">
-                                    <form id="my-task" action="">
-                                        <div class="title">
-                                            <h4><input id="inputaddname" class="info-text" type="text" value=""
-                                                       placeholder="Tên công việc mới">
-                                                <div class="text-danger error"></div>
-                                            </h4>
-
-                                        </div>
-                                        <div class="info">
-                                            <table class="table table-borderless">
-
-                                                <tr>
-                                                    <td>Công trình <label class="text-danger">*</label>:</td>
-                                                    <td>
-                                                        <div class="dropdown">
-                                                            <a class="btn btn-secondary dropdown-toggle" href="#"
-                                                               role="button" data-toggle="dropdown"
-                                                               aria-expanded="false">
-                                                                Biệt thự vườn lài
-                                                            </a>
-
-                                                            <div class="dropdown-menu">
-                                                                <a class="dropdown-item" href="#"> Biệt thự nhà dân</a>
-                                                                <a class="dropdown-item" href="#">Tủ bếp Anh Túc</a>
-
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-
-
-
-                                                <tr>
-                                                    <td>Ngày bắt đầu<label class="text-danger">*</label>:</td>
-                                                    <td><input id="inputstartdate" class="info-text" type="date">
-                                                        <div class="text-danger error"></div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                                                    <td><input id="inputenddate" class="info-text" type="date">
-                                                        <div class="text-danger error"></div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-
-
-
-
-                                        </div>
-                                        <div class="button_click" style="display: flex;justify-content: end;">
-
-                                            <div class="btn_cancel" style="margin-right: 10px;">
-                                                <button type="submit" class="btn btn-secondary close_popup">Hủy
-                                                    bỏ</button>
-                                            </div>
-                                            <div class="btn_ok">
-                                                <button onclick="return checkvalidate('#my-task')" type="button"
-                                                        class="btn btn-primary">Tạo</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div style="display: flex;">
-                    <div style="margin-right: 10px;">
-                        <div class="dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                               aria-expanded="false">
-                                Tìm kiếm tên
-                            </a>
-
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Biệt thự nhà dân</a>
-                                <a class="dropdown-item" href="#">Biệt thự nhà dân 1</a>
-                                <a class="dropdown-item" href="#">Biệt thự nhà dân 2</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="function_search">
-                            <form action="">
-                                <div class="wap_search">
-
-                                    <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="tên công việc">
-                                    <button type="submit" class="btn btn-primary"> tìm kiếm </button>
-
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div class="table_content">
-                <div class=" table-responsive-sm">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th scope="col">Công việc</th>
-
-                            <th scope="col">Thời gian bắt đầu</th>
-                            <th scope="col">Thời gian dự kiến kết thúc</th>
-                            <th scope="col">Thời gian kết thúc</th>
-                            <th scope="col">Tên công trình</th>
-                            <th scope="col"></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html" style="display: flex;justify-content: space-between">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" >Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="justify-content: center;">
-
-                                <form class="form-name-project" action="sub-task.html">
-                                    <div class="name-project">
-                                        thiết kế phòng ngủ
-
-                                    </div>
-                                    <div>
-                                        <button class="btn btn-primary summary-detail-all" style="float: right;">Chi
-                                            tiết</button>
-                                    </div>
-                                </form>
-
-                            </td>
-
-                            <td>
-                                20/10/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td>
-                                20/11/2022
-                            </td>
-                            <td> Biệt thự nhà dân</td>
-                            <td>
-                                <div style="display: flex; justify-content: space-between;"><button><i
-                                        class="fa-regular fa-pen-to-square"></i></button>
-                                    <button><i class="fa-regular fa-trash-can"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+            <div style="display: flex;">
+                <div style="margin-right: 10px;">
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                           aria-expanded="false">
+                            Tìm kiếm tên
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Biệt thự nhà dân</a>
+                            <a class="dropdown-item" href="#">Biệt thự nhà dân 1</a>
+                            <a class="dropdown-item" href="#">Biệt thự nhà dân 2</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="pagination">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div>
+                    <div class="function_search">
+                        <form action="">
+                            <div class="wap_search">
+                                <input style="margin-right: 10px;" type="text" class="search_term"
+                                       placeholder="Tên công việc">
+                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="table_content">
+            <div class=" table-responsive-sm">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Công việc</th>
+                        <th scope="col">Thời gian bắt đầu</th>
+                        <th scope="col">Thời gian dự kiến kết thúc</th>
+                        <th scope="col">Thời gian kết thúc</th>
+                        <th scope="col">Tên công trình</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody class="my-task-for-leader">
+                    <c:forEach items="${myTask}" var="i">
+                        <tr>
+                            <td>
+                                <div style="display: flex; justify-content: space-between">
+                                    <div class="name-project">
+                                            ${i.subTaskName}
+                                    </div>
+                                    <div>
+                                        <a href="${pageContext.request.contextPath}/task_detail?taskId=${i.taskID}">
+                                            <button class="btn btn-primary summary-detail-all" style="float: right;">
+                                                Chi tiết
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                    ${i.startDate}
+                            </td>
+                            <td>
+                                    ${i.deadline}
+                            </td>
+                            <td>
+                                    ${i.endDate}
+                            </td>
+                            <td> ${i.projectName}</td>
+                            <td>
+                                <div style="display: flex; justify-content: space-between;">
+                                    <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                    <button><i class="fa-regular fa-trash-can"></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
 </div>
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" style="width: 60%;height: 70%; ">
+        <span id="close" class="close">&times;</span>
+        <div class="project-add-task">
+            <form id="my-task" action="">
+                <div class="title">
+                    <h4><input id="inputaddname" class="info-text" type="text" value=""
+                               placeholder="Tên công việc mới">
+                        <div class="text-danger error"></div>
+                    </h4>
 
+                </div>
+                <div class="info">
+                    <table class="table table-borderless">
+
+                        <tr>
+                            <td>Công trình <label class="text-danger">*</label>:</td>
+                            <td>
+                                <div class="dropdown">
+                                    <a class="btn btn-secondary dropdown-toggle" href="#"
+                                       role="button" data-toggle="dropdown"
+                                       aria-expanded="false">
+                                        Biệt thự vườn lài
+                                    </a>
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#"> Biệt thự nhà dân</a>
+                                        <a class="dropdown-item" href="#">Tủ bếp Anh Túc</a>
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td>Ngày bắt đầu<label class="text-danger">*</label>:</td>
+                            <td><input id="inputstartdate" class="info-text" type="date">
+                                <div class="text-danger error"></div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:</td>
+                            <td><input id="inputenddate" class="info-text" type="date">
+                                <div class="text-danger error"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="button_click" style="display: flex;justify-content: end;">
+
+                    <div class="btn_cancel" style="margin-right: 10px;">
+                        <button type="submit" class="btn btn-secondary close_popup">Hủy
+                            bỏ
+                        </button>
+                    </div>
+                    <div class="btn_ok">
+                        <button onclick="return checkvalidate('#my-task')" type="button"
+                                class="btn btn-primary">Tạo
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -505,8 +233,6 @@
         });
 
         // When the user clicks on <span> (x), close the modal
-
-
 
 
         // When the user clicks anywhere outside of the modal, close it
