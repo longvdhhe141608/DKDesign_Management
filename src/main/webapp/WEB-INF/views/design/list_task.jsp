@@ -122,7 +122,7 @@
                                         <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
                                         <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
                                         <div class="col-2" style="border: 1px solid gray;"></div>
-                                        <div class="col-1" style="border: 1px solid gray;">đồng ý</div>
+                                        <div class="col-1" style="border: 1px solid gray;">Đang thực hiện</div>
                                     </div>
                                 </c:if>
                             </c:forEach>

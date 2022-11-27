@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,7 +98,9 @@
                     </tr>
                     <tr>
                         <td>Chi phí xây dựng:</td>
-                        <td>2000000 đồng</td>
+                        <td>
+                            <fmt:formatNumber type="number" maxFractionDigits="3" value="${project.expectedCost}"/> VNĐ
+                        </td>
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
