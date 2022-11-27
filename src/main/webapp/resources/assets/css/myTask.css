@@ -113,3 +113,21 @@ body {
 .tung-hang .tung-o {
 
 }
+
+.table-progress .link-chi-tiet-cong-viec a .chi-tiet{
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: darkgray;
+}
+.table-progress .link-chi-tiet-cong-viec a:hover .chi-tiet{
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: darkgray;
+    color: black;
+}

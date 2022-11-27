@@ -155,7 +155,7 @@
                                 </tr>
                             </table>
                             <div class="add-btn-work">
-                                <button type="submit" class="btn btn-secondary btn-canel" style="margin-right: 10px;">
+                                <button type="button" class="btn btn-secondary btn-canel" style="margin-right: 10px;">
                                     Hủy bỏ
                                 </button>
                                 <button onclick="return checkvalidate('#add-project')"
@@ -216,7 +216,6 @@
                             <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
                                     class="fa-regular fa-trash-can"></i></button>
                             <div id="myModal1" class="modal">
-
                                 <!-- Modal content -->
                                 <div class="modal-content" style="width: 60%;height: 30%;">
                                     <span id="close4" class="close">&times;</span>
@@ -240,27 +239,13 @@
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>
-                            <%--                            <div class="row " style="background: rgba(0, 0, 0, 0.2);">--%>
-                            <%--                                <div class="col-3" style="border: 1px solid gray;">--%>
-                            <%--                                    <div class="">--%>
-                            <%--                                        <button onclick="myFunction('.sub-task-detail')"><i--%>
-                            <%--                                                class="fa-solid fa-caret-down"></i></button>--%>
-                            <%--                                            ${task.taskName}--%>
-                            <%--                                        <a href="task_detail?taskId=${task.taskId}">--%>
-                            <%--                                            <button class="btn btn-primary">Chi tiết</button>--%>
-                            <%--                                        </a>--%>
-                            <%--                                    </div>--%>
-                            <%--                                </div>--%>
-                            <%--                                <div class="col-2" style="border: 1px solid gray;">${task.assignToName}</div>--%>
-                            <%--                                <div class="col-3" style="border: 1px solid gray;">${task.startDate}</div>--%>
-                            <%--                                <div class="col-3" style="border: 1px solid gray;">${task.deadline}</div>--%>
-                            <%--                            </div>--%>
                             <div class="row " style="background: rgba(0, 0, 0, 0.2);">
                                 <div class="col-4 row-task"
                                      style="display: flex;justify-content: space-between; border: 1px solid gray;">
                                     <div class="name-project">
-                                        <button onclick="myFunction('.sub-task-detail')"><i
-                                                class="fa-solid fa-caret-down"></i>
+                                        <button onclick="myFunction('.sub-task-detail')"
+                                                style="border: none; background-color: #cccccc; justify-self: start;">
+                                            <i class="fa-solid fa-caret-down"></i>
                                         </button>
                                             ${task.taskName}
                                     </div>
@@ -287,49 +272,36 @@
 
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <!--------list sub task------------>
-                                <%--                                <div id="" class="row sub-task-detail">--%>
-                                <%--                                    <div class="col-4" style="border: 1px solid gray;">--%>
-                                <%--                                        <div class="">--%>
-                                <%--                                                ${subTask.taskName}--%>
-                                <%--                                            <a href="task_detail?taskId=${subTask.taskId}">--%>
-                                <%--                                                <button class="btn btn-primary">Chi tiết</button>--%>
-                                <%--                                            </a>--%>
-                                <%--                                        </div>--%>
-
-                                <%--                                    </div>--%>
-                                <%--                                    <div class="col-2" style="border: 1px solid gray;">${subTask.assignToName}</div>--%>
-                                <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.startDate}</div>--%>
-                                <%--                                    <div class="col-3" style="border: 1px solid gray;">${subTask.deadline}</div>--%>
-                                <%--                                </div>--%>
-                                <%--<c:if test="${subTask.taskStatus == }"--%>
-                                <div id="" class="row sub-task-detail">
-                                    <div class="col-4 link-chi-tiet-cong-viec"
-                                         style="border: 1px solid gray; display: flex; justify-content: space-between; ">
-                                        <div class="name-project">
-                                                ${subTask.taskName}
+                                <c:if test="${subTask.taskStatus != 5}">
+                                    <div id="" class="row sub-task-detail">
+                                        <div class="col-4 link-chi-tiet-cong-viec"
+                                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                                            <div class="name-project">
+                                                    ${subTask.taskName}
+                                            </div>
+                                            <div>
+                                                <a href="${pageContext.request.contextPath}/task_detail?taskId=${subTask.taskId}"
+                                                   class="chi-tiet-cong-viec">
+                                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${subTask.taskId}"
-                                               class="chi-tiet-cong-viec">
-                                                <button class="btn btn-primary chi-tiet">Chi tiết</button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col-1" style="border: 1px solid gray;">${subTask.assignToName}</div>
-                                    <div class="col-2" style="border: 1px solid gray;">${subTask.startDate}</div>
-                                    <div class="col-2" style="border: 1px solid gray;">${subTask.deadline}</div>
-                                    <div class="col-2" style="border: 1px solid gray;">${subTask.endDate}</div>
-                                    <div class="col-1" style="border: 1px solid gray;">
-                                        <div style="display: flex; justify-content: space-between;">
-                                            <button>
-                                                <i class="fa-regular fa-pen-to-square"></i>
-                                            </button>
-                                            <button>
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </button>
+                                        <div class="col-1" style="border: 1px solid gray;">${subTask.assignToName}</div>
+                                        <div class="col-2" style="border: 1px solid gray;">${subTask.startDate}</div>
+                                        <div class="col-2" style="border: 1px solid gray;">${subTask.deadline}</div>
+                                        <div class="col-2" style="border: 1px solid gray;">${subTask.endDate}</div>
+                                        <div class="col-1" style="border: 1px solid gray;">
+                                            <div style="display: flex; justify-content: space-between;">
+                                                <button>
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </button>
+                                                <button>
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </c:if>
                                 <!--------list sub task------------>
                             </c:forEach>
                         </c:forEach>

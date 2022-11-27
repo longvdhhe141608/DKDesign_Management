@@ -42,7 +42,7 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </c:if>
                             <c:if test="${project.status == 3 }">
-                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
                             </c:if>
                         </c:if>
                     </div>
@@ -59,7 +59,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            value="Yêu cầu của khách hàng">
@@ -153,22 +154,24 @@
                 </tr>
                 <tr>
                     <td>Kế hoạch của công việc:</td>
+                    <td>
+                        <div>
+                            <c:if test="${project.status == 1}">
+                                <div class="add" id="show-member">
+                                    <button class="btn btn-primary">+ Thêm công việc phụ</button>
+                                </div>
+                            </c:if>
+                        </div>
+                        <div>
+                            <c:forEach items="${task.listSubTask}" var="subTask">
+                                <c:if test="${subTask.taskStatus != 5}">
+                                    <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+                    </td>
                 </tr>
             </table>
-            <div>
-                <p>Danh sách công việc phụ :</p>
-                <c:if test="${project.status == 1}">
-                <div class="add" id="show-member">
-                    <button class="btn btn-primary">+ Thêm công việc phụ</button>
-                </div>
-                </c:if>
-            </div>
-            <div>
-                <c:forEach items="${task.listSubTask}" var="subTask">
-                    <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
-                </c:forEach>
-            </div>
-
         </div>
         <div style=" text-align: end; margin-left: 10px;">
             <c:if test="${project.status == 1}">
@@ -180,109 +183,120 @@
             </c:if>
         </div>
         <div class="task-cmt-details">
-        <p style="font-size: 20px;">Bình luận</p>
+            <p style="font-size: 20px;">Bình luận</p>
             <div class="task-cmt-details-main">
                 <form style="display: flex" action="add-comment" method="post">
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     <input name="taskId" type="text" value="${task.taskId}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
-                    <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                    <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text"
+                           placeholder="Bình luận....">
                     <button class="btn btn-primary">Gửi</button>
                 </form>
             </div>
-            <div class="task-cmt-details" >
-            <c:if test="${listComment.size() > 0}">
-                <c:forEach items="${listComment}" var="comment">
-                    <!----------item------------>
-                <div style="display: flex">
-                    <div class="task-cmt-details-main">
-                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
-                        <span class="name-avatar">${comment.accountName}</span>
-                        <span> ${comment.dateCountDown}</span></br>
-                        <span>${comment.content}</span>
+            <div class="task-cmt-details">
+                <c:if test="${listComment.size() > 0}">
+                    <c:forEach items="${listComment}" var="comment">
+                        <!----------item------------>
+                        <div style="display: flex">
+                            <div class="task-cmt-details-main">
+                                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                                <span class="name-avatar">${comment.accountName}</span>
+                                <span> ${comment.dateCountDown}</span></br>
+                                <span>${comment.content}</span>
 
-                    </div>
-                    <div>
-                        <c:if test="${comment.isPin() ==true}">
-                            <i class="fa-solid fa-thumbtack"></i>
+                            </div>
+                            <div>
+                                <c:if test="${comment.isPin() ==true}">
+                                    <i class="fa-solid fa-thumbtack"></i>
 
-                        </c:if>
-                        <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
-                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}" ><button type="button" class=" btn-primary" >Pin</button></a></br>
-                        </c:if>
-                    </div>
-                </div>
+                                </c:if>
+                                <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                                    <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
+                                        <button type="button" class=" btn-primary">Pin</button>
+                                    </a></br>
+                                </c:if>
+                            </div>
+                        </div>
 
-                    <!----------item------------>
-                </c:forEach>
-            </c:if>
+                        <!----------item------------>
+                    </c:forEach>
+                </c:if>
 
             </div>
 
 
-    </div>
+        </div>
     </div>
 </div>
 <div class="popup hide__popup">
     <form id="add-sub-task" action="add-sub-task" method="post">
-    <div class="popup__content">
-        <div class="title">
-            <h4><input class="info-text" type="text" name="name" value="" placeholder="Tên công việc phụ">
-                <div class="text-danger error"></div></h4>
-        </div>
-        <div class="info">
-            <input type="text" name="projectId" hidden="" value="${task.projectId}" >
-            <input type="text" name="sectionId" hidden="" value="${task.sectionId}" >
-            <input type="text" name="taskId" hidden="" value="${task.taskId}" >
-            <table class="table table-borderless">
-                <tr>
-                    <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
-                    <td>
-                        ${task.assignToName}
-                        <input type="text" name="assignTo" hidden="" value="${task.assignToId}" >
-                    </td>
-                </tr>
-                <tr>
-                    <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
-                    <td> <input id="inputstartdate" class="info-text" name="startDate" type="date">
-                        <div class="text-danger error"></div></td>
-                </tr>
-                <tr>
-                    <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                    <td> <input id="inputenddate" class="info-text" name="deadline" type="date">
-                        <div class="text-danger error"></div></td>
-                </tr>
-                <tr>
-                    <td>Yêu cầu của khách hàng<label class="text-danger">*</label>:</td>
-                    <td>
-                        <div class="dropdown">
-                            <select name="requirementId" class="btn btn-secondary dropdown-toggle">
-                                <c:forEach items="${listRequirement}" var="requirement">
-                                    <option value="${requirement.id}"> ${requirement.requirementName}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Số lượng file<label class="text-danger">*</label>:</td>
-                    <td> <input class="info-text" type="number" name="fileNumber" value="">
-                        <div class="text-danger error"></div></td>
-                </tr>
-            </table>
-        </div>
-        <div class="button_click">
-            <div></div>
-            <div class="btn_cancel">
-                <button type="button" class="btn btn-secondary close_popup">Hủy
-                    bỏ</button>
+        <div class="popup__content">
+            <div class="title">
+                <h4><input class="info-text" type="text" name="name" value="" placeholder="Tên công việc phụ">
+                    <div class="text-danger error"></div>
+                </h4>
             </div>
-            <div class="btn_ok">
-                <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu</button>
+            <div class="info">
+                <input type="text" name="projectId" hidden="" value="${task.projectId}">
+                <input type="text" name="sectionId" hidden="" value="${task.sectionId}">
+                <input type="text" name="taskId" hidden="" value="${task.taskId}">
+                <table class="table table-borderless">
+                    <tr>
+                        <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
+                        <td>
+                            ${task.assignToName}
+                            <input type="text" name="assignTo" hidden="" value="${task.assignToId}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
+                        <td><input id="inputstartdate" class="info-text" name="startDate" type="date">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
+                        <td><input id="inputenddate" class="info-text" name="deadline" type="date">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Yêu cầu của khách hàng<label class="text-danger">*</label>:</td>
+                        <td>
+                            <div class="dropdown">
+                                <select name="requirementId" class="btn btn-secondary dropdown-toggle">
+                                    <c:forEach items="${listRequirement}" var="requirement">
+                                        <c:if test="${requirement.status != 3}">
+                                            <option value="${requirement.id}"> ${requirement.requirementName}</option>
+                                        </c:if>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Số lượng file<label class="text-danger">*</label>:</td>
+                        <td><input class="info-text" type="number" name="fileNumber" value="">
+                            <div class="text-danger error"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button_click">
+                <div></div>
+                <div class="btn_cancel">
+                    <button type="button" class="btn btn-secondary close_popup">Hủy
+                        bỏ
+                    </button>
+                </div>
+                <div class="btn_ok">
+                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-  </form>
+    </form>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

@@ -42,7 +42,7 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </c:if>
                             <c:if test="${project.status == 3 }">
-                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
                             </c:if>
                         </c:if>
                     </div>
@@ -85,9 +85,9 @@
                             Tìm kiếm
                         </a>
                         <div class=" dropdown-menu">
-                            <a class="dropdown-item" href="#">tên công trình</a>
-                            <a class=" dropdown-item" href="#">thời gian</a>
-                            <a class=" dropdown-item" href="#">loại công trình</a>
+                            <a class="dropdown-item" href="#">Tên công trình</a>
+                            <a class=" dropdown-item" href="#">Thời gian</a>
+                            <a class=" dropdown-item" href="#">Loại công trình</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                             <div class="wap_search">
                                 <input style="margin-right: 10px;" type="text" class="search_term"
                                        placeholder="tên công việc">
-                                <button type="submit" class="btn btn-primary"> tìm kiếm</button>
+                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
                         </form>
                     </div>
@@ -105,7 +105,7 @@
             </div>
         </div>
         <div>
-            <table class="table table-bordered">
+            <table class="table table-bordered table-progress">
                 <tr>
                     <th scope="col">Công việc</th>
                     <th scope="col">Người thực hiện</th>
@@ -116,37 +116,50 @@
                     <th scope="col">Trạng thái</th>
                 </tr>
                 <c:forEach items="${listTask}" var="task">
-                    <tr>
-                        <td> <a href="task_detail?taskId=${task.taskId}">${task.taskName}</a> </td>
-                        <td> ${task.assignToName}</td>
-                        <td>
-                                ${task.startDate}
-                        </td>
-                        <td>
-                                ${task.deadline}
-                        </td>
-                        <td>
-                                ${task.endDate}
-                        </td>
-                        <td>${task.workProgress}</td>
-                        <td>
-                            <c:if test="${task.taskStatus == 1}">
-                                Chưa phê duyệt
-                            </c:if>
-                            <c:if test="${task.taskStatus == 2}">
-                                Đang thực hiện
-                            </c:if>
-                            <c:if test="${task.taskStatus == 3}">
-                                Chờ phê duyệt
-                            </c:if>
-                            <c:if test="${task.taskStatus == 4}">
-                                Đã hoàn thành
-                            </c:if>
-                            <c:if test="${task.taskStatus == 5}">
-                                Hủy bỏ
-                            </c:if>
-                        </td>
-                    </tr>
+                    <c:if test="${task.taskStatus != 5}">
+                        <tr>
+                            <td>
+                                    <%--                                <a href="task_detail?taskId=${task.taskId}">${task.taskName}</a>--%>
+                                <div class="link-chi-tiet-cong-viec"
+                                     style="display: flex; justify-content: space-between; ">
+                                    <div class="name-project">
+                                            ${task.taskName}
+                                    </div>
+                                    <div>
+                                        <a href="${pageContext.request.contextPath}/task_detail?taskId=${task.taskId}"
+                                           class="chi-tiet-cong-viec">
+                                            <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td> ${task.assignToName}</td>
+                            <td>
+                                    ${task.startDate}
+                            </td>
+                            <td>
+                                    ${task.deadline}
+                            </td>
+                            <td>
+                                    ${task.endDate}
+                            </td>
+                            <td>${task.workProgress}</td>
+                            <td>
+                                <c:if test="${task.taskStatus == 1}">
+                                    Chưa phê duyệt
+                                </c:if>
+                                <c:if test="${task.taskStatus == 2}">
+                                    Đang thực hiện
+                                </c:if>
+                                <c:if test="${task.taskStatus == 3}">
+                                    Chờ phê duyệt
+                                </c:if>
+                                <c:if test="${task.taskStatus == 4}">
+                                    Đã hoàn thành
+                                </c:if>
+                            </td>
+                        </tr>
+                    </c:if>
                 </c:forEach>
 
 
