@@ -2,6 +2,11 @@ package DkDesignManagement.utils;
 
 public class Constant {
 
+    //HOST
+    public static final String HOST ="http://localhost:8080";
+
+    public static final String PROJECT_NAME ="DkDesignManagement_war";
+
     //Task
     public static final int NOT_APPROVED_TASK_STATUS = 1;
 

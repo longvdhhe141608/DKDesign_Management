@@ -401,21 +401,26 @@ public class TaskDAO {
         return null;
     }
 
-    public int insertSubTaskByDesign(Tasks tasks) {
-        int check = 0;
-
-        String sql = "INSERT INTO `dkmanagement`.`task` (`project_id`, `section_id`, `task_id`, `creator`," +
-                " `assignedto`, `requirement_id`, `task_name`, `starting_date`, `deadline`, `number_of_file`, `status`)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
-
-        try {
-            check = jdbcTemplate.update(sql, tasks.getProjectID(), tasks.getSectionID(), tasks.getTaskID(), tasks.getCreator(), tasks.getAssignedTo(),
-                    tasks.getRequirementID(), tasks.getTaskName(), tasks.getStartingDate(), tasks.getDeadline(), tasks.getNumberOfFile(), tasks.getStatus());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return check;
-    }
+//    public int insertSubTaskByDesign(Tasks tasks) {
+//        int check = 0;
+//
+//        String sql = "INSERT INTO `dkmanagement`.`task` (`project_id`, `section_id`, `task_id`, `creator`," +
+//                " `assignedto`, `requirement_id`, `task_name`, `starting_date`, `deadline`, `number_of_file`, `status`)" +
+//                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
+//
+//        try {
+//            check = jdbcTemplate.update(sql, tasks.getProjectID(), tasks.getSectionID(), tasks.getTaskID(), tasks.getCreator(), tasks.getAssignedTo(),
+//                    tasks.getRequirementID(), tasks.getTaskName(), tasks.getStartingDate(), tasks.getDeadline(), tasks.getNumberOfFile(), tasks.getStatus());
+//
+//            GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+//            namedParameterJdbcTemplate.update(sql, generatedKeyHolder);
+//            return generatedKeyHolder.getKey().intValue();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return check;
+//    }
 
     public int updateTask(Task task) {
         String sql = "UPDATE dkmanagement.task\n" +

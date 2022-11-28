@@ -3,6 +3,7 @@ package DkDesignManagement.Controller.Design;
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Repository.*;
 import DkDesignManagement.Service.CloudinaryService;
+import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.model.TaskWaitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import static DkDesignManagement.utils.Constant.HOST;
+import static DkDesignManagement.utils.Constant.PROJECT_NAME;
 
 @Controller
 @RequestMapping("/design/sub-task")
@@ -46,6 +50,10 @@ public class SubTaskByDesignController {
 
     @Autowired
     private CloudinaryService cloudinary;
+
+
+    @Autowired
+    NotificationService notificationService;
 
     @RequestMapping(value = "/view-sub-task-detail", method = RequestMethod.GET)
     public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response) {
@@ -286,6 +294,15 @@ public class SubTaskByDesignController {
             view.addObject("mess", "Nộp không thành công! Vui lòng thử lại");
         } else {
             view.addObject("mess", "Nộp thành công");
+
+            //find leader
+            Project project = projectDao.getProject(projectID);
+            int leader = project.getCreator();
+
+            //add notification send leader
+            String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId="+subTaskID;
+            Notification notification = new Notification(-1, new java.util.Date(), "Bạn có sub-task Chờ phê duyệt", leader, project.getId(), url);
+            notificationService.addNotification(notification);
         }
         view.addObject("project-id", projectID);
         view.addObject("section-id", sectionID);

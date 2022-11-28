@@ -24,12 +24,19 @@
     <div class="summary">
         <h4>Thông báo</h4>
         <div style="margin-bottom: 10px;">
-            <button style=" width: 100%;" type="submit">
-                <div style="display: flex;justify-content: space-between;">
-                    <p> Huấn đã thêm công việc</p>
-                    <a>15 phút trước </a>
-                </div>
-            </button>
+            <h3>Thông báo</h3>
+            <c:forEach items="${listNotification}" var="notification">
+                <p>  ${notification.projectName}</p>
+                <a href="${notification.url}">
+                <button style=" width: 100%;" type="submit">
+                    <div style="display: flex;justify-content: space-between;">
+                        <p> ${notification.detail}</p>
+                        <a>${notification.dateString} </a>
+                    </div>
+                </button>
+                </a>
+            </c:forEach>
+
         </div>
     </div>
 </div>
