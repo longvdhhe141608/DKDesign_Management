@@ -2,6 +2,7 @@ package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Repository.*;
+import DkDesignManagement.Service.CommentService;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.model.TaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class TaskByDesignController {
 
     @Autowired
     NotificationService notificationService;
+
+    @Autowired
+    CommentService commentService;
 
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response) {
@@ -136,6 +140,7 @@ public class TaskByDesignController {
         view.addObject("progressPercent", progressPercent);
         view.addObject("totalSubmitFile", totalSubmitFile);
         view.addObject("totalFile", totalFile);
+        view.addObject("listComment", commentService.getAllCommentsByTaskId(tasks.getId()));
 
         return view;
     }
