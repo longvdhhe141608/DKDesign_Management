@@ -635,12 +635,12 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Công việc phụ</th>
+                        <th scope="col" class="col-4">Công việc phụ</th>
 
-                        <th scope="col">Thời gian bắt đầu</th>
-                        <th scope="col">Thời gian dự kiến kết thúc</th>
-                        <th scope="col">Thời gian kết thúc</th>
-                        <th scope="col">Tên công trình</th>
+                        <th scope="col" class="col-2">Thời gian bắt đầu</th>
+                        <th scope="col" class="col-2">Thời gian dự kiến kết thúc</th>
+                        <th scope="col" class="col-2">Thời gian kết thúc</th>
+                        <th scope="col" class="col-2">Tên công trình</th>
 
                     </tr>
                     </thead>

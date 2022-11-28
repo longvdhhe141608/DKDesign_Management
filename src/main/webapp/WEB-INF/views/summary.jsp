@@ -99,8 +99,8 @@
                 </div>
                 <table class="table table-borderless">
                     <tr>
-                        <td>Chủ nhà:</td>
-                        <td>${project.cusName}</td>
+                        <td class="col-6">Chủ nhà:</td>
+                        <td class="col-6">${project.cusName}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>

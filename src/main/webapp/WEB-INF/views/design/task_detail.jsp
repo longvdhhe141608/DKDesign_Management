@@ -72,8 +72,8 @@
                     <h4>${tasks.taskName}</h4>
                 </tr>
                 <tr>
-                    <td>Nhiệm vụ:</td>
-                    <td>${tasks.nameEmployee}</td>
+                    <td class="col-6">Nhiệm vụ:</td>
+                    <td class="col-6">${tasks.nameEmployee}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>

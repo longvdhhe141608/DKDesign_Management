@@ -47,8 +47,8 @@
                             <input type="text" id="userid" name="userid" value="${profile.id}" hidden>
                             <table class="table table-borderless">
                             <tr>
-                                <td>Họ và tên:</td>
-                                <td><input type="text" id="name"
+                                <td class="col-6">Họ và tên:</td>
+                                <td class="col-6"><input type="text" id="name"
                                            name="name" value="${profile.name}" required></td>
                             </tr>
 

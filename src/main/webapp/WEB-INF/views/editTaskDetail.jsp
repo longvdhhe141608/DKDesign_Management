@@ -78,8 +78,8 @@
                     </div>
                     <table class="table table-borderless">
                         <tr>
-                            <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
-                            <td>
+                            <td class="col-6">Nhiệm vụ<label class="text-danger">*</label>:</td>
+                            <td class="col-6">
                                 <select name="assignId" class="btn btn-secondary dropdown-toggle">
                                     <c:forEach items="${listAccount}" var="account">
                                         <option value="${account.id}" ${account.id== task.assignToId ? 'selected' : ''} > ${account.username}</option>

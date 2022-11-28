@@ -125,8 +125,8 @@
                 <table class="table table-borderless" style="border: 0;">
 
                     <tr>
-                        <td>Nhiệm vụ:</td>
-                        <td>${task.assignToName}</td>
+                        <td class="col-6">Nhiệm vụ:</td>
+                        <td class="col-6">${task.assignToName}</td>
                     </tr>
                     <tr>
                         <td>Công trình:</td>
