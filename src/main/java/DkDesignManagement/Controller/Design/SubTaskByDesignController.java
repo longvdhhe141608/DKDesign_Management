@@ -3,6 +3,7 @@ package DkDesignManagement.Controller.Design;
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Repository.*;
 import DkDesignManagement.Service.CloudinaryService;
+import DkDesignManagement.Service.CommentService;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.model.TaskWaitDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,10 @@ public class SubTaskByDesignController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    CommentService commentService;
+
+
     @RequestMapping(value = "/view-sub-task-detail", method = RequestMethod.GET)
     public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView view = new ModelAndView("design/sub-task-design");
@@ -89,6 +94,7 @@ public class SubTaskByDesignController {
         view.addObject("status", 0);
         String mess = request.getParameter("mess");
         view.addObject("mess", mess);
+        view.addObject("listComment", commentService.getAllCommentsByTaskId(subtask.getId()));
 
         return view;
     }

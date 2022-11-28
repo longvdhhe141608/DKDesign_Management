@@ -136,7 +136,54 @@
                 </tr>
             </table>
         </div>
-        <%--        <div style=" text-align: end; margin-left: 10px;">--%>
+
+        <div class="task-cmt-details">
+            <p style="font-size: 20px;">Bình luận</p>
+            <div class="task-cmt-details-main">
+                <form style="display: flex" action="${pageContext.request.contextPath}/add-comment" method="post">
+                    <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                    <input name="taskId" type="text" value="${tasks.id}" hidden="">
+                    <input name="operation" type="text" value="taskDetail" hidden="">
+                    <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text"
+                           placeholder="Bình luận....">
+                    <button class="btn btn-primary">Gửi</button>
+                </form>
+            </div>
+            <div class="task-cmt-details">
+                <c:if test="${listComment.size() > 0}">
+                    <c:forEach items="${listComment}" var="comment">
+                        <!----------item------------>
+                        <div style="display: flex">
+                            <div class="task-cmt-details-main">
+                                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                                <span class="name-avatar">${comment.accountName}</span>
+                                <span> ${comment.dateCountDown}</span></br>
+                                <span>${comment.content}</span>
+
+                            </div>
+                            <div>
+                                <c:if test="${comment.isPin() ==true}">
+                                    <i class="fa-solid fa-thumbtack"></i>
+
+                                </c:if>
+                                <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                                    <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
+                                        <button type="button" class=" btn-primary">Pin</button>
+                                    </a></br>
+                                </c:if>
+                            </div>
+                        </div>
+
+                        <!----------item------------>
+                    </c:forEach>
+                </c:if>
+
+            </div>
+
+
+        </div>
+
+    <%--        <div style=" text-align: end; margin-left: 10px;">--%>
         <%--            <form action="${pageContext.request.contextPath}/editTaskDetail">--%>
         <%--                <a href="">--%>
         <%--                    <button class="btn btn-primary">--%>
@@ -229,6 +276,7 @@
             </div>
         </div>
     </form>
+
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
