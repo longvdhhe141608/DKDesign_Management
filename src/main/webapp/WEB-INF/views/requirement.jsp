@@ -150,8 +150,10 @@
                     <thead>
                     <tr>
                         <th scope="col" class="col-2">Vị trí</th>
-                        <th scope="col" class="col-7">Yêu cầu</th>
+                        <th scope="col" class="col-6">Yêu cầu</th>
+                        <th scope="col" class="col-1">Thời gian</th>
                         <th scope="col" class="col-2">Trạng thái</th>
+
                         <th scope="col" class="col-1"></th>
                     </tr>
                     </thead>
@@ -161,7 +163,8 @@
                         <c:if test="${requirement.status != 3}">
                             <tr>
                                 <td class="col-2">${requirement.requirementName}</td>
-                                <td class="col-7">${requirement.requirementDetail}</td>
+                                <td class="col-6">${requirement.requirementDetail}</td>
+                                <td class="col-1"></td>
                                 <td class="col-2">
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý

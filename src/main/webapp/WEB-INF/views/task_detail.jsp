@@ -236,7 +236,7 @@
                 <input type="text" name="taskId" hidden="" value="${task.taskId}">
                 <table class="table table-borderless">
                     <tr>
-                        <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
+                        <td>Nhiệm vụ:</td>
                         <td>
                             ${task.assignToName}
                             <input type="text" name="assignTo" hidden="" value="${task.assignToId}">
@@ -255,7 +255,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Yêu cầu của khách hàng<label class="text-danger">*</label>:</td>
+                        <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>
                         <td>
                             <div class="dropdown">
                                 <select name="requirementId" class="btn btn-secondary dropdown-toggle">

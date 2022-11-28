@@ -132,7 +132,7 @@
                                             <div class="button_click" style="display: flex;justify-content: end">
 
                                                 <div class="btn_cancel" style="margin-right: 10px">
-                                                    <button type="submit" class="btn btn-secondary">Hủy
+                                                    <button class="btn btn-secondary">Hủy
                                                         bỏ
                                                     </button>
                                                 </div>
@@ -179,19 +179,20 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Tên công trình</th>
-                            <th scope="col">Loại công trình</th>
-                            <th scope="col">Thời gian bắt đầu</th>
-                            <th scope="col">Thời gian dự kiến kết thúc</th>
-                            <th scope="col">Thời gian kết thúc</th>
-                            <th scope="col">Trạng thái</th>
-                            <th scope="col"></th>
+                            <th scope="col" class="col-5">Tên công trình</th>
+                            <th scope="col" class="col-1">Loại công trình</th>
+                            <th scope="col" class="col-1">Thời gian bắt đầu</th>
+                            <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
+                            <th scope="col" class="col-1">Thời gian kết thúc</th>
+                            <th scope="col" class="col-1">Tiến độ</th>
+                            <th scope="col" class="col-1">Trạng thái</th>
+                            <th scope="col" class="col-1"></th>
                         </tr>
                         </thead>
                         <tbody class="list-project">
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
-                                <td class="name-and-link">
+                                <td class="name-and-link col-12">
                                     <div class="name-project col-8">
                                             ${i.projectName}
                                     </div>
@@ -204,7 +205,7 @@
                                         </a>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="col-1">
                                     <c:if test="${i.type == 1}">
                                         Thiết kế ngoại thất
                                     </c:if>
@@ -215,22 +216,27 @@
                                         Thiết kế ngoại thất + Thiết kế nội thất
                                     </c:if>
                                 </td>
-                                <td>
-                                    <div class="name-input" style="width: 150px;">
+                                <td class="col-1">
+                                    <div class="name-input" style="width: 100px;">
                                             ${i.startDate}
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="name-input" style="width: 150px;">
+                                <td class="col-1">
+                                    <div class="name-input" style="width: 100px;">
                                             ${i.closureDate}
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="name-input" style="width: 150px;">
+                                <td class="col-1">
+                                    <div class="name-input" style="width: 100px;">
                                             ${i.endDate}
                                     </div>
                                 </td>
-                                <td>
+                                <td class="col-1">
+                                    <div class="name-input" style="width: 100px;">
+
+                                    </div>
+                                </td>
+                                <td class="col-1">
                                     <c:if test="${i.status == 2}">
                                         Đang bàn giao
                                     </c:if>
@@ -241,7 +247,7 @@
                                         Đã hoàn thành
                                     </c:if>
                                 </td>
-                                <td>
+                                <td class="col-1">
                                     <div style="display: flex; justify-content: space-between;">
                                         <c:if test="${i.status == 1}">
                                             <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}">
