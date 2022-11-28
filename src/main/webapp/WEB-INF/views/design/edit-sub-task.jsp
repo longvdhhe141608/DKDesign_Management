@@ -89,8 +89,8 @@
                     <%--                        </td>--%>
                     <%--                    </tr>--%>
                     <tr>
-                        <td>Nhiệm vụ:</td>
-                        <td>${subTask.nameEmployee}</td>
+                        <td class="col-6">Nhiệm vụ:</td>
+                        <td class="col-6">${subTask.nameEmployee}</td>
                     </tr>
                     <tr>
                         <td>Công trình:</td>

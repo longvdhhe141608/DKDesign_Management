@@ -72,59 +72,61 @@
                 </div>
                 <table class="table table-borderless">
                     <tr>
-                        <td>Chủ nhà:</td>
-                        <td>${project.cusName}</td>
+                        <td class="col-6">Chủ nhà:</td>
+                        <td class="col-6">${project.cusName}</td>
                     </tr>
                     <tr>
-                        <td>Số điện thoại:</td>
-                        <td>${project.cusPhone}</td>
+                        <td class="col-6">Số điện thoại:</td>
+                        <td class="col-6">${project.cusPhone}</td>
                     </tr>
                     <tr>
-                        <td>Địa chỉ công trình:</td>
-                        <td>${project.cusAddress}</td>
+                        <td class="col-6">Địa chỉ công trình:</td>
+                        <td class="col-6">${project.cusAddress}</td>
                     </tr>
                     <tr>
-                        <td>Loại công trình:</td>
+                        <td class="col-6">Loại công trình:</td>
                         <c:if test="${project.type==1}">
-                            <td>Ngoại thất</td>
+                            <td class="col-6">Ngoại thất</td>
                         </c:if>
                         <c:if test="${project.type==2}">
-                            <td>Nội thất</td>
+                            <td class="col-6">Nội thất</td>
                         </c:if>
                     </tr>
                     <tr>
-                        <td>Diện tích xây dựng:</td>
-                        <td>${project.constructionArea}m<sup>2</sup></td>
+                        <td class="col-6">Diện tích xây dựng:</td>
+                        <td class="col-6">${project.constructionArea}m<sup>2</sup></td>
                     </tr>
                     <tr>
-                        <td>Chi phí xây dựng:</td>
-                        <td>
+                        <td class="col-6">Chi phí xây dựng:</td>
+                        <td class="col-6">
                             <fmt:formatNumber type="number" maxFractionDigits="3" value="${project.expectedCost}"/> VNĐ
                         </td>
                     </tr>
                     <tr>
-                        <td>Thời gian bắt đầu:</td>
-                        <td>${project.startDate}</td>
+                        <td class="col-6">Thời gian bắt đầu:</td>
+                        <td class="col-6">${project.startDate}</td>
                     </tr>
                     <tr>
-                        <td>Thời gian dự kiến kết thúc:</td>
-                        <td>${project.closureDate}</td>
+                        <td class="col-6">Thời gian dự kiến kết thúc:</td>
+                        <td class="col-6">${project.closureDate}</td>
                     </tr>
                     <tr>
-                        <td>Thời gian kết thúc:</td>
-                        <td>${project.endDate}</td>
+                        <td class="col-6">Thời gian kết thúc:</td>
+                        <td class="col-6">${project.endDate}</td>
                     </tr>
                     <tr>
-                        <td>Địa chỉ công trình:</td>
-                        <td>${project.cusAddress}</td>
+                        <td class="col-6">Địa chỉ công trình:</td>
+                        <td class="col-6">${project.cusAddress}</td>
                     </tr>
                     <tr>
-                        <td>Mô tả:</td>
-                        <td>${project.detail}</td>
+                        <td class="col-6">Mô tả:</td>
+                        <td class="col-6">${project.detail}</td>
                     </tr>
                     <tr>
-                        <td>Hiển thị file:</td>
-                        <td></td>
+                        <td class="col-6">Hiển thị file:</td>
+                        <td class="col-6">
+                            <div class="container js-file-list"></div>
+                        </td>
                     </tr>
                 </table>
             </div>

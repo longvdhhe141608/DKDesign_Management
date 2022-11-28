@@ -85,8 +85,8 @@
                     <h4>${task.taskName}</h4>
                 </tr>
                 <tr>
-                    <td>Nhiệm vụ:</td>
-                    <td>${task.assignToName}</td>
+                    <td class="col-6">Nhiệm vụ:</td>
+                    <td class="col-6">${task.assignToName}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>

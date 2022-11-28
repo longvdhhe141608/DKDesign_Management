@@ -25,14 +25,30 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary">
-        <form style="display: flex;" id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
+        <form id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
             <div class="top-details">
                 <div class="list-top">
                     <h3>${project.projectName}</h3>
-                    <select style="border-radius: 5px; padding: 6px;" class="btn project-detail" name="status">
-                        <option value="1" class="btn btn-secondary">Đang thực hiện</option>
-                        <option value="2" class="btn btn-secondary">Đã hoàn thành</option>
-                    </select>
+                    <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                        <input type="text" name="projectId" value="${project.id}" hidden="">
+                        <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px; ">
+                            <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
+                                <c:forEach items="${listStatus}" var="status">
+                                    <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+                        <div>
+                            <c:if test="${sessionScope.loginUser.role_id == 2}">
+                                <c:if test="${project.status != 3 }">
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                </c:if>
+                                <c:if test="${project.status == 3 }">
+                                    <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                </c:if>
+                            </c:if>
+                        </div>
+                    </form>
                 </div>
                 <div class="list-task-head">
                     <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
@@ -80,8 +96,8 @@
                     <input type="text" class="" name="idProject" value="${project.id}" hidden>
                     <table class="table table-borderless">
                         <tr>
-                            <td>Tên công trình:</td>
-                            <td><input class="info-text" type="text" name="name" value="${project.projectName}"
+                            <td class="col-6">Tên công trình:</td>
+                            <td class="col-6"><input class="info-text" type="text" name="name" value="${project.projectName}"
                                        style="width: 50%">
                                 <div class="text-danger error"></div>
                             </td>

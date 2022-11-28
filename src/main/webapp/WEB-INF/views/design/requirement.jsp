@@ -78,9 +78,9 @@
                 <table class="table table-bordered ">
                     <thead>
                     <tr>
-                        <th scope="col-2">Vị trí</th>
-                        <th scope="col-8">Yêu cầu</th>
-                        <th scope="col-2">Trạng thái</th>
+                        <th scope="col" class="col-2">Vị trí</th>
+                        <th scope="col" class="col-8">Yêu cầu</th>
+                        <th scope="col" class="col-2">Trạng thái</th>
                         <%--                        <th scope="col"></th>--%>
                     </tr>
                     </thead>
