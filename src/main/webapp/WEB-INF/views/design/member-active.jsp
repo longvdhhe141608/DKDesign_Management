@@ -65,6 +65,10 @@
                         type="button"
                         style="background: blue"
                         value="Thành viên"></a>
+                <a class="test"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <h4>Thành viên dự án</h4>
@@ -80,7 +84,7 @@
                             <div class="dropdown">
                                 <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
                                         name="role">
-                                    <option ${role == "default" ? "selected" :""} value="default" Tất cả</option>
+                                    <option ${role == "default" ? "selected" :""} value="default"> Tất cả </option>
                                     <c:forEach items="${roles}" var="i">
                                         <option ${role == i.id ? "selected" :""} value="${i.id}">${i.name}</option>
                                     </c:forEach>

@@ -30,60 +30,59 @@
       <div class="list-top">
         <h3>${project.projectName}</h3>
 
-        <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
-              method="post">
-          <input type="text" name="projectId" value="${project.id}" hidden="">
-          <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
-            <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
-              <c:forEach items="${listStatus}" var="status">
-                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
-              </c:forEach>
-            </select>
-          </div>
-          <div>
-            <c:if test="${sessionScope.loginUser.role_id == 2}">
-              <c:if test="${project.status != 3 }">
-                <button type="submit" class="btn btn-primary">Lưu</button>
-              </c:if>
-              <c:if test="${project.status == 3 }">
-                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
-              </c:if>
-            </c:if>
-          </div>
-        </form>
+<%--        <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"--%>
+<%--              method="post">--%>
+<%--          <input type="text" name="projectId" value="${project.id}" hidden="">--%>
+<%--          <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">--%>
+<%--            <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">--%>
+<%--              <c:forEach items="${listStatus}" var="status">--%>
+<%--                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>--%>
+<%--              </c:forEach>--%>
+<%--            </select>--%>
+<%--          </div>--%>
+<%--          <div>--%>
+<%--            <c:if test="${sessionScope.loginUser.role_id == 2}">--%>
+<%--              <c:if test="${project.status != 3 }">--%>
+<%--                <button type="submit" class="btn btn-primary">Lưu</button>--%>
+<%--              </c:if>--%>
+<%--              <c:if test="${project.status == 3 }">--%>
+<%--                <button type="submit" class="btn btn-primary" disabled>Lưu</button>--%>
+<%--              </c:if>--%>
+<%--            </c:if>--%>
+<%--          </div>--%>
+<%--        </form>--%>
 
       </div>
       <div class="list-task-head">
-        <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
+        <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
                 class="btn btn-secondary"
                 type="button"
+        <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
+                style="background: blue"
+        <%--                </c:if>--%>
                 value="Sơ lược"></a>
-        <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
+        <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
                 class="btn btn-secondary"
                 type="button"
                 value="Công việc"></a>
-        <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
-                class="btn btn-secondary"
-                type="button"
-                value="Duyệt công việc"></a>
         <a class="test"
-           href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
-          <input class="btn btn-secondary"
-                 type="button"
-                 value="Yêu cầu của khách hàng">
-        </a>
-        <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+           href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                 class="btn btn-secondary"
                 type="button"
-                value="Tiến độ"></a>
-        <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                value="Trạng thái"></a>
+        <a class="test"
+           href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}"><input
+                class="btn btn-secondary"
+                type="button"
+                value="Yêu cầu của khách hàng"></a>
+        <a class="test"
+           href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                 class="btn btn-secondary"
                 type="button"
                 value="Thành viên"></a>
-        <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+        <a class="test"  ><input
                 class="btn btn-secondary"
                 type="button"
-                style="background: blue;"
                 value="Thống kê"></a>
       </div>
     </div>

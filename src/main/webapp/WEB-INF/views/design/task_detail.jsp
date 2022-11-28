@@ -64,6 +64,10 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
+                <a class="test"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="task-details-main">
@@ -194,7 +198,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Yêu cầu của khách hàng<label class="text-danger">*</label>:</td>
+                        <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>
                         <td>
                             <select class="btn btn-secondary" name="requirementID" id="">
                                 <c:forEach items="${requirements}" var="i">

@@ -67,12 +67,13 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Tên công trình</th>
-                            <th scope="col">Loại công trình</th>
-                            <th scope="col">Thời gian bắt đầu</th>
-                            <th scope="col">Thời gian dự kiến kết thúc</th>
-                            <th scope="col">Thời gian kết thúc</th>
-                            <th scope="col">Trạng thái</th>
+                            <th scope="col" class="col-5">Tên công trình</th>
+                            <th scope="col" class="col-1">Loại công trình</th>
+                            <th scope="col" class="col-1">Thời gian bắt đầu</th>
+                            <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
+                            <th scope="col" class="col-1">Thời gian kết thúc</th>
+                            <th scope="col" class="col-1">Tiến độ</th>
+                            <th scope="col" class="col-2">Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody class="list-project">
@@ -102,18 +103,23 @@
                                     </c:if>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 150px;">
+                                    <div class="name-input" style="width: 100px;">
                                             ${i.startDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 150px;">
+                                    <div class="name-input" style="width: 100px;">
                                             ${i.closureDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 150px;">
+                                    <div class="name-input" style="width: 100px;">
                                             ${i.endDate}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="name-input" style="width: 100px;">
+
                                     </div>
                                 </td>
                                 <td>

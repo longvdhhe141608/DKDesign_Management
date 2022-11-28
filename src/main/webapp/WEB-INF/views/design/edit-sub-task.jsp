@@ -61,6 +61,10 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
+                <a class="test" ><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="task-details-main">

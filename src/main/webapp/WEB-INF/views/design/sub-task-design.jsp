@@ -62,6 +62,10 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
+                <a class="test"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="task-details-main">
@@ -149,7 +153,7 @@
                 </tr>
 
                 <tr>
-                    <td>upload file:</td>
+                    <td>Upload file:</td>
                     <td>
                         <c:if test="${progressPercent != 100 && subTask.status == 2 }">
                             <form action="${pageContext.request.contextPath}/design/sub-task/update-file-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
