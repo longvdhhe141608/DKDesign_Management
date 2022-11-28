@@ -31,7 +31,7 @@ public class NotificationDao {
     }
 
     public List<Notification> getAllByAccountId(int accountId) {
-        String sql = "select * from notification n where account_id  =? ";
+        String sql = "select * from notification n where account_id  =? order by `date` desc ";
 
         return jdbcTemplate.query(sql, new MapperNotification(),accountId);
     }
