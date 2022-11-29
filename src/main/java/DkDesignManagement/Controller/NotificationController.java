@@ -42,7 +42,7 @@ public class NotificationController {
 
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView loadMemberAdminPage(HttpServletRequest request, RedirectAttributes redirect) {
+    public ModelAndView notification(HttpServletRequest request, RedirectAttributes redirect) {
         ModelAndView view = new ModelAndView("notification");
 
         //check login
@@ -53,6 +53,46 @@ public class NotificationController {
         }
         Account account = (Account) session.getAttribute("loginUser");
 
+        //sendNotification
+        //check Role
+        if (account.getRole_id() == 2) {
+            //leader
+            sendNotificationToLeader(account);
+        } else if (account.getRole_id() == 3) {
+            //design
+            sendNotificationToDesign(account);
+        }
+
+        view.addObject("listNotification", notificationService.getAllByAccountId(account.getId()));
+
+        return view;
+    }
+
+    private void sendNotificationToDesign(Account account) {
+        //check task Expired
+        List<Task> listTaskExpired = taskService.getListTaskExpiredToDayDesign(account.getId());
+        if (!ObjectUtils.isEmpty(listTaskExpired)) {
+            //find design
+            int design = account.getId();
+            for (Task task : listTaskExpired) {
+
+                //add notification send leader
+                String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+                String message = "Bạn có sub-task trong dự án đến ngày hết hạn";
+
+                //check notification exits
+                NotificationDto notificationDto = notificationService.getNotification(design, message, url);
+                if (ObjectUtils.isEmpty(notificationDto)) {
+                    Notification notification = new Notification(-1, new java.util.Date()
+                            , message, design, task.getProjectId(), url);
+                    notificationService.addNotification(notification);
+                }
+            }
+        }
+
+    }
+
+    private void sendNotificationToLeader(Account account) {
         //check task Expired
         List<Task> listTaskExpired = taskService.getListTaskExpiredToDay(account.getId());
         if (!ObjectUtils.isEmpty(listTaskExpired)) {
@@ -72,13 +112,8 @@ public class NotificationController {
                     notificationService.addNotification(notification);
                 }
             }
-
         }
 
-
-        view.addObject("listNotification", notificationService.getAllByAccountId(account.getId()));
-
-        return view;
     }
 
 
