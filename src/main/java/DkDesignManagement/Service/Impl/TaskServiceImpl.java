@@ -60,6 +60,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<Task> getListTaskExpiredToDayDesign(int accountId) {
+        return taskDAO.getAllSubTaskExpiredToDayDesign(accountId);
+    }
+
+    @Override
     public Task getTaskById(int taskId) {
         return taskDAO.getTaskById(taskId);
     }

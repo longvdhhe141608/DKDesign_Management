@@ -642,13 +642,32 @@ public class TaskDAO {
         String sql = "select * from task t \n" +
                 "where \n" +
                 "t.project_id = ? \n" +
-                "and t.deadline = curdate() \n" +
+                "and t.deadline <= curdate() \n" +
                 "and t.status != 4 \n" +
                 "and t.status != 5 \n" +
                 "and t.task_id is not null ";
         try {
 
             tasksList = jdbcTemplate.query(sql, new MapperTask(), projectId);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Task> getAllSubTaskExpiredToDayDesign(int accountId) {
+        List<Task> tasksList = new ArrayList<>();
+        String sql = "select * from task t \n" +
+                "where \n" +
+                "t.assignedto = ? \n" +
+                "and t.deadline <= curdate() \n" +
+                "and t.status != 4 \n" +
+                "and t.status != 5 \n" +
+                "and t.task_id is not null ";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTask(), accountId);
             return tasksList;
         } catch (Exception ex) {
             ex.printStackTrace();
