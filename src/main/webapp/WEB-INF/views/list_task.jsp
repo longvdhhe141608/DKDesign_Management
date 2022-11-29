@@ -328,8 +328,9 @@
                                     </tr>
                                 </table>
                                 <div class="add-btn-work">
-                                    <button style="margin-right: 10px" type="submit"
-                                            class="btn btn-secondary btn-canel close_popup">Hủy bỏ
+                                    <button style="margin-right: 10px" type="button"
+                                            class="btn btn-secondary btn-canel close_popup">
+                                        Hủy bỏ
                                     </button>
                                     <button onclick="return checkvalidatenumber('#add-project3')"
                                             class="btn btn-primary btn-add">Thêm

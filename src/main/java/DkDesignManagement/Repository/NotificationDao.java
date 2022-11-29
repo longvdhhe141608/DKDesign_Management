@@ -5,6 +5,7 @@ import DkDesignManagement.Entity.Comment;
 import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Mapper.MapperComment;
 import DkDesignManagement.Mapper.MapperNotification;
+import DkDesignManagement.Mapper.MapperTask;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -33,7 +34,7 @@ public class NotificationDao {
     public List<Notification> getAllByAccountId(int accountId) {
         String sql = "select * from notification n where account_id  =? order by `date` desc ";
 
-        return jdbcTemplate.query(sql, new MapperNotification(),accountId);
+        return jdbcTemplate.query(sql, new MapperNotification(), accountId);
     }
 
     public int addNotification(Notification notification) {
@@ -54,4 +55,18 @@ public class NotificationDao {
         return generatedKeyHolder.getKey().intValue();
     }
 
+    public Notification getNotification(int accountId, String message, String url) {
+        String sql = "select * from notification n\n" +
+                "where n.detail = ? \n" +
+                "and n.url = ? \n" +
+                "and n.account_id = ? ";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, new MapperNotification(), message, url, accountId);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return null;
+    }
 }

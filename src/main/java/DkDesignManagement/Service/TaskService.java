@@ -17,6 +17,8 @@ public interface TaskService {
 
    List<Task> getListSubTask();
 
+   List<Task> getListTaskExpiredToDay(int accountId);
+
    Task getTaskById(int taskId);
 
    Task getTaskByIdFullModel(int taskId);
