@@ -46,7 +46,7 @@
                         <tr>
                             <input name="id" type="number" value="${member.memberId}" hidden/>
                             <td><label>Họ và tên:</label></td>
-                            <td>
+
 <%--                                <input name="name" type="text" value="${member.memberName}">--%>
                           <td> ${member.memberName}</td>
 
@@ -60,7 +60,7 @@
                         <tr>
                             <td>Số CCCD/CMND:</td>
 <%--                            <td><input name="cccd" type="text" value="${member.memberCccd}"></td>--%>
-                            <td> "${member.memberCccd}</td>
+                            <td>${member.memberCccd}</td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
