@@ -182,7 +182,7 @@
                     <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                     <input name="taskId" type="text" value="${task.taskId}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
-                    <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text"
+                    <input style="width: 900px; margin-right: 10px;border-radius: 5px" name="content" class="input-cmt" type="text"
                            placeholder="Bình luận....">
                     <button class="btn btn-primary">Gửi</button>
                 </form>
@@ -196,7 +196,7 @@
                                 <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                                 <span class="name-avatar">${comment.accountName}</span>
                                 <span> ${comment.dateCountDown}</span></br>
-                                <span>${comment.content}</span>
+                                <span style="margin-left: 50px">${comment.content}</span>
 
                             </div>
                             <div>

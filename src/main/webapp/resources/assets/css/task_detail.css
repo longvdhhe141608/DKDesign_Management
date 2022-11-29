@@ -14,7 +14,7 @@
 }
 
 .input-cmt {
-    width: 800px;
+    width: 900px;
     margin-right: 10px;
 }
 
@@ -32,13 +32,13 @@
 .task-cmt-details-main {
 
     display: inline-block;
-
-}
-.cmt-details{
     background: lightgray;
 
     margin-bottom: 10px;
     border: 1px solid gray;
     border-radius: 5px;
     padding: 5px;
+}
+.cmt-details{
+
 }
