@@ -47,7 +47,7 @@
             >
         </div>
         <div class="change-password-btn">
-            <button type="submit" class="btn-login form-control">Thoát</button>
+            <button type="button" class="btn-login form-control" onclick="history.back()">Thoát</button>
             <button type="submit" class="btn-login form-control">Lưu</button>
         </div>
     </div>

@@ -24,11 +24,12 @@
             <input type="email" class="info-text form-control" placeholder="Nhập Email">
             <div class="text-danger error"></div>
             <div style="display: flex;">
-                <form action="#">
-                    <button class="btn btn-secondary" style="margin-right: 20px;" type="submit">Hủy</button>
-                </form>
+                <button class="btn btn-secondary" style="margin-right: 20px;" type="button" onclick="history.back()">
+                    Hủy
+                </button>
                 <button onclick="return checkvalidate('#addProject')"
-                        class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Quên mật khẩu</button>
+                        class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Quên mật khẩu
+                </button>
             </div>
         </form><!-- /form -->
 
