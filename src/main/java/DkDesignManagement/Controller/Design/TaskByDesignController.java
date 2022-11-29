@@ -184,17 +184,15 @@ public class TaskByDesignController {
         } else {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
             view.addObject("mess", "Save success");
+            //find leader
+            Project project = projectDao.getProject(projectID);
+            int leader = project.getCreator();
+
+            //add notification send leader
+            String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + keySubTask;
+            Notification notification = new Notification(-1, new java.util.Date(), "Bạn có sub-task Chưa phê duyệt", leader, project.getId(), url);
+            notificationService.addNotification(notification);
         }
-        //find leader
-        Project project = projectDao.getProject(projectID);
-        int leader = project.getCreator();
-
-        //add notification send leader
-        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId="+keySubTask;
-        Notification notification = new Notification(-1, new java.util.Date(), "Bạn có sub-task Chưa phê duyệt", leader, project.getId(), url);
-        notificationService.addNotification(notification);
-
-
 
 
         view.addObject("project-id", projectID);
