@@ -55,6 +55,9 @@ public class TaskController {
     @Autowired
     private ImageAndFileDao imageAndFileDao;
 
+    @Autowired
+    NotificationService notificationService;
+
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(@ModelAttribute("mess") String mess, HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -289,6 +292,20 @@ public class TaskController {
             taskService.updateTask(taskLevel2);
 
         }
+
+        //add notification to design
+        //find design
+        int design = task.getAssignToId();
+
+        //add notification send leader
+        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+        String message = "Sub-task của bạn không được phê duyệt và đang thực hiện";
+        if (operation.equals("agree")) {
+            message = "Sub-task của bạn được phê duyệt và đã hoàn thành";
+
+        }
+        Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
+        notificationService.addNotification(notification);
 
         redirect.addAttribute("mess", "" + operation + " task successfully ");
 
