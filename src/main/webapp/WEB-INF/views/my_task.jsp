@@ -32,7 +32,6 @@
                     <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
                             class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc
                     </button>
-
                 </div>
             </div>
             <div style="display: flex;">
@@ -232,7 +231,10 @@
         span.addEventListener("click", function () {
             modal.style.display = "none";
         });
-
+        let  close = document.querySelector('.close_popup');
+        close.addEventListener('click',function (){
+            modal.style.display = "none";
+        });
         // When the user clicks on <span> (x), close the modal
 
 

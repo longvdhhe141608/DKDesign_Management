@@ -23,7 +23,6 @@
             <p>mật khẩu</p>
             <input id="password"
                    name="password"
-
                    required
                    class="form-control"
                    placeholder="123456">
@@ -32,7 +31,6 @@
             <p>mật khẩu mới</p>
             <input id="new-password"
                    name="new-password"
-
                    required
                    class="form-control"
             >
@@ -41,7 +39,6 @@
             <p>xác nhận mật khẩu</p>
             <input id="confirm-password"
                    name="password"
-
                    required
                    class="form-control"
             >
