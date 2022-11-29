@@ -132,7 +132,7 @@
 
                             </table>
                             <div class="add-btn-work" style="display: flex; justify-content: end">
-                                <span id="close3" class="close"><button class="btn btn-secondary" style="margin-right: 5px">Hủy bỏ</button></span>
+                                <button class="btn btn-secondary" style="margin-right: 5px">Hủy bỏ</button>
                                 <button onclick="return checkvalidatenumber('#add-project2')" type="submit"
                                         class="btn btn-primary">Thêm
                                 </button>
