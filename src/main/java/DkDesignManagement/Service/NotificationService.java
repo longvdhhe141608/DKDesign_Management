@@ -13,5 +13,8 @@ public interface NotificationService {
 
     List<NotificationDto> getAllByAccountId(int accountId);
 
+    NotificationDto getNotification(int accountId, String message, String url);
+
     void addNotification(Notification notification);
+
 }
