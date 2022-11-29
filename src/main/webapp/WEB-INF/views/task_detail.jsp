@@ -197,12 +197,10 @@
                                 <span class="name-avatar">${comment.accountName}</span>
                                 <span> ${comment.dateCountDown}</span></br>
                                 <span style="margin-left: 50px">${comment.content}</span>
-
                             </div>
                             <div>
                                 <c:if test="${comment.isPin() ==true}">
                                     <i class="fa-solid fa-thumbtack"></i>
-
                                 </c:if>
                                 <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
                                     <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
@@ -211,7 +209,6 @@
                                 </c:if>
                             </div>
                         </div>
-
                         <!----------item------------>
                     </c:forEach>
                 </c:if>
