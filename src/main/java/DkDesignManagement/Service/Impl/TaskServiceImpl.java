@@ -1,7 +1,9 @@
 package DkDesignManagement.Service.Impl;
 
 
+import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Repository.*;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.DashboardResponse;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 
 import static DkDesignManagement.utils.Constant.*;
@@ -42,6 +45,18 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getListSubTask() {
         return taskDAO.getAllTaskLevel2();
+    }
+
+    @Override
+    public List<Task> getListTaskExpiredToDay(int accountId) {
+        List<Project> listProject = projectDao.getAllProjectByCreated(accountId);
+        List<Task> listTaskExpired = new ArrayList<>();
+        for (Project project : listProject) {
+            List<Task> listTask = taskDAO.getAllSubTaskExpiredToDay(project.getId());
+            listTaskExpired.addAll(listTask);
+        }
+
+        return listTaskExpired;
     }
 
     @Override
@@ -100,10 +115,10 @@ public class TaskServiceImpl implements TaskService {
 
 
     @Override
-    public TaskPageResponse getListSubTask(int indexPage,int projectId, int status,String name ,String accountId) {
+    public TaskPageResponse getListSubTask(int indexPage, int projectId, int status, String name, String accountId) {
         int pageNumber = 10;
-        int count = taskDAO.countSubTask(projectId,String.valueOf(status), name , accountId);
-        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage,projectId, String.valueOf(status), name , accountId);
+        int count = taskDAO.countSubTask(projectId, String.valueOf(status), name, accountId);
+        List<Task> listTask = taskDAO.getAllSubTask(pageNumber, indexPage, projectId, String.valueOf(status), name, accountId);
         int endPage = count / pageNumber;
         if (count % pageNumber != 0) {
             endPage++;
@@ -120,7 +135,7 @@ public class TaskServiceImpl implements TaskService {
     public TaskPageResponse getListSubTaskProcess(int indexPage, int projectId) {
         int pageNumber = 10;
         int count = taskDAO.countSubTaskViewProcess(projectId);
-        List<Task> listTask = taskDAO.getAllSubTaskViewProcess(pageNumber, indexPage,projectId);
+        List<Task> listTask = taskDAO.getAllSubTaskViewProcess(pageNumber, indexPage, projectId);
         int endPage = count / pageNumber;
         if (count % pageNumber != 0) {
             endPage++;
@@ -138,11 +153,11 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public boolean isLastTask(Task task) {
-       //get list sub task of task level 2
+        //get list sub task of task level 2
         List<Task> listSubTask = taskDAO.getListSubTask(task.getTaskfId().intValue());
         boolean checkIsLastTask = true;
         for (Task subTask : listSubTask) {
-            if(subTask.getTaskStatus() != COMPLETE_TASK_STATUS){
+            if (subTask.getTaskStatus() != COMPLETE_TASK_STATUS) {
                 checkIsLastTask = false;
             }
         }

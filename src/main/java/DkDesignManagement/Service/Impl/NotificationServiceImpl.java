@@ -8,6 +8,7 @@ import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +33,15 @@ public class NotificationServiceImpl implements NotificationService {
         }
 
         return listNotificationDto;
+    }
+
+    @Override
+    public NotificationDto getNotification(int accountId, String message, String url) {
+        Notification notification = notificationDao.getNotification(accountId, message, url);
+        if (!ObjectUtils.isEmpty(notification)) {
+            return NotificationDto.toNotificationDto(notification);
+        }
+        return null;
     }
 
     @Override

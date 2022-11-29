@@ -636,4 +636,23 @@ public class TaskDAO {
                 "and t.status =4 ";
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
     }
+
+    public List<Task> getAllSubTaskExpiredToDay(int projectId) {
+        List<Task> tasksList = new ArrayList<>();
+        String sql = "select * from task t \n" +
+                "where \n" +
+                "t.project_id = ? \n" +
+                "and t.deadline = curdate() \n" +
+                "and t.status != 4 \n" +
+                "and t.status != 5 \n" +
+                "and t.task_id is not null ";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTask(), projectId);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
 }
