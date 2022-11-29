@@ -36,7 +36,7 @@
             Công việc của tôi
         </button>
 
-        <button onclick="sendRedirect('notification.html')" class="tab_button">
+        <button onclick="sendRedirect('${pageContext.request.contextPath}/notification')" class="tab_button">
             <i class="fa-solid fa-bell"></i>
             Thông báo
         </button>
