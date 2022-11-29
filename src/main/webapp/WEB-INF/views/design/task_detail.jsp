@@ -158,7 +158,7 @@
                                 <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                                 <span class="name-avatar">${comment.accountName}</span>
                                 <span> ${comment.dateCountDown}</span></br>
-                                <span>${comment.content}</span>
+                                <span style="margin-left: 50px">${comment.content}</span>
 
                             </div>
                             <div>

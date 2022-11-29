@@ -72,7 +72,7 @@ function checkvalidate(id) {
         for (var i = 0; i < input.length; i++) {
             if (input[i].value.trim() === "") {
                 a++;
-                error[i].innerHTML = "Không được để trống";
+                error[i].innerHTML = "Vui lòng điền đầy đủ các trường";
             } else {
                 error[i].innerHTML = "";
             }

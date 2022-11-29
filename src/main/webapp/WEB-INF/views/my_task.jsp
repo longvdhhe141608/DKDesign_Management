@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
-
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <script src="<c:url value="/resources/assets/js/my-task.js"/>"></script>
     <title>Tất cả công việc cá nhân</title>
 </head>
@@ -105,6 +105,7 @@
                             <td>
                                 <div style="display: flex; justify-content: space-between;">
                                     <button><i class="fa-regular fa-pen-to-square"></i></button>
+
                                     <button><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </td>

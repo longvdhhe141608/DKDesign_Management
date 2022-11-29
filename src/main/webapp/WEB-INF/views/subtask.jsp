@@ -113,6 +113,7 @@
                         <a href="task/change-status?taskId=${task.taskId}&operation=cancel">
                             <button class="btn btn-secondary">Hủy bỏ</button>
                         </a>
+                        <input class="info-text" value="" placeholder="Ghi chú">
                     </div>
                 </c:if>
 
@@ -195,6 +196,7 @@
                     </tr>
                 </table>
             </div>
+            <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>
             <c:if test="${task.taskStatus != 1}">
                 <div class=" task-cmt-details-main">
@@ -215,7 +217,7 @@
                                 <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
                                 <span class="name-avatar">${comment.accountName}</span>
                                 <span> ${comment.dateCountDown}</span></br>
-                                <span>${comment.content}</span>
+                                <span style="margin-left: 50px">${comment.content}</span>
 
                             </div>
 
@@ -240,7 +242,7 @@
 
                 </div>
             </c:if>
-
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

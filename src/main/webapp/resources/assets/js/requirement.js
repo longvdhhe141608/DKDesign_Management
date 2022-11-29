@@ -17,7 +17,7 @@ function checkvalidatenumber(id) {
         for (var i = 0; i < input.length; i++) {
             if (input[i].value.trim() === "") {
                 a++;
-                error[i].innerHTML = "Không được để trống";
+                error[i].innerHTML = "Vui lòng điền đầy đủ các trường";
             } else {
                 error[i].innerHTML = "";
             }
@@ -55,7 +55,7 @@ function checkvalidate(id) {
         for (var i = 0; i < input.length; i++) {
             if (input[i].value.trim() === "") {
                 a++;
-                error[i].innerHTML = "Không được để trống";
+                error[i].innerHTML = "Vui lòng điền đầy đủ các trường";
             } else {
                 error[i].innerHTML = "";
             }
@@ -133,7 +133,7 @@ function showPopUp(id, name, detail) {
         "\n" +
         "                </table>\n" +
         "                <div class=\"add-btn-work\">\n" +
-        "                    <button type=\"button\" class=\"btn btn-secondary \">Hủy bỏ\n" +
+        "                    <button style='margin-right:5px ' type=\"button\" class=\"btn btn-secondary \">Hủy bỏ\n" +
         "                    </button>\n" +
         "                    <button onclick=\"return checkvalidate('#add-project1')\"\n" +
         "                            type=\"submit\" class=\"btn btn-primary\">\n" +
