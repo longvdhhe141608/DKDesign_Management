@@ -29,10 +29,12 @@
             <div class="top-details">
                 <div class="list-top">
                     <h3>${project.projectName}</h3>
-                    <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                    <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                          method="post">
                         <input type="text" name="projectId" value="${project.id}" hidden="">
                         <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px; ">
-                            <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
+                            <select name="statusId" class="btn btn-secondary dropdown-toggle"
+                                    style="padding-bottom: 10px">
                                 <c:forEach items="${listStatus}" var="status">
                                     <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
                                 </c:forEach>
@@ -44,7 +46,7 @@
                                     <button type="submit" class="btn btn-primary">Lưu</button>
                                 </c:if>
                                 <c:if test="${project.status == 3 }">
-                                    <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                    <button type="submit" class="btn btn-primary" disabled>Lưu</button>
                                 </c:if>
                             </c:if>
                         </div>
@@ -97,8 +99,9 @@
                     <table class="table table-borderless">
                         <tr>
                             <td class="col-6">Tên công trình:</td>
-                            <td class="col-6"><input class="info-text" type="text" name="name" value="${project.projectName}"
-                                       style="width: 50%">
+                            <td class="col-6"><input class="info-text" type="text" name="name"
+                                                     value="${project.projectName}"
+                                                     style="width: 50%">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
@@ -161,14 +164,14 @@
                             <td>Thời gian bắt đầu:</td>
                             <td>
                                 <input class="info-text" id="inputstartdate" type="date" name="startDate"
-                                       value="${project.startDate}" >
+                                       value="${project.startDate}">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Thời gian dự kiến kết thúc:</td>
                             <td><input class="info-text" id="inputenddate" type="date" name="closureDate"
-                                       value="${project.closureDate}" >
+                                       value="${project.closureDate}">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
@@ -197,9 +200,7 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <a href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
-                        <button type="button" class="btn-update btn btn-secondary">Hủy bỏ</button>
-                    </a>
+                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
                     <button onclick="return checkvalidate('#addProject')"
                             type="submit" class="btn-update btn btn-primary">Lưu
                     </button>
