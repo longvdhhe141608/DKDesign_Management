@@ -240,7 +240,6 @@ public class TaskController {
         //get value
         String name = request.getParameter("name");
         int assignId = Integer.parseInt(request.getParameter("assignId"));
-        int fileNumber = Integer.parseInt(request.getParameter("fileNumber"));
 
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
@@ -249,7 +248,6 @@ public class TaskController {
         Task task = taskService.getTaskByIdFullModel(taskId);
         task.setTaskName(name);
         task.setAssignToId(assignId);
-        task.setFileNumber(fileNumber);
         task.setStartDate(startDate);
         task.setDeadline(deadline);
 

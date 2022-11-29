@@ -90,10 +90,13 @@
                     <tr>
                         <td class="col-6">Loại công trình:</td>
                         <c:if test="${project.type==1}">
-                            <td class="col-6">Ngoại thất</td>
+                            <td class="col-6">Thiết kế ngoại thất</td>
                         </c:if>
                         <c:if test="${project.type==2}">
-                            <td class="col-6">Nội thất</td>
+                            <td class="col-6">Thiết kế nội thất</td>
+                        </c:if>
+                        <c:if test="${project.type==3}">
+                            <td class="col-6">Thiết kế ngoại thất + Thiết kế nội thất</td>
                         </c:if>
                     </tr>
                     <tr>

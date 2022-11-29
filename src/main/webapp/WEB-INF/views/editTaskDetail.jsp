@@ -109,17 +109,6 @@
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Số lượng file<label class="text-danger">*</label>:</td>
-                            <td>
-                                <input class="info-text" type="text" name="fileNumber" value="${task.fileNumber}">
-                                <div class="text-danger error"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tiến độ:</td>
-                            <td>${task.workProgress}</td>
-                        </tr>
                     </table>
                 </div>
                 <div class="btn-update-summary">
