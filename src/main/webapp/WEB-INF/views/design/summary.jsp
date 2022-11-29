@@ -133,6 +133,33 @@
                         </td>
                     </tr>
                 </table>
+                <div>
+                    <div>
+                        <button class="btn btn-primary">Lịch sử</button>
+                    </div>
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <th scope="col">Lần</th>
+                        <th scope="col">Nội dung</th>
+                        <th scope="col">Thời gian</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                Diện tích xây dựng 200m2-300m2
+                            </td>
+                            <td>
+                                20/12/2022
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
             </div>
 <%--            <div style="display: flex; justify-content: space-between">--%>
 <%--                <div></div>--%>
