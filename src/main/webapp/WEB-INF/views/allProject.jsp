@@ -37,7 +37,6 @@
                                     class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công trình
                             </button>
                             <div id="myModal1" class="modal">
-
                                 <!-- Modal content -->
                                 <div class="modal-content" style="width: 60%;">
                                     <span id="close1" class="close">&times;</span>
@@ -120,20 +119,17 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Mô tả<label class="text-danger">*</label>:</td>
-                                                        <td> <textarea name="detail" class="info-text" name="" cols="60"
+                                                        <td> <textarea name="detail" class="info-text" cols="60"
                                                                        rows="3"></textarea>
                                                             <div class="text-danger error"></div>
                                                         </td>
                                                     </tr>
                                                 </table>
-
-
                                             </div>
                                             <div class="button_click" style="display: flex;justify-content: end">
-
                                                 <div class="btn_cancel" style="margin-right: 10px">
-                                                    <button class="btn btn-secondary">Hủy
-                                                        bỏ
+                                                    <button type="button" class="btn btn-secondary close_popup">
+                                                        Hủy bỏ
                                                     </button>
                                                 </div>
                                                 <div class="btn_ok">
@@ -261,16 +257,14 @@
                                         <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"><i
                                                 class="fa-regular fa-trash-can"></i></button>
                                         <div id="myModal" class="modal">
-
                                             <!-- Modal content -->
                                             <div class="modal-content" style="width: 50%; height: 200px;">
                                                 <span id="close" class="close">&times;</span>
                                                 <div class="project-add-task">
                                                     <form id="add-project1" class="">
-
                                                         <p>Bạn chắc chắn muốn xóa dữ liệu này!</p>
                                                         <div class="add-btn-work">
-                                                            <button class="btn btn-secondary ">Hủy bỏ</button>
+                                                            <button class="btn btn-secondary close_popup">Hủy bỏ</button>
                                                             <button
                                                                     onclick="return checkvalidatenumber('#add-project1')"
                                                                     type="submit" class="btn btn-primary">Lưu
@@ -310,79 +304,6 @@
         </div>
     </div>
 </div>
-<%--<div class="popup hide__popup">--%>
-<%--    <div class="popup__content">--%>
-<%--        <div>--%>
-<%--            <h4>Tạo công trình mới</h4>--%>
-<%--        </div>--%>
-<%--        <div class="info">--%>
-<%--            <form method="post" action="allProject/add">--%>
-<%--                <table class="table table-borderless">--%>
-<%--                    <tr>--%>
-<%--                        <td>Tên công trình:</td>--%>
-<%--                        <td><input required="" class="info-text" name="name" type="text"></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Loại công trình:</td>--%>
-<%--                        <td>--%>
-<%--                            <div class="dropdown">--%>
-<%--                                <select name="categoryId" class="btn btn-secondary dropdown-toggle">--%>
-<%--                                    <c:forEach items="${listCategory}" var="category">--%>
-<%--                                        <option value="${category.id}"> ${category.category_name}</option>--%>
-<%--                                    </c:forEach>--%>
-<%--                                </select>--%>
-<%--                            </div>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Ngày bắt đầu:</td>--%>
-<%--                        <td><input required="" name="startDate" class="info-text" type="date"></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Ngày dự kiến kết thúc:</td>--%>
-<%--                        <td><input required="" name="closureDate" class="info-text" type="date"></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Tên khách hàng:</td>--%>
-<%--                        <td><input required="" class="info-text" name="customerName" type="text"></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Địa chỉ:</td>--%>
-<%--                        <td><input required="" class="info-text" name="address" type="text"></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Số điện thoại:</td>--%>
-<%--                        <td><input required="" class="info-text" name="phone" type="text"></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Diện tích</td>--%>
-<%--                        <td><input required="" class="info-text" name="constructionArea" type="number"> m<sup>2</sup>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Mô tả</td>--%>
-<%--                        <td>--%>
-<%--                            &lt;%&ndash;                            <input required="" class="info-text" name="detail" type="text">&ndash;%&gt;--%>
-<%--                            <textarea name="detail" style="height: 32px" cols="35" wrap="soft"></textarea>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-
-<%--                </table>--%>
-<%--                <div class="button_click">--%>
-<%--                    <div></div>--%>
-<%--                    <div class="btn_cancel">--%>
-<%--                        <button type="button" class="btn btn-secondary close_popup">Hủy--%>
-<%--                            bỏ--%>
-<%--                        </button>--%>
-<%--                    </div>--%>
-<%--                    <div class="btn_ok">--%>
-<%--                        <button type="submit" class="btn btn-primary">Tạo</button>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </form>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</div>--%>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -415,7 +336,10 @@
         // When the user clicks on <span> (x), close the modal
 
 
-        // When the user clicks anywhere outside of the modal, close it
+        let  close = document.querySelector('.close_popup');
+        close.addEventListener('click',function (){
+            modal.style.display = "none";
+        });
 
     }
 </script>

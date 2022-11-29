@@ -217,7 +217,6 @@
     </div>
 </div>
 <div class="popup hide__popup">
-
     <form id="add-sub-task"
           action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}"
           method="post">

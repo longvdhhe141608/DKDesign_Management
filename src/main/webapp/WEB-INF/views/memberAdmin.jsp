@@ -27,8 +27,6 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
-
-
         <h4>Thành viên công ty</h4>
         <div class="all-member">
 
@@ -38,7 +36,6 @@
                         <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
                     </a>
                 </div>
-
                 <div style="display: flex;">
                     <form action="searchMember" style="display: flex">
                         <%--start searching by role--%>
