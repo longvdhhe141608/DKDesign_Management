@@ -74,7 +74,7 @@ public class TaskDAO {
             sql += " and assignedto = " + accountId + " ";
         }
 
-        sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
+        sql += " order by starting_date desc  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask());
         return taskList;
