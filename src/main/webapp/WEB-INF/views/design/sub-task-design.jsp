@@ -231,7 +231,7 @@
                 <form style="display: flex" action="${pageContext.request.contextPath}/add-comment" method="post">
                     <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                     <input name="taskId" type="text" value="${subTask.id}" hidden="">
-                    <input name="operation" type="text" value="taskDetail" hidden="">
+                    <input name="operation" type="text" value="subTaskDetail" hidden="">
                     <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text"
                            placeholder="Bình luận....">
                     <button class="btn btn-primary">Gửi</button>
