@@ -656,8 +656,10 @@
                                     </div>
                                     <div>
                                         <a class="btn btn-primary summary-detail-all" style="float: right;"
-                                           href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}">Chi
-                                            tiết
+                                           href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}">
+                                            <button class="btn btn-primary summary-detail-all" style="float: right;">
+                                                Chi tiết
+                                            </button>
                                         </a>
                                     </div>
                                 </form>

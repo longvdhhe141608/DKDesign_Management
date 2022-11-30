@@ -211,7 +211,7 @@
             </div>
         </div>
         <div>
-            <div>
+            <div style="margin-bottom: 10px">
                 <button class="btn btn-primary">Lịch sử</button>
             </div>
             <div>
@@ -241,7 +241,7 @@
 </div>
 <div id="myModal-footer" class="modal">
     <!-- Modal content -->
-    <div class="modal-content" style=" width: 50%;height: 40%;">
+    <div class="modal-content" style=" width: 50%;height: 70%;">
         <span id="close2" class="close">&times;</span>
         <div id="showHtml" class="project-add-task">
         </div>

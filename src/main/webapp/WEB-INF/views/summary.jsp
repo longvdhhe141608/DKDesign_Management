@@ -179,7 +179,7 @@
                 </c:if>
             </div>
             <div>
-                <div>
+                <div style="margin-bottom: 10px">
                     <button class="btn btn-primary">Lịch sử</button>
                 </div>
                 <div>

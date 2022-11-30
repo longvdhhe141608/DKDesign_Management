@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/task_detail.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -124,7 +125,74 @@
                     <td>
                         <div style="margin-left: 10px">
                             <div class="add" id="show-member">
-                                <button class="btn btn-primary">+ Thêm công việc phụ</button>
+                                <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
+                                        class="btn btn-primary">+ Thêm công việc phụ</button>
+                                <div id="myModal-add" class="modal">
+                                    <!-- Modal content -->
+                                    <div class="modal-content" style=" width: 50%;height: 65%;">
+                                        <span id="close1" class="close">&times;</span>
+                                        <div class="project-add-task">
+                                            <form id="add-sub-task"
+                                                  action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}"
+                                                  method="post">
+                                                <div class="popup__content">
+                                                    <div class="title">
+                                                        <h4>
+                                                            <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">
+                                                            <div class="text-danger error"></div>
+                                                        </h4>
+                                                    </div>
+                                                    <div class="info">
+                                                        <table class="table table-borderless">
+                                                            <tr>
+                                                                <td>Nhiệm vụ:</td>
+                                                                <td>${sessionScope.loginUser.username}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
+                                                                <td><input id="inputstartdate" name="startDate" class="info-text" type="date"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
+                                                                <td><input id="inputenddate" class="info-text" type="date" name="endDate">
+                                                                    <div class="text-danger error"></div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>
+                                                                <td>
+                                                                    <select class="btn btn-secondary" name="requirementID" id="">
+                                                                        <c:forEach items="${requirements}" var="i">
+                                                                            <option value="${i.id}">${i.requirementName}</option>
+                                                                        </c:forEach>
+                                                                    </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Số lượng file<label class="text-danger">*</label>:</td>
+                                                                <td><input class="info-text" type="number" name="numberOfFile">
+                                                                    <div class="text-danger error"></div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                    <div class="button_click">
+                                                        <div></div>
+                                                        <div class="btn_cancel">
+                                                            <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                                bỏ
+                                                            </button>
+                                                        </div>
+                                                        <div class="btn_ok">
+                                                            <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div style="margin-left: 10px">
@@ -216,67 +284,67 @@
         <%--        </div>--%>
     </div>
 </div>
-<div class="popup hide__popup">
-    <form id="add-sub-task"
-          action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}"
-          method="post">
-        <div class="popup__content">
-            <div class="title">
-                <h4>
-                    <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">
-                    <div class="text-danger error"></div>
-                </h4>
-            </div>
-            <div class="info">
-                <table class="table table-borderless">
-                    <tr>
-                        <td>Nhiệm vụ:</td>
-                        <td>${sessionScope.loginUser.username}</td>
-                    </tr>
-                    <tr>
-                        <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
-                        <td><input id="inputstartdate" name="startDate" class="info-text" type="date"></td>
-                    </tr>
-                    <tr>
-                        <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                        <td><input id="inputenddate" class="info-text" type="date" name="endDate">
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>
-                        <td>
-                            <select class="btn btn-secondary" name="requirementID" id="">
-                                <c:forEach items="${requirements}" var="i">
-                                    <option value="${i.id}">${i.requirementName}</option>
-                                </c:forEach>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Số lượng file<label class="text-danger">*</label>:</td>
-                        <td><input class="info-text" type="number" name="numberOfFile">
-                            <div class="text-danger error"></div>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="button_click">
-                <div></div>
-                <div class="btn_cancel">
-                    <button type="button" class="btn btn-secondary close_popup">Hủy
-                        bỏ
-                    </button>
-                </div>
-                <div class="btn_ok">
-                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
+<%--<div class="popup hide__popup">--%>
+<%--    <form id="add-sub-task"--%>
+<%--          action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}"--%>
+<%--          method="post">--%>
+<%--        <div class="popup__content">--%>
+<%--            <div class="title">--%>
+<%--                <h4>--%>
+<%--                    <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">--%>
+<%--                    <div class="text-danger error"></div>--%>
+<%--                </h4>--%>
+<%--            </div>--%>
+<%--            <div class="info">--%>
+<%--                <table class="table table-borderless">--%>
+<%--                    <tr>--%>
+<%--                        <td>Nhiệm vụ:</td>--%>
+<%--                        <td>${sessionScope.loginUser.username}</td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>--%>
+<%--                        <td><input id="inputstartdate" name="startDate" class="info-text" type="date"></td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>--%>
+<%--                        <td><input id="inputenddate" class="info-text" type="date" name="endDate">--%>
+<%--                            <div class="text-danger error"></div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>--%>
+<%--                        <td>--%>
+<%--                            <select class="btn btn-secondary" name="requirementID" id="">--%>
+<%--                                <c:forEach items="${requirements}" var="i">--%>
+<%--                                    <option value="${i.id}">${i.requirementName}</option>--%>
+<%--                                </c:forEach>--%>
+<%--                            </select>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                    <tr>--%>
+<%--                        <td>Số lượng file<label class="text-danger">*</label>:</td>--%>
+<%--                        <td><input class="info-text" type="number" name="numberOfFile">--%>
+<%--                            <div class="text-danger error"></div>--%>
+<%--                        </td>--%>
+<%--                    </tr>--%>
+<%--                </table>--%>
+<%--            </div>--%>
+<%--            <div class="button_click">--%>
+<%--                <div></div>--%>
+<%--                <div class="btn_cancel">--%>
+<%--                    <button type="button" class="btn btn-secondary close_popup">Hủy--%>
+<%--                        bỏ--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--                <div class="btn_ok">--%>
+<%--                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu--%>
+<%--                    </button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </form>--%>
 
-</div>
+<%--</div>--%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"

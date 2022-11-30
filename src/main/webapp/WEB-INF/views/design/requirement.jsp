@@ -122,8 +122,8 @@
             </div>
         </div>
         <div>
-            <div>
-                <button class="btn btn-primary">Lịch sử</button>
+            <div style="margin-bottom: 10px">
+            <button class="btn btn-primary">Lịch sử</button>
             </div>
             <div>
                 <table class="table table-bordered">
@@ -192,17 +192,17 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
-    const show = document.querySelector("#show-member");
-
-    const popup = document.querySelector(".popup");
-    let close = document.querySelector('.close_popup');
-    close.addEventListener('click', function () {
-        popup.classList.add("hide__popup");
-    });
-
-    show.addEventListener('click', function () {
-        popup.classList.remove("hide__popup");
-    })
+    // const show = document.querySelector("#show-member");
+    //
+    // const popup = document.querySelector(".popup");
+    // let close = document.querySelector('.close_popup');
+    // close.addEventListener('click', function () {
+    //     popup.classList.add("hide__popup");
+    // });
+    //
+    // show.addEventListener('click', function () {
+    //     popup.classList.remove("hide__popup");
+    // })
 </script>
 
 
