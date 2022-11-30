@@ -79,7 +79,8 @@ public class TaskServiceImpl implements TaskService {
         task.setListSubTask(taskDAO.getListSubTask(task.getTaskId()));
         task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
         task.setNumberFileCurrent(taskDAO.countFile(task.getTaskId()));
-        double workProgress = (task.getNumberFileCurrent() / 1.0 * task.getFileNumber()) * 100;
+//        double workProgress = (task.getNumberFileCurrent() / 1.0 * task.getFileNumber()) * 100;
+        float workProgress = Math.round(task.getNumberFileCurrent()/(1.0*task.getFileNumber()) *100);
         task.setWorkProgress(workProgress + "%");
         if (!ObjectUtils.isEmpty(task.getRequirementId())) {
             task.setRequirementName(requirementDao.getRequirementById(task.getRequirementId().intValue()).getRequirementName());
