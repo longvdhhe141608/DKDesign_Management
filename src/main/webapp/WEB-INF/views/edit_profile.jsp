@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <script src="<c:url value="/resources/assets/js/infomation.js"/>"></script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -29,7 +30,7 @@
                 class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
 
 
-        <form action="editProfile" method="post" enctype="multipart/form-data">
+        <form id="add-project1" action="editProfile" method="post" enctype="multipart/form-data">
 
             <div class="information-main">
                 <div class="information-main-avata">
@@ -48,18 +49,23 @@
                     <table class="table table-borderless">
                         <tr>
                             <td class="col-6">Họ và tên:</td>
-                            <td class="col-6"><input type="text" id="name"
-                                                     name="name" value="${profile.name}" required></td>
+                            <td class="col-6">
+                                <input class="info-text" type="text" id="name"
+                                 name="name" value="${profile.name}" required>
+                                <div class="text-danger error"></div></td>
+
                         </tr>
 
                         <tr>
                             <td>Số CCCD/CMND:</td>
-                            <td><input pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd"
-                                       value="${profile.cccd}" required></td>
+                            <td><input class="info-text" pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd"
+                                       value="${profile.cccd}" required>
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
-                            <td><input type="date" id="dob" name="dob" value="${profile.dob}" required></td>
+                            <td><input class="info-text" type="date" id="dob" name="dob" value="${profile.dob}" required>
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Giới tính:</td>
@@ -70,19 +76,22 @@
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input pattern="^0[0-9]{9}$" title="nhap sdt" type="text" id="phone" name="phone"
-                                       value="${profile.phone}" required></td>
+                            <td><input class="info-text" pattern="^0[0-9]{9}$" title="nhap sdt" type="text" id="phone" name="phone"
+                                       value="${profile.phone}" required>
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td><input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text"
+                            <td><input class="info-text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text"
                                        id="email"
-                                       name="email" value="${profile.mail}" required></td>
+                                       name="email" value="${profile.mail}" required>
+                                <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Địa chỉ nhà:</td>
-                            <td><input type="text"
+                            <td><input class="info-text" type="text"
                                        id="address" name="address" value="${profile.address}">
+                                <div class="text-danger error"></div>
                             </td>
                         </tr>
                     </table>
@@ -94,7 +103,8 @@
                 <button class="btn btn-secondary" style="margin-right: 10px; color: white">
                     <a style="color: white" href="javascript:history.back() ">Hủy</a>
                 </button>
-                <input type="submit" class="btn btn-primary" value="Lưu">
+                <button onclick="return checkvalidate('#add-project1')" type="submit" class="btn btn-primary" value="">Lưu
+                </button>
             </div>
         </form>
     </div>

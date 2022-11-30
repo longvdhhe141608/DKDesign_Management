@@ -39,11 +39,8 @@ public class CommentController {
     public ModelAndView addComment(HttpServletRequest request, RedirectAttributes redirect) {
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         String operation = request.getParameter("operation");
-        //check previous page
-        ModelAndView view = new ModelAndView("redirect:/task_detail?taskId=" + taskId);
-        if (operation.equals("subTaskDetail")) {
-            view = new ModelAndView("redirect:/subtask?taskId=" + taskId);
-        }
+        ModelAndView view = new ModelAndView();
+        Task task = taskService.getTaskById(taskId);
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
@@ -51,6 +48,19 @@ public class CommentController {
             return view;
         }
         Account account = (Account) session.getAttribute("loginUser");
+        //check previous page
+        if (account.getRole_id() == 2) {
+            view = new ModelAndView("redirect:/task_detail?taskId=" + taskId);
+            if (operation.equals("subTaskDetail")) {
+                view = new ModelAndView("redirect:/subtask?taskId=" + taskId);
+            }
+        } else {
+            view = new ModelAndView("redirect:/design/task/view-detail-task?project-id=" + task.getProjectId() + "&section-id=" + task.getSectionId() + "&task-id=" + task.getTaskId());
+            if (operation.equals("subTaskDetail")) {
+                view = new ModelAndView("redirect:/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId() + "&section-id=" + task.getSectionId() + "&task-id=" + task.getTaskfId() + "&sub-task-id=" + task.getTaskId());
+            }
+        }
+
         //get value
         String content = request.getParameter("content");
 
@@ -61,55 +71,56 @@ public class CommentController {
         commentService.addComment(comment);
 
         //find leader
-        Task task = taskService.getTaskById(taskId);
+
         Project project = projectService.getProject(task.getProjectId());
 
 
         //find task
         //case : account tự comment vào bài mình và hiện thông báo
 
-        if(account.getId() != project.getCreator()){
+        if (account.getId() != project.getCreator()) {
             //role leader
-            addNotificationSendLeader(account,task,project);
+            addNotificationSendLeader(account, task, project);
         }
-        if(account.getId() != task.getAssignToId()){
+        if (account.getId() != task.getAssignToId()) {
             //role design
-            addNotificationSendDesign(account,task);
+            addNotificationSendDesign(account, task);
         }
 
         redirect.addAttribute("mess", "Add comment success");
-
         return view;
     }
 
-    private void addNotificationSendDesign(Account account, Task task){
+    private void addNotificationSendDesign(Account account, Task task) {
 
         //add notification send leader
         String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
 
-        String messageNotification = account.getUsername() + " đã bình luận về sub-task : "+task.getTaskName();;//sub task
+        String messageNotification = account.getUsername() + " đã bình luận về sub-task : " + task.getTaskName();
+        ;//sub task
         //check task or sub task
         if (ObjectUtils.isEmpty(task.getTaskfId())) {
             //task
-            messageNotification = account.getUsername() + " đã bình luận về task : "+task.getTaskName();
+            messageNotification = account.getUsername() + " đã bình luận về task : " + task.getTaskName();
         }
         int design = task.getAssignToId();
 
-        Notification notification = new Notification(-1, new java.util.Date(), messageNotification, design,task.getProjectId(), url);
+        Notification notification = new Notification(-1, new java.util.Date(), messageNotification, design, task.getProjectId(), url);
         notificationService.addNotification(notification);
     }
 
 
-    private void addNotificationSendLeader(Account account, Task task,Project project){
+    private void addNotificationSendLeader(Account account, Task task, Project project) {
 
         //add notification send leader
         String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
 
-        String messageNotification = account.getUsername() + " đã bình luận về sub-task : "+task.getTaskName();;//sub task
+        String messageNotification = account.getUsername() + " đã bình luận về sub-task : " + task.getTaskName();
+        ;//sub task
         //check task or sub task
         if (ObjectUtils.isEmpty(task.getTaskfId())) {
             //task
-            messageNotification = account.getUsername() + " đã bình luận về task : "+task.getTaskName();
+            messageNotification = account.getUsername() + " đã bình luận về task : " + task.getTaskName();
         }
         int leaderId = project.getCreator();
 
