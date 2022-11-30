@@ -50,6 +50,13 @@ public class ProjectDao {
         return projectList;
     }
 
+    public List<Project> getAllProjectByCreated(int creatorId) {
+        String sql = "select * from project p  where p.creator =?";
+        List<Project> projectList = new ArrayList<>();
+        projectList = jdbcTemplate.query(sql, new MapperProject(), creatorId);
+        return projectList;
+    }
+
     public List<Project> getAllProjectByAcc(int id, String textSearch, String date, int pageNo) {
         String sql = "select\n" +
                 "\t`project` .*\n" +

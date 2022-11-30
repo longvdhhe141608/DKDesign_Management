@@ -28,7 +28,6 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-
                 <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
@@ -49,9 +48,7 @@
                         </c:if>
                     </div>
                 </form>
-
             </div>
-
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
                         class="btn btn-secondary"
@@ -94,7 +91,6 @@
         <h4>Thành viên dự án</h4>
         <div class="all-member">
             <div class="content-function-member">
-
                 <%--Bat dau them thanh vien--%>
                 <div>
                     <div >
@@ -103,7 +99,6 @@
                                 class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
                         </c:if>
                         <div id="myModal" class="modal">
-
                             <!-- Modal content -->
                             <div class="modal-content" style="width: 50%; height: 40%;">
                                 <span id="close" class="close">&times;</span>
@@ -153,7 +148,6 @@
                                 <option value="3" ${roleSearch==3?"selected":""} >Thiết Kế</option>
                                 <option value="2" ${roleSearch==2?"selected":""} >Trưởng Nhóm</option>
                             </select>
-
                         </div>
                         <%--end searching by role--%>
 
@@ -312,9 +306,10 @@
         span.addEventListener("click", function () {
             modal.style.display = "none";
         });
-
-
-
+        let  close = document.querySelector('.close_popup');
+        close.addEventListener('click',function (){
+            modal.style.display = "none";
+        });
     }
     // const show = document.querySelector("#show-member");
     //

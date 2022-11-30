@@ -29,10 +29,11 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
 
-                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
-                    <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                        <select name="statusId" class="btn btn-secondary dropdown-toggle">
+                    <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
                             <c:forEach items="${listStatus}" var="status">
                                 <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
                             </c:forEach>
@@ -155,7 +156,8 @@
                                 </tr>
                             </table>
                             <div class="add-btn-work">
-                                <button type="button" class="btn btn-secondary btn-canel" style="margin-right: 10px;">
+                                <button type="button" class="btn btn-secondary btn-canel close_popup"
+                                        style="margin-right: 10px;">
                                     Hủy bỏ
                                 </button>
                                 <button onclick="return checkvalidate('#add-project')"
@@ -175,8 +177,6 @@
                     <div class="col-2 list-task-header">Thời gian kết thúc</div>
                     <div class="col-1 list-task-header"></div>
                 </div>
-
-
                 <c:forEach items="${listBigTask}" var="bigTask">
                     <!------big task item------>
                     <details>
@@ -198,10 +198,10 @@
                                                     <td><input class="info-text" type="text" value="Thiết kế bản vẽ">
                                                         <div class="text-danger error"></div>
                                                 </tr>
-
                                             </table>
                                             <div class="add-btn-work" style="display: flex ; justify-content: end">
-                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ
+                                                <button style="margin-right: 10px" type="button"
+                                                        class="btn btn-secondary " onclick="onCancelEdit()">Hủy bỏ
                                                 </button>
                                                 <button onclick="return checkvalidatenumber('#add-project1')"
                                                         type="submit"
@@ -211,7 +211,6 @@
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
                             <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
                                     class="fa-regular fa-trash-can"></i></button>
@@ -235,7 +234,6 @@
                                 </div>
 
                             </div>
-
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>
@@ -267,8 +265,6 @@
                                 </div>
                             </div>
                             <!------task item------>
-
-
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <!--------list sub task------------>
                                 <c:if test="${subTask.taskStatus != 5}">
@@ -335,8 +331,9 @@
                                     </tr>
                                 </table>
                                 <div class="add-btn-work">
-                                    <button style="margin-right: 10px" type="submit"
-                                            class="btn btn-secondary btn-canel">Hủy bỏ
+                                    <button style="margin-right: 10px" type="button"
+                                            class="btn btn-secondary btn-canel" onclick="onClickClose()">
+                                        Hủy bỏ
                                     </button>
                                     <button onclick="return checkvalidatenumber('#add-project3')"
                                             class="btn btn-primary btn-add">Thêm
@@ -359,6 +356,16 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
+
+    function onClickClose() {
+        let modalA = document.querySelector("#myModal-footer");
+        modalA.style.display = "none";
+    }
+
+    function onCancelEdit(){
+        let modalB = document.querySelector("#myModal-edit");
+        modalB.style.display = "none";
+    }
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal
         var modal = document.querySelector(idmodal);
@@ -374,8 +381,10 @@
         span.addEventListener("click", function () {
             modal.style.display = "none";
         });
-        // When the user clicks on <span> (x), close the modal
-        // When the user clicks anywhere outside of the modal, close it
+        let close = document.querySelector('.close_popup');
+        close.addEventListener('click', function () {
+            modal.style.display = "none";
+        });
     }
 
     function myFunction(task) {

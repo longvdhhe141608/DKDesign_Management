@@ -60,6 +60,10 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
+                <a class="test"  ><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="list-task-main">
@@ -122,7 +126,7 @@
                                         <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
                                         <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
                                         <div class="col-2" style="border: 1px solid gray;"></div>
-                                        <div class="col-1" style="border: 1px solid gray;">đồng ý</div>
+                                        <div class="col-1" style="border: 1px solid gray;">Đang thực hiện</div>
                                     </div>
                                 </c:if>
                             </c:forEach>

@@ -99,8 +99,8 @@
                 </div>
                 <table class="table table-borderless">
                     <tr>
-                        <td>Chủ nhà:</td>
-                        <td>${project.cusName}</td>
+                        <td class="col-6">Chủ nhà:</td>
+                        <td class="col-6">${project.cusName}</td>
                     </tr>
                     <tr>
                         <td>Số điện thoại:</td>
@@ -177,6 +177,33 @@
                         </button>
                     </a>
                 </c:if>
+            </div>
+            <div>
+                <div style="margin-bottom: 10px">
+                    <button class="btn btn-primary">Lịch sử</button>
+                </div>
+                <div>
+                    <table class="table table-bordered">
+                        <thead>
+                        <th scope="col">Lần</th>
+                        <th scope="col">Nội dung</th>
+                        <th scope="col">Thời gian</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                1
+                            </td>
+                            <td>
+                                Diện tích xây dựng 200m2-300m2
+                            </td>
+                            <td>
+                                20/12/2022
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

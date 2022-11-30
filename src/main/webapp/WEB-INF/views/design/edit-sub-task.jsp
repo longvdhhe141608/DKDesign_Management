@@ -61,6 +61,10 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
+                <a class="test" ><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <div class="task-details-main">
@@ -89,8 +93,8 @@
                     <%--                        </td>--%>
                     <%--                    </tr>--%>
                     <tr>
-                        <td>Nhiệm vụ:</td>
-                        <td>${subTask.nameEmployee}</td>
+                        <td class="col-6">Nhiệm vụ:</td>
+                        <td class="col-6">${subTask.nameEmployee}</td>
                     </tr>
                     <tr>
                         <td>Công trình:</td>

@@ -113,6 +113,7 @@
                         <a href="task/change-status?taskId=${task.taskId}&operation=cancel">
                             <button class="btn btn-secondary">Hủy bỏ</button>
                         </a>
+                        <input class="info-text" value="" placeholder="Ghi chú">
                     </div>
                 </c:if>
 
@@ -125,8 +126,8 @@
                 <table class="table table-borderless" style="border: 0;">
 
                     <tr>
-                        <td>Nhiệm vụ:</td>
-                        <td>${task.assignToName}</td>
+                        <td class="col-6">Nhiệm vụ:</td>
+                        <td class="col-6">${task.assignToName}</td>
                     </tr>
                     <tr>
                         <td>Công trình:</td>
@@ -195,11 +196,12 @@
                     </tr>
                 </table>
             </div>
+            <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>
             <c:if test="${task.taskStatus != 1}">
                 <div class=" task-cmt-details-main">
                     <form class="task-detail-cmt" action="add-comment" method="post">
-                        <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                        <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                         <input name="taskId" type="text" value="${task.taskId}" hidden="">
                         <input name="operation" type="text" value="subTaskDetail" hidden="">
                         <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
@@ -212,17 +214,16 @@
                             <!----------item------------>
                            <div style="display: flex">
                             <div class="task-cmt-details-main">
-                                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                                <img class="img_avatar" src="${comment.avatarUrl}"/>
                                 <span class="name-avatar">${comment.accountName}</span>
                                 <span> ${comment.dateCountDown}</span></br>
-                                <span>${comment.content}</span>
+                                <span style="margin-left: 50px">${comment.content}</span>
 
                             </div>
 
                             <div>
                                 <c:if test="${comment.isPin() ==true}">
                                 <i class="fa-solid fa-thumbtack"></i>
-
                                     </c:if>
                                     <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
                                     <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
@@ -235,12 +236,9 @@
                             <!----------item------------>
                         </c:forEach>
                     </c:if>
-
-
-
                 </div>
             </c:if>
-
+            </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

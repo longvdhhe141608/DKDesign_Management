@@ -63,6 +63,10 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
+                <a class="test"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
             </div>
         </div>
         <h4>Thông tin yêu cầu của khách hàng</h4>
@@ -78,9 +82,9 @@
                 <table class="table table-bordered ">
                     <thead>
                     <tr>
-                        <th scope="col-2">Vị trí</th>
-                        <th scope="col-8">Yêu cầu</th>
-                        <th scope="col-2">Trạng thái</th>
+                        <th scope="col" class="col-2">Vị trí</th>
+                        <th scope="col" class="col-8">Yêu cầu</th>
+                        <th scope="col" class="col-2">Trạng thái</th>
                         <%--                        <th scope="col"></th>--%>
                     </tr>
                     </thead>
@@ -89,9 +93,8 @@
                         <tr>
                             <td class="col-2">${i.requirementName}</td>
                             <td class="col-8">${i.requirementDetail}</td>
-                            <td class="col-2">
-                                <c:if test="${i.status == 1}">ss</c:if>
-                                <c:if test="${i.status == 2}">ns</c:if>
+                            <td>
+                                <c:if test="${i.status != 3}">${i.statusName}</c:if>
                             </td>
                                 <%--                            <td>--%>
                                 <%--                                <div style="display: flex; justify-content: space-between;">--%>
@@ -116,9 +119,34 @@
                         </ul>
                     </nav>
                 </div>
-
             </div>
-
+        </div>
+        <div>
+            <div style="margin-bottom: 10px">
+            <button class="btn btn-primary">Lịch sử</button>
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <th scope="col">Lần</th>
+                    <th scope="col">Nội dung</th>
+                    <th scope="col">Thời gian</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            1
+                        </td>
+                        <td>
+                            Diện tích xây dựng 200m2-300m2
+                        </td>
+                        <td>
+                            20/12/2022
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -164,17 +192,17 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
-    const show = document.querySelector("#show-member");
-
-    const popup = document.querySelector(".popup");
-    let close = document.querySelector('.close_popup');
-    close.addEventListener('click', function () {
-        popup.classList.add("hide__popup");
-    });
-
-    show.addEventListener('click', function () {
-        popup.classList.remove("hide__popup");
-    })
+    // const show = document.querySelector("#show-member");
+    //
+    // const popup = document.querySelector(".popup");
+    // let close = document.querySelector('.close_popup');
+    // close.addEventListener('click', function () {
+    //     popup.classList.add("hide__popup");
+    // });
+    //
+    // show.addEventListener('click', function () {
+    //     popup.classList.remove("hide__popup");
+    // })
 </script>
 
 

@@ -359,6 +359,27 @@ public class TaskDAO {
         return null;
     }
 
+    public List<Tasks> getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(int projectID, int sectionID, int taskID) {
+        List<Tasks> tasksList = new ArrayList<>();
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
+                "left join project p on s.project_id = p.id \n" +
+                "left join task t on s.id = t.section_id\n" +
+                "left join project_participation pp on p.id = pp.project_id \n" +
+                "left join accounts a on a.id = t.assignedto \n" +
+                "left join requirement r on p.id = r.project_id\n" +
+                "left join employees e on a.id =e.id_acc\n" +
+                "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n AND (t.status = 2 or t.status = 3 or t.status = 4 ) " +
+                "Group By t.id;";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTasks(), projectID, sectionID, taskID);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public Tasks getOneTasksByTaskID(int taskID) {
 
         Tasks tasks = new Tasks();
@@ -390,7 +411,7 @@ public class TaskDAO {
                 "left join accounts a on a.id = t.assignedto\n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "left join requirement r on p.id = r.project_id\n" +
-                "where t.id = ? AND t.task_id = ?\n" +
+                "where t.id = ? AND t.task_id = ? \n" +
                 "Group By t.id";
         try {
             tasks = jdbcTemplate.queryForObject(sql, new MapperTasks(), subTaskID, taskID);
@@ -401,21 +422,26 @@ public class TaskDAO {
         return null;
     }
 
-    public int insertSubTaskByDesign(Tasks tasks) {
-        int check = 0;
-
-        String sql = "INSERT INTO `dkmanagement`.`task` (`project_id`, `section_id`, `task_id`, `creator`," +
-                " `assignedto`, `requirement_id`, `task_name`, `starting_date`, `deadline`, `number_of_file`, `status`)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
-
-        try {
-            check = jdbcTemplate.update(sql, tasks.getProjectID(), tasks.getSectionID(), tasks.getTaskID(), tasks.getCreator(), tasks.getAssignedTo(),
-                    tasks.getRequirementID(), tasks.getTaskName(), tasks.getStartingDate(), tasks.getDeadline(), tasks.getNumberOfFile(), tasks.getStatus());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return check;
-    }
+//    public int insertSubTaskByDesign(Tasks tasks) {
+//        int check = 0;
+//
+//        String sql = "INSERT INTO `dkmanagement`.`task` (`project_id`, `section_id`, `task_id`, `creator`," +
+//                " `assignedto`, `requirement_id`, `task_name`, `starting_date`, `deadline`, `number_of_file`, `status`)" +
+//                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);\n";
+//
+//        try {
+//            check = jdbcTemplate.update(sql, tasks.getProjectID(), tasks.getSectionID(), tasks.getTaskID(), tasks.getCreator(), tasks.getAssignedTo(),
+//                    tasks.getRequirementID(), tasks.getTaskName(), tasks.getStartingDate(), tasks.getDeadline(), tasks.getNumberOfFile(), tasks.getStatus());
+//
+//            GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
+//            namedParameterJdbcTemplate.update(sql, generatedKeyHolder);
+//            return generatedKeyHolder.getKey().intValue();
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return check;
+//    }
 
     public int updateTask(Task task) {
         String sql = "UPDATE dkmanagement.task\n" +
@@ -586,7 +612,7 @@ public class TaskDAO {
                 "left join accounts a on a.id = t.assignedto \n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "left join employees e on a.id =e.id_acc\n" +
-                "where t.task_id= ?\n AND t.status != 5 " +
+                "where t.task_id= ?\n AND (t.status = 2 or t.status = 3 or t.status = 4 ) " +
                 "Group By t.id;";
         try {
 
@@ -630,5 +656,43 @@ public class TaskDAO {
                 "and t.project_id = ?\n" +
                 "and t.status =4 ";
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
+    }
+
+    public List<Task> getAllSubTaskExpiredToDay(int projectId) {
+        List<Task> tasksList = new ArrayList<>();
+        String sql = "select * from task t \n" +
+                "where \n" +
+                "t.project_id = ? \n" +
+                "and t.deadline <= curdate() \n" +
+                "and t.status != 4 \n" +
+                "and t.status != 5 \n" +
+                "and t.task_id is not null ";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTask(), projectId);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<Task> getAllSubTaskExpiredToDayDesign(int accountId) {
+        List<Task> tasksList = new ArrayList<>();
+        String sql = "select * from task t \n" +
+                "where \n" +
+                "t.assignedto = ? \n" +
+                "and t.deadline <= curdate() \n" +
+                "and t.status != 4 \n" +
+                "and t.status != 5 \n" +
+                "and t.task_id is not null ";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTask(), accountId);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
     }
 }

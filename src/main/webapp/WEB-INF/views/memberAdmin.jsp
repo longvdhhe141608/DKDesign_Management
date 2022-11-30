@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/member.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
-    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -27,8 +27,6 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
-
-
         <h4>Thành viên công ty</h4>
         <div class="all-member">
 
@@ -38,7 +36,6 @@
                         <button class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
                     </a>
                 </div>
-
                 <div style="display: flex;">
                     <form action="searchMember" style="display: flex">
                         <%--start searching by role--%>
@@ -59,8 +56,8 @@
                                 <div class="wap_search">
                                     <input name="nameSearch" value="${nameSearch}" style="margin-right: 10px;"
                                            type="text" class="search_term"
-                                           placeholder="tên thành viên">
-                                    <input type="submit" class="btn btn-primary" value="tìm kiếm">
+                                           placeholder="Tên thành viên">
+                                    <input type="submit" class="btn btn-primary" value="Tìm kiếm">
                                 </div>
                             </div>
                         </div>
@@ -88,7 +85,7 @@
                         <td style="display: flex;justify-content:space-between">${member.memberName}
                             <form action="${pageContext.request.contextPath}/member/information" method="get">
                                 <input name="id" value="${member.memberId}" hidden>
-                                <input type="submit" class="btn btn-primary" value="chi tiết">
+                                <input type="submit" class="btn btn-primary chi-tiet" value="chi tiết">
                             </form>
                         </td>
                         <td>

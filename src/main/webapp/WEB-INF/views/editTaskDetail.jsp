@@ -78,8 +78,8 @@
                     </div>
                     <table class="table table-borderless">
                         <tr>
-                            <td>Nhiệm vụ<label class="text-danger">*</label>:</td>
-                            <td>
+                            <td class="col-6">Nhiệm vụ<label class="text-danger">*</label>:</td>
+                            <td class="col-6">
                                 <select name="assignId" class="btn btn-secondary dropdown-toggle">
                                     <c:forEach items="${listAccount}" var="account">
                                         <option value="${account.id}" ${account.id== task.assignToId ? 'selected' : ''} > ${account.username}</option>
@@ -109,21 +109,10 @@
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>Số lượng file<label class="text-danger">*</label>:</td>
-                            <td>
-                                <input class="info-text" type="text" name="fileNumber" value="${task.fileNumber}">
-                                <div class="text-danger error"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tiến độ:</td>
-                            <td>${task.workProgress}</td>
-                        </tr>
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <button type="submit" class="btn btn-secondary">Hủy bỏ</button>
+                    <button type="button" onclick="history.back()" class="btn btn-secondary">Hủy bỏ</button>
                     <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn-update btn btn-primary">Lưu</button>
                 </div>
             </div>

@@ -55,6 +55,9 @@ public class TaskController {
     @Autowired
     private ImageAndFileDao imageAndFileDao;
 
+    @Autowired
+    NotificationService notificationService;
+
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(@ModelAttribute("mess") String mess, HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -96,7 +99,8 @@ public class TaskController {
         int totalFile = 0;
 
         for (int i = 0; i < subTasksList.size() ; i++) {
-            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());totalFile += subTasksList.get(i).getNumberOfFile();
+            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
+            totalFile += subTasksList.get(i).getNumberOfFile();
         }
 
         float progressPercent = Math.round((totalSubmitFile / (1.0 * totalFile)) * 100);
@@ -104,7 +108,7 @@ public class TaskController {
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
         view.addObject("listRequirement", requirementService.getRequirementByProjectId(task.getProjectId()));
 
-        view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
+        view.addObject("listComment", commentService.getAllViewCommentByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
         view.addObject("totalSubmitFile", totalSubmitFile);
@@ -118,7 +122,7 @@ public class TaskController {
         ModelAndView view = new ModelAndView("subtask");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskByIdFullModel(taskId);
-        view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
+        view.addObject("listComment", commentService.getAllViewCommentByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
         return view;
@@ -240,7 +244,6 @@ public class TaskController {
         //get value
         String name = request.getParameter("name");
         int assignId = Integer.parseInt(request.getParameter("assignId"));
-        int fileNumber = Integer.parseInt(request.getParameter("fileNumber"));
 
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
@@ -249,7 +252,6 @@ public class TaskController {
         Task task = taskService.getTaskByIdFullModel(taskId);
         task.setTaskName(name);
         task.setAssignToId(assignId);
-        task.setFileNumber(fileNumber);
         task.setStartDate(startDate);
         task.setDeadline(deadline);
 
@@ -291,6 +293,20 @@ public class TaskController {
             taskService.updateTask(taskLevel2);
 
         }
+
+        //add notification to design
+        //find design
+        int design = task.getAssignToId();
+
+        //add notification send leader
+        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+        String message = "Sub-task của bạn không được phê duyệt và đang thực hiện";
+        if (operation.equals("agree")) {
+            message = "Sub-task của bạn được phê duyệt và đã hoàn thành";
+
+        }
+        Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
+        notificationService.addNotification(notification);
 
         redirect.addAttribute("mess", "" + operation + " task successfully ");
 

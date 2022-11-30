@@ -1,9 +1,11 @@
 package DkDesignManagement.Controller;
 
+import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.AccountService;
+import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class PlanController {
     @Autowired
     AccountService accountService;
 
+    @Autowired
+    NotificationService notificationService;
 
     @RequestMapping(value = "/plan_approval", method = RequestMethod.GET)
     public ModelAndView viewPlanAproval(HttpServletRequest request, @ModelAttribute("mess") String mess) {
@@ -69,6 +73,16 @@ public class PlanController {
         task.setTaskStatus(PROCESS_TASK_STATUS);
         taskService.updateTask(task);
 
+        //add notification to design
+        //find design
+        int design = task.getAssignToId();
+
+        //add notification send leader
+        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+        String message = "Sub-task của bạn đã được phê duyệt";
+        Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
+        notificationService.addNotification(notification);
+
         redirect.addAttribute("mess", "agree task successfully ");
 
         return view;
@@ -85,6 +99,16 @@ public class PlanController {
         task.setTaskStatus(CANCEL_TASK_STATUS);
         task.setDescription(description);
         taskService.updateTask(task);
+
+        //add notification to design
+        //find design
+        int design = task.getAssignToId();
+
+        //add notification send leader
+        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+        String message = "Sub-task của bạn đã bị từ chối";
+        Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
+        notificationService.addNotification(notification);
 
 
         redirect.addAttribute("mess", "cancel task successfully ");

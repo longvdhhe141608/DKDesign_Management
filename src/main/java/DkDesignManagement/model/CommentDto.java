@@ -13,17 +13,17 @@ import java.util.Date;
 @Getter
 @Setter
 public class CommentDto {
-    private int id ;
-    private String content ;
+    private int id;
+    private String content;
     private Date commentTime;
-    private int taskId ;
+    private int taskId;
     private int accId;
     //model new
-    private String accountName ;
+    private String accountName;
     private String dateCountDown;
     private boolean isPin;
 
-    public static CommentDto toCommentDto(Comment comment){
+    public static CommentDto toCommentDto(Comment comment) {
         return CommentDto.builder()
                 .id(comment.getId())
                 .content(comment.getContent())

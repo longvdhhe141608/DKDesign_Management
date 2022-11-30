@@ -26,41 +26,40 @@
     <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
         <span style="font-size: 30px;"><a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>Chỉnh sửa thông tin cá nhân</span>
-
-            <div class="information-main">
-                <div class="information-main-avata">
-                    <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" style="
+        <div class="information-main">
+            <div class="information-main-avata">
+                <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false" style="
                       border-radius: 50%;
                       background-color: white;
                       border: none;
                       outline: none;
                     ">
-                        <img alt="" class="img_avatar_change" src="../image/a.jpg"/>
-                    </button>
-                </div>
-                <div>
-                    <form action="editAccount" method="post">
+                    <img alt="" class="img_avatar_change" src="../image/a.jpg"/>
+                </button>
+            </div>
+            <div>
+                <form action="editAccount" method="post">
                     <table class="table table-borderless">
                         <p class="text-danger">${error}</p>
                         <tr>
                             <input name="id" type="number" value="${member.memberId}" hidden/>
                             <td><label>Họ và tên:</label></td>
-                            <td>
-<%--                                <input name="name" type="text" value="${member.memberName}">--%>
-                          <td> ${member.memberName}</td>
+
+                            <%--                                <input name="name" type="text" value="${member.memberName}">--%>
+                            <td> ${member.memberName}</td>
 
                         </tr>
                         <tr>
                             <td>Mã nhân viên:</td>
-<%--                            <td><input name="username" type="text" value="${member.memberCode}" readonly></td>--%>
+                            <%--                            <td><input name="username" type="text" value="${member.memberCode}" readonly></td>--%>
 
                             <td> ${member.memberCode}</td>
                         </tr>
                         <tr>
                             <td>Số CCCD/CMND:</td>
-<%--                            <td><input name="cccd" type="text" value="${member.memberCccd}"></td>--%>
-                            <td> "${member.memberCccd}</td>
+                            <%--                            <td><input name="cccd" type="text" value="${member.memberCccd}"></td>--%>
+                            <td>${member.memberCccd}</td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
@@ -106,13 +105,14 @@
                         </tr>
                     </table>
                     <div class="btn-edit">
-                        <a href="javascript:history.back()">
-                            <button class="btn btn-secondary" style="margin-right: 10px;">Hủy</button>
-                        </a>
-                        <input type="submit" value="Chỉnh sửa" class="btn btn-primary"/>
-                    </div> </form>
-                </div>
+                        <button type="button" onclick="history.back()" class="btn btn-secondary"
+                                style="margin-right: 10px;">Hủy
+                        </button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                    </div>
+                </form>
             </div>
+        </div>
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

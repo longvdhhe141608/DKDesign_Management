@@ -70,17 +70,14 @@
                             <p>Vai trò: <i class="text-danger">*</i></p>
                         </td>
                         <td>
-                            <input name="role" type="radio" value="2" required/>trưởng nhóm
-                            <input checked name="role" type="radio" value="3" required/>thiết kế
+                            <input name="role" type="radio" value="2" required/>Trưởng nhóm
+                            <input checked name="role" type="radio" value="3" required/>Thiết kế
                         </td>
                     </tr>
                 </table>
                 <div style="margin-left: 25%; display: flex;">
-                    <a class="btn btn-secondary" style="margin-right: 10px;color: white;text-decoration: none"
-                       href="${pageContext.request.contextPath}/admin/memberlist">
-                            Hủy
-                    </a>
-                    <input type="submit" class="btn btn-primary" value="Lưu">
+                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
                 </div>
             </form>
         </div>

@@ -635,12 +635,12 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Công việc phụ</th>
+                        <th scope="col" class="col-4">Công việc phụ</th>
 
-                        <th scope="col">Thời gian bắt đầu</th>
-                        <th scope="col">Thời gian dự kiến kết thúc</th>
-                        <th scope="col">Thời gian kết thúc</th>
-                        <th scope="col">Tên công trình</th>
+                        <th scope="col" class="col-2">Thời gian bắt đầu</th>
+                        <th scope="col" class="col-2">Thời gian dự kiến kết thúc</th>
+                        <th scope="col" class="col-2">Thời gian kết thúc</th>
+                        <th scope="col" class="col-2">Tên công trình</th>
 
                     </tr>
                     </thead>
@@ -656,8 +656,10 @@
                                     </div>
                                     <div>
                                         <a class="btn btn-primary summary-detail-all" style="float: right;"
-                                           href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}">Chi
-                                            tiết
+                                           href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}">
+                                            <button class="btn btn-primary summary-detail-all" style="float: right;">
+                                                Chi tiết
+                                            </button>
                                         </a>
                                     </div>
                                 </form>

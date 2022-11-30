@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
-
+    <link rel="stylesheet" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <script src="<c:url value="/resources/assets/js/my-task.js"/>"></script>
     <title>Tất cả công việc cá nhân</title>
 </head>
@@ -32,7 +32,6 @@
                     <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
                             class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm công việc
                     </button>
-
                 </div>
             </div>
             <div style="display: flex;">
@@ -105,6 +104,7 @@
                             <td>
                                 <div style="display: flex; justify-content: space-between;">
                                     <button><i class="fa-regular fa-pen-to-square"></i></button>
+
                                     <button><i class="fa-regular fa-trash-can"></i></button>
                                 </div>
                             </td>
@@ -231,7 +231,10 @@
         span.addEventListener("click", function () {
             modal.style.display = "none";
         });
-
+        let  close = document.querySelector('.close_popup');
+        close.addEventListener('click',function (){
+            modal.style.display = "none";
+        });
         // When the user clicks on <span> (x), close the modal
 
 

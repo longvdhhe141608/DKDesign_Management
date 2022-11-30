@@ -2,6 +2,8 @@ package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Repository.*;
+import DkDesignManagement.Service.CommentService;
+import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.model.TaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,9 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.math.BigInteger;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+
+import static DkDesignManagement.utils.Constant.HOST;
+import static DkDesignManagement.utils.Constant.PROJECT_NAME;
 
 @Controller
 @RequestMapping("/design/task")
@@ -34,6 +40,12 @@ public class TaskByDesignController {
 
     @Autowired
     private ImageAndFileDao imageAndFileDao;
+
+    @Autowired
+    NotificationService notificationService;
+
+    @Autowired
+    CommentService commentService;
 
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(HttpServletRequest request, HttpServletResponse response) {
@@ -106,14 +118,14 @@ public class TaskByDesignController {
 
         int sectionID = Integer.parseInt(request.getParameter("section-id"));
         Section section = sectionDao.getOneSectionBySectionID(sectionID);
-        List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
+        List<Tasks> subTasksList = taskDAO.getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
 
         List<Requirement> requirements = requirementDao.getAllRequirementByProjectID(project.getId());
 
         int totalSubmitFile = 0;
         int totalFile = 0;
 
-        for (int i = 0; i < subTasksList.size() ; i++) {
+        for (int i = 0; i < subTasksList.size(); i++) {
             totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
             totalFile += subTasksList.get(i).getNumberOfFile();
         }
@@ -128,6 +140,7 @@ public class TaskByDesignController {
         view.addObject("progressPercent", progressPercent);
         view.addObject("totalSubmitFile", totalSubmitFile);
         view.addObject("totalFile", totalFile);
+        view.addObject("listComment", commentService.getAllViewCommentByTaskId(tasks.getId()));
 
         return view;
     }
@@ -149,29 +162,38 @@ public class TaskByDesignController {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
 
-        Tasks tasks = Tasks.builder()
-                .projectID(projectID)
-                .sectionID(sectionID)
-                .taskID(taskID)
-                .creator(account.getId())
-                .assignedTo(account.getId())
-                .requirementID(requirementID)
+        Task tasks = Task.builder()
+                .projectId(projectID)
+                .sectionId(sectionID)
+                .taskfId(BigInteger.valueOf(taskID))
+                .creatorId(account.getId())
+                .assignToId(account.getId())
+                .requirementId(BigInteger.valueOf(requirementID))
                 .taskName(subTaskName)
-                .startingDate(startDate)
+                .startDate(startDate)
                 .deadline(deadline)
-                .numberOfFile(numberOfFile)
-                .status(1)
+                .fileNumber(numberOfFile)
+                .taskStatus(1)
                 .build();
 
-        int saveSubtask = taskDAO.insertSubTaskByDesign(tasks);
+        int keySubTask = taskDAO.addTask(tasks);
 
-        if(saveSubtask == 0){
+        if (keySubTask == 0) {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
             view.addObject("mess", "Save failed");
         } else {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
             view.addObject("mess", "Save success");
+            //find leader
+            Project project = projectDao.getProject(projectID);
+            int leader = project.getCreator();
+
+            //add notification send leader
+            String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + keySubTask;
+            Notification notification = new Notification(-1, new java.util.Date(), "Bạn có sub-task Chưa phê duyệt", leader, project.getId(), url);
+            notificationService.addNotification(notification);
         }
+
 
         view.addObject("project-id", projectID);
         view.addObject("task-id", taskID);
