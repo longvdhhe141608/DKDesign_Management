@@ -152,7 +152,7 @@
                     <td>
                         <div>
                             <c:if test="${project.status == 1}">
-                                <div class="add">
+                                <div class="">
                                     <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
                                             id="myBtn-add-project"
                                             class="btn btn-primary">+ Thêm công việc phụ
@@ -233,9 +233,9 @@
                                                                 </tr>
                                                             </table>
                                                         </div>
-                                                        <div class="button_click">
+                                                        <div class="" style="display: flex;justify-content: end">
                                                             <div></div>
-                                                            <div class="btn_cancel">
+                                                            <div class="btn_cancel" style="margin-right: 5px">
                                                                 <button type="button"
                                                                         class="btn btn-secondary close_popup">Hủy
                                                                     bỏ

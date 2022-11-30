@@ -124,12 +124,12 @@
                     <td><p>Kế hoạch công việc:</p></td>
                     <td>
                         <div style="margin-left: 10px">
-                            <div class="add" id="show-member">
+                            <div >
                                 <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
                                         class="btn btn-primary">+ Thêm công việc phụ</button>
                                 <div id="myModal-add" class="modal">
                                     <!-- Modal content -->
-                                    <div class="modal-content" style=" width: 50%;height: 65%;">
+                                    <div class="modal-content" style=" width: 50%;height: 100%;">
                                         <span id="close1" class="close">&times;</span>
                                         <div class="project-add-task">
                                             <form id="add-sub-task"
@@ -150,7 +150,8 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
-                                                                <td><input id="inputstartdate" name="startDate" class="info-text" type="date"></td>
+                                                                <td><input id="inputstartdate" name="startDate" class="info-text" type="date">
+                                                                    <div class="text-danger error"></div>
                                                             </tr>
                                                             <tr>
                                                                 <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
@@ -176,9 +177,9 @@
                                                             </tr>
                                                         </table>
                                                     </div>
-                                                    <div class="button_click">
+                                                    <div class="" style="display: flex;justify-content: end">
                                                         <div></div>
-                                                        <div class="btn_cancel">
+                                                        <div class="btn_cancel" style="margin-right: 5px">
                                                             <button type="button" class="btn btn-secondary close_popup">Hủy
                                                                 bỏ
                                                             </button>
@@ -354,18 +355,46 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
-    const show = document.querySelector("#show-member");
+    // const show = document.querySelector("#show-member");
+    //
+    // const popup = document.querySelector(".popup");
+    // let close = document.querySelector('.close_popup');
+    // close.addEventListener('click', function () {
+    //     popup.classList.add("hide__popup");
+    // });
+    //
+    // show.addEventListener('click', function () {
+    //     popup.classList.remove("hide__popup");
+    // })
+    function modallistproject(idbtn, idmodal, closemain) {
+        // Get the modal
+        var modal = document.querySelector(idmodal);
 
-    const popup = document.querySelector(".popup");
-    let close = document.querySelector('.close_popup');
-    close.addEventListener('click', function () {
-        popup.classList.add("hide__popup");
-    });
+        // Get the button that opens the modal
+        var btn = document.querySelector(idbtn);
 
-    show.addEventListener('click', function () {
-        popup.classList.remove("hide__popup");
-    })
+        // Get the <span> element that closes the modal
+        var span = document.querySelector(closemain);
+        // span.addEventListener('click', event){
+        //     event.style.display = "none";
+        // }
+        // When the user clicks the button, open the modal
 
+        modal.style.display = "block";
+
+        span.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // When the user clicks on <span> (x), close the modal
+
+
+        // When the user clicks anywhere outside of the modal, close it
+        let close = document.querySelector('.close_popup');
+        close.addEventListener('click', function () {
+            modal.style.display = "none";
+        });
+    }
     function onClickBtn() {
         Swal.fire({
             title: 'Do you want to save the changes?',
