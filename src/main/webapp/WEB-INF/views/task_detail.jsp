@@ -179,7 +179,7 @@
             <p style="font-size: 20px;">Bình luận</p>
             <div class="task-cmt-details-main">
                 <form style="display: flex" action="add-comment" method="post">
-                    <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                    <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                     <input name="taskId" type="text" value="${task.taskId}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
                     <input style="width: 900px; margin-right: 10px;border-radius: 5px" name="content" class="input-cmt" type="text"
@@ -193,7 +193,7 @@
                         <!----------item------------>
                         <div style="display: flex">
                             <div class="task-cmt-details-main">
-                                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                                <img class="img_avatar" src="${comment.avatarUrl}"/>
                                 <span class="name-avatar">${comment.accountName}</span>
                                 <span> ${comment.dateCountDown}</span></br>
                                 <span style="margin-left: 50px">${comment.content}</span>

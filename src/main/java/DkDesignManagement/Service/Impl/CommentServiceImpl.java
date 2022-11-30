@@ -6,6 +6,7 @@ import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.CommentDao;
 import DkDesignManagement.Service.CommentService;
 import DkDesignManagement.model.CommentDto;
+import DkDesignManagement.model.ViewCommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +51,11 @@ public class CommentServiceImpl implements CommentService {
         }
 
         commentDao.updateComment(comment);
+    }
+
+    @Override
+    public List<ViewCommentDto> getAllViewCommentByTaskId(int taskId) {
+        List<ViewCommentDto> viewCommentDtos = commentDao.getAllViewCommentByTaskId(taskId);
+        return viewCommentDtos;
     }
 }

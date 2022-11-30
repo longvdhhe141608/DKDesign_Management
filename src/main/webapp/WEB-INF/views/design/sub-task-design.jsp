@@ -27,12 +27,12 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-<%--                    <select style="border-radius: 5px; padding: 6px;">--%>
-<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-<%--                    </select>--%>
-<%--                </div>--%>
+                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+                <%--                    <select style="border-radius: 5px; padding: 6px;">--%>
+                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -194,42 +194,42 @@
                 </c:if>
             </div>
         </div>
-<%--                <div style=" text-align: end; margin-left: 10px;">--%>
-<%--                    <form action="${pageContext.request.contextPath}/editTaskDetail">--%>
-<%--                        <a href="">--%>
-<%--                            <button class="btn btn-primary">--%>
-<%--                                Chỉnh sửa--%>
-<%--                            </button>--%>
-<%--                        </a>--%>
-<%--                    </form>--%>
-<%--                </div>--%>
-<%--        <div class="task-cmt-details">--%>
-<%--            <p style="font-size: 20px;">Bình luận</p>--%>
-<%--            <div class="task-cmt-details-main">--%>
-<%--                <div style="display: flex;">--%>
-<%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
-<%--                    <div class="task-cmt-details-member">--%>
-<%--                        <span class="name-avatar">Nam</span>--%>
-<%--                        <span> 4 phút trước</span></br>--%>
-<%--                        <span class="cmt-details-total">ok đấy</span>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>--%>
+        <%--                <div style=" text-align: end; margin-left: 10px;">--%>
+        <%--                    <form action="${pageContext.request.contextPath}/editTaskDetail">--%>
+        <%--                        <a href="">--%>
+        <%--                            <button class="btn btn-primary">--%>
+        <%--                                Chỉnh sửa--%>
+        <%--                            </button>--%>
+        <%--                        </a>--%>
+        <%--                    </form>--%>
+        <%--                </div>--%>
+        <%--        <div class="task-cmt-details">--%>
+        <%--            <p style="font-size: 20px;">Bình luận</p>--%>
+        <%--            <div class="task-cmt-details-main">--%>
+        <%--                <div style="display: flex;">--%>
+        <%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
+        <%--                    <div class="task-cmt-details-member">--%>
+        <%--                        <span class="name-avatar">Nam</span>--%>
+        <%--                        <span> 4 phút trước</span></br>--%>
+        <%--                        <span class="cmt-details-total">ok đấy</span>--%>
+        <%--                    </div>--%>
+        <%--                </div>--%>
+        <%--            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>--%>
 
-<%--            <div class="task-cmt-details-main">--%>
-<%--                <div style="display: flex;">--%>
-<%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
+        <%--            <div class="task-cmt-details-main">--%>
+        <%--                <div style="display: flex;">--%>
+        <%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
 
-<%--                    <input style="width: 500px; margin-right: 10px;" type="text" placeholder="Viết bình luận...">--%>
-<%--                    <button>Gửi</button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
+        <%--                    <input style="width: 500px; margin-right: 10px;" type="text" placeholder="Viết bình luận...">--%>
+        <%--                    <button>Gửi</button>--%>
+        <%--                </div>--%>
+        <%--            </div>--%>
+        <%--        </div>--%>
         <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>
             <div class="task-cmt-details-main">
                 <form style="display: flex" action="${pageContext.request.contextPath}/add-comment" method="post">
-                    <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                    <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                     <input name="taskId" type="text" value="${subTask.id}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
                     <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text"
@@ -243,7 +243,7 @@
                         <!----------item------------>
                         <div style="display: flex">
                             <div class="task-cmt-details-main">
-                                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+                                <img class="img_avatar" src="${comment.avatarUrl}"/>
                                 <span class="name-avatar">${comment.accountName}</span>
                                 <span> ${comment.dateCountDown}</span></br>
                                 <span style="margin-left: 50px">${comment.content}</span>
@@ -252,7 +252,6 @@
                             <div>
                                 <c:if test="${comment.isPin() ==true}">
                                     <i class="fa-solid fa-thumbtack"></i>
-
                                 </c:if>
                                 <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
                                     <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">

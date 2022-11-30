@@ -133,7 +133,7 @@ function showPopUp(id, name, detail) {
         "\n" +
         "                </table>\n" +
         "                <div class=\"add-btn-work\">\n" +
-        "                    <button style='margin-right:5px ' type=\"button\" class=\"btn btn-secondary \">Hủy bỏ\n" +
+        "                    <button onclick='closePopUp()' style='margin-right:5px ' type=\"button\" class=\"btn btn-secondary \">Hủy bỏ\n" +
         "                    </button>\n" +
         "                    <button onclick=\"return checkvalidate('#add-project1')\"\n" +
         "                            type=\"submit\" class=\"btn btn-primary\">\n" +
@@ -150,4 +150,9 @@ function showPopUp(id, name, detail) {
     modalFooter.style.display = "block";
     console.log(html);
     showHtml.innerHTML = html;
+}
+
+function closePopUp(){
+    let modalFooter = document.querySelector("#myModal-footer");
+    modalFooter.style.display = "none";
 }

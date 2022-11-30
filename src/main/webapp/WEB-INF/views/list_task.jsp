@@ -29,7 +29,8 @@
             <div class="list-top">
                 <h3>${project.projectName}</h3>
 
-                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
@@ -155,7 +156,8 @@
                                 </tr>
                             </table>
                             <div class="add-btn-work">
-                                <button type="button" class="btn btn-secondary btn-canel close_popup" style="margin-right: 10px;">
+                                <button type="button" class="btn btn-secondary btn-canel close_popup"
+                                        style="margin-right: 10px;">
                                     Hủy bỏ
                                 </button>
                                 <button onclick="return checkvalidate('#add-project')"
@@ -198,7 +200,8 @@
                                                 </tr>
                                             </table>
                                             <div class="add-btn-work" style="display: flex ; justify-content: end">
-                                                <button style="margin-right: 10px" class="btn btn-secondary close_popup">Hủy bỏ
+                                                <button style="margin-right: 10px" type="button"
+                                                        class="btn btn-secondary " onclick="onCancelEdit()">Hủy bỏ
                                                 </button>
                                                 <button onclick="return checkvalidatenumber('#add-project1')"
                                                         type="submit"
@@ -329,7 +332,7 @@
                                 </table>
                                 <div class="add-btn-work">
                                     <button style="margin-right: 10px" type="button"
-                                            class="btn btn-secondary btn-canel close_popup">
+                                            class="btn btn-secondary btn-canel" onclick="onClickClose()">
                                         Hủy bỏ
                                     </button>
                                     <button onclick="return checkvalidatenumber('#add-project3')"
@@ -353,6 +356,16 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
+
+    function onClickClose() {
+        let modalA = document.querySelector("#myModal-footer");
+        modalA.style.display = "none";
+    }
+
+    function onCancelEdit(){
+        let modalB = document.querySelector("#myModal-edit");
+        modalB.style.display = "none";
+    }
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal
         var modal = document.querySelector(idmodal);
@@ -368,8 +381,8 @@
         span.addEventListener("click", function () {
             modal.style.display = "none";
         });
-        let  close = document.querySelector('.close_popup');
-        close.addEventListener('click',function (){
+        let close = document.querySelector('.close_popup');
+        close.addEventListener('click', function () {
             modal.style.display = "none";
         });
     }
