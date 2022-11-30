@@ -99,7 +99,8 @@ public class TaskController {
         int totalFile = 0;
 
         for (int i = 0; i < subTasksList.size() ; i++) {
-            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());totalFile += subTasksList.get(i).getNumberOfFile();
+            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
+            totalFile += subTasksList.get(i).getNumberOfFile();
         }
 
         float progressPercent = Math.round((totalSubmitFile / (1.0 * totalFile)) * 100);
@@ -107,7 +108,7 @@ public class TaskController {
         view.addObject("listAccount", accountService.getAccountsByProjectId(task.getProjectId()));
         view.addObject("listRequirement", requirementService.getRequirementByProjectId(task.getProjectId()));
 
-        view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
+        view.addObject("listComment", commentService.getAllViewCommentByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
         view.addObject("totalSubmitFile", totalSubmitFile);
@@ -121,7 +122,7 @@ public class TaskController {
         ModelAndView view = new ModelAndView("subtask");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskByIdFullModel(taskId);
-        view.addObject("listComment", commentService.getAllCommentsByTaskId(taskId));
+        view.addObject("listComment", commentService.getAllViewCommentByTaskId(taskId));
         view.addObject("task", task);
         view.addObject("mess", mess);
         return view;

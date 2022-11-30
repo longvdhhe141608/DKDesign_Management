@@ -118,7 +118,7 @@ public class TaskByDesignController {
 
         int sectionID = Integer.parseInt(request.getParameter("section-id"));
         Section section = sectionDao.getOneSectionBySectionID(sectionID);
-        List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
+        List<Tasks> subTasksList = taskDAO.getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
 
         List<Requirement> requirements = requirementDao.getAllRequirementByProjectID(project.getId());
 
@@ -140,7 +140,7 @@ public class TaskByDesignController {
         view.addObject("progressPercent", progressPercent);
         view.addObject("totalSubmitFile", totalSubmitFile);
         view.addObject("totalFile", totalFile);
-        view.addObject("listComment", commentService.getAllCommentsByTaskId(tasks.getId()));
+        view.addObject("listComment", commentService.getAllViewCommentByTaskId(tasks.getId()));
 
         return view;
     }

@@ -359,6 +359,27 @@ public class TaskDAO {
         return null;
     }
 
+    public List<Tasks> getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(int projectID, int sectionID, int taskID) {
+        List<Tasks> tasksList = new ArrayList<>();
+        String sql = "SELECT t.*, a.username, r.requirement_name FROM section s\n" +
+                "left join project p on s.project_id = p.id \n" +
+                "left join task t on s.id = t.section_id\n" +
+                "left join project_participation pp on p.id = pp.project_id \n" +
+                "left join accounts a on a.id = t.assignedto \n" +
+                "left join requirement r on p.id = r.project_id\n" +
+                "left join employees e on a.id =e.id_acc\n" +
+                "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n AND (t.status = 2 or t.status = 3 or t.status = 4 ) " +
+                "Group By t.id;";
+        try {
+
+            tasksList = jdbcTemplate.query(sql, new MapperTasks(), projectID, sectionID, taskID);
+            return tasksList;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public Tasks getOneTasksByTaskID(int taskID) {
 
         Tasks tasks = new Tasks();
@@ -390,7 +411,7 @@ public class TaskDAO {
                 "left join accounts a on a.id = t.assignedto\n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "left join requirement r on p.id = r.project_id\n" +
-                "where t.id = ? AND t.task_id = ?\n" +
+                "where t.id = ? AND t.task_id = ? \n" +
                 "Group By t.id";
         try {
             tasks = jdbcTemplate.queryForObject(sql, new MapperTasks(), subTaskID, taskID);
@@ -591,7 +612,7 @@ public class TaskDAO {
                 "left join accounts a on a.id = t.assignedto \n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "left join employees e on a.id =e.id_acc\n" +
-                "where t.task_id= ?\n AND t.status != 5 " +
+                "where t.task_id= ?\n AND (t.status = 2 or t.status = 3 or t.status = 4 ) " +
                 "Group By t.id;";
         try {
 

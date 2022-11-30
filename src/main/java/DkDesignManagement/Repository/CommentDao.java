@@ -8,6 +8,8 @@ import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Mapper.MapperAccount;
 import DkDesignManagement.Mapper.MapperComment;
 import DkDesignManagement.Mapper.MapperTask;
+import DkDesignManagement.Mapper.MapperViewCommentDto;
+import DkDesignManagement.model.ViewCommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -15,6 +17,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
+import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +40,7 @@ public class CommentDao {
     public List<Comment> getAllCommentsByTaskId(int taskId) {
         String sql = "select * from comment c where task_id = ? order by isPin desc, comment_time desc  ";
 
-        return jdbcTemplate.query(sql, new MapperComment(),taskId);
+        return jdbcTemplate.query(sql, new MapperComment(), taskId);
     }
 
     public Comment getCommentById(int commentId) {
@@ -83,6 +86,20 @@ public class CommentDao {
         params.put("commentId", comment.getId());
 
         return namedParameterJdbcTemplate.update(sql, params);
+    }
+
+    public List<ViewCommentDto> getAllViewCommentByTaskId(int taskId) {
+        List<ViewCommentDto> viewCommentDtos = new ArrayList<>();
+        String sql = "select c.*, a.username, a.avatar_url from comment c \n" +
+                "left join accounts a on a.id = c.acc_id\n" +
+                "where task_id = ? order by isPin desc, comment_time desc  ";
+        try {
+            viewCommentDtos = jdbcTemplate.query(sql, new MapperViewCommentDto(), taskId);
+            return viewCommentDtos;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

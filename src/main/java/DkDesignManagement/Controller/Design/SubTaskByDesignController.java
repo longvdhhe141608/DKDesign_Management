@@ -94,7 +94,7 @@ public class SubTaskByDesignController {
         view.addObject("status", 0);
         String mess = request.getParameter("mess");
         view.addObject("mess", mess);
-        view.addObject("listComment", commentService.getAllCommentsByTaskId(subtask.getId()));
+        view.addObject("listComment", commentService.getAllViewCommentByTaskId(subtask.getId()));
 
         return view;
     }

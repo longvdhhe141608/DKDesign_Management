@@ -3,17 +3,20 @@ package DkDesignManagement.Service;
 
 import DkDesignManagement.Entity.Comment;
 import DkDesignManagement.model.CommentDto;
+import DkDesignManagement.model.ViewCommentDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface CommentService {
-     List<CommentDto> getAllCommentsByTaskId(int taskId);
+    List<CommentDto> getAllCommentsByTaskId(int taskId);
 
-     void addComment(Comment comment);
+    void addComment(Comment comment);
 
-     Comment getCommentById(int id);
+    Comment getCommentById(int id);
 
-     void updatePinComment(int commentId);
+    void updatePinComment(int commentId);
+
+    List<ViewCommentDto> getAllViewCommentByTaskId(int taskId);
 }
