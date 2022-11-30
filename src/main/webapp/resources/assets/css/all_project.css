@@ -52,19 +52,7 @@ body {
 
 
 .popup__content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 50%;
-    max-height: 100%;
-    margin: 0 auto;
-    height: 25rem;
-    transform: translate(-50%, -50%);
-    padding: 1.6rem;
-    display: table;
-    overflow: hidden;
-    /* background-color:rgba(0, 0, 0, 0);  */
-    background-color: #FFFFFF;
+
 }
 
 .hide__popup {
