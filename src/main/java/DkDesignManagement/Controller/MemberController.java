@@ -86,11 +86,20 @@ public class MemberController {
         String username = request.getParameter("username");
         int memberId = memberDAO.getAccountIdByUsername(username);
 
-        memberDAO.updateStatusMemberInProject(id,memberId,status);
-        List<Member> memberList = memberDAO.getMemberInProject(id);
+        try {
+            memberDAO.updateStatusMemberInProject(id, memberId, status);
+            List<Member> memberList = memberDAO.getMemberInProject(id);
 
-        view.addObject("project", project);
-        view.addObject("memberList", memberList);
-        return view;
+            view.addObject("project", project);
+            view.addObject("memberList", memberList);
+            return view;
+        } catch (Exception e) {
+
+
+            List<Member> memberList = memberDAO.getMemberInProject(id);
+            view.addObject("project", project);
+            view.addObject("memberList", memberList);
+            return view;
+        }
     }
 }
