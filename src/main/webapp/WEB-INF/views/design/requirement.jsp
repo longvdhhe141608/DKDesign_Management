@@ -30,12 +30,12 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-<%--                    <select style="border: none; padding: 6px;">--%>
-<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-<%--                    </select>--%>
-<%--                </div>--%>
+                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+                <%--                    <select style="border: none; padding: 6px;">--%>
+                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -49,7 +49,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -59,7 +60,8 @@
                         type="button"
                         style="background: blue"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -90,20 +92,22 @@
                     </thead>
                     <tbody>
                     <c:forEach items="${requirements}" var="i">
-                        <tr>
-                            <td class="col-2">${i.requirementName}</td>
-                            <td class="col-8">${i.requirementDetail}</td>
-                            <td>
-                                <c:if test="${i.status != 3}">${i.statusName}</c:if>
-                            </td>
-                                <%--                            <td>--%>
-                                <%--                                <div style="display: flex; justify-content: space-between;">--%>
-                                <%--                                    <button><i--%>
-                                <%--                                            class="fa-regular fa-pen-to-square"></i></button>--%>
-                                <%--                                    <button><i class="fa-regular fa-trash-can"></i></button>--%>
-                                <%--                                </div>--%>
-                                <%--                            </td>--%>
-                        </tr>
+                        <c:if test="${i.status != 3}">
+                            <tr>
+                                <td class="col-2">${i.requirementName}</td>
+                                <td class="col-8">${i.requirementDetail}</td>
+                                <td>
+                                    <c:if test="${i.status != 3}">${i.statusName}</c:if>
+                                </td>
+                                    <%--                            <td>--%>
+                                    <%--                                <div style="display: flex; justify-content: space-between;">--%>
+                                    <%--                                    <button><i--%>
+                                    <%--                                            class="fa-regular fa-pen-to-square"></i></button>--%>
+                                    <%--                                    <button><i class="fa-regular fa-trash-can"></i></button>--%>
+                                    <%--                                </div>--%>
+                                    <%--                            </td>--%>
+                            </tr>
+                        </c:if>
                     </c:forEach>
                     </tbody>
                 </table>
@@ -123,7 +127,7 @@
         </div>
         <div>
             <div style="margin-bottom: 10px">
-            <button class="btn btn-primary">Lịch sử</button>
+                <button class="btn btn-primary">Lịch sử</button>
             </div>
             <div>
                 <table class="table table-bordered">

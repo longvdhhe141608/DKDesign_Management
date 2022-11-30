@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static DkDesignManagement.utils.Constant.*;
 
@@ -133,8 +134,9 @@ public class RequirementController {
             //find desing
             if (!ObjectUtils.isEmpty(listDesign)) {
                 //send to design
+                listDesign = listDesign.stream().distinct().collect(Collectors.toList());
                 for (Integer designId : listDesign) {
-                    String url = HOST + "/" + PROJECT_NAME + "/design/requirement/view-requirement?project-id" + requirement.getProjectId();
+                    String url = HOST + "/" + PROJECT_NAME + "/design/requirement/view-requirement?project-id=" + requirement.getProjectId();
                     String message = "Yêu cầu của khách hàng đã xóa";
 
                     Notification notification = new Notification(-1, new java.util.Date()
@@ -184,8 +186,9 @@ public class RequirementController {
         //find desing
         if (!ObjectUtils.isEmpty(listDesign)) {
             //send to design
+            listDesign = listDesign.stream().distinct().collect(Collectors.toList());
             for (Integer designId : listDesign) {
-                String url = HOST + "/" + PROJECT_NAME + "/design/requirement/view-requirement?project-id" + requirement.getProjectId();
+                String url = HOST + "/" + PROJECT_NAME + "/design/requirement/view-requirement?project-id=" + requirement.getProjectId();
                 String message = "Yêu cầu của khách hàng đã bị sửa";
 
                 Notification notification = new Notification(-1, new java.util.Date()
