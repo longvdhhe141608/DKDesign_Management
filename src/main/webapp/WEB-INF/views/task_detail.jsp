@@ -28,7 +28,8 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${task.projectName}</h3>
-                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0;padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
@@ -152,8 +153,10 @@
                         <div>
                             <c:if test="${project.status == 1}">
                                 <div class="add">
-                                    <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
-                                            class="btn btn-primary">+ Thêm công việc phụ</button>
+                                    <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
+                                            id="myBtn-add-project"
+                                            class="btn btn-primary">+ Thêm công việc phụ
+                                    </button>
                                     <div id="myModal-add" class="modal">
                                         <!-- Modal content -->
                                         <div class="modal-content" style=" width: 50%;height: 100%;">
@@ -162,40 +165,55 @@
                                                 <form id="add-sub-task" action="add-sub-task" method="post">
                                                     <div class="popup__content">
                                                         <div class="title">
-                                                            <h4><input class="info-text" type="text" name="name" value="" placeholder="Tên công việc phụ">
+                                                            <h4><input class="info-text" type="text" name="name"
+                                                                       value="" placeholder="Tên công việc phụ">
                                                                 <div class="text-danger error"></div>
                                                             </h4>
                                                         </div>
                                                         <div class="info">
-                                                            <input type="text" name="projectId" hidden="" value="${task.projectId}">
-                                                            <input type="text" name="sectionId" hidden="" value="${task.sectionId}">
-                                                            <input type="text" name="taskId" hidden="" value="${task.taskId}">
+                                                            <input type="text" name="projectId" hidden=""
+                                                                   value="${task.projectId}">
+                                                            <input type="text" name="sectionId" hidden=""
+                                                                   value="${task.sectionId}">
+                                                            <input type="text" name="taskId" hidden=""
+                                                                   value="${task.taskId}">
                                                             <table class="table table-borderless">
                                                                 <tr>
                                                                     <td>Nhiệm vụ:</td>
                                                                     <td>
                                                                             ${task.assignToName}
-                                                                        <input type="text" name="assignTo" hidden="" value="${task.assignToId}">
+                                                                        <input type="text" name="assignTo" hidden=""
+                                                                               value="${task.assignToId}">
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
-                                                                    <td><input id="inputstartdate" class="info-text" name="startDate" type="date">
+                                                                    <td>Thời gian bắt đầu<label
+                                                                            class="text-danger">*</label>:
+                                                                    </td>
+                                                                    <td><input id="inputstartdate" class="info-text"
+                                                                               name="startDate" type="date">
                                                                         <div class="text-danger error"></div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                                                                    <td><input id="inputenddate" class="info-text" name="deadline" type="date">
+                                                                    <td>Thời gian dự kiến kết thúc<label
+                                                                            class="text-danger">*</label>:
+                                                                    </td>
+                                                                    <td><input id="inputenddate" class="info-text"
+                                                                               name="deadline" type="date">
                                                                         <div class="text-danger error"></div>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>
+                                                                    <td>Vị trí của yêu cầu<label
+                                                                            class="text-danger">*</label>:
+                                                                    </td>
                                                                     <td>
                                                                         <div class="dropdown">
-                                                                            <select name="requirementId" class="btn btn-secondary dropdown-toggle">
-                                                                                <c:forEach items="${listRequirement}" var="requirement">
+                                                                            <select name="requirementId"
+                                                                                    class="btn btn-secondary dropdown-toggle">
+                                                                                <c:forEach items="${listRequirement}"
+                                                                                           var="requirement">
                                                                                     <c:if test="${requirement.status != 3}">
                                                                                         <option value="${requirement.id}"> ${requirement.requirementName}</option>
                                                                                     </c:if>
@@ -205,8 +223,11 @@
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>Số lượng file<label class="text-danger">*</label>:</td>
-                                                                    <td><input class="info-text" type="number" name="fileNumber" value="">
+                                                                    <td>Số lượng file<label
+                                                                            class="text-danger">*</label>:
+                                                                    </td>
+                                                                    <td><input class="info-text" type="number"
+                                                                               name="fileNumber" value="">
                                                                         <div class="text-danger error"></div>
                                                                     </td>
                                                                 </tr>
@@ -215,12 +236,14 @@
                                                         <div class="button_click">
                                                             <div></div>
                                                             <div class="btn_cancel">
-                                                                <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                                <button type="button"
+                                                                        class="btn btn-secondary close_popup">Hủy
                                                                     bỏ
                                                                 </button>
                                                             </div>
                                                             <div class="btn_ok">
-                                                                <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu
+                                                                <button onclick="return checkvalidate('#add-sub-task')"
+                                                                        type="submit" class="btn btn-primary">Lưu
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -235,7 +258,9 @@
                         <div>
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <c:if test="${subTask.taskStatus != 5}">
-                                    <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
+                                    <c:if test="${subTask.taskStatus != 1}">
+                                        <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
+                                    </c:if>
                                 </c:if>
                             </c:forEach>
                         </div>
@@ -259,7 +284,8 @@
                     <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                     <input name="taskId" type="text" value="${task.taskId}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
-                    <input style="width: 900px; margin-right: 10px;border-radius: 5px" name="content" class="input-cmt" type="text"
+                    <input style="width: 900px; margin-right: 10px;border-radius: 5px" name="content" class="input-cmt"
+                           type="text"
                            placeholder="Bình luận....">
                     <button class="btn btn-primary">Gửi</button>
                 </form>
@@ -289,10 +315,7 @@
                         <!----------item------------>
                     </c:forEach>
                 </c:if>
-
             </div>
-
-
         </div>
     </div>
 </div>
