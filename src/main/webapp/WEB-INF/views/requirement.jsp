@@ -217,22 +217,31 @@
             <div>
                 <table class="table table-bordered">
                     <thead>
+                    <th scope="col">Requirement ID</th>
                     <th scope="col">Lần</th>
                     <th scope="col">Nội dung</th>
                     <th scope="col">Thời gian</th>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Diện tích xây dựng 200m2-300m2
-                        </td>
-                        <td>
-                            20/12/2022
-                        </td>
-                    </tr>
+                    <c:forEach items="${listHistory}" var="history">
+                        <tr>
+                            <td>
+                                    ${history.table_id}
+                            </td>
+                            <td>
+                                    ${history.revision_no}
+                            </td>
+                            <td>
+                                    ${history.revision_detail}
+                            </td>
+                            <td>
+                                    ${history.revision_date}
+                            </td>
+                        </tr>
+
+                    </c:forEach>
+
+
                     </tbody>
                 </table>
             </div>
