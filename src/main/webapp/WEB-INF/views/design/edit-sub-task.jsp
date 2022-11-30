@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="task-details-main">
-            <form action="${pageContext.request.contextPath}/design/sub-task/edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
+            <form id="add-project1" action="${pageContext.request.contextPath}/design/sub-task/edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
                   method="post">
                 <div class="mb-3">
                     <input type="text" class="form-control" id="exampleFormControlInput1"
@@ -107,25 +107,28 @@
                     <tr>
                         <td>Thời gian bắt đầu:</td>
                         <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date"
+                            <div class="name-input " style="width: 150px;">
+                                <input id="inputstartdate" class="form-control info-text" formControlName="dob" type="date"
                                        value="${subTask.startingDate}" name="start-date">
                             </div>
+                            <div class="text-danger error"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
                         <td>
-                            <div class="name-input" style="width: 150px;">
-                                <input class="form-control" formControlName="dob" type="date"
+                            <div class="name-input " style="width: 150px;">
+                                <input id="inputenddate" class="form-control info-text" formControlName="dob" type="date"
                                        value="${subTask.deadline}"
                                        name="deadline">
                             </div>
+                            <div class="text-danger error"></div>
                         </td>
                     </tr>
                     <tr>
                         <td>Số lượng file:</td>
-                        <td><input type="text" value="${subTask.numberOfFile}" name="numberOfFile"></td>
+                        <td><input class="info-text" type="text" value="${subTask.numberOfFile}" name="numberOfFile">
+                            <div class="text-danger error"></div></td>
                     </tr>
                     <tr>
                         <td>Yêu cầu khách hàng:</td>
@@ -151,7 +154,7 @@
                                 <a class="btn btn-secondary" style="margin-right: 10px;"
                                    href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}">Hủy
                                     bỏ</a>
-                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                <button onclick="return checkvalidate('#add-project1')" type="submit" class="btn btn-primary">Lưu</button>
                             </div>
                         </td>
                     </tr>
