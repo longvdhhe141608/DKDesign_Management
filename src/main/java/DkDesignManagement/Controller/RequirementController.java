@@ -1,15 +1,19 @@
 package DkDesignManagement.Controller;
 
+import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Requirement;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
+import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.RequirementService;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.Service.TestService;
+import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,6 +42,10 @@ public class RequirementController {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired
+    NotificationService notificationService;
+
     private List<Task> taskList;
 
     @RequestMapping(value = "/requirement-for-leader", method = RequestMethod.GET)
@@ -111,14 +119,34 @@ public class RequirementController {
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete failed");
         } else {
+            List<Integer> listDesign = new ArrayList<Integer>();//to send notification
+
             for (Task task : taskList) {
                 task.setTaskStatus(CANCEL_TASK_STATUS);
                 taskService.updateTask(task);
+                listDesign.add(task.getAssignToId());
             }
             response.getWriter().println("Đã xóa");
+
+            //add notification send design
+
+            //find desing
+            if (!ObjectUtils.isEmpty(listDesign)) {
+                //send to design
+                for (Integer designId : listDesign) {
+                    String url = HOST + "/" + PROJECT_NAME + "/design/requirement/view-requirement?project-id" + requirement.getProjectId();
+                    String message = "Yêu cầu của khách hàng đã xóa";
+
+                    Notification notification = new Notification(-1, new java.util.Date()
+                            , message, designId, requirement.getProjectId(), url);
+                    notificationService.addNotification(notification);
+                }
+            }
+
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete success");
         }
+
 //        view.addObject("id", projectID);
     }
 
@@ -140,10 +168,29 @@ public class RequirementController {
 
         //update status task
         List<Task> tasksList = taskService.getAllTaskByRequirementId(requirementId);
+
+        //list design of task  ,project
+        List<Integer> listDesign = new ArrayList<Integer>();
         for (Task task : tasksList) {
             if (task.getTaskStatus() == COMPLETE_TASK_STATUS) {
                 task.setTaskStatus(PROCESS_TASK_STATUS);
                 taskService.updateTask(task);
+            }
+            //add design of task to list
+            listDesign.add(task.getAssignToId());
+        }
+
+        //add notification send design
+        //find desing
+        if (!ObjectUtils.isEmpty(listDesign)) {
+            //send to design
+            for (Integer designId : listDesign) {
+                String url = HOST + "/" + PROJECT_NAME + "/design/requirement/view-requirement?project-id" + requirement.getProjectId();
+                String message = "Yêu cầu của khách hàng đã bị sửa";
+
+                Notification notification = new Notification(-1, new java.util.Date()
+                        , message, designId, requirement.getProjectId(), url);
+                notificationService.addNotification(notification);
             }
         }
 
