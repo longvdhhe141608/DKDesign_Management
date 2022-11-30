@@ -74,13 +74,31 @@ public class CommentController {
         }
         if(account.getId() != task.getAssignToId()){
             //role design
-            //TODO : addNotificationSendDesign
+            addNotificationSendDesign(account,task);
         }
 
         redirect.addAttribute("mess", "Add comment success");
 
         return view;
     }
+
+    private void addNotificationSendDesign(Account account, Task task){
+
+        //add notification send leader
+        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+
+        String messageNotification = account.getUsername() + " đã bình luận về sub-task : "+task.getTaskName();;//sub task
+        //check task or sub task
+        if (ObjectUtils.isEmpty(task.getTaskfId())) {
+            //task
+            messageNotification = account.getUsername() + " đã bình luận về task : "+task.getTaskName();
+        }
+        int design = task.getAssignToId();
+
+        Notification notification = new Notification(-1, new java.util.Date(), messageNotification, design,task.getProjectId(), url);
+        notificationService.addNotification(notification);
+    }
+
 
     private void addNotificationSendLeader(Account account, Task task,Project project){
 
