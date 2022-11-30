@@ -1,15 +1,9 @@
 package DkDesignManagement.Controller;
 
-import DkDesignManagement.Entity.Notification;
-import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Entity.Requirement;
-import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Entity.*;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
-import DkDesignManagement.Service.NotificationService;
-import DkDesignManagement.Service.RequirementService;
-import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.Service.TestService;
+import DkDesignManagement.Service.*;
 import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +44,9 @@ public class RequirementController {
 
     private List<Task> taskList;
 
+    @Autowired
+    HistoryService historyService;
+
     @RequestMapping(value = "/requirement-for-leader", method = RequestMethod.GET)
     public ModelAndView viewRequirement(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("requirement");
@@ -66,9 +64,12 @@ public class RequirementController {
         int totalPages = (totalRequirement % 10 == 0) ? totalRequirement / 10 : totalRequirement / 10 + 1;
 
         List<Requirement> requirements = requirementDao.getPaginationRequirementByProjectID(projectID, page);
+
+        List<RevisionHistory> listHistory = new ArrayList<RevisionHistory>();
         //check and update status
         for (Requirement requirement : requirements) {
             requirement.setStatus(requirementService.checkAndUpdaterRequirementDone(requirement));
+            listHistory.addAll(historyService.getAlLRevisionHistoryOfTable(requirement.getId(), "requirement"));
         }
 
         List<Integer> lsPage = new ArrayList<>();
@@ -78,6 +79,7 @@ public class RequirementController {
         }
 
         view.addObject("requirements", requirements);
+        view.addObject("listHistory", listHistory);
         view.addObject("lsPage", lsPage);
         view.addObject("project", project);
         return view;
@@ -161,6 +163,8 @@ public class RequirementController {
         //update
         String name = request.getParameter("name");
         String detail = request.getParameter("detail");
+        String oldName = requirement.getRequirementName();
+        String oldDetail = requirement.getRequirementDetail();
 
         requirement.setRequirementName(name);
         requirement.setRequirementDetail(detail);
@@ -197,8 +201,21 @@ public class RequirementController {
             }
         }
 
-
         requirementService.updateRequirement(requirement);
+
+        //add history
+        //check history exits
+        String type = "requirement";
+        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(requirement.getId(), type);
+        int revisionNoNew = 1;
+        if (!ObjectUtils.isEmpty(revisionNo)) {
+            revisionNoNew = revisionNo+1;
+        }
+
+        String revisionDetail = "Vị trí : " + oldName + " -> " + requirement.getRequirementName() + " <br> "
+                + " Yêu cầu : " + oldDetail + " -> " + requirement.getRequirementDetail();
+        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type,null);
+        historyService.addHistory(revisionHistory);
 
         return view;
     }
