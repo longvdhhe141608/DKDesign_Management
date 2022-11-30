@@ -17,7 +17,4 @@ public class RevisionHistory {
     private Date revision_date;
     private String revision_detail;
     private String type;
-
-    //model
-    private String dateString;
 }

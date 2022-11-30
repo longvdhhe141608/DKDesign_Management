@@ -214,7 +214,7 @@ public class RequirementController {
 
         String revisionDetail = "Vị trí : " + oldName + " -> " + requirement.getRequirementName() + " <br> "
                 + " Yêu cầu : " + oldDetail + " -> " + requirement.getRequirementDetail();
-        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type,null);
+        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type);
         historyService.addHistory(revisionHistory);
 
         return view;

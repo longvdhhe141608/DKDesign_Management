@@ -235,7 +235,7 @@
                                     ${history.revision_detail}
                             </td>
                             <td>
-                                    ${history.dateString}
+                                    ${history.revision_date}
                             </td>
                         </tr>
 

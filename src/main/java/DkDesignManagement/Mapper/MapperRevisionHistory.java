@@ -14,7 +14,7 @@ public class MapperRevisionHistory implements RowMapper<RevisionHistory> {
         revisionHistory.setId(resultSet.getInt("id"));
         revisionHistory.setTable_id(resultSet.getInt("table_id"));
         revisionHistory.setRevision_no(resultSet.getInt("revision_no"));
-        revisionHistory.setRevision_date(resultSet.getTimestamp("revision_date"));
+        revisionHistory.setRevision_date(resultSet.getDate("revision_date"));
         revisionHistory.setRevision_detail(resultSet.getString("revision_detail"));
         revisionHistory.setType(resultSet.getString("type"));
         return revisionHistory  ;

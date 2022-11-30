@@ -20,9 +20,6 @@ public class HistoryServiceImpl implements HistoryService {
     @Override
     public List<RevisionHistory> getAlLRevisionHistoryOfTable(int tableId, String type) {
         List<RevisionHistory> listHistory = revisionHistoryDao.getAlLRevisionHistoryOfTable(tableId, type);
-        for (RevisionHistory history : listHistory) {
-            history.setDateString(DateUtils.getDateString(history.getRevision_date()));
-        }
         return listHistory;
     }
 
