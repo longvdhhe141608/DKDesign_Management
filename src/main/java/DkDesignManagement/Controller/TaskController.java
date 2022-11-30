@@ -6,6 +6,7 @@ import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.TaskDAO;
 import DkDesignManagement.Service.*;
 import DkDesignManagement.model.MyTaskDto;
+import DkDesignManagement.model.NotificationDto;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -159,6 +160,7 @@ public class TaskController {
 
         //add section
         taskService.addTask(task);
+
         redirect.addAttribute("mess", "add successfully ");
         return view;
     }
