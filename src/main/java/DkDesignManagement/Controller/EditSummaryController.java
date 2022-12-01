@@ -2,10 +2,12 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Entity.RevisionHistory;
 import DkDesignManagement.Repository.ImageAndFileDao;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.CloudinaryService;
+import DkDesignManagement.Service.HistoryService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +46,9 @@ public class EditSummaryController {
     @Autowired
     private CloudinaryService cloudinary;
 
+    @Autowired
+    HistoryService historyService;
+
     @RequestMapping(value = "/edit_summary", method = RequestMethod.GET)
     public ModelAndView viewSummary(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("edit_summary");
@@ -50,6 +56,8 @@ public class EditSummaryController {
         Project project = projectDao.getProject(id);
         request.setAttribute("project", project);
         view.addObject("listCategory", categoryService.getAllCategory());
+        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project"));
+
 
         return view;
     }
@@ -110,7 +118,66 @@ public class EditSummaryController {
         redirect.addAttribute("id", id);
         redirect.addAttribute("mess", "edit successfully ");
 
+        //add history
+        //compare
+        Project newProject = projectService.getProject(project.getId());
+        List<String> listChange = compareProject(project,newProject);
+        //check history exits
+        String type = "project";
+        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(project.getId(), type);
+        int revisionNoNew = 1;
+        if (!ObjectUtils.isEmpty(revisionNo)) {
+            revisionNoNew = revisionNo+1;
+        }
+
+        String revisionDetail = "";
+        for(String change : listChange){
+            revisionDetail += change + " /n ";
+        }
+
+        RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type);
+        historyService.addHistory(revisionHistory);
+
         return view;
+    }
+
+    private List<String> compareProject(Project oldProject, Project newProject){
+        List<String> change = new ArrayList<>();
+
+        if(!newProject.getProjectName().equals(oldProject.getProjectName())){
+            String message = "Chủ nhà: " +  oldProject.getProjectName() + " -> " + newProject.getProjectName() ;
+            change.add(message);
+        }
+        if(!newProject.getCusPhone().equals(oldProject.getCusPhone())){
+            String message = "Số điện thoại: " +  oldProject.getCusPhone() + " -> " + newProject.getCusPhone() ;
+            change.add(message);
+        }
+        if(!newProject.getCusAddress().equals(oldProject.getCusAddress())){
+            String message = "Địa chỉ công trình: " +  oldProject.getCusAddress() + " -> " + newProject.getCusAddress() ;
+            change.add(message);
+        }
+        if(newProject.getType() != oldProject.getType()){
+            String message = "TypeId: " +  oldProject.getType() + " -> " + newProject.getType() ;
+            change.add(message);
+        }
+        if(!newProject.getConstructionArea().equals(oldProject.getConstructionArea())){
+            String message = "Diện tích xây dựng: " +  oldProject.getConstructionArea() + " -> " + newProject.getConstructionArea() ;
+            change.add(message);
+        }
+        if(!newProject.getStartDate().equals(oldProject.getStartDate())){
+            String message = "Thời gian bắt đầu: " +  oldProject.getStartDate() + " -> " + newProject.getStartDate() ;
+            change.add(message);
+        }
+        if(!newProject.getClosureDate().equals(oldProject.getClosureDate())){
+            String message = "Thời gian dự kiến kết thúc: " +  oldProject.getClosureDate() + " -> " + newProject.getClosureDate() ;
+            change.add(message);
+        }
+        if(!newProject.getDetail().equals(oldProject.getDetail())){
+            String message = "Mô tả: " +  oldProject.getDetail() + " -> " + newProject.getDetail() ;
+            change.add(message);
+        }
+
+        return change;
     }
 
 //    @RequestMapping(value = "/edit_summary/upload-file-summary", method = RequestMethod.POST)
