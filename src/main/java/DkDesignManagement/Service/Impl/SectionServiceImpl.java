@@ -56,4 +56,14 @@ public class SectionServiceImpl implements SectionService {
     public int addSection(Section section) {
         return sectionDAO.addSection(section);
     }
+
+    @Override
+    public int editSection(String name, int id) {
+        return sectionDAO.editSection(name, id);
+    }
+
+    @Override
+    public Section getOneSectionBySectionID(int id) {
+        return sectionDAO.getOneSectionBySectionID(id);
+    }
 }

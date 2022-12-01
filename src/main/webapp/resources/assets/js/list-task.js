@@ -46,6 +46,7 @@ function checkvalidate(id) {
         // }
         return a;
     }
+
     console.log(numberEmpty);
 
     // console.log(startdate.getFullYear());
@@ -56,18 +57,17 @@ function checkvalidate(id) {
             b++;
             error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
 
-        }
-        else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        } else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
             b++;
             error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
 
-        }
-        else {
+        } else {
 
             return b;
         }
         return b;
     }
+
     numberprocess = numberEmpty + numberdate;
     if (numberprocess > 0) {
         return false;
@@ -75,6 +75,7 @@ function checkvalidate(id) {
         return true;
     }
 }
+
 function checkvalidatenumber(id) {
     var form = document.querySelector(id);
     console.log(form);
@@ -86,7 +87,6 @@ function checkvalidatenumber(id) {
     let numberprocess = 0;
     let numberEmpty = 0;
     numberEmpty = checkEmpty(input);
-
 
 
     function checkEmpty(input) {
@@ -103,6 +103,7 @@ function checkvalidatenumber(id) {
 
         return a;
     }
+
     console.log(numberEmpty);
 
     numberprocess = numberEmpty;
@@ -111,5 +112,48 @@ function checkvalidatenumber(id) {
     } else {
         return true;
     }
+}
 
+function onUnavailable() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Không thể chỉnh sửa!',
+        text: 'Công việc này đã có công việc phụ...',
+    })
+}
+
+function showPopUpSection(id, pid, name) {
+    let html = "<form id=\"add-project1\" action=\"edit_section\" method=\"post\">\n" +
+        "                                            <input type=\"text\" name=\"sectionId\" value=\"" + id + "\" hidden>\n" +
+        "                                            <input type=\"text\" name=\"projectId\" value=\"" + pid + "\" hidden>\n" +
+        "                                            <h4 style=\"text-align: center;\"> Chỉnh sửa đầu mục công việc\n" +
+        "                                            </h4>\n" +
+        "                                            <table class=\"table table-borderless\">\n" +
+        "                                                <tr>\n" +
+        "                                                    <td>Tên đầu mục công việc:</td>\n" +
+        "                                                    <td><input class=\"info-text\" type=\"text\" value=\"" + name + "\" name=\"sectionName\">\n" +
+        "                                                        <div class=\"text-danger error\"></div>\n" +
+        "                                                </tr>\n" +
+        "                                            </table>\n" +
+        "                                            <div class=\"add-btn-work\" style=\"display: flex ; justify-content: end\">\n" +
+        "                                                <button style=\"margin-right: 10px\" type=\"button\"\n" +
+        "                                                        class=\"btn btn-secondary \" onclick=\"onCancelEdit()\">Hủy bỏ\n" +
+        "                                                </button>\n" +
+        "                                                <button onclick=\"return checkvalidatenumber('#add-project1')\"\n" +
+        "                                                        type=\"submit\"\n" +
+        "                                                        class=\"btn btn-primary\">Lưu\n" +
+        "                                                </button>\n" +
+        "                                            </div>\n" +
+        "                                        </form>"
+    let showEditHtml = document.querySelector("#showEditHtml");
+    let btnEditSection = document.getElementById("myBtn-section");
+    let modalEditSection = document.querySelector("#myModal-editSection");
+    console.log(modalEditSection)
+    modalEditSection.style.display = "block";
+    console.log(html);
+    showEditHtml.innerHTML = html;
+}
+function onCancelEdit() {
+    let modalB = document.querySelector("#myModal-editSection");
+    modalB.style.display = "none";
 }

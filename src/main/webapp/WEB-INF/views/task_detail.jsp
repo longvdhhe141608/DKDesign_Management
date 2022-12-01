@@ -259,7 +259,7 @@
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <c:if test="${subTask.taskStatus != 5}">
                                     <c:if test="${subTask.taskStatus != 1}">
-                                        <a href="subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
+                                        <a href="${pageContext.request.contextPath}/subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -270,7 +270,7 @@
         </div>
         <div style=" text-align: end; margin-left: 10px;">
             <c:if test="${project.status == 1}">
-                <a href="edit-task?taskId=${task.taskId}">
+                <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
                     <button class="btn btn-primary">
                         Chỉnh sửa
                     </button>

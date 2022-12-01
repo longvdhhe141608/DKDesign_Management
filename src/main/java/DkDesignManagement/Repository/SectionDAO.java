@@ -30,10 +30,10 @@ public class SectionDAO {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-   public List<Section> getAll() {
-       String sql = "select * from section bt ";
-       return jdbcTemplate.query(sql, new MapperSection());
-   }
+    public List<Section> getAll() {
+        String sql = "select * from section bt ";
+        return jdbcTemplate.query(sql, new MapperSection());
+    }
 
     public int addSection(Section section) {
         String sql = "INSERT INTO dkmanagement.`section`\n" +
@@ -50,6 +50,16 @@ public class SectionDAO {
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
         return generatedKeyHolder.getKey().intValue();
     }
+
+    public int editSection(String name, int id) {
+        String sql = "update `dkmanagement`.`section`\n" +
+                "set  section_name = ?\n" +
+                "where id = ?";
+        int check = 0;
+        check = jdbcTemplate.update(sql, name, id);
+        return check;
+    }
+
     public List<Section> getAllSectionByProjectID(int projectID) {
 
         List<Section> sectionList = new ArrayList<>();
@@ -65,7 +75,7 @@ public class SectionDAO {
         return null;
     }
 
-    public Section getOneSectionBySectionID(int sectionID){
+    public Section getOneSectionBySectionID(int sectionID) {
 
         Section section = new Section();
         String sql = "SELECT * FROM dkmanagement.section WHERE id= ?";
@@ -78,4 +88,5 @@ public class SectionDAO {
         }
         return null;
     }
+
 }

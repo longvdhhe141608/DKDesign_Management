@@ -183,11 +183,13 @@
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"
                                                 data-place="${requirement.requirementName}"
-                                                data-detail="${requirement.requirementDetail}"><i
-                                                class="fa-regular fa-pen-to-square"></i></button>
+                                                data-detail="${requirement.requirementDetail}">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </button>
                                         <button onclick="onClickDelete(this.getAttribute('data-id'))"
                                                 data-id="${requirement.id}" data-project-id="${requirement.projectId}">
-                                            <i class="fa-regular fa-trash-can"></i></button>
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
