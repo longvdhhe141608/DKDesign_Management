@@ -24,7 +24,7 @@ public class SectionController {
     @RequestMapping(value = "/add_section", method = RequestMethod.POST)
     public ModelAndView addSection(HttpServletRequest request, RedirectAttributes redirect) {
         int projectId = Integer.parseInt(request.getParameter("projectId"));
-        ModelAndView view = new ModelAndView("redirect:/list_task?id="+projectId);
+        ModelAndView view = new ModelAndView("redirect:/list_task?id=" + projectId);
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
@@ -42,6 +42,23 @@ public class SectionController {
         //add section
         sectionService.addSection(section);
         redirect.addAttribute("mess", "add successfully ");
+        return view;
+    }
+
+    @RequestMapping(value = "/edit_section", method = RequestMethod.POST)
+    public ModelAndView editSection(HttpServletRequest request, RedirectAttributes redirect) {
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        ModelAndView view = new ModelAndView("redirect:/list_task?id=" + projectId);
+        //check login
+        HttpSession session = request.getSession();
+        if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
+            redirect.addAttribute("mess", "Please login");
+            return view;
+        }
+        Account account = (Account) session.getAttribute("loginUser");
+        int sectionId = Integer.parseInt(request.getParameter("sectionId"));
+        String sectionName = request.getParameter("sectionName");
+        sectionService.editSection(sectionName, sectionId);
         return view;
     }
 }
