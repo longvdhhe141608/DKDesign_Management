@@ -187,7 +187,7 @@
                         <tbody class="list-project">
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
-                                <td class="name-and-link col-12">
+                                <td class="name-and-link">
                                     <div class="name-project col-8">
                                             ${i.projectName}
                                     </div>
@@ -200,7 +200,7 @@
                                         </a>
                                     </div>
                                 </td>
-                                <td class="col-1">
+                                <td >
                                     <c:if test="${i.type == 1}">
                                         Thiết kế ngoại thất
                                     </c:if>
@@ -211,27 +211,27 @@
                                         Thiết kế ngoại thất + Thiết kế nội thất
                                     </c:if>
                                 </td>
-                                <td class="col-1">
-                                    <div class="name-input" style="width: 100px;">
+                                <td >
+                                    <div class="name-input" >
                                             ${i.startDate}
                                     </div>
                                 </td>
-                                <td class="col-1">
-                                    <div class="name-input" style="width: 100px;">
+                                <td >
+                                    <div class="name-input" >
                                             ${i.closureDate}
                                     </div>
                                 </td>
-                                <td class="col-1">
-                                    <div class="name-input" style="width: 100px;">
+                                <td >
+                                    <div class="name-input" >
                                             ${i.endDate}
                                     </div>
                                 </td>
-                                <td class="col-1">
-                                    <div class="name-input" style="width: 100px;">
+                                <td>
+                                    <div class="name-input" >
 
                                     </div>
                                 </td>
-                                <td class="col-1">
+                                <td >
                                     <c:if test="${i.status == 2}">
                                         Đang bàn giao
                                     </c:if>
@@ -242,7 +242,7 @@
                                         Đã hoàn thành
                                     </c:if>
                                 </td>
-                                <td class="col-1">
+                                <td >
                                     <div style="display: flex; justify-content: space-between;">
                                         <c:if test="${i.status == 1}">
                                             <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}">
