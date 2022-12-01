@@ -1,11 +1,15 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Member;
+import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Repository.ProjectDao;
+import DkDesignManagement.Service.NotificationService;
+import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
+import static DkDesignManagement.utils.Constant.HOST;
+import static DkDesignManagement.utils.Constant.PROJECT_NAME;
 
 
 @Controller
@@ -23,6 +30,9 @@ public class MemberController {
     private MemberDao memberDAO;
     @Autowired
     private ProjectDao projectDao;
+
+    @Autowired
+    NotificationService notificationService;
 
     @RequestMapping(value = "/member", method = RequestMethod.GET)
     public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid) {
@@ -62,11 +72,30 @@ public class MemberController {
 
         String username = request.getParameter("memberToAdd");
         int memberId = memberDAO.getAccountIdByUsername(username);
+        //TODO : check username wrong
 
+        //TODO : check Member exits
+
+        boolean checkAddMember = true;
         try {
             memberDAO.addMemberToProject(projectId, memberId);
         } catch (Exception e) {
+            checkAddMember = false;
+            e.printStackTrace();
+        }
 
+        if (checkAddMember){
+            //add notification send leader
+            String url = HOST + "/" + PROJECT_NAME + "/design/project/summary?id=" + projectId;
+            String message = "Bạn đã được thêm vào dự án";
+
+            //check notification exits
+            NotificationDto notificationDto = notificationService.getNotification(memberId, message, url);
+            if (ObjectUtils.isEmpty(notificationDto)) {
+                Notification notification = new Notification(-1, new java.util.Date()
+                        , message, memberId, projectId, url);
+                notificationService.addNotification(notification);
+            }
         }
 
         Project project = projectDao.getProject(projectId);
@@ -86,20 +115,11 @@ public class MemberController {
         String username = request.getParameter("username");
         int memberId = memberDAO.getAccountIdByUsername(username);
 
-        try {
-            memberDAO.updateStatusMemberInProject(id, memberId, status);
-            List<Member> memberList = memberDAO.getMemberInProject(id);
+        memberDAO.updateStatusMemberInProject(id, memberId, status);
+        List<Member> memberList = memberDAO.getMemberInProject(id);
 
-            view.addObject("project", project);
-            view.addObject("memberList", memberList);
-            return view;
-        } catch (Exception e) {
-
-
-            List<Member> memberList = memberDAO.getMemberInProject(id);
-            view.addObject("project", project);
-            view.addObject("memberList", memberList);
-            return view;
-        }
+        view.addObject("project", project);
+        view.addObject("memberList", memberList);
+        return view;
     }
 }

@@ -182,36 +182,11 @@
                     <details>
                         <summary>
                             <span>${bigTask.section_name}</span>
-                            <button onclick="modallistproject('#btn-edit','#myModal-edit','#close3')" id="btn-edit"
-                                    class=""><i class="fa-regular fa-pen-to-square"></i></button>
-                            <div id="myModal-edit" class="modal">
-                                <!-- Modal content -->
-                                <div class="modal-content" style="height: 60%;width: 60%">
-                                    <span id="close3" class="close">&times;</span>
-                                    <div class="project-add-task">
-                                        <form id="add-project1">
-                                            <h4 style="text-align: center;"> Chỉnh sửa đầu mục công việc
-                                            </h4>
-                                            <table class="table table-borderless">
-                                                <tr>
-                                                    <td>Tên đầu mục công việc:</td>
-                                                    <td><input class="info-text" type="text" value="Thiết kế bản vẽ">
-                                                        <div class="text-danger error"></div>
-                                                </tr>
-                                            </table>
-                                            <div class="add-btn-work" style="display: flex ; justify-content: end">
-                                                <button style="margin-right: 10px" type="button"
-                                                        class="btn btn-secondary " onclick="onCancelEdit()">Hủy bỏ
-                                                </button>
-                                                <button onclick="return checkvalidatenumber('#add-project1')"
-                                                        type="submit"
-                                                        class="btn btn-primary">Lưu
-                                                </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                            <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
+                                    id="myBtn-section" data-id="${bigTask.id}" data-name="${bigTask.section_name}"
+                                    data-pid="${bigTask.project_id}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </button>
                             <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
                                     class="fa-regular fa-trash-can"></i></button>
                             <div id="myModal1" class="modal">
@@ -259,7 +234,15 @@
                                 <div class="col-2" style="border: 1px solid gray;">${task.endDate}</div>
                                 <div class="col-1" style="border: 1px solid gray;">
                                     <div style="display: flex; justify-content: space-between;">
-                                        <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                        <c:if test="${task.listSubTask.size() == 0}">
+                                            <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
+                                                <button><i class="fa-regular fa-pen-to-square"></i></button>
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${task.listSubTask.size() != 0}">
+                                            <button onclick="onUnavailable()"><i
+                                                    class="fa-regular fa-pen-to-square"></i></button>
+                                        </c:if>
                                         <button><i class="fa-regular fa-trash-can"></i></button>
                                     </div>
                                 </div>
@@ -347,6 +330,14 @@
         </div>
     </div>
 </div>
+<div id="myModal-editSection" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content" style="height: 60%;width: 60%">
+        <span id="close3" class="close">&times;</span>
+        <div id="showEditHtml" class="project-add-task">
+        </div>
+    </div>
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -355,17 +346,18 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 
     function onClickClose() {
         let modalA = document.querySelector("#myModal-footer");
         modalA.style.display = "none";
     }
-
-    function onCancelEdit(){
-        let modalB = document.querySelector("#myModal-edit");
+    let modalB = document.querySelector("#myModal-editSection");
+    var span = document.querySelector("#close3");
+    span.addEventListener("click", function () {
         modalB.style.display = "none";
-    }
+    });
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal
         var modal = document.querySelector(idmodal);

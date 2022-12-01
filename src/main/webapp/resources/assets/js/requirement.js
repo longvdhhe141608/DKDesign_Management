@@ -143,7 +143,6 @@ function showPopUp(id, name, detail) {
         "            </form>";
 
     let showHtml = document.querySelector("#showHtml");
-
     let btnClick = document.getElementById("myBtn-project");
     let modalFooter = document.querySelector("#myModal-footer");
     console.log(modalFooter)

@@ -95,6 +95,7 @@
                         <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
                     </div>
                 </c:if>
+                <input class="info-text" type="text" value="">
             </div>
             <h4>${subTask.taskName}</h4>
             <div style="font-size: 20px;">
@@ -227,45 +228,48 @@
         <%--        </div>--%>
         <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>
-            <div class="task-cmt-details-main">
-                <form style="display: flex" action="${pageContext.request.contextPath}/add-comment" method="post">
-                    <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
-                    <input name="taskId" type="text" value="${subTask.id}" hidden="">
-                    <input name="operation" type="text" value="subTaskDetail" hidden="">
-                    <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text"
-                           placeholder="Bình luận....">
-                    <button class="btn btn-primary">Gửi</button>
-                </form>
-            </div>
-            <div class="task-cmt-details">
-                <c:if test="${listComment.size() > 0}">
-                    <c:forEach items="${listComment}" var="comment">
-                        <!----------item------------>
-                        <div style="display: flex">
-                            <div class="task-cmt-details-main">
-                                <img class="img_avatar" src="${comment.avatarUrl}"/>
-                                <span class="name-avatar">${comment.accountName}</span>
-                                <span> ${comment.dateCountDown}</span></br>
-                                <span style="margin-left: 50px">${comment.content}</span>
+            <c:if test="${subTask.status != 1}">
 
+                <div class="task-cmt-details-main">
+                    <form style="display: flex" action="${pageContext.request.contextPath}/add-comment" method="post">
+                        <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
+                        <input name="taskId" type="text" value="${subTask.id}" hidden="">
+                        <input name="operation" type="text" value="subTaskDetail" hidden="">
+                        <input style="width: 900px; margin-right: 10px;" name="content" class="input-cmt" type="text"
+                               placeholder="Bình luận....">
+                        <button class="btn btn-primary">Gửi</button>
+                    </form>
+                </div>
+                <div class="task-cmt-details">
+                    <c:if test="${listComment.size() > 0}">
+                        <c:forEach items="${listComment}" var="comment">
+                            <!----------item------------>
+                            <div style="display: flex">
+                                <div class="task-cmt-details-main">
+                                    <img class="img_avatar" src="${comment.avatarUrl}"/>
+                                    <span class="name-avatar">${comment.accountName}</span>
+                                    <span> ${comment.dateCountDown}</span></br>
+                                    <span style="margin-left: 50px">${comment.content}</span>
+
+                                </div>
+                                <div>
+                                    <c:if test="${comment.isPin() ==true}">
+                                        <i class="fa-solid fa-thumbtack"></i>
+                                    </c:if>
+                                    <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                                        <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
+                                            <button type="button" class=" btn-primary">Pin</button>
+                                        </a></br>
+                                    </c:if>
+                                </div>
                             </div>
-                            <div>
-                                <c:if test="${comment.isPin() ==true}">
-                                    <i class="fa-solid fa-thumbtack"></i>
-                                </c:if>
-                                <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
-                                    <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
-                                        <button type="button" class=" btn-primary">Pin</button>
-                                    </a></br>
-                                </c:if>
-                            </div>
-                        </div>
 
-                        <!----------item------------>
-                    </c:forEach>
-                </c:if>
+                            <!----------item------------>
+                        </c:forEach>
+                    </c:if>
 
-            </div>
+                </div>
+            </c:if>
 
 
         </div>

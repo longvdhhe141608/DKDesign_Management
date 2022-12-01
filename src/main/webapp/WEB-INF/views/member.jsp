@@ -118,7 +118,7 @@
                                         <div class="button_click" style="display: flex;justify-content: end">
 
                                             <div class="btn_cancel">
-                                                <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                <button style="margin-right: 5px" type="button" class="btn btn-secondary close_popup">Hủy
                                                     bỏ
                                                 </button>
                                             </div>
