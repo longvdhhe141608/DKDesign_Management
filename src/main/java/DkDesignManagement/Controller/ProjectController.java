@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,7 +68,7 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView loadAllProject(HttpServletRequest request, RedirectAttributes redirect) {
+    public ModelAndView addNewProject(HttpServletRequest request, RedirectAttributes redirect) {
         ModelAndView view = new ModelAndView("redirect:/allProject");
         //check login
         HttpSession session = request.getSession();
