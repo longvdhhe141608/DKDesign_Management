@@ -66,12 +66,15 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Công việc</th>
-                        <th scope="col">Thời gian bắt đầu</th>
-                        <th scope="col">Thời gian dự kiến kết thúc</th>
-                        <th scope="col">Thời gian kết thúc</th>
-                        <th scope="col">Tên công trình</th>
-                        <th scope="col"></th>
+
+                        <th scope="col" class="col-4">Công việc</th>
+
+                        <th scope="col" class="col-1">Thời gian bắt đầu</th>
+                        <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
+                        <th scope="col" class="col-1">Thời gian kết thúc</th>
+                        <th scope="col" class="col-4">Tên công trình</th>
+                        <th scope="col" class="col-1"></th>
+
                     </tr>
                     </thead>
                     <tbody class="my-task-for-leader">
@@ -137,7 +140,7 @@
 </div>
 <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content" style="width: 60%;height: 70%; ">
+    <div class="modal-content" style="width: 60%;height: 100%; ">
         <span id="close" class="close">&times;</span>
         <div class="project-add-task">
             <form id="my-task" action="">

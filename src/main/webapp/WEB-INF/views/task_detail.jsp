@@ -284,7 +284,7 @@
                     <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
                     <input name="taskId" type="text" value="${task.taskId}" hidden="">
                     <input name="operation" type="text" value="taskDetail" hidden="">
-                    <input style="width: 900px; margin-right: 10px;border-radius: 5px" name="content" class="input-cmt"
+                    <input style="width: 900px; margin-right: 10px" name="content" class="input-cmt"
                            type="text"
                            placeholder="Bình luận....">
                     <button class="btn btn-primary">Gửi</button>
