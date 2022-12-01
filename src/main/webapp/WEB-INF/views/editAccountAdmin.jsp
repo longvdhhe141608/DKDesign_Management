@@ -44,10 +44,10 @@
                         <p class="text-danger">${error}</p>
                         <tr>
                             <input name="id" type="number" value="${member.memberId}" hidden/>
-                            <td><label>Họ và tên:</label></td>
+                            <td class="col-6"><label>Họ và tên:</label></td>
 
                             <%--                                <input name="name" type="text" value="${member.memberName}">--%>
-                            <td> ${member.memberName}</td>
+                            <td class="col-6"> ${member.memberName}</td>
 
                         </tr>
                         <tr>

@@ -39,8 +39,8 @@
             <div>
                 <table class="table table-borderless">
                     <tr>
-                        <td>Họ và tên:</td>
-                        <td>${member.memberName}</td>
+                        <td class="col-6">Họ và tên:</td>
+                        <td class="col-6">${member.memberName}</td>
                     </tr>
                     <tr>
                         <td>Mã nhân viên:</td>

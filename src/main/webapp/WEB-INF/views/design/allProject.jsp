@@ -103,22 +103,22 @@
                                     </c:if>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 100px;">
+                                    <div class="name-input" >
                                             ${i.startDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 100px;">
+                                    <div class="name-input" >
                                             ${i.closureDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 100px;">
+                                    <div class="name-input" >
                                             ${i.endDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 100px;">
+                                    <div class="name-input" >
 
                                     </div>
                                 </td>
