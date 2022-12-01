@@ -25,7 +25,7 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div class="summary">
-        <form id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
+
             <div class="top-details">
                 <div class="list-top">
                     <h3>${project.projectName}</h3>
@@ -88,6 +88,7 @@
                             value="Thống kê"></a>
                 </div>
             </div>
+        <form  action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
             <div class="summary-main">
 
                 <div class="main-Quickview">
@@ -96,6 +97,7 @@
                         <h4>Chỉnh sửa sơ lược công trình</h4>
                     </div>
                     <input type="text" class="" name="idProject" value="${project.id}" hidden>
+                    <input type="text" class="" name="status" value="${project.status}" hidden>
                     <table class="table table-borderless">
                         <tr>
                             <td class="col-6">Tên công trình:</td>
@@ -200,10 +202,11 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
-                    <button onclick="return checkvalidate('#addProject')"
-                            type="submit" class="btn-update btn btn-primary">Lưu
-                    </button>
+<%--                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>--%>
+<%--                    <button onclick="return checkvalidate('#addProject')"--%>
+<%--                            type="submit" class="btn-update btn btn-primary">Lưu--%>
+<%--                    </button>--%>
+                    <input type="submit"  value="lưu demo" >
                 </div>
             </div>
         </form>

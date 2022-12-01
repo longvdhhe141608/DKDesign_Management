@@ -193,9 +193,6 @@
                         <c:forEach items="${listHistory}" var="history">
                             <tr>
                                 <td>
-                                        ${history.table_id}
-                                </td>
-                                <td>
                                         ${history.revision_no}
                                 </td>
                                 <td>

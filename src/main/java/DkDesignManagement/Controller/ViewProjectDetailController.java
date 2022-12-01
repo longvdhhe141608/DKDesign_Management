@@ -5,6 +5,7 @@ import DkDesignManagement.Entity.Status;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.StatusDao;
 import DkDesignManagement.Service.CategoryService;
+import DkDesignManagement.Service.HistoryService;
 import DkDesignManagement.Service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class ViewProjectDetailController {
     private ProjectService projectService;
 
     @Autowired
-    private CategoryService categoryService;
+    HistoryService historyService;
 
     @RequestMapping(value = "/summary", method = RequestMethod.GET)
     public ModelAndView projectDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
@@ -53,7 +54,7 @@ public class ViewProjectDetailController {
         }
 
         listStatus.removeAll(listRemove);
-
+        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project"));
         session.setAttribute("project", project);
         session.setAttribute("listStatus", listStatus);
         view.addObject("mess", mess);
