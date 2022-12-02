@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="sweetalert2.min.css">
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
 </head>
 <body>
@@ -29,11 +30,12 @@
 
     <div class="summary">
         <div class="top-details">
-            <div class="list-top" >
+            <div class="list-top">
                 <h3>${project.projectName}</h3>
 
 
-                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px; ">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
@@ -48,7 +50,7 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </c:if>
                             <c:if test="${project.status == 3 }">
-                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
                             </c:if>
                         </c:if>
                     </div>
@@ -156,13 +158,11 @@
                         <td>Hiển thị file:</td>
                         <td>
                             <div id="fileInput" class="container js-file-list">
-                                <%--                                <iframe--%>
-                                <%--                                        src="http://res.cloudinary.com/dgbzprb8l/image/upload/v1669132728/image/default/1669132726032-Capstone_Fa22_G4-SWP493-ERD_Diagram.pdf.pdf"--%>
-                                <%--                                        frameBorder="0"--%>
-                                <%--                                        scrolling="auto"--%>
-                                <%--                                        height="100%"--%>
-                                <%--                                        width="100%"--%>
-                                <%--                                ></iframe>--%>
+                                <c:forEach items="${listImage}" var="image">
+                                    <button type="button" style="border-radius: 5px" onclick="showImage(this.getAttribute('data-url'))" data-url="${image.fileUrl}">
+                                        <img src="<c:url value="${image.fileUrl}"/>" alt="" style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
+                                    </button>
+                                </c:forEach>
                             </div>
                         </td>
                     </tr>
@@ -221,6 +221,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
+
 <script>
     var mess = '${mess}'
     if (mess != '') {
@@ -261,6 +262,10 @@
         });
     });
 </script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+
 <%--<script>--%>
 <%--    var el = document.getElementById('phone');--%>
 <%--    phone.innerText = phone.innerText.replace(/^(\d{4})/, '($1) ');--%>

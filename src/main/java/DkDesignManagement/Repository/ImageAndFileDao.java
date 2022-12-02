@@ -54,6 +54,18 @@ public class ImageAndFileDao {
         return check;
     }
 
+    public List<ImageAndFile> getAllImageSummary(int pid) {
+        String sql = "SELECT * FROM dkmanagement.image_and_file i where i.project_id = ? and i.task_id is null;";
+        List<ImageAndFile> image = new ArrayList<>();
+        try {
+            image = jdbcTemplate.query(sql, new MapperImageAndFile(), pid);
+            return image;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return image;
+    }
+
     public int getTotalFile(int subTaskID) {
 
         List<ImageAndFile> files = new ArrayList<>();
