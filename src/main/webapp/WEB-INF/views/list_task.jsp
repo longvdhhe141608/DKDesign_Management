@@ -215,14 +215,14 @@
                             <div class="row " style="background: rgba(0, 0, 0, 0.2);height: 40px">
                                 <div class="col-4 row-task"
                                      style="display: flex;justify-content: space-between; border: 1px solid gray;">
-                                    <div class="name-project">
+                                    <div class="name-project col-8">
                                         <button onclick="myFunction('.sub-task-detail')"
                                                 style="border: none; background-color: #cccccc; justify-self: start;">
                                             <i class="fa-solid fa-caret-down"></i>
                                         </button>
                                             ${task.taskName}
                                     </div>
-                                    <div>
+                                    <div class="col-4">
                                         <a href="${pageContext.request.contextPath}/task_detail?taskId=${task.taskId}">
                                             <button class="btn btn-primary link-row-task">Chi tiết</button>
                                         </a>
@@ -254,10 +254,10 @@
                                     <div id="" class="row sub-task-detail">
                                         <div class="col-4 link-chi-tiet-cong-viec"
                                              style="border: 1px solid gray; display: flex; justify-content: space-between; ">
-                                            <div class="name-project">
+                                            <div class="name-project col-8">
                                                     ${subTask.taskName}
                                             </div>
-                                            <div>
+                                            <div class="col-4">
                                                 <a href="${pageContext.request.contextPath}/subtask?taskId=${subTask.taskId}"
                                                    class="chi-tiet-cong-viec">
                                                     <button class="btn btn-primary chi-tiet">Chi tiết</button>

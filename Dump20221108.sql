@@ -369,17 +369,17 @@ INSERT INTO `requirement` VALUES (1,1,'Định vị','Nhà hướng đông',NULL
 UNLOCK TABLES;
 
 --
--- Table structure for table `revision_history_summary`
+-- Table structure for table `revision_history`
 --
 
-DROP TABLE IF EXISTS `revision_history_summary`;
+DROP TABLE IF EXISTS `revision_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `revision_history_summary` (
+CREATE TABLE `revision_history` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `table_id` bigint DEFAULT NULL,
   `revision_no` int DEFAULT NULL,
-  `revision_date` date DEFAULT NULL,
+  `revision_date` datetime DEFAULT NULL,
   `revision_detail` varchar(1000) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -388,12 +388,12 @@ CREATE TABLE `revision_history_summary` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `revision_history_summary`
+-- Dumping data for table `revision_history`
 --
 
-LOCK TABLES `revision_history_summary` WRITE;
-/*!40000 ALTER TABLE `revision_history_summary` DISABLE KEYS */;
-/*!40000 ALTER TABLE `revision_history_summary` ENABLE KEYS */;
+LOCK TABLES `revision_history` WRITE;
+/*!40000 ALTER TABLE `revision_history` DISABLE KEYS */;
+/*!40000 ALTER TABLE `revision_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -540,4 +540,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-01  2:07:15
+-- Dump completed on 2022-12-01 18:25:11

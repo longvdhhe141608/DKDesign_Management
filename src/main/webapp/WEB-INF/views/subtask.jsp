@@ -102,7 +102,7 @@
                             <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
                         </div>
                     </c:if>
-                    <input class="info-text" type="text" value="">
+
                 </div>
                 <c:if test="${task.taskStatus == 3 && loginUser.role_id == 2}">
                     <div style="border-bottom: 1px solid grey; text-align: start;">
