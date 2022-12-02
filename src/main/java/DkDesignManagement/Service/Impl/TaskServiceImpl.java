@@ -96,6 +96,15 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public Task getTaskByIdFullModelForLeader(int taskId) {
+        Task task = taskDAO.getTaskById(taskId);
+        //set value send FE
+        task.setProjectName(projectDao.getProject(task.getProjectId()).getProjectName());
+        task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
+        return task;
+    }
+
+    @Override
     public int updateTask(Task task) {
         return taskDAO.updateTask(task);
     }

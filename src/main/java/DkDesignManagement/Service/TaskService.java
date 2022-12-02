@@ -27,6 +27,8 @@ public interface TaskService {
 
     Task getTaskByIdFullModel(int taskId);
 
+    Task getTaskByIdFullModelForLeader(int taskId);
+
     int updateTask(Task task);
 
     int checkAndUpdateTaskDone(Task task);
