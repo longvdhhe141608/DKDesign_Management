@@ -6,3 +6,6 @@
 *.war
 target/DkDesginManagement-1.0.war
 target/DkDesginManagement-1.0.war
+*.png
+*.war
+target/DkDesginManagement-1.0.war
