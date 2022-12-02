@@ -20,8 +20,6 @@
 }
 
 
-
-
 .top-details {
     width: 100%;
     border: 1px solid black;
@@ -42,7 +40,6 @@
 }
 
 
-
 #image {
     width: 600px;
     border: 1px solid #000000;
@@ -56,4 +53,8 @@
 
 .test {
     margin-right: 20px;
+}
+
+.swal-wide {
+    width: 1440px !important;
 }
