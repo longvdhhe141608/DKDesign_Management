@@ -52,7 +52,9 @@ public class NotificationController {
             return view;
         }
         Account account = (Account) session.getAttribute("loginUser");
-
+        if(account.getRole_id() == 3){
+            view = new ModelAndView("/design/notification");
+        }
         //sendNotification
         //check Role
         if (account.getRole_id() == 2) {
@@ -79,7 +81,7 @@ public class NotificationController {
                 if (!ObjectUtils.isEmpty(task)) {
                     //add notification send leader
                     String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId() + "" +
-                            "&section-id=" + task.getSectionId() + "&task-id="+task.getTaskfId()+"&sub-task-id=" + task.getTaskId();
+                            "&section-id=" + task.getSectionId() + "&task-id=" + task.getTaskfId() + "&sub-task-id=" + task.getTaskId();
                     String message = "Bạn có sub-task trong dự án đến ngày hết hạn";
 
                     //check notification exits

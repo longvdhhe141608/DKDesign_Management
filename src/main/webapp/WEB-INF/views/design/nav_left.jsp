@@ -23,10 +23,6 @@
 <body>
 <div class="container-fluid" style="padding: 0">
     <div id="tab_menu" class="tab_menu">
-        <%--        <button onclick="sendRedirect('${pageContext.request.contextPath}/design/home')" class="tab_button">--%>
-        <%--            <i class="fa-solid fa-house"></i>--%>
-        <%--            Trang chủ--%>
-        <%--        </button>--%>
         <button onclick="sendRedirect('${pageContext.request.contextPath}/design/project/view-all-project')"
                 class="tab_button">
             <i class="fa-solid fa-clipboard-list"></i>
@@ -36,7 +32,6 @@
             <i class="fa-solid fa-briefcase"></i>
             Công việc của tôi
         </button>
-
         <button onclick="sendRedirect('${pageContext.request.contextPath}/notification')" class="tab_button">
             <i class="fa-solid fa-bell"></i>
             Thông báo
