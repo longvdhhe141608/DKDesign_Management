@@ -15,4 +15,8 @@ public interface ProjectService {
     public int addProject(Project project, Account account);
 
     public int editProject(Project project);
+
+    int getSizeProjectByAcc(int id, String textSearch, String date);
+
+    List<Project> getAllProjectByAcc(int id, String textSearch, String date, int page);
 }

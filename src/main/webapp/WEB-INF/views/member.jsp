@@ -96,7 +96,9 @@
                     <div >
                         <c:if test="${project.status == 1}">
                         <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
-                                class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên</button>
+                                class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên
+                        </button>
+                            <p class="text-danger">${error}</p>
                         </c:if>
                         <div id="myModal" class="modal">
                             <!-- Modal content -->
