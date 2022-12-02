@@ -18,7 +18,13 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="sweetalert2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
+    <style>
+        .swal-wide{
+            width:850px !important;
+        }
+    </style>
 </head>
 <body>
 
@@ -265,7 +271,8 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
 <script src="sweetalert2.min.js"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <%--<script>--%>
 <%--    var el = document.getElementById('phone');--%>
 <%--    phone.innerText = phone.innerText.replace(/^(\d{4})/, '($1) ');--%>

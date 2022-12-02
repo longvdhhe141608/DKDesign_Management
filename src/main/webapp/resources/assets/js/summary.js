@@ -8,6 +8,7 @@ function update_image() {
 
 function showImage(url) {
     Swal.fire({
-        imageUrl: url
+        imageUrl: url,
+        customClass:'swal-wide'
     })
 }
