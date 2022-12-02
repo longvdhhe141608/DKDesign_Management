@@ -77,7 +77,8 @@ public class NotificationController {
             for (Task task : listTaskExpired) {
 
                 //add notification send leader
-                String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+                String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id="+task.getProjectId()+"" +
+                        "&section-id="+task.getSectionId()+"&task-id=1&sub-task-id=" + task.getTaskId();
                 String message = "Bạn có sub-task trong dự án đến ngày hết hạn";
 
                 //check notification exits
