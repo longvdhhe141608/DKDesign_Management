@@ -32,8 +32,8 @@ public class ProjectServiceImpl implements ProjectService {
 
     @Override
     public int addProject(Project project, Account account) {
-        int idProject =projectDao.addNewProject(project);
-        if(idProject == -1 ){
+        int idProject = projectDao.addNewProject(project);
+        if (idProject == -1) {
             return -1;
         }
         ProjectParticipation pp = new ProjectParticipation(idProject, account.getId(), account.getRole_id(), true);
@@ -44,5 +44,28 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public int editProject(Project project) {
         return projectDao.editProject(project);
+    }
+
+    /**
+     * @param id
+     * @param textSearch
+     * @param date
+     * @return
+     */
+    @Override
+    public int getSizeProjectByAcc(int id, String textSearch, String date) {
+        return projectDao.getSizeProjectByAcc(id, textSearch, date);
+    }
+
+    /**
+     * @param id
+     * @param textSearch
+     * @param date
+     * @param page
+     * @return
+     */
+    @Override
+    public List<Project> getAllProjectByAcc(int id, String textSearch, String date, int page) {
+        return projectDao.getAllProjectByAcc(id, textSearch, date, page);
     }
 }

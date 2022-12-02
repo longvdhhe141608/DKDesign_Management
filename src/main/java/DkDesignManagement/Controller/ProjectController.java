@@ -2,7 +2,6 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.utils.DateUtils;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,9 +24,6 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/allProject")
 public class ProjectController {
-
-    @Autowired
-    private ProjectDao projectDao;
 
     @Autowired
     private ProjectService projectService;
@@ -47,12 +42,11 @@ public class ProjectController {
             page = Integer.parseInt(indexPage);
         }
 
-
         Account account = (Account) session.getAttribute("loginUser");
         String textSearch = request.getParameter("textSearch");
         String date = request.getParameter("date");
 
-        int totalProject = projectDao.getSizeProjectByAcc(account.getId(), textSearch, date);
+        int totalProject = projectService.getSizeProjectByAcc(account.getId(), textSearch, date);
         int totalPage = (totalProject % 10 == 0) ? totalProject / 10 : totalProject / 10 + 1;
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page
@@ -60,7 +54,7 @@ public class ProjectController {
             lsPage.add(i);
         }
 
-        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, date, page));
+        view.addObject("listAllProject", projectService.getAllProjectByAcc(account.getId(), textSearch, date, page));
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("totalProject", totalProject);
         view.addObject("lsPage", lsPage);
@@ -69,15 +63,19 @@ public class ProjectController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView loadAllProject(HttpServletRequest request, RedirectAttributes redirect) {
+    public ModelAndView addNewProject(HttpServletRequest request, RedirectAttributes redirect) {
+
         ModelAndView view = new ModelAndView("redirect:/allProject");
+
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
             redirect.addAttribute("mess", "Please login");
             return view;
         }
+
         Account account = (Account) session.getAttribute("loginUser");
+
         //get value
         String name = request.getParameter("name");
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
@@ -89,9 +87,11 @@ public class ProjectController {
         String detail = request.getParameter("detail");
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
         Long expectedCost = Long.parseLong(request.getParameter("expectedCost"));
+
         //create model
         Project project = new Project(-1, name, startDate, closureDate, null
                 , account.getId(), categoryId, customerName, address, phone, detail, 1, constructionArea, expectedCost);
+
         //add
         int id = projectService.addProject(project, account);
         if (id != 1) {
@@ -101,6 +101,5 @@ public class ProjectController {
         redirect.addAttribute("mess", "add successfully ");
         return view;
     }
-
 
 }

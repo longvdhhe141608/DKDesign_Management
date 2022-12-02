@@ -4,8 +4,11 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Mapper.MapperAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,4 +79,15 @@ public class AccountDao {
         return check;
     }
 
+    public List<String> getAllUsername() {
+        String sql = "SELECT `username` FROM `dkmanagement`.`accounts`";
+        List<String> usernameList;
+        usernameList = jdbcTemplate.query(sql, new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+                return rs.getString("username");
+            }
+        });
+        return usernameList;
+    }
 }

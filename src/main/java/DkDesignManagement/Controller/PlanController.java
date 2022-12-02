@@ -3,9 +3,9 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Task;
-import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.NotificationService;
+import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,11 @@ import static DkDesignManagement.utils.Constant.*;
 public class PlanController {
 
     @Autowired
-    private ProjectDao projectDao;
-
+    private ProjectService projectService;
     @Autowired
     private TaskService taskService;
-
     @Autowired
-    AccountService accountService;
+    private AccountService accountService;
 
     @Autowired
     NotificationService notificationService;
@@ -41,7 +39,7 @@ public class PlanController {
     public ModelAndView viewPlanAproval(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("plan_approval");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
         int page = 1;
         if (!ObjectUtils.isEmpty(request.getParameter("page"))) {
             page = Integer.parseInt(request.getParameter("page"));
