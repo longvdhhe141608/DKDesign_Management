@@ -8,12 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Toang roi ong giao a</title>
+    <title>Lỗi</title>
 </head>
 <body>
 <div style="text-align: center;">
-    <h2>Sorry, the email was not sent because of the following error:</h2>
-    <h3>${exception.message}</h3>
+    <h3>Hành động của bạn không được thực hiện thành công do lỗi sau:</h3>
+    <h4>${exception.message}</h4>
+    <a href="javascript:history.back()">Quay trở lại</a>
 </div>
 </body>
 </html>
