@@ -79,18 +79,17 @@ function checkvalidate(id) {
     // console.log(today.getFullYear());
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (startdate.getDate() < today.getDate() && startdate.getMonth() + 1 <= today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear()) {
+
+        if (today.getDate() > enddate.getDate() && today.getMonth() + 1 >= enddate.getMonth() + 1 && today.getFullYear() >= enddate.getFullYear()) {
             b++;
-            error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+            error[2].innerHTML = "nhập phải lớn hơn ngày hiện tại";
 
         }
-        else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        else if (startdate.getDate() > enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
             b++;
             error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
-
         }
         else {
-
             return b;
         }
         return b;

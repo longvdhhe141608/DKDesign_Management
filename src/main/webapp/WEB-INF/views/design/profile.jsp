@@ -41,8 +41,8 @@
             <div>
                 <table class="table table-borderless">
                     <tr>
-                        <td>Họ và tên:</td>
-                        <td>${profile.name}</td>
+                        <td class="col-6">Họ và tên:</td>
+                        <td class="col-6">${profile.name}</td>
                     </tr>
                     <tr>
                         <td>Số CCCD/CMND:</td>

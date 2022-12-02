@@ -132,9 +132,9 @@
             <div>
                 <table class="table table-bordered">
                     <thead>
-                    <th scope="col">Lần</th>
-                    <th scope="col">Nội dung</th>
-                    <th scope="col">Thời gian</th>
+                    <th scope="col" class="col-2">Lần</th>
+                    <th scope="col" class="col-8">Nội dung</th>
+                    <th scope="col" class="col-2">Thời gian</th>
                     </thead>
                     <tbody>
                     <tr>
