@@ -5,10 +5,11 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.stereotype.Service;
 
 import javax.mail.internet.MimeMessage;
 import java.io.InputStream;
-
+@Service
 public class MailService implements JavaMailSender {
 
     /**
@@ -35,6 +36,7 @@ public class MailService implements JavaMailSender {
      */
     @Override
     public void send(MimeMessage mimeMessage) throws MailException {
+
     }
 
     /**

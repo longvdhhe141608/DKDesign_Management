@@ -2,11 +2,10 @@ package DkDesignManagement.Controller.Admin;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Member;
-import DkDesignManagement.Repository.AccountDao;
-import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.EmployeeService;
 import DkDesignManagement.Service.MailService;
+import DkDesignManagement.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -30,22 +29,20 @@ import static DkDesignManagement.utils.ValidateUtils.*;
 @RequestMapping(value = "/admin")
 public class AdminController {
     @Autowired
-    private AccountDao accountDAO;
-    @Autowired
     private AccountService accountService;
+    @Autowired
+    private MemberService memberService;
     @Autowired
     private EmployeeService employeeService;
     @Autowired
     private JavaMailSender mailSender;
-    @Autowired
-    private MemberDao memberDAO;
     @Autowired
     private MailService mailService;
 
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("admin/memberAdmin");
-        List<Member> memberList = memberDAO.getAllMember();
+        List<Member> memberList = memberService.getAllMember();
         view.addObject("memberList", memberList);
         return view;
     }
@@ -57,7 +54,7 @@ public class AdminController {
         int role = Integer.parseInt(request.getParameter("roleSearch"));
         String name = request.getParameter("nameSearch");
 
-        List<Member> memberList = memberDAO.getAllMemberInSearch(role, name);
+        List<Member> memberList = memberService.getAllMemberInSearch(role, name);
         view.addObject("memberList", memberList);
         view.addObject("roleSearch", role);
         view.addObject("nameSearch", name);
@@ -67,7 +64,7 @@ public class AdminController {
     @RequestMapping(value = "/createAccount", method = RequestMethod.GET)
     public ModelAndView loadCreateAccountPage(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView view = new ModelAndView("admin/createAccount");
-        List<Account> accountList = accountDAO.getAllAccount();
+        List<Account> accountList = accountService.getAllAccount();
         view.addObject("accountList", accountList);
         return view;
     }
@@ -80,8 +77,8 @@ public class AdminController {
         int role = Integer.parseInt(request.getParameter("role"));
 
 
-        List<String> userList =accountService.getUsernameList();
-        String username = generateEmployeeCode(removeAccent(name.toLowerCase()),userList);
+        List<String> userList = accountService.getUsernameList();
+        String username = generateEmployeeCode(removeAccent(name.toLowerCase()), userList);
         String password = generateCommonLangPassword();
 
         if (employeeService.emailIsExisted(mail) == false) {
@@ -110,9 +107,9 @@ public class AdminController {
                 }
             });
 
-            accountDAO.addNewAccount(username, password, role);
-            Account account = accountDAO.getAccount(username);
-            memberDAO.addNewMember(name, mail, account.getId());
+            accountService.addNewAccount(username, password, role);
+            Account account = accountService.getAccount(username);
+            memberService.addNewMember(name, mail, account.getId());
             redirect.addAttribute("mess", "Add new member successfully");
             return new ModelAndView("redirect:/admin/memberlist");
         } else {
@@ -135,8 +132,8 @@ public class AdminController {
         }
         String username = request.getParameter("username");
 
-        memberDAO.updateMemberStatus(status, username);
-        List<Member> memberList = memberDAO.getAllMember();
+        memberService.updateMemberStatus(status, username);
+        List<Member> memberList = memberService.getAllMember();
         view.addObject("memberList", memberList);
         return view;
     }

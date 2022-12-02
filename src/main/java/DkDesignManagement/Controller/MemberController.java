@@ -70,18 +70,19 @@ public class MemberController {
     @RequestMapping(value = "/addMember", method = RequestMethod.GET)
     public ModelAndView addMemberToProject(HttpServletRequest request, @RequestParam("id") int projectId) {
         ModelAndView view = new ModelAndView("member");
-
         String username = request.getParameter("memberToAdd");
-        int memberId = memberService.getAccountIdByUsername(username);
+        int memberId=0;
         //TODO : check username wrong
 
         //TODO : check Member exits
 
         boolean checkAddMember = true;
         try {
+            memberId = memberService.getAccountIdByUsername(username);
             memberService.addMemberToProject(projectId, memberId);
         } catch (Exception e) {
             checkAddMember = false;
+            memberId=0;
             e.printStackTrace();
         }
 
@@ -100,8 +101,13 @@ public class MemberController {
         }
 
         Project project = projectService.getProject(projectId);
-
         List<Member> memberList = memberService.getMemberInProject(projectId);
+
+        if(memberId==0){
+            view.addObject("error","Thành viên không tồn tại");
+        }else {
+            view.clear();
+        }
         view.addObject("memberList", memberList);
         view.addObject("project", project);
         return view;

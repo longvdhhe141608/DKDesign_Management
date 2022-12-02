@@ -65,4 +65,22 @@ public class AccountServiceImpl implements AccountService {
     public List<String> getUsernameList() {
         return accountDao.getAllUsername();
     }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<Account> getAllAccount() {
+        return accountDao.getAllAccount();
+    }
+
+    /**
+     * @param username
+     * @param password
+     * @param role
+     */
+    @Override
+    public void addNewAccount(String username, String password, int role) {
+        accountDao.addNewAccount(username, password, role);
+    }
 }

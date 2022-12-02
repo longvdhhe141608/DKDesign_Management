@@ -7,6 +7,7 @@ import DkDesignManagement.Repository.StatusDao;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.HistoryService;
 import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.Service.StatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -25,15 +26,11 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/project")
 public class ViewProjectDetailController {
-    @Autowired
-    private ProjectDao projectDao;
 
     @Autowired
-    private StatusDao statusDao;
-
+    private StatusService statusService;
     @Autowired
     private ProjectService projectService;
-
     @Autowired
     HistoryService historyService;
 
@@ -41,11 +38,12 @@ public class ViewProjectDetailController {
     public ModelAndView projectDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("summary");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
         HttpSession session = request.getSession();
 
         //list status
-        List<Status> listStatus = statusDao.getAllStatus();
+
+        List<Status> listStatus = statusService.getAllStatus();
         List<Status> listRemove = new ArrayList<>();
         for (Status status : listStatus) {
             if (ObjectUtils.isEmpty(status.getStatusProject())) {
@@ -72,13 +70,13 @@ public class ViewProjectDetailController {
 
 
         //update
-        Project project = projectDao.getProject(projectId);
+        Project project = projectService.getProject(projectId);
         if (status == 3) {
             project.setEndDate(new Date());
         }
         project.setStatus(status);
 
-        projectDao.editProject(project);
+        projectService.editProject(project);
 
         redirect.addAttribute("mess", "change status project successfully ");
 

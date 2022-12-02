@@ -17,4 +17,12 @@ public interface MemberService {
     int getAccountIdByUsername(String username);
 
     void updateStatusMemberInProject(int id, int memberId, int status);
+
+    List<Member> getAllMember();
+
+    List<Member> getAllMemberInSearch(int role, String name);
+
+    void addNewMember(String name, String mail, int id);
+
+    void updateMemberStatus(int status, String username);
 }
