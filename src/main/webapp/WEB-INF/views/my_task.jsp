@@ -66,44 +66,48 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-
                         <th scope="col" class="col-4">Công việc</th>
-
                         <th scope="col" class="col-1">Thời gian bắt đầu</th>
                         <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
                         <th scope="col" class="col-1">Thời gian kết thúc</th>
                         <th scope="col" class="col-4">Tên công trình</th>
                         <th scope="col" class="col-1"></th>
-
                     </tr>
                     </thead>
                     <tbody class="my-task-for-leader">
                     <c:forEach items="${myTask}" var="i">
                         <tr>
                             <td>
-                                <div style="display: flex; justify-content: space-between">
-                                    <div class="name-project">
-                                            ${i.subTaskName}
-                                    </div>
-                                    <div>
-                                        <c:if test="${i.taskID != null}">
+                                <c:if test="${i.taskID != null}">
+                                    <div style="display: flex; justify-content: space-between">
+                                        <div class="name-project">
+                                                ${i.subTaskName}
+                                        </div>
+                                        <div>
                                             <a href="${pageContext.request.contextPath}/subtask?taskId=${i.subTaskID}">
                                                 <button class="btn btn-primary summary-detail-all"
                                                         style="float: right;">
                                                     Chi tiết
                                                 </button>
                                             </a>
-                                        </c:if>
-                                        <c:if test="${i.taskID == null && i.sectionID == null}">
-                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${i.subTaskID}">
+                                        </div>
+                                    </div>
+                                </c:if>
+                                <c:if test="${i.taskID == null}">
+                                    <div style="display: flex; justify-content: space-between">
+                                        <div class="name-project">
+                                                ${i.subTaskName}
+                                        </div>
+                                        <div>
+                                            <a href="${pageContext.request.contextPath}/leader-task?taskId=${i.subTaskID}">
                                                 <button class="btn btn-primary summary-detail-all"
                                                         style="float: right;">
                                                     Chi tiết
                                                 </button>
                                             </a>
-                                        </c:if>
+                                        </div>
                                     </div>
-                                </div>
+                                </c:if>
                             </td>
                             <td>
                                     ${i.startDate}
