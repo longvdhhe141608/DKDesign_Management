@@ -20,5 +20,7 @@ public interface AccountService {
 
     List<Account> getAccountsByProjectId(int projectId);
 
-    HashMap<Account,Integer> getAccountList();
+    HashMap<String,Integer> getAccountList();
+
+    List<String> getUsernameList();
 }

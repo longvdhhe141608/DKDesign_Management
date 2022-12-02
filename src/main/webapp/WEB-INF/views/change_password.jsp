@@ -21,30 +21,18 @@
         <h3>Thay đổi mật khẩu</h3>
         <div class="input-group">
             <p>mật khẩu</p>
-            <input id="password"
-                   name="password"
-                   required
-                   class="form-control"
-                   placeholder="123456">
+            <input id="old-password" name="old-password" class="form-control" required/>
         </div>
         <div class="input-group">
             <p>mật khẩu mới</p>
-            <input id="new-password"
-                   name="new-password"
-                   required
-                   class="form-control"
-            >
+            <input id="new-password" name="new-password" class="form-control" required/>
         </div>
         <div class="input-group">
             <p>xác nhận mật khẩu</p>
-            <input id="confirm-password"
-                   name="password"
-                   required
-                   class="form-control"
-            >
+            <input id="confirmed-password" name="confirmed-password" class="form-control" required/>
         </div>
         <div class="change-password-btn">
-            <button type="button" class="btn-login form-control" onclick="history.back()">Thoát</button>
+            <button class="btn-login form-control"><a href="javascript:history.back()">Thoát</a></button>
             <button type="submit" class="btn-login form-control">Lưu</button>
         </div>
     </div>

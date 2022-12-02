@@ -4,10 +4,10 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.MemberDao;
-import DkDesignManagement.Service.Impl.AccountServiceImpl;
-import DkDesignManagement.Service.Impl.EmployeeServiceImpl;
+import DkDesignManagement.Service.AccountService;
+import DkDesignManagement.Service.EmployeeService;
+import DkDesignManagement.Service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -22,6 +22,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 import static DkDesignManagement.utils.ValidateUtils.*;
@@ -32,13 +33,15 @@ public class AdminController {
     @Autowired
     private AccountDao accountDAO;
     @Autowired
-    private AccountServiceImpl accountService;
+    private AccountService accountService;
     @Autowired
-    private EmployeeServiceImpl employeeService;
+    private EmployeeService employeeService;
     @Autowired
     private JavaMailSender mailSender;
     @Autowired
     private MemberDao memberDAO;
+    @Autowired
+    private MailService mailService;
 
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
@@ -78,16 +81,10 @@ public class AdminController {
         int role = Integer.parseInt(request.getParameter("role"));
 
 
-        String preCode = generateEmployeeCode(removeAccent(name.toLowerCase()));
+        List<String> userList =accountService.getUsernameList();
+        String username = generateEmployeeCode(removeAccent(name.toLowerCase()),userList);
         String password = generateCommonLangPassword();
 
-        int postNumber = 1;
-        String usernameBuilder = preCode + postNumber;
-        while (accountService.isExisted(usernameBuilder) == true) {
-            postNumber++;
-            usernameBuilder = preCode + postNumber;
-        }
-        String username = usernameBuilder;
         if (employeeService.emailIsExisted(mail) == false) {
             //send mail
             String message = "Xin chào " + name + ",</br>" +
@@ -97,11 +94,6 @@ public class AdminController {
                     "Vui lòng đăng nhập và đổi mật khẩu lần đầu để sử dụng tài khoản.</br>" +
                     "Thân,</br>" +
                     "Dkmangament Admin";
-
-//            SimpleMailMessage mailMessage = new SimpleMailMessage();
-//            mailMessage.setTo(mail);
-//            mailMessage.setSubject("New Account Created");
-//            mailMessage.setText(message);
 
             mailSender.send(new MimeMessagePreparator() {
                 public void prepare(MimeMessage mimeMessage) throws MessagingException {

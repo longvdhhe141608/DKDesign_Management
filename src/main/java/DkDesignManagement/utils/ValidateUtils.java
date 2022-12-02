@@ -1,20 +1,16 @@
 package DkDesignManagement.utils;
 
 
+import DkDesignManagement.Entity.Account;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.passay.CharacterRule;
-import org.passay.EnglishCharacterData;
-import org.passay.PasswordGenerator;
-import org.w3c.dom.*;
 
 import java.text.Normalizer;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import static org.springframework.beans.MethodInvocationException.ERROR_CODE;
 
 public class ValidateUtils {
     public static String removeAccent(String s) {
@@ -24,7 +20,7 @@ public class ValidateUtils {
 
     }
 
-    public static String generateEmployeeCode(String name) {
+    public static String generateEmployeeCode(String name, List<String> userList) {
         StringTokenizer stringTokenizer = new StringTokenizer(name);
         StringBuilder code = new StringBuilder();
         while (stringTokenizer.hasMoreTokens()) {
@@ -35,7 +31,14 @@ public class ValidateUtils {
                 code.insert(0, temp);
             }
         }
-        return code.toString();
+        String preCode = code.toString();
+        int postNumber = 1;
+        String usernameBuilder = preCode + postNumber;
+        while (userList.contains(userList)) {
+            postNumber++;
+            usernameBuilder = preCode + postNumber;
+        }
+        return usernameBuilder;
     }
 
     public static String generateCommonLangPassword() {
@@ -55,15 +58,8 @@ public class ValidateUtils {
         String password = pwdChars.stream()
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
+        password.replace("'","$");
         return password;
     }
 
-    public static void main(String[] args) {
-        String name = "Vũ Nhất Nam";
-        name = generateEmployeeCode(removeAccent(name.toLowerCase()));
-
-        System.out.println("tk: "+name);
-        String pass = generateCommonLangPassword();
-        System.out.println("mk: "+pass);
-    }
 }
