@@ -1,6 +1,6 @@
 function checkvalidate(id) {
     var form = document.querySelector(id);
-    var regex = /^[a-zA-Z0-9]{5,50}@gmail\.com$/;
+    var regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var input = form.querySelectorAll('.info-text');
     var error = form.querySelectorAll('.error');
     let numberprocess = 0;
@@ -20,7 +20,7 @@ function checkvalidate(id) {
                 return a;
             } else {
                 a++;
-                error[0].innerHTML = "Nhập đúng dạng email(5-50 ký tự và đuôi là @ gmail.com)";
+                error[0].innerHTML = "Nhập đúng dạng email";
 
             }
 

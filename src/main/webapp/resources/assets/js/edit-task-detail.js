@@ -1,8 +1,7 @@
 function checkvalidate(id) {
     var form = document.querySelector(id);
     console.log(form);
-    var regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
-    var name = form.querySelector('#inputaddname');
+
     var start = form.querySelector('#inputstartdate');
     var end = form.querySelector('#inputenddate');
     var error = form.querySelectorAll('.error');
@@ -19,53 +18,32 @@ function checkvalidate(id) {
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
     numberdate = checkdate(today, startdate, enddate);
-    let numberchecknumber = 0;
-    numberchecknumber = checkNumber(input);
-    let numbercheckphone = 0;
-    numbercheckphone = checkNumberPhone(input, regex);
+    // let numberchecknumber = 0;
+    // numberchecknumber = checkNumber(input);
 
 
 
-    function checkNumberPhone(input, regex) {
-        let a = 0;
-        if (input[2].value.length > 0) {
 
-            if (input[2].value.match(regex)) {
 
-                console.log(input[2].value);
-                return a;
-            } else {
-                a++;
-                error[2].innerHTML = "Nhập đúng dạng số điện thoại";
-                // console.log(input[2].value);
-            }
 
-        }
-
-        return a;
-    }
-
-    function checkNumber(input) {
-        let a = 0;
-        if (input[4].value.length > 0 || input[5].value.length > 0) {
-            for (var i = 0; i < input.length; i++) {
-                if (isNaN(input[4].value.trim())) {
-                    a++;
-                    error[4].innerHTML = "Chỉ được nhập số";
-                } else if (isNaN(input[5].value.trim())) {
-                    a++;
-                    error[5].innerHTML = "Chỉ được nhập số";
-                } else if (input[4].value <= 0) {
-                    a++;
-                    error[4].innerHTML = "Cần nhập số lớn hơn 0";
-                } else if (input[5].value <= 0) {
-                    error[5].innerHTML = "Cần nhập số lớn hơn 0";
-                }
-
-            }
-        }
-        return a;
-    }
+    // function checkNumber(input) {
+    //     let a = 0;
+    //     if (input[3].value.length > 0 ) {
+    //         for (var i = 0; i < input.length; i++) {
+    //             if (isNaN(input[3].value.trim())) {
+    //                 a++;
+    //                 error[3].innerHTML = "Chỉ được nhập số";
+    //
+    //             } else if (input[3].value <= 0) {
+    //                 a++;
+    //                 error[3].innerHTML = "Cần nhập số lớn hơn 0";
+    //
+    //             }
+    //
+    //         }
+    //     }
+    //     return a;
+    // }
 
     function checkEmpty(input) {
         let a = 0;
@@ -103,12 +81,12 @@ function checkvalidate(id) {
         let b = 0;
         if (startdate.getDate() < today.getDate() && startdate.getMonth() + 1 <= today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear()) {
             b++;
-            error[6].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+            error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
 
         }
         else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
             b++;
-            error[7].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+            error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
 
         }
         else {
@@ -118,7 +96,7 @@ function checkvalidate(id) {
         return b;
     }
     console.log(numberdate);
-    numberprocess = numberEmpty + numberchecknumber + numbercheckphone + numberdate;
+    numberprocess = numberEmpty  + numberdate;
     console.log(numberprocess);
     if (numberprocess > 0) {
         return false;

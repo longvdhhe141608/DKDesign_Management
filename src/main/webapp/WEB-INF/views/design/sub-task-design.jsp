@@ -95,7 +95,7 @@
                         <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
                     </div>
                 </c:if>
-                <input class="info-text" type="text" value="">
+               
             </div>
             <h4>${subTask.taskName}</h4>
             <div style="font-size: 20px;">

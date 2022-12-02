@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="<c:url value="/resources/assets/js/infomation.js"/>"></script>
+    <script src="<c:url value="/resources/assets/js/information.js"/>"></script>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -51,46 +51,46 @@
                             <td class="col-6">Họ và tên:</td>
                             <td class="col-6">
                                 <input class="info-text" type="text" id="name"
-                                 name="name" value="${profile.name}" required>
+                                 name="name" value="${profile.name}" style="width: 300px;padding: 3px">
                                 <div class="text-danger error"></div></td>
 
                         </tr>
 
                         <tr>
                             <td>Số CCCD/CMND:</td>
-                            <td><input class="info-text" pattern="^[0-9]{10,12}$" type="text" id="cccd" name="cccd"
-                                       value="${profile.cccd}" required>
+                            <td><input class="info-text" type="text" id="cccd" name="cccd"
+                                       value="${profile.cccd}" style="width: 300px;padding: 3px">
                                 <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Ngày sinh:</td>
-                            <td><input class="info-text" type="date" id="dob" name="dob" value="${profile.dob}" required>
+                            <td><input  class="info-text" type="date" id="inputstartdate" name="dob" value="${profile.dob}" style="width: 300px;padding: 3px">
                                 <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Giới tính:</td>
-                            <td><select class="btn btn-secondary" name="gender" id="gender" required>
+                            <td><select class="btn btn-secondary" name="gender" id="gender" >
                                 <option id="1" value="1">Nam</option>
                                 <option id="2" value="2" ${profile.gender==2?"selected":""}>Nữ</option>
                             </select></td>
                         </tr>
                         <tr>
                             <td>Số điện thoại:</td>
-                            <td><input class="info-text" pattern="^0[0-9]{9}$" title="nhap sdt" type="text" id="phone" name="phone"
-                                       value="${profile.phone}" required>
+                            <td><input class="info-text" type="text" id="phone" name="phone"
+                                       value="${profile.phone}" style="width: 300px;padding: 3px">
                                 <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Email:</td>
-                            <td><input class="info-text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" type="text"
+                            <td><input class="info-text" type="text"
                                        id="email"
-                                       name="email" value="${profile.mail}" required>
+                                       name="email" value="${profile.mail}" style="width: 300px;padding: 3px">
                                 <div class="text-danger error"></div></td>
                         </tr>
                         <tr>
                             <td>Địa chỉ nhà:</td>
                             <td><input class="info-text" type="text"
-                                       id="address" name="address" value="${profile.address}">
+                                       id="address" name="address" value="${profile.address}" style="width: 300px;padding: 3px">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
