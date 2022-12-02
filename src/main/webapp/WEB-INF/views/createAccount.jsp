@@ -51,7 +51,8 @@
                         </td>
 
                         <td>
-                            <input value="${name}" id="name" name="name" type="text" required>
+                            <input class="info-text" value="${name}" id="name" name="name" type="text" required>
+                            <div class="text-danger error"></div>
                         </td>
                     </tr>
                     <tr>
@@ -60,8 +61,9 @@
                         </td>
 
                         <td>
-                            <input pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="mail" name="mail"
+                            <input class="info-text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="mail" name="mail"
                                    type="text" required>
+                            <div class="text-danger error"></div>
                         </td>
 
                     </tr>
@@ -76,7 +78,7 @@
                     </tr>
                 </table>
                 <div style="margin-left: 25%; display: flex;">
-                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
+                    <button style="margin-right: 5px" type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
                     <button type="submit" class="btn btn-primary">Lưu</button>
                 </div>
             </form>

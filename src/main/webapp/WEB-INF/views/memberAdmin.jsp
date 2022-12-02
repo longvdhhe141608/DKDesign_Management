@@ -85,7 +85,8 @@
                         <td style="display: flex;justify-content:space-between">${member.memberName}
                             <form action="${pageContext.request.contextPath}/member/information" method="get">
                                 <input name="id" value="${member.memberId}" hidden>
-                                <input type="submit" class="btn btn-primary chi-tiet" value="chi tiết">
+<%--                                <input type="submit" class="btn btn-primary chi-tiet" value="chi tiết">--%>
+                                <button class="btn btn-primary chi-tiet" >Chi tiết</button>
                             </form>
                         </td>
                         <td>
@@ -114,7 +115,7 @@
         </div>
         <%-- end member list in table--%>
         <%--start paging--%>
-        <div class="pagination">
+        <div class="pagination" style="display: flex;justify-content: end">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
