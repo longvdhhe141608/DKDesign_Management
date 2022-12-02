@@ -42,5 +42,5 @@ public interface TaskService {
 
     List<Task> getAllTaskByRequirementId(int requirementId);
 
-    DashboardResponse getDashboard(int projectId);
+    DashboardResponse getDashboard(int projectId , String designId);
 }
