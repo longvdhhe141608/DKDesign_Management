@@ -86,11 +86,22 @@
                                             ${i.subTaskName}
                                     </div>
                                     <div>
-                                        <a href="${pageContext.request.contextPath}/task_detail?taskId=${i.taskID}">
-                                            <button class="btn btn-primary summary-detail-all" style="float: right;">
-                                                Chi tiết
-                                            </button>
-                                        </a>
+                                        <c:if test="${i.taskID != null}">
+                                            <a href="${pageContext.request.contextPath}/subtask?taskId=${i.subTaskID}">
+                                                <button class="btn btn-primary summary-detail-all"
+                                                        style="float: right;">
+                                                    Chi tiết
+                                                </button>
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${i.taskID == null && i.sectionID == null}">
+                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${i.subTaskID}">
+                                                <button class="btn btn-primary summary-detail-all"
+                                                        style="float: right;">
+                                                    Chi tiết
+                                                </button>
+                                            </a>
+                                        </c:if>
                                     </div>
                                 </div>
                             </td>
