@@ -45,8 +45,24 @@ public class AccountServiceImpl implements AccountService {
      * @return
      */
     @Override
-    public HashMap<Account, Integer> getAccountList() {
-//        HashMap<Account,Integer> accountMap = null;
-        return null;
+    public HashMap<String, Integer> getAccountList() {
+        List<Account> accountList = accountDao.getAllAccount();
+        HashMap<String, Integer> accountMap = new HashMap<>();
+//        for (Account account : accountList
+//        ) {
+//            String username = String.valueOf(account.getUsername().split("\s"));
+//            String postNumb = account.getUsername().concat(username);
+//            if (ObjectUtils.isEmpty(postNumb)) {
+//                postNumb = "0";
+//            }
+//            int postNumber = Integer.parseInt(postNumb);
+//            accountMap.put(account.getUsername(), postNumber);
+//        }
+        return accountMap;
+    }
+
+    @Override
+    public List<String> getUsernameList() {
+        return accountDao.getAllUsername();
     }
 }
