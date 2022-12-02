@@ -316,6 +316,21 @@ public class TaskDAO {
         return generatedKeyHolder.getKey().intValue();
     }
 
+    public int addTaskofLeader(int pid, int creid, int assid, String tname, Date sd, Date dl) {
+        String sql = "INSERT INTO dkmanagement.task\n" +
+                "(project_id, section_id, task_id, creator, assignedto, requirement_id" +
+                ", task_name, starting_date, deadline, ended_date, number_of_file, description, status)\n" +
+                "VALUES(?, null, null, ?, ?, null " +
+                " , ?, ?, ?, null, null, null, 2);";
+        int check = 0;
+        try {
+            check = jdbcTemplate.update(sql, new MapperTask(), pid, creid, assid, tname, sd, dl);
+            return check;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
 
     public List<Tasks> getAllTasksByProjectIDAndSectionID(int projectID, int sectionID) {
         List<Tasks> tasksList = new ArrayList<>();
@@ -572,6 +587,26 @@ public class TaskDAO {
         return 0;
     }
 
+    public int getTotalAllMyTaskLeader(int accID, String textSearch) {
+        List<MyTaskDto> myTaskDtoList = new ArrayList<>();
+        String sql = "SELECT t.task_id, t.id, t.task_name, p.project_name,\n" +
+                " t.starting_date, t.deadline, t.ended_date,\n" +
+                " t.status, s.status_task, t.project_id, t.section_id FROM dkmanagement.task t\n" +
+                "left join project p on t.project_id = p.id\n" +
+                "left join accounts a on t.assignedto = a.id " +
+                "left join section sc on t.section_id = sc.id \n" +
+                "left join status s on t.status = s.id where t.assignedto = ? AND (t.status in (2,3,4)) " +
+                "and (t.task_id is not null or (t.task_id is null and t.section_id is null)) " +
+                "group by t.id ";
+        try {
+            myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID);
+            return myTaskDtoList.size();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public List<MyTaskDto> getAllMyTask(int accID, int indexPage, String textSearch) {
         List<MyTaskDto> myTaskDtoList = new ArrayList<>();
         String sql = "SELECT t.task_id, t.id, t.task_name, p.project_name,\n" +
@@ -582,6 +617,26 @@ public class TaskDAO {
                 "left join section sc on t.section_id = sc.id \n" +
                 "left join status s on t.status = s.id where t.assignedto = ? " +
                 "AND (t.status in (2,3,4)) and t.task_id is not null " +
+                "group by t.id order by t.status asc limit ?, 10";
+        try {
+            myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID, indexPage);
+            return myTaskDtoList;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<MyTaskDto> getAllMyTaskLeader(int accID, int indexPage, String textSearch) {
+        List<MyTaskDto> myTaskDtoList = new ArrayList<>();
+        String sql = "SELECT t.task_id, t.id, t.task_name, p.project_name,\n" +
+                " t.starting_date, t.deadline, t.ended_date,\n" +
+                " t.status, s.status_task, t.project_id, t.section_id FROM dkmanagement.task t\n" +
+                "left join project p on t.project_id = p.id\n" +
+                "left join accounts a on t.assignedto = a.id " +
+                "left join section sc on t.section_id = sc.id \n" +
+                "left join status s on t.status = s.id where t.assignedto = ? " +
+                "AND (t.status in (2,3,4)) and (t.task_id is not null or (t.task_id is null and t.section_id is null)) " +
                 "group by t.id order by t.status asc limit ?, 10";
         try {
             myTaskDtoList = jdbcTemplate.query(sql, new MapperMyTaskDto(), accID, indexPage);

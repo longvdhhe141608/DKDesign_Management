@@ -50,6 +50,18 @@ public class ProjectDao {
         return projectList;
     }
 
+    public List<Project> getProjectByLeaderAcc(int id) {
+        String sql = "select `project`.* from project \n" +
+                "join `project_participation` on `project`.`id` = `project_participation`.`project_id` \n" +
+                "join `accounts` on `project_participation`.`account_id` = `accounts`.`id` \n" +
+                "where `accounts`.`id` = ? and (`project`.`status` = 1 or `project`.`status` = 2)\n" +
+                "GROUP BY `project`.`id` \n" +
+                "order by `project`.`id` desc \n";
+        List<Project> projectList = new ArrayList<>();
+        projectList = jdbcTemplate.query(sql, new MapperProject(), id);
+        return projectList;
+    }
+
     public List<Project> getAllProjectByCreated(int creatorId) {
         String sql = "select * from project p  where p.creator =?";
         List<Project> projectList = new ArrayList<>();
