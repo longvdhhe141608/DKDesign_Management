@@ -118,6 +118,23 @@ public class TaskController {
         return view;
     }
 
+    @RequestMapping(value = "/leader-task", method = RequestMethod.GET)
+    public ModelAndView viewLeaderTaskDetail(HttpServletRequest request, RedirectAttributes redirect) {
+        ModelAndView view = new ModelAndView("/leader/view_leader_task");
+        //check login
+        HttpSession session = request.getSession();
+        if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
+            redirect.addAttribute("mess", "Please login");
+            view = new ModelAndView("redirect:/login");
+            return view;
+        }
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+        Task task = taskService.getTaskByIdFullModelForLeader(taskId);
+        task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
+        view.addObject("task", task);
+        return view;
+    }
+
     @RequestMapping(value = "/subtask", method = RequestMethod.GET)
     public ModelAndView viewSubTaskDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("subtask");
