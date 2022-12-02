@@ -34,7 +34,7 @@ public class MemberServiceImpl implements MemberService {
     }
 
     /**
-     * @param id
+     * @param projectId
      * @return
      */
     @Override
@@ -59,5 +59,42 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void updateStatusMemberInProject(int id, int memberId, int status) {
         memberDao.updateStatusMemberInProject(id, memberId, status);
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public List<Member> getAllMember() {
+        return memberDao.getAllMember();
+    }
+
+    /**
+     * @param role
+     * @param name
+     * @return
+     */
+    @Override
+    public List<Member> getAllMemberInSearch(int role, String name) {
+        return memberDao.getAllMemberInSearch(role, name);
+    }
+
+    /**
+     * @param name
+     * @param mail
+     * @param id
+     */
+    @Override
+    public void addNewMember(String name, String mail, int id) {
+        memberDao.addNewMember(name, mail, id);
+    }
+
+    /**
+     * @param status
+     * @param username
+     */
+    @Override
+    public void updateMemberStatus(int status, String username) {
+        memberDao.updateMemberStatus(status, username);
     }
 }

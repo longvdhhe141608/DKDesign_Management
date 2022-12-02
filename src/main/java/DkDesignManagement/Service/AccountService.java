@@ -23,4 +23,8 @@ public interface AccountService {
     HashMap<String,Integer> getAccountList();
 
     List<String> getUsernameList();
+
+    List<Account> getAllAccount();
+
+    void addNewAccount(String username, String password, int role);
 }
