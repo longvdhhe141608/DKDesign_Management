@@ -159,7 +159,23 @@ public class TaskController {
                 , status, startDate, deadline, null, null, 0);
 
         //add section
-        taskService.addTask(task);
+        int taskId = taskService.addTask(task);
+
+        //add notification
+        //add notification send leader
+        String url = HOST + "/" + PROJECT_NAME + "/design/task/view-detail-task?project-id=" + task.getProjectId()
+                + "&section-id=" + task.getSectionId() + "&task-id=" + taskId;
+        String message = "Bạn có công việc được giao";
+
+        int designId = task.getAssignToId();
+
+        //check notification exits
+        NotificationDto notificationDto = notificationService.getNotification(designId, message, url);
+        if (ObjectUtils.isEmpty(notificationDto)) {
+            Notification notification = new Notification(-1, new java.util.Date()
+                    , message, designId, task.getProjectId(), url);
+            notificationService.addNotification(notification);
+        }
 
         redirect.addAttribute("mess", "add successfully ");
         return view;
@@ -367,7 +383,7 @@ public class TaskController {
         int projectId = Integer.parseInt(request.getParameter("projectId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
-        taskService.addTaskeofLeader(projectId,a.getId(),a.getId(),name,startDate,deadline);
+        taskService.addTaskeofLeader(projectId, a.getId(), a.getId(), name, startDate, deadline);
         return view;
     }
 }
