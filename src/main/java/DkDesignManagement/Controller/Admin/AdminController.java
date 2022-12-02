@@ -1,4 +1,4 @@
-package DkDesignManagement.Controller;
+package DkDesignManagement.Controller.Admin;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Member;
@@ -22,7 +22,6 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
 import java.util.List;
 
 import static DkDesignManagement.utils.ValidateUtils.*;
@@ -45,7 +44,7 @@ public class AdminController {
 
     @RequestMapping(value = "/memberlist", method = RequestMethod.GET)
     public ModelAndView loadMemberAdminPage(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("memberAdmin");
+        ModelAndView view = new ModelAndView("admin/memberAdmin");
         List<Member> memberList = memberDAO.getAllMember();
         view.addObject("memberList", memberList);
         return view;
@@ -53,7 +52,7 @@ public class AdminController {
 
     @RequestMapping(value = "/searchMember", method = RequestMethod.GET)
     public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("memberAdmin");
+        ModelAndView view = new ModelAndView("admin/memberAdmin");
 
         int role = Integer.parseInt(request.getParameter("roleSearch"));
         String name = request.getParameter("nameSearch");
@@ -67,7 +66,7 @@ public class AdminController {
 
     @RequestMapping(value = "/createAccount", method = RequestMethod.GET)
     public ModelAndView loadCreateAccountPage(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView view = new ModelAndView("createAccount");
+        ModelAndView view = new ModelAndView("admin/createAccount");
         List<Account> accountList = accountDAO.getAllAccount();
         view.addObject("accountList", accountList);
         return view;
@@ -121,12 +120,12 @@ public class AdminController {
             request.setAttribute("name", name);
             request.setAttribute("error1", error);
         }
-        return new ModelAndView("createAccount");
+        return new ModelAndView("admin/createAccount");
     }
 
     @RequestMapping(value = "/changeMemberStatus")
     public ModelAndView changeStatusMemberByAdmin(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("memberAdmin");
+        ModelAndView view = new ModelAndView("admin/memberAdmin");
 
         int status = Integer.parseInt(request.getParameter("status"));
         if (status == 1) {
