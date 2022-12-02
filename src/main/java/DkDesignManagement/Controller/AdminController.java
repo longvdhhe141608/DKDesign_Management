@@ -147,7 +147,6 @@ public class AdminController {
         memberDAO.updateMemberStatus(status, username);
         List<Member> memberList = memberDAO.getAllMember();
         view.addObject("memberList", memberList);
-
         return view;
     }
 }

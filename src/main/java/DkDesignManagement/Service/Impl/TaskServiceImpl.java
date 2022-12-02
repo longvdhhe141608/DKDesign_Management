@@ -14,6 +14,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static DkDesignManagement.utils.Constant.*;
@@ -40,6 +41,11 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public int addTask(Task task) {
         return taskDAO.addTask(task);
+    }
+
+    @Override
+    public int addTaskeofLeader(int pid, int creid, int assid, String tname, Date sd, Date dl) {
+        return taskDAO.addTaskofLeader(pid, creid, assid, tname, sd, dl);
     }
 
     @Override
@@ -80,12 +86,21 @@ public class TaskServiceImpl implements TaskService {
         task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
         task.setNumberFileCurrent(taskDAO.countFile(task.getTaskId()));
 //        double workProgress = (task.getNumberFileCurrent() / 1.0 * task.getFileNumber()) * 100;
-        float workProgress = Math.round(task.getNumberFileCurrent()/(1.0*task.getFileNumber()) *100);
+        float workProgress = Math.round(task.getNumberFileCurrent() / (1.0 * task.getFileNumber()) * 100);
         task.setWorkProgress(workProgress + "%");
         if (!ObjectUtils.isEmpty(task.getRequirementId())) {
             task.setRequirementName(requirementDao.getRequirementById(task.getRequirementId().intValue()).getRequirementName());
         }
 
+        return task;
+    }
+
+    @Override
+    public Task getTaskByIdFullModelForLeader(int taskId) {
+        Task task = taskDAO.getTaskById(taskId);
+        //set value send FE
+        task.setProjectName(projectDao.getProject(task.getProjectId()).getProjectName());
+        task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
         return task;
     }
 

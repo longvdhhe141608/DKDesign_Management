@@ -86,11 +86,22 @@
                                             ${i.subTaskName}
                                     </div>
                                     <div>
-                                        <a href="${pageContext.request.contextPath}/task_detail?taskId=${i.taskID}">
-                                            <button class="btn btn-primary summary-detail-all" style="float: right;">
-                                                Chi tiết
-                                            </button>
-                                        </a>
+                                        <c:if test="${i.taskID != null}">
+                                            <a href="${pageContext.request.contextPath}/subtask?taskId=${i.subTaskID}">
+                                                <button class="btn btn-primary summary-detail-all"
+                                                        style="float: right;">
+                                                    Chi tiết
+                                                </button>
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${i.taskID == null && i.sectionID == null}">
+                                            <a href="${pageContext.request.contextPath}/task_detail?taskId=${i.subTaskID}">
+                                                <button class="btn btn-primary summary-detail-all"
+                                                        style="float: right;">
+                                                    Chi tiết
+                                                </button>
+                                            </a>
+                                        </c:if>
                                     </div>
                                 </div>
                             </td>
@@ -143,60 +154,50 @@
     <div class="modal-content" style="width: 60%;height: 100%; ">
         <span id="close" class="close">&times;</span>
         <div class="project-add-task">
-            <form id="my-task" action="">
+            <form id="my-task" action="addTaskofLeader" method="post">
                 <div class="title">
                     <h4><input id="inputaddname" class="info-text" type="text" value=""
-                               placeholder="Tên công việc mới">
+                               placeholder="Tên công việc mới" name="taskName">
                         <div class="text-danger error"></div>
                     </h4>
 
                 </div>
                 <div class="info">
                     <table class="table table-borderless">
-
                         <tr>
                             <td>Công trình <label class="text-danger">*</label>:</td>
                             <td>
                                 <div class="dropdown">
-                                    <a class="btn btn-secondary dropdown-toggle" href="#"
-                                       role="button" data-toggle="dropdown"
-                                       aria-expanded="false">
-                                        Biệt thự vườn lài
-                                    </a>
-
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#"> Biệt thự nhà dân</a>
-                                        <a class="dropdown-item" href="#">Tủ bếp Anh Túc</a>
-
-                                    </div>
+                                    <select name="projectId" class="btn btn-secondary dropdown-toggle">
+                                        <c:forEach items="${projectList}" var="project">
+                                            <option value="${project.id}"> ${project.projectName}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                             </td>
                         </tr>
-
-
                         <tr>
                             <td>Ngày bắt đầu<label class="text-danger">*</label>:</td>
-                            <td><input id="inputstartdate" class="info-text" type="date">
+                            <td><input id="inputstartdate" class="info-text" type="date" name="startDate">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Ngày dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                            <td><input id="inputenddate" class="info-text" type="date">
+                            <td><input id="inputenddate" class="info-text" type="date" name="deadline">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
                     </table>
                 </div>
                 <div class="button_click" style="display: flex;justify-content: end;">
-
                     <div class="btn_cancel" style="margin-right: 10px;">
-                        <button type="submit" class="btn btn-secondary close_popup">Hủy
+                        <button type="button" class="btn btn-secondary close_popup">Hủy
                             bỏ
                         </button>
                     </div>
                     <div class="btn_ok">
-                        <button onclick="return checkvalidate('#my-task')" type="button"
+                        <button onclick="return checkvalidate('#my-task')" type="submit"
                                 class="btn btn-primary">Tạo
                         </button>
                     </div>
@@ -234,8 +235,8 @@
         span.addEventListener("click", function () {
             modal.style.display = "none";
         });
-        let  close = document.querySelector('.close_popup');
-        close.addEventListener('click',function (){
+        let close = document.querySelector('.close_popup');
+        close.addEventListener('click', function () {
             modal.style.display = "none";
         });
         // When the user clicks on <span> (x), close the modal

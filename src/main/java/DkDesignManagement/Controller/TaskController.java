@@ -99,7 +99,7 @@ public class TaskController {
         int totalSubmitFile = 0;
         int totalFile = 0;
 
-        for (int i = 0; i < subTasksList.size() ; i++) {
+        for (int i = 0; i < subTasksList.size(); i++) {
             totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
             totalFile += subTasksList.get(i).getNumberOfFile();
         }
@@ -319,6 +319,12 @@ public class TaskController {
     public ModelAndView viewMyTask(HttpServletRequest request, RedirectAttributes redirect) {
         ModelAndView view = new ModelAndView("my_task");
         HttpSession session = request.getSession();
+        if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
+            view = new ModelAndView("/login");
+            redirect.addAttribute("mess", "Please login");
+            return view;
+        }
+
         Account a = (Account) session.getAttribute("loginUser");
 
         String textSearch = request.getParameter("textSearch");
@@ -329,21 +335,39 @@ public class TaskController {
             page = Integer.parseInt(indexPage);
         }
 
-        int totalMyTask = taskDAO.getTotalAllMyTask(a.getId(), textSearch);
+        int totalMyTask = taskDAO.getTotalAllMyTaskLeader(a.getId(), textSearch);
         int totalPages = (totalMyTask % 10 == 0) ? totalMyTask / 10 : totalMyTask / 10 + 1;
 
-        List<MyTaskDto> myTaskDtoList = taskDAO.getAllMyTask(a.getId(), page, textSearch);
-
+        List<MyTaskDto> myTaskDtoList = taskDAO.getAllMyTaskLeader(a.getId(), page, textSearch);
+        List<Project> projectList = projectDao.getProjectByLeaderAcc(a.getId());
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page
         for (int i = 1; i <= totalPages; ++i) {
             lsPage.add(i);
         }
 
-
+        view.addObject("projectList", projectList);
         view.addObject("myTask", myTaskDtoList);
         view.addObject("lsPage", lsPage);
         view.addObject("page", page);
+        return view;
+    }
+
+    @RequestMapping(value = "/task/addTaskofLeader", method = RequestMethod.POST)
+    public ModelAndView addTaskofLeader(HttpServletRequest request, RedirectAttributes redirect) {
+        ModelAndView view = new ModelAndView("redirect:/task/my-task-for-leader");
+        HttpSession session = request.getSession();
+        if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
+            view = new ModelAndView("/login");
+            redirect.addAttribute("mess", "Please login");
+            return view;
+        }
+        Account a = (Account) session.getAttribute("loginUser");
+        String name = request.getParameter("taskName");
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
+        Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
+        taskService.addTaskeofLeader(projectId,a.getId(),a.getId(),name,startDate,deadline);
         return view;
     }
 }

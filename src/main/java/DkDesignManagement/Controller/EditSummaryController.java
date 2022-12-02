@@ -2,10 +2,12 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Entity.RevisionHistory;
 import DkDesignManagement.Repository.ImageAndFileDao;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.CloudinaryService;
+import DkDesignManagement.Service.HistoryService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,6 +45,9 @@ public class EditSummaryController {
 
     @Autowired
     private CloudinaryService cloudinary;
+
+    @Autowired
+    HistoryService historyService;
 
     @RequestMapping(value = "/edit_summary", method = RequestMethod.GET)
     public ModelAndView viewSummary(HttpServletRequest request) {
@@ -85,21 +91,24 @@ public class EditSummaryController {
         //create model
         Project project = new Project(id, name, startDate, closureDate, endDate
                 , account.getId(), categoryId, customerName, address, phone, detail, status, constructionArea, expectedCost);
+        if (!ObjectUtils.isEmpty(file.get(0).getOriginalFilename())) {
+            file.forEach(f -> {
+                String url;
+                try {
+                    url = cloudinary.uploadFile(f, "default", "image");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                if (ObjectUtils.isEmpty(url)) {
+                    request.setAttribute("mess", "Upload fail");
+                } else {
+                    int checkSaveFile = imageAndFileDao.uploadFileSummary(url, project.getId());
+                }
+                request.setAttribute("mess", "Upload success");
+            });
+        }
+        Project oldProject = projectService.getProject(project.getId());
 
-        file.forEach(f -> {
-            String url;
-            try {
-                url = cloudinary.uploadFile(f, "default", "image");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            if (ObjectUtils.isEmpty(url)) {
-                request.setAttribute("mess", "Upload fail");
-            } else {
-                int checkSaveFile = imageAndFileDao.uploadFileSummary(url, project.getId());
-            }
-            request.setAttribute("mess", "Upload success");
-        });
         //add
         int statusEdit = projectService.editProject(project);
         if (statusEdit != 1) {
@@ -110,7 +119,70 @@ public class EditSummaryController {
         redirect.addAttribute("id", id);
         redirect.addAttribute("mess", "edit successfully ");
 
+        //add history
+        //compare
+
+        List<String> listChange = compareProject(oldProject, project);
+        //check history exits
+        String type = "project";
+        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(project.getId(), type);
+        int revisionNoNew = 1;
+        if (!ObjectUtils.isEmpty(revisionNo)) {
+            revisionNoNew = revisionNo + 1;
+        }
+
+        String revisionDetail = "";
+        for (String change : listChange) {
+            revisionDetail += change + " <br> ";
+        }
+
+        RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type);
+        historyService.addHistory(revisionHistory);
+
         return view;
+    }
+
+    private List<String> compareProject(Project oldProject, Project newProject) {
+        List<String> change = new ArrayList<>();
+
+        if (!newProject.getProjectName().equals(oldProject.getProjectName())) {
+            String message = "Tên công trình: " + oldProject.getProjectName() + " -> " + newProject.getProjectName();
+            change.add(message);
+        }
+        if (!newProject.getCusName().equals(oldProject.getCusName())) {
+            String message = "Chủ nhà: " + oldProject.getCusName() + " -> " + newProject.getCusName();
+            change.add(message);
+        }
+        if (!newProject.getCusPhone().equals(oldProject.getCusPhone())) {
+            String message = "Số điện thoại: " + oldProject.getCusPhone() + " -> " + newProject.getCusPhone();
+            change.add(message);
+        }
+        if (!newProject.getCusAddress().equals(oldProject.getCusAddress())) {
+            String message = "Địa chỉ công trình: " + oldProject.getCusAddress() + " -> " + newProject.getCusAddress();
+            change.add(message);
+        }
+        if (newProject.getType() != oldProject.getType()) {
+            String message = "TypeId: " + oldProject.getType() + " -> " + newProject.getType();
+            change.add(message);
+        }
+        if (!newProject.getConstructionArea().equals(oldProject.getConstructionArea())) {
+            String message = "Diện tích xây dựng: " + oldProject.getConstructionArea() + " -> " + newProject.getConstructionArea();
+            change.add(message);
+        }
+        if (!newProject.getStartDate().equals(oldProject.getStartDate())) {
+            String message = "Thời gian bắt đầu: " + oldProject.getStartDate() + " -> " + newProject.getStartDate();
+            change.add(message);
+        }
+        if (!newProject.getClosureDate().equals(oldProject.getClosureDate())) {
+            String message = "Thời gian dự kiến kết thúc: " + oldProject.getClosureDate() + " -> " + newProject.getClosureDate();
+            change.add(message);
+        }
+        if (!newProject.getDetail().equals(oldProject.getDetail())) {
+            String message = "Mô tả: " + oldProject.getDetail() + " -> " + newProject.getDetail();
+            change.add(message);
+        }
+
+        return change;
     }
 
 //    @RequestMapping(value = "/edit_summary/upload-file-summary", method = RequestMethod.POST)

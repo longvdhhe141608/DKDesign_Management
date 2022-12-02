@@ -88,8 +88,9 @@
                             <td>Vai trò:</td>
                             <td>
                                 <select class="btn btn-secondary" id="role" name="role">
-                                    <option id="leader" value="2">thiết kế</option>
-                                    <option id="designer" value="1" ${member.memberRole==1?"selected":""}>trưởng nhóm
+                                    <option id="leader" value="2" ${member.memberRole==2?"selected":""}>Trưởng nhóm
+                                    </option>
+                                    <option id="designer" value="3" ${member.memberRole==3?"selected":""}>Thiết kế
                                     </option>
                                 </select>
                             </td>
@@ -98,7 +99,7 @@
                             <td>Trạng thái:</td>
                             <td>
                                 <select class="btn btn-secondary" name="status" id="status">
-                                    <option id="active" value="1">Mở</option>
+                                    <option id="active" value="1" ${member.memberStatus==1?"selected":""}>Mở</option>
                                     <option id="blocked" value="2" ${member.memberStatus==2?"selected":""}>Chặn</option>
                                 </select>
                             </td>
