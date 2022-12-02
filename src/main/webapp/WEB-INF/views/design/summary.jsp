@@ -63,7 +63,7 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
-                <a class="test"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/dashboard?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thống kê"></a>

@@ -191,17 +191,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public DashboardResponse getDashboard(int projectId) {
+    public DashboardResponse getDashboard(int projectId ,String designId) {
         //Tổng số công việc
-        int countTask = taskDAO.countAllSubTaskByProjectId(projectId);
+        int countTask = taskDAO.countAllSubTaskByProjectId(projectId,designId);
         //Công việc đang làm
-        int countSubTaskProcess = taskDAO.countAllSubTaskProcess(projectId);
+        int countSubTaskProcess = taskDAO.countAllSubTaskProcess(projectId,designId);
         //Công việc hoàn thành đúng hạn
-        int countCorrectDeadline = taskDAO.countAllSubTaskCorrectDeadline(projectId);
+        int countCorrectDeadline = taskDAO.countAllSubTaskCorrectDeadline(projectId,designId);
         //Công việc trễ hạn
-        int countOverDeadline = taskDAO.countAllSubTaskOverDeadline(projectId);
+        int countOverDeadline = taskDAO.countAllSubTaskOverDeadline(projectId,designId);
         //Công việc hoàn thành chậm tiến độ
-        int countOverDeadlineDoneTask = taskDAO.countAllSubTaskOverDeadlineAndFinish(projectId);
+        int countOverDeadlineDoneTask = taskDAO.countAllSubTaskOverDeadlineAndFinish(projectId,designId);
 
         return DashboardResponse.builder()
                 .countTask(countTask)
