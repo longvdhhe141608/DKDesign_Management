@@ -1,12 +1,11 @@
 package DkDesignManagement.Entity;
 
 import lombok.*;
-
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Account {
     private int id;
     private String username;
