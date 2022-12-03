@@ -155,7 +155,7 @@
 </div>
 <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content" style="width: 60%;height: 100%; ">
+    <div class="modal-content" style="width: 60%;height: 80%; ">
         <span id="close" class="close">&times;</span>
         <div class="project-add-task">
             <form id="my-task" action="addTaskofLeader" method="post">
@@ -202,7 +202,7 @@
                     </div>
                     <div class="btn_ok">
                         <button onclick="return checkvalidate('#my-task')" type="submit"
-                                class="btn btn-primary">Tạo
+                                class="btn btn-primary">Thêm
                         </button>
                     </div>
                 </div>

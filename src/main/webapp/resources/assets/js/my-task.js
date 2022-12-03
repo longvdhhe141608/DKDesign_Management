@@ -16,7 +16,7 @@ function checkvalidate(id) {
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
     numberdate = checkdate(today, startdate, enddate);
-
+    let numberprocess = 0;
 
     function checkEmpty(input) {
         let a = 0;
@@ -57,7 +57,7 @@ function checkvalidate(id) {
             error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
 
         }
-        else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        else if (startdate.getDate() > enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
             b++;
             error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
 
@@ -69,7 +69,7 @@ function checkvalidate(id) {
         return b;
     }
     console.log(numberdate);
-    let numberprocess = 0;
+
     numberprocess = numberEmpty + numberdate;
     if (numberprocess > 0) {
         return false;
