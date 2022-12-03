@@ -50,7 +50,7 @@ public class TaskController {
 
 
     @Autowired
-    private ImageAndFileDao imageAndFileDao;
+    private ImageAndFileService imageAndFileService;
 
     @Autowired
     NotificationService notificationService;
@@ -96,7 +96,7 @@ public class TaskController {
         int totalFile = 0;
 
         for (Tasks tasks : subTasksList) {
-            totalSubmitFile += imageAndFileDao.getTotalFile(tasks.getId());
+            totalSubmitFile += imageAndFileService.getTotalFile(tasks.getId());
             totalFile += tasks.getNumberOfFile();
         }
 

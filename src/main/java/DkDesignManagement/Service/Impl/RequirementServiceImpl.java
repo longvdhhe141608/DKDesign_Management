@@ -74,4 +74,22 @@ public class RequirementServiceImpl implements RequirementService {
     public List<Requirement> getPaginationRequirementByProjectID(int projectID, int index) {
         return requirementDao.getPaginationRequirementByProjectID(projectID, index);
     }
+
+    /**
+     * @param requirement
+     * @return
+     */
+    @Override
+    public int insertRequirement(Requirement requirement) {
+        return requirementDao.insertRequirement(requirement);
+    }
+
+    /**
+     * @param requirement
+     * @return
+     */
+    @Override
+    public int deleteRequirement(Requirement requirement) {
+        return requirementDao.deleteRequirement(requirement);
+    }
 }
