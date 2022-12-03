@@ -19,4 +19,8 @@ public interface ProjectService {
     int getSizeProjectByAcc(int id, String textSearch, String date);
 
     List<Project> getAllProjectByAcc(int id, String textSearch, String date, int page);
+
+    List<Project> getProjectByLeaderAcc(int id);
+
+    List<Project> getProjectByAcc(int id);
 }

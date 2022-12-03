@@ -1,9 +1,7 @@
 package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.*;
-import DkDesignManagement.Repository.*;
-import DkDesignManagement.Service.CommentService;
-import DkDesignManagement.Service.NotificationService;
+import DkDesignManagement.Service.*;
 import DkDesignManagement.model.TaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,19 +25,19 @@ import static DkDesignManagement.utils.Constant.PROJECT_NAME;
 public class TaskByDesignController {
 
     @Autowired
-    private ProjectDao projectDao;
+    private ProjectService projectService;
 
     @Autowired
-    private TaskDAO taskDAO;
+    private TaskService taskService;
 
     @Autowired
-    private SectionDAO sectionDao;
+    private SectionService sectionService;
 
     @Autowired
-    private RequirementDao requirementDao;
+    private RequirementService requirementService;
 
     @Autowired
-    private ImageAndFileDao imageAndFileDao;
+    private ImageAndFileService imageAndFileService;
 
     @Autowired
     NotificationService notificationService;
@@ -53,14 +51,14 @@ public class TaskByDesignController {
         int id = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
 //        List<Task> taskList = taskDAO.getAllBigTaskInProject(id);
-        List<Section> sectionList = sectionDao.getAllSectionByProjectID(id);
+        List<Section> sectionList = sectionService.getAllSectionByProjectID(id);
 
         List<TaskDto> taskDtoList = new ArrayList<>();
 
         sectionList.forEach(s -> {
-            List<Tasks> tasks = taskDAO.getAllTasksByProjectIDAndSectionID(id, s.getSectionId());
+            List<Tasks> tasks = taskService.getAllTasksByProjectIDAndSectionID(id, s.getSectionId());
             List<Tasks> subTasks = new ArrayList<>();
             TaskDto dto = TaskDto.builder()
                     .sectionID(s.getSectionId())
@@ -68,7 +66,7 @@ public class TaskByDesignController {
                     .tasksList(tasks)
                     .build();
             tasks.forEach(t -> {
-                List<Tasks> subTasksList = taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(id, s.getSectionId(), t.getId());
+                List<Tasks> subTasksList = taskService.getAllSubTasksByProjectIDAndSectionIDAndTaskID(id, s.getSectionId(), t.getId());
                 subTasksList.forEach(rs -> {
                     Tasks tk = Tasks.builder()
                             .id(rs.getId())
@@ -94,7 +92,7 @@ public class TaskByDesignController {
             taskDtoList.add(dto);
         });
 
-        List<Requirement> requirements = requirementDao.getAllRequirementByProjectID(project.getId());
+        List<Requirement> requirements = requirementService.getAllRequirementByProjectID(project.getId());
 
         view.addObject("project", project);
 //        view.addObject("taskList", taskList);
@@ -112,21 +110,21 @@ public class TaskByDesignController {
         Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
-        Project project = projectDao.getProject(projectID);
+        Project project = projectService.getProject(projectID);
 
-        Tasks tasks = taskDAO.getOneTasksByTaskID(taskID);
+        Tasks tasks = taskService.getOneTasksByTaskID(taskID);
 
         int sectionID = Integer.parseInt(request.getParameter("section-id"));
-        Section section = sectionDao.getOneSectionBySectionID(sectionID);
-        List<Tasks> subTasksList = taskDAO.getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
+        Section section = sectionService.getOneSectionBySectionID(sectionID);
+        List<Tasks> subTasksList = taskService.getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(project.getId(), section.getSectionId(), tasks.getId());
 
-        List<Requirement> requirements = requirementDao.getAllRequirementByProjectID(project.getId());
+        List<Requirement> requirements = requirementService.getAllRequirementByProjectID(project.getId());
 
         int totalSubmitFile = 0;
         int totalFile = 0;
 
         for (int i = 0; i < subTasksList.size(); i++) {
-            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
+            totalSubmitFile += imageAndFileService.getTotalFile(subTasksList.get(i).getId());
             totalFile += subTasksList.get(i).getNumberOfFile();
         }
 
@@ -176,7 +174,7 @@ public class TaskByDesignController {
                 .taskStatus(1)
                 .build();
 
-        int keySubTask = taskDAO.addTask(tasks);
+        int keySubTask = taskService.addTask(tasks);
 
         if (keySubTask == 0) {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
@@ -185,7 +183,7 @@ public class TaskByDesignController {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
             view.addObject("mess", "Save success");
             //find leader
-            Project project = projectDao.getProject(projectID);
+            Project project = projectService.getProject(projectID);
             int leader = project.getCreator();
 
             //add notification send leader

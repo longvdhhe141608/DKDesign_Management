@@ -71,7 +71,7 @@ public class MemberController {
     public ModelAndView addMemberToProject(HttpServletRequest request, @RequestParam("id") int projectId) {
         ModelAndView view = new ModelAndView("member");
         String username = request.getParameter("memberToAdd");
-        int memberId=0;
+        int memberId = 0;
         //TODO : check username wrong
 
         //TODO : check Member exits
@@ -82,7 +82,6 @@ public class MemberController {
             memberService.addMemberToProject(projectId, memberId);
         } catch (Exception e) {
             checkAddMember = false;
-            memberId=0;
             e.printStackTrace();
         }
 
@@ -98,18 +97,19 @@ public class MemberController {
                         , message, memberId, projectId, url);
                 notificationService.addNotification(notification);
             }
+        } else {
+            if (memberId == 0) {
+                view.addObject("error", "Thành viên không tồn tại");
+            } else {
+                view.addObject("error", "Thành viên đã được thêm vào dự án");
+            }
         }
 
         Project project = projectService.getProject(projectId);
         List<Member> memberList = memberService.getMemberInProject(projectId);
-
-        if(memberId==0){
-            view.addObject("error","Thành viên không tồn tại");
-        }else {
-            view.clear();
-        }
         view.addObject("memberList", memberList);
         view.addObject("project", project);
+
         return view;
     }
 
