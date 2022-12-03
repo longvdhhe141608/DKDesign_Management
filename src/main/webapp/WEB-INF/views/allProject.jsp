@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <script src="<c:url value="/resources/assets/js/allProject.js"/>"></script>
-    <title>Tất cả công trình</title>
+    <title>Trang Chủ</title>
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">

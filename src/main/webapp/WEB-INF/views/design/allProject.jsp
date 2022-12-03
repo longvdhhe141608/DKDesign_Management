@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
-    <title>Tất cả công trình</title>
+    <title>Trang Chủ</title>
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
