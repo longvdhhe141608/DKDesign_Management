@@ -69,6 +69,12 @@ function checkvalidate(id) {
         return b;
     }
     console.log(numberdate);
-    return false;
+    let numberprocess = 0;
+    numberprocess = numberEmpty + numberdate;
+    if (numberprocess > 0) {
+        return false;
+    } else {
+        return true;
+    }
 
 }
