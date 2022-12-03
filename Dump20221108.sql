@@ -84,7 +84,9 @@ CREATE TABLE `allowed_action` (
   `role_id` bigint NOT NULL,
   `action_id` bigint NOT NULL,
   PRIMARY KEY (`role_id`,`action_id`),
-  KEY `FK_actionvsaa_idx` (`action_id`)
+  KEY `FK_actionvsaa_idx` (`action_id`),
+  CONSTRAINT `FK_action_can` FOREIGN KEY (`action_id`) REFERENCES `action` (`id`),
+  CONSTRAINT `FK_role_can` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -541,4 +543,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-03 20:14:23
+-- Dump completed on 2022-12-03 20:31:28
