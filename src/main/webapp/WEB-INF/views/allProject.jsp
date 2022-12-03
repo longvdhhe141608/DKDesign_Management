@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <script src="<c:url value="/resources/assets/js/allProject.js"/>"></script>
-    <title>Tất cả công trình</title>
+    <title>Trang Chủ</title>
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
@@ -26,9 +26,10 @@
                     <h2 style=" margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
                 </div>
                 <div>
-<%--                <h4>Tất cả công trình</h4>--%>
+                    <%--                <h4>Tất cả công trình</h4>--%>
                 </div>
             </div>
+
             <div class="all-project-header">
                 <div>
                     <div>
@@ -144,8 +145,9 @@
                             </div>
                         </div>
                     </div>
-                    <div></div>
                 </div>
+
+                <%--Tìm Kiếm Công Trình--%>
                 <form action="allProject" method="get" class="all-project-header-right">
                     <div style="margin-right: 20px;">
                         <div class="dropdown">
@@ -168,7 +170,9 @@
                         </div>
                     </div>
                 </form>
+                <%--Kết Thúc Tìm Kiếm Công Trình--%>
             </div>
+
             <div class="table_content">
                 <div class=" table-responsive-sm">
                     <table class="table table-bordered">
@@ -200,7 +204,7 @@
                                         </a>
                                     </div>
                                 </td>
-                                <td >
+                                <td>
                                     <c:if test="${i.type == 1}">
                                         Thiết kế ngoại thất
                                     </c:if>
@@ -211,27 +215,27 @@
                                         Thiết kế ngoại thất + Thiết kế nội thất
                                     </c:if>
                                 </td>
-                                <td >
-                                    <div class="name-input" >
+                                <td>
+                                    <div class="name-input">
                                             ${i.startDate}
                                     </div>
                                 </td>
-                                <td >
-                                    <div class="name-input" >
+                                <td>
+                                    <div class="name-input">
                                             ${i.closureDate}
                                     </div>
                                 </td>
-                                <td >
-                                    <div class="name-input" >
+                                <td>
+                                    <div class="name-input">
                                             ${i.endDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" >
+                                    <div class="name-input">
 
                                     </div>
                                 </td>
-                                <td >
+                                <td>
                                     <c:if test="${i.status == 2}">
                                         Đang bàn giao
                                     </c:if>
@@ -242,7 +246,7 @@
                                         Đã hoàn thành
                                     </c:if>
                                 </td>
-                                <td >
+                                <td>
                                     <div style="display: flex; justify-content: space-between;">
                                         <c:if test="${i.status == 1}">
                                             <a href="${pageContext.request.contextPath}/edit_summary?id=${i.id}">
@@ -264,7 +268,8 @@
                                                     <form id="add-project1" class="">
                                                         <p>Bạn chắc chắn muốn xóa dữ liệu này!</p>
                                                         <div class="add-btn-work">
-                                                            <button class="btn btn-secondary close_popup">Hủy bỏ</button>
+                                                            <button class="btn btn-secondary close_popup">Hủy bỏ
+                                                            </button>
                                                             <button
                                                                     onclick="return checkvalidatenumber('#add-project1')"
                                                                     type="submit" class="btn btn-primary">Lưu
@@ -336,8 +341,8 @@
         // When the user clicks on <span> (x), close the modal
 
 
-        let  close = document.querySelector('.close_popup');
-        close.addEventListener('click',function (){
+        let close = document.querySelector('.close_popup');
+        close.addEventListener('click', function () {
             modal.style.display = "none";
         });
 
