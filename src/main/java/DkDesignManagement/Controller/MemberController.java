@@ -3,9 +3,9 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Repository.MemberDao;
-import DkDesignManagement.Repository.ProjectDao;
+import DkDesignManagement.Service.MemberService;
 import DkDesignManagement.Service.NotificationService;
+import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,9 +27,9 @@ import static DkDesignManagement.utils.Constant.PROJECT_NAME;
 public class MemberController {
 
     @Autowired
-    private MemberDao memberDAO;
+    private MemberService memberService;
     @Autowired
-    private ProjectDao projectDao;
+    private ProjectService projectService;
 
     @Autowired
     NotificationService notificationService;
@@ -38,10 +38,11 @@ public class MemberController {
     public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid) {
 
         ModelAndView view = new ModelAndView("member");
-        int id = projectid;
 
-        Project project = projectDao.getProject(id);
-        List<Member> memberList = memberDAO.getMemberInProject(id);
+        int id = projectid;
+        Project project = projectService.getProject(id);
+
+        List<Member> memberList = memberService.getMemberInProject(id);
 
         view.addObject("project", project);
         view.addObject("memberList", memberList);
@@ -53,12 +54,12 @@ public class MemberController {
     public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request, @RequestParam("id") int projectid) {
         ModelAndView view = new ModelAndView("member");
         int id = projectid;
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
 
         int role = Integer.parseInt(request.getParameter("roleSearch"));
         String name = request.getParameter("nameSearch");
 
-        List<Member> memberList = memberDAO.searchMemberInProject(projectid, role, name);
+        List<Member> memberList = memberService.searchMemberInProject(projectid, role, name);
         view.addObject("memberList", memberList);
         view.addObject("project", project);
         view.addObject("roleSearch", role);
@@ -69,22 +70,23 @@ public class MemberController {
     @RequestMapping(value = "/addMember", method = RequestMethod.GET)
     public ModelAndView addMemberToProject(HttpServletRequest request, @RequestParam("id") int projectId) {
         ModelAndView view = new ModelAndView("member");
-
         String username = request.getParameter("memberToAdd");
-        int memberId = memberDAO.getAccountIdByUsername(username);
+        int memberId=0;
         //TODO : check username wrong
 
         //TODO : check Member exits
 
         boolean checkAddMember = true;
         try {
-            memberDAO.addMemberToProject(projectId, memberId);
+            memberId = memberService.getAccountIdByUsername(username);
+            memberService.addMemberToProject(projectId, memberId);
         } catch (Exception e) {
             checkAddMember = false;
+            memberId=0;
             e.printStackTrace();
         }
 
-        if (checkAddMember){
+        if (checkAddMember) {
             //add notification send leader
             String url = HOST + "/" + PROJECT_NAME + "/design/project/summary?id=" + projectId;
             String message = "Bạn đã được thêm vào dự án";
@@ -98,8 +100,14 @@ public class MemberController {
             }
         }
 
-        Project project = projectDao.getProject(projectId);
-        List<Member> memberList = memberDAO.getMemberInProject(projectId);
+        Project project = projectService.getProject(projectId);
+        List<Member> memberList = memberService.getMemberInProject(projectId);
+
+        if(memberId==0){
+            view.addObject("error","Thành viên không tồn tại");
+        }else {
+            view.clear();
+        }
         view.addObject("memberList", memberList);
         view.addObject("project", project);
         return view;
@@ -109,14 +117,15 @@ public class MemberController {
     public ModelAndView changeMemberStatus(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("member");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
 
         int status = Integer.parseInt(request.getParameter("status"));
         String username = request.getParameter("username");
-        int memberId = memberDAO.getAccountIdByUsername(username);
 
-        memberDAO.updateStatusMemberInProject(id, memberId, status);
-        List<Member> memberList = memberDAO.getMemberInProject(id);
+        int memberId = memberService.getAccountIdByUsername(username);
+
+        memberService.updateStatusMemberInProject(id, memberId, status);
+        List<Member> memberList = memberService.getMemberInProject(id);
 
         view.addObject("project", project);
         view.addObject("memberList", memberList);

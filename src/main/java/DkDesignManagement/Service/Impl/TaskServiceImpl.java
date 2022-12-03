@@ -119,8 +119,12 @@ public class TaskServiceImpl implements TaskService {
         if (task.getTaskStatus() == PROCESS_TASK_STATUS && ObjectUtils.isEmpty(task.getListSubTask())) {
             return task.getTaskStatus();
         }
+        //check personal task of leader
+        if (task.getTaskStatus() == PROCESS_TASK_STATUS && (task.getTaskfId() == null && ObjectUtils.isEmpty(task.getSectionId()))){
+            return task.getTaskStatus();
+        }
 
-        int count = taskDAO.countTaskNoDone(task.getTaskId());
+            int count = taskDAO.countTaskNoDone(task.getTaskId());
 
         //no done
         if (count == 0 && task.getTaskStatus() != 4) {
@@ -191,17 +195,17 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public DashboardResponse getDashboard(int projectId) {
+    public DashboardResponse getDashboard(int projectId, String designId) {
         //Tổng số công việc
-        int countTask = taskDAO.countAllSubTaskByProjectId(projectId);
+        int countTask = taskDAO.countAllSubTaskByProjectId(projectId, designId);
         //Công việc đang làm
-        int countSubTaskProcess = taskDAO.countAllSubTaskProcess(projectId);
+        int countSubTaskProcess = taskDAO.countAllSubTaskProcess(projectId, designId);
         //Công việc hoàn thành đúng hạn
-        int countCorrectDeadline = taskDAO.countAllSubTaskCorrectDeadline(projectId);
+        int countCorrectDeadline = taskDAO.countAllSubTaskCorrectDeadline(projectId, designId);
         //Công việc trễ hạn
-        int countOverDeadline = taskDAO.countAllSubTaskOverDeadline(projectId);
+        int countOverDeadline = taskDAO.countAllSubTaskOverDeadline(projectId, designId);
         //Công việc hoàn thành chậm tiến độ
-        int countOverDeadlineDoneTask = taskDAO.countAllSubTaskOverDeadlineAndFinish(projectId);
+        int countOverDeadlineDoneTask = taskDAO.countAllSubTaskOverDeadlineAndFinish(projectId, designId);
 
         return DashboardResponse.builder()
                 .countTask(countTask)

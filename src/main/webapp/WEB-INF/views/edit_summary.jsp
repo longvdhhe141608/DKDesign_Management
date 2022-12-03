@@ -188,7 +188,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Upload thị file:</td>
+                            <td>Upload file:</td>
                             <td>
                                 <form>
                                     <div class="form-group">

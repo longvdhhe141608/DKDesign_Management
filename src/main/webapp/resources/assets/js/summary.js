@@ -5,3 +5,10 @@ function update_image() {
     img.src = window.URL.createObjectURL(file);
 
 }
+
+function showImage(url) {
+    Swal.fire({
+        imageUrl: url,
+        customClass:'swal-wide'
+    })
+}

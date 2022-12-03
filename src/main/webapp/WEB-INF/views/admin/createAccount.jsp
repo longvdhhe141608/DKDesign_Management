@@ -20,9 +20,9 @@
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../header.jsp"/>
     <div class="list-task body_page">
-        <jsp:include page="nav_left.jsp"/>
+        <jsp:include page="../nav_left.jsp"/>
         <div style="margin-left:20% ;">
 
             <script>

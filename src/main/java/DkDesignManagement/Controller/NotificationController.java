@@ -52,7 +52,9 @@ public class NotificationController {
             return view;
         }
         Account account = (Account) session.getAttribute("loginUser");
-
+        if(account.getRole_id() == 3){
+            view = new ModelAndView("/design/notification");
+        }
         //sendNotification
         //check Role
         if (account.getRole_id() == 2) {
@@ -76,16 +78,20 @@ public class NotificationController {
             int design = account.getId();
             for (Task task : listTaskExpired) {
 
-                //add notification send leader
-                String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
-                String message = "Bạn có sub-task trong dự án đến ngày hết hạn";
+                if (!ObjectUtils.isEmpty(task)) {
+                    //add notification send leader
+                    String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId() + "" +
+                            "&section-id=" + task.getSectionId() + "&task-id=" + task.getTaskfId() + "&sub-task-id=" + task.getTaskId();
+                    String message = "Bạn có sub-task trong dự án đến ngày hết hạn";
 
-                //check notification exits
-                NotificationDto notificationDto = notificationService.getNotification(design, message, url);
-                if (ObjectUtils.isEmpty(notificationDto)) {
-                    Notification notification = new Notification(-1, new java.util.Date()
-                            , message, design, task.getProjectId(), url);
-                    notificationService.addNotification(notification);
+                    //check notification exits
+                    NotificationDto notificationDto = notificationService.getNotification(design, message, url);
+                    if (ObjectUtils.isEmpty(notificationDto)) {
+                        Notification notification = new Notification(-1, new java.util.Date()
+                                , message, design, task.getProjectId(), url);
+                        notificationService.addNotification(notification);
+                    }
+
                 }
             }
         }
@@ -100,16 +106,18 @@ public class NotificationController {
             int leader = account.getId();
             for (Task task : listTaskExpired) {
 
-                //add notification send leader
-                String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
-                String message = "Bạn có sub-task trong dự án đến ngày hết hạn";
+                if (!ObjectUtils.isEmpty(task)) {
+                    //add notification send leader
+                    String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+                    String message = "Bạn có sub-task trong dự án đến ngày hết hạn";
 
-                //check notification exits
-                NotificationDto notificationDto = notificationService.getNotification(leader, message, url);
-                if (ObjectUtils.isEmpty(notificationDto)) {
-                    Notification notification = new Notification(-1, new java.util.Date()
-                            , message, leader, task.getProjectId(), url);
-                    notificationService.addNotification(notification);
+                    //check notification exits
+                    NotificationDto notificationDto = notificationService.getNotification(leader, message, url);
+                    if (ObjectUtils.isEmpty(notificationDto)) {
+                        Notification notification = new Notification(-1, new java.util.Date()
+                                , message, leader, task.getProjectId(), url);
+                        notificationService.addNotification(notification);
+                    }
                 }
             }
         }

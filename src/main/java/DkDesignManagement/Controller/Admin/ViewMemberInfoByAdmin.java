@@ -1,4 +1,4 @@
-package DkDesignManagement.Controller;
+package DkDesignManagement.Controller.Admin;
 
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.EmployeeDao;
@@ -25,7 +25,7 @@ public class ViewMemberInfoByAdmin {
 
     @RequestMapping(value = "/information", method = RequestMethod.GET)
     public ModelAndView loadMemberDetail(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("informationAdmin");
+        ModelAndView view = new ModelAndView("admin/informationAdmin");
 
         int id = Integer.parseInt(request.getParameter("id"));
 
@@ -37,7 +37,7 @@ public class ViewMemberInfoByAdmin {
 
     @RequestMapping(value = "editAccount", method = RequestMethod.GET)
     public ModelAndView loadEditMemberDetail(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("editAccountAdmin");
+        ModelAndView view = new ModelAndView("admin/editAccountAdmin");
 
         int id = Integer.parseInt(request.getParameter("id"));
 
@@ -72,7 +72,7 @@ public class ViewMemberInfoByAdmin {
             memberDAO.updateMemberRole(role,username);
 
         }catch (Exception exception){
-            view = new ModelAndView("editAccountAdmin");
+            view = new ModelAndView("admin/editAccountAdmin");
             view.addObject("member",member);
             view.addObject("error","Action failed");
         }
