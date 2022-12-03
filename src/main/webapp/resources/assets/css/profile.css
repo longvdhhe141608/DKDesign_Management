@@ -23,8 +23,9 @@
 }
 
 .btn-edit {
-    float: right;
+
     /*margin-right: 30%;*/
     display: flex;
-    margin-right: 300px;
+    margin-right: 250px;
+    justify-content: end;
 }
