@@ -68,4 +68,22 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> getAllProjectByAcc(int id, String textSearch, String date, int page) {
         return projectDao.getAllProjectByAcc(id, textSearch, date, page);
     }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Project> getProjectByLeaderAcc(int id) {
+        return projectDao.getProjectByLeaderAcc(id);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Project> getProjectByAcc(int id) {
+        return projectDao.getProjectByAcc(id);
+    }
 }

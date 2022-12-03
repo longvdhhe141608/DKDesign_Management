@@ -154,7 +154,7 @@
                 </tr>
 
                 <tr>
-                    <td>Upload file:</td>
+                    <td>Tải file lên:</td>
                     <td>
                         <c:if test="${progressPercent != 100 && subTask.status == 2 }">
                             <form action="${pageContext.request.contextPath}/design/sub-task/update-file-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
@@ -163,7 +163,7 @@
                                     <input type="file" class="form-control" id="fileInput" multiple name="file">
                                 </div>
                                 <div>
-                                    <input class="btn btn-primary" type="submit" value="Update File">
+                                    <input class="btn btn-primary" type="submit" value="Cập nhật file">
                                 </div>
                             </form>
                         </c:if>

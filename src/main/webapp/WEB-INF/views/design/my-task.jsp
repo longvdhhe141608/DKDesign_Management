@@ -651,7 +651,7 @@
                          || i.status == 4 ? "#a2a3a2dd" : ""
                          || nowDate == i.startDate ? "#32c107dd" : "")}">
                             <td style="justify-content: center;">
-                                <form class="form-name-project" action="sub-task.html">
+
                                     <div class="name-project">
                                             ${i.subTaskName}
                                     </div>
@@ -663,7 +663,6 @@
                                             </button>
                                         </a>
                                     </div>
-                                </form>
 
                             </td>
 

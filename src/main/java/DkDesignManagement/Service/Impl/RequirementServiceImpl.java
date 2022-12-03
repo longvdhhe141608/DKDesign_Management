@@ -15,7 +15,7 @@ import static DkDesignManagement.utils.Constant.*;
 public class RequirementServiceImpl implements RequirementService {
 
     @Autowired
-    RequirementDao requirementDao;
+    private RequirementDao requirementDao;
 
     @Override
     public List<Requirement> getAll() {
@@ -33,26 +33,45 @@ public class RequirementServiceImpl implements RequirementService {
     }
 
     @Override
-    public List<Requirement> getRequirementByProjectId(int projectId){
-        return  requirementDao.getAllRequirementByProjectID(projectId);
+    public List<Requirement> getRequirementByProjectId(int projectId) {
+        return requirementDao.getAllRequirementByProjectID(projectId);
     }
 
     @Override
     public int checkAndUpdaterRequirementDone(Requirement requirement) {
         int count = requirementDao.countTaskNoDone(requirement.getId());
         //requirement mới tạo
-        if(requirement.getStatus() == NEW_REQUIREMENT_STATUS || requirement.getStatus() == DELETE_REQUIREMENT_STATUS){
+        if (requirement.getStatus() == NEW_REQUIREMENT_STATUS || requirement.getStatus() == DELETE_REQUIREMENT_STATUS) {
             return requirement.getStatus();
         }
 
-        if (count==0 && requirement.getStatus() != COMPLETE_REQUIREMENT_STATUS){
+        if (count == 0 && requirement.getStatus() != COMPLETE_REQUIREMENT_STATUS) {
             requirement.setStatus(COMPLETE_REQUIREMENT_STATUS);
             requirementDao.updateRequirement(requirement);
-        }else if(count != 0 && requirement.getStatus() == COMPLETE_REQUIREMENT_STATUS){
+        } else if (count != 0 && requirement.getStatus() == COMPLETE_REQUIREMENT_STATUS) {
             requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
             requirementDao.updateRequirement(requirement);
         }
 
         return requirement.getStatus();
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Requirement> getAllRequirementByProjectID(int id) {
+        return requirementDao.getAllRequirementByProjectID(id);
+    }
+
+    /**
+     * @param projectID
+     * @param index
+     * @return
+     */
+    @Override
+    public List<Requirement> getPaginationRequirementByProjectID(int projectID, int index) {
+        return requirementDao.getPaginationRequirementByProjectID(projectID, index);
     }
 }

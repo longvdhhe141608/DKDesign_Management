@@ -105,7 +105,7 @@
                                         Thiết kế ngoại thất + Thiết kế nội thất
                                     </c:if>
                                 </td>
-                                s2
+
                                 <td>
                                     <div class="name-input">
                                             ${i.startDate}

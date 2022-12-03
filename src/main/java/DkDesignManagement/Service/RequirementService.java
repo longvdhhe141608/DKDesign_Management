@@ -18,4 +18,8 @@ public interface RequirementService {
     List<Requirement> getRequirementByProjectId(int projectId);
 
     int checkAndUpdaterRequirementDone(Requirement requirement);
+
+    List<Requirement> getAllRequirementByProjectID(int id);
+
+    List<Requirement> getPaginationRequirementByProjectID(int projectID, int index);
 }
