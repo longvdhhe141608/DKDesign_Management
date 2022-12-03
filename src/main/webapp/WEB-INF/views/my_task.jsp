@@ -95,10 +95,10 @@
                                 </c:if>
                                 <c:if test="${i.taskID == null}">
                                     <div style="display: flex; justify-content: space-between">
-                                        <div class="name-project">
+                                        <div class="name-project col-8">
                                                 ${i.subTaskName}
                                         </div>
-                                        <div>
+                                        <div class="col-4">
                                             <a href="${pageContext.request.contextPath}/leader-task?taskId=${i.subTaskID}">
                                                 <button class="btn btn-primary summary-detail-all"
                                                         style="float: right;">

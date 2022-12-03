@@ -104,7 +104,7 @@
                                     <button onclick="this.form.submit()" class="btn btn-success">Mở</button>
                                 </c:if>
                                 <c:if test="${member.memberStatus==2}">
-                                    <button onclick="this.form.submit()" class="btn btn-success">Chặn</button>
+                                    <button onclick="this.form.submit()" class="btn btn-danger">Chặn</button>
                                 </c:if>
                             </form>
                         </td>
