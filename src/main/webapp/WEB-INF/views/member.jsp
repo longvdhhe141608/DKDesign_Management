@@ -196,18 +196,13 @@
                             <td>${member.memberAddress}</td>
                             <td>
                                 <form action="changeMemberStatus">
-                                    <input value="${project.id}" type="text" name="id" hidden>
-                                    <input value="${member.memberCode}" type="text" name="username" hidden>
-                                    <c:if test="${!member.memberCode.equals(sessionScope.loginUser.username)}">
-                                        <select class="btn btn-success" name="status" onchange="this.form.submit()">
-                                            <option class="btn" value="1" ${member.memberStatus==1?"selected":""}>
-                                                Mở
-                                            </option>
-                                            <option class="btn btn-danger" ${member.memberStatus==2?"selected":""}
-                                                    value="2">
-                                                Chặn
-                                            </option>
-                                        </select>
+                                    <input value="${member.memberStatus}" name="status" hidden>
+                                    <input value="${member.memberCode}" name="username" hidden>
+                                    <c:if test="${member.memberStatus==1}">
+                                        <button onclick="this.form.submit()" class="btn btn-success">Mở</button>
+                                    </c:if>
+                                    <c:if test="${member.memberStatus==2}">
+                                        <button onclick="this.form.submit()" class="btn btn-danger">Chặn</button>
                                     </c:if>
                                 </form>
                             </td>
