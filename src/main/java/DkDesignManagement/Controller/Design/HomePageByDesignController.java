@@ -2,6 +2,7 @@ package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Repository.ProjectDao;
+import DkDesignManagement.Service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,14 +18,14 @@ import javax.servlet.http.HttpSession;
 public class HomePageByDesignController {
 
     @Autowired
-    private ProjectDao projectDao;
+    private ProjectService projectService;
 
     @RequestMapping(value = "/home",method = RequestMethod.GET)
     public ModelAndView loadHome(HttpServletRequest request, HttpServletResponse response){
         ModelAndView view = new ModelAndView("design/headerHome");
         HttpSession session = request.getSession();
         Account a = (Account) session.getAttribute("loginUser");
-        view.addObject("listProDoing", projectDao.getProjectByAcc(a.getId()));
+        view.addObject("listProDoing", projectService.getProjectByAcc(a.getId()));
         return view;
     }
 }

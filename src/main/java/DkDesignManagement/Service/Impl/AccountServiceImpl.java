@@ -83,4 +83,13 @@ public class AccountServiceImpl implements AccountService {
     public void addNewAccount(String username, String password, int role) {
         accountDao.addNewAccount(username, password, role);
     }
+
+    /**
+     * @param id
+     * @param avatar
+     */
+    @Override
+    public int updateAvatar(int id, String avatar) {
+        return accountDao.updateAvatar(id, avatar);
+    }
 }

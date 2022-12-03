@@ -4,6 +4,7 @@ import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.AccountService;
+import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import static DkDesignManagement.utils.Constant.*;
 public class ProcessController {
 
     @Autowired
-    private ProjectDao projectDao;
+    private ProjectService projectService;
 
     @Autowired
     private TaskService taskService;
@@ -37,7 +38,7 @@ public class ProcessController {
     public ModelAndView viewProgress(HttpServletRequest request){
         ModelAndView view = new ModelAndView("progress");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
         int page = 1;
         if (!ObjectUtils.isEmpty(request.getParameter("page"))) {
             page = Integer.parseInt(request.getParameter("page"));

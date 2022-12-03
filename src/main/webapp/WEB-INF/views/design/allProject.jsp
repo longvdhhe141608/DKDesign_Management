@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/bodymain.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
-    <title>Tất cả công trình</title>
+    <title>Trang Chủ</title>
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
@@ -21,14 +21,14 @@
         <div class="summary">
             <div class="title">
                 <div>
-                    <h2 style=" margin-top: 50px;">Xin chào , ${sessionScope.loginUser.username}</h2>
+                    <h2 style=" margin-top: 50px;">Xin chào, ${sessionScope.loginUser.username}</h2>
                 </div>
-                    <div>
-<%--                <h4>Tất cả công trình</h4>--%>
-                    </div>
+                <div>
+                    <%--                <h4>Tất cả công trình</h4>--%>
+                </div>
             </div>
             <div class="">
-
+                <%--starting tìm kiếm công trình--%>
                 <div style="display: flex; justify-content: end; margin-bottom: 20px">
                     <form action="${pageContext.request.contextPath}/design/project/view-all-project" method="get"
                           style="display: flex; justify-content: end;">
@@ -44,7 +44,6 @@
                                     <option ${status == 2020 ? "selected":""} value="2020">2020</option>
                                     <option ${status == 2019 ? "selected":""} value="2019">2019</option>
                                 </select>
-                                <%--                            </form>--%>
                             </div>
                         </div>
                         <div class="">
@@ -56,41 +55,45 @@
                                            name="textSearch" placeholder="Tên công trình">
                                     <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                                 </div>
-                                <%--                            </form>--%>
                             </div>
                         </div>
                     </form>
                 </div>
+                <%--ending tìm kiếm công trình--%>
+
             </div>
             <div class="table_content">
                 <div class=" table-responsive-sm">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col" class="col-5">Tên công trình</th>
-                            <th scope="col" class="col-1">Loại công trình</th>
-                            <th scope="col" class="col-1">Thời gian bắt đầu</th>
-                            <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
-                            <th scope="col" class="col-1">Thời gian kết thúc</th>
-                            <th scope="col" class="col-1">Tiến độ</th>
-                            <th scope="col" class="col-2">Trạng thái</th>
+                            <th scope="col" class="col-1">Tên công trình</th>
+                            <th scope="col" class="col-2">Loại công trình</th>
+                            <th scope="col" class="col-3">Thời gian bắt đầu</th>
+                            <th scope="col" class="col-4">Thời gian dự kiến kết thúc</th>
+                            <th scope="col" class="col-5">Thời gian kết thúc</th>
+                            <th scope="col" class="col-6">Tiến độ</th>
+                            <th scope="col" class="col-7">Trạng thái</th>
                         </tr>
+
                         </thead>
                         <tbody class="list-project">
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
                                 <td class="name-and-link">
-                                    <div class="name-project col-8">
-                                            ${i.projectName}
-                                    </div>
-                                    <input type="text" id="projectid" name="projectid" value="${i.id}" hidden>
-                                    <div class="links col-4">
-                                        <a class="link-detail"
-                                           href="${pageContext.request.contextPath}/design/project/summary?id=${i.id}">
-                                            <button class="btn-chi-tiet">Chi tiết</button>
-                                        </a>
+                                    <div style="display: flex; justify-content: space-between">
+                                        <div class="name-project col-8">
+                                                ${i.projectName}
+                                        </div>
+                                        <div class="links col-4">
+                                            <a class="link-detail"
+                                               href="${pageContext.request.contextPath}/design/project/summary?id=${i.id}">
+                                                <button class="btn-chi-tiet">Chi tiết</button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </td>
+
                                 <td>
                                     <c:if test="${i.type == 1}">
                                         Thiết kế ngoại thất
@@ -102,23 +105,24 @@
                                         Thiết kế ngoại thất + Thiết kế nội thất
                                     </c:if>
                                 </td>
+
                                 <td>
-                                    <div class="name-input" >
+                                    <div class="name-input">
                                             ${i.startDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" >
+                                    <div class="name-input">
                                             ${i.closureDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" >
+                                    <div class="name-input">
                                             ${i.endDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" >
+                                    <div class="name-input">
 
                                     </div>
                                 </td>

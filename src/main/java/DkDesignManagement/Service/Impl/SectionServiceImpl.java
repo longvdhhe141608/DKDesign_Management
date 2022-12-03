@@ -66,4 +66,13 @@ public class SectionServiceImpl implements SectionService {
     public Section getOneSectionBySectionID(int id) {
         return sectionDAO.getOneSectionBySectionID(id);
     }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Section> getAllSectionByProjectID(int id) {
+        return sectionDAO.getAllSectionByProjectID(id);
+    }
 }

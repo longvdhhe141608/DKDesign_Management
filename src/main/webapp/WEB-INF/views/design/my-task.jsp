@@ -606,7 +606,7 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Công việc cá nhân</title>
+    <title>Công Việc Cá Nhân</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -651,7 +651,7 @@
                          || i.status == 4 ? "#a2a3a2dd" : ""
                          || nowDate == i.startDate ? "#32c107dd" : "")}">
                             <td style="justify-content: center;">
-                                <form class="form-name-project" action="sub-task.html">
+
                                     <div class="name-project">
                                             ${i.subTaskName}
                                     </div>
@@ -663,7 +663,6 @@
                                             </button>
                                         </a>
                                     </div>
-                                </form>
 
                             </td>
 

@@ -3,12 +3,7 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.RevisionHistory;
-import DkDesignManagement.Repository.ImageAndFileDao;
-import DkDesignManagement.Repository.ProjectDao;
-import DkDesignManagement.Service.CategoryService;
-import DkDesignManagement.Service.CloudinaryService;
-import DkDesignManagement.Service.HistoryService;
-import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.Service.*;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,16 +27,13 @@ import java.util.List;
 public class EditSummaryController {
 
     @Autowired
-    ProjectDao projectDao;
-
-    @Autowired
     ProjectService projectService;
 
     @Autowired
     private CategoryService categoryService;
 
     @Autowired
-    private ImageAndFileDao imageAndFileDao;
+    private ImageAndFileService imageAndFileService;
 
     @Autowired
     private CloudinaryService cloudinary;
@@ -53,7 +45,7 @@ public class EditSummaryController {
     public ModelAndView viewSummary(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("edit_summary");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
         request.setAttribute("project", project);
         view.addObject("listCategory", categoryService.getAllCategory());
 
@@ -102,7 +94,7 @@ public class EditSummaryController {
                 if (ObjectUtils.isEmpty(url)) {
                     request.setAttribute("mess", "Upload fail");
                 } else {
-                    int checkSaveFile = imageAndFileDao.uploadFileSummary(url, project.getId());
+                    int checkSaveFile = imageAndFileService.uploadFileSummary(url, project.getId());
                 }
                 request.setAttribute("mess", "Upload success");
             });

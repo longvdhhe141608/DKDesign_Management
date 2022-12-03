@@ -4,6 +4,7 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.TaskDAO;
+import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.DashboardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,13 @@ public class DashboardController {
     TaskService taskService;
 
     @Autowired
-    private ProjectDao projectDao;
+    private ProjectService projectService;
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView dashboard(HttpServletRequest request) {
         ModelAndView v = new ModelAndView("dashboard");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
         //dashboard leader
         DashboardResponse dashboardResponse = taskService.getDashboard(id, null);
         v.addObject("project", project);
@@ -42,7 +43,7 @@ public class DashboardController {
     public ModelAndView designDashboard(HttpServletRequest request, RedirectAttributes redirect) {
         ModelAndView v = new ModelAndView("design/dashboard");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
 
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
