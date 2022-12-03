@@ -28,11 +28,7 @@ import static DkDesignManagement.utils.Constant.*;
 public class RequirementController {
 
     @Autowired
-    private RequirementDao requirementDao;
-
-    @Autowired
-    private ProjectDao projectDao;
-
+    private  ProjectService projectService;
     @Autowired
     private RequirementService requirementService;
 
@@ -42,8 +38,6 @@ public class RequirementController {
     @Autowired
     NotificationService notificationService;
 
-    private List<Task> taskList;
-
     @Autowired
     HistoryService historyService;
 
@@ -52,7 +46,7 @@ public class RequirementController {
         ModelAndView view = new ModelAndView("requirement");
 
         int projectID = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(projectID);
+        Project project = projectService.getProject(projectID);
 
         String indexPage = request.getParameter("pageNo");
         int page = 0;
@@ -60,10 +54,10 @@ public class RequirementController {
             page = Integer.parseInt(indexPage);
         }
 
-        int totalRequirement = requirementDao.getAllRequirementByProjectID(projectID).size();
+        int totalRequirement = requirementService.getAllRequirementByProjectID(projectID).size();
         int totalPages = (totalRequirement % 10 == 0) ? totalRequirement / 10 : totalRequirement / 10 + 1;
 
-        List<Requirement> requirements = requirementDao.getPaginationRequirementByProjectID(projectID, page);
+        List<Requirement> requirements = requirementService.getPaginationRequirementByProjectID(projectID, page);
 
         List<RevisionHistory> listHistory = new ArrayList<RevisionHistory>();
         //check and update status
@@ -97,7 +91,7 @@ public class RequirementController {
                 .requirementDetail(detail)
                 .status(4)
                 .build();
-        int saveRequirement = requirementDao.insertRequirement(requirement);
+        int saveRequirement = requirementService.insertRequirement(requirement);
         if (saveRequirement == 0) {
             view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + projectID);
             view.addObject("mess", "Save failed");
@@ -114,8 +108,8 @@ public class RequirementController {
 //        ModelAndView view;
         int requirementID = Integer.parseInt(request.getParameter("requirementId"));
 //        int projectID = Integer.parseInt(request.getParameter("projectID"));
-        Requirement requirement = requirementDao.getRequirementById(requirementID);
-        int delete = requirementDao.deleteRequirement(requirement);
+        Requirement requirement = requirementService.getRequirementById(requirementID);
+        int delete = requirementService.deleteRequirement(requirement);
         List<Task> taskList = taskService.getAllTaskByRequirementId(requirementID);
         if (delete == 0) {
             response.getWriter().println("Đã hủy");

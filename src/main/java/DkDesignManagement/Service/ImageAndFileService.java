@@ -14,4 +14,6 @@ public interface ImageAndFileService {
     int updateFileBySubTaskID(String url, int id, int id1);
 
     int getTotalFile(int id);
+
+    int uploadFileSummary(String url, int id);
 }

@@ -5,7 +5,10 @@ import DkDesignManagement.Entity.Employee;
 import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.EmployeeDao;
 import DkDesignManagement.Repository.MemberDao;
+import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.CloudinaryService;
+import DkDesignManagement.Service.EmployeeService;
+import DkDesignManagement.Service.MemberService;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,12 +29,11 @@ import java.util.Date;
 @RequestMapping(value = "/profile")
 public class ProfileController {
     @Autowired
-    private EmployeeDao employeeDao;
+    private EmployeeService employeeService;
     @Autowired
-    private MemberDao memberDAO;
+    private MemberService memberService;
     @Autowired
-    private AccountDao accountDao;
-
+    private AccountService accountService;
     @Autowired
    private CloudinaryService cloudinary;
 
@@ -40,7 +42,7 @@ public class ProfileController {
         HttpSession session = request.getSession();
         try {
             account = (Account) session.getAttribute("loginUser");
-            Employee employee = employeeDao.getInformation(account.getId());
+            Employee employee = employeeService.getInformation(account.getId());
             request.setAttribute("profile", employee);
         } catch (Exception ignored) {
         }
@@ -54,12 +56,12 @@ public class ProfileController {
         Employee employee = null;
         account = (Account) session.getAttribute("loginUser");
         try {
-            employee = employeeDao.getInformation(account.getId());
+            employee = employeeService.getInformation(account.getId());
         } catch (Exception ex) {
         }
         if (employee == null) {
-            memberDAO.addNewMember(account.getUsername(), null, account.getId());
-            employee = employeeDao.getInformation(account.getId());
+            memberService.addNewMember(account.getUsername(), null, account.getId());
+            employee = employeeService.getInformation(account.getId());
         }
         view.addObject("profile", employee);
 
@@ -90,9 +92,9 @@ public class ProfileController {
 
         //tao mot Employee va cast no vao update
         Employee employee = new Employee(id, name, address, gender, dob, cccd, email, phone);
-        employeeDao.updateProfile(employee);
-        accountDao.updateAvatar(account.getId(),avatar);
-        account = accountDao.getAccount(account.getUsername());
+        employeeService.updateProfile(employee);
+        accountService.updateAvatar(account.getId(),avatar);
+        account = accountService.getAccount(account.getUsername());
         session.setAttribute("loginUser",account);
         return new ModelAndView("redirect:/profile/detail");
     }

@@ -26,8 +26,6 @@ public class LoginController {
 
     @Autowired
     private AccountService accountService;
-    @Autowired
-    private EmployeeDao employeeDao;
 
     @GetMapping(value = "")
     public String login() {

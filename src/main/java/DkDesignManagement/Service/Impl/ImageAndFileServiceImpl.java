@@ -47,4 +47,14 @@ public class ImageAndFileServiceImpl implements ImageAndFileService {
     public int getTotalFile(int id) {
         return imageAndFileDao.getTotalFile(id);
     }
+
+    /**
+     * @param url
+     * @param id
+     * @return
+     */
+    @Override
+    public int uploadFileSummary(String url, int id) {
+        return imageAndFileDao.uploadFileSummary(url,id);
+    }
 }

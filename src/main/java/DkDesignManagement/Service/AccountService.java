@@ -27,4 +27,6 @@ public interface AccountService {
     List<Account> getAllAccount();
 
     void addNewAccount(String username, String password, int role);
+
+    int updateAvatar(int id, String avatar);
 }
