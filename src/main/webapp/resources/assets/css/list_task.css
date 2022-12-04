@@ -129,6 +129,16 @@
     background-color: #b7bacb;
     color: white;
 }
+a:hover .chi-tiet {
+    border: none;
+    font-size: 80%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+    border-radius: 15px;
+    background-color: #b7bacb;
+    color: black;
+}
+
 .sub-task-detail-main .link-chi-tiet-cong-viec a .chi-tiet {
     border: none;
     font-size: 80%;

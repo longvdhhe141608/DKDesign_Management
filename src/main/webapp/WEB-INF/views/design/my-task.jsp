@@ -615,6 +615,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/task_detail.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -650,15 +651,15 @@
                         <tr style="color: ${(i.startDate <= nowDate && i.deadline >= nowDate ? "#32c107dd" : "red"
                          || i.status == 4 ? "#a2a3a2dd" : ""
                          || nowDate == i.startDate ? "#32c107dd" : "")}">
-                            <td style="justify-content: center;">
+                            <td style="display: flex; justify-content: space-between;">
 
-                                    <div class="name-project">
+                                    <div class="name-project col-8">
                                             ${i.subTaskName}
                                     </div>
-                                    <div>
-                                        <a class="btn btn-primary summary-detail-all" style="float: right;"
+                                    <div class="col-4">
+                                        <a class="btn btn-primary summary-detail-all"
                                            href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}">
-                                            <button class="btn btn-primary chi-tiet" style="float: right;">
+                                            <button class="btn btn-primary chi-tiet" >
                                                 Chi tiết
                                             </button>
                                         </a>
