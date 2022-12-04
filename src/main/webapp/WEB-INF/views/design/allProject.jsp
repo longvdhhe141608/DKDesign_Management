@@ -67,13 +67,13 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col" class="col-1">Tên công trình</th>
+                            <th scope="col" class="col-4">Tên công trình</th>
                             <th scope="col" class="col-2">Loại công trình</th>
-                            <th scope="col" class="col-3">Thời gian bắt đầu</th>
-                            <th scope="col" class="col-4">Thời gian dự kiến kết thúc</th>
-                            <th scope="col" class="col-5">Thời gian kết thúc</th>
-                            <th scope="col" class="col-6">Tiến độ</th>
-                            <th scope="col" class="col-7">Trạng thái</th>
+                            <th scope="col" class="col-1">Thời gian bắt đầu</th>
+                            <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
+                            <th scope="col" class="col-1">Thời gian kết thúc</th>
+                            <th scope="col" class="col-1">Tiến độ</th>
+                            <th scope="col" class="col-2">Trạng thái</th>
                         </tr>
 
                         </thead>
