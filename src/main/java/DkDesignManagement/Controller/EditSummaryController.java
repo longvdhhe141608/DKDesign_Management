@@ -19,6 +19,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -136,6 +137,7 @@ public class EditSummaryController {
 
     private List<String> compareProject(Project oldProject, Project newProject) {
         List<String> change = new ArrayList<>();
+        SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 
         if (!newProject.getProjectName().equals(oldProject.getProjectName())) {
             String message = "Tên công trình: " + oldProject.getProjectName() + " -> " + newProject.getProjectName();
@@ -158,15 +160,16 @@ public class EditSummaryController {
             change.add(message);
         }
         if (!newProject.getConstructionArea().equals(oldProject.getConstructionArea())) {
+
             String message = "Diện tích xây dựng: " + oldProject.getConstructionArea() + " -> " + newProject.getConstructionArea();
             change.add(message);
         }
         if (!newProject.getStartDate().equals(oldProject.getStartDate())) {
-            String message = "Thời gian bắt đầu: " + oldProject.getStartDate() + " -> " + newProject.getStartDate();
+            String message = "Thời gian bắt đầu: " + oldProject.getStartDate() + " -> " + formatDate.format(newProject.getStartDate());
             change.add(message);
         }
         if (!newProject.getClosureDate().equals(oldProject.getClosureDate())) {
-            String message = "Thời gian dự kiến kết thúc: " + oldProject.getClosureDate() + " -> " + newProject.getClosureDate();
+            String message = "Thời gian dự kiến kết thúc: " + oldProject.getClosureDate() + " -> " + formatDate.format(newProject.getClosureDate());
             change.add(message);
         }
         if (!newProject.getDetail().equals(oldProject.getDetail())) {
