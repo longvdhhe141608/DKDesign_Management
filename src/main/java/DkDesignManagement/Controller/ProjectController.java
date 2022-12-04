@@ -27,7 +27,6 @@ public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
-
     @Autowired
     private CategoryService categoryService;
 

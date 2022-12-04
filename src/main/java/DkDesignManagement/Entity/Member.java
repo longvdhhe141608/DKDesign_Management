@@ -21,4 +21,5 @@ public class Member {
     private String memberAddress;
     private int memberStatus;
     private String memberCccd;
+
 }

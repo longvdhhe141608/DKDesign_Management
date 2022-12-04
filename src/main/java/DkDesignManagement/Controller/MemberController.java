@@ -30,7 +30,6 @@ public class MemberController {
     private MemberService memberService;
     @Autowired
     private ProjectService projectService;
-
     @Autowired
     NotificationService notificationService;
 
@@ -101,7 +100,7 @@ public class MemberController {
             if (memberId == 0) {
                 view.addObject("error", "Thành viên không tồn tại");
             } else {
-                view.addObject("error", "Thành viên đã được thêm vào dự án");
+                view.addObject("error", "Thành viên đã có trong dự án");
             }
         }
 

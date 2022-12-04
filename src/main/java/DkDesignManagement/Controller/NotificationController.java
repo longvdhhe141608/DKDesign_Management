@@ -1,17 +1,12 @@
 package DkDesignManagement.Controller;
 
-import DkDesignManagement.Entity.*;
-import DkDesignManagement.Repository.AccountDao;
-import DkDesignManagement.Repository.MemberDao;
-import DkDesignManagement.Service.Impl.AccountServiceImpl;
-import DkDesignManagement.Service.Impl.EmployeeServiceImpl;
+import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.Notification;
+import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,16 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 import static DkDesignManagement.utils.Constant.HOST;
 import static DkDesignManagement.utils.Constant.PROJECT_NAME;
-import static DkDesignManagement.utils.ValidateUtils.*;
 
 @Controller
 @RequestMapping(value = "/notification")
@@ -36,10 +27,8 @@ public class NotificationController {
 
     @Autowired
     NotificationService notificationService;
-
     @Autowired
     TaskService taskService;
-
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView notification(HttpServletRequest request, RedirectAttributes redirect) {
@@ -52,7 +41,7 @@ public class NotificationController {
             return view;
         }
         Account account = (Account) session.getAttribute("loginUser");
-        if(account.getRole_id() == 3){
+        if (account.getRole_id() == 3) {
             view = new ModelAndView("/design/notification");
         }
         //sendNotification

@@ -6,6 +6,7 @@ import DkDesignManagement.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -96,5 +97,39 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void updateMemberStatus(int status, String username) {
         memberDao.updateMemberStatus(status, username);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public Member getMemberByMemberId(int id) {
+        return memberDao.getMemberByMemberId(id);
+    }
+
+    /**
+     * @param role
+     * @param username
+     */
+    @Override
+    public void updateMemberRole(int role, String username) {
+        memberDao.updateMemberRole(role, username);
+    }
+
+    /**
+     * @param id
+     * @param name
+     * @param gender
+     * @param dob
+     * @param phone
+     * @param mail
+     * @param address
+     * @param cccd
+     * @return
+     */
+    @Override
+    public int updateMemberInfo(int id, String name, int gender, Date dob, String phone, String mail, String address, String cccd) {
+        return memberDao.updateMemberInfo(id, name, gender, dob, phone, mail, address, cccd);
     }
 }
