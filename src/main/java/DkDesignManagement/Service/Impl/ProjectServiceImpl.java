@@ -40,7 +40,6 @@ public class ProjectServiceImpl implements ProjectService {
             return -1;
         }
         ProjectParticipation pp = new ProjectParticipation(idProject, account.getId(), account.getRole_id(), true);
-
         return projectParticipationDao.addProjectParticipation(pp);
     }
 

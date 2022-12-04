@@ -202,7 +202,7 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-<%--                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>--%>
+                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
 <%--                    <button onclick="return checkvalidate('#addProject')"--%>
 <%--                            type="submit" class="btn-update btn btn-primary">Lưu--%>
 <%--                    </button>--%>
