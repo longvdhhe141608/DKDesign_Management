@@ -7,6 +7,7 @@ import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.ProjectParticipationDao;
 import DkDesignManagement.Repository.RoleDao;
 import DkDesignManagement.Service.CategoryService;
+import DkDesignManagement.Service.ProjectParticipationService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.model.MemberActiveDto;
 import DkDesignManagement.model.ProjectPageResponse;
@@ -28,18 +29,13 @@ import java.util.List;
 @Controller
 @RequestMapping("/design/project")
 public class ProjectByDesignController {
-
-    @Autowired
-    private ProjectDao projectDao;
-
     @Autowired
     private ProjectService projectService;
 
     @Autowired
     private CategoryService categoryService;
-
     @Autowired
-    private ProjectParticipationDao projectParticipationDao;
+    private ProjectParticipationService projectParticipationService;
 
     @Autowired
     private RoleDao roleDao;
@@ -61,10 +57,10 @@ public class ProjectByDesignController {
         String textSearch = request.getParameter("textSearch");
         String date = request.getParameter("date");
 
-        ProjectPageResponse projectPageResponse =projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
+        ProjectPageResponse projectPageResponse = projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
 
 
-        view.addObject("listAllProject",projectPageResponse.getProjectList());
+        view.addObject("listAllProject", projectPageResponse.getProjectList());
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("page", page);
         view.addObject("endPage", projectPageResponse.getEndPage());
@@ -78,7 +74,7 @@ public class ProjectByDesignController {
     public ModelAndView projectDetail(HttpServletRequest request, RedirectAttributes redirect) {
         ModelAndView view = new ModelAndView("design/summary");
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
         HttpSession session = request.getSession();
         session.setAttribute("project", project);
         view.addObject("project", project);
@@ -93,7 +89,7 @@ public class ProjectByDesignController {
         Account account = (Account) session.getAttribute("loginUser");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
-        Project project = projectDao.getProject(projectID);
+        Project project = projectService.getProject(projectID);
 
         String indexPage = request.getParameter("pageNo");
         int page = 1;
@@ -106,10 +102,10 @@ public class ProjectByDesignController {
         String roleID = (request.getParameter("role"));
         String textSearch = request.getParameter("textSearch");
 
-        int totalMember = projectParticipationDao.totalAllMember(project.getId(), roleID, textSearch);
+        int totalMember = projectParticipationService.totalAllMember(project.getId(), roleID, textSearch);
         int totalPages = (totalMember % 10 == 0) ? totalMember / 10 : totalMember / 10 + 1;
 
-        List<MemberActiveDto> memberActiveDtos = projectParticipationDao.getAllMember(project.getId(), index, roleID, textSearch);
+        List<MemberActiveDto> memberActiveDtos = projectParticipationService.getAllMember(project.getId(), index, roleID, textSearch);
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page
@@ -134,7 +130,7 @@ public class ProjectByDesignController {
         ModelAndView view = new ModelAndView("redirect:/design/project/member-active");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
-        Project project = projectDao.getProject(projectID);
+        Project project = projectService.getProject(projectID);
 
         String indexPage = request.getParameter("pageNo");
         int page = 0;
