@@ -135,6 +135,20 @@ public class RequirementController {
                 }
             }
 
+            //add history
+            //check history exits
+            String type = "requirement";
+            Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(requirement.getId(), type);
+            int revisionNoNew = 1;
+            if (!ObjectUtils.isEmpty(revisionNo)) {
+                revisionNoNew = revisionNo + 1;
+            }
+
+            String revisionDetail = "Yêu cầu : "+requirement.getRequirementName() +" đã bị xóa";
+
+            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getProjectId(), revisionNoNew, new Date(), revisionDetail, type);
+            historyService.addHistory(revisionHistory);
+
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete success");
         }

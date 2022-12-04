@@ -125,12 +125,15 @@ public class EditSummaryController {
         }
 
         String revisionDetail = "";
-        for (String change : listChange) {
-            revisionDetail += change + " <br> ";
+        if (!ObjectUtils.isEmpty(listChange)) {
+            for (String change : listChange) {
+                revisionDetail += change + " <br> ";
+            }
+            RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type);
+            historyService.addHistory(revisionHistory);
         }
 
-        RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type);
-        historyService.addHistory(revisionHistory);
+
 
         return view;
     }
