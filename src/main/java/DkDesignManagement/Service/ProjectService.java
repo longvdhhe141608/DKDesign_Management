@@ -18,9 +18,6 @@ public interface ProjectService {
     public int editProject(Project project);
 
     ProjectPageResponse getAllProjectByAcc(int id, String textSearch, String date, int page);
-    int getSizeProjectByAcc(int id, String textSearch, String date);
-
-    List<Project> getAllProjectByAcc(int id, String textSearch, String date, int page);
 
     List<Project> getProjectByLeaderAcc(int id);
 

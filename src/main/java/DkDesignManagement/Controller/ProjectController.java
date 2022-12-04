@@ -51,7 +51,6 @@ public class ProjectController {
 
         ProjectPageResponse projectPageResponse =projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
 
-
         view.addObject("listAllProject",projectPageResponse.getProjectList());
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("page", page);
