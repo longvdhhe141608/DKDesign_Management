@@ -1,8 +1,8 @@
 package DkDesignManagement.Controller.Admin;
 
 import DkDesignManagement.Entity.Member;
-import DkDesignManagement.Repository.EmployeeDao;
-import DkDesignManagement.Repository.MemberDao;
+import DkDesignManagement.Service.EmployeeService;
+import DkDesignManagement.Service.MemberService;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +18,9 @@ import java.util.Date;
 @RequestMapping(value = "/member")
 public class ViewMemberInfoByAdmin {
     @Autowired
-    EmployeeDao employeeDao;
+    private EmployeeService employeeService;
     @Autowired
-    MemberDao memberDAO;
-
+    private MemberService memberService;
 
     @RequestMapping(value = "/information", method = RequestMethod.GET)
     public ModelAndView loadMemberDetail(HttpServletRequest request, RedirectAttributes redirect) {
@@ -29,7 +28,7 @@ public class ViewMemberInfoByAdmin {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        Member member = memberDAO.getMemberByMemberId(id);
+        Member member = memberService.getMemberByMemberId(id);
 
         view.addObject("member", member);
         return view;
@@ -41,7 +40,7 @@ public class ViewMemberInfoByAdmin {
 
         int id = Integer.parseInt(request.getParameter("id"));
 
-        Member member = memberDAO.getMemberByMemberId(id);
+        Member member = memberService.getMemberByMemberId(id);
 
         view.addObject("member", member);
 
@@ -67,9 +66,10 @@ public class ViewMemberInfoByAdmin {
 
         try{
 
-            memberDAO.updateMemberInfo(id,name,gender,dob,phone,mail,address,cccd);
-            memberDAO.updateMemberStatus(status,username);
-            memberDAO.updateMemberRole(role,username);
+
+            memberService.updateMemberInfo(id,name,gender,dob,phone,mail,address,cccd);
+            memberService.updateMemberStatus(status,username);
+            memberService.updateMemberRole(role,username);
 
         }catch (Exception exception){
             view = new ModelAndView("admin/editAccountAdmin");

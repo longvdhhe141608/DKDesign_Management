@@ -1,12 +1,10 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
-import DkDesignManagement.Repository.EmployeeDao;
 import DkDesignManagement.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,22 +50,27 @@ public class LoginController {
 
         if (accountService.isExisted(username)) {
             account = accountService.getAccount(username);
-            if (account.getPassword().equals(password)) {
-                session.setAttribute("loginUser", account);
+            if (account.getStatus() == 1) {
+                if (account.getPassword().equals(password)) {
+                    session.setAttribute("loginUser", account);
 
-                if (account.getRole_id() == 2) {
-                    view = new ModelAndView("redirect:/allProject");
-                } else if (account.getRole_id() == 3) {
-                    view = new ModelAndView("redirect:design/project/view-all-project");
+                    if (account.getRole_id() == 2) {
+                        view = new ModelAndView("redirect:/allProject");
+                    } else if (account.getRole_id() == 3) {
+                        view = new ModelAndView("redirect:design/project/view-all-project");
+                    } else {
+                        view = new ModelAndView("redirect:admin/memberlist");
+                    }
                 } else {
-                    view = new ModelAndView("redirect:admin/memberlist");
+                    request.setAttribute("message", "Lỗi Nhập Tài Khoản Hoặc Mật Khẩu");
+                    view = new ModelAndView("login");
                 }
             } else {
-                request.setAttribute("message", "Invalid username or password!");
+                request.setAttribute("message", "Tên Người Dùng Không Tồn Tại");
                 view = new ModelAndView("login");
             }
         } else {
-            request.setAttribute("message", "Username Does Not Exist!");
+            request.setAttribute("message", "Tài Khoản Của Bạn Đã Bị Chặn");
             view = new ModelAndView("login");
         }
         return view;

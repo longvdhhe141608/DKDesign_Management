@@ -40,13 +40,14 @@ public class ProfileController {
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     public ModelAndView loadProfile(Account account, HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
+        ModelAndView view = new ModelAndView("profile");
         try {
             account = (Account) session.getAttribute("loginUser");
             Employee employee = employeeService.getInformation(account.getId());
-            request.setAttribute("profile", employee);
+            view.addObject("profile", employee);
         } catch (Exception ignored) {
         }
-        return new ModelAndView("profile");
+        return view;
     }
 
     @RequestMapping(value = "/editProfile", method = RequestMethod.GET)

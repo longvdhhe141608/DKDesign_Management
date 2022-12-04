@@ -1,4 +1,4 @@
-<jsp:useBean id="profile" scope="request" type="DkDesignManagement.Entity.Employee"/>
+<%--<jsp:useBean id="profile" scope="request" type="DkDesignManagement.Entity.Employee"/>--%>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -24,7 +24,7 @@
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
     <div style="margin-left: 20%;">
-        <a href="${pageContext.request.contextPath}/allProject" style="text-decoration: none; color: black"><span
+        <a href="javascript:history.back()" style="text-decoration: none; color: black"><span
                 style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i>Thông tin cá nhân</span></a>
         <div class="information-main">
             <div class="information-main-avata">
@@ -78,11 +78,13 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/profile/editProfile">
-                                <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
-                            </a>
-                        </td>
+                        <c:if test="${profile.id_acc==sessionScope.loginUser.id}">
+                            <td>
+                                <a href="${pageContext.request.contextPath}/profile/editProfile">
+                                    <button class="btn btn-primary btn-edit">Chỉnh sửa</button>
+                                </a>
+                            </td>
+                        </c:if>
                     </tr>
                 </table>
             </div>

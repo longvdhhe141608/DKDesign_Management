@@ -1,9 +1,6 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.*;
-import DkDesignManagement.Repository.ImageAndFileDao;
-
-import DkDesignManagement.Repository.TaskDAO;
 import DkDesignManagement.Service.*;
 import DkDesignManagement.model.MyTaskDto;
 import DkDesignManagement.model.NotificationDto;
