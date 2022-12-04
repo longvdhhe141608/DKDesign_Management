@@ -48,16 +48,6 @@ public class AccountServiceImpl implements AccountService {
     public HashMap<String, Integer> getAccountList() {
         List<Account> accountList = accountDao.getAllAccount();
         HashMap<String, Integer> accountMap = new HashMap<>();
-//        for (Account account : accountList
-//        ) {
-//            String username = String.valueOf(account.getUsername().split("\s"));
-//            String postNumb = account.getUsername().concat(username);
-//            if (ObjectUtils.isEmpty(postNumb)) {
-//                postNumb = "0";
-//            }
-//            int postNumber = Integer.parseInt(postNumb);
-//            accountMap.put(account.getUsername(), postNumber);
-//        }
         return accountMap;
     }
 

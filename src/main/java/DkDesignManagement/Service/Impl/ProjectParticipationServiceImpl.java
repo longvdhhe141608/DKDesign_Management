@@ -5,9 +5,11 @@ import DkDesignManagement.Repository.ProjectParticipationDao;
 import DkDesignManagement.Service.ProjectParticipationService;
 import DkDesignManagement.model.MemberActiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ProjectParticipationServiceImpl implements ProjectParticipationService {
     @Autowired
     private ProjectParticipationDao projectParticipationDao;
