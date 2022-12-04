@@ -3,9 +3,12 @@ package DkDesignManagement.Service.Impl;
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.ProjectParticipation;
+import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.ProjectParticipationDao;
 import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.model.ProjectPageResponse;
+import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,22 +53,21 @@ public class ProjectServiceImpl implements ProjectService {
      * @param id
      * @param textSearch
      * @param date
-     * @return
-     */
-    @Override
-    public int getSizeProjectByAcc(int id, String textSearch, String date) {
-        return projectDao.getSizeProjectByAcc(id, textSearch, date);
-    }
-
-    /**
-     * @param id
-     * @param textSearch
-     * @param date
      * @param page
      * @return
      */
     @Override
-    public List<Project> getAllProjectByAcc(int id, String textSearch, String date, int page) {
-        return projectDao.getAllProjectByAcc(id, textSearch, date, page);
+    public ProjectPageResponse getAllProjectByAcc(int id, String textSearch, String date, int page) {
+
+        int pageNumber = 10;
+        int count = projectDao.getSizeProjectByAcc(id, textSearch, date);
+        List<Project> listProject = projectDao.getAllProjectByAcc(pageNumber, page, id, textSearch, date, page);
+        int endPage = count / pageNumber;
+        if (count % pageNumber != 0) {
+            endPage++;
+        }
+
+        return ProjectPageResponse.builder().endPage(endPage).projectList(listProject).build();
+
     }
 }

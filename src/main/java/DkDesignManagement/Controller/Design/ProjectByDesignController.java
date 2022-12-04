@@ -9,8 +9,10 @@ import DkDesignManagement.Repository.RoleDao;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.model.MemberActiveDto;
+import DkDesignManagement.model.ProjectPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,33 +52,26 @@ public class ProjectByDesignController {
         ModelAndView view = new ModelAndView("design/allProject");
         HttpSession session = request.getSession();
 
-        String indexPage = request.getParameter("pageNo");
         int page = 1;
-        if (indexPage != null) {
-            page = Integer.parseInt(indexPage);
+        if (!ObjectUtils.isEmpty(request.getParameter("page"))) {
+            page = Integer.parseInt(request.getParameter("page"));
         }
-
-        int index = page * 10 - 10;
 
 
         Account account = (Account) session.getAttribute("loginUser");
         String textSearch = request.getParameter("textSearch");
         String date = request.getParameter("date");
 
-        int totalProject = projectDao.getSizeProjectByAcc(account.getId(), textSearch, date);
-        int totalPage = (totalProject % 10 == 0) ? totalProject / 10 : totalProject / 10 + 1;
-        List<Integer> lsPage = new ArrayList<>();
-        // for này có chức năng hiển thị list page
-        for (int i = 1; i <= totalPage; ++i) {
-            lsPage.add(i);
-        }
+        ProjectPageResponse projectPageResponse =projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
 
-        view.addObject("listAllProject", projectDao.getAllProjectByAcc(account.getId(), textSearch, date, index));
+
+        view.addObject("listAllProject",projectPageResponse.getProjectList());
         view.addObject("listCategory", categoryService.getAllCategory());
-        view.addObject("totalProject", totalProject);
-        view.addObject("lsPage", lsPage);
-        view.addObject("textSearch", textSearch);
+        view.addObject("page", page);
+        view.addObject("endPage", projectPageResponse.getEndPage());
+        view.addObject("mess", mess);
         view.addObject("date", date);
+        view.addObject("textSearch", textSearch);
         return view;
     }
 

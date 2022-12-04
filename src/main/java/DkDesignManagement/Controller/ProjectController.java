@@ -4,6 +4,8 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.model.ProjectPageResponse;
+import DkDesignManagement.model.TaskPageResponse;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static DkDesignManagement.utils.Constant.NOT_APPROVED_TASK_STATUS;
+
 @Controller
 @RequestMapping(value = "/allProject")
 public class ProjectController {
@@ -36,29 +40,25 @@ public class ProjectController {
         ModelAndView view = new ModelAndView("allProject");
         HttpSession session = request.getSession();
 
-        String indexPage = request.getParameter("pageNo");
-        int page = 0;
-        if (indexPage != null) {
-            page = Integer.parseInt(indexPage);
+        int page = 1;
+        if (!ObjectUtils.isEmpty(request.getParameter("page"))) {
+            page = Integer.parseInt(request.getParameter("page"));
         }
 
         Account account = (Account) session.getAttribute("loginUser");
         String textSearch = request.getParameter("textSearch");
         String date = request.getParameter("date");
 
-        int totalProject = projectService.getSizeProjectByAcc(account.getId(), textSearch, date);
-        int totalPage = (totalProject % 10 == 0) ? totalProject / 10 : totalProject / 10 + 1;
-        List<Integer> lsPage = new ArrayList<>();
-        // for này có chức năng hiển thị list page
-        for (int i = 1; i <= totalPage; ++i) {
-            lsPage.add(i);
-        }
+        ProjectPageResponse projectPageResponse =projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
 
-        view.addObject("listAllProject", projectService.getAllProjectByAcc(account.getId(), textSearch, date, page));
+
+        view.addObject("listAllProject",projectPageResponse.getProjectList());
         view.addObject("listCategory", categoryService.getAllCategory());
-        view.addObject("totalProject", totalProject);
-        view.addObject("lsPage", lsPage);
+        view.addObject("page", page);
+        view.addObject("endPage", projectPageResponse.getEndPage());
         view.addObject("mess", mess);
+        view.addObject("date", date);
+        view.addObject("textSearch", textSearch);
         return view;
     }
 
