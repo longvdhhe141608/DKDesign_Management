@@ -1,7 +1,8 @@
 package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.Account;
-import DkDesignManagement.Repository.TaskDAO;
+
+import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.MyTaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +24,7 @@ import java.util.List;
 public class MySubTaskController {
 
     @Autowired
-    private TaskDAO taskDAO;
+    private TaskService taskService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView getAllMyTask(HttpServletRequest request, RedirectAttributes redirect) {
@@ -47,10 +48,10 @@ public class MySubTaskController {
 
         Date nowDate = Date.valueOf(localDate);
 
-        int totalMyTask = taskDAO.getTotalAllMyTask(a.getId(), textSearch);
+        int totalMyTask = taskService.getTotalAllMyTask(a.getId(), textSearch);
         int totalPages = (totalMyTask % 10 == 0) ? totalMyTask / 10 : totalMyTask / 10 + 1;
 
-        List<MyTaskDto> myTaskDtoList = taskDAO.getAllMyTask(a.getId(), index, textSearch);
+        List<MyTaskDto> myTaskDtoList = taskService.getAllMyTask(a.getId(), index, textSearch);
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page

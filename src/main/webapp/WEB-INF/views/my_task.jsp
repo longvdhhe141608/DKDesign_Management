@@ -96,10 +96,10 @@
                                 </c:if>
                                 <c:if test="${i.taskID == null}">
                                     <div style="display: flex; justify-content: space-between">
-                                        <div class="name-project">
+                                        <div class="name-project col-8">
                                                 ${i.subTaskName}
                                         </div>
-                                        <div>
+                                        <div class="col-4">
                                             <a href="${pageContext.request.contextPath}/leader-task?taskId=${i.subTaskID}">
                                                 <button class="btn btn-primary summary-detail-all"
                                                         style="float: right;">
@@ -156,7 +156,7 @@
 </div>
 <div id="myModal" class="modal">
     <!-- Modal content -->
-    <div class="modal-content" style="width: 60%;height: 100%; ">
+    <div class="modal-content" style="width: 60%;height: 80%; ">
         <span id="close" class="close">&times;</span>
         <div class="project-add-task">
             <form id="my-task" action="addTaskofLeader" method="post">
@@ -203,7 +203,7 @@
                     </div>
                     <div class="btn_ok">
                         <button onclick="return checkvalidate('#my-task')" type="submit"
-                                class="btn btn-primary">Tạo
+                                class="btn btn-primary">Thêm
                         </button>
                     </div>
                 </div>

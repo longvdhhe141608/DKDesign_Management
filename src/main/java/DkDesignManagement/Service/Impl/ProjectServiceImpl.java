@@ -70,4 +70,22 @@ public class ProjectServiceImpl implements ProjectService {
         return ProjectPageResponse.builder().endPage(endPage).projectList(listProject).build();
 
     }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Project> getProjectByLeaderAcc(int id) {
+        return projectDao.getProjectByLeaderAcc(id);
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public List<Project> getProjectByAcc(int id) {
+        return projectDao.getProjectByAcc(id);
+    }
 }

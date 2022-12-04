@@ -4,6 +4,8 @@ import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Requirement;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
+import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.Service.RequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,17 +21,17 @@ import java.util.List;
 public class RequirementByDesignController {
 
     @Autowired
-    private RequirementDao requirementDao;
+    private RequirementService requirementService;
 
     @Autowired
-    private ProjectDao projectDao;
+    private ProjectService projectService;
 
     @GetMapping("/view-requirement")
     public ModelAndView viewRequirement(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("design/requirement");
 
         int projectID = Integer.parseInt(request.getParameter("project-id"));
-        Project project = projectDao.getProject(projectID);
+        Project project = projectService.getProject(projectID);
 
         String indexPage = request.getParameter("pageNo");
         int page = 1;
@@ -39,10 +41,10 @@ public class RequirementByDesignController {
 
         int index = page * 10 - 10;
 
-        int totalRequirement = requirementDao.getAllRequirementByProjectID(projectID).size();
+        int totalRequirement = requirementService.getAllRequirementByProjectID(projectID).size();
         int totalPages = (totalRequirement % 10 == 0) ? totalRequirement / 10 : totalRequirement / 10 + 1;
 
-        List<Requirement> requirements = requirementDao.getPaginationRequirementByProjectID(projectID, index);
+        List<Requirement> requirements = requirementService.getPaginationRequirementByProjectID(projectID, index);
 
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page

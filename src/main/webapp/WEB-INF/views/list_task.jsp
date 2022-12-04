@@ -318,7 +318,7 @@
                                             class="btn btn-secondary btn-canel" onclick="onClickClose()">
                                         Hủy bỏ
                                     </button>
-                                    <button onclick="return checkvalidatenumber('#add-project3')"
+                                    <button onclick="return checkvalidatenumber('#add-project3')" type="submit"
                                             class="btn btn-primary btn-add">Thêm
                                     </button>
                                 </div>

@@ -7,12 +7,13 @@ import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Repository.*;
 import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.DashboardResponse;
+import DkDesignManagement.model.MyTaskDto;
 import DkDesignManagement.model.TaskPageResponse;
+import DkDesignManagement.model.TaskWaitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -120,11 +121,11 @@ public class TaskServiceImpl implements TaskService {
             return task.getTaskStatus();
         }
         //check personal task of leader
-        if (task.getTaskStatus() == PROCESS_TASK_STATUS && (task.getTaskfId() == null && ObjectUtils.isEmpty(task.getSectionId()))){
+        if (task.getTaskStatus() == PROCESS_TASK_STATUS && (task.getTaskfId() == null && ObjectUtils.isEmpty(task.getSectionId()))) {
             return task.getTaskStatus();
         }
 
-            int count = taskDAO.countTaskNoDone(task.getTaskId());
+        int count = taskDAO.countTaskNoDone(task.getTaskId());
 
         //no done
         if (count == 0 && task.getTaskStatus() != 4) {
@@ -183,6 +184,7 @@ public class TaskServiceImpl implements TaskService {
         boolean checkIsLastTask = true;
         for (Task subTask : listSubTask) {
             if (subTask.getTaskStatus() != COMPLETE_TASK_STATUS) {
+                //can hoi long de review lai
                 checkIsLastTask = false;
             }
         }
@@ -214,5 +216,151 @@ public class TaskServiceImpl implements TaskService {
                 .countOverDeadline(countOverDeadline)
                 .countOverDeadlineDoneTask(countOverDeadlineDoneTask)
                 .build();
+    }
+
+    /**
+     * @param id
+     * @param textSearch
+     * @return
+     */
+    @Override
+    public int getTotalAllMyTaskLeader(int id, String textSearch) {
+        return taskDAO.getTotalAllMyTaskLeader(id, textSearch);
+    }
+
+    /**
+     * @param taskId
+     */
+    @Override
+    public List<Tasks> getAllSubTasksByTaskID(int taskId) {
+        return taskDAO.getAllSubTasksByTaskID(taskId);
+    }
+
+    /**
+     * @param id
+     * @param page
+     * @param textSearch
+     * @return
+     */
+    @Override
+    public List<MyTaskDto> getAllMyTaskLeader(int id, int page, String textSearch) {
+        return taskDAO.getAllMyTaskLeader(id, page, textSearch);
+    }
+
+    /**
+     * @param taskID
+     * @return
+     */
+    @Override
+    public Tasks getOneTasksByTaskID(int taskID) {
+        return taskDAO.getOneTasksByTaskID(taskID);
+    }
+
+    /**
+     * @param id
+     * @param sectionId
+     * @param id1
+     * @return
+     */
+    @Override
+    public List<Tasks> getAllSubTasksByProjectIDAndSectionIDAndTaskID(int id, int sectionId, int id1) {
+        return taskDAO.getAllSubTasksByProjectIDAndSectionIDAndTaskID(id, sectionId, id1);
+    }
+
+    /**
+     * @param subTaskID
+     * @param id
+     * @return
+     */
+    @Override
+    public Tasks getOneSubTaskBySubTaskID(int subTaskID, int id) {
+        return taskDAO.getOneSubTaskBySubTaskID(subTaskID, id);
+    }
+
+    /**
+     * @param id
+     * @param index
+     * @param textSearch
+     * @return
+     */
+    @Override
+    public List<MyTaskDto> getAllMyTask(int id, int index, String textSearch) {
+        return taskDAO.getAllMyTask(id, index, textSearch);
+    }
+
+    /**
+     * @param id
+     * @param textSearch
+     * @return
+     */
+    @Override
+    public int getTotalAllMyTask(int id, String textSearch) {
+        return taskDAO.getTotalAllMyTask(id, textSearch);
+    }
+
+    /**
+     * @param id
+     * @param editSubTask
+     * @return
+     */
+    @Override
+    public int updateSubTaskByDesign(int id, Tasks editSubTask) {
+        return taskDAO.updateSubTaskByDesign(id, editSubTask);
+    }
+
+    /**
+     * @param id
+     * @param statusTask
+     * @param textSearch
+     * @param id1
+     * @return
+     */
+    @Override
+    public int totalTaskWait(int id, int statusTask, String textSearch, int id1) {
+        return taskDAO.totalTaskWait(id, statusTask, textSearch, id1);
+    }
+
+    /**
+     * @param id
+     * @param index
+     * @param statusTask
+     * @param textSearch
+     * @param id1
+     * @return
+     */
+    @Override
+    public List<TaskWaitDto> getAllTaskWaitByDesign(int id, int index, int statusTask, String textSearch, int id1) {
+        return taskDAO.getAllTaskWaitByDesign(id, index, statusTask, textSearch, id1);
+    }
+
+    /**
+     * @param subTaskID
+     * @param i
+     * @return
+     */
+    @Override
+    public int updateStatusSubTaskByDesign(int subTaskID, int i) {
+        return taskDAO.updateStatusSubTaskByDesign(subTaskID, i);
+    }
+
+    /**
+     * @param id
+     * @param sectionId
+     * @return
+     */
+    @Override
+    public List<Tasks> getAllTasksByProjectIDAndSectionID(int id, int sectionId) {
+        return taskDAO.getAllTasksByProjectIDAndSectionID(id,sectionId);
+    }
+
+    /**
+     * @param id
+     * @param sectionId
+     * @param id1
+     * @return
+     */
+    @Override
+    public List<Tasks> getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(int id, int sectionId, int id1) {
+        return taskDAO.getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(id,sectionId,id1);
     }
 }

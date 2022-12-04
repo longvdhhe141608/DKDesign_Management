@@ -206,7 +206,7 @@
 <%--                    <button onclick="return checkvalidate('#addProject')"--%>
 <%--                            type="submit" class="btn-update btn btn-primary">Lưu--%>
 <%--                    </button>--%>
-                    <input type="submit"  value="lưu demo" >
+                    <input class="btn btn-primary" type="submit"  value="Lưu" >
                 </div>
             </div>
         </form>

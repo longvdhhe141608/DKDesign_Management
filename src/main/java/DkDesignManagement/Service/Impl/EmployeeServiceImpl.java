@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -45,5 +46,22 @@ public class EmployeeServiceImpl implements EmployeeService {
             }
         }
         return false;
+    }
+
+    /**
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getInformation(int id) {
+        return employeeDao.getInformation(id);
+    }
+
+    /**
+     * @param employee
+     */
+    @Override
+    public int updateProfile(Employee employee) {
+        return employeeDao.updateProfile(employee);
     }
 }

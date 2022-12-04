@@ -2,7 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Repository.ImageAndFileDao;
-import DkDesignManagement.Repository.ProjectDao;
+
 import DkDesignManagement.Repository.TaskDAO;
 import DkDesignManagement.Service.*;
 import DkDesignManagement.model.MyTaskDto;
@@ -44,17 +44,13 @@ public class TaskController {
     @Autowired
     TaskService taskService;
 
-    @Autowired
-    private ProjectDao projectDao;
 
     @Autowired
     CommentService commentService;
 
-    @Autowired
-    private TaskDAO taskDAO;
 
     @Autowired
-    private ImageAndFileDao imageAndFileDao;
+    private ImageAndFileService imageAndFileService;
 
     @Autowired
     NotificationService notificationService;
@@ -62,7 +58,7 @@ public class TaskController {
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(@ModelAttribute("mess") String mess, HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectDao.getProject(id);
+        Project project = projectService.getProject(id);
 
         ModelAndView view = new ModelAndView("list_task");
         view.addObject("project", project);
@@ -94,14 +90,14 @@ public class TaskController {
         //update done
         task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
 
-        List<Tasks> subTasksList = taskDAO.getAllSubTasksByTaskID(taskId);
+        List<Tasks> subTasksList = taskService.getAllSubTasksByTaskID(taskId);
 
         int totalSubmitFile = 0;
         int totalFile = 0;
 
-        for (int i = 0; i < subTasksList.size(); i++) {
-            totalSubmitFile += imageAndFileDao.getTotalFile(subTasksList.get(i).getId());
-            totalFile += subTasksList.get(i).getNumberOfFile();
+        for (Tasks tasks : subTasksList) {
+            totalSubmitFile += imageAndFileService.getTotalFile(tasks.getId());
+            totalFile += tasks.getNumberOfFile();
         }
 
         float progressPercent = Math.round((totalSubmitFile / (1.0 * totalFile)) * 100);
@@ -368,11 +364,11 @@ public class TaskController {
             page = Integer.parseInt(indexPage);
         }
 
-        int totalMyTask = taskDAO.getTotalAllMyTaskLeader(a.getId(), textSearch);
+        int totalMyTask = taskService.getTotalAllMyTaskLeader(a.getId(), textSearch);
         int totalPages = (totalMyTask % 10 == 0) ? totalMyTask / 10 : totalMyTask / 10 + 1;
 
-        List<MyTaskDto> myTaskDtoList = taskDAO.getAllMyTaskLeader(a.getId(), page, textSearch);
-        List<Project> projectList = projectDao.getProjectByLeaderAcc(a.getId());
+        List<MyTaskDto> myTaskDtoList = taskService.getAllMyTaskLeader(a.getId(), page, textSearch);
+        List<Project> projectList = projectService.getProjectByLeaderAcc(a.getId());
         List<Integer> lsPage = new ArrayList<>();
         // for này có chức năng hiển thị list page
         for (int i = 1; i <= totalPages; ++i) {
