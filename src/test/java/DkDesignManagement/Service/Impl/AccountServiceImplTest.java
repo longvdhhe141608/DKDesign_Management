@@ -104,5 +104,42 @@ class AccountServiceImplTest {
         assertEquals(result, accountList.size());
     }
 
-    
+    @Test
+    void GivenListValue_listAccountByProjectId_ReturnListValue() {
+        int id = 3;
+        List<Account> accountList = new ArrayList<>();
+        when(accountDao.getAllAccountByProject(id)).thenReturn(accountList);
+        accountList = accountDao.getAllAccountByProject(id);
+        int result = accountService.getAccountsByProjectId(id).size();
+        assertEquals(result, accountList.size());
+    }
+
+    @Test
+    void GivenListValue_listUsername_ReturnListValue() {
+        List<String> listUsername = new ArrayList<>();
+        when(accountDao.getAllUsername()).thenReturn(listUsername);
+        listUsername = accountDao.getAllUsername();
+        int result = accountService.getUsernameList().size();
+        assertEquals(result, listUsername.size());
+    }
+
+    @Test
+    void GivenNewAccount_addNewAccount_ReturnNewAccount() {
+        String username = "test";
+        String password = "12345678";
+        int role = 2;
+        when(accountDao.addNewAccount(anyString(), anyString(), anyInt())).thenReturn(1);
+        int check = accountService.addNewAccount(username, password, role);
+        assertEquals(check, 1);
+    }
+
+    @Test
+    void GivenUpdateAccount_updateAvatar_ReturnAccount() {
+        int id = 1;
+        String url = "day-la-link";
+        when((accountDao.updateAvatar(anyInt(), anyString()))).thenReturn(1);
+        int check = accountService.updateAvatar(id, url);
+        assertEquals(check, 1);
+    }
+
 }
