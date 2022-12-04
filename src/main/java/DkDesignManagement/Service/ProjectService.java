@@ -2,6 +2,7 @@ package DkDesignManagement.Service;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.model.ProjectPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +17,7 @@ public interface ProjectService {
 
     public int editProject(Project project);
 
-    int getSizeProjectByAcc(int id, String textSearch, String date);
-
-    List<Project> getAllProjectByAcc(int id, String textSearch, String date, int page);
+    ProjectPageResponse getAllProjectByAcc(int id, String textSearch, String date, int page);
 
     List<Project> getProjectByLeaderAcc(int id);
 
