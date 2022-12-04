@@ -32,11 +32,6 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<Account> getAccounts() {
-        return accountDao.getAllAccount();
-    }
-
-    @Override
     public List<Account> getAccountsByProjectId(int projectId) {
         return accountDao.getAllAccountByProject(projectId);
     }
@@ -44,13 +39,6 @@ public class AccountServiceImpl implements AccountService {
     /**
      * @return
      */
-    @Override
-    public HashMap<String, Integer> getAccountList() {
-        List<Account> accountList = accountDao.getAllAccount();
-        HashMap<String, Integer> accountMap = new HashMap<>();
-        return accountMap;
-    }
-
     @Override
     public List<String> getUsernameList() {
         return accountDao.getAllUsername();
@@ -70,8 +58,8 @@ public class AccountServiceImpl implements AccountService {
      * @param role
      */
     @Override
-    public void addNewAccount(String username, String password, int role) {
-        accountDao.addNewAccount(username, password, role);
+    public int addNewAccount(String username, String password, int role) {
+        return accountDao.addNewAccount(username, password, role);
     }
 
     /**

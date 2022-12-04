@@ -16,17 +16,13 @@ public interface AccountService {
 
     public boolean isExisted(String username);
 
-    List<Account> getAccounts();
-
     List<Account> getAccountsByProjectId(int projectId);
-
-    HashMap<String,Integer> getAccountList();
 
     List<String> getUsernameList();
 
     List<Account> getAllAccount();
 
-    void addNewAccount(String username, String password, int role);
+    int addNewAccount(String username, String password, int role);
 
     int updateAvatar(int id, String avatar);
 }
