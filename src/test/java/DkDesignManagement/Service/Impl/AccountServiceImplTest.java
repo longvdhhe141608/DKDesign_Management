@@ -94,14 +94,15 @@ class AccountServiceImplTest {
 
     }
 
-//    @Test
-//    void GivenListValue_listAccount_ReturnListValue() {
-//        List<Account> accountList = new ArrayList<>();
-//        when(accountDao.getAllAccount()).thenReturn(accountList);
-//
-//        accountList = accountDao.getAllAccount();
-//        assertEquals(accountList.size(), accountDao.getAllAccount().size());
-//    }
+    @Test
+    void GivenListValue_listAccount_ReturnListValue() {
+        List<Account> accountList = new ArrayList<>();
+        when(accountDao.getAllAccount()).thenReturn(accountList);
+
+        accountList = accountDao.getAllAccount();
+        int result = accountService.getAllAccount().size();
+        assertEquals(result, accountList.size());
+    }
 
     
 }
