@@ -69,7 +69,7 @@ public class ProjectDao {
         return projectList;
     }
 
-    public List<Project> getAllProjectByAcc(int id, String textSearch, String date, int pageNo) {
+    public List<Project> getAllProjectByAcc(int pageNumber, int page, int id, String textSearch, String date, int pageNo) {
         String sql = "select\n" +
                 "\t`project` .*\n" +
                 "from\n" +
@@ -88,9 +88,10 @@ public class ProjectDao {
             sql += " and year(start_date) = " + date + " ";
         }
         sql += " group by \n" +
-                "\t`project`.`id`\n" +
-                "order by\n" +
-                "\t`project`.`id` desc";
+                "\t`project`.`id`\n";
+
+        sql += " order by `project`.`id`   LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
+
         List<Project> projectList = new ArrayList<>();
         projectList = jdbcTemplate.query(sql, new MapperProject());
         return projectList;

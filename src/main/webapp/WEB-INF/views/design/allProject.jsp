@@ -144,13 +144,28 @@
                 </div>
                 <div class="pagination" style="display: flex;justify-content: end">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-end">
-                            <c:forEach items="${requestScope.lsPage}" var="page">
-                                <li class="page-item ${requestScope.page == page ? "active" : ""}">
-                                    <a class="page-link"
-                                       href="${pageContext.request.contextPath}/design/project/view-all-project?pageNo=${page}">${page}</a>
+                        <ul class="pagination">
+                            <c:if test="${page != 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="${pageContext.request.contextPath}/design/project/view-all-project?page=${page-1}&date=${date}&textSearch=${textSearch}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
                                 </li>
+                            </c:if>
+                            <c:forEach begin="1" end="${endPage}" var="i">
+                                <li class="page-item"><a class="page-link"
+                                                         href="${pageContext.request.contextPath}/design/project/view-all-project?page=${i}&date=${date}&textSearch=${textSearch}">${i}</a></li>
                             </c:forEach>
+
+                            <c:if test="${page != endPage}">
+                                <li class="page-item">
+                                    <a class="page-link" href="${pageContext.request.contextPath}/design/project/view-all-project?page=${page+1}&date=${date}&textSearch=${textSearch}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:if>
                         </ul>
                     </nav>
                 </div>
