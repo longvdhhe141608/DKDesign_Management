@@ -685,7 +685,7 @@ public class TaskDAO {
     public int countAllSubTaskByProjectId(int projectId, String designId) {
         String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null ";
         if (!ObjectUtils.isEmpty(designId)) {
-            sql += " and t.creator = " + designId + "";
+            sql += " and t.assignedto = " + designId + "";
         }
 
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
@@ -695,7 +695,7 @@ public class TaskDAO {
         String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status = 2 ";
 
         if (!ObjectUtils.isEmpty(designId)) {
-            sql += " and t.creator = " + designId + "";
+            sql += " and t.assignedto = " + designId + "";
         }
 
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
@@ -705,7 +705,7 @@ public class TaskDAO {
         String sql = " select count(*) from task t where t.deadline >= t.ended_date and t.project_id =? ";
 
         if (!ObjectUtils.isEmpty(designId)) {
-            sql += " and t.creator = " + designId + "";
+            sql += " and t.assignedto = " + designId + "";
         }
 
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
@@ -718,7 +718,7 @@ public class TaskDAO {
                 "and t.status != 5  ";
 
         if (!ObjectUtils.isEmpty(designId)) {
-            sql += " and t.creator = " + designId + "";
+            sql += " and t.assignedto = " + designId + "";
         }
 
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
@@ -731,7 +731,7 @@ public class TaskDAO {
                 "and t.status =4 ";
 
         if (!ObjectUtils.isEmpty(designId)) {
-            sql += " and t.creator = " + designId + "";
+            sql += " and t.assignedto = " + designId + "";
         }
 
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
