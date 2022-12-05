@@ -74,7 +74,7 @@ public class PlanController {
         int design = task.getAssignToId();
 
         //add notification send leader
-        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId()+"&section-id="+task.getSectionId()+"&task-id="+task.getTaskfId()+"&sub-task-id="+task.getTaskId();
         String message = "Sub-task của bạn đã được phê duyệt";
         Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
         notificationService.addNotification(notification);
@@ -101,7 +101,7 @@ public class PlanController {
         int design = task.getAssignToId();
 
         //add notification send leader
-        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
+        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId()+"&section-id="+task.getSectionId()+"&task-id="+task.getTaskfId()+"&sub-task-id="+task.getTaskId();
         String message = "Sub-task của bạn đã bị từ chối";
         Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
         notificationService.addNotification(notification);
