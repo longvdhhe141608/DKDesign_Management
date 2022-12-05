@@ -12,7 +12,11 @@ import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
@@ -66,8 +70,48 @@ public class ProjectServiceImpl implements ProjectService {
             endPage++;
         }
 
-        return ProjectPageResponse.builder().endPage(endPage).projectList(listProject).build();
+        List<Project> listSort = sortProject(listProject);
 
+        return ProjectPageResponse.builder().endPage(endPage).projectList(listSort).build();
+
+    }
+
+    private List<Project> sortProject(List<Project> listProject) {
+        List<Project> projectListProcess = new ArrayList<>();
+        List<Project> projectListDone = new ArrayList<>();
+
+        //split list
+        for (Project project : listProject) {
+            if (project.getStatus() != 3) {
+                projectListProcess.add(project);
+            } else {
+                projectListDone.add(project);
+            }
+        }
+
+        List<Project> projectListDeadline = new ArrayList<>();
+        List<Project> projectListOverDeadline = new ArrayList<>();
+        for (Project project : projectListProcess) {
+            if(project.getClosureDate().before(new Date())){
+                projectListDeadline.add(project);
+            }else if(project.getClosureDate().after(new Date())){
+                projectListOverDeadline.add(project);
+            }
+        }
+
+        //sort by deadline
+        List<Project>  projectListDeadlineSorted = projectListDeadline.stream()
+                .sorted(Comparator.comparing(Project::getClosureDate).reversed()).collect(Collectors.toList());
+
+        List<Project>  projectListOverDeadlineSorted = projectListOverDeadline.stream()
+                .sorted(Comparator.comparing(Project::getClosureDate)).collect(Collectors.toList());
+
+        List<Project> list = new ArrayList<>();
+        list.addAll(projectListDeadlineSorted);
+        list.addAll(projectListOverDeadlineSorted);
+        list.addAll(projectListDone);
+
+        return list;
     }
 
     /**
