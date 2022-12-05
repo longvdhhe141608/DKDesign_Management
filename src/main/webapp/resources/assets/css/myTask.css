@@ -163,3 +163,13 @@ body {
     background-color: darkgray;
     color: black;
 }
+a:hover .summary-detail-all {
+    float: right;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: none;
+    border-radius: 50px;
+    background-color: darkgray;
+    color: black;
+}

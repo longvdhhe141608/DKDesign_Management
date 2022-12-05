@@ -657,9 +657,9 @@
                                             ${i.subTaskName}
                                     </div>
                                     <div class="col-4">
-                                        <a class="btn btn-primary summary-detail-all"
+                                        <a
                                            href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}">
-                                            <button class="btn btn-primary chi-tiet" >
+                                            <button class="btn btn-primary summary-detail-all" >
                                                 Chi tiết
                                             </button>
                                         </a>

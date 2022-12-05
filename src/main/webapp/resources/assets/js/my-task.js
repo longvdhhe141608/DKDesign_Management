@@ -50,14 +50,17 @@ function checkvalidate(id) {
 
     // console.log(startdate.getFullYear());
     // console.log(today.getFullYear());
+     console.log(today.getMonth()+1);
+    console.log(startdate.getMonth()+1);
+    console.log(enddate.getMonth()+1);
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (startdate.getDate() < today.getDate() && startdate.getMonth() + 1 <= today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear()) {
+        if (startdate.getDate() < today.getDate() || startdate.getMonth() + 1 <= today.getMonth() + 1 || startdate.getFullYear() <= today.getFullYear()) {
             b++;
             error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
 
         }
-        else if (startdate.getDate() > enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        else if (startdate.getDate() > enddate.getDate() || startdate.getMonth() + 1 >= enddate.getMonth() + 1 || startdate.getFullYear() >= enddate.getFullYear()) {
             b++;
             error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
 

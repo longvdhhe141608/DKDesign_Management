@@ -81,7 +81,7 @@
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
                                 <td class="name-and-link">
-                                    <div style="display: flex; justify-content: space-between">
+
                                         <div class="name-project col-8">
                                                 ${i.projectName}
                                         </div>
@@ -91,7 +91,7 @@
                                                 <button class="btn-chi-tiet">Chi tiết</button>
                                             </a>
                                         </div>
-                                    </div>
+
                                 </td>
 
                                 <td>
