@@ -103,7 +103,7 @@
                             <h4>
                                 <input class="info-text" type="text"
                                        name="name" placeholder="Tên công việc" aria-label="Text"/>
-                                <div class="text-danger error"></div>
+                                <p class="text-danger error"></p>
                             </h4>
                             <table class="table table-borderless">
                                 <tr>
