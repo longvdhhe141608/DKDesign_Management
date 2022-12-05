@@ -310,6 +310,10 @@ public class TaskController {
             task.setEndDate(new Date());
         }
         // update
+        if(!ObjectUtils.isEmpty(request.getParameter("description"))){
+            task.setDescription(request.getParameter("description"));
+        }
+
         task.setTaskStatus(status);
         taskService.updateTask(task);
 
