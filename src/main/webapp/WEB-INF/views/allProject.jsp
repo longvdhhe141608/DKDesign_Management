@@ -232,7 +232,9 @@
                                 </td>
                                 <td>
                                     <div class="name-input">
-
+                                        <c:if test="${i.status == 3}">
+                                            100%
+                                        </c:if>
                                     </div>
                                 </td>
                                 <td>
