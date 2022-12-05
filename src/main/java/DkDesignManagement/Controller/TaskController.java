@@ -331,8 +331,8 @@ public class TaskController {
         int design = task.getAssignToId();
 
         //add notification send leader
-        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
-        String message = "Sub-task của bạn không được phê duyệt và đang thực hiện";
+        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId()+"&section-id="+task.getSectionId()+"&task-id="+task.getTaskfId()+"&sub-task-id="+task.getTaskId();
+        String message = "Sub-task của bạn không được phê duyệt và trở về trạng thái đang thực hiện";
         if (operation.equals("agree")) {
             message = "Sub-task của bạn được phê duyệt và đã hoàn thành";
 
