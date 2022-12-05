@@ -34,7 +34,7 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h3>Tên dự án</h3>
+                <h4>Tên dự án</h4>
                 <form style="display: flex;" action="#"
                       method="post">
 <%--                    <input type="text" name="projectId" value="${project.id}" hidden="">--%>
