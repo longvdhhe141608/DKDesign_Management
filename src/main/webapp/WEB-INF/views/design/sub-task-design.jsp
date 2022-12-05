@@ -142,7 +142,7 @@
                 </tr>
                 <tr>
                     <td>Số lượng file:</td>
-                    <td>${totalFile}/${subTask.numberOfFile}</td>
+                    <td>${totalFile} / ${subTask.numberOfFile}</td>
                 </tr>
                 <tr>
                     <td>Tiến độ:</td>

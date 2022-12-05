@@ -94,7 +94,11 @@ public class LoginController {
     public ModelAndView sendNewPass(HttpServletRequest request, HttpServletResponse response){
         ModelAndView view = new ModelAndView("/forgot_password");
         String email = request.getParameter("email_sendNewPass");
-        
+        if(employeeService.emailIsExisted(email)){
+
+        } else{
+
+        };
         return new ModelAndView("redirect:login");
     }
 }
