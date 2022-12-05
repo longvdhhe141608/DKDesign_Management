@@ -19,9 +19,7 @@ import java.io.IOException;
 
 @Controller
 @RequestMapping(value = "/")
-
 public class LoginController {
-
     @Autowired
     private AccountService accountService;
 
@@ -82,4 +80,16 @@ public class LoginController {
         return new ModelAndView("redirect:login");
     }
 
+    @RequestMapping(value = "forgotPassword", method = RequestMethod.GET)
+    public ModelAndView forgotPassword(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView view = new ModelAndView("/forgot_password");
+        return view;
+    }
+
+    @RequestMapping(value = "forgotPassword", method = RequestMethod.POST)
+    public ModelAndView sendNewPass(HttpServletRequest request, HttpServletResponse response){
+        ModelAndView view = new ModelAndView("/forgot_password");
+
+        return new ModelAndView("redirect:login");
+    }
 }

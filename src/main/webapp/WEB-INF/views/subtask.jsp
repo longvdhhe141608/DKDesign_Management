@@ -106,11 +106,9 @@
                 </div>
                 <c:if test="${task.taskStatus == 3 && loginUser.role_id == 2}">
                     <div style="border-bottom: 1px solid grey; text-align: start;">
-
                         <a href="task/change-status?taskId=${task.taskId}&operation=agree">
                             <button class="btn btn-primary">Đồng ý</button>
                         </a>
-
                         <a href="task/change-status?taskId=${task.taskId}&operation=cancel">
                             <button class="btn btn-secondary">Hủy bỏ</button>
                         </a>
