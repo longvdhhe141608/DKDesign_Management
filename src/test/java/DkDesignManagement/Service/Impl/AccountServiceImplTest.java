@@ -142,4 +142,12 @@ class AccountServiceImplTest {
         assertEquals(check, 1);
     }
 
+    @Test
+    void GivenPassword_changePassword_ReturnPassword() {
+        int id = 1;
+        String pass = "matkhaumoi";
+        when(accountDao.changePassword(anyInt(), anyString())).thenReturn(1);
+        int check = accountService.changePassword(id, pass);
+        assertEquals(check, 1);
+    }
 }

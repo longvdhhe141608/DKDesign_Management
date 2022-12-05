@@ -2,6 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Service.AccountService;
+import DkDesignManagement.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,6 +23,9 @@ import java.io.IOException;
 public class LoginController {
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @GetMapping(value = "")
     public String login() {
@@ -89,7 +93,8 @@ public class LoginController {
     @RequestMapping(value = "forgotPassword", method = RequestMethod.POST)
     public ModelAndView sendNewPass(HttpServletRequest request, HttpServletResponse response){
         ModelAndView view = new ModelAndView("/forgot_password");
-
+        String email = request.getParameter("email_sendNewPass");
+        
         return new ModelAndView("redirect:login");
     }
 }

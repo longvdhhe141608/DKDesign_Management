@@ -70,4 +70,9 @@ public class AccountServiceImpl implements AccountService {
     public int updateAvatar(int id, String avatar) {
         return accountDao.updateAvatar(id, avatar);
     }
+
+    @Override
+    public int changePassword(int aid, String newPass) {
+        return accountDao.changePassword(aid, newPass);
+    }
 }

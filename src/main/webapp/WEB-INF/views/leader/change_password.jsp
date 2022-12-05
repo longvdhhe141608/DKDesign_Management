@@ -26,15 +26,15 @@
 <jsp:include page="../header.jsp"/>
 <div class="body_page">
 
-        <jsp:include page="../nav_left.jsp"/>
+    <jsp:include page="../nav_left.jsp"/>
 
     <div class="summary">
         <h4>Thay đổi mật khẩu</h4>
         <table class="table table-borderless ">
-<tr>
-    <td class="col-4">Mật khẩu cũ:</td>
-    <td class="col-4"><input id="old-password" name="old-password" class="form-control" required/></td>
-</tr>
+            <tr>
+                <td class="col-4">Mật khẩu cũ:</td>
+                <td class="col-4"><input id="old-password" name="old-password" class="form-control" required/></td>
+            </tr>
             <tr>
                 <td>Mật khẩu mới:</td>
                 <td><input id="new-password" name="new-password" class="form-control" required/></td>
