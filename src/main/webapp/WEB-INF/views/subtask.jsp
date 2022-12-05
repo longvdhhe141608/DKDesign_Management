@@ -109,10 +109,14 @@
                         <a href="task/change-status?taskId=${task.taskId}&operation=agree">
                             <button class="btn btn-primary">Đồng ý</button>
                         </a>
-                        <a href="task/change-status?taskId=${task.taskId}&operation=cancel">
-                            <button class="btn btn-secondary">Hủy bỏ</button>
-                        </a>
-                        <input class="info-text" value="" placeholder="Ghi chú">
+                        <form action="task/change-status">
+                                <button type="submit" class="btn btn-secondary">Hủy bỏ</button>
+                            <input type="text" hidden="" name="taskId" value="${task.taskId}">
+                            <input type="text" hidden="" name="operation" value="cancel">
+                            <input required="" name="description" class="info-text" value="" placeholder="Ghi chú">
+
+                        </form>
+
                     </div>
                 </c:if>
 
