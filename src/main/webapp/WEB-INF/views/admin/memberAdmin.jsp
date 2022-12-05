@@ -23,9 +23,9 @@
 </head>
 
 <body>
-<jsp:include page="../header.jsp"/>
+<jsp:include page="/WEB-INF/views/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="../nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
         <h4>Thành viên công ty</h4>
         <div class="all-member">

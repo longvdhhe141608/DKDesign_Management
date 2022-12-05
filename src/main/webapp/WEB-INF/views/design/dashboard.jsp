@@ -22,44 +22,18 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
-  <jsp:include page="nav_left.jsp"/>
+  <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
   <div class="summary container" style="margin-left: 20%;">
     <div class="top-details">
       <div class="list-top">
         <h3>${project.projectName}</h3>
-
-<%--        <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"--%>
-<%--              method="post">--%>
-<%--          <input type="text" name="projectId" value="${project.id}" hidden="">--%>
-<%--          <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">--%>
-<%--            <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">--%>
-<%--              <c:forEach items="${listStatus}" var="status">--%>
-<%--                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>--%>
-<%--              </c:forEach>--%>
-<%--            </select>--%>
-<%--          </div>--%>
-<%--          <div>--%>
-<%--            <c:if test="${sessionScope.loginUser.role_id == 2}">--%>
-<%--              <c:if test="${project.status != 3 }">--%>
-<%--                <button type="submit" class="btn btn-primary">Lưu</button>--%>
-<%--              </c:if>--%>
-<%--              <c:if test="${project.status == 3 }">--%>
-<%--                <button type="submit" class="btn btn-primary" disabled>Lưu</button>--%>
-<%--              </c:if>--%>
-<%--            </c:if>--%>
-<%--          </div>--%>
-<%--        </form>--%>
-
       </div>
       <div class="list-task-head">
         <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
                 class="btn btn-secondary"
                 type="button"
-        <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-                style="background: blue"
-        <%--                </c:if>--%>
                 value="Sơ lược"></a>
         <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
                 class="btn btn-secondary"
@@ -80,9 +54,10 @@
                 class="btn btn-secondary"
                 type="button"
                 value="Thành viên"></a>
-        <a class="test"  ><input
+        <a class="test" href="${pageContext.request.contextPath}/design/dashboard?id=${project.id}"><input
                 class="btn btn-secondary"
                 type="button"
+                style="background: blue"
                 value="Thống kê"></a>
       </div>
     </div>

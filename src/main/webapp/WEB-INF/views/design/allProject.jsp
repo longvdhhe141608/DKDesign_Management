@@ -15,9 +15,9 @@
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="/WEB-INF/views/design/header.jsp"/>
     <div class="body_page">
-        <jsp:include page="nav_left.jsp"/>
+        <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
         <div class="summary">
             <div class="title">
                 <div>

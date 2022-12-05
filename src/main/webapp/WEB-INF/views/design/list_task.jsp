@@ -21,9 +21,9 @@
 
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="list-task body_page">
-    <jsp:include page="nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
     <div class="summary ">
         <div class="top-details">
             <div class="list-top">
@@ -39,9 +39,6 @@
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
-                <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-
-                <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
                         class="btn btn-secondary"
@@ -61,7 +58,7 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
-                <a class="test"  ><input
+                <a class="test" href="${pageContext.request.contextPath}/design/dashboard?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thống kê"></a>

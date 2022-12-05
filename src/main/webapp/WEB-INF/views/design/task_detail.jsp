@@ -23,9 +23,9 @@
     <script src="<c:url value="/resources/assets/js/task-details.js"/>"></script>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
@@ -41,9 +41,6 @@
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
-                <%--                <c:if test="${pageContext.page==summary.jsp}">--%>
-
-                <%--                </c:if>--%>
                         value="Sơ lược"></a>
                 <a class="test" href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}"><input
                         class="btn btn-secondary"
@@ -65,7 +62,7 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
-                <a class="test"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/dashboard?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thống kê"></a>
@@ -124,9 +121,11 @@
                     <td><p>Kế hoạch công việc:</p></td>
                     <td>
                         <div style="margin-left: 10px">
-                            <div >
-                                <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')" id="myBtn-add-project"
-                                        class="btn btn-primary">+ Thêm công việc phụ</button>
+                            <div>
+                                <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
+                                        id="myBtn-add-project"
+                                        class="btn btn-primary">+ Thêm công việc phụ
+                                </button>
                                 <div id="myModal-add" class="modal">
                                     <!-- Modal content -->
                                     <div class="modal-content" style=" width: 50%;height: 100%;">
@@ -138,7 +137,9 @@
                                                 <div class="popup__content">
                                                     <div class="title">
                                                         <h4>
-                                                            <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">
+                                                            <input class="info-text" type="text"
+                                                                   placeholder="Thêm công việc phụ"
+                                                                   name="sub-task-name">
                                                             <div class="text-danger error"></div>
                                                         </h4>
                                                     </div>
@@ -149,20 +150,29 @@
                                                                 <td>${sessionScope.loginUser.username}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
-                                                                <td><input id="inputstartdate" name="startDate" class="info-text" type="date">
+                                                                <td>Thời gian bắt đầu<label
+                                                                        class="text-danger">*</label>:
+                                                                </td>
+                                                                <td><input id="inputstartdate" name="startDate"
+                                                                           class="info-text" type="date">
                                                                     <div class="text-danger error"></div>
                                                             </tr>
                                                             <tr>
-                                                                <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
-                                                                <td><input id="inputenddate" class="info-text" type="date" name="endDate">
+                                                                <td>Thời gian dự kiến kết thúc<label
+                                                                        class="text-danger">*</label>:
+                                                                </td>
+                                                                <td><input id="inputenddate" class="info-text"
+                                                                           type="date" name="endDate">
                                                                     <div class="text-danger error"></div>
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>
+                                                                <td>Vị trí của yêu cầu<label
+                                                                        class="text-danger">*</label>:
+                                                                </td>
                                                                 <td>
-                                                                    <select class="btn btn-secondary" name="requirementID" id="">
+                                                                    <select class="btn btn-secondary"
+                                                                            name="requirementID" id="">
                                                                         <c:forEach items="${requirements}" var="i">
                                                                             <option value="${i.id}">${i.requirementName}</option>
                                                                         </c:forEach>
@@ -170,8 +180,10 @@
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Số lượng file<label class="text-danger">*</label>:</td>
-                                                                <td><input class="info-text" type="number" name="numberOfFile">
+                                                                <td>Số lượng file<label class="text-danger">*</label>:
+                                                                </td>
+                                                                <td><input class="info-text" type="number"
+                                                                           name="numberOfFile">
                                                                     <div class="text-danger error"></div>
                                                                 </td>
                                                             </tr>
@@ -180,12 +192,14 @@
                                                     <div class="" style="display: flex;justify-content: end">
                                                         <div></div>
                                                         <div class="btn_cancel" style="margin-right: 5px">
-                                                            <button type="button" class="btn btn-secondary close_popup">Hủy
+                                                            <button type="button" class="btn btn-secondary close_popup">
+                                                                Hủy
                                                                 bỏ
                                                             </button>
                                                         </div>
                                                         <div class="btn_ok">
-                                                            <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu
+                                                            <button onclick="return checkvalidate('#add-sub-task')"
+                                                                    type="submit" class="btn btn-primary">Lưu
                                                             </button>
                                                         </div>
                                                     </div>
@@ -252,7 +266,7 @@
 
         </div>
 
-    <%--        <div style=" text-align: end; margin-left: 10px;">--%>
+        <%--        <div style=" text-align: end; margin-left: 10px;">--%>
         <%--            <form action="${pageContext.request.contextPath}/editTaskDetail">--%>
         <%--                <a href="">--%>
         <%--                    <button class="btn btn-primary">--%>
@@ -395,6 +409,7 @@
             modal.style.display = "none";
         });
     }
+
     function onClickBtn() {
         Swal.fire({
             title: 'Do you want to save the changes?',

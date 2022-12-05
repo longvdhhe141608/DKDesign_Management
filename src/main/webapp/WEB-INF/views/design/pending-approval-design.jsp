@@ -23,9 +23,9 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
     <div class="requiment summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
@@ -65,7 +65,7 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
-                <a class="test"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/dashboard?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thống kê"></a>
