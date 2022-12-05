@@ -23,19 +23,19 @@
 </head>
 
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-<%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-<%--                    <select style="border: none; padding: 6px;">--%>
-<%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-<%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-<%--                    </select>--%>
-<%--                </div>--%>
+                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
+                <%--                    <select style="border: none; padding: 6px;">--%>
+                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
+                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
+                <%--                    </select>--%>
+                <%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -65,7 +65,7 @@
                         type="button"
                         style="background: blue"
                         value="Thành viên"></a>
-                <a class="test"><input
+                <a class="test" href="${pageContext.request.contextPath}/design/dashboard?id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thống kê"></a>
@@ -75,16 +75,16 @@
         <div class="all-member">
 
             <form action="${pageContext.request.contextPath}/design/project/member-active" method="get">
-                <div class="content-function-member" >
+                <div class="content-function-member">
                     <div class="function-one">
 
                     </div>
-                    <div style="display: flex; justify-content: end;margin-bottom: 10px" >
+                    <div style="display: flex; justify-content: end;margin-bottom: 10px">
                         <div class="function-two" style="margin-right:20px ;">
                             <div class="dropdown">
                                 <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
                                         name="role">
-                                    <option ${role == "default" ? "selected" :""} value="default"> Tất cả </option>
+                                    <option ${role == "default" ? "selected" :""} value="default"> Tất cả</option>
                                     <c:forEach items="${roles}" var="i">
                                         <option ${role == i.id ? "selected" :""} value="${i.id}">${i.name}</option>
                                     </c:forEach>

@@ -23,11 +23,11 @@
 </head>
 <body>
 
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="/WEB-INF/views/design/header.jsp"/>
 
     <div class="body_page">
 
-            <jsp:include page="nav_left.jsp"/>
+            <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
 
         <div class="tab_content ">
             <div id="London" class="city">

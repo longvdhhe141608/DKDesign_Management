@@ -18,9 +18,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
-  <jsp:include page="nav_left.jsp"/>
+  <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
   <div class="summary">
     <h4>Thông báo</h4>
     <div style="margin-bottom: 10px;">

@@ -22,9 +22,9 @@
     <script src="<c:url value="/resources/assets/js/information.js"/>"></script>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
         <a href="${pageContext.request.contextPath}/profile/detail" style="font-size: 30px;color: black"><i
                 class="fa-solid fa-chevron-left"></i> Chỉnh sửa thông tin cá nhân</a>
