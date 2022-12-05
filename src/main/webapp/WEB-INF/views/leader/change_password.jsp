@@ -12,10 +12,10 @@
     <title>Thay Đổi Mật Khẩu</title>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 <div class="change password">
     <div class="nav-left">
-        <jsp:include page="nav_left.jsp"/>
+        <jsp:include page="../nav_left.jsp"/>
     </div>
     <div class="nav-right">
         <h3>Thay đổi mật khẩu</h3>
@@ -32,7 +32,7 @@
             <input id="confirmed-password" name="confirmed-password" class="form-control" required/>
         </div>
         <div class="change-password-btn">
-            <button class="btn-login form-control"><a href="javascript:history.back()">Thoát</a></button>
+            <button class="btn-login form-control" onclick="history.back()">Thoát</button>
             <button type="submit" class="btn-login form-control">Lưu</button>
         </div>
     </div>
