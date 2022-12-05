@@ -106,8 +106,20 @@ public class ProfileController {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
         ModelAndView view = new ModelAndView("/leader/change_password");
-        if (account.getRole_id() == 3){
+        if (account.getRole_id() == 3) {
             view = new ModelAndView("/design/change_password");
+        }
+        String oldPass = request.getParameter("old-password");
+        String newPass = request.getParameter("new-password");
+        String cfPass = request.getParameter("confirmed-password");
+        if (account.getPassword().equals(oldPass)) {
+            if (cfPass.equals(newPass)) {
+                accountService.changePassword(account.getId(), newPass);
+            } else {
+
+            }
+        } else {
+
         }
         return view;
     }

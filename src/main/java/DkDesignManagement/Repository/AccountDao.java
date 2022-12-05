@@ -53,7 +53,7 @@ public class AccountDao {
                 "where pp.account_id  = a.id \n" +
                 "and pp.project_id = ? ";
         List<Account> accountList;
-        accountList = jdbcTemplate.query(sql, new MapperAccount(),projectId);
+        accountList = jdbcTemplate.query(sql, new MapperAccount(), projectId);
         return accountList;
     }
 
@@ -71,11 +71,11 @@ public class AccountDao {
         return check;
     }
 
-    public int updateAvatar(int id, String avatar){
+    public int updateAvatar(int id, String avatar) {
         String sql = "UPDATE `dkmanagement`.`accounts` " +
                 "SET `avatar_url` = ? WHERE (`id` = ?)";
 
-        int check = jdbcTemplate.update(sql,avatar,id);
+        int check = jdbcTemplate.update(sql, avatar, id);
         return check;
     }
 
@@ -89,5 +89,14 @@ public class AccountDao {
             }
         });
         return usernameList;
+    }
+
+    public int changePassword(int aid, String newPass) {
+        int check = 0;
+        String sql = "UPDATE `dkmanagement`.`accounts`" +
+                "SET `password` = ? WHERE (`id` = ?)";
+
+        check = jdbcTemplate.update(sql, newPass, aid);
+        return check;
     }
 }

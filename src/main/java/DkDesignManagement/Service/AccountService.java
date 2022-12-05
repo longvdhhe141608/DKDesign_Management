@@ -12,6 +12,7 @@ import java.util.List;
 public interface AccountService {
     @Autowired
     AccountDao accountDao = new AccountDao();
+
     public Account getAccount(String username);
 
     public boolean isExisted(String username);
@@ -25,4 +26,6 @@ public interface AccountService {
     int addNewAccount(String username, String password, int role);
 
     int updateAvatar(int id, String avatar);
+
+    int changePassword(int aid, String newPass);
 }
