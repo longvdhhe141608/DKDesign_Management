@@ -48,4 +48,10 @@ public class EmployeeDao {
         });
         return  emailList;
     }
+
+    public Employee getEmployeebyEmail(String mail){
+        String sql = "SELECT * from dkmanagement.employees where email = ?";
+        Employee employee = jdbcTemplate.queryForObject(sql, new MapperEmployee(), mail);
+        return employee;
+    }
 }
