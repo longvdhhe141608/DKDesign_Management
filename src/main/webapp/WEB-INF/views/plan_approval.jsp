@@ -112,13 +112,13 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col">Công việc</th>
-                            <th scope="col">Người thực hiện</th>
-                            <th scope="col">Thời gian bắt đầu</th>
-                            <th scope="col">Thời gian dự kiến kết thúc</th>
-                            <th scope="col">Số lượng file</th>
-                            <th scope="col">Phê duyệt</th>
-                            <th scope="col">Ghi chú</th>
+                            <th scope="col" class="col-4">Công việc</th>
+                            <th scope="col" class="col-1">Người thực hiện</th>
+                            <th scope="col" class="col-1">Thời gian bắt đầu</th>
+                            <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
+                            <th scope="col" class="col-1">Số lượng file</th>
+                            <th scope="col" class="col-1">Phê duyệt</th>
+                            <th scope="col" class="col-3">Ghi chú</th>
                         </tr>
                         </thead>
                         <tbody>

@@ -26,17 +26,18 @@
         <div style="margin-bottom: 10px;">
 
             <c:forEach items="${listNotification}" var="notification">
-                <div style="border: 1px solid black">
-                <p>  ${notification.projectName}</p>
+                <div >
+
                 <a href="${notification.url}">
                 <button style="width: 100%;border-radius: 10px;" type="submit">
+                    <p>  ${notification.projectName}</p>
                     <div style="display: flex;justify-content: space-between;">
                         <p> ${notification.detail}</p>
                         <a>${notification.dateString} </a>
                     </div>
                 </button>
                 </a>
-                </div>
+                </div><br>
             </c:forEach>
 
         </div>
