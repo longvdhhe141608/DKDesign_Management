@@ -39,8 +39,8 @@
                     class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Đăng nhập</button>
         </form>
         <!-- end form -->
-        <a href="change_password" class="forgot-password">
-            Quên mật khẩu?
+        <a href="${pageContext.request.contextPath}/forgotPassword" class="forgot-password">
+            Quên mật khẩu ?
         </a>
     </div><!-- /card-container -->
 </div><!-- /container -->

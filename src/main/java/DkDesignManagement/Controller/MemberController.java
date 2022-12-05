@@ -3,6 +3,7 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.MemberService;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.ProjectService;
@@ -74,7 +75,6 @@ public class MemberController {
         //TODO : check username wrong
 
         //TODO : check Member exits
-
         boolean checkAddMember = true;
         try {
             memberId = memberService.getAccountIdByUsername(username);
@@ -98,9 +98,9 @@ public class MemberController {
             }
         } else {
             if (memberId == 0) {
-                view.addObject("error", "Thành viên không tồn tại");
+                view.addObject("error", "Thành viên " + username + " không tồn tại");
             } else {
-                view.addObject("error", "Thành viên đã có trong dự án");
+                view.addObject("error", "Thành viên " + username + " đã có trong dự án");
             }
         }
 

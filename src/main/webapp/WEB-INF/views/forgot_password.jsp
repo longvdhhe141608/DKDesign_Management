@@ -21,7 +21,7 @@
         <img id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
         <p id="profile-name" class="profile-name-card"></p>
         <form id="addProject" class="form-signin">
-            <input type="email" class="info-text form-control" placeholder="Nhập Email">
+            <input type="email" class="info-text form-control" placeholder="Nhập Email" name="email_sendNewPass">
             <div class="text-danger error"></div>
             <div style="display: flex;">
                 <button class="btn btn-secondary" style="margin-right: 20px;" type="button" onclick="history.back()">
