@@ -87,7 +87,7 @@
                                         <div>
                                             <a href="${pageContext.request.contextPath}/subtask?taskId=${i.subTaskID}">
                                                 <button class="btn btn-primary summary-detail-all"
-                                                        style="float: right;">
+                                                        >
                                                     Chi tiết
                                                 </button>
                                             </a>
