@@ -90,7 +90,7 @@ public class ProjectDao {
         sql += " group by \n" +
                 "\t`project`.`id`\n";
 
-        sql += " order by `project`.`id`   LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
+        sql += " order by `project`.status   LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 
         List<Project> projectList = new ArrayList<>();
         projectList = jdbcTemplate.query(sql, new MapperProject());
