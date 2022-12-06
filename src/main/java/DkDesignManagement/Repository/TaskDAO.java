@@ -82,7 +82,7 @@ public class TaskDAO {
 
     public List<Task> getAllSubTaskViewProcess(int pageNumber, int page, int projectId) {
 
-        String sql = "select * from task t where (1=1) and t.project_id = " + projectId + "   and t.task_id is not null ";
+        String sql = "select * from task t where (1=1) and t.project_id = " + projectId + " and t.status != 5   and t.task_id is not null ";
 
         sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 
@@ -107,7 +107,7 @@ public class TaskDAO {
     }
 
     public int countSubTaskViewProcess(int projectId) {
-        String sql = "select count(*)  from task t where (1=1) and t.project_id = " + projectId + "  and t.task_id is not null  ";
+        String sql = "select count(*)  from task t where (1=1) and t.project_id = " + projectId + " and t.status != 5   and t.task_id is not null  ";
 
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
