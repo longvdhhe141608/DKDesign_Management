@@ -25,33 +25,31 @@
 <body>
 <jsp:include page="/WEB-INF/views/header.jsp"/>
 <div class="body_page">
-
     <jsp:include page="/WEB-INF/views/nav_left.jsp"/>
-
     <div class="summary">
         <h4>Thay đổi mật khẩu</h4>
-        <table class="table table-borderless ">
-            <tr>
-                <td class="col-4">Mật khẩu cũ:</td>
-                <td class="col-4"><input id="old-password" name="old-password" class="form-control" required/></td>
-            </tr>
-            <tr>
-                <td>Mật khẩu mới:</td>
-                <td><input id="new-password" name="new-password" class="form-control" required/></td>
-            </tr>
-            <tr>
-                <td>Xác nhận mật khẩu:</td>
-                <td><input id="confirmed-password" name="confirmed-password" class="form-control" required/></td>
-            </tr>
-        </table>
-
-        <div class="change-password-btn" style="display: flex;justify-content: end">
-            <button style="margin-right: 5px" class="btn btn-secondary" onclick="history.back()">Thoát</button>
-            <button type="submit" class="btn btn-primary">Lưu</button>
-        </div>
+        <form action="changePassword" method="post">
+            <table class="table table-borderless ">
+                <tr>
+                    <td class="col-4">Mật khẩu cũ:</td>
+                    <td class="col-4"><input id="old-password" name="old-password" class="form-control" required/></td>
+                </tr>
+                <tr>
+                    <td>Mật khẩu mới:</td>
+                    <td><input id="new-password" name="new-password" class="form-control" required/></td>
+                </tr>
+                <tr>
+                    <td>Xác nhận mật khẩu:</td>
+                    <td><input id="confirmed-password" name="confirmed-password" class="form-control" required/></td>
+                </tr>
+            </table>
+            <div class="change-password-btn" style="display: flex;justify-content: end">
+                <button style="margin-right: 5px" class="btn btn-secondary" onclick="history.back()">Thoát</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+            </div>
+        </form>
     </div>
 </div>
-
 <script>
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal

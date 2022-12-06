@@ -188,12 +188,12 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Upload file:</td>
+                            <td>Tải file lên:</td>
                             <td>
                                 <form>
                                     <div class="form-group">
                                         <input type="file" class="form-control" id="fileInput" multiple
-                                               style="width: 50%" name="file">
+                                               style="width: 50%" name="file" accept="image/*">
                                     </div>
                                 </form>
                                 <div class="container js-file-list"></div>
@@ -202,17 +202,16 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
-<%--                    <button onclick="return checkvalidate('#addProject')"--%>
-<%--                            type="submit" class="btn-update btn btn-primary">Lưu--%>
-<%--                    </button>--%>
-                    <input class="btn btn-primary" type="submit"  value="Lưu" >
+                    <button style="margin-right: 5px" type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
+                    <button onclick="return checkvalidate('#addProject')"
+                            type="submit" class="btn-update btn btn-primary">Lưu
+                    </button>
+<%--                    <input class="btn btn-primary" type="submit"  value="Lưu" >--%>
                 </div>
             </div>
         </form>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>

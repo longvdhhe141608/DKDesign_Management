@@ -180,8 +180,12 @@
                 <c:forEach items="${listBigTask}" var="bigTask">
                     <!------big task item------>
                     <details>
-                        <summary>
-                            <span>${bigTask.section_name}</span>
+                        <summary style="display:block;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                            <span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span>
+                                </div>
+                                <div>
                             <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
                                     id="myBtn-section" data-id="${bigTask.id}" data-name="${bigTask.section_name}"
                                     data-pid="${bigTask.project_id}">
@@ -207,8 +211,9 @@
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
+                            </div>
+                                </div>
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>
@@ -250,7 +255,7 @@
                             <!------task item------>
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <!--------list sub task------------>
-                                <c:if test="${subTask.taskStatus != 5}">
+                                <c:if test="${subTask.taskStatus != 5 && subTask.taskStatus != 1}">
                                     <div id="" class="row sub-task-detail">
                                         <div class="col-4 link-chi-tiet-cong-viec"
                                              style="border: 1px solid gray; display: flex; justify-content: space-between; ">
@@ -338,8 +343,7 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

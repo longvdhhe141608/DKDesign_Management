@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -108,17 +109,20 @@
 
                                 <td>
                                     <div class="name-input">
-                                            ${i.startDate}
+                                        <fmt:formatDate value="${i.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                                            ${std}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input">
-                                            ${i.closureDate}
+                                        <fmt:formatDate value="${i.closureDate}" var="cld" pattern="dd/MM/yyyy"/>
+                                            ${cld}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input">
-                                            ${i.endDate}
+                                        <fmt:formatDate value="${i.endDate}" var="dl" pattern="dd/MM/yyyy"/>
+                                            ${dl}
                                     </div>
                                 </td>
                                 <td>
@@ -179,8 +183,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 
 <script src="<c:url value="/resources/assets/js/pagination-all-project.js"/>"></script>
 <%--<script>--%>

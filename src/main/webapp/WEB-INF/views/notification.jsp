@@ -28,11 +28,11 @@
             <c:forEach items="${listNotification}" var="notification">
                 <div >
 
-                <a href="${notification.url}">
+                <a  href="${notification.url}">
                 <button style="width: 100%;border-radius: 10px;" type="submit">
-                    <p>  ${notification.projectName}</p>
+                    <p style="color: black ; text-align: start">  ${notification.projectName}</p>
                     <div style="display: flex;justify-content: space-between;">
-                        <p> ${notification.detail}</p>
+                        <p style="color: black"> ${notification.detail}</p>
                         <a>${notification.dateString} </a>
                     </div>
                 </button>
@@ -45,13 +45,7 @@
 </div>
 <script src=" https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
 </script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-        crossorigin="anonymous">
-</script>
+
 </body>
 
 </html>

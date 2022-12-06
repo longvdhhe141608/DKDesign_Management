@@ -109,13 +109,13 @@
         <div>
             <table class="table table-bordered table-progress">
                 <tr>
-                    <th scope="col">Công việc phụ</th>
-                    <th scope="col">Người thực hiện</th>
-                    <th scope="col">Ngày bắt đầu</th>
-                    <th scope="col">Ngày dự kiến kết thúc</th>
-                    <th scope="col">Ngày kết thúc</th>
-                    <th scope="col">Tiến độ</th>
-                    <th scope="col">Trạng thái</th>
+                    <th scope="col" class="col-4">Công việc phụ</th>
+                    <th scope="col" class="col-1">Người thực hiện</th>
+                    <th scope="col" class="col-1">Ngày bắt đầu</th>
+                    <th scope="col" class="col-1">Ngày dự kiến kết thúc</th>
+                    <th scope="col" class="col-1">Ngày kết thúc</th>
+                    <th scope="col" class="col-1">Tiến độ</th>
+                    <th scope="col" class="col-2">Trạng thái</th>
                 </tr>
                 <c:forEach items="${listTask}" var="task">
                     <c:if test="${task.taskStatus != 5}">
@@ -196,8 +196,7 @@
         </div>
     </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

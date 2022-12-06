@@ -108,13 +108,13 @@
         <div>
             <table class="table table-bordered">
                 <tr>
-                    <th scope="col">Công việc</th>
-                    <th scope="col">Người thực hiện</th>
-                    <th scope="col">Ngày bắt đầu</th>
-                    <th scope="col">Ngày dự kiến kết thúc</th>
-                    <th scope="col">Số lượng fie:</th>
-                    <th scope="col">Phê duyệt</th>
-                    <th scope="col">Ghi chú</th>
+                    <th scope="col" style="width: 30%">Công việc</th>
+                    <th scope="col" style="width: 10%">Người thực hiện</th>
+                    <th scope="col" style="width: 10%">Ngày bắt đầu</th>
+                    <th scope="col" style="width: 10%">Ngày dự kiến kết thúc</th>
+                    <th scope="col" style="width: 5%">Số lượng fie:</th>
+                    <th scope="col" style="width: 15%">Phê duyệt</th>
+                    <th scope="col" style="width: 20%">Ghi chú</th>
                 </tr>
                 <c:forEach items="${waitDtoList}" var="i">
 
@@ -132,28 +132,28 @@
                         </td>
                         <td>
                             <c:if test="${i.status == 1}">
-                                <div class="alert alert-secondary" role="alert" style="width: 250px;">
-                                    <h2 style="color:#383d41; font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                <div class="alert alert-secondary" role="alert" style="width: 150px;">
+                                    <h2 style="color:#383d41; font-size: 15px; margin: 0; padding: 0;">${i.statusTask}</h2>
                                 </div>
                             </c:if>
                             <c:if test="${i.status == 2}">
-                                <div class="alert alert-success" role="alert" style="width: 250px;">
-                                    <h2 style="color:#0f5132;font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                <div class="alert alert-success" role="alert" style="width: 150px;">
+                                    <h2 style="color:#0f5132;font-size: 15px; margin: 0; padding: 0;">${i.statusTask}</h2>
                                 </div>
                             </c:if>
                             <c:if test="${i.status == 3}">
-                                <div class="alert alert-warning" role="alert" style="width: 250px;">
-                                    <h2 style="color:#664d03;font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                <div class="alert alert-warning" role="alert" style="width: 150px;">
+                                    <h2 style="color:#664d03;font-size: 15px; margin: 0; padding: 0;">${i.statusTask}</h2>
                                 </div>
                             </c:if>
                             <c:if test="${i.status == 4}">
-                                <div class="alert alert-info" role="alert" style="width: 250px;">
-                                    <h2 style="color:#055160;font-size: 20px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                <div class="alert alert-info" role="alert" style="width: 150px;">
+                                    <h2 style="color:#055160;font-size: 15px; margin: 0; padding: 0;">${i.statusTask}</h2>
                                 </div>
                             </c:if>
                             <c:if test="${i.status == 5}">
-                                <div class="alert alert-danger" role="alert" style="width: 200px;">
-                                    <h2 style="color:#842029;font-size: 18px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                <div class="alert alert-danger" role="alert" style="width: 150px;">
+                                    <h2 style="color:#842029;font-size: 15px; margin: 0; padding: 0;">${i.statusTask}</h2>
                                 </div>
                             </c:if>
                         </td>
@@ -210,8 +210,7 @@
 <%--        </div>--%>
 <%--    </div>--%>
 <%--</div>--%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

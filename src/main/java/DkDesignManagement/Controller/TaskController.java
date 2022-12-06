@@ -133,7 +133,9 @@ public class TaskController {
         ModelAndView view = new ModelAndView("subtask");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskByIdFullModel(taskId);
+        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSubtask(task.getProjectId(), taskId);
         view.addObject("listComment", commentService.getAllViewCommentByTaskId(taskId));
+        view.addObject("listImages", imageAndFiles);
         view.addObject("task", task);
         view.addObject("mess", mess);
         return view;
@@ -157,6 +159,11 @@ public class TaskController {
         int sectionId = Integer.parseInt(request.getParameter("sectionId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
+        if (startDate.before(projectService.getProject(projectId).getStartDate()) || startDate.after(projectService.getProject(projectId).getClosureDate())
+                || deadline.before(projectService.getProject(projectId).getStartDate()) || deadline.after(projectService.getProject(projectId).getClosureDate())) {
+            redirect.addAttribute("mess", "Thời gian của công việc không hợp lí!");
+            return view;
+        }
 
         //decentralize when adding task
         // leader have status 2
@@ -187,7 +194,7 @@ public class TaskController {
             notificationService.addNotification(notification);
         }
 
-        redirect.addAttribute("mess", "add successfully ");
+        redirect.addAttribute("mess", "Thêm công việc thành công!");
         return view;
     }
 
@@ -212,10 +219,14 @@ public class TaskController {
         int sectionId = Integer.parseInt(request.getParameter("sectionId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
-
-        //decentralize when adding task
-        // leader have status 2
-        int status = NOT_APPROVED_TASK_STATUS;
+        if (startDate.before(taskService.getTaskById(taskId).getStartDate()) || startDate.after(taskService.getTaskById(taskId).getDeadline())
+                || deadline.before(taskService.getTaskById(taskId).getStartDate()) || deadline.after(taskService.getTaskById(taskId).getDeadline())){
+            redirect.addAttribute("mess", "Thời gian của công việc phụ không hợp lí.");
+            return view;
+        }
+            //decentralize when adding task
+            // leader have status 2
+            int status = NOT_APPROVED_TASK_STATUS;
         if (account.getRole_id() == LEADER_ROLE) {
             status = PROCESS_TASK_STATUS;
         }
@@ -241,7 +252,7 @@ public class TaskController {
             requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
             requirementService.updateRequirement(requirement);
         }
-        redirect.addAttribute("mess", "add sub task successfully ");
+        redirect.addAttribute("mess", "Thêm công việc phụ thành công");
         return view;
     }
 
@@ -272,12 +283,17 @@ public class TaskController {
         //get value
         String name = request.getParameter("name");
         int assignId = Integer.parseInt(request.getParameter("assignId"));
-
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
 
+
         //find by Id
         Task task = taskService.getTaskByIdFullModel(taskId);
+        if (startDate.before(projectService.getProject(task.getProjectId()).getStartDate()) || startDate.after(projectService.getProject(task.getProjectId()).getClosureDate())
+                || deadline.before(projectService.getProject(task.getProjectId()).getStartDate()) || deadline.after(projectService.getProject(task.getProjectId()).getClosureDate())) {
+            redirect.addAttribute("mess", "Thời gian của công việc không hợp lí!");
+            return view;
+        }
         task.setTaskName(name);
         task.setAssignToId(assignId);
         task.setStartDate(startDate);
@@ -285,7 +301,7 @@ public class TaskController {
 
         //update
         taskService.updateTask(task);
-        redirect.addAttribute("mess", "update task successfully ");
+        redirect.addAttribute("mess", "Cập nhật công việc thành công.");
 
         return view;
     }
@@ -310,7 +326,7 @@ public class TaskController {
             task.setEndDate(new Date());
         }
         // update
-        if(!ObjectUtils.isEmpty(request.getParameter("description"))){
+        if (!ObjectUtils.isEmpty(request.getParameter("description"))) {
             task.setDescription(request.getParameter("description"));
         }
 
@@ -331,8 +347,8 @@ public class TaskController {
         int design = task.getAssignToId();
 
         //add notification send leader
-        String url = HOST + "/" + PROJECT_NAME + "/subtask?taskId=" + task.getTaskId();
-        String message = "Sub-task của bạn không được phê duyệt và đang thực hiện";
+        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId() + "&section-id=" + task.getSectionId() + "&task-id=" + task.getTaskfId() + "&sub-task-id=" + task.getTaskId();
+        String message = "Sub-task của bạn không được phê duyệt và trở về trạng thái đang thực hiện";
         if (operation.equals("agree")) {
             message = "Sub-task của bạn được phê duyệt và đã hoàn thành";
 
@@ -340,7 +356,7 @@ public class TaskController {
         Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
         notificationService.addNotification(notification);
 
-        redirect.addAttribute("mess", "" + operation + " task successfully ");
+        redirect.addAttribute("mess", "" + operation + " Công việc đã hoàn thành ");
 
         return view;
     }
@@ -397,6 +413,11 @@ public class TaskController {
         int projectId = Integer.parseInt(request.getParameter("projectId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
+        if (startDate.before(projectService.getProject(projectId).getStartDate()) || startDate.after(projectService.getProject(projectId).getClosureDate())
+                || deadline.before(projectService.getProject(projectId).getStartDate()) || deadline.after(projectService.getProject(projectId).getClosureDate())) {
+            redirect.addAttribute("mess", "Thời gian của công việc không hợp lí!");
+            return view;
+        }
         taskService.addTaskeofLeader(projectId, a.getId(), a.getId(), name, startDate, deadline);
         return view;
     }

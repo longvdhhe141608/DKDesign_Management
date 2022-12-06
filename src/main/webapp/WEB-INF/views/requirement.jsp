@@ -153,8 +153,8 @@
                     <tr>
                         <th scope="col" class="col-2">Vị trí</th>
                         <th scope="col" class="col-6">Yêu cầu</th>
-                        <th scope="col" class="col-1">Thời gian</th>
-                        <th scope="col" class="col-2">Trạng thái</th>
+                        <th scope="col" class="col-1">Ngày tạo</th>
+                        <th scope="col" class="col-1">Trạng thái</th>
 
                         <th scope="col" class="col-1"></th>
                     </tr>
@@ -164,10 +164,10 @@
                         <!-------item------------------------>
                         <c:if test="${requirement.status != 3}">
                             <tr>
-                                <td class="col-2">${requirement.requirementName}</td>
-                                <td class="col-6">${requirement.requirementDetail}</td>
-                                <td class="col-1"></td>
-                                <td class="col-2">
+                                <td>${requirement.requirementName}</td>
+                                <td >${requirement.requirementDetail}</td>
+                                <td >${requirement.requirementDate}</td>
+                                <td >
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý
                                     </c:if>
@@ -178,7 +178,7 @@
                                         Chưa được đáp ứng
                                     </c:if>
                                 </td>
-                                <td class="col-1">
+                                <td >
                                     <div style="display: flex; ">
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"
@@ -221,7 +221,7 @@
                     <thead>
                     <th scope="col">Lần</th>
                     <th scope="col">Nội dung</th>
-                    <th scope="col">Thời gian</th>
+                    <th scope="col">Ngày chỉnh sửa</th>
                     </thead>
                     <tbody>
                     <c:forEach items="${listHistory}" var="history">
@@ -255,8 +255,7 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

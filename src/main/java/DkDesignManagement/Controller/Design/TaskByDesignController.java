@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -144,7 +145,7 @@ public class TaskByDesignController {
     }
 
     @RequestMapping(value = "/insert-sub-task", method = RequestMethod.POST)
-    public ModelAndView insertSubTaskByDesign(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView insertSubTaskByDesign(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) {
 
         ModelAndView view;
 
@@ -156,6 +157,15 @@ public class TaskByDesignController {
         int taskID = Integer.parseInt(request.getParameter("task-id"));
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         int sectionID = Integer.parseInt(request.getParameter("section-id"));
+        if (startDate.before(taskService.getTaskById(taskID).getStartDate()) || startDate.after(taskService.getTaskById(taskID).getDeadline())
+                || deadline.before(taskService.getTaskById(taskID).getStartDate()) || deadline.after(taskService.getTaskById(taskID).getDeadline())) {
+            redirect.addAttribute("mess", "Thời gian của công việc phụ không hợp lí.");
+            view = new ModelAndView("redirect:/design/task/view-detail-task");
+            view.addObject("project-id", projectID);
+            view.addObject("task-id", taskID);
+            view.addObject("section-id", sectionID);
+            return view;
+        }
 
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
@@ -178,10 +188,10 @@ public class TaskByDesignController {
 
         if (keySubTask == 0) {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
-            view.addObject("mess", "Save failed");
+            view.addObject("mess", "Thêm công việc phụ không thành công.");
         } else {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
-            view.addObject("mess", "Save success");
+            view.addObject("mess", "Thêm công việc thành công.");
             //find leader
             Project project = projectService.getProject(projectID);
             int leader = project.getCreator();

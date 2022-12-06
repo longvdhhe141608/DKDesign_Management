@@ -27,12 +27,6 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-                <%--                    <select style="border-radius: 5px; padding: 6px;">--%>
-                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-                <%--                    </select>--%>
-                <%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -81,15 +75,6 @@
                         > </a>
                 </div>
                 <table class="table table-borderless" style="border: 0;">
-                    <%--                    <tr>--%>
-                    <%--                        <td>Sub-task-name:</td>--%>
-                    <%--                        <td>--%>
-                    <%--                            <div class="mb-3">--%>
-                    <%--                                <input type="text" class="form-control" id="exampleFormControlInput1"--%>
-                    <%--                                       value="${subTask.taskName}" name="sub-task-name">--%>
-                    <%--                            </div>--%>
-                    <%--                        </td>--%>
-                    <%--                    </tr>--%>
                     <tr>
                         <td class="col-6">Nhiệm vụ:</td>
                         <td class="col-6">${subTask.nameEmployee}</td>
@@ -196,8 +181,7 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

@@ -19,6 +19,8 @@ function checkvalidate(id) {
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
     numberdate = checkdate(today, startdate, enddate);
+    let numberdate1 = 0;
+    numberdate1 = checkdate1(today, startdate, enddate);
     let numberchecknumber = 0;
     numberchecknumber = checkNumber(input);
     let numbercheckphone = 0;
@@ -101,17 +103,14 @@ function checkvalidate(id) {
     // console.log(today.getFullYear());
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (today.getDate() > enddate.getDate() && today.getMonth() + 1 >= enddate.getMonth() + 1 && today.getFullYear() >= enddate.getFullYear()) {
-            b++;
-            error[2].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 >= startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
+
+            return b;
 
         }
-        else if (startdate.getDate() > enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        else {
             b++;
             error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
-        }
-        else {
-            return b;
         }
         return b;
     }
