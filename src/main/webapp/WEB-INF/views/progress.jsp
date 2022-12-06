@@ -109,13 +109,13 @@
         <div>
             <table class="table table-bordered table-progress">
                 <tr>
-                    <th scope="col">Công việc phụ</th>
-                    <th scope="col">Người thực hiện</th>
-                    <th scope="col">Ngày bắt đầu</th>
-                    <th scope="col">Ngày dự kiến kết thúc</th>
-                    <th scope="col">Ngày kết thúc</th>
-                    <th scope="col">Tiến độ</th>
-                    <th scope="col">Trạng thái</th>
+                    <th scope="col" class="col-4">Công việc phụ</th>
+                    <th scope="col" class="col-1">Người thực hiện</th>
+                    <th scope="col" class="col-1">Ngày bắt đầu</th>
+                    <th scope="col" class="col-1">Ngày dự kiến kết thúc</th>
+                    <th scope="col" class="col-1">Ngày kết thúc</th>
+                    <th scope="col" class="col-1">Tiến độ</th>
+                    <th scope="col" class="col-2">Trạng thái</th>
                 </tr>
                 <c:forEach items="${listTask}" var="task">
                     <c:if test="${task.taskStatus != 5}">

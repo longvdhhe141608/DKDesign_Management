@@ -149,7 +149,10 @@
                     <td>Yêu cầu khách hàng:</td>
                     <td>${subTask.nameRequirement}</td>
                 </tr>
-
+                <tr>
+                    <td>Ghi chú:</td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td>Tải file lên:</td>
                     <td>
@@ -159,6 +162,7 @@
                                 <div class="form-group">
                                     <input type="file" class="form-control" id="fileInput" multiple name="file">
                                 </div>
+                                <div class="container js-file-list"></div>
                                 <div>
                                     <input class="btn btn-primary" type="submit" value="Cập nhật file">
                                 </div>

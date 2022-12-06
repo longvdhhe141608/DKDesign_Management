@@ -188,7 +188,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Upload file:</td>
+                            <td>Tải file lên:</td>
                             <td>
                                 <form>
                                     <div class="form-group">
@@ -202,11 +202,11 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <button type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
-<%--                    <button onclick="return checkvalidate('#addProject')"--%>
-<%--                            type="submit" class="btn-update btn btn-primary">Lưu--%>
-<%--                    </button>--%>
-                    <input class="btn btn-primary" type="submit"  value="Lưu" >
+                    <button style="margin-right: 5px" type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
+                    <button onclick="return checkvalidate('#addProject')"
+                            type="submit" class="btn-update btn btn-primary">Lưu
+                    </button>
+<%--                    <input class="btn btn-primary" type="submit"  value="Lưu" >--%>
                 </div>
             </div>
         </form>

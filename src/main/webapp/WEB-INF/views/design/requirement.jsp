@@ -94,8 +94,8 @@
                     <c:forEach items="${requirements}" var="i">
                         <c:if test="${i.status != 3}">
                             <tr>
-                                <td class="col-2">${i.requirementName}</td>
-                                <td class="col-8">${i.requirementDetail}</td>
+                                <td >${i.requirementName}</td>
+                                <td >${i.requirementDetail}</td>
                                 <td>
                                     <c:if test="${i.status != 3}">${i.statusName}</c:if>
                                 </td>
