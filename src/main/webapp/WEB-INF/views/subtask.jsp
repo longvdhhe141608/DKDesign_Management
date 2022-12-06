@@ -105,7 +105,7 @@
 
                 </div>
                 <c:if test="${task.taskStatus == 3 && loginUser.role_id == 2}">
-                    <div style="border-bottom: 1px solid grey; text-align: start;">
+                    <div style="display: flex">
                         <a href="task/change-status?taskId=${task.taskId}&operation=agree">
                             <button class="btn btn-primary">Đồng ý</button>
                         </a>
@@ -113,8 +113,7 @@
                                 <button type="submit" class="btn btn-secondary">Hủy bỏ</button>
                             <input type="text" hidden="" name="taskId" value="${task.taskId}">
                             <input type="text" hidden="" name="operation" value="cancel">
-                            <input required="" name="description" class="info-text" value="" placeholder="Ghi chú">
-                            <div class="text-danger error"></div>
+                            <input required name="description" class="info-text" value="" placeholder="Ghi chú">
                         </form>
 
                     </div>
@@ -248,8 +247,7 @@
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
