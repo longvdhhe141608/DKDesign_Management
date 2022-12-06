@@ -17,13 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
-    <style>
-        .swal-wide {
-            width: 850px !important;
-        }
-    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/design/header.jsp"/>
@@ -166,7 +160,7 @@
                             <form action="${pageContext.request.contextPath}/design/sub-task/update-file-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
                                   class="update_file" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <input type="file" class="form-control" id="fileInput" multiple name="file" accept="image/*">
+                                    <input type="file" class="form-control" id="fileInput" multiple name="file">
                                 </div>
                                 <div class="container js-file-list"></div>
                                 <div>
@@ -185,20 +179,6 @@
                                     <h2 style="color:#0f5132;font-size: 18px; margin: 0; padding: 0;">${mess}</h2>
                                 </div>
                             </c:if>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hiển thị file</td>
-                    <td>
-                        <div class="container js-file-list">
-                            <c:forEach items="${listImages}" var="image">
-                                <button type="button" style="border-radius: 5px"
-                                        onclick="showImage(this.getAttribute('data-url'))" data-url="${image.fileUrl}">
-                                    <img src="<c:url value="${image.fileUrl}"/>" alt=""
-                                         style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
-                                </button>
-                            </c:forEach>
                         </div>
                     </td>
                 </tr>
@@ -298,29 +278,48 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<%--<script>--%>
-<%--    const show = document.querySelector("#show-member");--%>
+<script>
+    $(document).ready(function () {
+        $('#fileInput').on('change', function () {
+            var files = $(this)[0].files;
 
-<%--    const popup = document.querySelector(".popup");--%>
-<%--    let close = document.querySelector('.close_popup');--%>
-<%--    close.addEventListener('click', function () {--%>
-<%--        popup.classList.add("hide__popup");--%>
-<%--    });--%>
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var fileReader = new FileReader();
+                fileReader.onload = (function (fileParams) {
+                    return function (event) {
+                        var str = '<div class="col-md-2">' +
+                            '<span id="upload" class="js-file-name"></span><br>' +
 
-<%--    show.addEventListener('click', function () {--%>
-<%--        popup.classList.remove("hide__popup");--%>
-<%--    })--%>
-<%--</script>--%>
+                            '<span class="js-file-size"></span> (Byte)<br>' +
+                            '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
+                            '</div>';
+                        $('.js-file-list').append(str);
+
+                        var imageSrc = event.target.result;
+                        var fileName = fileParams.name;
+
+                        var fileSize = fileParams.size;
+
+                        $('.js-file-name').last().text(fileName);
+
+                        $('.js-file-size').last().text(fileSize);
+                        $('.js-file-image').last().attr('src', imageSrc);
+
+
+                    };
+                })(file);
+                fileReader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
 </body>
 </html>

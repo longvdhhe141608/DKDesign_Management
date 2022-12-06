@@ -17,6 +17,8 @@ function checkvalidate(id) {
     let numberdate = 0;
     numberdate = checkdate(today, startdate, enddate);
     let numberprocess = 0;
+    let numberdate1 = 0;
+    numberdate1 = checkdate1(today, startdate, enddate);
 
     function checkEmpty(input) {
         let a = 0;
@@ -55,25 +57,42 @@ function checkvalidate(id) {
     console.log(enddate.getMonth()+1);
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (startdate.getDate() < today.getDate() || startdate.getMonth() + 1 <= today.getMonth() + 1 || startdate.getFullYear() <= today.getFullYear()) {
-            b++;
-            error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 >= today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getFullYear() > today.getFullYear()) {
 
-        }
-        else if (startdate.getDate() > enddate.getDate() || startdate.getMonth() + 1 >= enddate.getMonth() + 1 || startdate.getFullYear() >= enddate.getFullYear()) {
-            b++;
-            error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+            return b;
 
         }
         else {
+            b++;
+            error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+        }
+        return b;
+    }
+    function checkdate1(today, startdate, enddate) {
+        let b = 0;
+        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 >= startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
 
             return b;
+
         }
+        else {
+            b++;
+            error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+        }
+        // else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        //     b++;
+        //     error[7].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+
+        // }
+        // else {
+
+        //     return b;
+        // }
         return b;
     }
     console.log(numberdate);
 
-    numberprocess = numberEmpty + numberdate;
+    numberprocess = numberEmpty + numberdate + numberdate1;
     if (numberprocess > 0) {
         return false;
     } else {

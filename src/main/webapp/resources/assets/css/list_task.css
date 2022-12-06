@@ -129,7 +129,7 @@
     background-color: #b7bacb;
     color: white;
 }
-a:hover .chi-tiet {
+ .chi-tiet:hover{
     border: none;
     font-size: 80%;
     padding-top: 0%;

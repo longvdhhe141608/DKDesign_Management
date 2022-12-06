@@ -145,15 +145,14 @@ function checkvalidate(id) {
     // console.log(today.getFullYear());
     function checkdate(today, startdate) {
         let b = 0;
-        if (startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 >= today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear()) {
-            b++;
-            error[2].innerHTML = "nhập phải nhỏ hơn ngày hiện tại";
-
-        }
-
-        else {
+        if (startdate.getMonth() + 1 < today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear() || startdate.getDate() <= today.getDate() && startdate.getMonth() + 1 <= today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear() || startdate.getFullYear() < today.getFullYear()) {
 
             return b;
+
+        }
+        else {
+            b++;
+            error[2].innerHTML = "nhập phải nhỏ hơn ngày hiện tại";
         }
         return b;
     }
