@@ -142,19 +142,19 @@ public class EditSummaryController {
         List<String> change = new ArrayList<>();
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 
-        if (!newProject.getProjectName().equals(oldProject.getProjectName())) {
+        if (!newProject.getProjectName().trim().equals(oldProject.getProjectName().trim())) {
             String message = "Tên công trình: " + oldProject.getProjectName() + " -> " + newProject.getProjectName();
             change.add(message);
         }
-        if (!newProject.getCusName().equals(oldProject.getCusName())) {
+        if (!newProject.getCusName().trim().equals(oldProject.getCusName().trim())) {
             String message = "Chủ nhà: " + oldProject.getCusName() + " -> " + newProject.getCusName();
             change.add(message);
         }
-        if (!newProject.getCusPhone().equals(oldProject.getCusPhone())) {
+        if (!newProject.getCusPhone().trim().equals(oldProject.getCusPhone().trim())) {
             String message = "Số điện thoại: " + oldProject.getCusPhone() + " -> " + newProject.getCusPhone();
             change.add(message);
         }
-        if (!newProject.getCusAddress().equals(oldProject.getCusAddress())) {
+        if (!newProject.getCusAddress().trim().equals(oldProject.getCusAddress().trim())) {
             String message = "Địa chỉ công trình: " + oldProject.getCusAddress() + " -> " + newProject.getCusAddress();
             change.add(message);
         }
@@ -175,7 +175,7 @@ public class EditSummaryController {
             String message = "Thời gian dự kiến kết thúc: " + oldProject.getClosureDate() + " -> " + formatDate.format(newProject.getClosureDate());
             change.add(message);
         }
-        if (!newProject.getDetail().equals(oldProject.getDetail())) {
+        if (!newProject.getDetail().trim().equals(oldProject.getDetail().trim())) {
             String message = "Mô tả: " + oldProject.getDetail() + " -> " + newProject.getDetail();
             change.add(message);
         }
