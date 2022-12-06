@@ -64,11 +64,13 @@ public class RequirementDao {
         return null;
     }
 
-    public List<Requirement> getPaginationRequirementByProjectID(int projectID, int indexPage) {
+    public List<Requirement> getPaginationRequirementByProjectID(int pageNumber, int page,int projectID) {
 
         List<Requirement> requirements = new ArrayList<>();
         String sql = "SELECT r.*, s.status_requirement FROM dkmanagement.requirement r \n" +
-                "left join status s on r.status = s.id where project_id= ? LIMIT " + indexPage + ", 10;";
+                "left join status s on r.status = s.id where project_id= ? ";
+
+        sql += " order by r.id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 
         try {
             requirements = jdbcTemplate.query(sql, new MapperRequirement(), projectID);

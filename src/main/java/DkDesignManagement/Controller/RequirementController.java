@@ -2,6 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
+import DkDesignManagement.model.RequirementPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -45,16 +46,14 @@ public class RequirementController {
         int projectID = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(projectID);
 
-        String indexPage = request.getParameter("pageNo");
-        int page = 0;
-        if (indexPage != null) {
-            page = Integer.parseInt(indexPage);
+        int page = 1;
+        if (!ObjectUtils.isEmpty(request.getParameter("page"))) {
+            page = Integer.parseInt(request.getParameter("page"));
         }
 
-        int totalRequirement = requirementService.getAllRequirementByProjectID(projectID).size();
-        int totalPages = (totalRequirement % 10 == 0) ? totalRequirement / 10 : totalRequirement / 10 + 1;
+        RequirementPageResponse requirementPageResponse = requirementService.getPaginationRequirementByProjectID(page,projectID);
+        List<Requirement> requirements = requirementPageResponse.getRequirementList();
 
-        List<Requirement> requirements = requirementService.getPaginationRequirementByProjectID(projectID, page);
 
         List<RevisionHistory> listHistory = new ArrayList<RevisionHistory>();
         //check and update status
@@ -63,16 +62,12 @@ public class RequirementController {
             listHistory.addAll(historyService.getAlLRevisionHistoryOfTable(requirement.getId(), "requirement"));
         }
 
-        List<Integer> lsPage = new ArrayList<>();
-        // for này có chức năng hiển thị list page
-        for (int i = 1; i <= totalPages; ++i) {
-            lsPage.add(i);
-        }
-
         view.addObject("requirements", requirements);
         view.addObject("listHistory", listHistory);
-        view.addObject("lsPage", lsPage);
+        view.addObject("page", page);
+        view.addObject("endPage", requirementPageResponse.getEndPage());
         view.addObject("project", project);
+        view.addObject("projectId", projectID);
         return view;
     }
 
