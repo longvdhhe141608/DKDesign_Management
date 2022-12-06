@@ -71,7 +71,7 @@
                         <th scope="col" class="col-1">Thời gian bắt đầu</th>
                         <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
                         <th scope="col" class="col-1">Thời gian kết thúc</th>
-                        <th scope="col" class="col-4">Tên công trình</th>
+                        <th scope="col" class="col-3">Tên công trình</th>
                         <th scope="col" class="col-1"></th>
                     </tr>
                     </thead>

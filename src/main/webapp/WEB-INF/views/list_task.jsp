@@ -180,8 +180,12 @@
                 <c:forEach items="${listBigTask}" var="bigTask">
                     <!------big task item------>
                     <details>
-                        <summary>
-                            <span>${bigTask.section_name}</span>
+                        <summary style="display:block;">
+                            <div style="display: flex; justify-content: space-between;">
+                                <div>
+                            <span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span>
+                                </div>
+                                <div>
                             <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
                                     id="myBtn-section" data-id="${bigTask.id}" data-name="${bigTask.section_name}"
                                     data-pid="${bigTask.project_id}">
@@ -207,8 +211,9 @@
                                         </form>
                                     </div>
                                 </div>
-
                             </div>
+                            </div>
+                                </div>
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>

@@ -178,7 +178,7 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col" class="col-5">Tên công trình</th>
+                            <th scope="col" class="col-4">Tên công trình</th>
                             <th scope="col" class="col-1">Loại công trình</th>
                             <th scope="col" class="col-1">Thời gian bắt đầu</th>
                             <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>

@@ -114,7 +114,7 @@
                             <input type="text" hidden="" name="taskId" value="${task.taskId}">
                             <input type="text" hidden="" name="operation" value="cancel">
                             <input required="" name="description" class="info-text" value="" placeholder="Ghi chú">
-
+                            <div class="text-danger error"></div>
                         </form>
 
                     </div>
@@ -189,6 +189,10 @@
                     <tr>
                         <td>Yêu cầu khách hàng:</td>
                         <td>${task.requirementName}</td>
+                    </tr>
+                    <tr>
+                        <td>Ghi chú:</td>
+                        <td></td>
                     </tr>
 
                     <tr>

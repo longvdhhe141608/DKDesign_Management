@@ -118,7 +118,7 @@
                             <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
                             <th scope="col" class="col-1">Số lượng file</th>
                             <th scope="col" class="col-1">Phê duyệt</th>
-                            <th scope="col" class="col-3">Ghi chú</th>
+                            <th scope="col" class="col-2">Ghi chú</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -133,12 +133,12 @@
                                 </td>
                                 <td>${task.assignToName}</td>
                                 <td>
-                                    <div class="name-input" style="width: 150px;">
+                                    <div class="name-input" >
                                             ${task.startDate}
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="name-input" style="width: 150px;">
+                                    <div class="name-input" >
                                             ${task.deadline}
                                     </div>
                                 </td>

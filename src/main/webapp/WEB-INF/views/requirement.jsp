@@ -154,7 +154,7 @@
                         <th scope="col" class="col-2">Vị trí</th>
                         <th scope="col" class="col-6">Yêu cầu</th>
                         <th scope="col" class="col-1">Thời gian</th>
-                        <th scope="col" class="col-2">Trạng thái</th>
+                        <th scope="col" class="col-1">Trạng thái</th>
 
                         <th scope="col" class="col-1"></th>
                     </tr>
@@ -164,10 +164,10 @@
                         <!-------item------------------------>
                         <c:if test="${requirement.status != 3}">
                             <tr>
-                                <td class="col-2">${requirement.requirementName}</td>
-                                <td class="col-6">${requirement.requirementDetail}</td>
-                                <td class="col-1"></td>
-                                <td class="col-2">
+                                <td>${requirement.requirementName}</td>
+                                <td >${requirement.requirementDetail}</td>
+                                <td ></td>
+                                <td >
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý
                                     </c:if>
@@ -178,7 +178,7 @@
                                         Chưa được đáp ứng
                                     </c:if>
                                 </td>
-                                <td class="col-1">
+                                <td >
                                     <div style="display: flex; ">
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"
