@@ -161,9 +161,9 @@ body {
     border: none;
     border-radius: 50px;
     background-color: darkgray;
-    color: black;
+
 }
-a:hover .summary-detail-all {
+ .summary-detail-all:hover {
     float: right;
     font-size: 80%;
     padding-bottom: 2px;

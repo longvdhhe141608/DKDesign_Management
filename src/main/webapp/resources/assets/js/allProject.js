@@ -19,6 +19,8 @@ function checkvalidate(id) {
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
     numberdate = checkdate(today, startdate, enddate);
+    let numberdate1 = 0;
+    numberdate1 = checkdate1(today, startdate, enddate);
     let numberchecknumber = 0;
     numberchecknumber = checkNumber(input);
     let numbercheckphone = 0;
@@ -101,24 +103,41 @@ function checkvalidate(id) {
     // console.log(today.getFullYear());
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (startdate.getDate() < today.getDate() && startdate.getMonth() + 1 <= today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear()) {
-            b++;
-            error[6].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 >= today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getFullYear() > today.getFullYear()) {
 
-        }
-        else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
-            b++;
-            error[7].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+            return b;
 
         }
         else {
-
-            return b;
+            b++;
+            error[6].innerHTML = "nhập phải lớn hơn ngày hiện tại";
         }
         return b;
     }
+    function checkdate1(today, startdate, enddate) {
+        let b = 0;
+        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 >= startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
+
+            return b;
+
+        }
+        else {
+            b++;
+            error[7].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+        }
+        // else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
+        //     b++;
+        //     error[7].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+
+        // }
+        // else {
+
+        //     return b;
+        // }
+        return b;
+    }
     console.log(numberdate);
-    numberprocess = numberEmpty + numberchecknumber + numbercheckphone + numberdate;
+    numberprocess = numberEmpty + numberchecknumber + numbercheckphone + numberdate + numberdate1;
     console.log(numberprocess);
     if (numberprocess > 0) {
         return false;

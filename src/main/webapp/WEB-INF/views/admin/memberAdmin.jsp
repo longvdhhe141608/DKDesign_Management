@@ -72,22 +72,27 @@
             <table class="table table-bordered sortable">
 
                 <tr>
-                    <th>Tên</th>
-                    <th>Chức danh</th>
-                    <th>Số điện thoại</th>
-                    <th>Email</th>
-                    <th>Địa chỉ</th>
-                    <th>Trạng thái</th>
+                    <th class="col-3">Tên</th>
+                    <th class="col-1">Chức danh</th>
+                    <th class="col-1">Số điện thoại</th>
+                    <th class="col-2">Email</th>
+                    <th class="col-3">Địa chỉ</th>
+                    <th class="col-1">Trạng thái</th>
                 </tr>
 
                 <c:forEach var="member" items="${memberList}">
                     <tr>
-                        <td style="display: flex;justify-content:space-between">${member.memberName}
+                        <td style="display: flex;justify-content:space-between">
+                                <div class="col-8">
+                                ${member.memberName}
+                                </div>
+                            <div class="col-4">
                             <form action="${pageContext.request.contextPath}/member/information" method="get">
                                 <input name="id" value="${member.memberId}" hidden>
 <%--                                <input type="submit" class="btn btn-primary chi-tiet" value="chi tiết">--%>
-                                <button class="btn btn-primary chi-tiet" >Chi tiết</button>
+                                <button class=" chi-tiet" >Chi tiết</button>
                             </form>
+                            </div>
                         </td>
                         <td>
                             <c:if test="${member.memberRole==2}">Trưởng nhóm</c:if>
@@ -166,8 +171,7 @@
     </div>
 </div>
 <%--end popup add member--%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

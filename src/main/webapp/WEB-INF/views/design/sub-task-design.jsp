@@ -278,26 +278,48 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    const show = document.querySelector("#show-member");--%>
+<script>
+    $(document).ready(function () {
+        $('#fileInput').on('change', function () {
+            var files = $(this)[0].files;
 
-<%--    const popup = document.querySelector(".popup");--%>
-<%--    let close = document.querySelector('.close_popup');--%>
-<%--    close.addEventListener('click', function () {--%>
-<%--        popup.classList.add("hide__popup");--%>
-<%--    });--%>
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var fileReader = new FileReader();
+                fileReader.onload = (function (fileParams) {
+                    return function (event) {
+                        var str = '<div class="col-md-2">' +
+                            '<span id="upload" class="js-file-name"></span><br>' +
 
-<%--    show.addEventListener('click', function () {--%>
-<%--        popup.classList.remove("hide__popup");--%>
-<%--    })--%>
-<%--</script>--%>
+                            '<span class="js-file-size"></span> (Byte)<br>' +
+                            '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
+                            '</div>';
+                        $('.js-file-list').append(str);
+
+                        var imageSrc = event.target.result;
+                        var fileName = fileParams.name;
+
+                        var fileSize = fileParams.size;
+
+                        $('.js-file-name').last().text(fileName);
+
+                        $('.js-file-size').last().text(fileSize);
+                        $('.js-file-image').last().attr('src', imageSrc);
+
+
+                    };
+                })(file);
+                fileReader.readAsDataURL(file);
+            }
+        });
+    });
+</script>
 </body>
 </html>
