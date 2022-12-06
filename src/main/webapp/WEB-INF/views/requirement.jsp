@@ -153,7 +153,7 @@
                     <tr>
                         <th scope="col" class="col-2">Vị trí</th>
                         <th scope="col" class="col-6">Yêu cầu</th>
-                        <th scope="col" class="col-1">Thời gian</th>
+                        <th scope="col" class="col-1">Ngày tạo</th>
                         <th scope="col" class="col-1">Trạng thái</th>
 
                         <th scope="col" class="col-1"></th>
@@ -166,7 +166,7 @@
                             <tr>
                                 <td>${requirement.requirementName}</td>
                                 <td >${requirement.requirementDetail}</td>
-                                <td ></td>
+                                <td >${requirement.requirementDate}</td>
                                 <td >
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý
@@ -221,7 +221,7 @@
                     <thead>
                     <th scope="col">Lần</th>
                     <th scope="col">Nội dung</th>
-                    <th scope="col">Thời gian</th>
+                    <th scope="col">Ngày chỉnh sửa</th>
                     </thead>
                     <tbody>
                     <c:forEach items="${listHistory}" var="history">

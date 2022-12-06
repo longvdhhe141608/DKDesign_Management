@@ -39,7 +39,7 @@ public class SectionController {
 
         //add section
         sectionService.addSection(section);
-        redirect.addAttribute("mess", "add successfully ");
+        redirect.addAttribute("mess", "Thêm đầu mục công việc thành công");
         return view;
     }
 

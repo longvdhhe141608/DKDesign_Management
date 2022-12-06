@@ -18,6 +18,11 @@ public class ImageAndFileServiceImpl implements ImageAndFileService {
         return imageAndFileDao.getAllImageSummary(pid);
     }
 
+    @Override
+    public List<ImageAndFile> getAllImageSubtask(int pid, int tid) {
+        return imageAndFileDao.getAllImageSubtask(pid, tid);
+    }
+
     /**
      * @param id
      * @param id1
@@ -25,7 +30,7 @@ public class ImageAndFileServiceImpl implements ImageAndFileService {
      */
     @Override
     public int getTotalFileBySubTaskID(int id, int id1) {
-        return imageAndFileDao.getTotalFileBySubTaskID(id,id1);
+        return imageAndFileDao.getTotalFileBySubTaskID(id, id1);
     }
 
     /**
@@ -36,7 +41,7 @@ public class ImageAndFileServiceImpl implements ImageAndFileService {
      */
     @Override
     public int updateFileBySubTaskID(String url, int id, int id1) {
-        return imageAndFileDao.updateFileBySubTaskID(url,id,id1);
+        return imageAndFileDao.updateFileBySubTaskID(url, id, id1);
     }
 
     /**
@@ -55,6 +60,6 @@ public class ImageAndFileServiceImpl implements ImageAndFileService {
      */
     @Override
     public int uploadFileSummary(String url, int id) {
-        return imageAndFileDao.uploadFileSummary(url,id);
+        return imageAndFileDao.uploadFileSummary(url, id);
     }
 }

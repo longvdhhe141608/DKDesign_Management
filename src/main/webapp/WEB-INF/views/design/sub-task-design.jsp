@@ -17,7 +17,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
+    <style>
+        .swal-wide {
+            width: 850px !important;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/design/header.jsp"/>
@@ -160,7 +166,7 @@
                             <form action="${pageContext.request.contextPath}/design/sub-task/update-file-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
                                   class="update_file" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <input type="file" class="form-control" id="fileInput" multiple name="file">
+                                    <input type="file" class="form-control" id="fileInput" multiple name="file" accept="image/*">
                                 </div>
                                 <div class="container js-file-list"></div>
                                 <div>
@@ -179,6 +185,20 @@
                                     <h2 style="color:#0f5132;font-size: 18px; margin: 0; padding: 0;">${mess}</h2>
                                 </div>
                             </c:if>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Hiển thị file</td>
+                    <td>
+                        <div class="container js-file-list">
+                            <c:forEach items="${listImages}" var="image">
+                                <button type="button" style="border-radius: 5px"
+                                        onclick="showImage(this.getAttribute('data-url'))" data-url="${image.fileUrl}">
+                                    <img src="<c:url value="${image.fileUrl}"/>" alt=""
+                                         style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
+                                </button>
+                            </c:forEach>
                         </div>
                     </td>
                 </tr>
@@ -286,6 +306,9 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <%--<script>--%>
 <%--    const show = document.querySelector("#show-member");--%>
 
