@@ -85,7 +85,8 @@
                     <thead>
                     <tr>
                         <th scope="col" class="col-2">Vị trí</th>
-                        <th scope="col" class="col-8">Yêu cầu</th>
+                        <th scope="col" class="col-5">Yêu cầu</th>
+                        <th scope="col" class="col-3">Ngày tạo</th>
                         <th scope="col" class="col-2">Trạng thái</th>
                         <%--                        <th scope="col"></th>--%>
                     </tr>
@@ -94,8 +95,9 @@
                     <c:forEach items="${requirements}" var="i">
                         <c:if test="${i.status != 3}">
                             <tr>
-                                <td >${i.requirementName}</td>
-                                <td >${i.requirementDetail}</td>
+                                <td>${i.requirementName}</td>
+                                <td>${i.requirementDetail}</td>
+                                <td>${i.requirementDate}</td>
                                 <td>
                                     <c:if test="${i.status != 3}">${i.statusName}</c:if>
                                 </td>
@@ -134,7 +136,7 @@
                     <thead>
                     <th scope="col" class="col-2">Lần</th>
                     <th scope="col" class="col-8">Nội dung</th>
-                    <th scope="col" class="col-2">Thời gian</th>
+                    <th scope="col" class="col-2">Ngày chỉnh sửa</th>
                     </thead>
                     <tbody>
                     <tr>

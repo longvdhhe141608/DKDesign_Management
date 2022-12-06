@@ -193,7 +193,7 @@
                                 <form>
                                     <div class="form-group">
                                         <input type="file" class="form-control" id="fileInput" multiple
-                                               style="width: 50%" name="file">
+                                               style="width: 50%" name="file" accept="image/*">
                                     </div>
                                 </form>
                                 <div class="container js-file-list"></div>

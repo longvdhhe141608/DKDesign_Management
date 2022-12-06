@@ -41,7 +41,8 @@
                         type="button"
                         style="background: blue"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -50,7 +51,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -78,50 +80,64 @@
                             <span>${i.sectionName}</span>
                         </summary>
                         <c:forEach items="${i.tasksList}" var="t">
-<%--                            <c:if test="${ t.assignedTo == sessionScope.loginUser.id}">--%>
-                                <div class="row " style="background: rgba(0, 0, 0, 0.2); height: 40px">
-                                    <div class="col-4 row-task" style="display: flex;justify-content: space-between;border: 1px solid gray;">
-                                        <div class="name-project">
-                                            <button style="border: none; background-color: #cccccc; justify-self: start;"
-                                                    onclick="myFunction('.sub-task-detail')">
-                                                <i class="fa-solid fa-caret-down"
-                                                   style="border: none; background-color: #cccccc; justify-self: start;"></i>${t.taskName}</button>
-                                        </div>
-                                            <div>
-                                            <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${i.sectionID}&task-id=${t.id}"
-                                               class="chi-tiet-cong-viec" style="justify-self: end;">
-                                                <button class="btn btn-primary link-row-task">Chi tiết</button>
-                                            </a>
-                                        </div>
+                            <%--                            <c:if test="${ t.assignedTo == sessionScope.loginUser.id}">--%>
+                            <div class="row " style="background: rgba(0, 0, 0, 0.2); height: 40px">
+                                <div class="col-4 row-task"
+                                     style="display: flex;justify-content: space-between;border: 1px solid gray;">
+                                    <div class="name-project">
+                                        <button style="border: none; background-color: #cccccc; justify-self: start;"
+                                                onclick="myFunction('.sub-task-detail')">
+                                            <i class="fa-solid fa-caret-down"
+                                               style="border: none; background-color: #cccccc; justify-self: start;"></i>${t.taskName}
+                                        </button>
                                     </div>
-                                    <div class="col-1" style="border: 1px solid gray;">${t.nameEmployee}</div>
-                                    <div class="col-2" style="border: 1px solid gray;">${t.startingDate}</div>
-                                    <div class="col-2" style="border: 1px solid gray;">${t.endedDate}</div>
-                                    <div class="col-2" style="border: 1px solid gray;"></div>
-                                    <div class="col-1" style="border: 1px solid gray;"></div>
+                                    <div>
+                                        <a href="${pageContext.request.contextPath}/design/task/view-detail-task?project-id=${project.id}&section-id=${i.sectionID}&task-id=${t.id}"
+                                           class="chi-tiet-cong-viec" style="justify-self: end;">
+                                            <button class="btn btn-primary link-row-task">Chi tiết</button>
+                                        </a>
+                                    </div>
                                 </div>
-<%--                            </c:if>--%>
+                                <div class="col-1" style="border: 1px solid gray;">${t.nameEmployee}</div>
+                                <div class="col-2" style="border: 1px solid gray;">${t.startingDate}</div>
+                                <div class="col-2" style="border: 1px solid gray;">${t.endedDate}</div>
+                                <div class="col-2" style="border: 1px solid gray;"></div>
+                                <div class="col-1" style="border: 1px solid gray;"></div>
+                            </div>
+                            <%--                            </c:if>--%>
                             <c:forEach items="${i.subTasksList}" var="s">
                                 <c:if test="${s.taskID == t.id}">
-                                    <div id="" class="row sub-task-detail" >
-                                        <div class="col-4 link-chi-tiet-cong-viec"
-                                             style="border: 1px solid gray; display: flex; justify-content: space-between; ">
-                                            <div class="name-project">
-                                                    ${s.taskName}
+                                    <c:if test="${s.status != 5 && s.status != 1}">
+                                        <div id="" class="row sub-task-detail">
+                                            <div class="col-4 link-chi-tiet-cong-viec"
+                                                 style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                                                <div class="name-project">
+                                                        ${s.taskName}
+                                                </div>
+                                                <div>
+                                                    <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${i.sectionID}&task-id=${t.id}&sub-task-id=${s.id}"
+                                                       class="chi-tiet-cong-viec">
+                                                        <button class="btn btn-primary chi-tiet">Chi tiết</button>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <a href="${pageContext.request.contextPath}/design/sub-task/view-sub-task-detail?project-id=${project.id}&section-id=${i.sectionID}&task-id=${t.id}&sub-task-id=${s.id}"
-                                                   class="chi-tiet-cong-viec">
-                                                    <button class="btn btn-primary chi-tiet">Chi tiết</button>
-                                                </a>
+                                            <div class="col-1" style="border: 1px solid gray;">${s.nameEmployee}</div>
+                                            <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
+                                            <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
+                                            <div class="col-2" style="border: 1px solid gray;"></div>
+                                            <div class="col-1" style="border: 1px solid gray;">
+                                                <c:if test="${s.status == 2}">
+                                                    Đang thực hiện
+                                                </c:if>
+                                                <c:if test="${s.status == 3}">
+                                                    Chờ phê duyệt
+                                                </c:if>
+                                                <c:if test="${s.status == 4}">
+                                                    Đã hoàn thành
+                                                </c:if>
                                             </div>
                                         </div>
-                                        <div class="col-1" style="border: 1px solid gray;">${s.nameEmployee}</div>
-                                        <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
-                                        <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
-                                        <div class="col-2" style="border: 1px solid gray;"></div>
-                                        <div class="col-1" style="border: 1px solid gray;">Đang thực hiện</div>
-                                    </div>
+                                    </c:if>
                                 </c:if>
                             </c:forEach>
                         </c:forEach>
@@ -140,25 +156,6 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
-    // function modallistproject(idbtn, idmodal, closemain) {
-    //     // Get the modal
-    //     var modal = document.querySelector(idmodal);
-    //     // Get the button that opens the modal
-    //     var btn = document.querySelector(idbtn);
-    //     // Get the <span> element that closes the modal
-    //     var span = document.querySelector(closemain);
-    //     // span.addEventListener('click', event){
-    //     //     event.style.display = "none";
-    //     // }
-    //     // When the user clicks the button, open the modal
-    //     modal.style.display = "block";
-    //     span.addEventListener("click", function () {
-    //         modal.style.display = "none";
-    //     });
-    //     // When the user clicks on <span> (x), close the modal
-    //     // When the user clicks anywhere outside of the modal, close it
-    // }
-
     function myFunction(task) {
         var x = document.querySelectorAll(task);
         for (let index = 0; index < x.length; index++) {

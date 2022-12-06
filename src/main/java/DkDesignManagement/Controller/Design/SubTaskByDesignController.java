@@ -79,7 +79,7 @@ public class SubTaskByDesignController {
         int totalFile = imageAndFileService.getTotalFileBySubTaskID(project.getId(), subtask.getId());
 
         float progressPercent = Math.round((totalFile / (1.0 * subtask.getNumberOfFile())) * 100);
-
+        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSubtask(projectID,subTaskID);
         view.addObject("project", project);
         view.addObject("tasks", tasks);
         view.addObject("section", section);
@@ -89,6 +89,7 @@ public class SubTaskByDesignController {
         view.addObject("totalFile", totalFile);
         view.addObject("status", 0);
         String mess = request.getParameter("mess");
+        view.addObject("listImages", imageAndFiles);
         view.addObject("mess", mess);
         view.addObject("listComment", commentService.getAllViewCommentByTaskId(subtask.getId()));
 

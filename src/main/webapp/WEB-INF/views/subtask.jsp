@@ -17,6 +17,12 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
+    <style>
+        .swal-wide {
+            width: 850px !important;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -26,7 +32,8 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
@@ -41,7 +48,7 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </c:if>
                             <c:if test="${project.status == 3 }">
-                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
                             </c:if>
                         </c:if>
                     </div>
@@ -110,7 +117,7 @@
                             <button class="btn btn-primary">Đồng ý</button>
                         </a>
                         <form action="task/change-status">
-                                <button type="submit" class="btn btn-secondary">Hủy bỏ</button>
+                            <button type="submit" class="btn btn-secondary">Hủy bỏ</button>
                             <input type="text" hidden="" name="taskId" value="${task.taskId}">
                             <input type="text" hidden="" name="operation" value="cancel">
                             <input required name="description" class="info-text" value="" placeholder="Ghi chú">
@@ -197,53 +204,62 @@
                     <tr>
                         <td>Xem file:</td>
                         <td>
-                            <div id="fileInput" class="container js-file-list"></div>
+                            <div id="fileInput" class="container js-file-list">
+                                <c:forEach items="${listImages}" var="image">
+                                    <button type="button" style="border-radius: 5px"
+                                            onclick="showImage(this.getAttribute('data-url'))"
+                                            data-url="${image.fileUrl}">
+                                        <img src="<c:url value="${image.fileUrl}"/>" alt=""
+                                             style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
+                                    </button>
+                                </c:forEach>
+                            </div>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="task-cmt-details">
-            <p style="font-size: 20px;">Bình luận</p>
-            <c:if test="${task.taskStatus != 1}">
-                <div class=" task-cmt-details-main">
-                    <form class="task-detail-cmt" action="add-comment" method="post">
-                        <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
-                        <input name="taskId" type="text" value="${task.taskId}" hidden="">
-                        <input name="operation" type="text" value="subTaskDetail" hidden="">
-                        <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
-                        <button class="btn btn-primary">Gửi</button>
-                    </form>
-                </div>
-                <div class="task-cmt-details">
-                    <c:if test="${listComment.size() > 0}">
-                        <c:forEach items="${listComment}" var="comment">
-                            <!----------item------------>
-                           <div style="display: flex">
-                            <div class="task-cmt-details-main">
-                                <img class="img_avatar" src="${comment.avatarUrl}"/>
-                                <span class="name-avatar">${comment.accountName}</span>
-                                <span> ${comment.dateCountDown}</span></br>
-                                <span style="margin-left: 50px">${comment.content}</span>
+                <p style="font-size: 20px;">Bình luận</p>
+                <c:if test="${task.taskStatus != 1}">
+                    <div class=" task-cmt-details-main">
+                        <form class="task-detail-cmt" action="add-comment" method="post">
+                            <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
+                            <input name="taskId" type="text" value="${task.taskId}" hidden="">
+                            <input name="operation" type="text" value="subTaskDetail" hidden="">
+                            <input name="content" class="input-cmt" type="text" placeholder="Bình luận....">
+                            <button class="btn btn-primary">Gửi</button>
+                        </form>
+                    </div>
+                    <div class="task-cmt-details">
+                        <c:if test="${listComment.size() > 0}">
+                            <c:forEach items="${listComment}" var="comment">
+                                <!----------item------------>
+                                <div style="display: flex">
+                                    <div class="task-cmt-details-main">
+                                        <img class="img_avatar" src="${comment.avatarUrl}"/>
+                                        <span class="name-avatar">${comment.accountName}</span>
+                                        <span> ${comment.dateCountDown}</span></br>
+                                        <span style="margin-left: 50px">${comment.content}</span>
 
-                            </div>
+                                    </div>
 
-                            <div>
-                                <c:if test="${comment.isPin() ==true}">
-                                <i class="fa-solid fa-thumbtack"></i>
-                                    </c:if>
-                                    <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
-                                    <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
-                                        <button type="button" class=" btn-primary">Pin</button>
-                                    </a>
-                                    </c:if>
-                              </div>
-                            </div>
+                                    <div>
+                                        <c:if test="${comment.isPin() ==true}">
+                                            <i class="fa-solid fa-thumbtack"></i>
+                                        </c:if>
+                                        <c:if test="${sessionScope.loginUser != null && sessionScope.loginUser.role_id == 2 }">
+                                            <a href="pin-comment?taskId=${task.taskId}&operation=taskDetail&commentId=${comment.id}">
+                                                <button type="button" class=" btn-primary">Pin</button>
+                                            </a>
+                                        </c:if>
+                                    </div>
+                                </div>
 
-                            <!----------item------------>
-                        </c:forEach>
-                    </c:if>
-                </div>
-            </c:if>
+                                <!----------item------------>
+                            </c:forEach>
+                        </c:if>
+                    </div>
+                </c:if>
             </div>
         </div>
     </div>
@@ -254,6 +270,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function () {
             $('#fileInput').on('change', function () {
@@ -296,5 +313,7 @@
             alert(mess);
         }
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 </body>
 </html>

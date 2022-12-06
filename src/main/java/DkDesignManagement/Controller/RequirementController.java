@@ -8,6 +8,8 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static DkDesignManagement.utils.Constant.*;
 
 @Controller
@@ -22,7 +25,7 @@ import static DkDesignManagement.utils.Constant.*;
 public class RequirementController {
 
     @Autowired
-    private  ProjectService projectService;
+    private ProjectService projectService;
     @Autowired
     private RequirementService requirementService;
 
@@ -74,24 +77,27 @@ public class RequirementController {
     }
 
     @RequestMapping(value = "/add-new-requirement", method = RequestMethod.POST)
-    public ModelAndView insertRequirement(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView insertRequirement(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) {
         ModelAndView view;
         int projectID = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("ten-vi-tri").trim();
         String detail = request.getParameter("noi-dung-yeu-cau").trim();
+        long millis = System.currentTimeMillis();
+        java.sql.Date date = new java.sql.Date(millis);
         Requirement requirement = Requirement.builder()
                 .projectId(projectID)
                 .requirementName(name)
                 .requirementDetail(detail)
+                .requirementDate(date)
                 .status(4)
                 .build();
         int saveRequirement = requirementService.insertRequirement(requirement);
         if (saveRequirement == 0) {
             view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + projectID);
-            view.addObject("mess", "Save failed");
+            redirect.addAttribute("mess", "Lưu yêu cầu không thành công.");
         } else {
             view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + projectID);
-            view.addObject("mess", "Save success");
+            redirect.addAttribute("mess", "Lưu yêu cầu thành công.");
         }
         view.addObject("id", projectID);
         return view;
@@ -144,7 +150,7 @@ public class RequirementController {
                 revisionNoNew = revisionNo + 1;
             }
 
-            String revisionDetail = "Yêu cầu : "+requirement.getRequirementName() +" đã bị xóa";
+            String revisionDetail = "Yêu cầu : " + requirement.getRequirementName() + " đã bị xóa";
 
             RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getProjectId(), revisionNoNew, new Date(), revisionDetail, type);
             historyService.addHistory(revisionHistory);
@@ -211,7 +217,7 @@ public class RequirementController {
         Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(requirement.getId(), type);
         int revisionNoNew = 1;
         if (!ObjectUtils.isEmpty(revisionNo)) {
-            revisionNoNew = revisionNo+1;
+            revisionNoNew = revisionNo + 1;
         }
 
         String revisionDetail = "Vị trí : " + oldName + " -> " + requirement.getRequirementName() + " <br> "

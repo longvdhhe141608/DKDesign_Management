@@ -255,7 +255,7 @@
                             <!------task item------>
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <!--------list sub task------------>
-                                <c:if test="${subTask.taskStatus != 5}">
+                                <c:if test="${subTask.taskStatus != 5 && subTask.taskStatus != 1}">
                                     <div id="" class="row sub-task-detail">
                                         <div class="col-4 link-chi-tiet-cong-viec"
                                              style="border: 1px solid gray; display: flex; justify-content: space-between; ">
