@@ -77,9 +77,10 @@
                     </thead>
                     <tbody class="my-task-for-leader">
                     <c:forEach items="${myTask}" var="i">
+                        ${i.taskID} -
                         <tr>
                             <td>
-                                <c:if test="${i.taskID != null}">
+                                <c:if test="${i.taskID != 0}">
                                     <div style="display: flex; justify-content: space-between">
                                         <div class="name-project">
                                                 ${i.subTaskName}
@@ -94,7 +95,7 @@
                                         </div>
                                     </div>
                                 </c:if>
-                                <c:if test="${i.taskID == null}">
+                                <c:if test="${i.taskID == 0}">
                                     <div style="display: flex; justify-content: space-between">
                                         <div class="name-project col-8">
                                                 ${i.subTaskName}

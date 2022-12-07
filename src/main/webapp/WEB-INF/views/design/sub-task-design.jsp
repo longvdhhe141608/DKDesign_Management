@@ -168,7 +168,7 @@
                                 <div class="form-group">
                                     <input type="file" class="form-control" id="fileInput" multiple name="file" accept="image/*">
                                 </div>
-                                <div class="container js-file-list"></div>
+<%--                                <div class="container js-file-list"></div>--%>
                                 <div>
                                     <input class="btn btn-primary" type="submit" value="Cập nhật file">
                                 </div>
@@ -219,7 +219,6 @@
         <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>
             <c:if test="${subTask.status != 1}">
-
                 <div class="task-cmt-details-main">
                     <form style="display: flex" action="${pageContext.request.contextPath}/add-comment" method="post">
                         <img class="img_avatar" src="${sessionScope.loginUser.avatar_url}"/>
