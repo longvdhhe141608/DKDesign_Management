@@ -6,8 +6,10 @@ import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.RequirementService;
+import DkDesignManagement.model.RequirementPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,28 +35,20 @@ public class RequirementByDesignController {
         int projectID = Integer.parseInt(request.getParameter("project-id"));
         Project project = projectService.getProject(projectID);
 
-        String indexPage = request.getParameter("pageNo");
         int page = 1;
-        if (indexPage != null) {
-            page = Integer.parseInt(indexPage);
+        if (!ObjectUtils.isEmpty(request.getParameter("page"))) {
+            page = Integer.parseInt(request.getParameter("page"));
         }
 
-        int index = page * 10 - 10;
+        RequirementPageResponse requirementPageResponse = requirementService.getPaginationRequirementByProjectID(page,projectID);
+        List<Requirement> requirements = requirementPageResponse.getRequirementList();
 
-        int totalRequirement = requirementService.getAllRequirementByProjectID(projectID).size();
-        int totalPages = (totalRequirement % 10 == 0) ? totalRequirement / 10 : totalRequirement / 10 + 1;
-
-        List<Requirement> requirements = requirementService.getPaginationRequirementByProjectID(projectID, index);
-
-        List<Integer> lsPage = new ArrayList<>();
-        // for này có chức năng hiển thị list page
-        for (int i = 1; i <= totalPages; ++i) {
-            lsPage.add(i);
-        }
 
         view.addObject("requirements", requirements);
-        view.addObject("lsPage", lsPage);
         view.addObject("project", project);
+        view.addObject("page", page);
+        view.addObject("endPage", requirementPageResponse.getEndPage());
+        view.addObject("projectId", projectID);
         return view;
     }
 }

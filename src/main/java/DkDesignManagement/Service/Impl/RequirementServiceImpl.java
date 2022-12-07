@@ -2,10 +2,15 @@ package DkDesignManagement.Service.Impl;
 
 
 import DkDesignManagement.Entity.Requirement;
+
 import DkDesignManagement.Repository.RequirementDao;
 import DkDesignManagement.Service.RequirementService;
+import DkDesignManagement.model.RequirementPageResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
+
 
 import java.util.List;
 
@@ -65,14 +70,22 @@ public class RequirementServiceImpl implements RequirementService {
         return requirementDao.getAllRequirementByProjectID(id);
     }
 
-    /**
-     * @param projectID
-     * @param index
-     * @return
-     */
     @Override
-    public List<Requirement> getPaginationRequirementByProjectID(int projectID, int index) {
-        return requirementDao.getPaginationRequirementByProjectID(projectID, index);
+    public RequirementPageResponse getPaginationRequirementByProjectID(int indexPage,int projectID) {
+
+        int pageNumber = 10;
+        List<Requirement> listRequirementAll = requirementDao.getAllRequirementByProjectID(projectID);
+        int count = 0;
+        if (!ObjectUtils.isEmpty(listRequirementAll)) {
+            count = listRequirementAll.size();
+        }
+        List<Requirement> listRequirement = requirementDao.getPaginationRequirementByProjectID(pageNumber, indexPage,projectID);
+        int endPage = count / pageNumber;
+        if (count % pageNumber != 0) {
+            endPage++;
+        }
+
+        return RequirementPageResponse.builder().endPage(endPage).requirementList(listRequirement).build();
     }
 
     /**

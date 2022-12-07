@@ -115,13 +115,28 @@
                 </table>
                 <div class="pagination">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-end">
-                            <c:forEach items="${requestScope.lsPage}" var="page">
-                                <li class="page-item ${requestScope.page == page ? "active" : ""}">
-                                    <a class="page-link"
-                                       href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${project.id}&pageNo=${page}">${page}</a>
+                        <ul class="pagination">
+                            <c:if test="${page != 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${projectId}&page=${page-1}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
                                 </li>
+                            </c:if>
+                            <c:forEach begin="1" end="${endPage}" var="i">
+                                <li class="page-item"><a class="page-link"
+                                                         href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${projectId}&page=${i}">${i}</a></li>
                             </c:forEach>
+
+                            <c:if test="${page != endPage}">
+                                <li class="page-item">
+                                    <a class="page-link" href="${pageContext.request.contextPath}/design/requirement/view-requirement?project-id=${projectId}&page=${page+1}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:if>
                         </ul>
                     </nav>
                 </div>

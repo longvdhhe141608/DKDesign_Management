@@ -7,14 +7,17 @@ import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.MemberService;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.model.MemberPageResponse;
 import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -35,17 +38,27 @@ public class MemberController {
     NotificationService notificationService;
 
     @RequestMapping(value = "/member", method = RequestMethod.GET)
-    public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid) {
+    public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid,@ModelAttribute("mess") String mess) {
 
         ModelAndView view = new ModelAndView("member");
 
         int id = projectid;
         Project project = projectService.getProject(id);
 
-        List<Member> memberList = memberService.getMemberInProject(id);
+        int page = 1;
+        if (!ObjectUtils.isEmpty(request.getParameter("page"))) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+
+        MemberPageResponse memberPageResponse = memberService.getMemberInProject(page, id);
+        List<Member> memberList = memberPageResponse.getMemberList();
 
         view.addObject("project", project);
         view.addObject("memberList", memberList);
+        view.addObject("page", page);
+        view.addObject("endPage", memberPageResponse.getEndPage());
+        view.addObject("projectId", id);
+        view.addObject("mess", mess);
 
         return view;
     }
@@ -68,8 +81,8 @@ public class MemberController {
     }
 
     @RequestMapping(value = "/addMember", method = RequestMethod.GET)
-    public ModelAndView addMemberToProject(HttpServletRequest request, @RequestParam("id") int projectId) {
-        ModelAndView view = new ModelAndView("member");
+    public ModelAndView addMemberToProject(HttpServletRequest request, @RequestParam("id") int projectId, RedirectAttributes redirect) {
+        ModelAndView view = new ModelAndView("redirect:/member?id=" + projectId);
         String username = request.getParameter("memberToAdd");
         int memberId = 0;
         //TODO : check username wrong
@@ -98,25 +111,23 @@ public class MemberController {
             }
         } else {
             if (memberId == 0) {
-                view.addObject("error", "Thành viên " + username + " không tồn tại");
+                redirect.addAttribute("mess", "Thành viên " + username + " không tồn tại");
+                return view;
             } else {
-                view.addObject("error", "Thành viên " + username + " đã có trong dự án");
+                redirect.addAttribute("mess", "Thành viên " + username + " đã có trong dự án");
+                return view;
             }
         }
 
-        Project project = projectService.getProject(projectId);
-        List<Member> memberList = memberService.getMemberInProject(projectId);
-        view.addObject("memberList", memberList);
-        view.addObject("project", project);
+        redirect.addAttribute("mess", "Thêm thành việc thành công!");
 
         return view;
     }
 
     @RequestMapping(value = "/changeMemberStatus", method = RequestMethod.GET)
-    public ModelAndView changeMemberStatus(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("member");
+    public ModelAndView changeMemberStatus(HttpServletRequest request, RedirectAttributes redirect) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = projectService.getProject(id);
+        ModelAndView view = new ModelAndView("redirect:/member?id=" + id);
 
         int status = Integer.parseInt(request.getParameter("status"));
         String username = request.getParameter("username");
@@ -124,10 +135,8 @@ public class MemberController {
         int memberId = memberService.getAccountIdByUsername(username);
 
         memberService.updateStatusMemberInProject(id, memberId, status);
-        List<Member> memberList = memberService.getMemberInProject(id);
 
-        view.addObject("project", project);
-        view.addObject("memberList", memberList);
+        redirect.addAttribute("mess", "đổi trạng thái thành công!");
         return view;
     }
 }

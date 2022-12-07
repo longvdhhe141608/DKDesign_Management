@@ -18,7 +18,7 @@ public class MemberDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    public List<Member> getMemberInProject(int projectId) {
+    public List<Member> getMemberInProject(int pageNumber, int page, int projectId) {
         List<Member> memberList = new ArrayList<Member>();
         String sql = "SELECT `employees`.`id`,`employees`.`name`,`accounts`.`username`,`project_participation`.`role_id`,\n" +
                 "`employees`.`phone`,`employees`.`email`,`employees`.`address`,`project_participation`.`status`,\n" +
@@ -26,8 +26,20 @@ public class MemberDao {
                 "FROM `employees` JOIN `accounts` ON `employees`.`id_acc` = `accounts`.`id` JOIN `project_participation` ON `accounts`.`id` = `project_participation`.`account_id`\n" +
                 "WHERE `accounts`.`role_id`<>1 AND `project_participation`.`project_id` =?";
 
+        sql += " order by employees.id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
+
         memberList = jdbcTemplate.query(sql, new MapperMember(), projectId);
         return memberList;
+    }
+
+    public int countMemberInProject(int projectId) {
+
+        String sql = "SELECT count(1) " +
+                "FROM `employees` JOIN `accounts` ON `employees`.`id_acc` = `accounts`.`id` JOIN `project_participation` ON `accounts`.`id` = `project_participation`.`account_id`\n" +
+                "WHERE `accounts`.`role_id`<>1 AND `project_participation`.`project_id` =?";
+
+
+        return jdbcTemplate.queryForObject(sql, Integer.class, projectId);
     }
 
     public void updateStatusMemberInProject(int projectID, int memberID, int status) {
@@ -76,7 +88,7 @@ public class MemberDao {
         return id;
     }
 
-    public int getAccountIdByUsername(String username){
+    public int getAccountIdByUsername(String username) {
         int id;
         String sql = "SELECT id from accounts where username = ?";
         id = jdbcTemplate.queryForObject(sql, new RowMapper<Integer>() {
