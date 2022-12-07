@@ -702,7 +702,7 @@ public class TaskDAO {
     }
 
     public int countAllSubTaskCorrectDeadline(int projectId, String designId) {
-        String sql = " select count(*) from task t where t.deadline >= t.ended_date and t.project_id =? ";
+        String sql = " select count(*) from task t where t.deadline >= t.ended_date and t.project_id =? and t.status = 4 ";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
