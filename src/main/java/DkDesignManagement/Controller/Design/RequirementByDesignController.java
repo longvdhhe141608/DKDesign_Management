@@ -2,8 +2,10 @@ package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Requirement;
+import DkDesignManagement.Entity.RevisionHistory;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.RequirementDao;
+import DkDesignManagement.Service.HistoryService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.RequirementService;
 import DkDesignManagement.model.RequirementPageResponse;
@@ -28,6 +30,9 @@ public class RequirementByDesignController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    HistoryService historyService;
+
     @GetMapping("/view-requirement")
     public ModelAndView viewRequirement(HttpServletRequest request) {
         ModelAndView view = new ModelAndView("design/requirement");
@@ -43,12 +48,19 @@ public class RequirementByDesignController {
         RequirementPageResponse requirementPageResponse = requirementService.getPaginationRequirementByProjectID(page,projectID);
         List<Requirement> requirements = requirementPageResponse.getRequirementList();
 
+        List<RevisionHistory> listHistory = new ArrayList<RevisionHistory>();
+        //check and update status
+        for (Requirement requirement : requirements) {
+            requirement.setStatus(requirementService.checkAndUpdaterRequirementDone(requirement));
+            listHistory.addAll(historyService.getAlLRevisionHistoryOfTable(requirement.getId(), "requirement"));
+        }
 
         view.addObject("requirements", requirements);
         view.addObject("project", project);
         view.addObject("page", page);
         view.addObject("endPage", requirementPageResponse.getEndPage());
         view.addObject("projectId", projectID);
+        view.addObject("listHistory", listHistory);
         return view;
     }
 }
