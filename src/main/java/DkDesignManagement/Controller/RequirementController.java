@@ -147,7 +147,7 @@ public class RequirementController {
 
             String revisionDetail = "Yêu cầu : " + requirement.getRequirementName() + " đã bị xóa";
 
-            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getProjectId(), revisionNoNew, new Date(), revisionDetail, type);
+            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type);
             historyService.addHistory(revisionHistory);
 
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");

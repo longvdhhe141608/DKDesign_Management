@@ -27,7 +27,6 @@ class ProjectServiceImplTest {
     void GivenListValue_getAllProject_ReturnListValue() {
         List<Project> projectList = new ArrayList<>();
         when(projectDao.getAll()).thenReturn(projectList);
-
         projectList = projectDao.getAll();
         int result = projectService.getProject().size();
         assertEquals(result, projectList.size());
@@ -49,7 +48,6 @@ class ProjectServiceImplTest {
 
     @Test
     void GivenProjectValue_editProject_ReturnProjectValue() {
-
     }
 
     @Test

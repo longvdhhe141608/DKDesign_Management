@@ -41,8 +41,20 @@ public class LoginController {
         return view;
     }
 
+    public ModelAndView modelAndView(){
+        ModelMap modelMap = new ModelMap();
+        ModelAndView view = new ModelAndView("redirect:/login");
+        Account account = new Account();
+        modelMap.put("account", account);
+        String mess = null;
+        view.addObject("mess", mess);
+        return view;
+    }
+
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ModelAndView login(@ModelAttribute("account") Account account, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public ModelAndView login(@ModelAttribute("account") Account account,
+                              HttpServletRequest request,
+                              HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
 
         ModelAndView view;
@@ -91,14 +103,15 @@ public class LoginController {
     }
 
     @RequestMapping(value = "forgotPassword", method = RequestMethod.POST)
-    public ModelAndView sendNewPass(HttpServletRequest request, HttpServletResponse response){
+    public ModelAndView sendNewPass(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView view = new ModelAndView("/forgot_password");
         String email = request.getParameter("email_sendNewPass");
-        if(employeeService.emailIsExisted(email)){
+        if (employeeService.emailIsExisted(email)) {
 
-        } else{
+        } else {
 
-        };
+        }
+        ;
         return new ModelAndView("redirect:login");
     }
 }
