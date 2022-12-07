@@ -149,22 +149,31 @@
             <div>
                 <table class="table table-bordered">
                     <thead>
-                    <th scope="col" class="col-2">Lần</th>
-                    <th scope="col" class="col-8">Nội dung</th>
-                    <th scope="col" class="col-2">Ngày chỉnh sửa</th>
+                    <th scope="col">Id requirement</th>
+                    <th scope="col">Lần</th>
+                    <th scope="col">Nội dung</th>
+                    <th scope="col">Ngày chỉnh sửa</th>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            1
-                        </td>
-                        <td>
-                            Diện tích xây dựng 200m2-300m2
-                        </td>
-                        <td>
-                            20/12/2022
-                        </td>
-                    </tr>
+                    <c:forEach items="${listHistory}" var="history">
+                        <tr>
+                            <td>
+                                    ${history.table_id}
+                            </td>
+                            <td>
+                                    ${history.revision_no}
+                            </td>
+                            <td>
+                                    ${history.revision_detail}
+                            </td>
+                            <td>
+                                    ${history.revision_date}
+                            </td>
+                        </tr>
+
+                    </c:forEach>
+
+
                     </tbody>
                 </table>
             </div>

@@ -234,6 +234,7 @@
             <div>
                 <table class="table table-bordered">
                     <thead>
+                    <th scope="col">Id requirement</th>
                     <th scope="col">Lần</th>
                     <th scope="col">Nội dung</th>
                     <th scope="col">Ngày chỉnh sửa</th>
@@ -241,6 +242,9 @@
                     <tbody>
                     <c:forEach items="${listHistory}" var="history">
                         <tr>
+                            <td>
+                                    ${history.table_id}
+                            </td>
                             <td>
                                     ${history.revision_no}
                             </td>
