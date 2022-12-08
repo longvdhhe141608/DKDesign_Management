@@ -82,7 +82,7 @@ public class ProjectByDesignController {
         HttpSession session = request.getSession();
         session.setAttribute("project", project);
         view.addObject("project", project);
-        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project"));
+        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project",project.getId()));
         return view;
     }
 

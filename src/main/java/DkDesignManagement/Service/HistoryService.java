@@ -12,9 +12,11 @@ import java.util.List;
 @Service
 public interface HistoryService {
 
-    List<RevisionHistory> getAlLRevisionHistoryOfTable(int tableId, String type);
+    List<RevisionHistory> getAlLRevisionHistoryOfTable(int tableId, String type, int projectId);
 
-    Integer getLastRevisionNoHistoryOfTable(int tableId, String type);
+    List<RevisionHistory> getAlLRevisionHistoryByType(String type, int projectId);
+
+    Integer getLastRevisionNoHistoryOfTable(int tableId, String type,int projectId);
 
     void addHistory(RevisionHistory history);
 }

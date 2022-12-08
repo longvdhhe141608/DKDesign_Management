@@ -118,7 +118,7 @@ public class EditSummaryController {
         List<String> listChange = compareProject(oldProject, project);
         //check history exits
         String type = "project";
-        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(project.getId(), type);
+        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(project.getId(), type,project.getId());
         int revisionNoNew = 1;
         if (!ObjectUtils.isEmpty(revisionNo)) {
             revisionNoNew = revisionNo + 1;
@@ -129,7 +129,7 @@ public class EditSummaryController {
             for (String change : listChange) {
                 revisionDetail += change + " <br> ";
             }
-            RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type);
+            RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type,project.getId());
             historyService.addHistory(revisionHistory);
         }
 

@@ -33,17 +33,23 @@ public class RevisionHistoryDao {
         return jdbcTemplate.query(sql, new MapperRevisionHistory());
     }
 
-    public List<RevisionHistory> getAlLRevisionHistoryOfTable(int tableId, String type) {
-        String sql = "select * from revision_history rh where table_id  = ? and `type` = ? order by rh.revision_no desc ";
+    public List<RevisionHistory> getAlLRevisionHistoryOfTable(int tableId, String type,int projectId) {
+        String sql = "select * from revision_history rh where table_id  = ? and `type` = ? and project_id = ?  order by rh.revision_no desc ";
 
-        return jdbcTemplate.query(sql, new MapperRevisionHistory(), tableId, type);
+        return jdbcTemplate.query(sql, new MapperRevisionHistory(), tableId, type,projectId);
+    }
+
+    public List<RevisionHistory> getAlLRevisionHistoryByType(String type,int projectId) {
+        String sql = "select * from revision_history rh where `type` = ? and project_id = ? order by rh.revision_no desc ";
+
+        return jdbcTemplate.query(sql, new MapperRevisionHistory(), type,projectId);
     }
 
 
     public int addHistory(RevisionHistory revisionHistory) {
         String sql = "INSERT INTO dkmanagement.revision_history\n" +
-                "(table_id, revision_no, revision_date, revision_detail, `type`)\n" +
-                "VALUES(:table_id, :revision_no, :revision_date, :revision_detail, :type );\n";
+                "(table_id, revision_no, revision_date, revision_detail, `type` , project_id)\n" +
+                "VALUES(:table_id, :revision_no, :revision_date, :revision_detail, :type , :project_id );\n";
 
         Map<String, Object> params = new HashMap<>();
         params.put("table_id", revisionHistory.getTable_id());
@@ -51,6 +57,7 @@ public class RevisionHistoryDao {
         params.put("revision_date", revisionHistory.getRevision_date());
         params.put("revision_detail", revisionHistory.getRevision_detail());
         params.put("type", revisionHistory.getType());
+        params.put("project_id", revisionHistory.getProject_id());
 
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
