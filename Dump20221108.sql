@@ -384,6 +384,7 @@ CREATE TABLE `revision_history` (
   `revision_date` datetime DEFAULT NULL,
   `revision_detail` varchar(1000) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(100) DEFAULT NULL,
+  `project_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -395,7 +396,7 @@ CREATE TABLE `revision_history` (
 
 LOCK TABLES `revision_history` WRITE;
 /*!40000 ALTER TABLE `revision_history` DISABLE KEYS */;
-INSERT INTO `revision_history` VALUES (17,9,1,'2022-12-06 19:59:08','Thời gian dự kiến kết thúc: 2023-02-01 -> 2023-12-01 <br> ','project'),(18,14,1,'2022-12-06 20:15:50','Vị trí : Tầng 1 -> Tầng 1 <br>  Yêu cầu : Một nhà tắm rộng 15m2, một nhà vệ sinh rộng 10m2, một phòng bếp kiêm phòng ăn rộng 20m2, 1 phòng khách, 1 phòng sinh hoạt chung -> Một nhà tắm rộng 15m2, một nhà vệ sinh rộng 10m2, một phòng bếp kiêm phòng ăn rộng 20m2, 1 phòng khách, 1 phòng sinh hoạt chung rộng 10m2','requirement'),(19,9,2,'2022-12-06 20:16:54','Yêu cầu : Tầng 1 đã bị xóa','requirement'),(20,9,1,'2022-12-06 20:18:07','Yêu cầu : Định vị đã bị xóa','requirement'),(21,62,1,'2022-12-06 22:54:06','Vị trí : Tủ bếp -> Tủ bếp <br>  Yêu cầu : chữ U, theo phong cách hiện đại, có máy hút mùi -> chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước','requirement'),(24,62,2,'2022-12-08 02:21:50','Vị trí : Tủ bếp -> Tủ bếp <br>  Yêu cầu : chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước -> chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước, thêm điểu hòa','requirement'),(26,67,1,'2022-12-08 02:59:24','Yêu cầu : Bàn ghế đã bị xóa','requirement'),(27,62,3,'2022-12-08 03:00:55','Vị trí : Tủ bếp -> Tủ bếp <br>  Yêu cầu : chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước, thêm điểu hòa -> chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước, thêm điểu hòa, a','requirement');
+INSERT INTO `revision_history` VALUES (17,9,1,'2022-12-06 19:59:08','Thời gian dự kiến kết thúc: 2023-02-01 -> 2023-12-01 <br> ','project',NULL),(18,14,1,'2022-12-06 20:15:50','Vị trí : Tầng 1 -> Tầng 1 <br>  Yêu cầu : Một nhà tắm rộng 15m2, một nhà vệ sinh rộng 10m2, một phòng bếp kiêm phòng ăn rộng 20m2, 1 phòng khách, 1 phòng sinh hoạt chung -> Một nhà tắm rộng 15m2, một nhà vệ sinh rộng 10m2, một phòng bếp kiêm phòng ăn rộng 20m2, 1 phòng khách, 1 phòng sinh hoạt chung rộng 10m2','requirement',NULL),(19,9,2,'2022-12-06 20:16:54','Yêu cầu : Tầng 1 đã bị xóa','requirement',NULL),(20,9,1,'2022-12-06 20:18:07','Yêu cầu : Định vị đã bị xóa','requirement',NULL),(21,62,1,'2022-12-06 22:54:06','Vị trí : Tủ bếp -> Tủ bếp <br>  Yêu cầu : chữ U, theo phong cách hiện đại, có máy hút mùi -> chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước','requirement',NULL),(24,62,2,'2022-12-08 02:21:50','Vị trí : Tủ bếp -> Tủ bếp <br>  Yêu cầu : chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước -> chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước, thêm điểu hòa','requirement',NULL),(26,67,1,'2022-12-08 02:59:24','Yêu cầu : Bàn ghế đã bị xóa','requirement',NULL),(27,62,3,'2022-12-08 03:00:55','Vị trí : Tủ bếp -> Tủ bếp <br>  Yêu cầu : chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước, thêm điểu hòa -> chữ U, theo phong cách hiện đại, có máy hút mùi, khung tủ bếp được làm bằng gỗ nhựa hardwood chống nước, thêm điểu hòa, a','requirement',NULL);
 /*!40000 ALTER TABLE `revision_history` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -547,4 +548,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-12-08 21:32:25
+-- Dump completed on 2022-12-08 23:29:16
