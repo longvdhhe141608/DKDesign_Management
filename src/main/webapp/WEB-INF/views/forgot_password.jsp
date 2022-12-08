@@ -18,11 +18,11 @@
 <div class="container">
     <div class="card card-container">
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
-        <img id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <img alt="profile" id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
         <p id="profile-name" class="profile-name-card"></p>
         <form id="addProject" class="form-signin">
             <input type="email" class="info-text form-control" placeholder="Nhập Email" name="email_sendNewPass">
-            <div class="text-danger error"></div>
+            <div class="text-danger error">${error}</div>
             <div style="display: flex;">
                 <button class="btn btn-secondary" style="margin-right: 20px;" type="button" onclick="history.back()">
                     Hủy

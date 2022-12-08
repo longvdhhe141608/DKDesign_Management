@@ -32,7 +32,7 @@
                 <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
                       method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
-                    <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
+                    <div class="btn project-detail" style="margin: 0; padding: 0 6px 0 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
                             <c:forEach items="${listStatus}" var="status">
                                 <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
@@ -182,38 +182,40 @@
                     <details>
                         <summary style="display:block;">
                             <div style="display: flex; justify-content: space-between;">
+                                <i><span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span></i>
                                 <div>
-                            <span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span>
-                                </div>
-                                <div>
-                            <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
-                                    id="myBtn-section" data-id="${bigTask.id}" data-name="${bigTask.section_name}"
-                                    data-pid="${bigTask.project_id}">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
-                                    class="fa-regular fa-trash-can"></i></button>
-                            <div id="myModal1" class="modal">
-                                <!-- Modal content -->
-                                <div class="modal-content" style="width: 60%;height: 30%;">
-                                    <span id="close4" class="close">&times;</span>
-                                    <div class="project-add-task">
-                                        <form id="add-project2" class="">
-                                            <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>
-                                            <div class="add-btn-work" style="display: flex;justify-content: end">
-                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ
-                                                </button>
-                                                <button
-                                                        onclick="return checkvalidatenumber('#add-project2')"
-                                                        type="submit" class="btn btn-primary">Lưu
-                                                </button>
+                                    <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
+                                            id="myBtn-section" data-id="${bigTask.id}"
+                                            data-name="${bigTask.section_name}"
+                                            data-pid="${bigTask.project_id}">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
+                                            class="fa-regular fa-trash-can"></i></button>
+                                    <div id="myModal1" class="modal">
+                                        <!-- Modal content -->
+                                        <div class="modal-content" style="width: 60%;height: 30%;">
+                                            <span id="close4" class="close">&times;</span>
+                                            <div class="project-add-task">
+                                                <form id="add-project2" class="">
+                                                    <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu
+                                                        này!</p>
+                                                    <div class="add-btn-work"
+                                                         style="display: flex;justify-content: end">
+                                                        <button style="margin-right: 10px" class="btn btn-secondary ">
+                                                            Hủy bỏ
+                                                        </button>
+                                                        <button
+                                                                onclick="return checkvalidatenumber('#add-project2')"
+                                                                type="submit" class="btn btn-primary">Lưu
+                                                        </button>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
-                                </div>
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>
@@ -357,11 +359,13 @@
         let modalA = document.querySelector("#myModal-footer");
         modalA.style.display = "none";
     }
+
     let modalB = document.querySelector("#myModal-editSection");
     var span = document.querySelector("#close3");
     span.addEventListener("click", function () {
         modalB.style.display = "none";
     });
+
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal
         var modal = document.querySelector(idmodal);

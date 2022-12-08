@@ -28,7 +28,7 @@
     <jsp:include page="/WEB-INF/views/nav_left.jsp"/>
     <div class="summary">
         <h4>Thay đổi mật khẩu</h4>
-        <form action="changePassword" method="post">
+        <form action="/changePassword" method="post">
             <table class="table table-borderless ">
                 <tr>
                     <td class="col-4">Mật khẩu cũ:</td>
