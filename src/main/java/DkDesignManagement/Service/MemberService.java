@@ -1,6 +1,7 @@
 package DkDesignManagement.Service;
 
 import DkDesignManagement.Entity.Member;
+import DkDesignManagement.model.MemberPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -13,7 +14,7 @@ public interface MemberService {
 
     List<Member> searchMemberInProject(int projectId, int role, String name);
 
-    List<Member> getMemberInProject(int id);
+    MemberPageResponse getMemberInProject(int indexPage,int projectId);
 
     int getAccountIdByUsername(String username);
 

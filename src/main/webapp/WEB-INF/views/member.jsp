@@ -217,19 +217,27 @@
             <div class="pagination">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
+                        <c:if test="${page != 1}">
+                            <li class="page-item">
+                                <a class="page-link" href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${page-1}"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
+                        <c:forEach begin="1" end="${endPage}" var="i">
+                            <li class="page-item"><a class="page-link"
+                                                     href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${i}">${i}</a></li>
+                        </c:forEach>
+
+                        <c:if test="${page != endPage}">
+                            <li class="page-item">
+                                <a class="page-link" href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${page+1}"
+                                   aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </c:if>
                     </ul>
                 </nav>
             </div>
@@ -318,5 +326,11 @@
     // show.addEventListener('click', function () {
     //     popup.classList.remove("hide__popup");
     // })
+</script>
+<script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
 </script>
 </html>

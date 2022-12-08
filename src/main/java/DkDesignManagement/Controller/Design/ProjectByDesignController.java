@@ -7,6 +7,7 @@ import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.ProjectParticipationDao;
 import DkDesignManagement.Repository.RoleDao;
 import DkDesignManagement.Service.CategoryService;
+import DkDesignManagement.Service.HistoryService;
 import DkDesignManagement.Service.ProjectParticipationService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.model.MemberActiveDto;
@@ -39,6 +40,9 @@ public class ProjectByDesignController {
 
     @Autowired
     private RoleDao roleDao;
+
+    @Autowired
+    HistoryService historyService;
 
     @RequestMapping(value = "/view-all-project", method = RequestMethod.GET)
     public ModelAndView loadAllProject(HttpServletRequest request,
@@ -78,6 +82,7 @@ public class ProjectByDesignController {
         HttpSession session = request.getSession();
         session.setAttribute("project", project);
         view.addObject("project", project);
+        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project"));
         return view;
     }
 

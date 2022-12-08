@@ -1,8 +1,11 @@
 package DkDesignManagement.Service.Impl;
 
 import DkDesignManagement.Entity.Member;
+import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.MemberService;
+import DkDesignManagement.model.MemberPageResponse;
+import DkDesignManagement.model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +42,17 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     @Override
-    public List<Member> getMemberInProject(int projectId) {
-        return memberDao.getMemberInProject(projectId);
+    public MemberPageResponse getMemberInProject(int indexPage,int projectId) {
+        int pageNumber = 5;
+        int count = memberDao.countMemberInProject(projectId);
+        List<Member> listMember = memberDao.getMemberInProject( pageNumber,  indexPage,  projectId);
+        int endPage = count / pageNumber;
+        if (count % pageNumber != 0) {
+            endPage++;
+        }
+
+        return MemberPageResponse.builder().endPage(endPage).memberList(listMember).build();
+
     }
 
     /**

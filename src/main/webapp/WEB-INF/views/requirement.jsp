@@ -200,13 +200,28 @@
                 </table>
                 <div class="pagination" style="display: flex; justify-content: end">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-end">
-                            <c:forEach items="${requestScope.lsPage}" var="page">
-                                <li class="page-item ${requestScope.page == page ? "active" : ""}">
-                                    <a class="page-link"
-                                       href="requirement-for-leader?id=${project.id}&pageNo=${page}">${page}</a>
+                        <ul class="pagination">
+                            <c:if test="${page != 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="requirement-for-leader?id=${projectId}&page=${page-1}"
+                                       aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
                                 </li>
+                            </c:if>
+                            <c:forEach begin="1" end="${endPage}" var="i">
+                                <li class="page-item"><a class="page-link"
+                                                         href="requirement-for-leader?id=${projectId}&page=${i}">${i}</a></li>
                             </c:forEach>
+
+                            <c:if test="${page != endPage}">
+                                <li class="page-item">
+                                    <a class="page-link" href="requirement-for-leader?id=${projectId}&page=${page+1}"
+                                       aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </c:if>
                         </ul>
                     </nav>
                 </div>
@@ -219,6 +234,7 @@
             <div>
                 <table class="table table-bordered">
                     <thead>
+                    <th scope="col">Id requirement</th>
                     <th scope="col">Lần</th>
                     <th scope="col">Nội dung</th>
                     <th scope="col">Ngày chỉnh sửa</th>
@@ -226,6 +242,9 @@
                     <tbody>
                     <c:forEach items="${listHistory}" var="history">
                         <tr>
+                            <td>
+                                    ${history.table_id}
+                            </td>
                             <td>
                                     ${history.revision_no}
                             </td>

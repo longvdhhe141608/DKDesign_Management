@@ -2,6 +2,7 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Requirement;
+import DkDesignManagement.model.RequirementPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface RequirementService {
 
     List<Requirement> getAllRequirementByProjectID(int id);
 
-    List<Requirement> getPaginationRequirementByProjectID(int projectID, int index);
+    RequirementPageResponse getPaginationRequirementByProjectID(int indexPage,int projectID);
 
     int insertRequirement(Requirement requirement);
 
