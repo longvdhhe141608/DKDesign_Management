@@ -14,5 +14,5 @@ public class Section {
     private String description;
     private int projectId;
     private int creator;
-
+    private int status;
 }
