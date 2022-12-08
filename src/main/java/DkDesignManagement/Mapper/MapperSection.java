@@ -21,6 +21,7 @@ public class MapperSection implements RowMapper<Section> {
         section.setDescription(rs.getString("description"));
         section.setProjectId(rs.getInt("project_id"));
         section.setCreator(rs.getInt("creator"));
+        section.setStatus(rs.getInt("status"));
 
         return section;
     }

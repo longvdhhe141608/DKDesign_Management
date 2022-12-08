@@ -37,14 +37,15 @@ public class SectionDAO {
 
     public int addSection(Section section) {
         String sql = "INSERT INTO dkmanagement.`section`\n" +
-                "(section_name, description, project_id, creator)\n" +
-                "VALUES(:section_name, :description, :project_id, :creator);";
+                "(section_name, description, project_id, creator, status)\n" +
+                "VALUES(:section_name, :description, :project_id, :creator, 1);";
 
         Map<String, Object> params = new HashMap<>();
         params.put("section_name", section.getSectionName());
         params.put("description", section.getDescription());
         params.put("project_id", section.getProjectId());
         params.put("creator", section.getCreator());
+        params.put("status", 1);
 
         GeneratedKeyHolder generatedKeyHolder = new GeneratedKeyHolder();
         namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource(params), generatedKeyHolder);
