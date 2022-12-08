@@ -52,7 +52,7 @@ public class RequirementDao {
 
         List<Requirement> requirements = new ArrayList<>();
         String sql = "SELECT r.*, s.status_requirement FROM dkmanagement.requirement r \n" +
-                "left join status s on r.status = s.id where project_id= ?;";
+                "left join status s on r.status = s.id where project_id= ? and r.status != 3 ;";
 
         try {
             requirements = jdbcTemplate.query(sql, new MapperRequirement(), projectID);
@@ -68,7 +68,7 @@ public class RequirementDao {
 
         List<Requirement> requirements = new ArrayList<>();
         String sql = "SELECT r.*, s.status_requirement FROM dkmanagement.requirement r \n" +
-                "left join status s on r.status = s.id where project_id= ? ";
+                "left join status s on r.status = s.id where project_id= ?  and r.status != 3 ";
 
         sql += " order by r.id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 

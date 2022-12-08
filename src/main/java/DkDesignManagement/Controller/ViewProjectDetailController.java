@@ -52,7 +52,7 @@ public class ViewProjectDetailController {
         }
         List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSummary(id);
         listStatus.removeAll(listRemove);
-        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project"));
+        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project",project.getId()));
         view.addObject("listImage", imageAndFiles);
         session.setAttribute("project", project);
         session.setAttribute("listStatus", listStatus);
