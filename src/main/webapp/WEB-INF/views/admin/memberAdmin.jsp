@@ -179,20 +179,49 @@
         crossorigin="anonymous">
 </script>
 
-<script>
+<%--<script>--%>
 
-    const show = document.querySelector("#show-member");
+<%--    const show = document.querySelector("#show-member");--%>
 
-    const popup = document.querySelector(".popup");
-    let close = document.querySelector('.close_popup');
-    close.addEventListener('click', function () {
-        popup.classList.add("hide__popup");
-    });
+<%--    const popup = document.querySelector(".popup");--%>
+<%--    let close = document.querySelector('.close_popup');--%>
+<%--    close.addEventListener('click', function () {--%>
+<%--        popup.classList.add("hide__popup");--%>
+<%--    });--%>
 
-    show.addEventListener('click', function () {
-        popup.classList.remove("hide__popup");
-    })
-</script>
+<%--    show.addEventListener('click', function () {--%>
+<%--        popup.classList.remove("hide__popup");--%>
+<%--    })--%>
+<%--    function modallistproject(idbtn, idmodal, closemain) {--%>
+<%--        // Get the modal--%>
+<%--        var modal = document.querySelector(idmodal);--%>
+
+<%--        // Get the button that opens the modal--%>
+<%--        var btn = document.querySelector(idbtn);--%>
+
+<%--        // Get the <span> element that closes the modal--%>
+<%--        var span = document.querySelector(closemain);--%>
+<%--        // span.addEventListener('click', event){--%>
+<%--        //     event.style.display = "none";--%>
+<%--        // }--%>
+<%--        // When the user clicks the button, open the modal--%>
+
+<%--        modal.style.display = "block";--%>
+
+<%--        span.addEventListener("click", function () {--%>
+<%--            modal.style.display = "none";--%>
+<%--        });--%>
+
+<%--        // When the user clicks on <span> (x), close the modal--%>
+
+
+<%--        let close = document.querySelector('.close_popup');--%>
+<%--        close.addEventListener('click', function () {--%>
+<%--            modal.style.display = "none";--%>
+<%--        });--%>
+
+<%--    }--%>
+<%--</script>--%>
 
 </body>
 </html>
