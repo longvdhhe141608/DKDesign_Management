@@ -82,7 +82,10 @@ public class TaskDAO {
 
     public List<Task> getAllSubTaskViewProcess(int pageNumber, int page, int projectId) {
 
-        String sql = "select * from task t where (1=1) and t.project_id = " + projectId + " and t.status != 5   and t.task_id is not null ";
+        String sql = "select * from task t where (1=1) and t.project_id = " + projectId + " " +
+                " and t.status != 5  " +
+                " and t.task_id is not null" +
+                " and t.status != 6 ";
 
         sql += " order by id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 
@@ -107,7 +110,9 @@ public class TaskDAO {
     }
 
     public int countSubTaskViewProcess(int projectId) {
-        String sql = "select count(*)  from task t where (1=1) and t.project_id = " + projectId + " and t.status != 5   and t.task_id is not null  ";
+        String sql = "select count(*)  from task t where (1=1) and t.project_id = " + projectId + " and t.status != 5  " +
+                " and t.task_id is not null " +
+                " and t.status != 6  ";
 
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
@@ -136,7 +141,7 @@ public class TaskDAO {
     public Task getTaskById(int taskId) {
 
         Task task = new Task();
-        String sql = "select * from task t where t.id  = ? ";
+        String sql = "select * from task t where t.id  = ? and t.status != 6";
 
         try {
             task = jdbcTemplate.queryForObject(sql, new MapperTask(), taskId);
@@ -149,7 +154,7 @@ public class TaskDAO {
 
     public List<Task> getListSubTask(int taskId) {
 
-        String sql = "select * from task t where t.task_id = ?";
+        String sql = "select * from task t where t.task_id = ? and t.status != 6";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), taskId);
 
@@ -341,7 +346,7 @@ public class TaskDAO {
                 "left join accounts a on a.id = t.assignedto \n" +
                 "left join employees e on a.id =e.id_acc\n" +
                 "left join requirement r on p.id = r.project_id\n" +
-                "where s.project_id= ? AND t.section_id= ? AND t.task_id is null \n" +
+                "where s.project_id= ? AND t.section_id= ? AND t.task_id is null and t.status != 6 \n" +
                 "Group By t.id;";
 
         try {
@@ -362,7 +367,7 @@ public class TaskDAO {
                 "left join accounts a on a.id = t.assignedto \n" +
                 "left join requirement r on p.id = r.project_id\n" +
                 "left join employees e on a.id =e.id_acc\n" +
-                "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n AND t.status != 5 " +
+                "where s.project_id= ? AND t.section_id= ? AND t.task_id= ?\n AND t.status != 5 and t.status != 6 " +
                 "Group By t.id;";
         try {
 
@@ -509,7 +514,7 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =?\n";
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6 \n";
 
         if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
             sql += " and t.status =  " + statusID;
@@ -540,7 +545,7 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? \n";
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6  \n";
 
         if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
             sql += " and t.status =  " + statusID;
@@ -683,7 +688,7 @@ public class TaskDAO {
     //Dash board
 
     public int countAllSubTaskByProjectId(int projectId, String designId) {
-        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null ";
+        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status != 6 ";
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
         }
@@ -692,7 +697,7 @@ public class TaskDAO {
     }
 
     public int countAllSubTaskProcess(int projectId, String designId) {
-        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status = 2 ";
+        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status = 2 and t.status != 6";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -702,7 +707,7 @@ public class TaskDAO {
     }
 
     public int countAllSubTaskCorrectDeadline(int projectId, String designId) {
-        String sql = " select count(*) from task t where t.deadline >= t.ended_date and t.project_id =? and t.status = 4 ";
+        String sql = " select count(*) from task t where t.deadline >= t.ended_date and t.project_id =? and t.status = 4 and t.status != 6";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -715,7 +720,8 @@ public class TaskDAO {
         String sql = " select count(*) from task t \n" +
                 "where (t.deadline < t.ended_date or  (t.deadline < CURDATE() and  t.ended_date is null  )) \n" +
                 "and t.project_id =? \n" +
-                "and t.status != 5  ";
+                "and t.status != 5  " +
+                " and t.status != 6 ";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -728,7 +734,8 @@ public class TaskDAO {
         String sql = " select count(*) from task t \n" +
                 "where (t.deadline < t.ended_date or  (t.deadline < CURDATE() and  t.ended_date is null  )) \n" +
                 "and t.project_id = ?\n" +
-                "and t.status =4 ";
+                "and t.status =4 " +
+                " and t.status != 6 ";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -745,7 +752,8 @@ public class TaskDAO {
                 "and t.deadline <= curdate() \n" +
                 "and t.status != 4 \n" +
                 "and t.status != 5 \n" +
-                "and t.task_id is not null ";
+                "and t.task_id is not null " +
+                " and t.status != 6 ";
         try {
 
             tasksList = jdbcTemplate.query(sql, new MapperTask(), projectId);
@@ -764,7 +772,8 @@ public class TaskDAO {
                 "and t.deadline <= curdate() \n" +
                 "and t.status != 4 \n" +
                 "and t.status != 5 \n" +
-                "and t.task_id is not null ";
+                "and t.task_id is not null " +
+                " and t.status != 6 ";
         try {
 
             tasksList = jdbcTemplate.query(sql, new MapperTask(), accountId);

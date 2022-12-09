@@ -109,6 +109,11 @@
                             <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
                         </div>
                     </c:if>
+                    <c:if test="${task.taskStatus == 6}">
+                        <div class="alert alert-danger" role="alert" style="width: 250px;">
+                            <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Đã xóa</h2>
+                        </div>
+                    </c:if>
 
                 </div>
                 <c:if test="${task.taskStatus == 3 && loginUser.role_id == 2}">
@@ -190,6 +195,9 @@
                             <c:if test="${task.taskStatus == 5}">
                                 Hủy bỏ
                             </c:if>
+                            <c:if test="${task.taskStatus == 6}">
+                                Đã xóa
+                            </c:if>
                         </td>
                     </tr>
                     <tr>
@@ -217,6 +225,9 @@
                         </td>
                     </tr>
                 </table>
+                <div>
+                    <a href="sub-task/delete?subTaskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-secondary">Xóa</button></a>
+                </div>
             </div>
             <div class="task-cmt-details">
                 <p style="font-size: 20px;">Bình luận</p>

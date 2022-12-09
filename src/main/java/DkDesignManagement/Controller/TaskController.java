@@ -421,4 +421,16 @@ public class TaskController {
         taskService.addTaskeofLeader(projectId, a.getId(), a.getId(), name, startDate, deadline);
         return view;
     }
+
+    @RequestMapping(value = "/sub-task/delete", method = RequestMethod.GET)
+    public ModelAndView deleteSubTask(HttpServletRequest request, RedirectAttributes redirect) {
+        int subTaskId = Integer.parseInt(request.getParameter("subTaskId"));
+        Task task = taskService.getTaskById(subTaskId);
+
+        task.setTaskStatus(6);
+        taskService.updateTask(task);
+
+        redirect.addAttribute("mess", "Xóa sub task thành công!");
+        return  new ModelAndView("redirect:/task_detail?taskId="+task.getTaskfId());
+    }
 }
