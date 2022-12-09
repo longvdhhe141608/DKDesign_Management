@@ -105,7 +105,7 @@
                             </td>
                         </tr>
                     </table>
-                    <div class="btn-edit">
+                    <div class="" style="display: flex ; justify-content: end">
                         <button type="button" onclick="history.back()" class="btn btn-secondary"
                                 style="margin-right: 10px;">Hủy
                         </button>

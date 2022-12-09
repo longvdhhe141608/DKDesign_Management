@@ -45,12 +45,13 @@
                 <table class="table table-borderless" style="width: 40%;">
                     <tr>
                         <p class="text-danger">${error1}</p>
-                        <td>
-                            <p>Tên nhân viên: <i class="text-danger">*</i></p>
+                        <td class="col-6">
+                            <p style="width: 120px" >Tên nhân viên <i class="text-danger">*</i>:</p>
+                            <div class="text-danger error"></div>
                         </td>
 
-                        <td>
-                            <input class="info-text" value="${name}" id="name" name="name" type="text" required>
+                        <td class="col-6">
+                            <input style="width: 400px" class="info-text" value="${name}" id="name" name="name" type="text" required>
                             <div class="text-danger error"></div>
                         </td>
                     </tr>
@@ -60,7 +61,7 @@
                         </td>
 
                         <td>
-                            <input class="info-text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="mail" name="mail"
+                            <input style="width: 400px" class="info-text" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="mail" name="mail"
                                    type="text" required>
                             <div class="text-danger error"></div>
                         </td>
