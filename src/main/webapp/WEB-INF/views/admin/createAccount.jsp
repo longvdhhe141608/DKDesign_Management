@@ -57,7 +57,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <p>Email: <i class="text-danger">*</i></p>
+                            <p>Email <i class="text-danger">*</i>:</p>
                         </td>
 
                         <td>
@@ -69,7 +69,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <p>Vai trò: <i class="text-danger">*</i></p>
+                            <p>Vai trò <i class="text-danger">*</i>:</p>
                         </td>
                         <td>
                             <input name="role" type="radio" value="2" required/>Trưởng nhóm
