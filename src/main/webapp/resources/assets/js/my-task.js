@@ -57,7 +57,9 @@ function checkvalidate(id) {
     console.log(enddate.getMonth()+1);
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 >= today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getFullYear() > today.getFullYear()) {
+        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() ||
+            startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 == today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() ||
+            startdate.getFullYear() > today.getFullYear()) {
 
             return b;
 
@@ -70,7 +72,9 @@ function checkvalidate(id) {
     }
     function checkdate1(today, startdate, enddate) {
         let b = 0;
-        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 >= startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
+        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() ||
+            enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 == startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() ||
+            enddate.getFullYear() > startdate.getFullYear()) {
 
             return b;
 
