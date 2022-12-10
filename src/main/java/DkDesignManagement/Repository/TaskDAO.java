@@ -124,7 +124,7 @@ public class TaskDAO {
 
     public List<Task> getTaskByBigTaskId(int sectionId) {
 
-        String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null ";
+        String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null and t.status != 6 ";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), sectionId);
         return taskList;
