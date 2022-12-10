@@ -363,4 +363,9 @@ public class TaskServiceImpl implements TaskService {
     public List<Tasks> getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(int id, int sectionId, int id1) {
         return taskDAO.getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(id,sectionId,id1);
     }
+
+    @Override
+    public List<Task> getAllTasksBySectionID(int sectionId) {
+        return taskDAO.getAllTaskBySection(sectionId);
+    }
 }

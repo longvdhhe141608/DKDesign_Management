@@ -74,4 +74,6 @@ public interface TaskService {
     List<Tasks> getAllTasksByProjectIDAndSectionID(int id, int sectionId);
 
     List<Tasks> getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(int id, int sectionId, int id1);
+
+    List<Task> getAllTasksBySectionID(int sectionId);
 }
