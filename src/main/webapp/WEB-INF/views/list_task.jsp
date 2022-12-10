@@ -198,17 +198,17 @@
                                 <div class="modal-content" style="width: 60%;height: 30%;">
                                     <span id="close4" class="close">&times;</span>
                                     <div class="project-add-task">
-                                        <form id="add-project2" class="">
                                             <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>
                                             <div class="add-btn-work" style="display: flex;justify-content: end">
                                                 <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ
                                                 </button>
-                                                <button
-                                                        onclick="return checkvalidatenumber('#add-project2')"
-                                                        type="submit" class="btn btn-primary">Lưu
-                                                </button>
+                                                <a href="delete_section?sectionId=${bigTask.id}" >
+                                                    <button
+                                                            onclick="return checkvalidatenumber('#add-project2')"
+                                                            type="submit" class="btn btn-primary">Lưu
+                                                    </button>
+                                                </a>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -248,7 +248,9 @@
                                             <button onclick="onUnavailable()"><i
                                                     class="fa-regular fa-pen-to-square"></i></button>
                                         </c:if>
+                                        <a href="task/delete?taskId=${task.taskId}" >
                                         <button><i class="fa-regular fa-trash-can"></i></button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -278,9 +280,12 @@
                                                 <button>
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </button>
-                                                <button>
-                                                    <i class="fa-regular fa-trash-can"></i>
-                                                </button>
+                                                <a href="sub-task/delete?subTaskId=${subTask.taskId}" >
+                                                    <button>
+                                                        <i class="fa-regular fa-trash-can"></i>
+                                                    </button>
+                                                </a>
+
                                             </div>
                                         </div>
                                     </div>

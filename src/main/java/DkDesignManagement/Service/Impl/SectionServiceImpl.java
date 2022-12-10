@@ -63,6 +63,11 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
+    public void updateSection(Section section) {
+        sectionDAO.updateSection(section);
+    }
+
+    @Override
     public Section getOneSectionBySectionID(int id) {
         return sectionDAO.getOneSectionBySectionID(id);
     }

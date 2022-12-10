@@ -2,8 +2,12 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Entity.Section;
+import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.Service.SectionService;
+import DkDesignManagement.Service.TaskService;
 import DkDesignManagement.model.ProjectPageResponse;
 import DkDesignManagement.model.TaskPageResponse;
 import DkDesignManagement.utils.DateUtils;
@@ -34,6 +38,12 @@ public class ProjectController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    SectionService sectionService;
+
+    @Autowired
+    TaskService taskService;
+
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("allProject");
@@ -48,9 +58,9 @@ public class ProjectController {
         String textSearch = request.getParameter("textSearch");
         String date = request.getParameter("date");
 
-        ProjectPageResponse projectPageResponse =projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
+        ProjectPageResponse projectPageResponse = projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
 
-        view.addObject("listAllProject",projectPageResponse.getProjectList());
+        view.addObject("listAllProject", projectPageResponse.getProjectList());
         view.addObject("listCategory", categoryService.getAllCategory());
         view.addObject("page", page);
         view.addObject("endPage", projectPageResponse.getEndPage());
@@ -98,6 +108,33 @@ public class ProjectController {
         }
         redirect.addAttribute("mess", "add successfully ");
         return view;
+    }
+
+    @RequestMapping(value = "/delete_project", method = RequestMethod.GET)
+    public ModelAndView deleteProject(HttpServletRequest request, RedirectAttributes redirect) {
+        //delete project
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        Project project = projectService.getProject(projectId);
+        project.setStatus(4);//delete project status
+        projectService.editProject(project);
+
+        //delete section by project
+        List<Section> listSections = sectionService.getAllSectionByProjectID(projectId);
+        for (Section section : listSections) {
+            section.setStatus(3);//status section delete
+            sectionService.updateSection(section);
+        }
+
+        //delete all task by project
+        List<Task> listTask = taskService.getAllTaskByProjectId(projectId);
+        for (Task task : listTask) {
+            task.setTaskStatus(6);//status task delete
+            taskService.updateTask(task);
+        }
+
+
+        redirect.addAttribute("mess", "delete project successfully ");
+        return new ModelAndView("redirect:/allProject");
     }
 
 }

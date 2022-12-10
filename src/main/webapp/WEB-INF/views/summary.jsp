@@ -182,6 +182,11 @@
                             Chỉnh sửa
                         </button>
                     </a>
+                    <a href="${pageContext.request.contextPath}/allProject/delete_project?projectId=${project.id}">
+                        <button class="btn" style="background-color: royalblue; color: white">
+                            Xóa
+                        </button>
+                    </a>
                 </c:if>
             </div>
             <div>

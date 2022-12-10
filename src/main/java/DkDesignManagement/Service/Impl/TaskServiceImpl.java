@@ -197,6 +197,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<Task> getAllTaskByProjectId(int projectId) {
+        return taskDAO.getAllTaskByProjectId(projectId);
+    }
+
+    @Override
     public DashboardResponse getDashboard(int projectId, String designId) {
         //Tổng số công việc
         int countTask = taskDAO.countAllSubTaskByProjectId(projectId, designId);
@@ -362,5 +367,10 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Tasks> getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(int id, int sectionId, int id1) {
         return taskDAO.getTotalFileSubTasksByProjectIDAndSectionIDAndTaskID(id,sectionId,id1);
+    }
+
+    @Override
+    public List<Task> getAllTasksBySectionID(int sectionId) {
+        return taskDAO.getAllTaskBySection(sectionId);
     }
 }
