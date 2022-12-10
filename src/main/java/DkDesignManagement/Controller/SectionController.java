@@ -35,7 +35,7 @@ public class SectionController {
         String name = request.getParameter("name");
 
 
-        Section section = new Section(-1, name, null, projectId, account.getId());
+        Section section = new Section(-1, name, null, projectId, account.getId(),1);
 
         //add section
         sectionService.addSection(section);

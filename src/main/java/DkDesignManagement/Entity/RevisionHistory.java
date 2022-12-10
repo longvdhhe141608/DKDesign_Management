@@ -17,4 +17,5 @@ public class RevisionHistory {
     private Date revision_date;
     private String revision_detail;
     private String type;
+    private Integer project_id;
 }

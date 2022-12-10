@@ -18,14 +18,19 @@ public class HistoryServiceImpl implements HistoryService {
     RevisionHistoryDao revisionHistoryDao;
 
     @Override
-    public List<RevisionHistory> getAlLRevisionHistoryOfTable(int tableId, String type) {
-        List<RevisionHistory> listHistory = revisionHistoryDao.getAlLRevisionHistoryOfTable(tableId, type);
+    public List<RevisionHistory> getAlLRevisionHistoryOfTable(int tableId, String type, int projectId) {
+        List<RevisionHistory> listHistory = revisionHistoryDao.getAlLRevisionHistoryOfTable(tableId, type, projectId);
         return listHistory;
     }
 
     @Override
-    public Integer getLastRevisionNoHistoryOfTable(int tableId, String type) {
-        List<RevisionHistory> listHistory = revisionHistoryDao.getAlLRevisionHistoryOfTable(tableId, type);
+    public List<RevisionHistory> getAlLRevisionHistoryByType(String type, int projectId) {
+        return revisionHistoryDao.getAlLRevisionHistoryByType(type, projectId);
+    }
+
+    @Override
+    public Integer getLastRevisionNoHistoryOfTable(int tableId, String type, int projectId) {
+        List<RevisionHistory> listHistory = revisionHistoryDao.getAlLRevisionHistoryOfTable(tableId, type, projectId);
         if (!ObjectUtils.isEmpty(listHistory)) {
             RevisionHistory revisionHistory = listHistory.stream().findFirst().orElse(null);
             if (!ObjectUtils.isEmpty(revisionHistory)) {

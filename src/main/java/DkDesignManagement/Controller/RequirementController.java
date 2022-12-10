@@ -55,11 +55,13 @@ public class RequirementController {
         List<Requirement> requirements = requirementPageResponse.getRequirementList();
 
 
-        List<RevisionHistory> listHistory = new ArrayList<RevisionHistory>();
+        //show history
+        List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType("requirement",projectID);
+
         //check and update status
         for (Requirement requirement : requirements) {
             requirement.setStatus(requirementService.checkAndUpdaterRequirementDone(requirement));
-            listHistory.addAll(historyService.getAlLRevisionHistoryOfTable(requirement.getId(), "requirement"));
+
         }
 
         view.addObject("requirements", requirements);
@@ -139,15 +141,15 @@ public class RequirementController {
             //add history
             //check history exits
             String type = "requirement";
-            Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(requirement.getId(), type);
+            List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType(type,requirement.getProjectId());
             int revisionNoNew = 1;
-            if (!ObjectUtils.isEmpty(revisionNo)) {
-                revisionNoNew = revisionNo + 1;
+            if (!ObjectUtils.isEmpty(listHistory)) {
+                revisionNoNew = listHistory.size() + 1;
             }
 
             String revisionDetail = "Yêu cầu : " + requirement.getRequirementName() + " đã bị xóa";
 
-            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type);
+            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type,requirement.getProjectId());
             historyService.addHistory(revisionHistory);
 
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
@@ -209,15 +211,15 @@ public class RequirementController {
         //add history
         //check history exits
         String type = "requirement";
-        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(requirement.getId(), type);
+        List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType(type,requirement.getProjectId());
         int revisionNoNew = 1;
-        if (!ObjectUtils.isEmpty(revisionNo)) {
-            revisionNoNew = revisionNo + 1;
+        if (!ObjectUtils.isEmpty(listHistory)) {
+            revisionNoNew = listHistory.size() + 1;
         }
 
         String revisionDetail = "Vị trí : " + oldName + " -> " + requirement.getRequirementName() + " <br> "
                 + " Yêu cầu : " + oldDetail + " -> " + requirement.getRequirementDetail();
-        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type);
+        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type,requirement.getProjectId());
         historyService.addHistory(revisionHistory);
 
         return view;

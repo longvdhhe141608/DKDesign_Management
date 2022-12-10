@@ -48,11 +48,11 @@ public class RequirementByDesignController {
         RequirementPageResponse requirementPageResponse = requirementService.getPaginationRequirementByProjectID(page,projectID);
         List<Requirement> requirements = requirementPageResponse.getRequirementList();
 
-        List<RevisionHistory> listHistory = new ArrayList<RevisionHistory>();
+        //show history
+        List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType("requirement",projectID);
         //check and update status
         for (Requirement requirement : requirements) {
             requirement.setStatus(requirementService.checkAndUpdaterRequirementDone(requirement));
-            listHistory.addAll(historyService.getAlLRevisionHistoryOfTable(requirement.getId(), "requirement"));
         }
 
         view.addObject("requirements", requirements);
