@@ -146,6 +146,14 @@ public class TaskDAO {
         return taskList;
     }
 
+    public List<Task> getAllTaskByProjectId(int projectId) {
+
+        String sql = "select * from task t where t.project_id =? ";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), projectId);
+        return taskList;
+    }
+
     public Task getTaskById(int taskId) {
 
         Task task = new Task();

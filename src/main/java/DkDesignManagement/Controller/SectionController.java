@@ -82,6 +82,8 @@ public class SectionController {
             taskService.updateTask(task);
         }
 
+        redirect.addAttribute("mess", "Xóa đầu mục công việc thành công");
+
         return new ModelAndView("redirect:/list_task?id=" + section.getProjectId());
     }
 }

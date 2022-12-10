@@ -45,6 +45,8 @@ public interface TaskService {
 
     List<Task> getAllTaskByRequirementId(int requirementId);
 
+    List<Task> getAllTaskByProjectId(int projectId);
+
     DashboardResponse getDashboard(int projectId , String designId);
 
     int getTotalAllMyTaskLeader(int id, String textSearch);
