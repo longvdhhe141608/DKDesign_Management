@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/myTask.css"/>"/>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -119,7 +120,18 @@
                 <c:forEach items="${waitDtoList}" var="i">
 
                     <tr>
-                        <td>${i.taskName}</td>
+                        <td>
+                            <div style="display: flex;justify-content: space-between;">
+                               <div class="col-8">
+                                       ${i.taskName}
+                               </div>
+                            <div class="col-4">
+                                <a>
+                                <button class="chi-tiet">Chi tiết</button>
+                                </a>
+                            </div>
+                            </div>
+                        </td>
                         <td>${i.username}</td>
                         <td>
                                 ${i.startDate}

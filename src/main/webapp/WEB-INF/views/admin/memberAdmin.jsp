@@ -90,7 +90,7 @@
                             <form action="${pageContext.request.contextPath}/member/information" method="get">
                                 <input name="id" value="${member.memberId}" hidden>
 <%--                                <input type="submit" class="btn btn-primary chi-tiet" value="chi tiết">--%>
-                                <button class=" chi-tiet" >Chi tiết</button>
+                                <button class="chi-tiet" >Chi tiết</button>
                             </form>
                             </div>
                         </td>
@@ -102,7 +102,7 @@
                         <td>${member.memberMail}</td>
                         <td>${member.memberAddress}</td>
                         <td>
-                            <form action="changeMemberStatus">
+                            <form style="text-align: center" action="changeMemberStatus">
                                 <input value="${member.memberStatus}" name="status" hidden>
                                 <input value="${member.memberCode}" name="username" hidden>
                                 <c:if test="${member.memberStatus==1}">
