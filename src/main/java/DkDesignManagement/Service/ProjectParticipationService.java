@@ -20,4 +20,9 @@ public interface ProjectParticipationService {
     List<MemberActiveDto> getAllMember(int projectID, int indexPage, String roleID, String textSearch);
 
     int totalAllMember(int projectID, String roleID, String textSearch);
+
+    void deleteProjectParticipation(int projectID, int accountId);
+
+    ProjectParticipation getProjectParticipants(int projectID,int accountId);
+
 }

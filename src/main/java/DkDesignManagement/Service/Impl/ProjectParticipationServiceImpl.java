@@ -22,8 +22,8 @@ public class ProjectParticipationServiceImpl implements ProjectParticipationServ
 
     @Override
     public boolean isMemberExisted(int projectId, int accountId) {
-       ProjectParticipation projectParticipation = projectParticipationDao.getProjectParticipants(projectId,accountId);
-        if(ObjectUtils.isEmpty(projectParticipation)){
+        ProjectParticipation projectParticipation = projectParticipationDao.getProjectParticipants(projectId, accountId);
+        if (ObjectUtils.isEmpty(projectParticipation)) {
             return false;
         }
         return true;
@@ -37,5 +37,14 @@ public class ProjectParticipationServiceImpl implements ProjectParticipationServ
     @Override
     public int totalAllMember(int projectID, String roleID, String textSearch) {
         return projectParticipationDao.totalAllMember(projectID, roleID, textSearch);
+    }
+
+    public void deleteProjectParticipation(int projectID, int accountId) {
+        projectParticipationDao.deleteProjectParticipation(projectID,accountId);
+    }
+
+    @Override
+    public ProjectParticipation getProjectParticipants(int projectID, int accountId) {
+        return projectParticipationDao.getProjectParticipants(projectID, accountId);
     }
 }

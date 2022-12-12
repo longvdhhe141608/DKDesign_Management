@@ -209,6 +209,7 @@
                                         <button onclick="this.form.submit()" class="btn btn-danger">Chặn</button>
                                     </c:if>
                                 </form>
+                               <a href="delete-member?memberId=${member.memberId}&projectId=${projectId}"><button  class="btn btn-danger">Xóa</button></a>
                             </td>
                         </tr>
                     </c:forEach>

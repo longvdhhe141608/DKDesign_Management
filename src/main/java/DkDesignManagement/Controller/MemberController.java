@@ -1,9 +1,6 @@
 package DkDesignManagement.Controller;
 
-import DkDesignManagement.Entity.Employee;
-import DkDesignManagement.Entity.Member;
-import DkDesignManagement.Entity.Notification;
-import DkDesignManagement.Entity.Project;
+import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
 import DkDesignManagement.model.MemberPageResponse;
 import DkDesignManagement.model.NotificationDto;
@@ -95,8 +92,8 @@ public class MemberController {
         Employee employee = employeeService.getEmployeeByAccId(accountId);
 
         //TODO : check Member exits
-        if(projectParticipationService.isMemberExisted(projectId,accountId)){
-            redirect.addAttribute("mess", "Thành viên  "+employee.getName()+" đã tồn tại trong dự án ");
+        if (projectParticipationService.isMemberExisted(projectId, accountId)) {
+            redirect.addAttribute("mess", "Thành viên  " + employee.getName() + " đã tồn tại trong dự án ");
             return view;
         }
 
@@ -144,6 +141,20 @@ public class MemberController {
         memberService.updateStatusMemberInProject(id, memberId, status);
 
         redirect.addAttribute("mess", "đổi trạng thái thành công!");
+        return view;
+    }
+
+    @RequestMapping(value = "/delete-member", method = RequestMethod.GET)
+    public ModelAndView deleteMember(HttpServletRequest request, RedirectAttributes redirect) {
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        ModelAndView view = new ModelAndView("redirect:/project/member?id=" + projectId);
+        int memberId = Integer.parseInt(request.getParameter("memberId"));
+
+        Employee employee = employeeService.getEmployeeByEmpId(memberId);
+
+        projectParticipationService.deleteProjectParticipation(projectId, employee.getId_acc());
+
+        redirect.addAttribute("mess", "Xóa thành viên thành công!");
         return view;
     }
 }
