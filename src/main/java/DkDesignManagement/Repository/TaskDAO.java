@@ -713,7 +713,7 @@ public class TaskDAO {
     }
 
     public int countAllSubTaskProcess(int projectId, String designId) {
-        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status = 2 and t.status != 6";
+        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and (t.status = 2 or t.status = 3 ) and t.status != 6";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
