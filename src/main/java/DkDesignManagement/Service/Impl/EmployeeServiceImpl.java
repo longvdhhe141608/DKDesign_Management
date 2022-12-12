@@ -15,6 +15,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeDao employeeDao;
 
+    @Override
+    public List<Employee> getAll() {
+        return employeeDao.getAll();
+    }
+
     /**
      * @param id
      * @return

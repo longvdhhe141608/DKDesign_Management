@@ -16,7 +16,7 @@ public class ProjectParticipation {
     private int projectId;
     private int accountId;
     private int roleId;
-    private boolean status;
+    private int status;
 
 
 }

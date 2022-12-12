@@ -43,7 +43,7 @@ public class ProjectServiceImpl implements ProjectService {
         if (idProject == -1) {
             return -1;
         }
-        ProjectParticipation pp = new ProjectParticipation(idProject, account.getId(), account.getRole_id(), true);
+        ProjectParticipation pp = new ProjectParticipation(idProject, account.getId(), account.getRole_id(), 1);
         return projectParticipationDao.addProjectParticipation(pp);
     }
 

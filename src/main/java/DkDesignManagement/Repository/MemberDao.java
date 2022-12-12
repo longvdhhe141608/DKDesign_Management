@@ -24,7 +24,7 @@ public class MemberDao {
                 "`employees`.`phone`,`employees`.`email`,`employees`.`address`,`project_participation`.`status`,\n" +
                 "`employees`.`dob`,`employees`.`gender`,`employees`.`cccd`\n" +
                 "FROM `employees` JOIN `accounts` ON `employees`.`id_acc` = `accounts`.`id` JOIN `project_participation` ON `accounts`.`id` = `project_participation`.`account_id`\n" +
-                "WHERE `accounts`.`role_id`<>1 AND `project_participation`.`project_id` =?";
+                "WHERE `accounts`.`role_id`<>1 AND `project_participation`.`project_id` =? ";
 
         sql += " order by employees.id  LIMIT " + pageNumber + " OFFSET " + (page - 1) * pageNumber;
 
@@ -36,7 +36,7 @@ public class MemberDao {
 
         String sql = "SELECT count(1) " +
                 "FROM `employees` JOIN `accounts` ON `employees`.`id_acc` = `accounts`.`id` JOIN `project_participation` ON `accounts`.`id` = `project_participation`.`account_id`\n" +
-                "WHERE `accounts`.`role_id`<>1 AND `project_participation`.`project_id` =?";
+                "WHERE `accounts`.`role_id`<>1 AND `project_participation`.`project_id` =?  ";
 
 
         return jdbcTemplate.queryForObject(sql, Integer.class, projectId);

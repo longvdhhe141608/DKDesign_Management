@@ -1,6 +1,8 @@
 package DkDesignManagement.Repository;
 
+import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Employee;
+import DkDesignManagement.Mapper.MapperAccount;
 import DkDesignManagement.Mapper.MapperEmployee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,6 +22,13 @@ public class EmployeeDao {
         String sql = "select * from `dkmanagement`.`employees` where id_acc = ?";
         Employee employee = jdbcTemplate.queryForObject(sql, new MapperEmployee(), id);
         return employee;
+    }
+
+    public List<Employee> getAll() {
+        String sql = "select * from employees e ";
+        List<Employee> employeeList;
+        employeeList = jdbcTemplate.query(sql, new MapperEmployee());
+        return employeeList;
     }
 
     /*
