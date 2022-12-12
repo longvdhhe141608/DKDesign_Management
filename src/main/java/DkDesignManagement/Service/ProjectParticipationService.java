@@ -15,6 +15,8 @@ public interface ProjectParticipationService {
 
     int addProjectParticipation(ProjectParticipation project);
 
+    boolean isMemberExisted(int projectId ,int accountId);
+
     List<MemberActiveDto> getAllMember(int projectID, int indexPage, String roleID, String textSearch);
 
     int totalAllMember(int projectID, String roleID, String textSearch);

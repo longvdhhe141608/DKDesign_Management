@@ -1,12 +1,10 @@
 package DkDesignManagement.Controller;
 
+import DkDesignManagement.Entity.Employee;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Service.AccountService;
-import DkDesignManagement.Service.MemberService;
-import DkDesignManagement.Service.NotificationService;
-import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.Service.*;
 import DkDesignManagement.model.MemberPageResponse;
 import DkDesignManagement.model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,8 +35,17 @@ public class MemberController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    AccountService accountService;
+
+    @Autowired
+    ProjectParticipationService projectParticipationService;
+
+    @Autowired
+    EmployeeService employeeService;
+
     @RequestMapping(value = "/member", method = RequestMethod.GET)
-    public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid,@ModelAttribute("mess") String mess) {
+    public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid, @ModelAttribute("mess") String mess) {
 
         ModelAndView view = new ModelAndView("member");
 
@@ -55,6 +62,7 @@ public class MemberController {
 
         view.addObject("project", project);
         view.addObject("memberList", memberList);
+        view.addObject("employeeList", employeeService.getAll());
         view.addObject("page", page);
         view.addObject("endPage", memberPageResponse.getEndPage());
         view.addObject("projectId", id);
@@ -82,16 +90,20 @@ public class MemberController {
 
     @RequestMapping(value = "/addMember", method = RequestMethod.GET)
     public ModelAndView addMemberToProject(HttpServletRequest request, @RequestParam("id") int projectId, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("redirect:/member?id=" + projectId);
-        String username = request.getParameter("memberToAdd");
-        int memberId = 0;
-        //TODO : check username wrong
+        ModelAndView view = new ModelAndView("redirect:/project/member?id=" + projectId);
+        int accountId = Integer.parseInt(request.getParameter("accountId"));
+        Employee employee = employeeService.getEmployeeByAccId(accountId);
 
         //TODO : check Member exits
+        if(projectParticipationService.isMemberExisted(projectId,accountId)){
+            redirect.addAttribute("mess", "Thành viên  "+employee.getName()+" đã tồn tại trong dự án ");
+            return view;
+        }
+
         boolean checkAddMember = true;
         try {
-            memberId = memberService.getAccountIdByUsername(username);
-            memberService.addMemberToProject(projectId, memberId);
+
+            memberService.addMemberToProject(projectId, accountId);
         } catch (Exception e) {
             checkAddMember = false;
             e.printStackTrace();
@@ -103,23 +115,18 @@ public class MemberController {
             String message = "Bạn đã được thêm vào dự án";
 
             //check notification exits
-            NotificationDto notificationDto = notificationService.getNotification(memberId, message, url);
+            NotificationDto notificationDto = notificationService.getNotification(employee.getId_acc(), message, url);
             if (ObjectUtils.isEmpty(notificationDto)) {
                 Notification notification = new Notification(-1, new java.util.Date()
-                        , message, memberId, projectId, url);
+                        , message, employee.getId_acc(), projectId, url);
                 notificationService.addNotification(notification);
             }
         } else {
-            if (memberId == 0) {
-                redirect.addAttribute("mess", "Thành viên " + username + " không tồn tại");
-                return view;
-            } else {
-                redirect.addAttribute("mess", "Thành viên " + username + " đã có trong dự án");
-                return view;
-            }
+            redirect.addAttribute("mess", "Đã có lỗi xẩy ra khi thêm thành viên");
+            return view;
         }
 
-        redirect.addAttribute("mess", "Thêm thành việc thành công!");
+        redirect.addAttribute("mess", "Thêm thành viên thành công!");
 
         return view;
     }

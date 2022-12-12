@@ -111,7 +111,11 @@
                                                 <tr>
                                                     <td>Tên thành viên:</td>
                                                     <td>
-                                                        <input name="memberToAdd" class="info-text" type="text" style="width: 550px;">
+                                                        <select name="accountId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
+                                                            <c:forEach items="${employeeList}" var="employee">
+                                                                <option value="${employee.id_acc}"  > ${employee.name}</option>
+                                                            </c:forEach>
+                                                        </select>
                                                         <input name="id" value="${project.id}" type="text" hidden>
                                                     </td>
                                                 </tr>
@@ -253,13 +257,19 @@
                 <h4>Thêm thành viên</h4>
             </div>
             <form action="addMember" method="get">
+                <input name="id" value="${project.id}" type="text" hidden>
                 <div class="info">
                     <table class="table table-borderless">
                         <tr>
                             <td>Tên thành viên:</td>
                             <td>
-                                <input name="memberToAdd" class="info-text" type="text" style="width: 550px;">
-                                <input name="id" value="${project.id}" type="text" hidden>
+                                <select name="accountId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
+                                    <c:forEach items="${employeeList}" var="employee">
+                                        <option value="${employee.id_acc}"  > ${employee.name}</option>
+                                    </c:forEach>
+                                </select>
+
+
                             </td>
                         </tr>
                     </table>

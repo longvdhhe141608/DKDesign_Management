@@ -3,6 +3,7 @@ package DkDesignManagement.Repository;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.ProjectParticipation;
 import DkDesignManagement.Mapper.MapperMemberActive;
+import DkDesignManagement.Mapper.MapperProjectParticipation;
 import DkDesignManagement.model.MemberActiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -94,5 +95,19 @@ public class ProjectParticipationDao {
         }
 
         return totalPage;
+    }
+
+    public ProjectParticipation getProjectParticipants(int projectID,int accountId) {
+        ProjectParticipation projectParticipation = null;
+        String sql = "select * from project_participation pp where pp.project_id = ? and pp.account_id = ?";
+
+        try {
+            projectParticipation = jdbcTemplate.queryForObject(sql, new MapperProjectParticipation(), projectID, accountId);
+            return projectParticipation;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

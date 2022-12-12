@@ -6,6 +6,7 @@ import DkDesignManagement.Service.ProjectParticipationService;
 import DkDesignManagement.model.MemberActiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -17,6 +18,15 @@ public class ProjectParticipationServiceImpl implements ProjectParticipationServ
     @Override
     public int addProjectParticipation(ProjectParticipation project) {
         return projectParticipationDao.addProjectParticipation(project);
+    }
+
+    @Override
+    public boolean isMemberExisted(int projectId, int accountId) {
+       ProjectParticipation projectParticipation = projectParticipationDao.getProjectParticipants(projectId,accountId);
+        if(ObjectUtils.isEmpty(projectParticipation)){
+            return false;
+        }
+        return true;
     }
 
     @Override
