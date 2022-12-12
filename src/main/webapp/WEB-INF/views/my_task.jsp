@@ -102,8 +102,7 @@
                                         </div>
                                         <div class="col-4">
                                             <a href="${pageContext.request.contextPath}/leader-task?taskId=${i.subTaskID}">
-                                                <button class="btn btn-primary summary-detail-all"
-                                                        style="float: right;">
+                                                <button class="btn btn-primary summary-detail-all" >
                                                     Chi tiết
                                                 </button>
                                             </a>
