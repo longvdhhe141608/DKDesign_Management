@@ -27,7 +27,7 @@ public class ProcessController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView viewProgress(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("progress");
+        ModelAndView view = new ModelAndView("leader/progress");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         int page = 1;

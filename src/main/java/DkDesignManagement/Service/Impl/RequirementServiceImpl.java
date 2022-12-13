@@ -33,8 +33,8 @@ public class RequirementServiceImpl implements RequirementService {
     }
 
     @Override
-    public void updateRequirement(Requirement requirement) {
-        requirementDao.updateRequirement(requirement);
+    public int updateRequirement(Requirement requirement) {
+        return requirementDao.updateRequirement(requirement);
     }
 
     @Override

@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface MemberService {
 
-    void addMemberToProject(int projectId, int memberId);
+    int addMemberToProject(int projectId, int memberId);
 
     List<Member> searchMemberInProject(int projectId, int role, String name);
 
@@ -24,7 +24,7 @@ public interface MemberService {
 
     List<Member> getAllMemberInSearch(int role, String name);
 
-    void addNewMember(String name, String mail, int id);
+    int addNewMember(String name, String mail, int id);
 
     void updateMemberStatus(int status, String username);
 

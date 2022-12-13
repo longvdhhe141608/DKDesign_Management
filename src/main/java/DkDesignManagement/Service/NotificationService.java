@@ -15,6 +15,6 @@ public interface NotificationService {
 
     NotificationDto getNotification(int accountId, String message, String url);
 
-    void addNotification(Notification notification);
+    int addNotification(Notification notification);
 
 }

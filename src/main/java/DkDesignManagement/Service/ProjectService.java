@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public interface ProjectService {
-    public List<Project> getProject();
+    List<Project> getProject();
 
     Project getProject(int projectId);
 

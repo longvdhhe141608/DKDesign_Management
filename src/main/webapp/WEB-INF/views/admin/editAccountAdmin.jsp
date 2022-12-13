@@ -21,9 +21,9 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"/>
+<jsp:include page="/WEB-INF/views/leader/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="/WEB-INF/views/nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/leader/nav_left.jsp"/>
     <div style="margin-left: 20%;">
         <span style="font-size: 30px;"><a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>Chỉnh sửa thông tin cá nhân</span>
         <div class="information-main">

@@ -32,7 +32,6 @@ public interface TaskService {
 
     Task getTaskByIdFullModelForLeader(int taskId);
 
-
     int updateTask(Task task);
 
     int checkAndUpdateTaskDone(Task task);

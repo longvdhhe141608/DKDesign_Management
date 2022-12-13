@@ -3,8 +3,6 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.ImageAndFile;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Status;
-import DkDesignManagement.Repository.ProjectDao;
-import DkDesignManagement.Repository.StatusDao;
 import DkDesignManagement.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,7 +34,7 @@ public class ViewProjectDetailController {
 
     @RequestMapping(value = "/summary", method = RequestMethod.GET)
     public ModelAndView projectDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
-        ModelAndView view = new ModelAndView("summary");
+        ModelAndView view = new ModelAndView("leader/summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         HttpSession session = request.getSession();
