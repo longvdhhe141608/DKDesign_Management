@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -26,9 +25,7 @@
             integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-
 <body>
-
 <jsp:include page="header.jsp"/>
 <div class="body_page">
     <jsp:include page="nav_left.jsp"/>
@@ -57,7 +54,6 @@
                         </c:if>
                     </div>
                 </form>
-
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}">
@@ -129,7 +125,6 @@
                                         <div class="text-danger error"></div>
                                     </td>
                                 </tr>
-
                             </table>
                             <div class="add-btn-work" style="display: flex; justify-content: end">
                                 <button type="button" class="btn btn-secondary close_popup" style="margin-right: 5px">
@@ -144,18 +139,15 @@
                 </div>
             </div>
         </div>
-
         <div class="table_content requiment-main ">
             <div class=" requiment-main-left">
                 <table class="table table-bordered ">
-
                     <thead>
                     <tr>
                         <th scope="col" class="col-2">Vị trí</th>
                         <th scope="col" class="col-6">Yêu cầu</th>
                         <th scope="col" class="col-1">Ngày tạo</th>
                         <th scope="col" class="col-1">Trạng thái</th>
-
                         <th scope="col" class="col-1"></th>
                     </tr>
                     </thead>
@@ -165,9 +157,9 @@
                         <c:if test="${requirement.status != 3}">
                             <tr>
                                 <td>${requirement.requirementName}</td>
-                                <td >${requirement.requirementDetail}</td>
-                                <td >${requirement.requirementDate}</td>
-                                <td >
+                                <td>${requirement.requirementDetail}</td>
+                                <td>${requirement.requirementDate}</td>
+                                <td>
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý
                                     </c:if>
@@ -178,7 +170,7 @@
                                         Chưa được đáp ứng
                                     </c:if>
                                 </td>
-                                <td >
+                                <td>
                                     <div style="display: flex; ">
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"
@@ -211,9 +203,9 @@
                             </c:if>
                             <c:forEach begin="1" end="${endPage}" var="i">
                                 <li class="page-item"><a class="page-link"
-                                                         href="requirement-for-leader?id=${projectId}&page=${i}">${i}</a></li>
+                                                         href="requirement-for-leader?id=${projectId}&page=${i}">${i}</a>
+                                </li>
                             </c:forEach>
-
                             <c:if test="${page != endPage}">
                                 <li class="page-item">
                                     <a class="page-link" href="requirement-for-leader?id=${projectId}&page=${page+1}"
@@ -251,10 +243,7 @@
                                     ${history.revision_date}
                             </td>
                         </tr>
-
                     </c:forEach>
-
-
                     </tbody>
                 </table>
             </div>
