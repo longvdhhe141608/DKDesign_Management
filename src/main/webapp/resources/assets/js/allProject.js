@@ -103,7 +103,9 @@ function checkvalidate(id) {
     // console.log(today.getFullYear());
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 >= today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getFullYear() > today.getFullYear()) {
+        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() ||
+            startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 == today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() ||
+            startdate.getFullYear() > today.getFullYear()) {
 
             return b;
 
@@ -116,7 +118,9 @@ function checkvalidate(id) {
     }
     function checkdate1(today, startdate, enddate) {
         let b = 0;
-        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 >= startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
+        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() ||
+            enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 == startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() ||
+            enddate.getFullYear() > startdate.getFullYear()) {
 
             return b;
 
@@ -144,4 +148,33 @@ function checkvalidate(id) {
     } else {
         return true;
     }
+}
+function onClickDelete(id){
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa dự án này không?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Xóa',
+        denyButtonText: `Hủy`,
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "get",
+                url: "delete_project",
+                data: {
+                    projectId: id,
+                },
+                success: function () {
+                    location.reload();
+                },
+                error: function (jqXHR, exception) {
+                    console.log(jqXHR)
+                    console.log(exception)
+                }
+            });
+        } else if (result.isDenied) {
+            Swal.fire('Dự án đã được giữ lại.', '', 'info')
+        }
+    })
 }

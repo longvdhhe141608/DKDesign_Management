@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <script src="<c:url value="/resources/assets/js/list-task.js"/>"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -32,7 +34,7 @@
                 <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
                       method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
-                    <div class="btn project-detail" style="margin: 0; padding: 0 6px 0 10px;">
+                    <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
                             <c:forEach items="${listStatus}" var="status">
                                 <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
@@ -103,7 +105,7 @@
                             <h4>
                                 <input class="info-text" type="text"
                                        name="name" placeholder="Tên công việc" aria-label="Text"/>
-                                <p class="text-danger error"></p>
+                                <div class="text-danger error"></div>
                             </h4>
                             <table class="table table-borderless">
                                 <tr>
@@ -182,7 +184,9 @@
                     <details>
                         <summary style="display:block;">
                             <div style="display: flex; justify-content: space-between;">
-                                <i><span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span></i>
+                                <div>
+                                    <span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span>
+                                </div>
                                 <div>
                                     <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
                                             id="myBtn-section" data-id="${bigTask.id}"
@@ -190,30 +194,29 @@
                                             data-pid="${bigTask.project_id}">
                                         <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
-                                    <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
-                                            class="fa-regular fa-trash-can"></i></button>
-                                    <div id="myModal1" class="modal">
-                                        <!-- Modal content -->
-                                        <div class="modal-content" style="width: 60%;height: 30%;">
-                                            <span id="close4" class="close">&times;</span>
-                                            <div class="project-add-task">
-                                                <form id="add-project2" class="">
-                                                    <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu
-                                                        này!</p>
-                                                    <div class="add-btn-work"
-                                                         style="display: flex;justify-content: end">
-                                                        <button style="margin-right: 10px" class="btn btn-secondary ">
-                                                            Hủy bỏ
-                                                        </button>
-                                                        <button
-                                                                onclick="return checkvalidatenumber('#add-project2')"
-                                                                type="submit" class="btn btn-primary">Lưu
-                                                        </button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button onclick="onClickDeleteSection(this.getAttribute('data-section-id'))"
+                                            data-section-id="${bigTask.id}">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                        <%--                            <div id="myModal1" class="modal">--%>
+                                        <%--                                <!-- Modal content -->--%>
+                                        <%--                                <div class="modal-content" style="width: 60%;height: 30%;">--%>
+                                        <%--                                    <span id="close4" class="close">&times;</span>--%>
+                                        <%--                                    <div class="project-add-task">--%>
+                                        <%--                                            <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>--%>
+                                        <%--                                            <div class="add-btn-work" style="display: flex;justify-content: end">--%>
+                                        <%--                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ--%>
+                                        <%--                                                </button>--%>
+                                        <%--                                                <a href="delete_section?sectionId=${bigTask.id}" >--%>
+                                        <%--                                                    <button--%>
+                                        <%--                                                            onclick="return checkvalidatenumber('#add-project2')"--%>
+                                        <%--                                                            type="submit" class="btn btn-primary">Lưu--%>
+                                        <%--                                                    </button>--%>
+                                        <%--                                                </a>--%>
+                                        <%--                                            </div>--%>
+                                        <%--                                    </div>--%>
+                                        <%--                                </div>--%>
+                                        <%--                            </div>--%>
                                 </div>
                             </div>
                         </summary>
@@ -250,7 +253,10 @@
                                             <button onclick="onUnavailable()"><i
                                                     class="fa-regular fa-pen-to-square"></i></button>
                                         </c:if>
-                                        <button><i class="fa-regular fa-trash-can"></i></button>
+                                        <button onclick="onClickDeleteTask(this.getAttribute('data-task-id'))"
+                                                data-task-id="${task.taskId}">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +286,8 @@
                                                 <button>
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </button>
-                                                <button>
+                                                <button onclick="onClickDeleteSubTask(this.getAttribute('data-subtask-id'))"
+                                                        data-subtask-id="${subTask.taskId}">
                                                     <i class="fa-regular fa-trash-can"></i>
                                                 </button>
                                             </div>
@@ -353,6 +360,10 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
 
     function onClickClose() {

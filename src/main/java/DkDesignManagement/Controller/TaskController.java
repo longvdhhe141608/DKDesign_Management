@@ -433,4 +433,22 @@ public class TaskController {
         redirect.addAttribute("mess", "Xóa sub task thành công!");
         return  new ModelAndView("redirect:/task_detail?taskId="+task.getTaskfId());
     }
+
+    @RequestMapping(value = "/task/delete", method = RequestMethod.GET)
+    public ModelAndView deleteTask(HttpServletRequest request, RedirectAttributes redirect) {
+        int taskId = Integer.parseInt(request.getParameter("taskId"));
+        Task task = taskService.getTaskByIdFullModel(taskId);
+
+        task.setTaskStatus(6);
+        taskService.updateTask(task);
+
+        //delete list sub task
+        for(Task subTask : task.getListSubTask()){
+            subTask.setTaskStatus(6);
+            taskService.updateTask(subTask);
+        }
+
+        redirect.addAttribute("mess", "Xóa task thành công!");
+        return  new ModelAndView("redirect:/list_task?id="+task.getProjectId());
+    }
 }

@@ -111,7 +111,11 @@
                                                 <tr>
                                                     <td>Tên thành viên:</td>
                                                     <td>
-                                                        <input name="memberToAdd" class="info-text" type="text" style="width: 550px;">
+                                                        <select name="accountId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
+                                                            <c:forEach items="${employeeList}" var="employee">
+                                                                <option value="${employee.id_acc}"  > ${employee.name}</option>
+                                                            </c:forEach>
+                                                        </select>
                                                         <input name="id" value="${project.id}" type="text" hidden>
                                                     </td>
                                                 </tr>
@@ -194,7 +198,7 @@
                             <td>${member.memberPhone}</td>
                             <td>${member.memberMail}</td>
                             <td>${member.memberAddress}</td>
-                            <td>
+                            <td style="display: flex">
                                 <form action="changeMemberStatus">
                                     <input value="${member.memberStatus}" name="status" hidden>
                                     <input value="${member.memberCode}" name="username" hidden>
@@ -205,6 +209,7 @@
                                         <button onclick="this.form.submit()" class="btn btn-danger">Chặn</button>
                                     </c:if>
                                 </form>
+                               <a href="delete-member?memberId=${member.memberId}&projectId=${projectId}"><button  class="btn btn-danger">Xóa</button></a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -247,38 +252,44 @@
     </div>
 
     <%--Pop-up add member--%>
-    <div class="popup hide__popup">
-        <div class="popup__content">
-            <div class="title">
-                <h4>Thêm thành viên</h4>
-            </div>
-            <form action="addMember" method="get">
-                <div class="info">
-                    <table class="table table-borderless">
-                        <tr>
-                            <td>Tên thành viên:</td>
-                            <td>
-                                <input name="memberToAdd" class="info-text" type="text" style="width: 550px;">
-                                <input name="id" value="${project.id}" type="text" hidden>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="button_click">
+<%--    <div class="popup hide__popup">--%>
+<%--        <div class="popup__content">--%>
+<%--            <div class="title">--%>
+<%--                <h4>Thêm thành viên</h4>--%>
+<%--            </div>--%>
+<%--            <form action="addMember" method="get">--%>
+<%--                <input name="id" value="${project.id}" type="text" hidden>--%>
+<%--                <div class="info">--%>
+<%--                    <table class="table table-borderless">--%>
+<%--                        <tr>--%>
+<%--                            <td>Tên thành viên:</td>--%>
+<%--                            <td>--%>
+<%--                                <select name="accountId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">--%>
+<%--                                    <c:forEach items="${employeeList}" var="employee">--%>
+<%--                                        <option value="${employee.id_acc}"  > ${employee.name}</option>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </select>--%>
 
-                    <div class="btn_cancel">
-                        <button type="button" class="btn btn-secondary close_popup">Hủy
-                            bỏ
-                        </button>
-                    </div>
-                    <div class="btn_ok">
-                        <input type="submit" class="btn btn-primary" value="Lưu">
-                    </div>
 
-                </div>
-            </form>
-        </div>
-    </div>
+<%--                            </td>--%>
+<%--                        </tr>--%>
+<%--                    </table>--%>
+<%--                </div>--%>
+<%--                <div class="button_click">--%>
+
+<%--                    <div class="btn_cancel">--%>
+<%--                        <button type="button" class="btn btn-secondary close_popup">Hủy--%>
+<%--                            bỏ--%>
+<%--                        </button>--%>
+<%--                    </div>--%>
+<%--                    <div class="btn_ok">--%>
+<%--                        <input type="submit" class="btn btn-primary" value="Lưu">--%>
+<%--                    </div>--%>
+
+<%--                </div>--%>
+<%--            </form>--%>
+<%--        </div>--%>
+<%--    </div>--%>
     <%--end Pop-up add member--%>
 
 

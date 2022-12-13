@@ -15,7 +15,7 @@ public class MapperProjectParticipation implements RowMapper<ProjectParticipatio
         p.setProjectId(resultSet.getInt("project_id"));
         p.setAccountId(resultSet.getInt("account_id"));
         p.setRoleId(resultSet.getInt("role_id"));
-        p.setStatus(resultSet.getBoolean("status"));
+        p.setStatus(resultSet.getInt("status"));
 
         return p;
     }

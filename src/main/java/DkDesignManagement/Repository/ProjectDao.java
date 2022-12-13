@@ -79,7 +79,7 @@ public class ProjectDao {
                 "join `accounts` on\n" +
                 "\t`project_participation`.`account_id` = `accounts`.`id`\n" +
                 "where\n" +
-                "\t`accounts`.`id` = " + id + " \n";
+                "\t`accounts`.`id` = " + id + " and project.status != 4 \n";
 
         if (!ObjectUtils.isEmpty(textSearch)) {
             sql += " and project.project_name like '%" + textSearch + "%' \n";
@@ -188,7 +188,7 @@ public class ProjectDao {
                 "join `accounts` on\n" +
                 "\t`project_participation`.`account_id` = `accounts`.`id`\n" +
                 "where\n" +
-                "\t`accounts`.`id` = " + id + " \n";
+                "\t`accounts`.`id` = " + id + " and project.status != 4 \n";
 
         if (!ObjectUtils.isEmpty(textSearch)) {
             sql += " and project.project_name like '%" + textSearch + "%' \n";

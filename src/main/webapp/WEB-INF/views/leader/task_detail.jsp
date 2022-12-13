@@ -145,6 +145,12 @@
                         <c:if test="${task.taskStatus == 4}">
                             Đã hoàn thành
                         </c:if>
+                        <c:if test="${task.taskStatus == 5}">
+                            Hủy bỏ
+                        </c:if>
+                        <c:if test="${task.taskStatus == 6}">
+                            Đã xóa
+                        </c:if>
                     </td>
                 </tr>
                 <tr>
@@ -277,6 +283,11 @@
                 </a>
             </c:if>
         </div>
+
+        <div>
+            <a href="task/delete?taskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-secondary">Xóa</button></a>
+        </div>
+
         <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>
             <div class="task-cmt-details-main">

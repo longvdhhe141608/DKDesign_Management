@@ -16,5 +16,7 @@ public interface SectionService {
      int editSection(String name, int id);
      Section getOneSectionBySectionID(int id);
 
+     void updateSection(Section section);
+
     List<Section> getAllSectionByProjectID(int id);
 }

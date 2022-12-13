@@ -121,22 +121,21 @@
 }
 
 .chi-tiet {
-    border: none;
     font-size: 80%;
-    padding-top: 0%;
-    padding-bottom: 0%;
-    border-radius: 15px;
-    background-color: #b7bacb;
-    color: white;
+    border: none;
+    border-radius: 50px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: darkgray;
 }
- .chi-tiet:hover{
-    border: none;
-    font-size: 80%;
-    padding-top: 0%;
-    padding-bottom: 0%;
-    border-radius: 15px;
-    background-color: #b7bacb;
-    color: black;
+a:hover .chi-tiet{
+     font-size: 80%;
+     border: none;
+     border-radius: 50px;
+     padding-top: 2px;
+     padding-bottom: 2px;
+     background-color: darkgray;
+     color: black;
 }
 
 .sub-task-detail-main .link-chi-tiet-cong-viec a .chi-tiet {

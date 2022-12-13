@@ -2,6 +2,7 @@ package DkDesignManagement.Repository;
 
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Section;
+import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Mapper.MapperSection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -64,7 +65,7 @@ public class SectionDAO {
     public List<Section> getAllSectionByProjectID(int projectID) {
 
         List<Section> sectionList = new ArrayList<>();
-        String sql = "SELECT * FROM dkmanagement.section WHERE project_id= ?";
+        String sql = "SELECT * FROM dkmanagement.section WHERE project_id= ? and section.status !=3 ";
 
         try {
             sectionList = jdbcTemplate.query(sql, new MapperSection(), projectID);
@@ -90,4 +91,20 @@ public class SectionDAO {
         return null;
     }
 
+    public int updateSection(Section section) {
+        String sql = "UPDATE dkmanagement.`section`\n" +
+                "SET section_name=:section_name , description=:description, project_id=:project_id, creator=:creator, status=:status \n" +
+                "WHERE id=:id;";
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("section_name", section.getSectionName());
+        params.put("description", section.getDescription());
+        params.put("project_id", section.getProjectId());
+        params.put("creator", section.getCreator());
+        params.put("status", section.getStatus());
+        params.put("id", section.getSectionId());
+
+
+        return namedParameterJdbcTemplate.update(sql, params);
+    }
 }

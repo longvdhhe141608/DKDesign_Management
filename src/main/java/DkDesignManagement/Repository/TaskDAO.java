@@ -51,6 +51,14 @@ public class TaskDAO {
         return taskList;
     }
 
+    public List<Task> getAllTaskBySection(int section_id) {
+
+        String sql = "select * from task t where t.section_id = ?";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(),section_id);
+        return taskList;
+    }
+
     public List<Task> getAllTaskLevel2() {
 
         String sql = "select * from task t where t.task_id is null";
@@ -124,7 +132,7 @@ public class TaskDAO {
 
     public List<Task> getTaskByBigTaskId(int sectionId) {
 
-        String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null ";
+        String sql = "select t.* from section s ,task t where s.id =t.section_id  and s.id  = ? and t.task_id is null and t.status != 6 ";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), sectionId);
         return taskList;
@@ -135,6 +143,14 @@ public class TaskDAO {
         String sql = "select * from task t where t.requirement_id =? and t.task_id  is not null";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), requirementId);
+        return taskList;
+    }
+
+    public List<Task> getAllTaskByProjectId(int projectId) {
+
+        String sql = "select * from task t where t.project_id =? ";
+
+        List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), projectId);
         return taskList;
     }
 
@@ -697,7 +713,7 @@ public class TaskDAO {
     }
 
     public int countAllSubTaskProcess(int projectId, String designId) {
-        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status = 2 and t.status != 6";
+        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and (t.status = 2 or t.status = 3 ) and t.status != 6";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";

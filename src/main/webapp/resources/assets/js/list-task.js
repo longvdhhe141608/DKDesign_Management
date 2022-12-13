@@ -54,25 +54,28 @@ function checkvalidate(id) {
     // console.log(today.getFullYear());
     function checkdate(today, startdate, enddate) {
         let b = 0;
-        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 >= today.getMonth() + 1 && startdate.getFullYear() >= today.getFullYear() || startdate.getFullYear() > today.getFullYear()) {
+        if (startdate.getMonth() + 1 > today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() ||
+            startdate.getDate() >= today.getDate() && startdate.getMonth() + 1 == today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() ||
+            startdate.getFullYear() > today.getFullYear()) {
 
             return b;
 
-        }
-        else {
+        } else {
             b++;
             error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
         }
         return b;
     }
+
     function checkdate1(today, startdate, enddate) {
         let b = 0;
-        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 >= startdate.getMonth() + 1 && enddate.getFullYear() >= startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
+        if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() ||
+            enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 == startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() ||
+            enddate.getFullYear() > startdate.getFullYear()) {
 
             return b;
 
-        }
-        else {
+        } else {
             b++;
             error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
         }
@@ -87,6 +90,7 @@ function checkvalidate(id) {
         // }
         return b;
     }
+
     numberprocess = numberEmpty + numberdate + numberdate1;
     if (numberprocess > 0) {
         return false;
@@ -172,7 +176,95 @@ function showPopUpSection(id, pid, name) {
     console.log(html);
     showEditHtml.innerHTML = html;
 }
+
 function onCancelEdit() {
     let modalB = document.querySelector("#myModal-editSection");
     modalB.style.display = "none";
+}
+
+function onClickDeleteSection(id) {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa đầu mục công việc này không?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Xóa',
+        denyButtonText: 'Hủy',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "get",
+                url: "delete_section",
+                data: {
+                    sectionId: id,
+                },
+                success: function () {
+                    location.reload();
+                },
+                error: function (jqXHR, exception) {
+                    console.log(jqXHR)
+                    console.log(exception)
+                }
+            });
+        } else if (result.isDenied) {
+            Swal.fire('Đầu mục đã được giữ lại.', '', 'ìnfo')
+        }
+    })
+}
+
+function onClickDeleteTask(id) {
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa công việc này không?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Xóa',
+        denyButtonText: 'Hủy',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "get",
+                url: "task/delete",
+                data: {
+                    taskId: id,
+                },
+                success: function () {
+                    location.reload();
+                },
+                error: function (jqXHR, exception) {
+                    console.log(jqXHR)
+                    console.log(exception)
+                }
+            });
+        } else if (result.isDenied) {
+            Swal.fire('Công việc đã được giữ lại.', '', 'ìnfo')
+        }
+    })
+}
+
+function onClickDeleteSubTask(id){
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa công việc phụ này không?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Xóa',
+        denyButtonText: 'Hủy',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "get",
+                url: "sub-task/delete",
+                data: {
+                    subTaskId: id,
+                },
+                success: function () {
+                    location.reload();
+                },
+                error: function (jqXHR, exception) {
+                    console.log(jqXHR)
+                    console.log(exception)
+                }
+            });
+        } else if (result.isDenied) {
+            Swal.fire('Công việc phụ đã được giữ lại.', '', 'ìnfo')
+        }
+    })
 }

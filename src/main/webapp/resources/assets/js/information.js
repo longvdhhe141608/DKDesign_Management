@@ -145,7 +145,7 @@ function checkvalidate(id) {
     // console.log(today.getFullYear());
     function checkdate(today, startdate) {
         let b = 0;
-        if (startdate.getMonth() + 1 < today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear() || startdate.getDate() <= today.getDate() && startdate.getMonth() + 1 <= today.getMonth() + 1 && startdate.getFullYear() <= today.getFullYear() || startdate.getFullYear() < today.getFullYear()) {
+        if (startdate.getMonth() + 1 < today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() || startdate.getDate() < today.getDate() && startdate.getMonth() + 1 == today.getMonth() + 1 && startdate.getFullYear() == today.getFullYear() || startdate.getFullYear() < today.getFullYear()) {
 
             return b;
 

@@ -163,7 +163,7 @@ body {
     background-color: darkgray;
 
 }
- .summary-detail-all:hover {
+a:hover .summary-detail-all {
     float: right;
     font-size: 80%;
     padding-bottom: 2px;
