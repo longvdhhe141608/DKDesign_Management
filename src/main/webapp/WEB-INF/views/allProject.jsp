@@ -13,7 +13,12 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/summary.css"/>"/>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <script src="<c:url value="/resources/assets/js/allProject.js"/>"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+            integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Trang Chủ</title>
+
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
@@ -260,27 +265,10 @@
                                                 <button><i class="fa-regular fa-pen-to-square"></i></button>
                                             </a>
                                         </c:if>
-                                        <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"><i
-                                                class="fa-regular fa-trash-can"></i></button>
-                                        <div id="myModal" class="modal">
-                                            <!-- Modal content -->
-                                            <div class="modal-content" style="width: 50%; height: 200px;">
-                                                <span id="close" class="close">&times;</span>
-                                                <div class="project-add-task">
-                                                    <form id="add-project1" class="">
-                                                        <p>Bạn chắc chắn muốn xóa dữ liệu này!</p>
-                                                        <div class="add-btn-work">
-                                                            <button class="btn btn-secondary close_popup">Hủy bỏ
-                                                            </button>
-                                                            <button
-                                                                    onclick="return checkvalidatenumber('#add-project1')"
-                                                                    type="submit" class="btn btn-primary">Lưu
-                                                            </button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <button onclick="onClickDelete(this.getAttribute('data-id'))"
+                                                data-id="${i.id}">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -293,7 +281,8 @@
                         <ul class="pagination">
                             <c:if test="${page != 1}">
                                 <li class="page-item">
-                                    <a class="page-link" href="allProject?page=${page-1}&date=${date}&textSearch=${textSearch}"
+                                    <a class="page-link"
+                                       href="allProject?page=${page-1}&date=${date}&textSearch=${textSearch}"
                                        aria-label="Previous">
                                         <span aria-hidden="true">&laquo;</span>
                                     </a>
@@ -301,12 +290,14 @@
                             </c:if>
                             <c:forEach begin="1" end="${endPage}" var="i">
                                 <li class="page-item"><a class="page-link"
-                                                         href="allProject?page=${i}&date=${date}&textSearch=${textSearch}">${i}</a></li>
+                                                         href="allProject?page=${i}&date=${date}&textSearch=${textSearch}">${i}</a>
+                                </li>
                             </c:forEach>
 
                             <c:if test="${page != endPage}">
                                 <li class="page-item">
-                                    <a class="page-link" href="allProject?page=${page+1}&date=${date}&textSearch=${textSearch}"
+                                    <a class="page-link"
+                                       href="allProject?page=${page+1}&date=${date}&textSearch=${textSearch}"
                                        aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
                                     </a>
@@ -360,8 +351,8 @@
         close.addEventListener('click', function () {
             modal.style.display = "none";
         });
-
     }
 </script>
+
 </body>
 </html>

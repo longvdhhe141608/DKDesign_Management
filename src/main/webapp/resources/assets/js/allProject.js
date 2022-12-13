@@ -149,3 +149,32 @@ function checkvalidate(id) {
         return true;
     }
 }
+function onClickDelete(id){
+    Swal.fire({
+        title: 'Bạn có chắc chắn muốn xóa dự án này không?',
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: 'Xóa',
+        denyButtonText: `Hủy`,
+    }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "get",
+                url: "delete_project",
+                data: {
+                    projectId: id,
+                },
+                success: function () {
+                    location.reload();
+                },
+                error: function (jqXHR, exception) {
+                    console.log(jqXHR)
+                    console.log(exception)
+                }
+            });
+        } else if (result.isDenied) {
+            Swal.fire('Dự án đã được giữ lại.', '', 'info')
+        }
+    })
+}
