@@ -6,6 +6,7 @@ import DkDesignManagement.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,15 +34,27 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public ModelAndView login(ModelMap modelMap, @ModelAttribute("mess") String mess) {
-        ModelAndView view = new ModelAndView("/login");
-        Account account = new Account();
-        modelMap.put("account", account);
-        view.addObject("mess", mess);
+    public ModelAndView login(ModelMap modelMap, HttpServletRequest request, @ModelAttribute("mess") String mess) {
+        ModelAndView view;
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("loginUser");
+        if (ObjectUtils.isEmpty(account)) {
+            modelMap.put("account", account);
+            view = new ModelAndView("/login");
+            view.addObject("mess", mess);
+        } else {
+            if (account.getRole_id() == 2) {
+                view = new ModelAndView("redirect:/allProject");
+            } else if (account.getRole_id() == 3) {
+                view = new ModelAndView("redirect:design/project/view-all-project");
+            } else {
+                view = new ModelAndView("redirect:admin/memberlist");
+            }
+        }
         return view;
     }
 
-    public ModelAndView modelAndView(){
+    public ModelAndView modelAndView() {
         ModelMap modelMap = new ModelMap();
         ModelAndView view = new ModelAndView("redirect:/login");
         Account account = new Account();
