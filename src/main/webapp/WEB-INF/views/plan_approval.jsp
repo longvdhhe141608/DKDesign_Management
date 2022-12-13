@@ -85,7 +85,7 @@
                     <input hidden name="id" value="${projectId}" >
                 <div class="my-task-search-name" style="margin-right:10px ;">
                     <div class="dropdown">
-                            <select name="accountId" class="btn btn-secondary dropdown-toggle">
+                            <select style="height: 38px" name="accountId" class="btn btn-secondary dropdown-toggle">
                                 <option value=""> Tất cả</option>
                                 <c:forEach items="${listAccount}" var="account">
                                     <option value="${account.id}" ${account.id== accountId ? 'selected' : ''} > ${account.username}</option>
@@ -99,8 +99,8 @@
 
                             <div class="wap_search">
                                 <input style="margin-right: 10px;" type="text" name="name" class="search_term"
-                                      value="${name}" placeholder="tên công việc">
-                                <button type="submit" class="btn btn-primary"> tìm kiếm</button>
+                                      value="${name}" placeholder="Tên công việc">
+                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                             </div>
 
                     </div>

@@ -174,19 +174,20 @@
                     </tr>
                 </table>
             </div>
-            <div style="display: flex; justify-content: space-between">
-                <div></div>
+            <div style="display: flex; justify-content: end">
+
                 <c:if test="${project.status == 1}">
-                    <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">
-                        <button class="btn" style="background-color: royalblue; color: white">
-                            Chỉnh sửa
-                        </button>
-                    </a>
-                    <a href="${pageContext.request.contextPath}/allProject/delete_project?projectId=${project.id}">
-                        <button class="btn" style="background-color: royalblue; color: white">
+                    <a style="margin-right: 5px" href="${pageContext.request.contextPath}/allProject/delete_project?projectId=${project.id}">
+                        <button class="btn btn-primary" >
                             Xóa
                         </button>
                     </a>
+                    <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">
+                        <button class="btn btn-primary">
+                            Chỉnh sửa
+                        </button>
+                    </a>
+
                 </c:if>
             </div>
             <div>
