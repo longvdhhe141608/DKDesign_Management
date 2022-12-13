@@ -16,6 +16,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/all_project.css"/>"/>
     <script src="<c:url value="/resources/assets/js/list-task.js"/>"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -183,37 +185,40 @@
                         <summary style="display:block;">
                             <div style="display: flex; justify-content: space-between;">
                                 <div>
-                            <span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span>
+                                    <span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span>
                                 </div>
                                 <div>
-                            <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
-                                    id="myBtn-section" data-id="${bigTask.id}" data-name="${bigTask.section_name}"
-                                    data-pid="${bigTask.project_id}">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button onclick="modallistproject('#myBtn1','#myModal1','#close4')" id="myBtn1"><i
-                                    class="fa-regular fa-trash-can"></i></button>
-                            <div id="myModal1" class="modal">
-                                <!-- Modal content -->
-                                <div class="modal-content" style="width: 60%;height: 30%;">
-                                    <span id="close4" class="close">&times;</span>
-                                    <div class="project-add-task">
-                                            <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>
-                                            <div class="add-btn-work" style="display: flex;justify-content: end">
-                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ
-                                                </button>
-                                                <a href="delete_section?sectionId=${bigTask.id}" >
-                                                    <button
-                                                            onclick="return checkvalidatenumber('#add-project2')"
-                                                            type="submit" class="btn btn-primary">Lưu
-                                                    </button>
-                                                </a>
-                                            </div>
-                                    </div>
+                                    <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
+                                            id="myBtn-section" data-id="${bigTask.id}"
+                                            data-name="${bigTask.section_name}"
+                                            data-pid="${bigTask.project_id}">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </button>
+                                    <button onclick="onClickDeleteSection(this.getAttribute('data-section-id'))"
+                                            data-section-id="${bigTask.id}">
+                                        <i class="fa-regular fa-trash-can"></i>
+                                    </button>
+                                        <%--                            <div id="myModal1" class="modal">--%>
+                                        <%--                                <!-- Modal content -->--%>
+                                        <%--                                <div class="modal-content" style="width: 60%;height: 30%;">--%>
+                                        <%--                                    <span id="close4" class="close">&times;</span>--%>
+                                        <%--                                    <div class="project-add-task">--%>
+                                        <%--                                            <p style="text-align: center">Bạn chắc chắn muốn xóa dữ liệu này!</p>--%>
+                                        <%--                                            <div class="add-btn-work" style="display: flex;justify-content: end">--%>
+                                        <%--                                                <button style="margin-right: 10px" class="btn btn-secondary ">Hủy bỏ--%>
+                                        <%--                                                </button>--%>
+                                        <%--                                                <a href="delete_section?sectionId=${bigTask.id}" >--%>
+                                        <%--                                                    <button--%>
+                                        <%--                                                            onclick="return checkvalidatenumber('#add-project2')"--%>
+                                        <%--                                                            type="submit" class="btn btn-primary">Lưu--%>
+                                        <%--                                                    </button>--%>
+                                        <%--                                                </a>--%>
+                                        <%--                                            </div>--%>
+                                        <%--                                    </div>--%>
+                                        <%--                                </div>--%>
+                                        <%--                            </div>--%>
                                 </div>
                             </div>
-                            </div>
-                                </div>
                         </summary>
                         <c:forEach items="${bigTask.listTask}" var="task">
                             <!------task item------>
@@ -248,9 +253,10 @@
                                             <button onclick="onUnavailable()"><i
                                                     class="fa-regular fa-pen-to-square"></i></button>
                                         </c:if>
-                                        <a href="task/delete?taskId=${task.taskId}" >
-                                        <button><i class="fa-regular fa-trash-can"></i></button>
-                                        </a>
+                                        <button onclick="onClickDeleteTask(this.getAttribute('data-task-id'))"
+                                                data-task-id="${task.taskId}">
+                                            <i class="fa-regular fa-trash-can"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -280,12 +286,10 @@
                                                 <button>
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </button>
-                                                <a href="sub-task/delete?subTaskId=${subTask.taskId}" >
-                                                    <button>
-                                                        <i class="fa-regular fa-trash-can"></i>
-                                                    </button>
-                                                </a>
-
+                                                <button onclick="onClickDeleteSubTask(this.getAttribute('data-subtask-id'))"
+                                                        data-subtask-id="${subTask.taskId}">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -356,17 +360,23 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
+<script src="sweetalert2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script>
 
     function onClickClose() {
         let modalA = document.querySelector("#myModal-footer");
         modalA.style.display = "none";
     }
+
     let modalB = document.querySelector("#myModal-editSection");
     var span = document.querySelector("#close3");
     span.addEventListener("click", function () {
         modalB.style.display = "none";
     });
+
     function modallistproject(idbtn, idmodal, closemain) {
         // Get the modal
         var modal = document.querySelector(idmodal);
