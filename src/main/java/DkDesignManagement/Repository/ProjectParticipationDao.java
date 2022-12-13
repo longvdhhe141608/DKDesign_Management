@@ -1,16 +1,12 @@
 package DkDesignManagement.Repository;
 
-import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.ProjectParticipation;
-import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Mapper.MapperMemberActive;
 import DkDesignManagement.Mapper.MapperProjectParticipation;
-import DkDesignManagement.model.MemberActiveDto;
+import DkDesignManagement.Model.MemberActiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 

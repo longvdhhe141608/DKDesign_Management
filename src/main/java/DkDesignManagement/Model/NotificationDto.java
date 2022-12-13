@@ -1,7 +1,7 @@
-package DkDesignManagement.model;
+package DkDesignManagement.Model;
 
 import DkDesignManagement.Entity.Notification;
-import DkDesignManagement.utils.DateUtils;
+import DkDesignManagement.Utils.DateUtils;
 import lombok.*;
 
 import java.util.Date;

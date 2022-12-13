@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
-import static DkDesignManagement.utils.Constant.HOST;
-import static DkDesignManagement.utils.Constant.PROJECT_NAME;
+import static DkDesignManagement.Utils.Constant.HOST;
+import static DkDesignManagement.Utils.Constant.PROJECT_NAME;
 
 @Controller
 public class CommentController {

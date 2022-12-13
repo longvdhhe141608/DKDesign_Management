@@ -1,7 +1,7 @@
 package DkDesignManagement.Service;
 
 import DkDesignManagement.Entity.Member;
-import DkDesignManagement.model.MemberPageResponse;
+import DkDesignManagement.Model.MemberPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

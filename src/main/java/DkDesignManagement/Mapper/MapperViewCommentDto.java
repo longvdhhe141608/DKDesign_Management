@@ -1,6 +1,6 @@
 package DkDesignManagement.Mapper;
 
-import DkDesignManagement.model.ViewCommentDto;
+import DkDesignManagement.Model.ViewCommentDto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

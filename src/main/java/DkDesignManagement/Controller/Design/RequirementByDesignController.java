@@ -3,12 +3,10 @@ package DkDesignManagement.Controller.Design;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Requirement;
 import DkDesignManagement.Entity.RevisionHistory;
-import DkDesignManagement.Repository.ProjectDao;
-import DkDesignManagement.Repository.RequirementDao;
 import DkDesignManagement.Service.HistoryService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.RequirementService;
-import DkDesignManagement.model.RequirementPageResponse;
+import DkDesignManagement.Model.RequirementPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller

@@ -3,7 +3,7 @@ package DkDesignManagement.Service.Impl;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.MemberService;
-import DkDesignManagement.model.MemberPageResponse;
+import DkDesignManagement.Model.MemberPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

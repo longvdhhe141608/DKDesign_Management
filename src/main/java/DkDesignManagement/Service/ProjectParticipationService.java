@@ -2,7 +2,7 @@ package DkDesignManagement.Service;
 
 import DkDesignManagement.Entity.ProjectParticipation;
 import DkDesignManagement.Repository.ProjectParticipationDao;
-import DkDesignManagement.model.MemberActiveDto;
+import DkDesignManagement.Model.MemberActiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

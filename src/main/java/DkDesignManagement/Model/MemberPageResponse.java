@@ -1,7 +1,6 @@
-package DkDesignManagement.model;
+package DkDesignManagement.Model;
 
 import DkDesignManagement.Entity.Member;
-import DkDesignManagement.Entity.Requirement;
 import lombok.*;
 
 import java.util.List;

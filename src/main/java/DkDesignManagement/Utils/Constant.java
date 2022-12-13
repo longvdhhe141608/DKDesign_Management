@@ -1,4 +1,4 @@
-package DkDesignManagement.utils;
+package DkDesignManagement.Utils;
 
 public class Constant {
 
