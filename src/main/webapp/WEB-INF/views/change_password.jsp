@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/list_task.css"/>"/>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"/>
+<jsp:include page="/WEB-INF/views/leader/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="/WEB-INF/views/nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/leader/nav_left.jsp"/>
     <div class="summary">
         <h4>Thay đổi mật khẩu</h4>
         <form action="/changePassword" method="post">

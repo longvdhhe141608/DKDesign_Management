@@ -38,8 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
      * @return
      */
     @Override
-    public boolean
-    emailIsExisted(String email) {
+    public boolean emailIsExisted(String email) {
         List<String> emailList = employeeDao.getEmailList();
         for (String mail : emailList) {
             if (mail.equals(email)) {

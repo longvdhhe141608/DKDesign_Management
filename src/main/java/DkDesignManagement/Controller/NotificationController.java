@@ -32,7 +32,7 @@ public class NotificationController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView notification(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("notification");
+        ModelAndView view = new ModelAndView("leader/notification");
 
         //check login
         HttpSession session = request.getSession();

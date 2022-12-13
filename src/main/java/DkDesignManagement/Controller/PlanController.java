@@ -35,7 +35,7 @@ public class PlanController {
 
     @RequestMapping(value = "/plan_approval", method = RequestMethod.GET)
     public ModelAndView viewPlanAproval(HttpServletRequest request, @ModelAttribute("mess") String mess) {
-        ModelAndView view = new ModelAndView("plan_approval");
+        ModelAndView view = new ModelAndView("leader/plan_approval");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         int page = 1;

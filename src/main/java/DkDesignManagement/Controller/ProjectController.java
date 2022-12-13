@@ -5,7 +5,6 @@ import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Service.CategoryService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.model.ProjectPageResponse;
-import DkDesignManagement.model.TaskPageResponse;
 import DkDesignManagement.utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,11 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import static DkDesignManagement.utils.Constant.NOT_APPROVED_TASK_STATUS;
 
 @Controller
 @RequestMapping(value = "/allProject")
@@ -36,7 +31,7 @@ public class ProjectController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView loadAllProject(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("mess") String mess) {
-        ModelAndView view = new ModelAndView("allProject");
+        ModelAndView view = new ModelAndView("leader/allProject");
         HttpSession session = request.getSession();
 
         int page = 1;

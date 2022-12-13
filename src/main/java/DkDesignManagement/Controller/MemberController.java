@@ -3,7 +3,6 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Member;
 import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.MemberService;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.ProjectService;
@@ -40,7 +39,7 @@ public class MemberController {
     @RequestMapping(value = "/member", method = RequestMethod.GET)
     public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid,@ModelAttribute("mess") String mess) {
 
-        ModelAndView view = new ModelAndView("member");
+        ModelAndView view = new ModelAndView("leader/member");
 
         int id = projectid;
         Project project = projectService.getProject(id);
@@ -65,7 +64,7 @@ public class MemberController {
 
     @RequestMapping(value = "/searchMemberInProject", method = RequestMethod.GET)
     public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request, @RequestParam("id") int projectid) {
-        ModelAndView view = new ModelAndView("member");
+        ModelAndView view = new ModelAndView("leader/member");
         int id = projectid;
         Project project = projectService.getProject(id);
 

@@ -14,7 +14,7 @@ public interface RequirementService {
 
     Requirement getRequirementById(int requirementId);
 
-    void updateRequirement(Requirement requirement);
+    int updateRequirement(Requirement requirement);
 
     List<Requirement> getRequirementByProjectId(int projectId);
 

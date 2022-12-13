@@ -41,7 +41,7 @@ public class RequirementController {
 
     @RequestMapping(value = "/requirement-for-leader", method = RequestMethod.GET)
     public ModelAndView viewRequirement(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("requirement");
+        ModelAndView view = new ModelAndView("leader/requirement");
 
         int projectID = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(projectID);

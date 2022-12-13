@@ -28,9 +28,9 @@
     <script src="<c:url value="/resources/assets/js/task-details.js"/>"></script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/header.jsp"/>
+<jsp:include page="/WEB-INF/views/leader/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="/WEB-INF/views/nav_left.jsp"/>
+    <jsp:include page="/WEB-INF/views/leader/nav_left.jsp"/>
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">

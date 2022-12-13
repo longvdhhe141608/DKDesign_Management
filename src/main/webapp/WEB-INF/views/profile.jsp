@@ -20,9 +20,9 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="leader/header.jsp"/>
 <div class="body_page">
-    <jsp:include page="nav_left.jsp"/>
+    <jsp:include page="leader/nav_left.jsp"/>
     <div style="margin-left: 20%;">
         <a href="javascript:history.back()" style="text-decoration: none; color: black"><span
                 style="font-size: 30px;"><i class="fa-solid fa-chevron-left"></i>Thông tin cá nhân</span></a>
