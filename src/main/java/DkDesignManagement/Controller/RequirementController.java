@@ -2,7 +2,7 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
-import DkDesignManagement.model.RequirementPageResponse;
+import DkDesignManagement.Model.RequirementPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static DkDesignManagement.utils.Constant.*;
+import static DkDesignManagement.Utils.Constant.*;
 
 @Controller
 @RequestMapping(value = "/requirement")

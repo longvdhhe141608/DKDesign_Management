@@ -5,7 +5,7 @@ import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.model.NotificationDto;
+import DkDesignManagement.Model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -18,8 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-import static DkDesignManagement.utils.Constant.HOST;
-import static DkDesignManagement.utils.Constant.PROJECT_NAME;
+import static DkDesignManagement.Utils.Constant.HOST;
+import static DkDesignManagement.Utils.Constant.PROJECT_NAME;
 
 @Controller
 @RequestMapping(value = "/notification")

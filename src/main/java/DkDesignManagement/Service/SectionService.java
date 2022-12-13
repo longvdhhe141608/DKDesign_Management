@@ -2,7 +2,7 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Section;
-import DkDesignManagement.model.SectionDto;
+import DkDesignManagement.Model.SectionDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

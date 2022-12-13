@@ -1,9 +1,6 @@
-package DkDesignManagement.model;
+package DkDesignManagement.Model;
 
-import DkDesignManagement.Entity.Tasks;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter

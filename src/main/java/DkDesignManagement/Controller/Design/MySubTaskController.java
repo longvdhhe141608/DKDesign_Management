@@ -3,7 +3,7 @@ package DkDesignManagement.Controller.Design;
 import DkDesignManagement.Entity.Account;
 
 import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.model.MyTaskDto;
+import DkDesignManagement.Model.MyTaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

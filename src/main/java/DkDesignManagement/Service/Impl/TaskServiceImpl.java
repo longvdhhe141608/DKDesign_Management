@@ -6,10 +6,10 @@ import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Repository.*;
 import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.model.DashboardResponse;
-import DkDesignManagement.model.MyTaskDto;
-import DkDesignManagement.model.TaskPageResponse;
-import DkDesignManagement.model.TaskWaitDto;
+import DkDesignManagement.Model.DashboardResponse;
+import DkDesignManagement.Model.MyTaskDto;
+import DkDesignManagement.Model.TaskPageResponse;
+import DkDesignManagement.Model.TaskWaitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static DkDesignManagement.utils.Constant.*;
+import static DkDesignManagement.Utils.Constant.*;
 
 
 @Service

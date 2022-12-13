@@ -2,9 +2,9 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
-import DkDesignManagement.model.MyTaskDto;
-import DkDesignManagement.model.NotificationDto;
-import DkDesignManagement.utils.DateUtils;
+import DkDesignManagement.Model.MyTaskDto;
+import DkDesignManagement.Model.NotificationDto;
+import DkDesignManagement.Utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static DkDesignManagement.utils.Constant.*;
+import static DkDesignManagement.Utils.Constant.*;
 
 @Controller
 public class TaskController {

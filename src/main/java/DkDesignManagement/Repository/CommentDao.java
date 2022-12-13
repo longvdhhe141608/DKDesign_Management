@@ -1,15 +1,10 @@
 package DkDesignManagement.Repository;
 
 
-import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Comment;
-import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Entity.Task;
-import DkDesignManagement.Mapper.MapperAccount;
 import DkDesignManagement.Mapper.MapperComment;
-import DkDesignManagement.Mapper.MapperTask;
 import DkDesignManagement.Mapper.MapperViewCommentDto;
-import DkDesignManagement.model.ViewCommentDto;
+import DkDesignManagement.Model.ViewCommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -17,7 +12,6 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

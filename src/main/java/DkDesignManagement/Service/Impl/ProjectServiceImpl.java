@@ -3,12 +3,10 @@ package DkDesignManagement.Service.Impl;
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.ProjectParticipation;
-import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Repository.ProjectParticipationDao;
 import DkDesignManagement.Service.ProjectService;
-import DkDesignManagement.model.ProjectPageResponse;
-import DkDesignManagement.model.TaskPageResponse;
+import DkDesignManagement.Model.ProjectPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

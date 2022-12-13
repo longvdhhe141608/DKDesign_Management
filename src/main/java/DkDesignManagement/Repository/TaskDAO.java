@@ -1,13 +1,10 @@
 package DkDesignManagement.Repository;
 
-import DkDesignManagement.Entity.Section;
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Mapper.*;
-import DkDesignManagement.model.MyTaskDto;
-import DkDesignManagement.model.TaskWaitDto;
-import DkDesignManagement.utils.Constant;
-import DkDesignManagement.utils.DateUtils;
+import DkDesignManagement.Model.MyTaskDto;
+import DkDesignManagement.Model.TaskWaitDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,8 +13,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ObjectUtils;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 /*
  * TaskDAO xu ly 2 bang big_task va task

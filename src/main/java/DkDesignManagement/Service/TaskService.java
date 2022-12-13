@@ -3,10 +3,10 @@ package DkDesignManagement.Service;
 
 import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Entity.Tasks;
-import DkDesignManagement.model.DashboardResponse;
-import DkDesignManagement.model.MyTaskDto;
-import DkDesignManagement.model.TaskPageResponse;
-import DkDesignManagement.model.TaskWaitDto;
+import DkDesignManagement.Model.DashboardResponse;
+import DkDesignManagement.Model.MyTaskDto;
+import DkDesignManagement.Model.TaskPageResponse;
+import DkDesignManagement.Model.TaskWaitDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

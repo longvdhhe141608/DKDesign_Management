@@ -4,7 +4,7 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.model.DashboardResponse;
+import DkDesignManagement.Model.DashboardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;

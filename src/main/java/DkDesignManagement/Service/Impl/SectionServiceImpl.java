@@ -7,7 +7,7 @@ import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.SectionDAO;
 import DkDesignManagement.Repository.TaskDAO;
 import DkDesignManagement.Service.SectionService;
-import DkDesignManagement.model.SectionDto;
+import DkDesignManagement.Model.SectionDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;

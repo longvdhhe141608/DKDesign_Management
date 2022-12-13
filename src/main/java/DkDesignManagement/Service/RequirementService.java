@@ -2,7 +2,7 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Requirement;
-import DkDesignManagement.model.RequirementPageResponse;
+import DkDesignManagement.Model.RequirementPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

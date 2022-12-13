@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-import static DkDesignManagement.utils.ValidateUtils.*;
+import static DkDesignManagement.Utils.ValidateUtils.*;
 
 @Controller
 @RequestMapping(value = "/admin")

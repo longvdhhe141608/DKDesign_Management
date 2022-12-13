@@ -2,7 +2,7 @@ package DkDesignManagement.Service;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.model.ProjectPageResponse;
+import DkDesignManagement.Model.ProjectPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

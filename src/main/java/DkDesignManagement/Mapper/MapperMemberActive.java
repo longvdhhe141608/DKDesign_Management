@@ -1,6 +1,6 @@
 package DkDesignManagement.Mapper;
 
-import DkDesignManagement.model.MemberActiveDto;
+import DkDesignManagement.Model.MemberActiveDto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
