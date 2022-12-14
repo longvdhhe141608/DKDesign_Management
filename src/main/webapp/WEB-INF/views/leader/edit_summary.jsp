@@ -26,69 +26,69 @@
     <jsp:include page="nav_left.jsp"/>
     <div class="summary">
 
-            <div class="top-details">
-                <div class="list-top">
-                    <h3>${project.projectName}</h3>
-                    <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
-                          method="post">
-                        <input type="text" name="projectId" value="${project.id}" hidden="">
-                        <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px; ">
-                            <select name="statusId" class="btn btn-secondary dropdown-toggle"
-                                    style="padding-bottom: 10px">
-                                <c:forEach items="${listStatus}" var="status">
-                                    <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                        <div>
-                            <c:if test="${sessionScope.loginUser.role_id == 2}">
-                                <c:if test="${project.status != 3 }">
-                                    <button type="submit" class="btn btn-primary">Lưu</button>
-                                </c:if>
-                                <c:if test="${project.status == 3 }">
-                                    <button type="submit" class="btn btn-primary" disabled>Lưu</button>
-                                </c:if>
+        <div class="top-details">
+            <div class="list-top">
+                <h3>${project.projectName}</h3>
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
+                    <input type="text" name="projectId" value="${project.id}" hidden="">
+                    <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px; ">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle"
+                                style="padding-bottom: 10px">
+                            <c:forEach items="${listStatus}" var="status">
+                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <c:if test="${sessionScope.loginUser.role_id == 2}">
+                            <c:if test="${project.status != 3 }">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
                             </c:if>
-                        </div>
-                    </form>
-                </div>
-                <div class="list-task-head">
-                    <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
-                            class="btn btn-secondary"
-                            type="button"
-                            style="background: blue;"
-                            value="Sơ lược"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
-                            class="btn btn-secondary"
-                            type="button"
-
-                            value="Công việc"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
-                            class="btn btn-secondary"
-                            type="button"
-                            value="Duyệt công việc"></a>
-                    <a class="test"
-                       href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
-                        <input class="btn btn-secondary"
-                               type="button"
-                               value="Yêu cầu của khách hàng">
-                    </a>
-                    <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
-                            class="btn btn-secondary"
-                            type="button"
-                            value="Tiến độ"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
-                            class="btn btn-secondary"
-                            type="button"
-
-                            value="Thành viên"></a>
-                    <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
-                            class="btn btn-secondary"
-                            type="button"
-                            value="Thống kê"></a>
-                </div>
+                            <c:if test="${project.status == 3 }">
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
+                            </c:if>
+                        </c:if>
+                    </div>
+                </form>
             </div>
-        <form  action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
+            <div class="list-task-head">
+                <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        style="background: blue;"
+                        value="Sơ lược"></a>
+                <a class="test" href="${pageContext.request.contextPath}/list_task?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+
+                        value="Công việc"></a>
+                <a class="test" href="${pageContext.request.contextPath}/plan_approval?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Duyệt công việc"></a>
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                    <input class="btn btn-secondary"
+                           type="button"
+                           value="Yêu cầu của khách hàng">
+                </a>
+                <a class="test" href="${pageContext.request.contextPath}/progress?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Tiến độ"></a>
+                <a class="test" href="${pageContext.request.contextPath}/project/member?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+
+                        value="Thành viên"></a>
+                <a class="test" href="${pageContext.request.contextPath}/dashboard?id=${project.id}"><input
+                        class="btn btn-secondary"
+                        type="button"
+                        value="Thống kê"></a>
+            </div>
+        </div>
+        <form action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
             <div class="summary-main">
 
                 <div class="main-Quickview">
@@ -202,11 +202,13 @@
                     </table>
                 </div>
                 <div class="btn-update-summary">
-                    <button style="margin-right: 5px" type="button" class="btn-update btn btn-secondary" onclick="history.back()">Hủy bỏ</button>
+                    <button style="margin-right: 5px" type="button" class="btn-update btn btn-secondary"
+                            onclick="history.back()">Hủy bỏ
+                    </button>
                     <button onclick="return checkvalidate('#addProject')"
                             type="submit" class="btn-update btn btn-primary">Lưu
                     </button>
-<%--                    <input class="btn btn-primary" type="submit"  value="Lưu" >--%>
+                    <%--                    <input class="btn btn-primary" type="submit"  value="Lưu" >--%>
                 </div>
             </div>
         </form>
@@ -245,37 +247,52 @@
         $(document).ready(function () {
             $('#fileInput').on('change', function () {
                 var files = $(this)[0].files;
-
+                var html = '<form>' +
+                    '<select id="mySelect" class="js-list-select">';
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     var fileReader = new FileReader();
                     fileReader.onload = (function (fileParams) {
                         return function (event) {
-                            var str = '<div class="col-md-2">' +
-                                '<span id="upload" class="js-file-name"></span><br>' +
-
-                                '<span class="js-file-size"></span> (Byte)<br>' +
-                                '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
-                                '</div>';
-                            $('.js-file-list').append(str);
-
                             var imageSrc = event.target.result;
                             var fileName = fileParams.name;
 
                             var fileSize = fileParams.size;
 
-                            $('.js-file-name').last().text(fileName);
+                            // $('.js-file-name').last().text(fileName);
+                            //
+                            // $('.js-file-size').last().text(fileSize);
+                            // $('.js-file-image').last().attr('src', imageSrc);
 
-                            $('.js-file-size').last().text(fileSize);
-                            $('.js-file-image').last().attr('src', imageSrc);
+                            var str = '<option >' +
+                                // '<div class="col-md-2 image-remove">' +
+                                // '<span id="upload" class="js-file-name"></span><br>' +
+                                //
+                                // '<span class="js-file-size"></span> (Byte)<br>' +
+                                '<img class="img-thumbnail js-file-image" src="'+imageSrc+'" style="width: 100%; height: 100%">' +
+                                // '</div>' +
+                                'sss</option> ';
+
+                            $('.js-list-select').append(str);
 
 
                         };
                     })(file);
                     fileReader.readAsDataURL(file);
                 }
+                html += '</select>' +
+                    '</form> <br>' +
+                    '<div onclick="removeImage()">Remove selected fruit</div>';
+
+                $('.js-file-list').append(html);
             });
         });
+
+        function removeImage() {
+            var x = document.getElementById("mySelect");
+            x.remove(x.selectedIndex);
+        }
+
     </script>
 </body>
 </html>
