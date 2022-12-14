@@ -38,6 +38,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDao.getInformation(id);
     }
 
+    @Override
+    public Employee getEmployeeByEmail(String email) {
+        return employeeDao.getEmployeebyEmail(email);
+    }
+
     /**
      * @param email
      * @return

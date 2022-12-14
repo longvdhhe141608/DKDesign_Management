@@ -7,6 +7,11 @@ public class Constant {
 
     public static final String PROJECT_NAME ="DkDesignManagement_war";
 
+    //Email
+    public static final String email = "longvdhhe141608@fpt.edu.vn" ;
+
+    public static final String password = "Hoanglong1201";
+
     //Task
     public static final int NOT_APPROVED_TASK_STATUS = 1;
 
