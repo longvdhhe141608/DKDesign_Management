@@ -20,7 +20,7 @@
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <img alt="profile" id="profile-img" class="profile-img-card" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
         <p id="profile-name" class="profile-name-card"></p>
-        <form id="addProject" class="form-signin">
+        <form action="forgotPassword" method="post" id="addProject" class="form-signin">
             <input type="email" class="info-text form-control" placeholder="Nhập Email" name="email_sendNewPass">
             <div class="text-danger error">${error}</div>
             <div style="display: flex;">
@@ -41,6 +41,12 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous">
+</script>
+<script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
 </script>
 </body>
 </html>

@@ -27,11 +27,13 @@ public class SecurityServletFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) res;
         HttpSession session = request.getSession(false);
         String loginURI = request.getContextPath() + "/login";
+        String forgotPasswordURI = request.getContextPath() + "/forgotPassword";
 
         boolean loggedIn = session != null && session.getAttribute("loginUser") != null;
         boolean loginRequest = request.getRequestURI().equals(loginURI);
+        boolean forgotPasswordRequest = request.getRequestURI().contains(forgotPasswordURI);
 
-        if (loggedIn || loginRequest) {
+        if (loggedIn || loginRequest || forgotPasswordRequest) {
             chain.doFilter(request, response);
         } else {
             response.sendRedirect(loginURI);
