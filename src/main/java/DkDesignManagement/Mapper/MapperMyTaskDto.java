@@ -1,6 +1,6 @@
 package DkDesignManagement.Mapper;
 
-import DkDesignManagement.model.MyTaskDto;
+import DkDesignManagement.Model.MyTaskDto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

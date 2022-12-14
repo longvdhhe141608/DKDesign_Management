@@ -1,11 +1,9 @@
 package DkDesignManagement.Service.Impl;
 
 import DkDesignManagement.Entity.Member;
-import DkDesignManagement.Entity.Task;
 import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.MemberService;
-import DkDesignManagement.model.MemberPageResponse;
-import DkDesignManagement.model.TaskPageResponse;
+import DkDesignManagement.Model.MemberPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
      * @param memberId
      */
     @Override
-    public void addMemberToProject(int projectId, int memberId) {
-        memberDao.addMemberToProject(projectId, memberId);
+    public int addMemberToProject(int projectId, int memberId) {
+        return memberDao.addMemberToProject(projectId, memberId);
     }
 
     /**
@@ -98,8 +96,8 @@ public class MemberServiceImpl implements MemberService {
      * @param id
      */
     @Override
-    public void addNewMember(String name, String mail, int id) {
-        memberDao.addNewMember(name, mail, id);
+    public int addNewMember(String name, String mail, int id) {
+        return memberDao.addNewMember(name, mail, id);
     }
 
     /**

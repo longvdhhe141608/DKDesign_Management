@@ -4,7 +4,7 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.RevisionHistory;
 import DkDesignManagement.Service.*;
-import DkDesignManagement.utils.DateUtils;
+import DkDesignManagement.Utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -44,7 +44,7 @@ public class EditSummaryController {
 
     @RequestMapping(value = "/edit_summary", method = RequestMethod.GET)
     public ModelAndView viewSummary(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("edit_summary");
+        ModelAndView view = new ModelAndView("leader/edit_summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         request.setAttribute("project", project);

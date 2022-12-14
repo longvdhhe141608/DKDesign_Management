@@ -2,9 +2,9 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
-import DkDesignManagement.model.MyTaskDto;
-import DkDesignManagement.model.NotificationDto;
-import DkDesignManagement.utils.DateUtils;
+import DkDesignManagement.Model.MyTaskDto;
+import DkDesignManagement.Model.NotificationDto;
+import DkDesignManagement.Utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static DkDesignManagement.utils.Constant.*;
+import static DkDesignManagement.Utils.Constant.*;
 
 @Controller
 public class TaskController {
@@ -57,7 +57,7 @@ public class TaskController {
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
 
-        ModelAndView view = new ModelAndView("list_task");
+        ModelAndView view = new ModelAndView("leader/list_task");
         view.addObject("project", project);
         view.addObject("listBigTask", sectionService.getAll(id));
         view.addObject("listAccount", accountService.getAccountsByProjectId(id));
@@ -68,7 +68,7 @@ public class TaskController {
 
     @RequestMapping(value = "/task_detail", method = RequestMethod.GET)
     public ModelAndView viewTaskDetail(HttpServletRequest request, @ModelAttribute("mess") String mess, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("/task_detail");
+        ModelAndView view = new ModelAndView("leader/task_detail");
         //check login
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
@@ -130,7 +130,7 @@ public class TaskController {
 
     @RequestMapping(value = "/subtask", method = RequestMethod.GET)
     public ModelAndView viewSubTaskDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
-        ModelAndView view = new ModelAndView("subtask");
+        ModelAndView view = new ModelAndView("leader/subtask");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskByIdFullModel(taskId);
         List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSubtask(task.getProjectId(), taskId);
@@ -259,7 +259,7 @@ public class TaskController {
 
     @RequestMapping(value = "/edit-task", method = RequestMethod.GET)
     public ModelAndView viewEditTaskPage(HttpServletRequest request) {
-        ModelAndView view = new ModelAndView("editTaskDetail");
+        ModelAndView view = new ModelAndView("leader/editTaskDetail");
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskByIdFullModel(taskId);
         view.addObject("task", task);
@@ -363,7 +363,7 @@ public class TaskController {
 
     @RequestMapping(value = "/task/my-task-for-leader", method = RequestMethod.GET)
     public ModelAndView viewMyTask(HttpServletRequest request, RedirectAttributes redirect) {
-        ModelAndView view = new ModelAndView("my_task");
+        ModelAndView view = new ModelAndView("leader/my_task");
         HttpSession session = request.getSession();
         if (ObjectUtils.isEmpty(session.getAttribute("loginUser"))) {
             view = new ModelAndView("/login");

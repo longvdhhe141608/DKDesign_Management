@@ -1,4 +1,4 @@
-package DkDesignManagement.utils;
+package DkDesignManagement.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;

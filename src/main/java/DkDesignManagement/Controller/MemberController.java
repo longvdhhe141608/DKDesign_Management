@@ -2,8 +2,8 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
-import DkDesignManagement.model.MemberPageResponse;
-import DkDesignManagement.model.NotificationDto;
+import DkDesignManagement.Model.MemberPageResponse;
+import DkDesignManagement.Model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -17,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import static DkDesignManagement.utils.Constant.HOST;
-import static DkDesignManagement.utils.Constant.PROJECT_NAME;
+import static DkDesignManagement.Utils.Constant.HOST;
+import static DkDesignManagement.Utils.Constant.PROJECT_NAME;
 
 
 @Controller

@@ -5,7 +5,7 @@ import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Repository.NotificationDao;
 import DkDesignManagement.Repository.ProjectDao;
 import DkDesignManagement.Service.NotificationService;
-import DkDesignManagement.model.NotificationDto;
+import DkDesignManagement.Model.NotificationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -45,7 +45,7 @@ public class NotificationServiceImpl implements NotificationService {
     }
 
     @Override
-    public void addNotification(Notification notification) {
-        notificationDao.addNotification(notification);
+    public int addNotification(Notification notification) {
+       return notificationDao.addNotification(notification);
     }
 }

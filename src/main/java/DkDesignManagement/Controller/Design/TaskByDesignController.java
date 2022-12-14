@@ -2,7 +2,7 @@ package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
-import DkDesignManagement.model.TaskDto;
+import DkDesignManagement.Model.TaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,8 +18,8 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import static DkDesignManagement.utils.Constant.HOST;
-import static DkDesignManagement.utils.Constant.PROJECT_NAME;
+import static DkDesignManagement.Utils.Constant.HOST;
+import static DkDesignManagement.Utils.Constant.PROJECT_NAME;
 
 @Controller
 @RequestMapping("/design/task")

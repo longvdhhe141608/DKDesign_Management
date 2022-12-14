@@ -2,16 +2,12 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Employee;
-import DkDesignManagement.Repository.AccountDao;
-import DkDesignManagement.Repository.EmployeeDao;
-import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.CloudinaryService;
 import DkDesignManagement.Service.EmployeeService;
 import DkDesignManagement.Service.MemberService;
-import DkDesignManagement.utils.DateUtils;
+import DkDesignManagement.Utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -101,11 +97,11 @@ public class ProfileController {
         return new ModelAndView("redirect:/profile/detail");
     }
 
-    @RequestMapping(value = "changePassword", method = RequestMethod.GET)
+    @RequestMapping(value = "/changePassword", method = RequestMethod.GET)
     public ModelAndView changePassword(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        ModelAndView view = new ModelAndView("/leader/change_password");
+        ModelAndView view = new ModelAndView("change_password");
         if (account.getRole_id() == 3) {
             view = new ModelAndView("/design/change_password");
         }

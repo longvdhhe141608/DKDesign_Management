@@ -7,7 +7,7 @@ import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.model.TaskPageResponse;
+import DkDesignManagement.Model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -18,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 
-import static DkDesignManagement.utils.Constant.*;
+import static DkDesignManagement.Utils.Constant.*;
 
 @Controller
 public class PlanController {
@@ -35,7 +35,7 @@ public class PlanController {
 
     @RequestMapping(value = "/plan_approval", method = RequestMethod.GET)
     public ModelAndView viewPlanAproval(HttpServletRequest request, @ModelAttribute("mess") String mess) {
-        ModelAndView view = new ModelAndView("plan_approval");
+        ModelAndView view = new ModelAndView("leader/plan_approval");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         int page = 1;

@@ -1,6 +1,6 @@
 package DkDesignManagement.Service;
 
-import DkDesignManagement.utils.FileUtils;
+import DkDesignManagement.Utils.FileUtils;
 import com.cloudinary.Cloudinary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

@@ -1,6 +1,6 @@
 package DkDesignManagement.Mapper;
 
-import DkDesignManagement.model.TaskWaitDto;
+import DkDesignManagement.Model.TaskWaitDto;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

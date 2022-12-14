@@ -1,12 +1,10 @@
-package DkDesignManagement.utils;
+package DkDesignManagement.Utils;
 
 
-import DkDesignManagement.Entity.Account;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.text.Normalizer;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;

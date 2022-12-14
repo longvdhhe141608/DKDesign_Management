@@ -2,11 +2,9 @@ package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Repository.ProjectDao;
-import DkDesignManagement.Repository.TaskDAO;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.model.DashboardResponse;
+import DkDesignManagement.Model.DashboardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -29,7 +27,7 @@ public class DashboardController {
 
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView dashboard(HttpServletRequest request) {
-        ModelAndView v = new ModelAndView("dashboard");
+        ModelAndView v = new ModelAndView("leader/dashboard");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         //dashboard leader

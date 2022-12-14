@@ -2,7 +2,7 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Notification;
-import DkDesignManagement.model.NotificationDto;
+import DkDesignManagement.Model.NotificationDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +15,6 @@ public interface NotificationService {
 
     NotificationDto getNotification(int accountId, String message, String url);
 
-    void addNotification(Notification notification);
+    int addNotification(Notification notification);
 
 }

@@ -5,8 +5,8 @@ import DkDesignManagement.Entity.Comment;
 import DkDesignManagement.Repository.AccountDao;
 import DkDesignManagement.Repository.CommentDao;
 import DkDesignManagement.Service.CommentService;
-import DkDesignManagement.model.CommentDto;
-import DkDesignManagement.model.ViewCommentDto;
+import DkDesignManagement.Model.CommentDto;
+import DkDesignManagement.Model.ViewCommentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -2,8 +2,8 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Comment;
-import DkDesignManagement.model.CommentDto;
-import DkDesignManagement.model.ViewCommentDto;
+import DkDesignManagement.Model.CommentDto;
+import DkDesignManagement.Model.ViewCommentDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

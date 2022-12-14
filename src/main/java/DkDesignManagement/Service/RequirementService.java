@@ -2,7 +2,7 @@ package DkDesignManagement.Service;
 
 
 import DkDesignManagement.Entity.Requirement;
-import DkDesignManagement.model.RequirementPageResponse;
+import DkDesignManagement.Model.RequirementPageResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public interface RequirementService {
 
     Requirement getRequirementById(int requirementId);
 
-    void updateRequirement(Requirement requirement);
+    int updateRequirement(Requirement requirement);
 
     List<Requirement> getRequirementByProjectId(int projectId);
 

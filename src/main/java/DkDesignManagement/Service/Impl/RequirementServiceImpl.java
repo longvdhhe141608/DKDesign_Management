@@ -5,7 +5,7 @@ import DkDesignManagement.Entity.Requirement;
 
 import DkDesignManagement.Repository.RequirementDao;
 import DkDesignManagement.Service.RequirementService;
-import DkDesignManagement.model.RequirementPageResponse;
+import DkDesignManagement.Model.RequirementPageResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 
-import static DkDesignManagement.utils.Constant.*;
+import static DkDesignManagement.Utils.Constant.*;
 
 @Service
 public class RequirementServiceImpl implements RequirementService {
@@ -33,8 +33,8 @@ public class RequirementServiceImpl implements RequirementService {
     }
 
     @Override
-    public void updateRequirement(Requirement requirement) {
-        requirementDao.updateRequirement(requirement);
+    public int updateRequirement(Requirement requirement) {
+        return requirementDao.updateRequirement(requirement);
     }
 
     @Override
