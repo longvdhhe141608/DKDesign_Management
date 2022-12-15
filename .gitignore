@@ -1,6 +1,9 @@
 
 /target/classes/
 /target/generated-sources/
+/target/DkDesginManagement-17/
+/target/generated-test-sources/
+/target/test-classes/
 *.png
 
 
