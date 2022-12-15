@@ -16,6 +16,7 @@ public interface EmployeeService {
 
     public Employee getEmployeeByEmpId(int id);
     public Employee getEmployeeByAccId(int id);
+    public Employee getEmployeeByEmail(String email);
     public boolean emailIsExisted(String email);
     Employee getInformation(int id);
     int updateProfile(Employee employee);

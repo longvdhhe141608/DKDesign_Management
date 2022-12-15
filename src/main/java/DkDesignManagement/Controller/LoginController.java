@@ -1,8 +1,10 @@
 package DkDesignManagement.Controller;
 
 import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.Employee;
 import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.EmployeeService;
+import DkDesignManagement.Utils.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,6 +30,9 @@ public class LoginController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private MailUtils mailService;
 
     @GetMapping(value = "")
     public String login() {
@@ -110,21 +116,37 @@ public class LoginController {
     }
 
     @RequestMapping(value = "forgotPassword", method = RequestMethod.GET)
-    public ModelAndView forgotPassword(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView forgotPassword(HttpServletRequest request, @ModelAttribute("mess") String mess, HttpServletResponse response) {
         ModelAndView view = new ModelAndView("/forgot_password");
         return view;
     }
 
     @RequestMapping(value = "forgotPassword", method = RequestMethod.POST)
-    public ModelAndView sendNewPass(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView view = new ModelAndView("/forgot_password");
+    public ModelAndView sendNewPass(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) {
         String email = request.getParameter("email_sendNewPass");
         if (employeeService.emailIsExisted(email)) {
+            //send email
+            try {
+                Employee employee =employeeService.getEmployeeByEmail(email);
+                String newPassword = mailService.generatePassword();
+                String status = mailService.sendEmail(email, newPassword,employee.getName());
+                if(status.equals("successes")){
+                    //update DB
+                    accountService.changePassword(employee.getId_acc(),newPassword);
+                }else{
+                    throw new Exception("loi mail");
+                }
 
+            } catch (Exception e) {
+                e.printStackTrace();
+                redirect.addAttribute("mess", "có lỗi khi gửi mail ");
+            }
         } else {
-
+            redirect.addAttribute("mess", "email không tồn tại ");
         }
-        ;
-        return new ModelAndView("redirect:login");
+
+        redirect.addAttribute("mess", "mail quên mật khẩu đã được gửi  ");
+
+        return new ModelAndView("redirect:forgotPassword");
     }
 }
