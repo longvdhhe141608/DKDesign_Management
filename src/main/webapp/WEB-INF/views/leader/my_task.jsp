@@ -77,7 +77,6 @@
                     </thead>
                     <tbody class="my-task-for-leader">
                     <c:forEach items="${myTask}" var="i">
-                        ${i.taskID} -
                         <tr>
                             <td>
                                 <c:if test="${i.taskID != 0}">
