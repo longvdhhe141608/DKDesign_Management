@@ -304,7 +304,13 @@
             timer: 1500
         })
     } else if (mess === 'Xóa yêu cầu thành công.') {
-        alert(mess)
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Xóa yêu cầu thành công.',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
     let modalFooter = document.querySelector("#myModal-footer");
     var span = document.querySelector("#close2");
