@@ -243,7 +243,7 @@
                                 <div class="col-2" style="border: 1px solid gray;">${task.deadline}</div>
                                 <div class="col-2" style="border: 1px solid gray;">${task.endDate}</div>
                                 <div class="col-1" style="border: 1px solid gray;">
-                                    <div style="display: flex; justify-content: space-between;">
+                                    <div style="display: flex;">
                                         <c:if test="${task.listSubTask.size() == 0}">
                                             <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
                                                 <button><i class="fa-regular fa-pen-to-square"></i></button>
@@ -282,7 +282,7 @@
                                         <div class="col-2" style="border: 1px solid gray;">${subTask.deadline}</div>
                                         <div class="col-2" style="border: 1px solid gray;">${subTask.endDate}</div>
                                         <div class="col-1" style="border: 1px solid gray;">
-                                            <div style="display: flex; justify-content: space-between;">
+                                            <div style="display: flex; ">
                                                 <button>
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </button>
