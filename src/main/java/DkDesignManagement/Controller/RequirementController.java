@@ -114,7 +114,6 @@ public class RequirementController {
             response.getWriter().println("Đã hủy");
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete failed");
-            redirect.addAttribute("mess", "delete-cancel");
         } else {
             List<Integer> listDesign = new ArrayList<Integer>();//to send notification
             redirect.addAttribute("mess", "Xóa yêu cầu thành công.");
