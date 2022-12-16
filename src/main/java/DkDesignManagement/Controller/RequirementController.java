@@ -6,6 +6,7 @@ import DkDesignManagement.Model.RequirementPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -40,7 +41,7 @@ public class RequirementController {
     HistoryService historyService;
 
     @RequestMapping(value = "/requirement-for-leader", method = RequestMethod.GET)
-    public ModelAndView viewRequirement(HttpServletRequest request) {
+    public ModelAndView viewRequirement(@ModelAttribute("mess") String mess, HttpServletRequest request) {
         ModelAndView view = new ModelAndView("leader/requirement");
 
         int projectID = Integer.parseInt(request.getParameter("id"));
@@ -51,12 +52,12 @@ public class RequirementController {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        RequirementPageResponse requirementPageResponse = requirementService.getPaginationRequirementByProjectID(page,projectID);
+        RequirementPageResponse requirementPageResponse = requirementService.getPaginationRequirementByProjectID(page, projectID);
         List<Requirement> requirements = requirementPageResponse.getRequirementList();
 
 
         //show history
-        List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType("requirement",projectID);
+        List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType("requirement", projectID);
 
         //check and update status
         for (Requirement requirement : requirements) {
@@ -70,6 +71,7 @@ public class RequirementController {
         view.addObject("endPage", requirementPageResponse.getEndPage());
         view.addObject("project", project);
         view.addObject("projectId", projectID);
+        view.addObject("mess", mess);
         return view;
     }
 
@@ -101,7 +103,7 @@ public class RequirementController {
     }
 
     @RequestMapping(value = "/delete-requirement-by-leader", method = RequestMethod.POST)
-    public void deleteRequirement(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void deleteRequirement(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) throws IOException {
 //        ModelAndView view;
         int requirementID = Integer.parseInt(request.getParameter("requirementId"));
 //        int projectID = Integer.parseInt(request.getParameter("projectID"));
@@ -112,9 +114,10 @@ public class RequirementController {
             response.getWriter().println("Đã hủy");
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete failed");
+            redirect.addAttribute("mess", "delete-cancel");
         } else {
             List<Integer> listDesign = new ArrayList<Integer>();//to send notification
-
+            redirect.addAttribute("mess", "Xóa yêu cầu thành công.");
             for (Task task : taskList) {
                 task.setTaskStatus(CANCEL_TASK_STATUS);
                 taskService.updateTask(task);
@@ -141,7 +144,7 @@ public class RequirementController {
             //add history
             //check history exits
             String type = "requirement";
-            List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType(type,requirement.getProjectId());
+            List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType(type, requirement.getProjectId());
             int revisionNoNew = 1;
             if (!ObjectUtils.isEmpty(listHistory)) {
                 revisionNoNew = listHistory.size() + 1;
@@ -149,7 +152,7 @@ public class RequirementController {
 
             String revisionDetail = "Yêu cầu : " + requirement.getRequirementName() + " đã bị xóa";
 
-            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type,requirement.getProjectId());
+            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type, requirement.getProjectId());
             historyService.addHistory(revisionHistory);
 
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
@@ -160,7 +163,7 @@ public class RequirementController {
     }
 
     @RequestMapping(value = "/update-requirement", method = RequestMethod.POST)
-    public ModelAndView updateRequirement(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView updateRequirement(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) {
         int requirementId = Integer.parseInt(request.getParameter("requirementId"));
         Requirement requirement = requirementService.getRequirementById(requirementId);
         ModelAndView view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + requirement.getProjectId());
@@ -207,11 +210,12 @@ public class RequirementController {
         }
 
         requirementService.updateRequirement(requirement);
+        redirect.addAttribute("mess", "Thay đổi thành công.");
 
         //add history
         //check history exits
         String type = "requirement";
-        List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType(type,requirement.getProjectId());
+        List<RevisionHistory> listHistory = historyService.getAlLRevisionHistoryByType(type, requirement.getProjectId());
         int revisionNoNew = 1;
         if (!ObjectUtils.isEmpty(listHistory)) {
             revisionNoNew = listHistory.size() + 1;
@@ -219,7 +223,7 @@ public class RequirementController {
 
         String revisionDetail = "Vị trí : " + oldName + " -> " + requirement.getRequirementName() + " <br> "
                 + " Yêu cầu : " + oldDetail + " -> " + requirement.getRequirementDetail();
-        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type,requirement.getProjectId());
+        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type, requirement.getProjectId());
         historyService.addHistory(revisionHistory);
 
         return view;

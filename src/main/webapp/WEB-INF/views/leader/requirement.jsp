@@ -278,6 +278,34 @@
     // show.addEventListener('click', function () {
     //     popup.classList.remove("hide__popup");
     // })
+    var mess = '${mess}'
+    if (mess === 'Lưu yêu cầu thành công.') {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Lưu yêu cầu thành công.',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    } else if (mess === 'Lưu yêu cầu không thành công.') {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            title: 'Lưu yêu cầu không thành công.',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    } else if (mess === 'Thay đổi thành công.') {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Thay đổi thành công.',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    } else if (mess === 'Xóa yêu cầu thành công.') {
+        alert(mess)
+    }
     let modalFooter = document.querySelector("#myModal-footer");
     var span = document.querySelector("#close2");
     span.addEventListener("click", function () {
