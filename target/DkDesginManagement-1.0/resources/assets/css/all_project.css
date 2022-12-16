@@ -1,0 +1,144 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.container_content {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+}
+
+.container_content .content_first {
+    max-width: 1100px;
+    margin: auto;
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.container_content .content_first .content-function {
+    display: grid;
+    grid-template-columns: 170px 1fr 150px 300px;
+    align-items: center;
+    text-align: center;
+    padding-top: 25px;
+    column-gap: 70px;
+}
+
+
+
+.container_content .content_first .title {
+    padding-top: 20px;
+}
+
+.container_content .content_first .table_content {
+    padding-top: 30px;
+}
+
+.container_content .content_first .table_content .pagination {
+    justify-content: end;
+}
+
+.popup {
+
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 92vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    transition: 0.3s;
+    transform: scale(1);
+}
+
+
+.popup__content {
+
+}
+
+.hide__popup {
+    display: none;
+}
+
+
+
+.popup__content .info .name {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+
+.popup__content .info .name:nth-child(n+1) {
+    padding-top: 40px;
+}
+
+
+
+.popup__content .button_click {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 1fr 90px 50px;
+}
+
+
+
+.wap_search {
+    display: flex;
+}
+
+.name-project {
+    /*width: 250px;*/
+    /*!*white-space: nowrap;*!*/
+    /*!*overflow: hidden;*!*/
+    /*!*text-overflow: ellipsis;*!*/
+
+}
+
+/*.name-project:hover {*/
+/*    overflow: visible;*/
+/*}*/
+
+.form-name-project {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-function-design {
+    display: flex;
+    justify-content: end;
+}
+
+.all-project-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+}
+
+.all-project-header-right {
+    display: flex;
+}
+.list-project .each-project .name-and-link {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-project .each-project .name-and-link .block-link {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.list-project .each-project .name-and-link .links .link-detail .btn-chi-tiet {
+    border: none;
+    border-radius: 50px;
+    font-size: 80%;
+}
+
+.list-project .each-project .name-and-link .links a .btn-chi-tiet {
+    color: white;
+    background-color: #b7bacb;
+}
+
+.list-project .each-project .name-and-link .links a:hover .btn-chi-tiet {
+    color: black;
+    background-color: #b7bacb;
+}
+

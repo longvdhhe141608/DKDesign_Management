@@ -1,0 +1,175 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+
+.container_content .content_first {
+    max-width: 1100px;
+    margin: auto;
+    width: 100%;
+}
+
+.container_content .content_first .content-function {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    text-align: center;
+}
+
+.tung-hang .tung-o {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.tung-hang .tung-o .block-link {
+    display: flex;
+    justify-content: end;
+}
+
+.tung-hang .tung-o .block-link .links .link-cong-viec .btn-chi-tiet {
+    border: none;
+    border-radius: 50px;
+    font-size: 80%;
+}
+
+.tung-hang .tung-o .block-link .links a .btn-chi-tiet {
+    color: white;
+    background-color: #b7bacb;
+}
+
+.tung-hang .tung-o .block-link .links a:hover .btn-chi-tiet {
+    color: black;
+    background-color: #b7bacb;
+}
+
+.container_content .content_first .content-function .dropdown .btn-secondary {
+
+    border: none;
+    color: #000;
+}
+
+.container_content .content_first .content-function .function-one a {
+    background-color: #D9D9D9;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 5px;
+    border-radius: 15px;
+    color: #000;
+}
+
+.container_content .content_first .content-function .function-one a svg {
+    width: 22px;
+    height: 22px;
+}
+
+.container_content .title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+
+.container_content .content_first .table_content .pagination {
+    justify-content: end;
+}
+
+.my-task-search {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+}
+
+.my-task-search-name {
+    padding-right: 10px;
+}
+
+.wap_search {
+    display: flex;
+}
+
+.pagination {
+    display: flex;
+    justify-content: end;
+}
+
+/*.name-project {*/
+/*    height: 25px;*/
+/*    width: 230px;*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*}*/
+
+/*.name-project:hover {*/
+/*    overflow: visible;*/
+/*}*/
+
+.form-name-project {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tung-hang .tung-o {
+
+}
+
+.table-progress .link-chi-tiet-cong-viec a .chi-tiet {
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: darkgray;
+}
+
+.table-progress .link-chi-tiet-cong-viec a:hover .chi-tiet {
+    font-size: 80%;
+    border: none;
+    border-radius: 50px;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    background-color: darkgray;
+    color: black;
+}
+
+.my-task-for-leader a .summary-detail-all {
+    float: right;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: none;
+    border-radius: 50px;
+    background-color: darkgray
+}
+
+.my-task-for-leader a:hover .summary-detail-all {
+    float: right;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: none;
+    border-radius: 50px;
+    background-color: darkgray;
+    color: black;
+}
+.summary-detail-all {
+    float: right;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: none;
+    border-radius: 50px;
+    background-color: darkgray;
+
+}
+a:hover .summary-detail-all {
+    float: right;
+    font-size: 80%;
+    padding-bottom: 2px;
+    padding-top: 2px;
+    border: none;
+    border-radius: 50px;
+    background-color: darkgray;
+    color: black;
+}
