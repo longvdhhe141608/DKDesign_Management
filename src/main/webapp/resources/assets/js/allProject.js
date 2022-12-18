@@ -161,7 +161,7 @@ function onClickDelete(id){
         if (result.isConfirmed) {
             $.ajax({
                 type: "get",
-                url: "delete_project",
+                url: "allProject/delete_project",
                 data: {
                     projectId: id,
                 },

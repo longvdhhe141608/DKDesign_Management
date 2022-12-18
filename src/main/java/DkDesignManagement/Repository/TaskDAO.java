@@ -525,7 +525,7 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6 \n";
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6 and t.task_id is not null \n";
 
         if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
             sql += " and t.status =  " + statusID;
@@ -556,7 +556,7 @@ public class TaskDAO {
                 "left join project p on t.project_id = p.id\n" +
                 "left join section s on t.section_id = s.id\n" +
                 "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6  \n";
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6 and t.task_id is not null \n";
 
         if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
             sql += " and t.status =  " + statusID;

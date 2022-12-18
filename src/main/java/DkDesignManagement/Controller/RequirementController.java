@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -92,37 +93,40 @@ public class RequirementController {
                 .build();
         int saveRequirement = requirementService.insertRequirement(requirement);
         if (saveRequirement == 0) {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + projectID);
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
             redirect.addAttribute("mess", "Lưu yêu cầu không thành công.");
         } else {
-            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + projectID);
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
             redirect.addAttribute("mess", "Lưu yêu cầu thành công.");
         }
         view.addObject("id", projectID);
         return view;
     }
 
-    @RequestMapping(value = "/delete-requirement-by-leader", method = RequestMethod.POST)
-    public void deleteRequirement(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) throws IOException {
-//        ModelAndView view;
+    @RequestMapping(value = "/delete-requirement-by-leader", method = RequestMethod.GET)
+    public ModelAndView deleteRequirement(HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirect) throws IOException {
+        ModelAndView view;
         int requirementID = Integer.parseInt(request.getParameter("requirementId"));
 //        int projectID = Integer.parseInt(request.getParameter("projectID"));
         Requirement requirement = requirementService.getRequirementById(requirementID);
         int delete = requirementService.deleteRequirement(requirement);
         List<Task> taskList = taskService.getAllTaskByRequirementId(requirementID);
         if (delete == 0) {
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + requirement.getProjectId());
             response.getWriter().println("Đã hủy");
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete failed");
         } else {
             List<Integer> listDesign = new ArrayList<Integer>();//to send notification
-            redirect.addAttribute("mess", "Xóa yêu cầu thành công.");
+            view = new ModelAndView("redirect:/requirement/requirement-for-leader?id=" + requirement.getProjectId());
+            redirect.addAttribute("mess", "abc");
+            System.out.println(111111111 + redirect.getAttribute("mess").toString());
             for (Task task : taskList) {
                 task.setTaskStatus(CANCEL_TASK_STATUS);
                 taskService.updateTask(task);
                 listDesign.add(task.getAssignToId());
             }
-            response.getWriter().println("Đã xóa");
+            response.getWriter().write("Success Data");
 
             //add notification send design
 
@@ -156,9 +160,19 @@ public class RequirementController {
 
 //            view = new ModelAndView("redirect:/requirement/requirement-for-leader");
 //            view.addObject("mess", "Delete success");
+
+            String baseUrl = ServletUriComponentsBuilder.fromRequestUri(request)
+                    .replacePath(null)
+                    .build()
+                    .toUriString();
+            String text = baseUrl + "/DkDesignManagement_war/requirement/requirement-for-leader?id="+requirement.getProjectId()+"&mess=abc";
+            view.addObject("url", text);
         }
 
-//        view.addObject("id", projectID);
+
+        view.addObject("id", requirement.getProjectId());
+        System.out.println("ssssss" + view.getViewName());
+        return view;
     }
 
     @RequestMapping(value = "/update-requirement", method = RequestMethod.POST)

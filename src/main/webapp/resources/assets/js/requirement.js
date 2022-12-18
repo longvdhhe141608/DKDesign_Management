@@ -86,12 +86,13 @@ function onClickDelete(id) {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
             $.ajax({
-                type: "post",
+                type: "get",
                 url: "delete-requirement-by-leader",
                 data: {
                     requirementId: id,
                 },
-                success: function () {
+                success: function (a) {
+                    // console.log(a)
                     location.reload();
                 },
                 error: function (jqXHR, exception) {

@@ -182,6 +182,7 @@
                                                 data-id="${requirement.id}" data-project-id="${requirement.projectId}">
                                             <i class="fa-regular fa-trash-can"></i>
                                         </button>
+<%--                                        <a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?requirementId=${requirement.id}">delete</a>--%>
                                     </div>
                                 </td>
                             </tr>
@@ -303,7 +304,7 @@
             showConfirmButton: false,
             timer: 1500
         })
-    } else if (mess === 'Xóa yêu cầu thành công.') {
+    } else if (mess === 'abc') {
         Swal.fire({
             position: 'top-end',
             icon: 'success',
@@ -312,6 +313,7 @@
             timer: 1500
         })
     }
+
     let modalFooter = document.querySelector("#myModal-footer");
     var span = document.querySelector("#close2");
     span.addEventListener("click", function () {
