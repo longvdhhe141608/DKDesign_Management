@@ -91,6 +91,13 @@ public class MemberController {
         int accountId = Integer.parseInt(request.getParameter("accountId"));
         Employee employee = employeeService.getEmployeeByAccId(accountId);
 
+        //check role member
+        Account account = accountService.getAccountByAccountId(accountId);
+        if(account.getRole_id() == 2){
+            redirect.addAttribute("mess", "Thành viên  " + employee.getName() + " không thể thêm vào dự án vì là leader ");
+            return view;
+        }
+
         //TODO : check Member exits
         if (projectParticipationService.isMemberExisted(projectId, accountId)) {
             redirect.addAttribute("mess", "Thành viên  " + employee.getName() + " đã tồn tại trong dự án ");
