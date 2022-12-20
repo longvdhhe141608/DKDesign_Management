@@ -44,7 +44,7 @@ public class MemberController {
     @RequestMapping(value = "/member", method = RequestMethod.GET)
     public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid, @ModelAttribute("mess") String mess) {
 
-        ModelAndView view = new ModelAndView("member");
+        ModelAndView view = new ModelAndView("leader/member");
 
         int id = projectid;
         Project project = projectService.getProject(id);
@@ -70,7 +70,7 @@ public class MemberController {
 
     @RequestMapping(value = "/searchMemberInProject", method = RequestMethod.GET)
     public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request, @RequestParam("id") int projectid) {
-        ModelAndView view = new ModelAndView("member");
+        ModelAndView view = new ModelAndView("leader/member");
         int id = projectid;
         Project project = projectService.getProject(id);
 
@@ -90,6 +90,13 @@ public class MemberController {
         ModelAndView view = new ModelAndView("redirect:/project/member?id=" + projectId);
         int accountId = Integer.parseInt(request.getParameter("accountId"));
         Employee employee = employeeService.getEmployeeByAccId(accountId);
+
+        //check role member
+        Account account = accountService.getAccountByAccountId(accountId);
+        if(account.getRole_id() == 2){
+            redirect.addAttribute("mess", "Thành viên  " + employee.getName() + " không thể thêm vào dự án vì là leader ");
+            return view;
+        }
 
         //TODO : check Member exits
         if (projectParticipationService.isMemberExisted(projectId, accountId)) {

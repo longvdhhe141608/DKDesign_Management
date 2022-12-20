@@ -15,6 +15,8 @@ public interface AccountService {
 
     public Account getAccount(String username);
 
+    Account getAccountByAccountId(int accountId);
+
     public boolean isExisted(String username);
 
     List<Account> getAccountsByProjectId(int projectId);
