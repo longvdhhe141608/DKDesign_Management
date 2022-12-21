@@ -203,11 +203,13 @@
                                     <input value="${member.memberStatus}" name="status" hidden>
                                     <input value="${member.memberCode}" name="username" hidden>
                                     <input value="${projectId}" name="id" hidden>
+                                    <c:if test="${member.memberRole==3}">
                                     <c:if test="${member.memberStatus==2}">
                                         <button onclick="this.form.submit()" class="btn btn-success">Mở</button>
                                     </c:if>
                                     <c:if test="${member.memberStatus==1}">
                                         <button onclick="this.form.submit()" class="btn btn-danger">Chặn</button>
+                                    </c:if>
                                     </c:if>
                                 </form>
 
