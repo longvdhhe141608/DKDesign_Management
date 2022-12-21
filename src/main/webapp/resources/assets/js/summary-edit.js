@@ -110,7 +110,7 @@ function checkvalidate(id) {
         }
         else {
             b++;
-            error[7].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+            error[7].innerHTML = "Nhập phải lớn hơn ngày bắt đầu";
         }
         return b;
     }
