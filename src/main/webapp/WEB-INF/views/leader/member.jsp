@@ -202,6 +202,7 @@
                                 <form action="changeMemberStatus">
                                     <input value="${member.memberStatus}" name="status" hidden>
                                     <input value="${member.memberCode}" name="username" hidden>
+                                    <input value="${projectId}" name="id" hidden>
                                     <c:if test="${member.memberStatus==1}">
                                         <button onclick="this.form.submit()" class="btn btn-success">Mở</button>
                                     </c:if>
@@ -209,7 +210,7 @@
                                         <button onclick="this.form.submit()" class="btn btn-danger">Chặn</button>
                                     </c:if>
                                 </form>
-                               <a href="delete-member?memberId=${member.memberId}&projectId=${projectId}"><button  class="btn btn-danger">Xóa</button></a>
+
                             </td>
                         </tr>
                     </c:forEach>

@@ -138,9 +138,14 @@ public class MemberController {
     @RequestMapping(value = "/changeMemberStatus", method = RequestMethod.GET)
     public ModelAndView changeMemberStatus(HttpServletRequest request, RedirectAttributes redirect) {
         int id = Integer.parseInt(request.getParameter("id"));
-        ModelAndView view = new ModelAndView("redirect:/member?id=" + id);
+        ModelAndView view = new ModelAndView("redirect:/project/member?id=" + id);
 
         int status = Integer.parseInt(request.getParameter("status"));
+        if(status==1){
+            status = 2;
+        }else{
+            status = 1;
+        }
         String username = request.getParameter("username");
 
         int memberId = memberService.getAccountIdByUsername(username);
