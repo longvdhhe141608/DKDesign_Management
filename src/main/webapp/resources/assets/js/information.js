@@ -152,7 +152,7 @@ function checkvalidate(id) {
         }
         else {
             b++;
-            error[2].innerHTML = "nhập phải nhỏ hơn ngày hiện tại";
+            error[2].innerHTML = "Nhập phải nhỏ hơn ngày hiện tại";
         }
         return b;
     }
