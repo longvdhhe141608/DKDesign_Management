@@ -46,6 +46,10 @@ public class ViewProjectDetailController {
         for (Status status : listStatus) {
             if (ObjectUtils.isEmpty(status.getStatusProject())) {
                 listRemove.add(status);
+            }else{
+                if(status.getStatusProject().equals("Đã xóa")){
+                    listRemove.add(status);
+                }
             }
         }
         List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSummary(id);
