@@ -90,7 +90,7 @@ function checkvalidate(id) {
         }
         else {
             b++;
-            error[2].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+            error[1].innerHTML = "nhập phải lớn hơn ngày hiện tại";
         }
         return b;
     }

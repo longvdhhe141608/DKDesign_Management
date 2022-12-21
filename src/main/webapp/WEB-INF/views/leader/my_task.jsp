@@ -40,7 +40,7 @@
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                            aria-expanded="false">
-                            Tìm kiếm tên
+                            Tìm kiếm
                         </a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Biệt thự nhà dân</a>
@@ -81,10 +81,10 @@
                             <td>
                                 <c:if test="${i.taskID != 0}">
                                     <div style="display: flex; justify-content: space-between">
-                                        <div class="name-project">
+                                        <div class="name-project col-8">
                                                 ${i.subTaskName}
                                         </div>
-                                        <div>
+                                        <div class="col-4">
                                             <a href="${pageContext.request.contextPath}/subtask?taskId=${i.subTaskID}">
                                                 <button class="btn btn-primary summary-detail-all"
                                                         >
