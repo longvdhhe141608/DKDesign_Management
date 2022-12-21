@@ -57,9 +57,11 @@ public class MemberController {
         MemberPageResponse memberPageResponse = memberService.getMemberInProject(page, id);
         List<Member> memberList = memberPageResponse.getMemberList();
 
+        Account account = (Account) request.getSession().getAttribute("loginUser");
+
         view.addObject("project", project);
         view.addObject("memberList", memberList);
-        view.addObject("employeeList", employeeService.getAll());
+        view.addObject("employeeList", employeeService.getAllToAdd(projectid,account));
         view.addObject("page", page);
         view.addObject("endPage", memberPageResponse.getEndPage());
         view.addObject("projectId", id);
