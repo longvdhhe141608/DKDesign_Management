@@ -125,21 +125,20 @@
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
-                    <td>
-                        ${subTask.startingDate}
-                    </td>
+                    <fmt:formatDate value="${subTask.startingDate}" var="std" pattern="dd/MM/yyyy"/>
+                    ${std}
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
-                    <td>
-                        ${subTask.deadline}
-                    </td>
+                    <fmt:formatDate value="${subTask.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                    ${dl}
                 </tr>
                 <tr>
                     <td>Thời gian kết thúc:</td>
                     <td>
                         <c:if test="${subTask.endedDate != null}">
-                            ${subTask.endedDate}
+                            <fmt:formatDate value="${subTask.endedDate}" var="ed" pattern="dd/MM/yyyy"/>
+                            ${ed}
                         </c:if>
                     </td>
                 </tr>
@@ -166,9 +165,10 @@
                             <form action="${pageContext.request.contextPath}/design/sub-task/update-file-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
                                   class="update_file" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <input type="file" class="form-control" id="fileInput" multiple name="file" accept="image/*">
+                                    <input type="file" class="form-control" id="fileInput" multiple name="file"
+                                           accept="image/*">
                                 </div>
-<%--                                <div class="container js-file-list"></div>--%>
+                                    <%--                                <div class="container js-file-list"></div>--%>
                                 <div>
                                     <input class="btn btn-primary" type="submit" value="Cập nhật file">
                                 </div>
