@@ -19,4 +19,6 @@ public interface ImageAndFileService {
     int getTotalFile(int id);
 
     int uploadFileSummary(String url, int id);
+
+    int updateStatus(int projectID, int idFile);
 }
