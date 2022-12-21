@@ -52,6 +52,9 @@ public class TaskController {
     @Autowired
     NotificationService notificationService;
 
+    @Autowired
+    StatusService statusService;
+
     @RequestMapping(value = "/list_task", method = RequestMethod.GET)
     public ModelAndView viewListTask(@ModelAttribute("mess") String mess, HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -124,7 +127,10 @@ public class TaskController {
         int taskId = Integer.parseInt(request.getParameter("taskId"));
         Task task = taskService.getTaskByIdFullModelForLeader(taskId);
         task.setTaskStatus(taskService.checkAndUpdateTaskDone(task));
+        List<Status> statusList = statusService.getAllStatus();
+        view.addObject("project", projectService.getProject(task.getProjectId()));
         view.addObject("task", task);
+        view.addObject("listStatus", statusList);
         return view;
     }
 
