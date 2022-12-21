@@ -285,7 +285,7 @@
         </div>
 
         <div>
-            <a href="task/delete?taskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-secondary">Xóa</button></a>
+            <a href="task/delete?taskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-danger">Xóa</button></a>
         </div>
 
         <div class="task-cmt-details">
