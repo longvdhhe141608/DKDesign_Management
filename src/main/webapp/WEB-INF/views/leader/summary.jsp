@@ -21,8 +21,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <style>
-        .swal-wide{
-            width:850px !important;
+        .swal-wide {
+            width: 850px !important;
         }
     </style>
 </head>
@@ -165,8 +165,11 @@
                         <td>
                             <div id="fileInput" class="container js-file-list">
                                 <c:forEach items="${listImage}" var="image">
-                                    <button type="button" style="border-radius: 5px" onclick="showImage(this.getAttribute('data-url'))" data-url="${image.fileUrl}">
-                                        <img src="<c:url value="${image.fileUrl}"/>" alt="" style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
+                                    <button type="button" style="border-radius: 5px"
+                                            onclick="showImage(this.getAttribute('data-url'))"
+                                            data-url="${image.fileUrl}">
+                                        <img src="<c:url value="${image.fileUrl}"/>" alt=""
+                                             style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
                                     </button>
                                 </c:forEach>
                             </div>
@@ -177,8 +180,9 @@
             <div style="display: flex; justify-content: end">
 
                 <c:if test="${project.status == 1}">
-                    <a style="margin-right: 5px" href="${pageContext.request.contextPath}/allProject/delete_project?projectId=${project.id}">
-                        <button class="btn btn-primary" >
+                    <a style="margin-right: 5px"
+                       href="${pageContext.request.contextPath}/allProject/delete_project?projectId=${project.id}">
+                        <button class="btn btn-primary">
                             Xóa
                         </button>
                     </a>
@@ -187,7 +191,59 @@
                             Chỉnh sửa
                         </button>
                     </a>
-
+                    <div>
+                        <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
+                                id="myBtn-add-project"
+                                class="btn btn-primary"> Xóa file
+                        </button>
+                        <div id="myModal-add" class="modal">
+                            <!-- Modal content -->
+                            <div class="modal-content" style=" width: 50%;height: 100%;">
+                                <span id="close1" class="close">&times;</span>
+                                <div class="project-add-task">
+                                    <form id="add-sub-task"
+                                          action="${pageContext.request.contextPath}/project/delete-file"
+                                          method="get">
+                                        <input type="text" value="${project.id}" hidden name="projectId">
+                                        <div class="popup__content">
+                                            <div class="title">
+                                                <h4>
+                                                    <div>Danh sách file</div>
+                                                    <div class="text-danger error"></div>
+                                                </h4>
+                                            </div>
+                                            <div class="info">
+                                                <table class="table table-borderless">
+                                                    <c:forEach items="${listImage}" var="image">
+                                                        <tr>
+                                                            <td><input type="checkbox" value="${image.id}"
+                                                                       name="listFile"></td>
+                                                            <td>
+                                                                <img style="width: 100px; height: 100px;"
+                                                                     src="${image.fileUrl}" alt="">
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </table>
+                                            </div>
+                                            <div class="" style="display: flex;justify-content: end">
+                                                <div></div>
+                                                <div class="btn_cancel" style="margin-right: 5px">
+                                                    <button type="button" class="btn btn-secondary close_popup">
+                                                        Hủy bỏ
+                                                    </button>
+                                                </div>
+                                                <div class="btn_ok">
+                                                    <button type="submit" class="btn btn-primary">Xóa File
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </c:if>
             </div>
             <div>
@@ -272,6 +328,36 @@
             }
         });
     });
+
+    function modallistproject(idbtn, idmodal, closemain) {
+        // Get the modal
+        var modal = document.querySelector(idmodal);
+
+        // Get the button that opens the modal
+        var btn = document.querySelector(idbtn);
+
+        // Get the <span> element that closes the modal
+        var span = document.querySelector(closemain);
+        // span.addEventListener('click', event){
+        //     event.style.display = "none";
+        // }
+        // When the user clicks the button, open the modal
+
+        modal.style.display = "block";
+
+        span.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // When the user clicks on <span> (x), close the modal
+
+
+        // When the user clicks anywhere outside of the modal, close it
+        let close = document.querySelector('.close_popup');
+        close.addEventListener('click', function () {
+            modal.style.display = "none";
+        });
+    }
 </script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>

@@ -17,4 +17,5 @@ public class ImageAndFile {
     private int poster;
     private String fileUrl;
     private Date posterDate;
+    private int status;
 }

@@ -451,4 +451,5 @@ public class TaskController {
         redirect.addAttribute("mess", "Xóa task thành công!");
         return  new ModelAndView("redirect:/list_task?id="+task.getProjectId());
     }
+
 }

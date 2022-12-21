@@ -17,6 +17,7 @@ public class CloudinaryService {
 
     public String uploadFile(MultipartFile file, String folder, String catalog) throws IOException {
         Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
+
         String name = generateFileName(file);
         Map uploadMap = cloudinary.uploader().upload(FileUtils.convertMultiPartToFile(file), com.cloudinary.utils.ObjectUtils.asMap("resource_type", "auto"
                 , "public_id", "" + catalog + "/" + folder + "/" + name + ""));
@@ -26,5 +27,6 @@ public class CloudinaryService {
     private String generateFileName(MultipartFile multiPart) {
         return new Date().getTime() + "-" + multiPart.getOriginalFilename().replace(" ", "_");
     }
+
 
 }
