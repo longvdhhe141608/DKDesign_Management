@@ -19,6 +19,9 @@ public class MapperTaskWaitDto implements RowMapper<TaskWaitDto> {
                 .status(rs.getInt("status"))
                 .statusTask(rs.getString("status_task"))
                 .description(rs.getString("description"))
+                .taskID(rs.getInt("task_id"))
+                .subTaskID(rs.getInt("id"))
+                .sectionID(rs.getInt("section_id"))
                 .build();
         return dto;
     }
