@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -79,7 +80,7 @@ public class SubTaskByDesignController {
         int totalFile = imageAndFileService.getTotalFileBySubTaskID(project.getId(), subtask.getId());
 
         float progressPercent = Math.round((totalFile / (1.0 * subtask.getNumberOfFile())) * 100);
-        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSubtask(projectID,subTaskID);
+        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSubtask(projectID, subTaskID);
         view.addObject("project", project);
         view.addObject("tasks", tasks);
         view.addObject("section", section);
@@ -97,7 +98,7 @@ public class SubTaskByDesignController {
     }
 
     @RequestMapping(value = "/update-file-sub-task", method = RequestMethod.POST)
-    public ModelAndView updateFileSubTaskByDesign(HttpServletRequest request,@RequestParam("file") List<MultipartFile> file) {
+    public ModelAndView updateFileSubTaskByDesign(HttpServletRequest request, @RequestParam("file") List<MultipartFile> file) {
         ModelAndView view = new ModelAndView("redirect:/design/sub-task/view-sub-task-detail");
 
         HttpSession session = request.getSession();
@@ -311,4 +312,25 @@ public class SubTaskByDesignController {
         view.addObject("sub-task-id", subTaskID);
         return view;
     }
+
+    @RequestMapping(value = "/delete-file", method = RequestMethod.GET)
+    public ModelAndView deleteFileByDesign(HttpServletRequest request, RedirectAttributes redirect) {
+
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+        int sectionID = Integer.parseInt(request.getParameter("section-id"));
+        int taskID = Integer.parseInt(request.getParameter("task-id"));
+        int subTaskID = Integer.parseInt(request.getParameter("sub-task-id"));
+
+        ModelAndView view = new ModelAndView("redirect:/design/sub-task/view-sub-task-detail?project-id="
+                + projectId + "&section-id=" + sectionID + "&task-id=" + taskID + "&sub-task-id=" + subTaskID);
+
+        String listID[] = request.getParameterValues("listFile");
+        System.out.println("aaaaaaaaaa");
+        for (int i = 0; i < listID.length; i++) {
+            System.out.println(listID[i]);
+            imageAndFileService.updateStatus(projectId, Integer.parseInt(listID[i]));
+        }
+        return view;
+    }
+
 }

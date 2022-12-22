@@ -9,6 +9,10 @@ function update_image() {
 function showImage(url) {
     Swal.fire({
         imageUrl: url,
-        customClass:'swal-wide'
+        customClass:{
+            image: 'custom_image',
+            popup: 'pop_up_custom'
+        },
+        width: '850px'
     })
 }
