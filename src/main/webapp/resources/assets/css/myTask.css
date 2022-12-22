@@ -140,7 +140,8 @@ body {
     padding-top: 2px;
     border: none;
     border-radius: 50px;
-    background-color: darkgray
+    background-color: darkgray;
+    color: white;
 }
 
 .my-task-for-leader a:hover .summary-detail-all {
@@ -161,7 +162,7 @@ body {
     border: none;
     border-radius: 50px;
     background-color: darkgray;
-
+color: white;
 }
 a:hover .summary-detail-all {
     float: right;
