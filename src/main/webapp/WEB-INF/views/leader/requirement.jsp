@@ -171,6 +171,7 @@
                                     </c:if>
                                 </td>
                                 <td>
+                                    <c:if test="${project.status != 3}">
                                     <div style="display: flex; ">
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"
@@ -184,6 +185,7 @@
                                         </button>
 <%--                                        <a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?requirementId=${requirement.id}">delete</a>--%>
                                     </div>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:if>
