@@ -79,7 +79,6 @@ public class PlanController {
         Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
         notificationService.addNotification(notification);
 
-        redirect.addAttribute("mess", "agree task successfully ");
 
         return view;
     }
@@ -107,7 +106,6 @@ public class PlanController {
         notificationService.addNotification(notification);
 
 
-        redirect.addAttribute("mess", "cancel task successfully ");
 
         return view;
     }

@@ -46,7 +46,6 @@ public class SectionController {
 
         //add section
         sectionService.addSection(section);
-        redirect.addAttribute("mess", "Thêm đầu mục công việc thành công");
         return view;
     }
 
@@ -82,7 +81,6 @@ public class SectionController {
             taskService.updateTask(task);
         }
 
-        redirect.addAttribute("mess", "Xóa đầu mục công việc thành công");
 
         return new ModelAndView("redirect:/list_task?id=" + section.getProjectId());
     }

@@ -132,7 +132,6 @@ public class MemberController {
             return view;
         }
 
-        redirect.addAttribute("mess", "Thêm thành viên thành công!");
 
         return view;
     }
@@ -154,7 +153,6 @@ public class MemberController {
 
         memberService.updateStatusMemberInProject(id, memberId, status);
 
-        redirect.addAttribute("mess", "đổi trạng thái thành công!");
         return view;
     }
 
@@ -168,7 +166,6 @@ public class MemberController {
 
         projectParticipationService.deleteProjectParticipation(projectId, employee.getId_acc());
 
-        redirect.addAttribute("mess", "Xóa thành viên thành công!");
         return view;
     }
 }

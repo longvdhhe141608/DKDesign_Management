@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,7 +159,10 @@
                             <tr>
                                 <td>${requirement.requirementName}</td>
                                 <td>${requirement.requirementDetail}</td>
-                                <td>${requirement.requirementDate}</td>
+                                <td>
+                                    <fmt:formatDate value="${requirement.requirementDate}" var="crd" pattern="dd/MM/yyyy"/>
+                                        ${crd}
+                                </td>
                                 <td>
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý
@@ -171,6 +175,7 @@
                                     </c:if>
                                 </td>
                                 <td>
+                                    <c:if test="${project.status != 3}">
                                     <div style="display: flex; ">
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"
@@ -184,6 +189,7 @@
                                         </button>
 <%--                                        <a href="${pageContext.request.contextPath}/requirement/delete-requirement-by-leader?requirementId=${requirement.id}">delete</a>--%>
                                     </div>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:if>
@@ -241,7 +247,8 @@
                                     ${history.revision_detail}
                             </td>
                             <td>
-                                    ${history.revision_date}
+                                <fmt:formatDate value="${history.revision_date}" var="rvd" pattern="dd/MM/yyyy"/>
+                                    ${rvd}
                             </td>
                         </tr>
                     </c:forEach>
@@ -279,41 +286,6 @@
     // show.addEventListener('click', function () {
     //     popup.classList.remove("hide__popup");
     // })
-    var mess = '${mess}'
-    if (mess === 'Lưu yêu cầu thành công.') {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Lưu yêu cầu thành công.',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    } else if (mess === 'Lưu yêu cầu không thành công.') {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Lưu yêu cầu không thành công.',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    } else if (mess === 'Thay đổi thành công.') {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Thay đổi thành công.',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    } else if (mess === 'abc') {
-        Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Xóa yêu cầu thành công.',
-            showConfirmButton: false,
-            timer: 1500
-        })
-    }
-
     let modalFooter = document.querySelector("#myModal-footer");
     var span = document.querySelector("#close2");
     span.addEventListener("click", function () {

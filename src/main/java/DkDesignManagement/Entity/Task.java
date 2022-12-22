@@ -63,4 +63,7 @@ public class Task {
     //workProgress
     private String workProgress;
 
+    //check icon
+    private boolean showFullIcon;
+
 }

@@ -29,7 +29,6 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-
                 <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
                       method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
@@ -149,7 +148,7 @@
 </script>
 <script>
     var xValues = ["Công việc đang làm", "Công việc hoàn thành đúng thời hạn", "Công việc trễ hạn", "Công việc hoàn thành chậm tiến độ"];
-    var yValues = [55, 49, 44, 24];
+    var yValues = [${dashboardResponse.countSubTaskProcess}, ${dashboardResponse.countCorrectDeadline}, ${dashboardResponse.countOverDeadline}, ${dashboardResponse.countOverDeadlineDoneTask}];
     var barColors = [
         "#b91d47",
         "#00aba9",

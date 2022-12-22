@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -87,7 +88,7 @@
                                         <div class="col-4">
                                             <a href="${pageContext.request.contextPath}/subtask?taskId=${i.subTaskID}">
                                                 <button class="btn btn-primary summary-detail-all"
-                                                        >
+                                                >
                                                     Chi tiết
                                                 </button>
                                             </a>
@@ -101,7 +102,7 @@
                                         </div>
                                         <div class="col-4">
                                             <a href="${pageContext.request.contextPath}/leader-task?taskId=${i.subTaskID}">
-                                                <button class="btn btn-primary summary-detail-all" >
+                                                <button class="btn btn-primary summary-detail-all">
                                                     Chi tiết
                                                 </button>
                                             </a>
@@ -110,13 +111,16 @@
                                 </c:if>
                             </td>
                             <td>
-                                    ${i.startDate}
+                                <fmt:formatDate value="${i.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                                    ${std}
                             </td>
                             <td>
-                                    ${i.deadline}
+                                <fmt:formatDate value="${i.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                                    ${dl}
                             </td>
                             <td>
-                                    ${i.endDate}
+                                <fmt:formatDate value="${i.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                                    ${ed}
                             </td>
                             <td> ${i.projectName}</td>
                             <td>
