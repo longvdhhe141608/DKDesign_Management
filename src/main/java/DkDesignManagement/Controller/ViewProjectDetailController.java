@@ -1,8 +1,6 @@
 package DkDesignManagement.Controller;
 
-import DkDesignManagement.Entity.ImageAndFile;
-import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Entity.Status;
+import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,13 +30,23 @@ public class ViewProjectDetailController {
     @Autowired
     private ImageAndFileService imageAndFileService;
 
+    @Autowired
+    ProjectParticipationService projectParticipationService;
+
     @RequestMapping(value = "/summary", method = RequestMethod.GET)
     public ModelAndView projectDetail(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("leader/summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("loginUser");
 
+        ProjectParticipation projectParticipation = projectParticipationService.getProjectParticipants(id,account.getId());
+        if(projectParticipation.getRoleId() == 3 ){
+            //design
+            view = new ModelAndView("redirect:/design/project/summary?id="+id);
+            return view;
+        }
         //list status
 
         List<Status> listStatus = statusService.getAllStatus();

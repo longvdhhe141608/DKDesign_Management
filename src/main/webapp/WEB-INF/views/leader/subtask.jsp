@@ -116,6 +116,7 @@
                     </c:if>
 
                 </div>
+                <c:if test="${project.status != 3}">
                 <c:if test="${task.taskStatus == 3 && loginUser.role_id == 2}">
                     <div style="display: flex">
                         <a href="task/change-status?taskId=${task.taskId}&operation=agree">
@@ -129,6 +130,7 @@
                         </form>
 
                     </div>
+                </c:if>
                 </c:if>
 
                 <h4>${task.taskName}</h4>
@@ -225,9 +227,11 @@
                         </td>
                     </tr>
                 </table>
+                <c:if test="${project.status != 3}">
                 <div>
                     <a href="sub-task/delete?subTaskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-secondary">Xóa</button></a>
                 </div>
+                </c:if>
             </div>
             <div class="task-cmt-details">
                 <p style="font-size: 20px;">Bình luận</p>
