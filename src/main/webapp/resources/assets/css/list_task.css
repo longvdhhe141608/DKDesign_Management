@@ -126,7 +126,8 @@
     border-radius: 50px;
     padding-top: 2px;
     padding-bottom: 2px;
-    background-color: darkgray;
+    background-color: #b7bacb;
+    color: white;
 }
 a:hover .chi-tiet{
      font-size: 80%;

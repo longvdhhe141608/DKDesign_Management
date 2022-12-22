@@ -62,4 +62,9 @@ public class ImageAndFileServiceImpl implements ImageAndFileService {
     public int uploadFileSummary(String url, int id) {
         return imageAndFileDao.uploadFileSummary(url, id);
     }
+
+    @Override
+    public int updateStatus(int projectID, int idFile) {
+        return imageAndFileDao.updateStatus(projectID, idFile);
+    }
 }

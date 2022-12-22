@@ -112,7 +112,7 @@ function checkvalidate(id) {
         }
         else {
             b++;
-            error[6].innerHTML = "nhập phải lớn hơn ngày hiện tại";
+            error[6].innerHTML = "Nhập phải lớn hơn ngày hiện tại";
         }
         return b;
     }
@@ -127,7 +127,7 @@ function checkvalidate(id) {
         }
         else {
             b++;
-            error[7].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+            error[7].innerHTML = "Nhập phải lớn hơn ngày bắt đầu";
         }
         // else if (startdate.getDate() >= enddate.getDate() && startdate.getMonth() + 1 >= enddate.getMonth() + 1 && startdate.getFullYear() >= enddate.getFullYear()) {
         //     b++;

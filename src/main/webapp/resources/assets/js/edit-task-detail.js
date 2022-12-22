@@ -18,32 +18,32 @@ function checkvalidate(id) {
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
     numberdate = checkdate(today, startdate, enddate);
-    // let numberchecknumber = 0;
-    // numberchecknumber = checkNumber(input);
+    let numberchecknumber = 0;
+    numberchecknumber = checkNumber(input);
 
 
 
 
 
 
-    // function checkNumber(input) {
-    //     let a = 0;
-    //     if (input[3].value.length > 0 ) {
-    //         for (var i = 0; i < input.length; i++) {
-    //             if (isNaN(input[3].value.trim())) {
-    //                 a++;
-    //                 error[3].innerHTML = "Chỉ được nhập số";
-    //
-    //             } else if (input[3].value <= 0) {
-    //                 a++;
-    //                 error[3].innerHTML = "Cần nhập số lớn hơn 0";
-    //
-    //             }
-    //
-    //         }
-    //     }
-    //     return a;
-    // }
+    function checkNumber(input) {
+        let a = 0;
+        if (input[3].value.length > 0 ) {
+            for (var i = 0; i < input.length; i++) {
+                if (isNaN(input[3].value.trim())) {
+                    a++;
+                    error[3].innerHTML = "Chỉ được nhập số";
+
+                } else if (input[3].value <= 0) {
+                    a++;
+                    error[3].innerHTML = "Cần nhập số lớn hơn 0";
+
+                }
+
+            }
+        }
+        return a;
+    }
 
     function checkEmpty(input) {
         let a = 0;
@@ -87,12 +87,12 @@ function checkvalidate(id) {
         }
         else {
             b++;
-            error[2].innerHTML = "nhập phải lớn hơn ngày bắt đầu";
+            error[2].innerHTML = "Nhập phải lớn hơn ngày bắt đầu";
         }
         return b;
     }
     console.log(numberdate);
-    numberprocess = numberEmpty  + numberdate;
+    numberprocess = numberEmpty  + numberdate + numberchecknumber;
     console.log(numberprocess);
     if (numberprocess > 0) {
         return false;

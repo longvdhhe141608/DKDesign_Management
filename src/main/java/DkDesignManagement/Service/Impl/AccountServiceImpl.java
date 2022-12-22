@@ -21,6 +21,11 @@ public class AccountServiceImpl implements AccountService {
         return accountDao.getAccount(username);
     }
 
+    @Override
+    public Account getAccountByAccountId(int accountId) {
+        return accountDao.getAccountById(accountId);
+    }
+
     public boolean isExisted(String username) {
         accountList = accountDao.getAllAccount();
         for (Account a : accountList) {

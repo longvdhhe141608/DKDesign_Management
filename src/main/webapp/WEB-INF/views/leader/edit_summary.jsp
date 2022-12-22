@@ -247,52 +247,37 @@
         $(document).ready(function () {
             $('#fileInput').on('change', function () {
                 var files = $(this)[0].files;
-                var html = '<form>' +
-                    '<select id="mySelect" class="js-list-select">';
+
                 for (var i = 0; i < files.length; i++) {
                     var file = files[i];
                     var fileReader = new FileReader();
                     fileReader.onload = (function (fileParams) {
                         return function (event) {
+                            var str = '<div class="col-md-2">' +
+                                '<span id="upload" class="js-file-name"></span><br>' +
+
+                                '<span class="js-file-size"></span> (Byte)<br>' +
+                                '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
+                                '</div>';
+                            $('.js-file-list').append(str);
+
                             var imageSrc = event.target.result;
                             var fileName = fileParams.name;
 
                             var fileSize = fileParams.size;
 
-                            // $('.js-file-name').last().text(fileName);
-                            //
-                            // $('.js-file-size').last().text(fileSize);
-                            // $('.js-file-image').last().attr('src', imageSrc);
+                            $('.js-file-name').last().text(fileName);
 
-                            var str = '<option >' +
-                                // '<div class="col-md-2 image-remove">' +
-                                // '<span id="upload" class="js-file-name"></span><br>' +
-                                //
-                                // '<span class="js-file-size"></span> (Byte)<br>' +
-                                '<img class="img-thumbnail js-file-image" src="'+imageSrc+'" style="width: 100%; height: 100%">' +
-                                // '</div>' +
-                                'sss</option> ';
-
-                            $('.js-list-select').append(str);
+                            $('.js-file-size').last().text(fileSize);
+                            $('.js-file-image').last().attr('src', imageSrc);
 
 
                         };
                     })(file);
                     fileReader.readAsDataURL(file);
                 }
-                html += '</select>' +
-                    '</form> <br>' +
-                    '<div onclick="removeImage()">Remove selected fruit</div>';
-
-                $('.js-file-list').append(html);
             });
         });
-
-        function removeImage() {
-            var x = document.getElementById("mySelect");
-            x.remove(x.selectedIndex);
-        }
-
     </script>
 </body>
 </html>

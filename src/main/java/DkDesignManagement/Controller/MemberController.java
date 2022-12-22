@@ -44,7 +44,7 @@ public class MemberController {
     @RequestMapping(value = "/member", method = RequestMethod.GET)
     public ModelAndView LoadMember(HttpServletRequest request, @RequestParam("id") int projectid, @ModelAttribute("mess") String mess) {
 
-        ModelAndView view = new ModelAndView("member");
+        ModelAndView view = new ModelAndView("leader/member");
 
         int id = projectid;
         Project project = projectService.getProject(id);
@@ -57,9 +57,11 @@ public class MemberController {
         MemberPageResponse memberPageResponse = memberService.getMemberInProject(page, id);
         List<Member> memberList = memberPageResponse.getMemberList();
 
+        Account account = (Account) request.getSession().getAttribute("loginUser");
+
         view.addObject("project", project);
         view.addObject("memberList", memberList);
-        view.addObject("employeeList", employeeService.getAll());
+        view.addObject("employeeList", employeeService.getAllToAdd(projectid,account));
         view.addObject("page", page);
         view.addObject("endPage", memberPageResponse.getEndPage());
         view.addObject("projectId", id);
@@ -70,7 +72,7 @@ public class MemberController {
 
     @RequestMapping(value = "/searchMemberInProject", method = RequestMethod.GET)
     public ModelAndView loadMemberAminSearchingPage(HttpServletRequest request, @RequestParam("id") int projectid) {
-        ModelAndView view = new ModelAndView("member");
+        ModelAndView view = new ModelAndView("leader/member");
         int id = projectid;
         Project project = projectService.getProject(id);
 
@@ -90,6 +92,13 @@ public class MemberController {
         ModelAndView view = new ModelAndView("redirect:/project/member?id=" + projectId);
         int accountId = Integer.parseInt(request.getParameter("accountId"));
         Employee employee = employeeService.getEmployeeByAccId(accountId);
+
+        //check role member
+//        Account account = accountService.getAccountByAccountId(accountId);
+//        if(account.getRole_id() == 2){
+//            redirect.addAttribute("mess", "Thành viên  " + employee.getName() + " không thể thêm vào dự án vì là leader ");
+//            return view;
+//        }
 
         //TODO : check Member exits
         if (projectParticipationService.isMemberExisted(projectId, accountId)) {
@@ -131,9 +140,14 @@ public class MemberController {
     @RequestMapping(value = "/changeMemberStatus", method = RequestMethod.GET)
     public ModelAndView changeMemberStatus(HttpServletRequest request, RedirectAttributes redirect) {
         int id = Integer.parseInt(request.getParameter("id"));
-        ModelAndView view = new ModelAndView("redirect:/member?id=" + id);
+        ModelAndView view = new ModelAndView("redirect:/project/member?id=" + id);
 
         int status = Integer.parseInt(request.getParameter("status"));
+        if(status==1){
+            status = 2;
+        }else{
+            status = 1;
+        }
         String username = request.getParameter("username");
 
         int memberId = memberService.getAccountIdByUsername(username);

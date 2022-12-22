@@ -46,11 +46,15 @@ public class ViewProjectDetailController {
         for (Status status : listStatus) {
             if (ObjectUtils.isEmpty(status.getStatusProject())) {
                 listRemove.add(status);
+            }else{
+                if(status.getStatusProject().equals("Đã xóa")){
+                    listRemove.add(status);
+                }
             }
         }
         List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSummary(id);
         listStatus.removeAll(listRemove);
-        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project",project.getId()));
+        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project", project.getId()));
         view.addObject("listImage", imageAndFiles);
         session.setAttribute("project", project);
         session.setAttribute("listStatus", listStatus);
@@ -81,4 +85,20 @@ public class ViewProjectDetailController {
 
         return view;
     }
+
+    @RequestMapping(value = "/delete-file", method = RequestMethod.GET)
+    public ModelAndView deleteFile(HttpServletRequest request, RedirectAttributes redirect) {
+
+        int projectId = Integer.parseInt(request.getParameter("projectId"));
+
+        ModelAndView view = new ModelAndView("redirect:/project/summary?id=" + projectId);
+        String listID[] = request.getParameterValues("listFile");
+        System.out.println("aaaaaaaaaa");
+        for (int i = 0; i < listID.length; i++) {
+            System.out.println(listID[i]);
+            imageAndFileService.updateStatus(projectId, Integer.parseInt(listID[i]));
+        }
+        return view;
+    }
+
 }

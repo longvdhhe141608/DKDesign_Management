@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,11 +69,9 @@
                     <div class="col-4 list-task-header">Công việc</div>
                     <div class="col-1 list-task-header">Phân công</div>
                     <div class="col-2 list-task-header">Thời gian bắt đầu</div>
-
                     <div class="col-2 list-task-header">Thời gian dự kiến kết thúc</div>
                     <div class="col-2 list-task-header">Thời gian kết thúc</div>
                     <div class="col-1 list-task-header">Trạng thái</div>
-
                 </div>
                 <c:forEach items="${taskDtoList}" var="i">
                     <details>
@@ -99,9 +98,20 @@
                                     </div>
                                 </div>
                                 <div class="col-1" style="border: 1px solid gray;">${t.nameEmployee}</div>
-                                <div class="col-2" style="border: 1px solid gray;">${t.startingDate}</div>
-                                <div class="col-2" style="border: 1px solid gray;">${t.endedDate}</div>
-                                <div class="col-2" style="border: 1px solid gray;"></div>
+                                <div class="col-2" style="border: 1px solid gray;">
+                                    <fmt:formatDate value="${t.startingDate}" var="std" pattern="dd/MM/yyyy"/>
+                                        ${std}
+                                </div>
+                                <div class="col-2" style="border: 1px solid gray;">
+                                    <fmt:formatDate value="${t.endedDate}" var="std" pattern="dd/MM/yyyy"/>
+                                        ${std}
+                                </div>
+                                <div class="col-2" style="border: 1px solid gray;">
+                                    <c:if test="${t.endedDate != null}">
+                                        <fmt:formatDate value="${t.endedDate}" var="ed" pattern="dd/MM/yyyy"/>
+                                        ${ed}
+                                    </c:if>
+                                </div>
                                 <div class="col-1" style="border: 1px solid gray;"></div>
                             </div>
                             <%--                            </c:if>--%>
@@ -122,9 +132,22 @@
                                                 </div>
                                             </div>
                                             <div class="col-1" style="border: 1px solid gray;">${s.nameEmployee}</div>
-                                            <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
-                                            <div class="col-2" style="border: 1px solid gray;">${s.startingDate}</div>
-                                            <div class="col-2" style="border: 1px solid gray;"></div>
+                                            <div class="col-2" style="border: 1px solid gray;">
+                                                <fmt:formatDate value="${s.startingDate}" var="stds"
+                                                                pattern="dd/MM/yyyy"/>
+                                                    ${stds}
+                                            </div>
+                                            <div class="col-2" style="border: 1px solid gray;">
+                                                <fmt:formatDate value="${s.deadline}" var="dls" pattern="dd/MM/yyyy"/>
+                                                    ${dls}
+                                            </div>
+                                            <div class="col-2" style="border: 1px solid gray;">
+                                                <c:if test="${s.endedDate != null}">
+                                                    <fmt:formatDate value="${s.endedDate}" var="eds"
+                                                                    pattern="dd/MM/yyyy"/>
+                                                    ${eds}
+                                                </c:if>
+                                            </div>
                                             <div class="col-1" style="border: 1px solid gray;">
                                                 <c:if test="${s.status == 2}">
                                                     Đang thực hiện
@@ -143,7 +166,6 @@
                         </c:forEach>
                     </details>
                 </c:forEach>
-
             </div>
         </div>
     </div>

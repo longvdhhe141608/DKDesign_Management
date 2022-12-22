@@ -7,13 +7,14 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Công Việc Của Tôi</title>
+    <title>${task.taskName} - Chi tiết công việc</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/assets/css/headerHome.css"/>"/>
@@ -34,26 +35,26 @@
     <div class="summary" style="margin-left: 20%;">
         <div class="top-details">
             <div class="list-top">
-                <h4>Tên dự án</h4>
+                <h4>${project.projectName}</h4>
                 <form style="display: flex;" action="#"
                       method="post">
-<%--                    <input type="text" name="projectId" value="${project.id}" hidden="">--%>
+                    <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0;padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
-<%--                            <c:forEach items="${listStatus}" var="status">--%>
-<%--                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>--%>
-<%--                            </c:forEach>--%>
+                            <c:forEach items="${listStatus}" var="status">
+                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div>
-<%--                        <c:if test="${sessionScope.loginUser.role_id == 2}">--%>
-<%--                            <c:if test="${project.status != 3 }">--%>
-<%--                                <button type="submit" class="btn btn-primary">Lưu</button>--%>
-<%--                            </c:if>--%>
-<%--                            <c:if test="${project.status == 3 }">--%>
-<%--                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>--%>
-<%--                            </c:if>--%>
-<%--                        </c:if>--%>
+                        <c:if test="${sessionScope.loginUser.role_id == 2}">
+                            <c:if test="${project.status != 3 }">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </c:if>
+                            <c:if test="${project.status == 3 }">
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
+                            </c:if>
+                        </c:if>
                     </div>
                 </form>
             </div>
@@ -91,38 +92,35 @@
         <div class="task-details-main">
             <table class="table table-borderless" style="border: 0;">
                 <tr>
-                    <h4>Đây là tên công việc</h4>
+                    <h4>${task.taskName}</h4>
                 </tr>
                 <tr>
                     <td class="col-6">Nhiệm vụ:</td>
-                    <td class="col-6">Tên acc người được giao</td>
+                    <td class="col-6">${task.assignToName}</td>
                 </tr>
                 <tr>
                     <td>Công trình:</td>
-                    <td>Đây là têm công trình</td>
+                    <td>${task.projectName}</td>
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            Đây là thời gian bắt đầu
-                        </div>
+                        <fmt:formatDate value="${task.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                        ${std}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            Thời gian dự kiến kết thúc
-                        </div>
+                        <fmt:formatDate value="${task.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                        ${dl}
                     </td>
                 </tr>
                 <tr>
                     <td>Thời gian kết thúc:</td>
                     <td>
-                        <div class="name-input" style="width: 150px;">
-                            Thời gian kết thúc
-                        </div>
+                        <fmt:formatDate value="${task.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                        ${ed}
                     </td>
                 </tr>
                 <tr>
@@ -143,15 +141,6 @@
                     </td>
                 </tr>
             </table>
-        </div>
-        <div style=" text-align: end; margin-left: 10px;">
-            <c:if test="${project.status == 1}">
-                <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
-                    <button class="btn btn-primary">
-                        Chỉnh sửa
-                    </button>
-                </a>
-            </c:if>
         </div>
     </div>
 </div>
