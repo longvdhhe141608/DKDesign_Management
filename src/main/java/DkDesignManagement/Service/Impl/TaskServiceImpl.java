@@ -84,6 +84,15 @@ public class TaskServiceImpl implements TaskService {
         task.setProjectName(projectDao.getProject(task.getProjectId()).getProjectName());
         task.setSectionName(section.getOneSectionBySectionID(task.getSectionId()).getSectionName());
         task.setListSubTask(taskDAO.getListSubTask(task.getTaskId()));
+        //check show icon of task if sub task status = 1
+        task.setShowFullIcon(true);
+        for (Task subTask : task.getListSubTask()){
+            if(subTask.getTaskStatus()!= 1){
+                task.setShowFullIcon(false);
+                break;
+            }
+        }
+
         task.setAssignToName(accountDao.getAccountById(task.getAssignToId()).getUsername());
         task.setNumberFileCurrent(taskDAO.countFile(task.getTaskId()));
 //        double workProgress = (task.getNumberFileCurrent() / 1.0 * task.getFileNumber()) * 100;
