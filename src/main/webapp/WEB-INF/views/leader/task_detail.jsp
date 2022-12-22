@@ -274,6 +274,7 @@
                 </tr>
             </table>
         </div>
+        <c:if test="${task.showFullIcon == true}">
         <div style=" text-align: end; margin-left: 10px;">
             <c:if test="${project.status == 1}">
                 <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
@@ -283,10 +284,13 @@
                 </a>
             </c:if>
         </div>
-
+        <c:if test="${project.status != 3}">
         <div>
             <a href="task/delete?taskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-danger">Xóa</button></a>
         </div>
+        </c:if>
+
+        </c:if>
 
         <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>

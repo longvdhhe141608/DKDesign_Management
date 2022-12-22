@@ -40,10 +40,17 @@ public class SectionServiceImpl implements SectionService {
                     //get name assign
                     String assignToName = accountDao.getAccountById(task.getAssignToId()).getUsername();
                     task.setAssignToName(assignToName);
-
+                    task.setShowFullIcon(true);
                     //get list sub task
                     task.setListSubTask(taskDAO.getListSubTask(task.getTaskId()));
-                    task.getListSubTask().stream().forEach(t -> t.setAssignToName(assignToName));
+
+                    for (Task subTask : task.getListSubTask()) {
+                        subTask.setAssignToName(assignToName);
+                        if(subTask.getTaskStatus() != 1){
+                            task.setShowFullIcon(false);
+                        }
+                    }
+
                 }
             }
 

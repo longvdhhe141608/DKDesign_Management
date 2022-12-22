@@ -520,12 +520,12 @@ public class TaskDAO {
 
         int totalPage = 0;
         List<TaskWaitDto> waitDtoList = new ArrayList<>();
-        String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline," +
-                " t.number_of_file, st.status_task, t.status, t.description FROM dkmanagement.task t\n" +
-                "left join project p on t.project_id = p.id\n" +
-                "left join section s on t.section_id = s.id\n" +
-                "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6 and t.task_id is not null \n";
+        String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline,\n" +
+                " t.number_of_file, st.status_task, t.status, t.description, t.task_id, t.id, t.section_id FROM dkmanagement.task t \n" +
+                "left join project p on t.project_id = p.id \n" +
+                "left join section s on t.section_id = s.id \n" +
+                "left join accounts a on t.assignedto = a.id \n" +
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto = ? and t.status != 6 and t.task_id is not null  \n";
 
         if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
             sql += " and t.status =  " + statusID;
@@ -551,12 +551,12 @@ public class TaskDAO {
 
         List<TaskWaitDto> waitDtoList = new ArrayList<>();
 
-        String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline," +
-                " t.number_of_file, st.status_task, t.status, t.description FROM dkmanagement.task t\n" +
-                "left join project p on t.project_id = p.id\n" +
-                "left join section s on t.section_id = s.id\n" +
-                "left join accounts a on t.assignedto = a.id\n" +
-                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto =? and t.status != 6 and t.task_id is not null \n";
+        String sql = "SELECT t.task_name, a.username, t.starting_date, t.deadline,\n" +
+                " t.number_of_file, st.status_task, t.status, t.description, t.task_id, t.id, t.section_id FROM dkmanagement.task t \n" +
+                "left join project p on t.project_id = p.id \n" +
+                "left join section s on t.section_id = s.id \n" +
+                "left join accounts a on t.assignedto = a.id \n" +
+                "left join status st on t.status = st.id where t.project_id = ? AND t.assignedto = ? and t.status != 6 and t.task_id is not null \n";
 
         if (!ObjectUtils.isEmpty(statusID) && statusID != 0) {
             sql += " and t.status =  " + statusID;

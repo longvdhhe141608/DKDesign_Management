@@ -368,6 +368,13 @@
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
 <script>
+    var mess = '${mess}'
+    if (mess != '') {
+        alert(mess);
+    }
+</script>
+<script>
+
     // const show = document.querySelector("#show-member");
     //
     // const popup = document.querySelector(".popup");
