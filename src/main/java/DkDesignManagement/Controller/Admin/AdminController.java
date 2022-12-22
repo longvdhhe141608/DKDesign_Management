@@ -110,7 +110,6 @@ public class AdminController {
             accountService.addNewAccount(username, password, role);
             Account account = accountService.getAccount(username);
             memberService.addNewMember(name, mail, account.getId());
-            redirect.addAttribute("mess", "Add new member successfully");
             return new ModelAndView("redirect:/admin/memberlist");
         } else {
             String error = "Email has existed";
