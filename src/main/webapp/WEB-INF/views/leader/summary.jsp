@@ -191,59 +191,61 @@
                             Chỉnh sửa
                         </button>
                     </a>
-                    <div>
-                        <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
-                                id="myBtn-add-project"
-                                class="btn btn-primary"> Xóa file
-                        </button>
-                        <div id="myModal-add" class="modal">
-                            <!-- Modal content -->
-                            <div class="modal-content" style=" width: 50%;height: 100%;">
-                                <span id="close1" class="close">&times;</span>
-                                <div class="project-add-task">
-                                    <form id="add-sub-task"
-                                          action="${pageContext.request.contextPath}/project/delete-file"
-                                          method="get">
-                                        <input type="text" value="${project.id}" hidden name="projectId">
-                                        <div class="popup__content">
-                                            <div class="title">
-                                                <h4>
-                                                    <div>Danh sách file</div>
-                                                    <div class="text-danger error"></div>
-                                                </h4>
-                                            </div>
-                                            <div class="info">
-                                                <table class="table table-borderless">
-                                                    <c:forEach items="${listImage}" var="image">
-                                                        <tr>
-                                                            <td><input type="checkbox" value="${image.id}"
-                                                                       name="listFile"></td>
-                                                            <td>
-                                                                <img style="width: 100px; height: 100px;"
-                                                                     src="${image.fileUrl}" alt="">
-                                                            </td>
-                                                        </tr>
-                                                    </c:forEach>
-                                                </table>
-                                            </div>
-                                            <div class="" style="display: flex;justify-content: end">
-                                                <div></div>
-                                                <div class="btn_cancel" style="margin-right: 5px">
-                                                    <button type="button" class="btn btn-secondary close_popup">
-                                                        Hủy bỏ
-                                                    </button>
+                    <c:if test="${listImage.size() > 0}">
+                        <div>
+                            <button style="margin-left: 5px"; onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
+                                    id="myBtn-add-project"
+                                    class="btn btn-primary"> Xóa file
+                            </button>
+                            <div id="myModal-add" class="modal">
+                                <!-- Modal content -->
+                                <div class="modal-content" style=" width: 50%;height: 100%;">
+                                    <span id="close1" class="close">&times;</span>
+                                    <div class="project-add-task">
+                                        <form id="add-sub-task"
+                                              action="${pageContext.request.contextPath}/project/delete-file"
+                                              method="get">
+                                            <input type="text" value="${project.id}" hidden name="projectId">
+                                            <div class="popup__content">
+                                                <div class="title">
+                                                    <h4>
+                                                        <div>Danh sách file</div>
+                                                        <div class="text-danger error"></div>
+                                                    </h4>
                                                 </div>
-                                                <div class="btn_ok">
-                                                    <button type="submit" class="btn btn-primary">Xóa File
-                                                    </button>
+                                                <div class="info">
+                                                    <table class="table table-borderless">
+                                                        <c:forEach items="${listImage}" var="image">
+                                                            <tr>
+                                                                <td><input type="checkbox" value="${image.id}"
+                                                                           name="listFile"></td>
+                                                                <td>
+                                                                    <img style="width: 100px; height: 100px;"
+                                                                         src="${image.fileUrl}" alt="">
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </table>
+                                                </div>
+                                                <div class="" style="display: flex;justify-content: end">
+                                                    <div></div>
+                                                    <div class="btn_cancel" style="margin-right: 5px">
+                                                        <button type="button" class="btn btn-secondary close_popup">
+                                                            Hủy bỏ
+                                                        </button>
+                                                    </div>
+                                                    <div class="btn_ok">
+                                                        <button type="submit" class="btn btn-primary">Xóa File
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </c:if>
                 </c:if>
             </div>
             <div>

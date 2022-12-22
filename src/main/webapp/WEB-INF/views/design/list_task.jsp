@@ -103,7 +103,7 @@
                                         ${std}
                                 </div>
                                 <div class="col-2" style="border: 1px solid gray;">
-                                    <fmt:formatDate value="${t.endedDate}" var="std" pattern="dd/MM/yyyy"/>
+                                    <fmt:formatDate value="${t.deadline}" var="std" pattern="dd/MM/yyyy"/>
                                         ${std}
                                 </div>
                                 <div class="col-2" style="border: 1px solid gray;">
