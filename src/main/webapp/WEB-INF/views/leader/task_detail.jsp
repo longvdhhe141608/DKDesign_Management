@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,7 +103,8 @@
                     <td>Thời gian bắt đầu:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            ${task.startDate}
+                            <fmt:formatDate value="${task.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                            ${std}
                         </div>
                     </td>
                 </tr>
@@ -110,7 +112,8 @@
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            ${task.deadline}
+                            <fmt:formatDate value="${task.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                            ${dl}
                         </div>
                     </td>
                 </tr>
@@ -118,7 +121,8 @@
                     <td>Thời gian kết thúc:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            ${task.endDate}
+                            <fmt:formatDate value="${task.task.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                            ${ed}
                         </div>
                     </td>
                 </tr>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,13 +138,16 @@
                             </td>
                             <td> ${task.assignToName}</td>
                             <td>
-                                    ${task.startDate}
+                                <fmt:formatDate value="${task.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                                    ${std}
                             </td>
                             <td>
-                                    ${task.deadline}
+                                <fmt:formatDate value="${task.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                                    ${dl}
                             </td>
                             <td>
-                                    ${task.endDate}
+                                <fmt:formatDate value="${task.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                                    ${ed}
                             </td>
                             <td>${task.workProgress}</td>
                             <td>
@@ -163,8 +167,6 @@
                         </tr>
                     </c:if>
                 </c:forEach>
-
-
             </table>
         </div>
         <div class="pagination">

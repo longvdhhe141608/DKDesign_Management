@@ -142,15 +142,24 @@
                     </tr>
                     <tr>
                         <td>Thời gian bắt đầu:</td>
-                        <td>${project.startDate}</td>
+                        <td>
+                            <fmt:formatDate value="${project.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                            ${std}
+                        </td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
-                        <td>${project.closureDate}</td>
+                        <td>
+                            <fmt:formatDate value="${project.closureDate}" var="cld" pattern="dd/MM/yyyy"/>
+                            ${cld}
+                        </td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
-                        <td>${project.endDate}</td>
+                        <td>
+                            <fmt:formatDate value="${project.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                            ${ed}
+                        </td>
                     </tr>
                     <tr>
                         <td>Địa chỉ công trình:</td>
