@@ -89,7 +89,6 @@ public class ViewProjectDetailController {
 
         projectService.editProject(project);
 
-        redirect.addAttribute("mess", "change status project successfully ");
 
         return view;
     }

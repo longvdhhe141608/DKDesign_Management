@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,12 +135,14 @@
                                 <td>${task.assignToName}</td>
                                 <td>
                                     <div class="name-input" >
-                                            ${task.startDate}
+                                        <fmt:formatDate value="${task.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                                            ${std}
                                     </div>
                                 </td>
                                 <td>
                                     <div class="name-input" >
-                                            ${task.deadline}
+                                        <fmt:formatDate value="${task.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                                            ${dl}
                                     </div>
                                 </td>
                                 <td>${task.fileNumber}</td>

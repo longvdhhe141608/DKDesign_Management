@@ -200,7 +200,6 @@ public class TaskController {
             notificationService.addNotification(notification);
         }
 
-        redirect.addAttribute("mess", "Thêm công việc thành công!");
         return view;
     }
 
@@ -258,7 +257,6 @@ public class TaskController {
             requirement.setStatus(PROCESS_REQUIREMENT_STATUS);
             requirementService.updateRequirement(requirement);
         }
-        redirect.addAttribute("mess", "Thêm công việc phụ thành công");
         return view;
     }
 
@@ -307,7 +305,6 @@ public class TaskController {
 
         //update
         taskService.updateTask(task);
-        redirect.addAttribute("mess", "Cập nhật công việc thành công.");
 
         return view;
     }
@@ -436,7 +433,6 @@ public class TaskController {
         task.setTaskStatus(6);
         taskService.updateTask(task);
 
-        redirect.addAttribute("mess", "Xóa sub task thành công!");
         return  new ModelAndView("redirect:/task_detail?taskId="+task.getTaskfId());
     }
 
@@ -454,7 +450,6 @@ public class TaskController {
             taskService.updateTask(subTask);
         }
 
-        redirect.addAttribute("mess", "Xóa task thành công!");
         return  new ModelAndView("redirect:/list_task?id="+task.getProjectId());
     }
 

@@ -97,7 +97,6 @@ public class EditSummaryController {
                 } else {
                     int checkSaveFile = imageAndFileService.uploadFileSummary(url, project.getId());
                 }
-                request.setAttribute("mess", "Upload success");
             });
         }
         Project oldProject = projectService.getProject(project.getId());
@@ -110,7 +109,6 @@ public class EditSummaryController {
             return view;
         }
         redirect.addAttribute("id", id);
-        redirect.addAttribute("mess", "edit successfully ");
 
         //add history
         //compare

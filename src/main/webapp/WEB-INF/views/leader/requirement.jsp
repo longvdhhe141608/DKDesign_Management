@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,7 +159,10 @@
                             <tr>
                                 <td>${requirement.requirementName}</td>
                                 <td>${requirement.requirementDetail}</td>
-                                <td>${requirement.requirementDate}</td>
+                                <td>
+                                    <fmt:formatDate value="${requirement.requirementDate}" var="crd" pattern="dd/MM/yyyy"/>
+                                        ${crd}
+                                </td>
                                 <td>
                                     <c:if test="${requirement.status == 1}">
                                         Đang xử lý
@@ -243,7 +247,8 @@
                                     ${history.revision_detail}
                             </td>
                             <td>
-                                    ${history.revision_date}
+                                <fmt:formatDate value="${history.revision_date}" var="rvd" pattern="dd/MM/yyyy"/>
+                                    ${rvd}
                             </td>
                         </tr>
                     </c:forEach>
