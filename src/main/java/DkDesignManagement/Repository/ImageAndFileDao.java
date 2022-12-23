@@ -44,10 +44,10 @@ public class ImageAndFileDao {
 
     public int uploadFileSummary(String url, int projectID) {
         int check = 0;
-        String sql = "INSERT INTO `dkmanagement`.`image_and_file` (`project_id`, `file_url`, `status`) VALUES (?, ?, ?);\n";
+        String sql = "INSERT INTO `dkmanagement`.`image_and_file` (`project_id`, `file_url`) VALUES (?, ?);\n";
 
         try {
-            check = jdbcTemplate.update(sql, projectID, url, 1);
+            check = jdbcTemplate.update(sql, projectID, url);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,7 +55,7 @@ public class ImageAndFileDao {
     }
 
     public List<ImageAndFile> getAllImageSummary(int pid) {
-        String sql = "SELECT * FROM dkmanagement.image_and_file i where i.project_id = ? and i.task_id is null and status = 1;";
+        String sql = "SELECT * FROM dkmanagement.image_and_file i where i.project_id = ? and i.task_id is null ";
         List<ImageAndFile> image = new ArrayList<>();
         try {
             image = jdbcTemplate.query(sql, new MapperImageAndFile(), pid);

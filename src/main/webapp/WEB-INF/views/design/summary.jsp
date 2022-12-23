@@ -38,7 +38,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Trạng thái"></a>
@@ -47,7 +48,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Yêu cầu của khách hàng"></a>
-                <a class="test" href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
+                <a class="test"
+                   href="${pageContext.request.contextPath}/design/project/member-active?project-id=${project.id}"><input
                         class="btn btn-secondary"
                         type="button"
                         value="Thành viên"></a>
@@ -120,7 +122,15 @@
                     <tr>
                         <td class="col-6">Hiển thị file:</td>
                         <td class="col-6">
-                            <div class="container js-file-list"></div>
+                            <div class="container js-file-list">
+                                <c:forEach items="${listImage}" var="image">
+                                    <button type="button" style="border-radius: 5px"
+                                            onclick="showImage(this.getAttribute('data-url'))"
+                                            data-url="${image.fileUrl}">
+                                        <img src="<c:url value="${image.fileUrl}"/>" alt="" style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
+                                    </button>
+                                </c:forEach>
+                            </div>
                         </td>
                     </tr>
                 </table>
@@ -128,43 +138,43 @@
                     <div style="margin-bottom: 10px">
                         <button class="btn btn-primary">Lịch sử</button>
                     </div>
-                <div>
-                    <table class="table table-bordered">
-                        <thead>
-                        <th scope="col">Lần</th>
-                        <th scope="col">Nội dung</th>
-                        <th scope="col">Thời gian</th>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${listHistory}" var="history">
-                            <tr>
-                                <td>
-                                        ${history.revision_no}
-                                </td>
-                                <td>
-                                        ${history.revision_detail}
-                                </td>
-                                <td>
-                                        ${history.revision_date}
-                                </td>
-                            </tr>
+                    <div>
+                        <table class="table table-bordered">
+                            <thead>
+                            <th scope="col">Lần</th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col">Thời gian</th>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${listHistory}" var="history">
+                                <tr>
+                                    <td>
+                                            ${history.revision_no}
+                                    </td>
+                                    <td>
+                                            ${history.revision_detail}
+                                    </td>
+                                    <td>
+                                            ${history.revision_date}
+                                    </td>
+                                </tr>
 
-                        </c:forEach>
+                            </c:forEach>
 
 
-                        </tbody>
-                    </table>
-                </div>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-<%--            <div style="display: flex; justify-content: space-between">--%>
-<%--                <div></div>--%>
-<%--                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">--%>
-<%--                    <button class="btn" style="background-color: royalblue; color: white">--%>
-<%--                        Chỉnh sửa--%>
-<%--                    </button>--%>
-<%--                </a>--%>
-<%--            </div>--%>
+            <%--            <div style="display: flex; justify-content: space-between">--%>
+            <%--                <div></div>--%>
+            <%--                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">--%>
+            <%--                    <button class="btn" style="background-color: royalblue; color: white">--%>
+            <%--                        Chỉnh sửa--%>
+            <%--                    </button>--%>
+            <%--                </a>--%>
+            <%--            </div>--%>
         </div>
     </div>
 </div>
