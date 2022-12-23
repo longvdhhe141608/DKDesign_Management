@@ -94,10 +94,8 @@ public class RequirementController {
         int saveRequirement = requirementService.insertRequirement(requirement);
         if (saveRequirement == 0) {
             view = new ModelAndView("redirect:/requirement/requirement-for-leader");
-            redirect.addAttribute("mess", "Lưu yêu cầu không thành công.");
         } else {
             view = new ModelAndView("redirect:/requirement/requirement-for-leader");
-            redirect.addAttribute("mess", "Lưu yêu cầu thành công.");
         }
         view.addObject("id", projectID);
         return view;
@@ -223,7 +221,6 @@ public class RequirementController {
         }
 
         requirementService.updateRequirement(requirement);
-        redirect.addAttribute("mess", "Thay đổi thành công.");
 
         //add history
         //check history exits

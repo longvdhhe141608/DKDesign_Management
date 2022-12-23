@@ -19,4 +19,8 @@ public class TaskWaitDto {
     private int status;
     private String statusTask;
     private String description;
+    private int sectionID;
+    private int taskID;
+    private int subTaskID;
+
 }

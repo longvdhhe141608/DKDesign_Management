@@ -1,13 +1,11 @@
 package DkDesignManagement.Controller.Design;
 
 import DkDesignManagement.Entity.Account;
+import DkDesignManagement.Entity.ImageAndFile;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Roles;
 import DkDesignManagement.Repository.RoleDao;
-import DkDesignManagement.Service.CategoryService;
-import DkDesignManagement.Service.HistoryService;
-import DkDesignManagement.Service.ProjectParticipationService;
-import DkDesignManagement.Service.ProjectService;
+import DkDesignManagement.Service.*;
 import DkDesignManagement.Model.MemberActiveDto;
 import DkDesignManagement.Model.ProjectPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +39,9 @@ public class ProjectByDesignController {
 
     @Autowired
     HistoryService historyService;
+
+    @Autowired
+    private ImageAndFileService imageAndFileService;
 
     @RequestMapping(value = "/view-all-project", method = RequestMethod.GET)
     public ModelAndView loadAllProject(HttpServletRequest request,
@@ -78,6 +79,11 @@ public class ProjectByDesignController {
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
         HttpSession session = request.getSession();
+
+        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSummary(id);
+
+        view.addObject("listImage", imageAndFiles);
+        System.out.println(imageAndFiles.size() + "ssssssssssssssssssssssssss");
         session.setAttribute("project", project);
         view.addObject("project", project);
         view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project",project.getId()));

@@ -102,7 +102,6 @@ public class ProjectController {
             redirect.addAttribute("mess", "add fail");
             return view;
         }
-        redirect.addAttribute("mess", "add successfully ");
         return view;
     }
 
@@ -129,7 +128,6 @@ public class ProjectController {
         }
 
 
-        redirect.addAttribute("mess", "delete project successfully ");
         return new ModelAndView("redirect:/allProject");
     }
 

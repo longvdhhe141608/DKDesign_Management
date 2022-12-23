@@ -5,6 +5,7 @@ import DkDesignManagement.Service.*;
 import DkDesignManagement.Model.TaskDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -102,7 +103,7 @@ public class TaskByDesignController {
     }
 
     @RequestMapping(value = "/view-detail-task", method = RequestMethod.GET)
-    public ModelAndView viewDetailTaskByTaskID(HttpServletRequest request, HttpServletResponse response) {
+    public ModelAndView viewDetailTaskByTaskID(HttpServletRequest request, @ModelAttribute("mess") String mess) {
         ModelAndView view = new ModelAndView("design/task_detail");
 
         int taskID = Integer.parseInt(request.getParameter("task-id"));
@@ -139,6 +140,7 @@ public class TaskByDesignController {
         view.addObject("progressPercent", progressPercent);
         view.addObject("totalSubmitFile", totalSubmitFile);
         view.addObject("totalFile", totalFile);
+        view.addObject("mess", mess);
         view.addObject("listComment", commentService.getAllViewCommentByTaskId(tasks.getId()));
 
         return view;
@@ -169,6 +171,17 @@ public class TaskByDesignController {
 
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
+
+        //check if it's my task
+        Task task = taskService.getTaskById(taskID);
+        if(account.getId() != task.getAssignToId()){
+            redirect.addAttribute("mess", "Bạn không có nhiệm vụ trong task này");
+            view = new ModelAndView("redirect:/design/task/view-detail-task");
+            view.addObject("project-id", projectID);
+            view.addObject("task-id", taskID);
+            view.addObject("section-id", sectionID);
+            return view;
+        }
 
         Task tasks = Task.builder()
                 .projectId(projectID)

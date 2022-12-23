@@ -87,7 +87,6 @@ public class CommentController {
             addNotificationSendDesign(account, task);
         }
 
-        redirect.addAttribute("mess", "Add comment success");
         return view;
     }
 
@@ -158,7 +157,6 @@ public class CommentController {
 
         commentService.updatePinComment(commentId);
 
-        redirect.addAttribute("mess", "Pin comment success");
 
         return view;
     }

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,6 +117,7 @@
                     </c:if>
 
                 </div>
+                <c:if test="${project.status != 3}">
                 <c:if test="${task.taskStatus == 3 && loginUser.role_id == 2}">
                     <div style="display: flex">
                         <a href="task/change-status?taskId=${task.taskId}&operation=agree">
@@ -129,6 +131,7 @@
                         </form>
 
                     </div>
+                </c:if>
                 </c:if>
 
                 <h4>${task.taskName}</h4>
@@ -154,19 +157,22 @@
                     <tr>
                         <td>Thời gian bắt đầu:</td>
                         <td>
-                            ${task.startDate}
+                            <fmt:formatDate value="${task.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                            ${std}
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
                         <td>
-                            ${task.deadline}
+                            <fmt:formatDate value="${task.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                            ${dl}
                         </td>
                     </tr>
                     <tr>
                         <td>Thời gian kết thúc:</td>
                         <td>
-                            ${task.endDate}
+                            <fmt:formatDate value="${task.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                            ${ed}
                         </td>
                     </tr>
                     <tr>
@@ -225,9 +231,11 @@
                         </td>
                     </tr>
                 </table>
+                <c:if test="${project.status != 3}">
                 <div>
                     <a href="sub-task/delete?subTaskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-secondary">Xóa</button></a>
                 </div>
+                </c:if>
             </div>
             <div class="task-cmt-details">
                 <p style="font-size: 20px;">Bình luận</p>
