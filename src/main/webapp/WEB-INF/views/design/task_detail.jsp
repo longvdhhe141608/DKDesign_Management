@@ -256,7 +256,6 @@
                                 </c:if>
                             </div>
                         </div>
-
                         <!----------item------------>
                     </c:forEach>
                 </c:if>
@@ -265,102 +264,8 @@
 
 
         </div>
-
-        <%--        <div style=" text-align: end; margin-left: 10px;">--%>
-        <%--            <form action="${pageContext.request.contextPath}/editTaskDetail">--%>
-        <%--                <a href="">--%>
-        <%--                    <button class="btn btn-primary">--%>
-        <%--                        Chỉnh sửa--%>
-        <%--                    </button>--%>
-        <%--                </a>--%>
-        <%--            </form>--%>
-        <%--        </div>--%>
-        <%--        <div class="task-cmt-details">--%>
-        <%--            <p style="font-size: 20px;">Bình luận</p>--%>
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <div style="display: flex;">--%>
-        <%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
-        <%--                    <div class="task-cmt-details-member">--%>
-        <%--                        <span class="name-avatar">Nam</span>--%>
-        <%--                        <span> 4 phút trước</span></br>--%>
-        <%--                        <span class="cmt-details-total">ok đấy</span>--%>
-        <%--                    </div>--%>
-        <%--                </div>--%>
-        <%--            </div><button style="margin: 5px;"><i class="fa-solid fa-thumbtack"></i></button><br>--%>
-
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <div style="display: flex;">--%>
-        <%--                    <img class="img_avatar" src="../image/a.jpg" />--%>
-
-        <%--                    <input style="width: 500px; margin-right: 10px;" type="text" placeholder="Viết bình luận...">--%>
-        <%--                    <button>Gửi</button>--%>
-        <%--                </div>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
     </div>
 </div>
-<%--<div class="popup hide__popup">--%>
-<%--    <form id="add-sub-task"--%>
-<%--          action="${pageContext.request.contextPath}/design/task/insert-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}"--%>
-<%--          method="post">--%>
-<%--        <div class="popup__content">--%>
-<%--            <div class="title">--%>
-<%--                <h4>--%>
-<%--                    <input class="info-text" type="text" placeholder="Thêm công việc phụ" name="sub-task-name">--%>
-<%--                    <div class="text-danger error"></div>--%>
-<%--                </h4>--%>
-<%--            </div>--%>
-<%--            <div class="info">--%>
-<%--                <table class="table table-borderless">--%>
-<%--                    <tr>--%>
-<%--                        <td>Nhiệm vụ:</td>--%>
-<%--                        <td>${sessionScope.loginUser.username}</td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>--%>
-<%--                        <td><input id="inputstartdate" name="startDate" class="info-text" type="date"></td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>--%>
-<%--                        <td><input id="inputenddate" class="info-text" type="date" name="endDate">--%>
-<%--                            <div class="text-danger error"></div>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Vị trí của yêu cầu<label class="text-danger">*</label>:</td>--%>
-<%--                        <td>--%>
-<%--                            <select class="btn btn-secondary" name="requirementID" id="">--%>
-<%--                                <c:forEach items="${requirements}" var="i">--%>
-<%--                                    <option value="${i.id}">${i.requirementName}</option>--%>
-<%--                                </c:forEach>--%>
-<%--                            </select>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                    <tr>--%>
-<%--                        <td>Số lượng file<label class="text-danger">*</label>:</td>--%>
-<%--                        <td><input class="info-text" type="number" name="numberOfFile">--%>
-<%--                            <div class="text-danger error"></div>--%>
-<%--                        </td>--%>
-<%--                    </tr>--%>
-<%--                </table>--%>
-<%--            </div>--%>
-<%--            <div class="button_click">--%>
-<%--                <div></div>--%>
-<%--                <div class="btn_cancel">--%>
-<%--                    <button type="button" class="btn btn-secondary close_popup">Hủy--%>
-<%--                        bỏ--%>
-<%--                    </button>--%>
-<%--                </div>--%>
-<%--                <div class="btn_ok">--%>
-<%--                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn btn-primary">Lưu--%>
-<%--                    </button>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </form>--%>
-
-<%--</div>--%>
-
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
