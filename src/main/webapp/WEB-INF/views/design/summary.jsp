@@ -101,15 +101,24 @@
                     </tr>
                     <tr>
                         <td class="col-6">Thời gian bắt đầu:</td>
-                        <td class="col-6">${project.startDate}</td>
+                        <td class="col-6">
+                            <fmt:formatDate value="${project.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                            ${crd}
+                        </td>
                     </tr>
                     <tr>
                         <td class="col-6">Thời gian dự kiến kết thúc:</td>
-                        <td class="col-6">${project.closureDate}</td>
+                        <td class="col-6">
+                            <fmt:formatDate value="${project.closureDate}" var="cld" pattern="dd/MM/yyyy"/>
+                            ${cld}
+                        </td>
                     </tr>
                     <tr>
                         <td class="col-6">Thời gian kết thúc:</td>
-                        <td class="col-6">${project.endDate}</td>
+                        <td class="col-6">
+                            <fmt:formatDate value="${project.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                            ${ed}
+                        </td>
                     </tr>
                     <tr>
                         <td class="col-6">Địa chỉ công trình:</td>
@@ -127,7 +136,8 @@
                                     <button type="button" style="border-radius: 5px"
                                             onclick="showImage(this.getAttribute('data-url'))"
                                             data-url="${image.fileUrl}">
-                                        <img src="<c:url value="${image.fileUrl}"/>" alt="" style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
+                                        <img src="<c:url value="${image.fileUrl}"/>" alt=""
+                                             style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
                                     </button>
                                 </c:forEach>
                             </div>
@@ -155,26 +165,16 @@
                                             ${history.revision_detail}
                                     </td>
                                     <td>
-                                            ${history.revision_date}
+                                        <fmt:formatDate value="${history.revision_date}" var="rvd" pattern="dd/MM/yyyy"/>
+                                            ${rvd}
                                     </td>
                                 </tr>
-
                             </c:forEach>
-
-
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-            <%--            <div style="display: flex; justify-content: space-between">--%>
-            <%--                <div></div>--%>
-            <%--                <a href="${pageContext.request.contextPath}/edit_summary?id=${project.id}">--%>
-            <%--                    <button class="btn" style="background-color: royalblue; color: white">--%>
-            <%--                        Chỉnh sửa--%>
-            <%--                    </button>--%>
-            <%--                </a>--%>
-            <%--            </div>--%>
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,12 +31,6 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <%--                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">--%>
-                <%--                    <select style="border-radius: 5px; padding: 6px;">--%>
-                <%--                        <option class="btn btn-secondary">Đang thực hiện</option>--%>
-                <%--                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>--%>
-                <%--                    </select>--%>
-                <%--                </div>--%>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/design/project/summary?id=${project.id}"><input
@@ -89,7 +84,8 @@
                     <td>Thời gian bắt đầu:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            ${tasks.startingDate}
+                            <fmt:formatDate value="${tasks.startingDate}" var="std" pattern="dd/MM/yyyy"/>
+                            ${std}
                         </div>
                     </td>
                 </tr>
@@ -97,7 +93,8 @@
                     <td>Thời gian dự kiến kết thúc:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            ${tasks.deadline}
+                            <fmt:formatDate value="${tasks.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                            ${dl}
                         </div>
                     </td>
                 </tr>
@@ -105,7 +102,8 @@
                     <td>Thời gian kết thúc:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            ${tasks.endedDate}
+                            <fmt:formatDate value="${tasks.endedDate}" var="ed" pattern="dd/MM/yyyy"/>
+                            ${ed}
                         </div>
                     </td>
                 </tr>

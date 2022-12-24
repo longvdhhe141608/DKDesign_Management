@@ -269,7 +269,8 @@
                             <c:forEach items="${task.listSubTask}" var="subTask">
                                 <c:if test="${subTask.taskStatus != 5}">
                                     <c:if test="${subTask.taskStatus != 1}">
-                                        <a href="${pageContext.request.contextPath}/subtask?taskId=${subTask.taskId}">${subTask.taskName}</a> <br>
+                                        <a href="${pageContext.request.contextPath}/subtask?taskId=${subTask.taskId}">${subTask.taskName}</a>
+                                        <br>
                                     </c:if>
                                 </c:if>
                             </c:forEach>
@@ -279,23 +280,25 @@
             </table>
         </div>
         <c:if test="${task.showFullIcon == true}">
-        <div style=" text-align: end; margin-left: 10px;">
-            <c:if test="${project.status == 1}">
-                <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
-                    <button class="btn btn-primary">
-                        Chỉnh sửa
-                    </button>
-                </a>
+            <div style=" text-align: end; margin-left: 10px;">
+                <c:if test="${project.status == 1}">
+                    <c:if test="${task.listSubTask.size() != 0}">
+                        <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
+                            <button class="btn btn-primary">
+                                Chỉnh sửa
+                            </button>
+                        </a>
+                    </c:if>
+                </c:if>
+            </div>
+            <c:if test="${project.status != 3}">
+                <div>
+                    <a href="task/delete?taskId=${task.taskId}">
+                        <button type="button" style="border-radius: 5px" class="btn btn-danger">Xóa</button>
+                    </a>
+                </div>
             </c:if>
-        </div>
-        <c:if test="${project.status != 3}">
-        <div>
-            <a href="task/delete?taskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-danger">Xóa</button></a>
-        </div>
         </c:if>
-
-        </c:if>
-
         <div class="task-cmt-details">
             <p style="font-size: 20px;">Bình luận</p>
             <div class="task-cmt-details-main">
