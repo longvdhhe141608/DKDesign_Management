@@ -187,12 +187,12 @@
                         <thead>
                         <tr>
                             <th scope="col" class="col-4">Tên công trình</th>
-                            <th scope="col" class="col-1">Loại công trình</th>
+                            <th scope="col" class="col-2">Loại công trình</th>
                             <th scope="col" class="col-1">Thời gian bắt đầu</th>
                             <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
                             <th scope="col" class="col-1">Thời gian kết thúc</th>
-                            <th scope="col" class="col-1">Tiến độ</th>
-                            <th scope="col" class="col-1">Trạng thái</th>
+
+                            <th scope="col" class="col-2">Trạng thái</th>
                             <th scope="col" class="col-1"></th>
                         </tr>
                         </thead>
@@ -241,13 +241,13 @@
                                             ${ed}
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="name-input">
-                                        <c:if test="${i.status == 3}">
-                                            100%
-                                        </c:if>
-                                    </div>
-                                </td>
+<%--                                <td>--%>
+<%--                                    <div class="name-input">--%>
+<%--                                        <c:if test="${i.status == 3}">--%>
+<%--                                            100%--%>
+<%--                                        </c:if>--%>
+<%--                                    </div>--%>
+<%--                                </td>--%>
                                 <td>
                                     <c:if test="${i.status == 2}">
                                         Đang bàn giao

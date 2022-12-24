@@ -66,12 +66,12 @@
         <div class="list-task-main">
             <div class="">
                 <div class="row list-task-detail">
-                    <div class="col-4 list-task-header">Công việc</div>
-                    <div class="col-1 list-task-header">Phân công</div>
-                    <div class="col-2 list-task-header">Thời gian bắt đầu</div>
-                    <div class="col-2 list-task-header">Thời gian dự kiến kết thúc</div>
-                    <div class="col-2 list-task-header">Thời gian kết thúc</div>
-                    <div class="col-1 list-task-header">Trạng thái</div>
+                    <div class="list-task-header" style="width: 35%">Công việc</div>
+                    <div class=" list-task-header" style="width: 10%">Phân công</div>
+                    <div class="list-task-header" style="width: 12%">Thời gian bắt đầu</div>
+                    <div class=" list-task-header" style="width: 12%">Thời gian dự kiến kết thúc</div>
+                    <div class="list-task-header" style="width: 12%">Thời gian kết thúc</div>
+                    <div class=" list-task-header" style="width: 19%">Trạng thái</div>
                 </div>
                 <c:forEach items="${taskDtoList}" var="i">
                     <details>
@@ -80,9 +80,9 @@
                         </summary>
                         <c:forEach items="${i.tasksList}" var="t">
                             <%--                            <c:if test="${ t.assignedTo == sessionScope.loginUser.id}">--%>
-                            <div class="row " style="background: rgba(0, 0, 0, 0.2); height: 40px">
-                                <div class="col-4 row-task"
-                                     style="display: flex;justify-content: space-between;border: 1px solid gray;">
+                            <div class="row " style="background: rgba(0, 0, 0, 0.2); ">
+                                <div class=" row-task"
+                                     style="display: flex;justify-content: space-between;border: 1px solid gray; width: 35%;padding: 10px">
                                     <div class="name-project">
                                         <button style="border: none; background-color: #cccccc; justify-self: start;"
                                                 onclick="myFunction('.sub-task-detail')">
@@ -97,30 +97,30 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-1" style="border: 1px solid gray;">${t.nameEmployee}</div>
-                                <div class="col-2" style="border: 1px solid gray;">
+                                <div class="" style="border: 1px solid gray;width: 10%;text-align: center">${t.nameEmployee}</div>
+                                <div class="" style="border: 1px solid gray;width: 12%;text-align: center">
                                     <fmt:formatDate value="${t.startingDate}" var="std" pattern="dd/MM/yyyy"/>
                                         ${std}
                                 </div>
-                                <div class="col-2" style="border: 1px solid gray;">
+                                <div class="" style="border: 1px solid gray;width: 12%;text-align: center">
                                     <fmt:formatDate value="${t.deadline}" var="std" pattern="dd/MM/yyyy"/>
                                         ${std}
                                 </div>
-                                <div class="col-2" style="border: 1px solid gray;">
+                                <div class="" style="border: 1px solid gray;width: 12%;text-align: center">
                                     <c:if test="${t.endedDate != null}">
                                         <fmt:formatDate value="${t.endedDate}" var="ed" pattern="dd/MM/yyyy"/>
                                         ${ed}
                                     </c:if>
                                 </div>
-                                <div class="col-1" style="border: 1px solid gray;"></div>
+                                <div class="" style="border: 1px solid gray;width: 19%;text-align: center"></div>
                             </div>
                             <%--                            </c:if>--%>
                             <c:forEach items="${i.subTasksList}" var="s">
                                 <c:if test="${s.taskID == t.id}">
                                     <c:if test="${s.status != 5 && s.status != 1}">
                                         <div id="" class="row sub-task-detail">
-                                            <div class="col-4 link-chi-tiet-cong-viec"
-                                                 style="border: 1px solid gray; display: flex; justify-content: space-between; ">
+                                            <div class=" link-chi-tiet-cong-viec"
+                                                 style="border: 1px solid gray; display: flex; justify-content: space-between;width: 35%;padding: 10px ">
                                                 <div class="name-project">
                                                         ${s.taskName}
                                                 </div>
@@ -131,24 +131,24 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="col-1" style="border: 1px solid gray;">${s.nameEmployee}</div>
-                                            <div class="col-2" style="border: 1px solid gray;">
+                                            <div class="" style="border: 1px solid gray;width: 10%;text-align: center">${s.nameEmployee}</div>
+                                            <div class="" style="border: 1px solid gray;width: 12%;text-align: center">
                                                 <fmt:formatDate value="${s.startingDate}" var="stds"
                                                                 pattern="dd/MM/yyyy"/>
                                                     ${stds}
                                             </div>
-                                            <div class="col-2" style="border: 1px solid gray;">
+                                            <div class="" style="border: 1px solid gray;width: 12%;text-align: center">
                                                 <fmt:formatDate value="${s.deadline}" var="dls" pattern="dd/MM/yyyy"/>
                                                     ${dls}
                                             </div>
-                                            <div class="col-2" style="border: 1px solid gray;">
+                                            <div class="" style="border: 1px solid gray;width: 12%;text-align: center">
                                                 <c:if test="${s.endedDate != null}">
                                                     <fmt:formatDate value="${s.endedDate}" var="eds"
                                                                     pattern="dd/MM/yyyy"/>
                                                     ${eds}
                                                 </c:if>
                                             </div>
-                                            <div class="col-1" style="border: 1px solid gray;">
+                                            <div class="" style="border: 1px solid gray;width: 19%;text-align: center">
                                                 <c:if test="${s.status == 2}">
                                                     Đang thực hiện
                                                 </c:if>
