@@ -45,8 +45,12 @@ public class EditSummaryController {
         ModelAndView view = new ModelAndView("leader/edit_summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
+
+        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSummary(id);
+
         request.setAttribute("project", project);
         view.addObject("listCategory", categoryService.getAllCategory());
+        view.addObject("listImage", imageAndFiles);
 
         return view;
     }
@@ -121,7 +125,7 @@ public class EditSummaryController {
         //add history
         //compare
 
-        List<String> listChange = compareProject(oldProject, project, checkUpLoadFile,messageUploadFile);
+        List<String> listChange = compareProject(oldProject, project, checkUpLoadFile, messageUploadFile);
         //check history exits
         String type = "project";
         Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(project.getId(), type, project.getId());
@@ -139,10 +143,20 @@ public class EditSummaryController {
             historyService.addHistory(revisionHistory);
         }
 
+        //delete image
+        String listID[] = request.getParameterValues("listFile");
+        if (!ObjectUtils.isEmpty(listID)) {
+            System.out.println("aaaaaaaaaa");
+            for (int i = 0; i < listID.length; i++) {
+                System.out.println(listID[i]);
+                imageAndFileService.updateStatus(project.getId(), Integer.parseInt(listID[i]));
+            }
+        }
+
         return view;
     }
 
-    private List<String> compareProject(Project oldProject, Project newProject, boolean checkUpLoadFile,String messageUploadFile) {
+    private List<String> compareProject(Project oldProject, Project newProject, boolean checkUpLoadFile, String messageUploadFile) {
         List<String> change = new ArrayList<>();
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -177,7 +191,7 @@ public class EditSummaryController {
                 }
             }
 
-            String message = "TypeId: " + oldType + " -> " + newType;
+            String message = "Loại công trình: " + oldType + " -> " + newType;
             change.add(message);
         }
         if (!newProject.getConstructionArea().equals(oldProject.getConstructionArea())) {
