@@ -33,13 +33,13 @@ class AccountServiceImplTest {
     @Test
     void GivenUsernameExactValue_getAccount_ResultAccountExact() {
         //input
-        String username = "abc-demo";
+        String username = "longvdh";
 
         //giả lập là funtion getAcount trả về 1 giá trị gì đó ở tần dao
         //mock accountDao.getAccount(username)
         Account accountMock = new Account();
         accountMock.setId(1);
-        accountMock.setUsername("abc-demo");
+        accountMock.setUsername("longvdh");
         when(accountDao.getAccount(anyString())).thenReturn(accountMock);
 
         //gọi đến funtion cần test
@@ -47,7 +47,7 @@ class AccountServiceImplTest {
 
 
         assertEquals(result.getId(), 1);
-        assertEquals(result.getUsername(), "abc-demo");
+        assertEquals(result.getUsername(), "longvdh");
 
     }
 
