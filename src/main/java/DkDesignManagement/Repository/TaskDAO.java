@@ -165,7 +165,7 @@ public class TaskDAO {
 
     public List<Task> getListSubTask(int taskId) {
 
-        String sql = "select * from task t where t.task_id = ? and t.status != 6";
+        String sql = "select * from task t where t.task_id = ? and t.status != 1 and t.status != 5 and t.status != 6";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), taskId);
 

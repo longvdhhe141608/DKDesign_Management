@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,21 +69,18 @@
                             </td>
 
                             <td>
-                                    ${i.startDate}
+                                <fmt:formatDate value="${i.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                                    ${std}
                             </td>
                             <td>
-                                    ${i.deadline}
+                                <fmt:formatDate value="${i.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                                    ${dl}
                             </td>
                             <td>
-                                    ${i.endDate}
+                                <fmt:formatDate value="${i.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                                    ${ed}
                             </td>
                             <td> ${i.projectName}</td>
-                                <%--                                <td>--%>
-                                <%--                                    <c:if test="${i.status == 1}">--%>
-                                <%--                                        <a href="${pageContext.request.contextPath}/design/sub-task/view-edit-sub-task?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}"><i--%>
-                                <%--                                                class="fa-regular fa-pen-to-square"></i></a>--%>
-                                <%--                                    </c:if>--%>
-                                <%--                                </td>--%>
                         </tr>
                     </c:forEach>
 
@@ -113,18 +111,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    const show = document.querySelector("#show-member");--%>
-
-<%--    const popup = document.querySelector(".popup");--%>
-<%--    let close = document.querySelector('.close_popup');--%>
-<%--    close.addEventListener('click', function () {--%>
-<%--        popup.classList.add("hide__popup");--%>
-<%--    });--%>
-
-<%--    show.addEventListener('click', function () {--%>
-<%--        popup.classList.remove("hide__popup");--%>
-<%--    })--%>
-<%--</script>--%>
 </body>
 </html>

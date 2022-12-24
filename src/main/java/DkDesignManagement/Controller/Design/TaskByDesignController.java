@@ -201,10 +201,8 @@ public class TaskByDesignController {
 
         if (keySubTask == 0) {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
-            view.addObject("mess", "Thêm công việc phụ không thành công.");
         } else {
             view = new ModelAndView("redirect:/design/task/view-detail-task");
-            view.addObject("mess", "Thêm công việc thành công.");
             //find leader
             Project project = projectService.getProject(projectID);
             int leader = project.getCreator();
