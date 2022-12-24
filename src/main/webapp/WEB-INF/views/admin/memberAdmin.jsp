@@ -89,11 +89,11 @@
                             <div class="col-4">
                             <form action="${pageContext.request.contextPath}/member/information" method="get">
                                 <input name="id" value="${member.memberId}" hidden>
-<%--                                <input type="submit" class="btn btn-primary chi-tiet" value="chi tiết">--%>
                                 <button class="chi-tiet" >Chi tiết</button>
                             </form>
                             </div>
                         </td>
+
                         <td>
                             <c:if test="${member.memberRole==2}">Trưởng nhóm</c:if>
                             <c:if test="${member.memberRole==3}">Thiết kế</c:if>

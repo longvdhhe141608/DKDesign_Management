@@ -1,9 +1,9 @@
 package DkDesignManagement.Service.Impl;
 
 import DkDesignManagement.Entity.Member;
+import DkDesignManagement.Model.MemberPageResponse;
 import DkDesignManagement.Repository.MemberDao;
 import DkDesignManagement.Service.MemberService;
-import DkDesignManagement.Model.MemberPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,10 +40,10 @@ public class MemberServiceImpl implements MemberService {
      * @return
      */
     @Override
-    public MemberPageResponse getMemberInProject(int indexPage,int projectId) {
+    public MemberPageResponse getMemberInProject(int indexPage, int projectId) {
         int pageNumber = 5;
         int count = memberDao.countMemberInProject(projectId);
-        List<Member> listMember = memberDao.getMemberInProject( pageNumber,  indexPage,  projectId);
+        List<Member> listMember = memberDao.getMemberInProject(pageNumber, indexPage, projectId);
         int endPage = count / pageNumber;
         if (count % pageNumber != 0) {
             endPage++;
@@ -105,8 +105,8 @@ public class MemberServiceImpl implements MemberService {
      * @param username
      */
     @Override
-    public void updateMemberStatus(int status, String username) {
-        memberDao.updateMemberStatus(status, username);
+    public int updateMemberStatus(int status, String username) {
+        return memberDao.updateMemberStatus(status, username);
     }
 
     /**
@@ -123,8 +123,8 @@ public class MemberServiceImpl implements MemberService {
      * @param username
      */
     @Override
-    public void updateMemberRole(int role, String username) {
-        memberDao.updateMemberRole(role, username);
+    public int updateMemberRole(int role, String username) {
+        return memberDao.updateMemberRole(role, username);
     }
 
     /**

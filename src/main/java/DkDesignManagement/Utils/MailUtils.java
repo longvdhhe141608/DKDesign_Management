@@ -20,38 +20,29 @@ public class MailUtils {
 
     private static final Logger logger = LoggerFactory.getLogger("Sent Email login log");
 
-    public String sendEmail(String email,String password,String name) {
+    public String sendForgotPassEmail(String email,String username, String password,String name) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
 
             MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 
             helper.setTo(email);
-            helper.setSubject("[DKDesignManagement] Quên mật khẩu.");
-            String mess = "Xin chào "+name+" \n , Bạn đã quên mất khẩu , mật khẩu mới của bạn là :"+password;
+            helper.setSubject("[DKDesignManagement] Quên mật khẩu");
+            String mess = "Xin chào " + name + ",<br>" +
+                    "Tài khoản dkmanagement của bạn đã được tạo lại<br>" +
+                    "Tài khoản: " + username + "<br>" +
+                    "Mật Khẩu mới: " + password + "<br>" +
+                    "Vui lòng đăng nhập và đổi lại mật khẩu để tiếp tục sử dụng tài khoản.<br>" +
+                    "Thân,<br>" +
+                    "Dkmangament Admin";
             helper.setText(mess, true);
-
             mailSender.send(message);
 
         } catch (Exception e) {
             logger.error(e.getMessage());
             return "fail";
         }
-        return "successes";
-    }
-
-    public String generatePassword() {
-        // StringBuilder capcha = new StringBuilder();
-        String capchaString = "";
-
-        Random R = new Random();
-        String s = "123456789qwertyuiopasdfghjklzxcvbnmQƯERTYUIOPASDFGHJKLZXCVBNM";
-        for (int i = 0; i < 6; i++) {
-            int a = R.nextInt(s.length());
-            capchaString += s.charAt(a);
-        }
-
-        return capchaString;
+        return "success";
     }
 
 

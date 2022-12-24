@@ -10,8 +10,6 @@ import java.util.List;
 
 @Service
 public interface AccountService {
-    @Autowired
-    AccountDao accountDao = new AccountDao();
 
     public Account getAccount(String username);
 
