@@ -142,11 +142,11 @@ public class MemberController {
         ModelAndView view = new ModelAndView("redirect:/project/member?id=" + id);
 
         int status = Integer.parseInt(request.getParameter("status"));
-        if(status==1){
-            status = 2;
-        }else{
-            status = 1;
-        }
+//        if(status==1){
+//            status = 2;
+//        }else{
+//            status = 1;
+//        }
         String username = request.getParameter("username");
 
         int memberId = memberService.getAccountIdByUsername(username);

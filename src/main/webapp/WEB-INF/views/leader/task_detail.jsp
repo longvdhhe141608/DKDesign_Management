@@ -121,7 +121,7 @@
                     <td>Thời gian kết thúc:</td>
                     <td>
                         <div class="name-input" style="width: 150px;">
-                            <fmt:formatDate value="${task.task.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                            <fmt:formatDate value="${task.endDate}" var="ed" pattern="dd/MM/yyyy"/>
                             ${ed}
                         </div>
                     </td>
@@ -282,7 +282,7 @@
         <c:if test="${task.showFullIcon == true}">
             <div style=" text-align: end; margin-left: 10px;">
                 <c:if test="${project.status == 1}">
-                    <c:if test="${task.listSubTask.size() != 0}">
+                    <c:if test="${task.listSubTask.size() == 0}">
                         <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
                             <button class="btn btn-primary">
                                 Chỉnh sửa
