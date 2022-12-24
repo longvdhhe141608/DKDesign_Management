@@ -208,7 +208,7 @@
                             </button>
                             <div id="myModal-add" class="modal">
                                 <!-- Modal content -->
-                                <div class="modal-content" style=" width: 50%;height: 100%;">
+                                <div class="modal-content" style="height: 70%;width: 70%;margin: 100px;overflow: scroll">
                                     <span id="close1" class="close">&times;</span>
                                     <div class="project-add-task">
                                         <form id="add-sub-task"
