@@ -26,10 +26,7 @@
 <jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
     <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
-
-
     <div class="summary" style="margin-top: 20px;">
-
         <div class="title">
             <h4>Công việc cá nhân</h4>
         </div>
@@ -83,7 +80,6 @@
                             <td> ${i.projectName}</td>
                         </tr>
                     </c:forEach>
-
                     </tbody>
                 </table>
             </div>
