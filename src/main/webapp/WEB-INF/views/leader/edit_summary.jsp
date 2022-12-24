@@ -98,7 +98,7 @@
                         value="Thống kê"></a>
             </div>
         </div>
-        <form action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
+        <form id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
             <div class="summary-main">
 
                 <div class="main-Quickview">
