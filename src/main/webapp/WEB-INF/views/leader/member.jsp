@@ -28,7 +28,8 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status" method="post">
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
                     <input type="text" name="projectId" value="${project.id}" hidden="">
                     <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
                         <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
@@ -43,7 +44,7 @@
                                 <button type="submit" class="btn btn-primary">Lưu</button>
                             </c:if>
                             <c:if test="${project.status == 3 }">
-                                <button type="submit" class="btn btn-primary" disabled >Lưu</button>
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
                             </c:if>
                         </c:if>
                     </div>
@@ -93,11 +94,11 @@
             <div class="content-function-member">
                 <%--Bat dau them thanh vien--%>
                 <div>
-                    <div >
+                    <div>
                         <c:if test="${project.status == 1}">
-                        <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
-                                class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên
-                        </button>
+                            <button onclick="modallistproject('#myBtn','#myModal','#close')" id="myBtn"
+                                    class="btn btn-primary"><i class="fa-solid fa-plus"></i> Thêm thành viên
+                            </button>
                             <p class="text-danger">${error}</p>
                         </c:if>
                         <div id="myModal" class="modal">
@@ -111,9 +112,11 @@
                                                 <tr>
                                                     <td>Tên thành viên:</td>
                                                     <td>
-                                                        <select name="accountId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
+                                                        <select name="accountId"
+                                                                class="btn btn-secondary dropdown-toggle"
+                                                                style="padding-bottom: 10px">
                                                             <c:forEach items="${employeeList}" var="employee">
-                                                                <option value="${employee.id_acc}"  > ${employee.name}</option>
+                                                                <option value="${employee.id_acc}"> ${employee.name}</option>
                                                             </c:forEach>
                                                         </select>
                                                         <input name="id" value="${project.id}" type="text" hidden>
@@ -124,7 +127,8 @@
                                         <div class="button_click" style="display: flex;justify-content: end">
 
                                             <div class="btn_cancel">
-                                                <button style="margin-right: 5px" type="button" class="btn btn-secondary close_popup">Hủy
+                                                <button style="margin-right: 5px" type="button"
+                                                        class="btn btn-secondary close_popup">Hủy
                                                     bỏ
                                                 </button>
                                             </div>
@@ -200,19 +204,22 @@
                             <td>${member.memberAddress}</td>
                             <td style="display: flex">
                                 <c:if test="${project.status != 3}">
-                                <form action="changeMemberStatus">
-                                    <input value="${member.memberStatus}" name="status" hidden>
-                                    <input value="${member.memberCode}" name="username" hidden>
-                                    <input value="${projectId}" name="id" hidden>
-                                    <c:if test="${member.memberRole==3}">
-                                    <c:if test="${member.memberStatus==2}">
-                                        <button onclick="this.form.submit()" class="btn btn-success">Mở</button>
-                                    </c:if>
-                                    <c:if test="${member.memberStatus==1}">
-                                        <button onclick="this.form.submit()" class="btn btn-danger">Chặn</button>
-                                    </c:if>
-                                    </c:if>
-                                </form>
+                                    <form action="changeMemberStatus">
+
+                                        <input value="${member.memberCode}" name="username" hidden>
+                                        <input value="${projectId}" name="id" hidden>
+                                        <c:if test="${member.memberRole==3}">
+                                            <c:if test="${member.memberStatus==2}">
+                                                <input value="1" name="status" hidden>
+                                                <button type="submit" class="btn btn-danger">Đang bị chặn</button>
+                                            </c:if>
+                                            <c:if test="${member.memberStatus==1}">
+                                                <input value="2" name="status" hidden>
+                                                <button type="submit" class="btn btn-success">Đang hoạt động
+                                                </button>
+                                            </c:if>
+                                        </c:if>
+                                    </form>
                                 </c:if>
                             </td>
                         </tr>
@@ -228,7 +235,8 @@
                     <ul class="pagination">
                         <c:if test="${page != 1}">
                             <li class="page-item">
-                                <a class="page-link" href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${page-1}"
+                                <a class="page-link"
+                                   href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${page-1}"
                                    aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
@@ -236,12 +244,14 @@
                         </c:if>
                         <c:forEach begin="1" end="${endPage}" var="i">
                             <li class="page-item"><a class="page-link"
-                                                     href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${i}">${i}</a></li>
+                                                     href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${i}">${i}</a>
+                            </li>
                         </c:forEach>
 
                         <c:if test="${page != endPage}">
                             <li class="page-item">
-                                <a class="page-link" href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${page+1}"
+                                <a class="page-link"
+                                   href="${pageContext.request.contextPath}/project/member?id=${projectId}&page=${page+1}"
                                    aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
@@ -256,44 +266,44 @@
     </div>
 
     <%--Pop-up add member--%>
-<%--    <div class="popup hide__popup">--%>
-<%--        <div class="popup__content">--%>
-<%--            <div class="title">--%>
-<%--                <h4>Thêm thành viên</h4>--%>
-<%--            </div>--%>
-<%--            <form action="addMember" method="get">--%>
-<%--                <input name="id" value="${project.id}" type="text" hidden>--%>
-<%--                <div class="info">--%>
-<%--                    <table class="table table-borderless">--%>
-<%--                        <tr>--%>
-<%--                            <td>Tên thành viên:</td>--%>
-<%--                            <td>--%>
-<%--                                <select name="accountId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">--%>
-<%--                                    <c:forEach items="${employeeList}" var="employee">--%>
-<%--                                        <option value="${employee.id_acc}"  > ${employee.name}</option>--%>
-<%--                                    </c:forEach>--%>
-<%--                                </select>--%>
+    <%--    <div class="popup hide__popup">--%>
+    <%--        <div class="popup__content">--%>
+    <%--            <div class="title">--%>
+    <%--                <h4>Thêm thành viên</h4>--%>
+    <%--            </div>--%>
+    <%--            <form action="addMember" method="get">--%>
+    <%--                <input name="id" value="${project.id}" type="text" hidden>--%>
+    <%--                <div class="info">--%>
+    <%--                    <table class="table table-borderless">--%>
+    <%--                        <tr>--%>
+    <%--                            <td>Tên thành viên:</td>--%>
+    <%--                            <td>--%>
+    <%--                                <select name="accountId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">--%>
+    <%--                                    <c:forEach items="${employeeList}" var="employee">--%>
+    <%--                                        <option value="${employee.id_acc}"  > ${employee.name}</option>--%>
+    <%--                                    </c:forEach>--%>
+    <%--                                </select>--%>
 
 
-<%--                            </td>--%>
-<%--                        </tr>--%>
-<%--                    </table>--%>
-<%--                </div>--%>
-<%--                <div class="button_click">--%>
+    <%--                            </td>--%>
+    <%--                        </tr>--%>
+    <%--                    </table>--%>
+    <%--                </div>--%>
+    <%--                <div class="button_click">--%>
 
-<%--                    <div class="btn_cancel">--%>
-<%--                        <button type="button" class="btn btn-secondary close_popup">Hủy--%>
-<%--                            bỏ--%>
-<%--                        </button>--%>
-<%--                    </div>--%>
-<%--                    <div class="btn_ok">--%>
-<%--                        <input type="submit" class="btn btn-primary" value="Lưu">--%>
-<%--                    </div>--%>
+    <%--                    <div class="btn_cancel">--%>
+    <%--                        <button type="button" class="btn btn-secondary close_popup">Hủy--%>
+    <%--                            bỏ--%>
+    <%--                        </button>--%>
+    <%--                    </div>--%>
+    <%--                    <div class="btn_ok">--%>
+    <%--                        <input type="submit" class="btn btn-primary" value="Lưu">--%>
+    <%--                    </div>--%>
 
-<%--                </div>--%>
-<%--            </form>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <%--                </div>--%>
+    <%--            </form>--%>
+    <%--        </div>--%>
+    <%--    </div>--%>
     <%--end Pop-up add member--%>
 
 
@@ -325,11 +335,12 @@
         span.addEventListener("click", function () {
             modal.style.display = "none";
         });
-        let  close = document.querySelector('.close_popup');
-        close.addEventListener('click',function (){
+        let close = document.querySelector('.close_popup');
+        close.addEventListener('click', function () {
             modal.style.display = "none";
         });
     }
+
     // const show = document.querySelector("#show-member");
     //
     // const popup = document.querySelector(".popup");
