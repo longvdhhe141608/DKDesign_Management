@@ -155,6 +155,9 @@
                         <c:if test="${task.taskStatus == 6}">
                             Đã xóa
                         </c:if>
+                        <c:if test="${task.taskStatus == 7}">
+                            Đã Hủy
+                        </c:if>
                     </td>
                 </tr>
                 <tr>
