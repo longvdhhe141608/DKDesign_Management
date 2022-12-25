@@ -145,6 +145,14 @@ function onUnavailable() {
     })
 }
 
+function onNoDelete() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Không thể chỉnh sửa!',
+        text: 'Công việc này đã có công việc phụ đang trong trạng thái hoạt động',
+    })
+}
+
 function showPopUpSection(id, pid, name) {
     let html = "<form id=\"add-project1\" action=\"edit_section\" method=\"post\">\n" +
         "                                            <input type=\"text\" name=\"sectionId\" value=\"" + id + "\" hidden>\n" +
