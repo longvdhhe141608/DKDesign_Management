@@ -165,6 +165,8 @@ public class MemberController {
             }
 
             //TODO : send notification
+            addNotification(id,accountId);
+
         } else {
             //case : step 1 : khóa member
             //step 2 : check status task or subtask , status = 7
@@ -177,6 +179,22 @@ public class MemberController {
         memberService.updateStatusMemberInProject(id, accountId, status);
 
         return view;
+    }
+
+    private void addNotification(int projectId, int accountId) {
+        String url = HOST + "/" + PROJECT_NAME + "/notification";
+
+        Project project = projectService.getProject(projectId);
+
+        String message = "Bạn đã bị xóa ra khỏi dự án "+project.getProjectName();
+
+        //check notification exits
+        NotificationDto notificationDto = notificationService.getNotification(accountId, message, url);
+        if (ObjectUtils.isEmpty(notificationDto)) {
+            Notification notification = new Notification(-1, new java.util.Date()
+                    , message, accountId, projectId, url);
+            notificationService.addNotification(notification);
+        }
     }
 
     @RequestMapping(value = "/delete-member", method = RequestMethod.GET)
