@@ -19,6 +19,7 @@ public class MapperImageAndFile implements RowMapper<ImageAndFile> {
                 .poster(rs.getInt("poster"))
                 .fileUrl(rs.getString("file_url"))
                 .posterDate(rs.getDate("poster_date"))
+                .status(rs.getInt("status"))
                 .build();
         return file;
     }

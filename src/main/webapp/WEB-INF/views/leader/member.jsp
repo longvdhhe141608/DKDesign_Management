@@ -203,7 +203,7 @@
                             <td>${member.memberMail}</td>
                             <td>${member.memberAddress}</td>
                             <td style="display: flex">
-                                <c:if test="${project.status != 3}">
+                                <c:if test="${project.status == 1}">
                                     <form action="changeMemberStatus">
 
                                         <input value="${member.memberCode}" name="username" hidden>

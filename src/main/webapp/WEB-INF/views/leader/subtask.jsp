@@ -239,7 +239,7 @@
                         </td>
                     </tr>
                 </table>
-                <c:if test="${project.status != 3}">
+                <c:if test="${project.status == 1}">
                 <div>
                     <a href="sub-task/delete?subTaskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-danger">Xóa</button></a>
                 </div>
