@@ -51,7 +51,7 @@ public class AccountDao {
     public List<Account> getAllAccountByProject(int projectId) {
         String sql = "select a.* from project_participation pp ,accounts a \n" +
                 "where pp.account_id  = a.id \n" +
-                "and pp.project_id = ? ";
+                "and pp.project_id = ? and pp.status= 1";
         List<Account> accountList;
         accountList = jdbcTemplate.query(sql, new MapperAccount(), projectId);
         return accountList;

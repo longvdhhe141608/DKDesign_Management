@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -129,13 +130,17 @@
                 </tr>
                 <tr>
                     <td>Thời gian bắt đầu:</td>
-                    <fmt:formatDate value="${subTask.startingDate}" var="std" pattern="dd/MM/yyyy"/>
-                    ${std}
+                    <td>
+                        <fmt:formatDate value="${subTask.startingDate}" var="std" pattern="dd/MM/yyyy"/>
+                        ${std}
+                    </td>
                 </tr>
                 <tr>
                     <td>Thời gian dự kiến kết thúc:</td>
-                    <fmt:formatDate value="${subTask.deadline}" var="dl" pattern="dd/MM/yyyy"/>
-                    ${dl}
+                    <td>
+                        <fmt:formatDate value="${subTask.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                        ${dl}
+                    </td>
                 </tr>
                 <tr>
                     <td>Thời gian kết thúc:</td>
@@ -162,10 +167,28 @@
                     <td>Ghi chú:</td>
                     <td>${subTask.description}</td>
                 </tr>
-                <tr>
-                    <td>Tải file lên:</td>
-                    <td>
-                        <c:if test="${progressPercent != 100 && subTask.status == 2 && subTask.assignedTo == loginUser.id}">
+                <c:if test="${progressPercent == 100 && subTask.status == 3 || subTask.status == 4}">
+                    <tr>
+                        <td>Hiển thị file:</td>
+                        <td>
+                            <div class="container">
+                                <c:forEach items="${listImage}" var="image">
+                                    <button type="button" style="border-radius: 5px"
+                                            onclick="showImage(this.getAttribute('data-url'))"
+                                            data-url="${image.fileUrl}">
+                                        <img src="<c:url value="${image.fileUrl}"/>" alt=""
+                                             style="max-height: 100px; min-height: 100px;
+                                                  max-width: 100px; min-width: 100px; object-fit: cover;">
+                                    </button>
+                                </c:forEach>
+                            </div>
+                        </td>
+                    </tr>
+                </c:if>
+                <c:if test="${progressPercent < 100 && subTask.status == 2 && subTask.assignedTo == loginUser.id}">
+                    <tr>
+                        <td>Tải file lên:</td>
+                        <td>
                             <form action="${pageContext.request.contextPath}/design/sub-task/update-file-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
                                   class="update_file" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
@@ -177,100 +200,54 @@
                                     <input class="btn btn-primary" type="submit" value="Cập nhật file">
                                 </div>
                             </form>
-                        </c:if>
-                        <div class="container js-file-list">
-                            <c:if test="${status == 2}">
-                                <div class="alert alert-danger" role="alert">
-                                    <h2 style="color:#664d03;font-size: 20px; margin: 0; padding: 0;">${mess}</h2>
-                                </div>
-                            </c:if>
-                            <c:if test="${status == 1}">
-                                <div class="alert alert-success" role="alert">
-                                    <h2 style="color:#0f5132;font-size: 18px; margin: 0; padding: 0;">${mess}</h2>
-                                </div>
-                            </c:if>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Hiển thị file</td>
-                    <td>
-                        <div class="container js-file-list">
-                            <c:forEach items="${listImages}" var="image">
-                                <button type="button" style="border-radius: 5px"
-                                        onclick="showImage(this.getAttribute('data-url'))" data-url="${image.fileUrl}">
-                                    <img src="<c:url value="${image.fileUrl}"/>" alt=""
-                                         style="max-height: 150px; min-height: 150px; max-width: 150px; min-width: 150px">
-                                </button>
-                            </c:forEach>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <c:if test="${listImages.size() > 0}">
-                            <div>
-                                <button style="margin-left: 5px" ;
-                                        onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
-                                        id="myBtn-add-project"
-                                        class="btn btn-primary"> Xóa file
-                                </button>
-                                <div id="myModal-add" class="modal">
-                                    <!-- Modal content -->
-                                    <div class="modal-content" style=" width: 50%;height: 100%;">
-                                        <span id="close1" class="close">&times;</span>
-                                        <div class="project-add-task">
-                                            <form id="add-sub-task"
-                                                  action="${pageContext.request.contextPath}/design/sub-task/delete-file"
-                                                  method="get">
-                                                <input type="text" value="${project.id}" hidden name="projectId">
-                                                <input type="text" value="${subTask.id}" hidden name="sub-task-id">
-                                                <input type="text" value="${subTask.taskID}" hidden name="task-id">
-                                                <input type="text" value="${subTask.sectionID}" hidden
-                                                       name="section-id">
-                                                <div class="popup__content">
-                                                    <div class="title">
-                                                        <h4>
-                                                            <div>Danh sách file</div>
-                                                            <div class="text-danger error"></div>
-                                                        </h4>
-                                                    </div>
-                                                    <div class="info">
-                                                        <table class="table table-borderless">
-                                                            <c:forEach items="${listImages}" var="image">
-                                                                <tr>
-                                                                    <td><input type="checkbox" value="${image.id}"
-                                                                               name="listFile"></td>
-                                                                    <td>
-                                                                        <img style="width: 100px; height: 100px;"
-                                                                             src="${image.fileUrl}" alt="">
-                                                                    </td>
-                                                                </tr>
-                                                            </c:forEach>
-                                                        </table>
-                                                    </div>
-                                                    <div class="" style="display: flex;justify-content: end">
-                                                        <div></div>
-                                                        <div class="btn_cancel" style="margin-right: 5px">
-                                                            <button type="button" class="btn btn-secondary close_popup">
-                                                                Hủy bỏ
-                                                            </button>
-                                                        </div>
-                                                        <div class="btn_ok">
-                                                            <button type="submit" class="btn btn-primary">Xóa File
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
+                            <div class="container js-file-list">
+                                <c:if test="${status == 2}">
+                                    <div class="alert alert-danger" role="alert">
+                                        <h2 style="color:#664d03;font-size: 20px; margin: 0; padding: 0;">${mess}</h2>
                                     </div>
-                                </div>
+                                </c:if>
+                                <c:if test="${status == 1}">
+                                    <div class="alert alert-success" role="alert">
+                                        <h2 style="color:#0f5132;font-size: 18px; margin: 0; padding: 0;">${mess}</h2>
+                                    </div>
+                                </c:if>
                             </div>
-                        </c:if>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
+                </c:if>
+                <c:if test="${progressPercent <= 100 && subTask.status == 2 && subTask.assignedTo == loginUser.id && progressPercent > 0}">
+                    <tr>
+                        <td>Hiển thị file</td>
+                        <td>
+                            <form id="add-sub-task"
+                                  action="${pageContext.request.contextPath}/design/sub-task/delete-file"
+                                  method="get">
+                                <input type="text" value="${project.id}" hidden name="projectId">
+                                <input type="text" value="${subTask.id}" hidden name="sub-task-id">
+                                <input type="text" value="${subTask.taskID}" hidden name="task-id">
+                                <input type="text" value="${subTask.sectionID}" hidden
+                                       name="section-id">
+                                <div class="container">
+                                    <c:forEach items="${listImages}" var="image">
+                                        <input type="checkbox" value="${image.id}"
+                                               name="listFile">
+                                        <button type="button" style="border-radius: 5px"
+                                                onclick="showImage(this.getAttribute('data-url'))"
+                                                data-url="${image.fileUrl}">
+                                            <img src="<c:url value="${image.fileUrl}"/>" alt=""
+                                                 style="max-height: 100px; min-height: 100px;
+                                                  max-width: 100px; min-width: 100px; object-fit: cover;">
+                                        </button>
+                                    </c:forEach>
+                                </div>
+                                <div class="btn_ok" style="padding-top: 15px;">
+                                    <button type="submit" class="btn btn-primary">Xóa File
+                                    </button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                </c:if>
             </table>
             <div style="display: flex; justify-content: space-between;">
                 <c:if test="${progressPercent == 100 && subTask.status == 2}">
@@ -352,9 +329,9 @@
                 fileReader.onload = (function (fileParams) {
                     return function (event) {
                         var str = '<div class="col-md-2">' +
-                            '<span id="upload" class="js-file-name"></span><br>' +
+                            // '<span id="upload" class="js-file-name"></span><br>' +
 
-                            '<span class="js-file-size"></span> (Byte)<br>' +
+                            // '<span class="js-file-size"></span> (Byte)<br>' +
                             '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
                             '</div>';
                         $('.js-file-list').append(str);

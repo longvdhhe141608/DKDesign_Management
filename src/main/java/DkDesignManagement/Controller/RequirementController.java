@@ -231,12 +231,31 @@ public class RequirementController {
             revisionNoNew = listHistory.size() + 1;
         }
 
-        String revisionDetail = "Vị trí : " + oldName + " -> " + requirement.getRequirementName() + " <br> "
-                + " Yêu cầu : " + oldDetail + " -> " + requirement.getRequirementDetail();
-        RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type, requirement.getProjectId());
-        historyService.addHistory(revisionHistory);
+        String revisionDetail = "";
+        List<String> listChange = compareProject(requirement,oldName, oldDetail);
+
+        if (!ObjectUtils.isEmpty(listChange)) {
+            for (String change : listChange) {
+                revisionDetail += change + " <br> ";
+            }
+            RevisionHistory revisionHistory = new RevisionHistory(-1, requirement.getId(), revisionNoNew, new Date(), revisionDetail, type, requirement.getProjectId());
+            historyService.addHistory(revisionHistory);
+        }
 
         return view;
+    }
+
+    private List<String> compareProject(Requirement newRequirement, String oldName ,String oldDetail) {
+        List<String> change = new ArrayList<>();
+        if (!oldName.trim().equals(newRequirement.getRequirementName().trim())) {
+            String message = "Vị trí : " + oldName + " -> " + newRequirement.getRequirementName() ;
+            change.add(message);
+        }
+        if (!oldDetail.trim().equals(newRequirement.getRequirementDetail().trim())) {
+            String message = "Yêu cầu : " + oldDetail + " -> " + newRequirement.getRequirementDetail() ;
+            change.add(message);
+        }
+        return change;
     }
 
 }

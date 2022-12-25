@@ -187,7 +187,7 @@
                                 <div>
                                     <span><i class="fa-solid fa-caret-down"></i> ${bigTask.section_name}</span>
                                 </div>
-                                <c:if test="${project.status != 3}">
+                                <c:if test="${project.status == 1}">
                                     <div>
                                         <button onclick="showPopUpSection(this.getAttribute('data-id'), this.getAttribute('data-pid'), this.getAttribute('data-name'))"
                                                 id="myBtn-section" data-id="${bigTask.id}"
@@ -245,8 +245,8 @@
                                 <div class="col-2" style="border: 1px solid gray;">${task.deadline}</div>
                                 <div class="col-2" style="border: 1px solid gray;">${task.endDate}</div>
                                 <div class="col-1" style="border: 1px solid gray;">
+                                    <c:if test="${project.status == 1}">
                                     <div style="display: flex;">
-                                        <c:if test="${project.status != 3 && task.showFullIcon ==true}">
                                             <c:if test="${task.listSubTask.size() == 0}">
                                                 <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
                                                     <button><i class="fa-regular fa-pen-to-square"></i></button>
@@ -256,12 +256,19 @@
                                                 <button onclick="onUnavailable()"><i
                                                         class="fa-regular fa-pen-to-square"></i></button>
                                             </c:if>
+                                        <c:if test="${task.showFullIcon ==true}">
                                             <button onclick="onClickDeleteTask(this.getAttribute('data-task-id'))"
                                                     data-task-id="${task.taskId}">
                                                 <i class="fa-regular fa-trash-can"></i>
                                             </button>
                                         </c:if>
+                                        <c:if test="${task.showFullIcon ==false}">
+                                            <button onclick="onNoDelete()" >
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </c:if>
                                     </div>
+                                    </c:if>
                                 </div>
                             </div>
                             <!------task item------>
@@ -287,7 +294,7 @@
                                         <div class="col-2" style="border: 1px solid gray;">${subTask.endDate}</div>
                                         <div class="col-1" style="border: 1px solid gray;">
                                                 <div style="display: flex; ">
-                                                    <c:if test="${project.status != 3}">
+                                                    <c:if test="${project.status == 1}">
                                                     <button>
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </button>

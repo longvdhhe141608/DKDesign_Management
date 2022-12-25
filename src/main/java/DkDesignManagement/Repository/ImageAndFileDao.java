@@ -55,7 +55,7 @@ public class ImageAndFileDao {
     }
 
     public List<ImageAndFile> getAllImageSummary(int pid) {
-        String sql = "SELECT * FROM dkmanagement.image_and_file i where i.project_id = ? and i.task_id is null and status = 1;";
+        String sql = "SELECT * FROM dkmanagement.image_and_file i where i.project_id = ? and i.task_id is null and status= 1";
         List<ImageAndFile> image = new ArrayList<>();
         try {
             image = jdbcTemplate.query(sql, new MapperImageAndFile(), pid);

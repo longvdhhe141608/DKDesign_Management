@@ -325,7 +325,6 @@ public class SubTaskByDesignController {
                 + projectId + "&section-id=" + sectionID + "&task-id=" + taskID + "&sub-task-id=" + subTaskID);
 
         String listID[] = request.getParameterValues("listFile");
-        System.out.println("aaaaaaaaaa");
         for (int i = 0; i < listID.length; i++) {
             System.out.println(listID[i]);
             imageAndFileService.updateStatus(projectId, Integer.parseInt(listID[i]));

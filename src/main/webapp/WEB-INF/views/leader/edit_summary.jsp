@@ -19,6 +19,16 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <script src="<c:url value="/resources/assets/js/summary-edit.js"/>"></script>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet"/>
+    <style>
+        .custom_image {
+            width: 800px;
+            height: 550px;
+            background-size: cover;
+            object-fit: contain;
+        }
+    </style>
 </head>
 <body>
 <jsp:include page="header.jsp"/>
@@ -88,7 +98,7 @@
                         value="Thống kê"></a>
             </div>
         </div>
-        <form action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
+        <form id="addProject" action="edit_summary/edit_project" method="post" enctype="multipart/form-data">
             <div class="summary-main">
 
                 <div class="main-Quickview">
@@ -188,6 +198,24 @@
                             </td>
                         </tr>
                         <tr>
+                            <td>Hiển thị file:</td>
+                            <td>
+                                <div class="container">
+                                    <c:forEach items="${listImage}" var="image">
+                                        <input type="checkbox" value="${image.id}"
+                                               name="listFile">
+                                        <button type="button" style="border-radius: 5px"
+                                                onclick="showImage(this.getAttribute('data-url'))"
+                                                data-url="${image.fileUrl}">
+                                            <img src="<c:url value="${image.fileUrl}"/>" alt=""
+                                                 style="max-height: 100px; min-height: 100px;
+                                                  max-width: 100px; min-width: 100px; object-fit: cover;">
+                                        </button>
+                                    </c:forEach>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
                             <td>Tải file lên:</td>
                             <td>
                                 <form>
@@ -199,6 +227,7 @@
                                 <div class="container js-file-list"></div>
                             </td>
                         </tr>
+
                     </table>
                 </div>
                 <div class="btn-update-summary">
@@ -213,13 +242,18 @@
             </div>
         </form>
     </div>
-
+    <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.15/dist/sweetalert2.all.min.js"></script>
+    <script src="sweetalert2.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script>
         // function modallistproject(idbtn, idmodal, closemain) {
         //     // Get the modal
@@ -254,10 +288,10 @@
                     fileReader.onload = (function (fileParams) {
                         return function (event) {
                             var str = '<div class="col-md-2">' +
-                                '<span id="upload" class="js-file-name"></span><br>' +
+                                // '<span id="upload" class="js-file-name"></span><br>' +
 
-                                '<span class="js-file-size"></span> (Byte)<br>' +
-                                '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%">' +
+                                // '<span class="js-file-size"></span> (Byte)<br>' +
+                                '<img class="img-thumbnail js-file-image" style="width: 100%; height: 100%; object-fit: cover;">' +
                                 '</div>';
                             $('.js-file-list').append(str);
 

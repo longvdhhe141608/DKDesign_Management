@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,10 +26,7 @@
 <jsp:include page="/WEB-INF/views/design/header.jsp"/>
 <div class="body_page">
     <jsp:include page="/WEB-INF/views/design/nav_left.jsp"/>
-
-
     <div class="summary" style="margin-top: 20px;">
-
         <div class="title">
             <h4>Công việc cá nhân</h4>
         </div>
@@ -39,10 +37,10 @@
                     <tr>
                         <th scope="col" class="col-4">Công việc phụ</th>
 
-                        <th scope="col" class="col-2">Thời gian bắt đầu</th>
-                        <th scope="col" class="col-2">Thời gian dự kiến kết thúc</th>
-                        <th scope="col" class="col-2">Thời gian kết thúc</th>
-                        <th scope="col" class="col-2">Tên công trình</th>
+                        <th scope="col" class="col-1">Thời gian bắt đầu</th>
+                        <th scope="col" class="col-1">Thời gian dự kiến kết thúc</th>
+                        <th scope="col" class="col-1">Thời gian kết thúc</th>
+                        <th scope="col" class="col-3">Tên công trình</th>
 
                     </tr>
                     </thead>
@@ -68,24 +66,20 @@
                             </td>
 
                             <td>
-                                    ${i.startDate}
+                                <fmt:formatDate value="${i.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                                    ${std}
                             </td>
                             <td>
-                                    ${i.deadline}
+                                <fmt:formatDate value="${i.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                                    ${dl}
                             </td>
                             <td>
-                                    ${i.endDate}
+                                <fmt:formatDate value="${i.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                                    ${ed}
                             </td>
                             <td> ${i.projectName}</td>
-                                <%--                                <td>--%>
-                                <%--                                    <c:if test="${i.status == 1}">--%>
-                                <%--                                        <a href="${pageContext.request.contextPath}/design/sub-task/view-edit-sub-task?project-id=${i.projectID}&section-id=${i.sectionID}&task-id=${i.taskID}&sub-task-id=${i.subTaskID}"><i--%>
-                                <%--                                                class="fa-regular fa-pen-to-square"></i></a>--%>
-                                <%--                                    </c:if>--%>
-                                <%--                                </td>--%>
                         </tr>
                     </c:forEach>
-
                     </tbody>
                 </table>
             </div>
@@ -113,18 +107,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    const show = document.querySelector("#show-member");--%>
-
-<%--    const popup = document.querySelector(".popup");--%>
-<%--    let close = document.querySelector('.close_popup');--%>
-<%--    close.addEventListener('click', function () {--%>
-<%--        popup.classList.add("hide__popup");--%>
-<%--    });--%>
-
-<%--    show.addEventListener('click', function () {--%>
-<%--        popup.classList.remove("hide__popup");--%>
-<%--    })--%>
-<%--</script>--%>
 </body>
 </html>

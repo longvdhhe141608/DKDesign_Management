@@ -144,40 +144,6 @@
                 </table>
             </form>
         </div>
-        <%--        <div style=" text-align: end; margin-left: 10px;">--%>
-        <%--            <form action="${pageContext.request.contextPath}/editTaskDetail">--%>
-        <%--                <a href="">--%>
-        <%--                    <button class="btn btn-primary">--%>
-        <%--                        Chỉnh sửa--%>
-        <%--                    </button>--%>
-        <%--                </a>--%>
-        <%--            </form>--%>
-        <%--        </div>--%>
-        <%--        <div class="task-cmt-details">--%>
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <a class="name-avatar">Nam</a>--%>
-        <%--                <a> 4 phút trước</a></br>--%>
-        <%--                <p>ok đấy</p>--%>
-        <%--            </div>--%>
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <a class="name-avatar">Nam</a>--%>
-        <%--                <a> 4 phút trước</a></br>--%>
-        <%--                <p>ok đấy</p>--%>
-        <%--            </div>--%>
-        <%--            <div class="task-cmt-details-main">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <a class="name-avatar">Nam</a>--%>
-        <%--                <a> 4 phút trước</a></br>--%>
-        <%--                <p>ok đấy</p>--%>
-        <%--            </div>--%>
-        <%--            <div class="task-detail-cmt">--%>
-        <%--                <img class="img_avatar" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"/>--%>
-        <%--                <input class="input-cmt" type="text" placeholder="Bình luận....">--%>
-        <%--                <button class="btn btn-primary">Gửi</button>--%>
-        <%--            </div>--%>
-        <%--        </div>--%>
     </div>
 </div>
 
@@ -188,18 +154,5 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
 </script>
-<%--<script>--%>
-<%--    const show = document.querySelector("#show-member");--%>
-
-<%--    const popup = document.querySelector(".popup");--%>
-<%--    let close = document.querySelector('.close_popup');--%>
-<%--    close.addEventListener('click', function () {--%>
-<%--        popup.classList.add("hide__popup");--%>
-<%--    });--%>
-
-<%--    show.addEventListener('click', function () {--%>
-<%--        popup.classList.remove("hide__popup");--%>
-<%--    })--%>
-<%--</script>--%>
 </body>
 </html>

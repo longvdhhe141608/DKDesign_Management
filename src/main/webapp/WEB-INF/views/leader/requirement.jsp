@@ -175,7 +175,7 @@
                                     </c:if>
                                 </td>
                                 <td>
-                                    <c:if test="${project.status != 3}">
+                                    <c:if test="${project.status == 1}">
                                     <div style="display: flex; ">
                                         <button onclick="showPopUp(this.getAttribute('data-id'), this.getAttribute('data-place'), this.getAttribute('data-detail'))"
                                                 id="myBtn-project" data-id="${requirement.id}"

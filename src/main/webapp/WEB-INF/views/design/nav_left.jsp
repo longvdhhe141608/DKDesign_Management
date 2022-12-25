@@ -22,21 +22,44 @@
 </head>
 <body>
 <div class="container-fluid" style="padding: 0">
-    <div id="tab_menu" class="tab_menu">
-        <button onclick="sendRedirect('${pageContext.request.contextPath}/design/project/view-all-project')"
-                class="tab_button">
-            <i class="fa-solid fa-clipboard-list"></i>
-            Công trình
-        </button>
-        <button onclick="sendRedirect('${pageContext.request.contextPath}/design/my-task')" class="tab_button">
-            <i class="fa-solid fa-briefcase"></i>
-            Công việc của tôi
-        </button>
-        <button onclick="sendRedirect('${pageContext.request.contextPath}/notification')" class="tab_button">
-            <i class="fa-solid fa-bell"></i>
-            Thông báo
-        </button>
-    </div>
+    <c:if test="${sessionScope.loginUser.role_id == 3}">
+        <div id="tab_menu" class="tab_menu">
+            <button onclick="sendRedirect('${pageContext.request.contextPath}/design/project/view-all-project')"
+                    class="tab_button">
+                <i class="fa-solid fa-clipboard-list"></i>
+                Công trình
+            </button>
+            <button onclick="sendRedirect('${pageContext.request.contextPath}/design/my-task')" class="tab_button">
+                <i class="fa-solid fa-briefcase"></i>
+                Công việc của tôi
+            </button>
+            <button onclick="sendRedirect('${pageContext.request.contextPath}/notification')" class="tab_button">
+                <i class="fa-solid fa-bell"></i>
+                Thông báo
+            </button>
+        </div>
+    </c:if>
+    <c:if test="${sessionScope.loginUser.role_id == 2}">
+        <div class="container-fluid" style="padding: 0">
+            <div id="tab_menu" class="tab_menu">
+                <button onclick="sendRedirect('${pageContext.request.contextPath}/allProject')"
+                        class="tab_button">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    Công trình
+                </button>
+                <button onclick="sendRedirect('${pageContext.request.contextPath}/task/my-task-for-leader')"
+                        class="tab_button">
+                    <i class="fa-solid fa-briefcase"></i>
+                    Công việc của tôi
+                </button>
+
+                <button onclick="sendRedirect('${pageContext.request.contextPath}/notification')" class="tab_button">
+                    <i class="fa-solid fa-bell"></i>
+                    Thông báo
+                </button>
+            </div>
+        </div>
+    </c:if>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>

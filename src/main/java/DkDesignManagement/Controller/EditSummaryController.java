@@ -1,8 +1,6 @@
 package DkDesignManagement.Controller;
 
-import DkDesignManagement.Entity.Account;
-import DkDesignManagement.Entity.Project;
-import DkDesignManagement.Entity.RevisionHistory;
+import DkDesignManagement.Entity.*;
 import DkDesignManagement.Service.*;
 import DkDesignManagement.Utils.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +45,12 @@ public class EditSummaryController {
         ModelAndView view = new ModelAndView("leader/edit_summary");
         int id = Integer.parseInt(request.getParameter("id"));
         Project project = projectService.getProject(id);
+
+        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSummary(id);
+
         request.setAttribute("project", project);
         view.addObject("listCategory", categoryService.getAllCategory());
+        view.addObject("listImage", imageAndFiles);
 
         return view;
     }
@@ -81,10 +83,19 @@ public class EditSummaryController {
         Long expectedCost = Long.parseLong(request.getParameter("expectedCost"));
         int status = Integer.parseInt(request.getParameter("status"));
 
+        Boolean checkUpLoadFile = false;
+
+        List<ImageAndFile> imageAndFiles = imageAndFileService.getAllImageSummary(id);
+        String messageUploadFile = "Hình ảnh đã được chỉnh sửa";
+        if (ObjectUtils.isEmpty(imageAndFiles)) {
+            messageUploadFile = "Hình ảnh đã được thêm";
+        }
+
         //create model
         Project project = new Project(id, name, startDate, closureDate, endDate
                 , account.getId(), categoryId, customerName, address, phone, detail, status, constructionArea, expectedCost);
         if (!ObjectUtils.isEmpty(file.get(0).getOriginalFilename())) {
+            checkUpLoadFile = true;
             file.forEach(f -> {
                 String url;
                 try {
@@ -99,6 +110,7 @@ public class EditSummaryController {
                 }
             });
         }
+
         Project oldProject = projectService.getProject(project.getId());
 
         //add
@@ -113,10 +125,10 @@ public class EditSummaryController {
         //add history
         //compare
 
-        List<String> listChange = compareProject(oldProject, project);
+        List<String> listChange = compareProject(oldProject, project, checkUpLoadFile, messageUploadFile);
         //check history exits
         String type = "project";
-        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(project.getId(), type,project.getId());
+        Integer revisionNo = historyService.getLastRevisionNoHistoryOfTable(project.getId(), type, project.getId());
         int revisionNoNew = 1;
         if (!ObjectUtils.isEmpty(revisionNo)) {
             revisionNoNew = revisionNo + 1;
@@ -127,16 +139,24 @@ public class EditSummaryController {
             for (String change : listChange) {
                 revisionDetail += change + " <br> ";
             }
-            RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type,project.getId());
+            RevisionHistory revisionHistory = new RevisionHistory(-1, project.getId(), revisionNoNew, new Date(), revisionDetail, type, project.getId());
             historyService.addHistory(revisionHistory);
         }
 
-
+        //delete image
+        String listID[] = request.getParameterValues("listFile");
+        if (!ObjectUtils.isEmpty(listID)) {
+            System.out.println("aaaaaaaaaa");
+            for (int i = 0; i < listID.length; i++) {
+                System.out.println(listID[i]);
+                imageAndFileService.updateStatus(project.getId(), Integer.parseInt(listID[i]));
+            }
+        }
 
         return view;
     }
 
-    private List<String> compareProject(Project oldProject, Project newProject) {
+    private List<String> compareProject(Project oldProject, Project newProject, boolean checkUpLoadFile, String messageUploadFile) {
         List<String> change = new ArrayList<>();
         SimpleDateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -157,7 +177,21 @@ public class EditSummaryController {
             change.add(message);
         }
         if (newProject.getType() != oldProject.getType()) {
-            String message = "TypeId: " + oldProject.getType() + " -> " + newProject.getType();
+            //get name type
+            String newType = "";
+            String oldType = "";
+            List<Category> list = categoryService.getAllCategory();
+            for (Category category : list) {
+                if (category.getId() == oldProject.getType()) {
+                    oldType = category.getCategory_name();
+                }
+
+                if (category.getId() == newProject.getType()) {
+                    newType = category.getCategory_name();
+                }
+            }
+
+            String message = "Loại công trình: " + oldType + " -> " + newType;
             change.add(message);
         }
         if (!newProject.getConstructionArea().equals(oldProject.getConstructionArea())) {
@@ -176,6 +210,9 @@ public class EditSummaryController {
         if (!newProject.getDetail().trim().equals(oldProject.getDetail().trim())) {
             String message = "Mô tả: " + oldProject.getDetail() + " -> " + newProject.getDetail();
             change.add(message);
+        }
+        if (checkUpLoadFile) {
+            change.add(messageUploadFile);
         }
 
         return change;
