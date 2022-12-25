@@ -220,7 +220,7 @@
                     </tr>
                     <tr>
                         <td>Ghi chú:</td>
-                        <td></td>
+                        <td>${task.description}</td>
                     </tr>
 
                     <tr>
