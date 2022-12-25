@@ -172,7 +172,7 @@
                         <td>Hiển thị file:</td>
                         <td>
                             <div class="container">
-                                <c:forEach items="${listImage}" var="image">
+                                <c:forEach items="${listImages}" var="image">
                                     <button type="button" style="border-radius: 5px"
                                             onclick="showImage(this.getAttribute('data-url'))"
                                             data-url="${image.fileUrl}">
