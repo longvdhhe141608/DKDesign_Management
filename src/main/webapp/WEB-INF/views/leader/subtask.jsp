@@ -115,6 +115,11 @@
                             <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Đã xóa</h2>
                         </div>
                     </c:if>
+                    <c:if test="${task.taskStatus == 7}">
+                        <div class="alert alert-danger" role="alert" style="width: 250px;">
+                            <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Đã Hủy</h2>
+                        </div>
+                    </c:if>
 
                 </div>
                 <c:if test="${project.status != 3}">
@@ -203,6 +208,9 @@
                             </c:if>
                             <c:if test="${task.taskStatus == 6}">
                                 Đã xóa
+                            </c:if>
+                            <c:if test="${task.taskStatus == 7}">
+                                Đã Hủy
                             </c:if>
                         </td>
                     </tr>

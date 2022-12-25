@@ -36,6 +36,9 @@ public class MemberController {
     AccountService accountService;
 
     @Autowired
+    TaskService taskService;
+
+    @Autowired
     ProjectParticipationService projectParticipationService;
 
     @Autowired
@@ -61,7 +64,7 @@ public class MemberController {
 
         view.addObject("project", project);
         view.addObject("memberList", memberList);
-        view.addObject("employeeList", employeeService.getAllToAdd(projectid,account));
+        view.addObject("employeeList", employeeService.getAllToAdd(projectid, account));
         view.addObject("page", page);
         view.addObject("endPage", memberPageResponse.getEndPage());
         view.addObject("projectId", id);
@@ -142,16 +145,36 @@ public class MemberController {
         ModelAndView view = new ModelAndView("redirect:/project/member?id=" + id);
 
         int status = Integer.parseInt(request.getParameter("status"));
-//        if(status==1){
-//            status = 2;
-//        }else{
-//            status = 1;
-//        }
+
         String username = request.getParameter("username");
 
-        int memberId = memberService.getAccountIdByUsername(username);
+        int accountId = memberService.getAccountIdByUsername(username);
 
-        memberService.updateStatusMemberInProject(id, memberId, status);
+
+        //delete member
+        if (status == 2) {
+            //change status task , sub task
+            List<Task> listTask = taskService.getAllTaskByProjectId(id);
+            for (Task task : listTask) {
+                if (task.getAssignToId() == accountId) {
+                    if (task.getTaskStatus() != 4 && task.getTaskStatus() != 5) {
+                        task.setTaskStatus(7);
+                        taskService.updateTask(task);
+                    }
+                }
+            }
+
+            //TODO : send notification
+        } else {
+            //case : step 1 : khóa member
+            //step 2 : check status task or subtask , status = 7
+            //step 3 : open member
+            // step 4 : check status task or subtask , status = ?
+            // lý do : đã bị hủy rồi sao lại còn tiếp tục được  ,và nếu có muốn roll back về
+            //status cũ , thì lưu status cũ vào đâu
+        }
+
+        memberService.updateStatusMemberInProject(id, accountId, status);
 
         return view;
     }

@@ -143,7 +143,7 @@ public class TaskDAO {
 
     public List<Task> getAllTaskByProjectId(int projectId) {
 
-        String sql = "select * from task t where t.project_id =? ";
+        String sql = "select * from task t where t.project_id =? and t.status != 6  ";
 
         List<Task> taskList = jdbcTemplate.query(sql, new MapperTask(), projectId);
         return taskList;
