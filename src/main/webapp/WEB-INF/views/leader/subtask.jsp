@@ -233,7 +233,7 @@
                 </table>
                 <c:if test="${project.status != 3}">
                 <div>
-                    <a href="sub-task/delete?subTaskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-secondary">Xóa</button></a>
+                    <a href="sub-task/delete?subTaskId=${task.taskId}"><button type="button" style="border-radius: 5px" class="btn btn-danger">Xóa</button></a>
                 </div>
                 </c:if>
             </div>

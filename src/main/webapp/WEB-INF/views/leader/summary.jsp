@@ -197,7 +197,7 @@
                 <c:if test="${project.status == 1}">
                     <a style="margin-right: 5px"
                        href="${pageContext.request.contextPath}/allProject/delete_project?projectId=${project.id}">
-                        <button class="btn btn-primary">
+                        <button class="btn btn-danger">
                             Xóa
                         </button>
                     </a>
