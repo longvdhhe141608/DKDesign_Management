@@ -294,7 +294,7 @@
                     </c:if>
                 </c:if>
             </div>
-            <c:if test="${project.status != 3}">
+            <c:if test="${project.status == 1}">
                 <div>
                     <a href="task/delete?taskId=${task.taskId}">
                         <button type="button" style="border-radius: 5px" class="btn btn-danger">Xóa</button>
