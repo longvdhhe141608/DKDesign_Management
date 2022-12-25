@@ -26,11 +26,11 @@ public interface MemberService {
 
     int addNewMember(String name, String mail, int id);
 
-    void updateMemberStatus(int status, String username);
+    int updateMemberStatus(int status, String username);
 
     Member getMemberByMemberId(int id);
 
-    void updateMemberRole(int role, String username);
+    int updateMemberRole(int role, String username);
 
     int updateMemberInfo(int id, String name, int gender, Date dob, String phone, String mail, String address, String cccd);
 }

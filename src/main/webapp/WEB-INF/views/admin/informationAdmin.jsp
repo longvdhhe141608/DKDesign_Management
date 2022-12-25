@@ -26,14 +26,14 @@
     <jsp:include page="/WEB-INF/views/leader/nav_left.jsp"/>
     <div style="margin-left: 20%;">
 
-        <span style="font-size: 30px;"><a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>Thông tin cá nhân</span>
+        <span style="font-size: 30px;"><a href="${pageContext.request.contextPath}/admin/memberlist"><i class="fa-solid fa-chevron-left"></i></a>Thông tin cá nhân</span>
 
         <div class="information-main">
             <div class="information-main-avata">
                 <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"
                         style="border-radius: 50%; background-color: white; border: none;  outline: none;">
-                    <img class="img_avatar_change" src="../image/a.jpg"/>
+                    <img class="img_avatar_change" src="${memberAvatar}"/>
                 </button>
             </div>
             <div>

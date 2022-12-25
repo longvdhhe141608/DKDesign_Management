@@ -83,21 +83,13 @@ public class AdminController {
 
         if (employeeService.emailIsExisted(mail) == false) {
             //send mail
-            String message = "Xin chào " + name + ",</br>" +
-                    "Tài khoản dkmanagement của bạn đã được tạo</br>" +
-                    "Tài khoản: " + username + "</br>" +
-                    "Mật Khẩu: " + password + "</br>" +
-                    "Vui lòng đăng nhập và đổi mật khẩu lần đầu để sử dụng tài khoản.</br>" +
-                    "Thân,</br>" +
-                    "Dkmangament Admin";
-
             mailSender.send(new MimeMessagePreparator() {
                 public void prepare(MimeMessage mimeMessage) throws MessagingException {
                     MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
                     message.setTo(mail);
-                    message.setSubject("New Account Created");
+                    message.setSubject("[DKDesignManagement] Tài Khoản Mới");
                     message.setText("Xin chào " + name + ",<br>" +
-                            "Tài khoản dkmanagement của bạn đã được tạo<br>" +
+                            "Tài khoản dkmanagement của bạn đã được tạo thành công<br>" +
                             "Tài khoản: " + username + "<br>" +
                             "Mật Khẩu: " + password + "<br>" +
                             "Vui lòng đăng nhập và đổi mật khẩu lần đầu để sử dụng tài khoản.<br>" +

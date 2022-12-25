@@ -25,7 +25,7 @@
 <div class="body_page">
     <jsp:include page="/WEB-INF/views/leader/nav_left.jsp"/>
     <div style="margin-left: 20%;">
-        <span style="font-size: 30px;"><a href="javascript:history.back()"><i class="fa-solid fa-chevron-left"></i></a>Chỉnh sửa thông tin cá nhân</span>
+        <span style="font-size: 30px;"><a href="${pageContext.request.contextPath}/member/information?id=${member.memberId}"><i class="fa-solid fa-chevron-left"></i></a>Chỉnh sửa thông tin cá nhân</span>
         <div class="information-main">
             <div class="information-main-avata">
                 <button type="button" class="avatar_change" data-toggle="dropdown" aria-haspopup="true"
@@ -35,7 +35,7 @@
                       border: none;
                       outline: none;
                     ">
-                    <img alt="" class="img_avatar_change" src="../image/a.jpg"/>
+                    <img alt="" class="img_avatar_change" src="${memberAvatar}"/>
                 </button>
             </div>
             <div>
@@ -44,21 +44,16 @@
                         <p class="text-danger">${error}</p>
                         <tr>
                             <input name="id" type="number" value="${member.memberId}" hidden/>
+                            <input name="username" type="text" value="${member.memberCode}" hidden/>
                             <td class="col-6"><label>Họ và tên:</label></td>
-
-                            <%--                                <input name="name" type="text" value="${member.memberName}">--%>
                             <td class="col-6"> ${member.memberName}</td>
-
                         </tr>
                         <tr>
                             <td>Mã nhân viên:</td>
-                            <%--                            <td><input name="username" type="text" value="${member.memberCode}" readonly></td>--%>
-
                             <td> ${member.memberCode}</td>
                         </tr>
                         <tr>
                             <td>Số CCCD/CMND:</td>
-                            <%--                            <td><input name="cccd" type="text" value="${member.memberCccd}"></td>--%>
                             <td>${member.memberCccd}</td>
                         </tr>
                         <tr>

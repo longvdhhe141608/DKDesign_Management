@@ -43,11 +43,13 @@ public class ValidateUtils {
         String upperCaseLetters = RandomStringUtils.random(2, 65, 90, true, true);
         String lowerCaseLetters = RandomStringUtils.random(2, 97, 122, true, true);
         String numbers = RandomStringUtils.randomNumeric(2);
-        String specialChar = RandomStringUtils.random(2, 33, 47, false, false);
+        String specialChar1 = RandomStringUtils.random(1, 33, 38, false, false);
+        String specialChar2 = RandomStringUtils.random(1, 40, 47, false, false);
         String totalChars = RandomStringUtils.randomAlphanumeric(2);
         String combinedChars = upperCaseLetters.concat(lowerCaseLetters)
                 .concat(numbers)
-                .concat(specialChar)
+                .concat(specialChar1)
+                .concat(specialChar2)
                 .concat(totalChars);
         List<Character> pwdChars = combinedChars.chars()
                 .mapToObj(c -> (char) c)
@@ -56,7 +58,6 @@ public class ValidateUtils {
         String password = pwdChars.stream()
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
-        password.replace("'","$");
         return password;
     }
 

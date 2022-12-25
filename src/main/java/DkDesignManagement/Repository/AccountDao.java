@@ -82,12 +82,7 @@ public class AccountDao {
     public List<String> getAllUsername() {
         String sql = "SELECT `username` FROM `dkmanagement`.`accounts`";
         List<String> usernameList;
-        usernameList = jdbcTemplate.query(sql, new RowMapper<String>() {
-            @Override
-            public String mapRow(ResultSet rs, int rowNum) throws SQLException {
-                return rs.getString("username");
-            }
-        });
+        usernameList = jdbcTemplate.query(sql, (rs, rowNum) -> rs.getString("username"));
         return usernameList;
     }
 
