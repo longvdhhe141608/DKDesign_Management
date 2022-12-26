@@ -65,22 +65,22 @@
         </div>
         <div class="task-details-main">
             <div>
-                <c:if test="${task.taskStatus == 2}">
+                <c:if test="${tasks.status == 2}">
                     <div class="alert alert-success" role="alert" style="width: 250px;">
                         <h2 style="color:#0f5132;font-size: 20px; margin: 0; padding: 0;">Đang thực hiện</h2>
                     </div>
                 </c:if>
-                <c:if test="${task.taskStatus == 3}">
+                <c:if test="${tasks.status == 3}">
                     <div class="alert alert-warning" role="alert" style="width: 250px;">
                         <h2 style="color:#664d03;font-size: 20px; margin: 0; padding: 0;">Chờ phê duyệt</h2>
                     </div>
                 </c:if>
-                <c:if test="${task.taskStatus == 4}">
+                <c:if test="${tasks.status == 4}">
                     <div class="alert alert-info" role="alert" style="width: 250px;">
                         <h2 style="color:#055160;font-size: 20px; margin: 0; padding: 0;">Đã hoàn thành</h2>
                     </div>
                 </c:if>
-                <c:if test="${task.taskStatus == 5}">
+                <c:if test="${tasks.status == 5}">
                     <div class="alert alert-danger" role="alert" style="width: 250px;">
                         <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
                     </div>
