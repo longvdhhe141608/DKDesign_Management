@@ -1,8 +1,10 @@
 package DkDesignManagement.Repository;
 
 import DkDesignManagement.Entity.ProjectParticipation;
+import DkDesignManagement.Entity.Tasks;
 import DkDesignManagement.Mapper.MapperMemberActive;
 import DkDesignManagement.Mapper.MapperProjectParticipation;
+import DkDesignManagement.Mapper.MapperTasks;
 import DkDesignManagement.Model.MemberActiveDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -94,7 +96,7 @@ public class ProjectParticipationDao {
         return totalPage;
     }
 
-    public ProjectParticipation getProjectParticipants(int projectID,int accountId) {
+    public ProjectParticipation getProjectParticipants(int projectID, int accountId) {
         ProjectParticipation projectParticipation = null;
         String sql = "select * from project_participation pp where pp.project_id = ? and pp.account_id = ? ";
 
@@ -108,10 +110,23 @@ public class ProjectParticipationDao {
         return null;
     }
 
-    public int deleteProjectParticipation(int projectID,int accountId) {
+    public List<ProjectParticipation> getProjectParticipantsByProjectId(int projectID) {
+        List<ProjectParticipation> list = new ArrayList<>();
+        String sql = "select * from project_participation pp where project_id  = ?";
+        try {
+
+            list = jdbcTemplate.query(sql, new MapperProjectParticipation(), projectID);
+            return list;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    public int deleteProjectParticipation(int projectID, int accountId) {
         String sql = "DELETE FROM dkmanagement.project_participation\n" +
                 "WHERE project_id=? AND account_id=? ;\n";
 
-        return jdbcTemplate.update(sql, projectID,accountId);
+        return jdbcTemplate.update(sql, projectID, accountId);
     }
 }

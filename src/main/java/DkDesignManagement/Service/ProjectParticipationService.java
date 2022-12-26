@@ -25,4 +25,6 @@ public interface ProjectParticipationService {
 
     ProjectParticipation getProjectParticipants(int projectID,int accountId);
 
+    List<ProjectParticipation> getProjectParticipantsByProjectId(int projectID);
+
 }

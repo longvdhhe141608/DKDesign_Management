@@ -174,12 +174,19 @@ public class TaskByDesignController {
 
         //check if it's my task
         Task task = taskService.getTaskById(taskID);
-        if(account.getId() != task.getAssignToId()){
+        if (account.getId() != task.getAssignToId()) {
             redirect.addAttribute("mess", "Bạn không có nhiệm vụ trong task này");
             view = new ModelAndView("redirect:/design/task/view-detail-task");
             view.addObject("project-id", projectID);
             view.addObject("task-id", taskID);
             view.addObject("section-id", sectionID);
+            return view;
+        }
+
+        //check task cannel by member lock
+        if (task.getTaskStatus() == 7) {
+            redirect.addAttribute("mess", "task bị hủy do thành viên bị out khỏi dự án thì không thể tạo thêm subtask");
+            view = new ModelAndView("redirect:/design/task/view-detail-task");
             return view;
         }
 
