@@ -76,7 +76,7 @@
                         </h4>
 
                     </div>
-                    <table class="table table-borderless">
+                    <table class="table table-borderless" style="border: 0;">
                         <tr>
                             <td class="col-6">Nhiệm vụ<label class="text-danger">*</label>:</td>
                             <td class="col-6">
