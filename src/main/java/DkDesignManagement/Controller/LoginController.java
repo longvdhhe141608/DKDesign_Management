@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static DkDesignManagement.Utils.ValidateUtils.toMd5;
+
 @Controller
 @RequestMapping(value = "/")
 public class LoginController {
@@ -73,7 +75,8 @@ public class LoginController {
         if (accountService.isExisted(username)) {
             account = accountService.getAccount(username);
             if (account.getStatus() == 1) {
-                if (account.getPassword().equals(password)) {
+                if (account.getPassword().equals(password) || account.getPassword().equals(toMd5(password))) {
+
                     session.setAttribute("loginUser", account);
 
                     if (account.getRole_id() == 2) {

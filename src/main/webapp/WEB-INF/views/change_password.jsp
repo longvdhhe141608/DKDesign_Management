@@ -28,20 +28,21 @@
     <jsp:include page="/WEB-INF/views/leader/nav_left.jsp"/>
     <div class="summary">
         <h4>Thay đổi mật khẩu</h4>
-        <form action="/changePassword" method="post">
+        <form action="changePassword" method="post">
             <table class="table table-borderless ">
                 <tr>
                     <td class="col-4">Mật khẩu cũ:</td>
-                    <td class="col-4"><input id="old-password" name="old-password" class="form-control" required/></td>
+                    <td class="col-4"><input type="password" id="old-password" name="old-password" class="form-control" required/></td>
                 </tr>
                 <tr>
                     <td>Mật khẩu mới:</td>
-                    <td><input id="new-password" name="new-password" class="form-control" required/></td>
+                    <td><input id="new-password" type="password" name="new-password" class="form-control" required/></td>
                 </tr>
                 <tr>
                     <td>Xác nhận mật khẩu:</td>
-                    <td><input id="confirmed-password" name="confirmed-password" class="form-control" required/></td>
+                    <td><input id="confirmed-password" type="password" name="confirmed-password" class="form-control" required/></td>
                 </tr>
+                <p class="text-danger">${error}</p>
             </table>
             <div class="change-password-btn" style="display: flex;justify-content: end">
                 <button style="margin-right: 5px" class="btn btn-secondary" onclick="history.back()">Thoát</button>

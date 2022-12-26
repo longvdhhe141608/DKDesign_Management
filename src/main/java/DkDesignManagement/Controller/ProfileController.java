@@ -22,6 +22,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
+import static DkDesignManagement.Utils.ValidateUtils.toMd5;
+
 @Controller
 @RequestMapping(value = "/profile")
 public class ProfileController {
@@ -101,21 +103,41 @@ public class ProfileController {
     public ModelAndView changePassword(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
-        ModelAndView view = new ModelAndView("change_password");
+        ModelAndView view;
         if (account.getRole_id() == 3) {
             view = new ModelAndView("/design/change_password");
+        } else {
+            view = new ModelAndView("change_password");
         }
+
+        return view;
+    }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    public ModelAndView getChangePassword(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        Account account = (Account) session.getAttribute("loginUser");
+        ModelAndView view;
         String oldPass = request.getParameter("old-password");
         String newPass = request.getParameter("new-password");
         String cfPass = request.getParameter("confirmed-password");
-        if (account.getPassword().equals(oldPass)) {
+        if (account.getPassword().equals(oldPass) || account.getPassword().equals(toMd5(oldPass))) {
+            if(oldPass.equals(newPass)){
+                view = new ModelAndView("change_password");
+                view.addObject("error", "Mật khẫu mới không được trùng với mật khẩu cũ");
+            } else
             if (cfPass.equals(newPass)) {
-                accountService.changePassword(account.getId(), newPass);
+                accountService.changePassword(account.getId(), toMd5(newPass));
+                account = accountService.getAccount(account.getUsername());
+                session.setAttribute("loginUser", account);
+                view = new ModelAndView("redirect:detail");
             } else {
-
+                view = new ModelAndView("change_password");
+                view.addObject("error", "Mật khẫu mới không trùng khớp");
             }
         } else {
-
+            view = new ModelAndView("change_password");
+            view.addObject("error", "Mật khẫu cũ không đúng");
         }
         return view;
     }
