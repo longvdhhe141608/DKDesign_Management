@@ -62,9 +62,12 @@
         <div class="task-details-main">
             <form id="add-project1" action="${pageContext.request.contextPath}/design/sub-task/edit-sub-task?project-id=${project.id}&section-id=${section.sectionId}&task-id=${tasks.id}&sub-task-id=${subTask.id}"
                   method="post">
-                <div class="mb-3">
-                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                <div>
+                <h4>
+                    <input type="text" class="form-control info-text" id="exampleFormControlInput1"
                            value="${subTask.taskName}" name="sub-task-name">
+                    <div class="text-danger error"></div>
+                </h4>
                 </div>
                 <div style="font-size: 20px;">
                     <a href="${pageContext.request.contextPath}/design/task/list_task?id=${project.id}">${project.projectName}
@@ -90,7 +93,7 @@
                     <tr>
                         <td>Thời gian bắt đầu:</td>
                         <td>
-                            <div class="name-input " style="width: 150px;">
+                            <div class="name-input " >
                                 <input id="inputstartdate" class="form-control info-text" formControlName="dob" type="date"
                                        value="${subTask.startingDate}" name="start-date">
                             </div>
@@ -100,7 +103,7 @@
                     <tr>
                         <td>Thời gian dự kiến kết thúc:</td>
                         <td>
-                            <div class="name-input " style="width: 150px;">
+                            <div class="name-input " >
                                 <input id="inputenddate" class="form-control info-text" formControlName="dob" type="date"
                                        value="${subTask.deadline}"
                                        name="deadline">
@@ -110,14 +113,14 @@
                     </tr>
                     <tr>
                         <td>Số lượng file:</td>
-                        <td><input class="info-text" type="text" value="${subTask.numberOfFile}" name="numberOfFile">
+                        <td><input class="info-text" type="number" value="${subTask.numberOfFile}" name="numberOfFile">
                             <div class="text-danger error"></div></td>
                     </tr>
                     <tr>
-                        <td>Yêu cầu khách hàng:</td>
+                        <td>Vị trí của yêu cầu:</td>
                         <td>
                             <select name="requirement" id=""
-                                    style="padding: 10px 10px; border: 1px solid #ccc;border-radius: 5px;background-color: gold;">
+                                    class="btn btn-secondary">
                                 <c:forEach items="${requirements}" var="r">
                                     <option value="${r.id}" ${r.id == subTask.requirementID ? "selected" : ""}>${r.requirementName}</option>
                                 </c:forEach>

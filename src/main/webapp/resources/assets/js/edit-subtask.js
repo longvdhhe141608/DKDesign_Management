@@ -23,45 +23,42 @@ function checkvalidate(id) {
     numberdate1 = checkdate1(today, startdate, enddate);
     let numberchecknumber = 0;
     numberchecknumber = checkNumber(input);
-    let numbercheckphone = 0;
-    numbercheckphone = checkNumberPhone(input, regex);
+    // let numbercheckphone = 0;
+    // numbercheckphone = checkNumberPhone(input, regex);
 
 
 
-    function checkNumberPhone(input, regex) {
-        let a = 0;
-        if (input[2].value.length > 0) {
-
-            if (input[2].value.match(regex)) {
-
-                console.log(input[2].value);
-                return a;
-            } else {
-                a++;
-                error[2].innerHTML = "Nhập đúng dạng số điện thoại";
-                // console.log(input[2].value);
-            }
-
-        }
-
-        return a;
-    }
+    // function checkNumberPhone(input, regex) {
+    //     let a = 0;
+    //     if (input[2].value.length > 0) {
+    //
+    //         if (input[2].value.match(regex)) {
+    //
+    //             console.log(input[2].value);
+    //             return a;
+    //         } else {
+    //             a++;
+    //             error[2].innerHTML = "Nhập đúng dạng số điện thoại";
+    //             // console.log(input[2].value);
+    //         }
+    //
+    //     }
+    //
+    //     return a;
+    // }
 
     function checkNumber(input) {
         let a = 0;
-        if (input[4].value.length > 0 || input[5].value.length > 0) {
+        if (input[3].value.length > 0 ) {
             for (var i = 0; i < input.length; i++) {
-                if (isNaN(input[4].value.trim())) {
+                if (isNaN(input[3].value.trim())) {
                     a++;
-                    error[4].innerHTML = "Chỉ được nhập số";
-                } else if (isNaN(input[5].value.trim())) {
+                    error[3].innerHTML = "Chỉ được nhập số";
+
+                } else if (input[3].value <= 0) {
                     a++;
-                    error[5].innerHTML = "Chỉ được nhập số";
-                } else if (input[4].value <= 0) {
-                    a++;
-                    error[4].innerHTML = "Cần nhập số lớn hơn 0";
-                } else if (input[5].value <= 0) {
-                    error[5].innerHTML = "Cần nhập số lớn hơn 0";
+                    error[3].innerHTML = "Cần nhập số lớn hơn 0";
+
                 }
 
             }
@@ -115,7 +112,7 @@ function checkvalidate(id) {
         return b;
     }
     console.log(numberdate);
-    numberprocess = numberEmpty + numberchecknumber + numbercheckphone + numberdate;
+    numberprocess = numberEmpty + numberchecknumber  + numberdate ;
     console.log(numberprocess);
     if (numberprocess > 0) {
         return false;
