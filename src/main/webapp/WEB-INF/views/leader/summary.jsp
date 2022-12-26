@@ -111,7 +111,7 @@
                 <div class="summary-main-header">
                     <h4>Sơ lược công trình</h4>
                 </div>
-                <table class="table table-borderless">
+                <table class="table table-borderless"  style="border: 0;">
                     <tr>
                         <td class="col-6">Chủ nhà:</td>
                         <td class="col-6">${project.cusName}</td>
