@@ -121,7 +121,7 @@ public class TaskDAO {
     }
 
     public int countFile(int taskId) {
-        String sql = "select count(*) from image_and_file iaf where task_id = ? and status= 1";
+        String sql = "select count(*) from image_and_file where task_id = ? and status= 1";
         return jdbcTemplate.queryForObject(sql, Integer.class, taskId);
     }
 
