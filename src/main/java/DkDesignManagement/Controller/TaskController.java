@@ -225,15 +225,21 @@ public class TaskController {
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date deadline = DateUtils.covertStringToDate(request.getParameter("deadline"));
         if (startDate.before(taskService.getTaskById(taskId).getStartDate()) || startDate.after(taskService.getTaskById(taskId).getDeadline())
-                || deadline.before(taskService.getTaskById(taskId).getStartDate()) || deadline.after(taskService.getTaskById(taskId).getDeadline())){
+                || deadline.before(taskService.getTaskById(taskId).getStartDate()) || deadline.after(taskService.getTaskById(taskId).getDeadline())) {
             redirect.addAttribute("mess", "Thời gian của công việc phụ không hợp lí.");
             return view;
         }
-            //decentralize when adding task
-            // leader have status 2
-            int status = NOT_APPROVED_TASK_STATUS;
+        //decentralize when adding task
+        // leader have status 2
+        int status = NOT_APPROVED_TASK_STATUS;
         if (account.getRole_id() == LEADER_ROLE) {
             status = PROCESS_TASK_STATUS;
+        }
+        //check task cannel by member lock
+        Task taskMom = taskService.getTaskById(taskId);
+        if(taskMom.getTaskStatus()==7){
+            redirect.addAttribute("mess", "task bị hủy do thành viên bị out khỏi dự án thì không thể tạo thêm subtask");
+            return view;
         }
 
         Task task = new Task(-1, projectId, sectionId, BigInteger.valueOf(taskId), account.getId(), assignId, BigInteger.valueOf(requirementId), name
@@ -433,7 +439,7 @@ public class TaskController {
         task.setTaskStatus(6);
         taskService.updateTask(task);
 
-        return  new ModelAndView("redirect:/task_detail?taskId="+task.getTaskfId());
+        return new ModelAndView("redirect:/task_detail?taskId=" + task.getTaskfId());
     }
 
     @RequestMapping(value = "/task/delete", method = RequestMethod.GET)
@@ -445,12 +451,12 @@ public class TaskController {
         taskService.updateTask(task);
 
         //delete list sub task
-        for(Task subTask : task.getListSubTask()){
+        for (Task subTask : task.getListSubTask()) {
             subTask.setTaskStatus(6);
             taskService.updateTask(subTask);
         }
 
-        return  new ModelAndView("redirect:/list_task?id="+task.getProjectId());
+        return new ModelAndView("redirect:/list_task?id=" + task.getProjectId());
     }
 
 }
