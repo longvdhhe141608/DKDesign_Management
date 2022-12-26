@@ -1,6 +1,7 @@
 package DkDesignManagement.Utils;
 
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.text.Normalizer;
@@ -55,10 +56,16 @@ public class ValidateUtils {
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.toList());
         Collections.shuffle(pwdChars);
-        String password = pwdChars.stream()
+        String pass = pwdChars.stream()
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
+        String password = toMd5(pass);
         return password;
+    }
+
+    public static String toMd5(String pass) {
+        String md5pass = DigestUtils.md2Hex(pass);
+        return md5pass;
     }
 
 }

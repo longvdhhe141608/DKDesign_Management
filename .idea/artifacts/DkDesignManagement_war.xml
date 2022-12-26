@@ -7,7 +7,7 @@
         <packaging>war</packaging>
       </options>
     </properties>
-    <root id="archive" name="dkmanagement.war">
+    <root id="archive" name="DkDesginManagement-17.war">
       <element id="artifact" artifact-name="DkDesignManagement:war exploded" />
     </root>
   </artifact>
