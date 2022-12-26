@@ -205,9 +205,12 @@
                             <td style="display: flex">
                                 <c:if test="${project.status == 1}">
                                     <form action="changeMemberStatus">
-
                                         <input value="${member.memberCode}" name="username" hidden>
                                         <input value="${projectId}" name="id" hidden>
+                                        <c:if test="${member.memberRole==2}">
+                                            <button type="submit" class="btn btn-success" disabled>Đang hoạt động
+                                            </button
+                                        </c:if>
                                         <c:if test="${member.memberRole==3}">
                                             <c:if test="${member.memberStatus==2}">
                                                 <input value="1" name="status" hidden>
