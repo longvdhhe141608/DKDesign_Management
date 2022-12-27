@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <script src="<c:url value="/resources/assets/js/summary.js"/>"></script>
+    <script src="<c:url value="/resources/assets/js/edit-subtask.js"/>"></script>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/design/header.jsp"/>
@@ -64,7 +64,7 @@
                   method="post">
                 <div>
                 <h4>
-                    <input type="text" class="form-control info-text" id="exampleFormControlInput1"
+                    <input type="text" class=" info-text" id="exampleFormControlInput1"
                            value="${subTask.taskName}" name="sub-task-name">
                     <div class="text-danger error"></div>
                 </h4>
@@ -94,7 +94,7 @@
                         <td>Thời gian bắt đầu:</td>
                         <td>
                             <div class="name-input " >
-                                <input id="inputstartdate" class="form-control info-text" formControlName="dob" type="date"
+                                <input id="inputstartdate" class=" info-text" formControlName="dob" type="date" style="width: 150px"
                                        value="${subTask.startingDate}" name="start-date">
                             </div>
                             <div class="text-danger error"></div>
@@ -104,7 +104,7 @@
                         <td>Thời gian dự kiến kết thúc:</td>
                         <td>
                             <div class="name-input " >
-                                <input id="inputenddate" class="form-control info-text" formControlName="dob" type="date"
+                                <input style="width: 150px" id="inputenddate" class="info-text" formControlName="dob" type="date"
                                        value="${subTask.deadline}"
                                        name="deadline">
                             </div>
@@ -113,7 +113,7 @@
                     </tr>
                     <tr>
                         <td>Số lượng file:</td>
-                        <td><input class="info-text" type="number" value="${subTask.numberOfFile}" name="numberOfFile">
+                        <td><input class="info-text" style="width: 150px" type="number" value="${subTask.numberOfFile}" name="numberOfFile">
                             <div class="text-danger error"></div></td>
                     </tr>
                     <tr>

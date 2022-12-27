@@ -81,8 +81,8 @@
                         <tbody class="list-project">
                         <c:forEach var="i" items="${listAllProject}">
                             <tr class="each-project">
-                                <td class="name-and-link">
-
+                                <td >
+<div class="name-and-link">
                                         <div class="name-project col-8">
                                                 ${i.projectName}
                                         </div>
@@ -92,7 +92,7 @@
                                                 <button class="btn-chi-tiet">Chi tiết</button>
                                             </a>
                                         </div>
-
+</div>
                                 </td>
 
                                 <td>
