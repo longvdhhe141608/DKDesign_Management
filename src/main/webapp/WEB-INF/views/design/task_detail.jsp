@@ -143,10 +143,12 @@
                         <div style="margin-left: 10px">
                             <div>
                                 <c:if test="${project.status == 1}">
-                                <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
-                                        id="myBtn-add-project"
-                                        class="btn btn-primary">+ Thêm công việc phụ
-                                </button>
+                                    <c:if test="${tasks.status != 7}">
+                                        <button onclick="modallistproject('#myBtn-add-project','#myModal-add','#close1')"
+                                                id="myBtn-add-project"
+                                                class="btn btn-primary">+ Thêm công việc phụ
+                                        </button>
+                                    </c:if>
                                 </c:if>
                                 <div id="myModal-add" class="modal">
                                     <!-- Modal content -->
