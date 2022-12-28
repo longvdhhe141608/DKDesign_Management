@@ -144,6 +144,13 @@ function onUnavailable() {
         text: 'Công việc này đã có công việc phụ...',
     })
 }
+function onUnavailableSub() {
+    Swal.fire({
+        icon: 'error',
+        title: 'Không thể chỉnh sửa!',
+        text: 'Công việc này đang thực hiện...',
+    })
+}
 
 function onNoDelete() {
     Swal.fire({

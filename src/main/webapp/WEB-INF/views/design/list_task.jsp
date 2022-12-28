@@ -107,7 +107,7 @@
                                         ${std}
                                 </div>
                                 <div class="" style="border: 1px solid gray;width: 12%;text-align: center">
-                                    <c:if test="${t.endedDate != null}">
+                                    <c:if test="${t.status == 4}">
                                         <fmt:formatDate value="${t.endedDate}" var="ed" pattern="dd/MM/yyyy"/>
                                         ${ed}
                                     </c:if>

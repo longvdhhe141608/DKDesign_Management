@@ -284,7 +284,8 @@
                                         ${history.revision_detail}
                                 </td>
                                 <td>
-                                        ${history.revision_date}
+                                    <fmt:formatDate value="${history.revision_date}" var="rvd" pattern="dd/MM/yyyy"/>
+                                        ${rvd}
                                 </td>
                             </tr>
 
