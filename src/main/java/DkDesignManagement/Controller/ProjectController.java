@@ -51,9 +51,12 @@ public class ProjectController {
         }
 
         Account account = (Account) session.getAttribute("loginUser");
-        String textSearch = request.getParameter("textSearch").trim();
+        String textSearch = request.getParameter("textSearch");
         String date = request.getParameter("date");
 
+        if(!ObjectUtils.isEmpty(textSearch)){
+            textSearch = textSearch.trim();
+        }
         ProjectPageResponse projectPageResponse = projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
 
         view.addObject("listAllProject", projectPageResponse.getProjectList());
