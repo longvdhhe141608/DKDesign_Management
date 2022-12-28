@@ -49,8 +49,8 @@
                         <tr style="color: ${(i.startDate <= nowDate && i.deadline >= nowDate ? "#32c107dd" : "red"
                          || i.status == 4 ? "#a2a3a2dd" : ""
                          || nowDate == i.startDate ? "#32c107dd" : "")}">
-                            <td style="display: flex; justify-content: space-between;">
-
+                            <td >
+<div style="display: flex; justify-content: space-between;">
                                     <div class="name-project col-8">
                                             ${i.subTaskName}
                                     </div>
@@ -62,7 +62,7 @@
                                             </button>
                                         </a>
                                     </div>
-
+</div>
                             </td>
 
                             <td>

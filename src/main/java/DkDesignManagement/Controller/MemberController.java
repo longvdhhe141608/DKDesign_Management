@@ -189,12 +189,10 @@ public class MemberController {
         String message = "Bạn đã bị xóa ra khỏi dự án "+project.getProjectName();
 
         //check notification exits
-        NotificationDto notificationDto = notificationService.getNotification(accountId, message, url);
-        if (ObjectUtils.isEmpty(notificationDto)) {
+       // NotificationDto notificationDto = notificationService.getNotification(accountId, message, url);
             Notification notification = new Notification(-1, new java.util.Date()
                     , message, accountId, projectId, url);
             notificationService.addNotification(notification);
-        }
     }
 
     @RequestMapping(value = "/delete-member", method = RequestMethod.GET)

@@ -202,7 +202,8 @@
                             <td>${member.memberPhone}</td>
                             <td>${member.memberMail}</td>
                             <td>${member.memberAddress}</td>
-                            <td style="display: flex">
+                            <td >
+                                <div>
                                 <c:if test="${project.status == 1}">
                                     <form action="changeMemberStatus">
                                         <input value="${member.memberCode}" name="username" hidden>
@@ -224,6 +225,7 @@
                                         </c:if>
                                     </form>
                                 </c:if>
+                                </div>
                             </td>
                         </tr>
                     </c:forEach>

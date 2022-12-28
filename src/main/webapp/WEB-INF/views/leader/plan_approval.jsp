@@ -147,7 +147,8 @@
                                 </td>
                                 <td>${task.fileNumber}</td>
 
-                                <td style="display: flex;justify-content: space-between;">
+                                <td >
+                                    <div style="display: flex;justify-content: space-between;">
                                     <c:if test="${project.status == 1}">
                                     <c:if test="${task.taskStatus == 1}">
                                     <a href="plan_approval/agree?taskId=${task.taskId}">
@@ -163,7 +164,7 @@
                                         <c:if test="${task.taskStatus == 5}">Đã hủy bỏ</c:if>
 
                                         </c:if>
-
+                                    </div>
                                 </td>
                                 <td>
                                     <c:if test="${task.taskStatus == 1}">

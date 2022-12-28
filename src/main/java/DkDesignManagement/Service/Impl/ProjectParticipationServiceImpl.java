@@ -47,4 +47,9 @@ public class ProjectParticipationServiceImpl implements ProjectParticipationServ
     public ProjectParticipation getProjectParticipants(int projectID, int accountId) {
         return projectParticipationDao.getProjectParticipants(projectID, accountId);
     }
+
+    @Override
+    public List<ProjectParticipation> getProjectParticipantsByProjectId(int projectID) {
+        return projectParticipationDao.getProjectParticipantsByProjectId(projectID);
+    }
 }

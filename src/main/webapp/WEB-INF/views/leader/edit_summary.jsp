@@ -202,6 +202,7 @@
                             <td>
                                 <div class="container">
                                     <c:forEach items="${listImage}" var="image">
+                                        <div style="display: inline-block">
                                         <input type="checkbox" value="${image.id}"
                                                name="listFile">
                                         <button type="button" style="border-radius: 5px"
@@ -211,6 +212,7 @@
                                                  style="max-height: 100px; min-height: 100px;
                                                   max-width: 100px; min-width: 100px; object-fit: cover;">
                                         </button>
+                                        </div>
                                     </c:forEach>
                                 </div>
                             </td>

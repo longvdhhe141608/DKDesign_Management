@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static DkDesignManagement.Utils.Constant.HOST;
+import static DkDesignManagement.Utils.Constant.PROJECT_NAME;
+
 @Controller
 @RequestMapping(value = "/project")
 public class ViewProjectDetailController {
@@ -29,6 +32,9 @@ public class ViewProjectDetailController {
     HistoryService historyService;
     @Autowired
     private ImageAndFileService imageAndFileService;
+
+    @Autowired
+    NotificationService notificationService;
 
     @Autowired
     ProjectParticipationService projectParticipationService;
@@ -82,6 +88,7 @@ public class ViewProjectDetailController {
 
         //update
         Project project = projectService.getProject(projectId);
+        int oldStatus = project.getStatus();
         if (status == 3) {
             project.setEndDate(new Date());
         }
@@ -89,8 +96,45 @@ public class ViewProjectDetailController {
 
         projectService.editProject(project);
 
+        //send notification add member
+        String oldStatusName = "";
+        String newStatusName = "";
+        List<Status> statusList = statusService.getAllStatus();
+        for (Status statusEntity : statusList) {
+            if(statusEntity.getId()==oldStatus){
+                oldStatusName = statusEntity.getStatusProject();
+            }
+            if(statusEntity.getId()==status){
+                newStatusName = statusEntity.getStatusProject();
+            }
+        }
+
+        //add notification
+        List<ProjectParticipation> list = projectParticipationService.getProjectParticipantsByProjectId(projectId);
+        for(ProjectParticipation participation : list){
+            if(participation.getRoleId() != 2){
+                addNotificationChangeStatusProject( projectId,  participation.getAccountId(), oldStatusName ,  newStatusName);
+            }
+        }
+
+
+
 
         return view;
+    }
+
+    private void addNotificationChangeStatusProject(int projectId, int accountId,String oldStatusName , String newStatusName) {
+        String url = HOST + "/" + PROJECT_NAME + "/design/project/summary?id="+projectId;
+
+        Project project = projectService.getProject(projectId);
+
+        String message = "Dự án "+project.getProjectName() + " đã thay đổi trạng thái "+oldStatusName+" -> "+newStatusName+" ";
+
+        //check notification exits
+        // NotificationDto notificationDto = notificationService.getNotification(accountId, message, url);
+        Notification notification = new Notification(-1, new java.util.Date()
+                , message, accountId, projectId, url);
+        notificationService.addNotification(notification);
     }
 
     @RequestMapping(value = "/delete-file", method = RequestMethod.GET)
