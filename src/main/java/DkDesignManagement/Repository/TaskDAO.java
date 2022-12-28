@@ -699,7 +699,7 @@ public class TaskDAO {
     //Dash board
 
     public int countAllSubTaskByProjectId(int projectId, String designId) {
-        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status != 6 ";
+        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and t.status != 6 and t.status != 1 and t.status != 5 and t.status != 7";
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
         }
@@ -708,7 +708,7 @@ public class TaskDAO {
     }
 
     public int countAllSubTaskProcess(int projectId, String designId) {
-        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and (t.status = 2 or t.status = 3 ) and t.status != 6";
+        String sql = " select count(1) from task t where t.project_id =? and t.task_id is not null and (t.status = 2 or t.status = 3 ) and t.status != 6 and t.status != 1 and t.status != 5 and t.status != 7";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -718,7 +718,7 @@ public class TaskDAO {
     }
 
     public int countAllSubTaskCorrectDeadline(int projectId, String designId) {
-        String sql = " select count(*) from task t where t.deadline >= t.ended_date and t.project_id =? and t.status = 4 and t.status != 6";
+        String sql = " select count(*) from task t where t.deadline >= t.ended_date and t.project_id =? and t.task_id is not null and t.status = 4 and t.status != 6 and t.status != 1 and t.status != 5 and t.status != 7";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -730,9 +730,9 @@ public class TaskDAO {
     public int countAllSubTaskOverDeadline(int projectId, String designId) {
         String sql = " select count(*) from task t \n" +
                 "where (t.deadline < t.ended_date or  (t.deadline < CURDATE() and  t.ended_date is null  )) \n" +
-                "and t.project_id =? \n" +
+                "and t.project_id =? and t.task_id is not null \n" +
                 "and t.status != 5  " +
-                " and t.status != 6 ";
+                " and t.status != 6 and t.status != 1 and t.status != 7";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -744,9 +744,9 @@ public class TaskDAO {
     public int countAllSubTaskOverDeadlineAndFinish(int projectId, String designId) {
         String sql = " select count(*) from task t \n" +
                 "where (t.deadline < t.ended_date or  (t.deadline < CURDATE() and  t.ended_date is null  )) \n" +
-                "and t.project_id = ?\n" +
+                "and t.project_id = ? and t.task_id is not null\n" +
                 "and t.status =4 " +
-                " and t.status != 6 ";
+                " and t.status != 6 and t.status != 1 and t.status != 5 and t.status != 7";
 
         if (!ObjectUtils.isEmpty(designId)) {
             sql += " and t.assignedto = " + designId + "";
@@ -764,7 +764,7 @@ public class TaskDAO {
                 "and t.status != 4 \n" +
                 "and t.status != 5 \n" +
                 "and t.task_id is not null " +
-                " and t.status != 6 ";
+                " and t.status != 6 and t.status != 7";
         try {
 
             tasksList = jdbcTemplate.query(sql, new MapperTask(), projectId);
@@ -784,7 +784,7 @@ public class TaskDAO {
                 "and t.status != 4 \n" +
                 "and t.status != 5 \n" +
                 "and t.task_id is not null " +
-                " and t.status != 6 ";
+                " and t.status != 6 and t.status != 7";
         try {
 
             tasksList = jdbcTemplate.query(sql, new MapperTask(), accountId);

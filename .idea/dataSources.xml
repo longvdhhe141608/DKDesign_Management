@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="dkdesignmanagement@103.179.189.35" uuid="4599d319-dfa9-41a0-8a15-17af1e278952">
+    <data-source source="LOCAL" name="@localhost" uuid="987bc4ca-c714-485b-a41f-afe677eb55fa">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <configured-by-url>true</configured-by-url>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://103.179.189.35:3306/dkdesignmanagement?allowPublicKeyRetrieval=true&amp;useSSL=false</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
