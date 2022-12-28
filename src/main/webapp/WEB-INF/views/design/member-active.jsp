@@ -78,6 +78,10 @@
                 <div class="content-function-member">
                     <div class="function-one">
 
+                        <input style="margin-right: 10px;" type="text" placeholder="Tên thành viên" name="project-id"
+                               hidden value="${project.id}">
+                        <input style="margin-right: 10px;" type="text" placeholder="Tên thành viên" name="pageNo"
+                               hidden value="0">
                     </div>
                     <div style="display: flex; justify-content: end;margin-bottom: 10px">
                         <div class="function-two" style="margin-right:20px ;">
@@ -96,8 +100,7 @@
                                 <div class="wap_search">
                                     <input style="margin-right: 10px;" type="text" class="search_term"
                                            placeholder="Tên thành viên" name="textSearch">
-                                    <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="Tên thành viên" name="project-id" hidden value="${project.id}">
+
                                     <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                                 </div>
                             </div>
