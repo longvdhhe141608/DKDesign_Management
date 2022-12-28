@@ -132,7 +132,7 @@
                             <button type="submit" class="btn btn-secondary">Hủy bỏ</button>
                             <input type="text" hidden="" name="taskId" value="${task.taskId}">
                             <input type="text" hidden="" name="operation" value="cancel">
-                            <input required name="description" class="info-text" value="" placeholder="Ghi chú">
+                            <input style="padding: 4px" required name="description" class="info-text" value="" placeholder="Ghi chú">
                         </form>
 
                     </div>
