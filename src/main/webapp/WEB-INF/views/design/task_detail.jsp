@@ -80,7 +80,7 @@
                         <h2 style="color:#055160;font-size: 20px; margin: 0; padding: 0;">Đã hoàn thành</h2>
                     </div>
                 </c:if>
-                <c:if test="${tasks.status == 5}">
+                <c:if test="${tasks.status == 5 || tasks.status == 7}">
                     <div class="alert alert-danger" role="alert" style="width: 250px;">
                         <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
                     </div>
