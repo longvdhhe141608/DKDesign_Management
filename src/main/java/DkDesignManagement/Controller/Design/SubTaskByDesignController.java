@@ -256,7 +256,7 @@ public class SubTaskByDesignController {
             statusTask = Integer.parseInt(statusID);
         }
 
-        String textSearch = request.getParameter("textSearch");
+        String textSearch = request.getParameter("textSearch").trim();
 
         int totalSubTaskWait = taskService.totalTaskWait(project.getId(), statusTask, textSearch, account.getId());
         int totalPages = (totalSubTaskWait % 10 == 0) ? totalSubTaskWait / 10 : totalSubTaskWait / 10 + 1;

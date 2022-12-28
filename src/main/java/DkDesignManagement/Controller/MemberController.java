@@ -80,7 +80,7 @@ public class MemberController {
         Project project = projectService.getProject(id);
 
         int role = Integer.parseInt(request.getParameter("roleSearch"));
-        String name = request.getParameter("nameSearch");
+        String name = request.getParameter("nameSearch").trim();
 
         List<Member> memberList = memberService.searchMemberInProject(projectid, role, name);
         view.addObject("memberList", memberList);

@@ -60,15 +60,15 @@ public class MemberDao {
                 "FROM `employees` JOIN `accounts` ON `employees`.`id_acc` = `accounts`.`id` JOIN `project_participation` ON `accounts`.`id` = `project_participation`.`account_id`\n" +
                 " WHERE `project_participation`.`project_id` =? ";
         if (role != 0) {
-            sql += " AND `accounts`.`role_id` = " + role;
+            sql += " AND `project_participation`.`role_id` = " + role;
         } else {
-            sql += " AND `accounts`.`role_id` <>1 ";
+            sql += " AND `project_participation`.`role_id` <> 1 ";
         }
         if (!name.isEmpty()) {
             sql += " AND REPLACE(`employees`.`name`, 'Đ', 'D') like '%" + name + "%' ";
         }
         sql += " GROUP BY `accounts`.`role_id`, `employees`.`id` " +
-                "ORDER BY `accounts`.`role_id` ASC, `employees`.`id` ASC";
+                " ORDER BY `accounts`.`role_id` ASC, `employees`.`id` ASC;";
         List<Member> memberList = jdbcTemplate.query(sql, new MapperMember(), projectId);
         return memberList;
     }

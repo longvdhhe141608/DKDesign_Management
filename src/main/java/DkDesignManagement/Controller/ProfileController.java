@@ -73,7 +73,7 @@ public class ProfileController {
         HttpSession session = request.getSession();
         Account account = (Account) session.getAttribute("loginUser");
         int id = Integer.parseInt(request.getParameter("userid"));
-        String name = request.getParameter("name");
+        String name = request.getParameter("name").trim();
         String address = request.getParameter("address").trim();
         int gender = Integer.parseInt(request.getParameter("gender"));
         Date dob = DateUtils.covertStringToDate(request.getParameter("dob"));
