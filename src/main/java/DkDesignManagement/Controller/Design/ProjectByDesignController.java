@@ -57,7 +57,7 @@ public class ProjectByDesignController {
 
 
         Account account = (Account) session.getAttribute("loginUser");
-        String textSearch = request.getParameter("textSearch");
+        String textSearch = request.getParameter("textSearch").trim();
         String date = request.getParameter("date");
 
         ProjectPageResponse projectPageResponse = projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
@@ -148,7 +148,7 @@ public class ProjectByDesignController {
         }
 
         String roleID = (request.getParameter("role"));
-        String textSearch = request.getParameter("textSearch");
+        String textSearch = request.getParameter("textSearch").trim();
 
         view.addObject("project-id", projectID);
         view.addObject("pageNo", page);
