@@ -51,7 +51,7 @@ public class ProjectController {
         }
 
         Account account = (Account) session.getAttribute("loginUser");
-        String textSearch = request.getParameter("textSearch");
+        String textSearch = request.getParameter("textSearch").trim();
         String date = request.getParameter("date");
 
         ProjectPageResponse projectPageResponse = projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
