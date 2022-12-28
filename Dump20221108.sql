@@ -485,7 +485,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,'Mở','Đang thực hiện','Đang xử lí','Chưa phê duyệt','Hiện'),(2,'Chặn','Đang bàn giao','Đã đáp ứng','Đang thực hiện','Ẩn'),(3,NULL,'Đã hoàn thành','Đã xóa','Chờ phê duyệt','Đã xóa'),(4,NULL,'Đã xóa','Chưa được đáp ứng','Đã hoàn thành',NULL),(5,NULL,NULL,NULL,'Hủy bỏ',NULL),(6,NULL,NULL,NULL,'Đã xóa',NULL),(7,NULL,NULL,NULL,'Hủy bỏ khi xóa thành viên',NULL);
+INSERT INTO `status` VALUES (1,'Mở','Đang thực hiện','Đang xử lí','Chưa phê duyệt','Hiện'),(2,'Chặn','Đang bàn giao','Đã đáp ứng','Đang thực hiện','Ẩn'),(3,NULL,'Đã hoàn thành','Đã xóa','Chờ phê duyệt','Đã xóa'),(4,NULL,'Đã xóa','Chưa được đáp ứng','Đã hoàn thành',NULL),(5,NULL,NULL,NULL,'Hủy bỏ',NULL),(6,NULL,NULL,NULL,'Đã xóa',NULL),(7,NULL,NULL,NULL,'Hủy bỏ do thành viên bị xóa',NULL);
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
