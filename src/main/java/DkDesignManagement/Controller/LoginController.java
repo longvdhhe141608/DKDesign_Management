@@ -125,7 +125,7 @@ public class LoginController {
                 String status = mailService.sendForgotPassEmail(email, account.getUsername(), newPassword, employee.getName());
                 if (status.equals("success")) {
                     //update DB
-                    accountService.changePassword(employee.getId_acc(), newPassword);
+                    accountService.changePassword(employee.getId_acc(), toMd5(newPassword));
                 } else {
                     throw new Exception("có lỗi khi gửi mail");
                 }
