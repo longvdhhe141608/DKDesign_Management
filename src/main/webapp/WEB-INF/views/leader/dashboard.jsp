@@ -103,7 +103,7 @@
                     </div>
                     <div>
                         </p>
-                        <h4>${dashboardResponse.countSubTaskProcess}</h4>
+                        <h4>${dashboardResponse.countSubTaskProcess - dashboardResponse.countOverDeadline}</h4>
                     </div>
                 </div>
                 <div class="col-2 row-dashboard">
@@ -148,7 +148,7 @@
 </script>
 <script>
     var xValues = ["Công việc đang làm", "Công việc hoàn thành đúng thời hạn", "Công việc trễ hạn", "Công việc hoàn thành chậm tiến độ"];
-    var yValues = [${dashboardResponse.countSubTaskProcess}, ${dashboardResponse.countCorrectDeadline}, ${dashboardResponse.countOverDeadline}, ${dashboardResponse.countOverDeadlineDoneTask}];
+    var yValues = [${dashboardResponse.countSubTaskProcess - dashboardResponse.countOverDeadline}, ${dashboardResponse.countCorrectDeadline}, ${dashboardResponse.countOverDeadline}, ${dashboardResponse.countOverDeadlineDoneTask}];
     var barColors = [
         "#b91d47",
         "#00aba9",

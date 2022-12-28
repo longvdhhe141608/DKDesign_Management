@@ -84,17 +84,17 @@
             <div class="my-task-search">
                 <form action="plan_approval" method="get" style="display: flex" >
                     <input hidden name="id" value="${projectId}" >
-                <div class="my-task-search-name" style="margin-right:10px ;">
-                    <div class="dropdown">
-                            <select style="height: 38px" name="accountId" class="btn btn-secondary dropdown-toggle">
-                                <option value=""> Tất cả</option>
-                                <c:forEach items="${listAccount}" var="account">
-                                    <option value="${account.id}" ${account.id== accountId ? 'selected' : ''} > ${account.username}</option>
-                                </c:forEach>
-                            </select>
-                    </div>
+<%--                <div class="my-task-search-name" style="margin-right:10px ;">--%>
+<%--                    <div class="dropdown">--%>
+<%--                            <select style="height: 38px" name="accountId" class="btn btn-secondary dropdown-toggle">--%>
+<%--                                <option value=""> Tất cả</option>--%>
+<%--                                <c:forEach items="${listAccount}" var="account">--%>
+<%--                                    <option value="${account.id}" ${account.id== accountId ? 'selected' : ''} > ${account.username}</option>--%>
+<%--                                </c:forEach>--%>
+<%--                            </select>--%>
+<%--                    </div>--%>
 
-                </div>
+<%--                </div>--%>
                 <div class="">
                     <div class="function_search">
 

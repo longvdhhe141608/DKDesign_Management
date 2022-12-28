@@ -71,22 +71,21 @@
             <div class="my-task-search">
                 <form style="display: flex"
                       action="${pageContext.request.contextPath}/design/sub-task/pending-approval-sub-task">
-                    <div class="my-task-search-name" style="margin-right:10px ;">
-                        <div class="dropdown">
-                            <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
-                                    name="status">
-                                <option ${status == 0 ? "selected": ""} value="0">Tất cả</option>
-                                <c:forEach items="${statusList}" var="i">
-                                    <option ${status == i.id ? "selected": ""} value="${i.id}">${i.statusTask}</option>
-                                </c:forEach>
-                            </select>
-                        </div>
-                    </div>
+<%--                    <div class="my-task-search-name" style="margin-right:10px ;">--%>
+<%--                        <div class="dropdown">--%>
+<%--                            <select style="height: 38px" class="btn btn-secondary dropdown-toggle"--%>
+<%--                                    name="status">--%>
+<%--                                <option ${status == 0 ? "selected": ""} value="0">Tất cả</option>--%>
+<%--                                <c:forEach items="${statusList}" var="i">--%>
+<%--                                    <option ${status == i.id ? "selected": ""} value="${i.id}">${i.statusTask}</option>--%>
+<%--                                </c:forEach>--%>
+<%--                            </select>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                     <div class="">
                         <div class="function_search">
                             <form action="">
                                 <div class="wap_search">
-
                                     <input style="margin-right: 10px;" type="text" class="search_term"
                                            placeholder="Tên công việc" name="textSearch" value="${textSearch}">
                                     <input style="margin-right: 10px;" type="text" class="search_term"
@@ -98,7 +97,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
         <div>
             <table class="table table-bordered">
