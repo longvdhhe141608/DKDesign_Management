@@ -4,46 +4,44 @@ function checkvalidate(id) {
 
     var start = form.querySelector('#inputstartdate');
     var end = form.querySelector('#inputenddate');
-    var error = form.querySelectorAll('.error');
-    var today = new Date();
+
+
     var startdate = new Date(start.value);
     var enddate = new Date(end.value);
     var input = form.querySelectorAll('.info-text');
-    let numberprocess = 0;
-    console.log(today);
-    console.log(startdate);
-    console.log(enddate);
+    var error = form.querySelectorAll('.error');
+
 
     let numberEmpty = 0;
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
-    numberdate = checkdate(today, startdate, enddate);
-    let numberchecknumber = 0;
-    numberchecknumber = checkNumber(input);
+    numberdate = checkdate( startdate, enddate);
+    // let numberchecknumber = 0;
+    // numberchecknumber = checkNumber(input);
+    let numberprocess = 0;
 
 
 
 
 
-
-    function checkNumber(input) {
-        let a = 0;
-        if (input[3].value.length > 0 ) {
-            for (var i = 0; i < input.length; i++) {
-                if (isNaN(input[3].value.trim())) {
-                    a++;
-                    error[3].innerHTML = "Chỉ được nhập số";
-
-                } else if (input[3].value <= 0) {
-                    a++;
-                    error[3].innerHTML = "Cần nhập số lớn hơn 0";
-
-                }
-
-            }
-        }
-        return a;
-    }
+    // function checkNumber(input) {
+    //     let a = 0;
+    //     if (input[3].value.length > 0 ) {
+    //         for (var i = 0; i < input.length; i++) {
+    //             if (isNaN(input[3].value.trim())) {
+    //                 a++;
+    //                 error[3].innerHTML = "Chỉ được nhập số";
+    //
+    //             } else if (input[3].value <= 0) {
+    //                 a++;
+    //                 error[3].innerHTML = "Cần nhập số lớn hơn 0";
+    //
+    //             }
+    //
+    //         }
+    //     }
+    //     return a;
+    // }
 
     function checkEmpty(input) {
         let a = 0;
@@ -73,11 +71,10 @@ function checkvalidate(id) {
         // }
         return a;
     }
-    console.log(numberEmpty);
 
-    // console.log(startdate.getFullYear());
-    // console.log(today.getFullYear());
-    function checkdate(today, startdate, enddate) {
+    console.log(startdate.getFullYear());
+
+    function checkdate( startdate, enddate) {
         let b = 0;
 
         if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 == startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
@@ -91,9 +88,11 @@ function checkvalidate(id) {
         }
         return b;
     }
-    console.log(numberdate);
-    numberprocess = numberEmpty  + numberdate + numberchecknumber;
+
+    numberprocess = numberEmpty + numberdate;
     console.log(numberprocess);
+
+
     if (numberprocess > 0) {
         return false;
     } else {
