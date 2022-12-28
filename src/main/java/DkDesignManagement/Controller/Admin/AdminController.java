@@ -99,7 +99,7 @@ public class AdminController {
                 }
             });
 
-            accountService.addNewAccount(username, password, role);
+            accountService.addNewAccount(username, toMd5(password), role);
             Account account = accountService.getAccount(username);
             memberService.addNewMember(name, mail, account.getId());
             return new ModelAndView("redirect:/admin/memberlist");

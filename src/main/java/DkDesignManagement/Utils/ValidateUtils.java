@@ -56,10 +56,9 @@ public class ValidateUtils {
                 .mapToObj(c -> (char) c)
                 .collect(Collectors.toList());
         Collections.shuffle(pwdChars);
-        String pass = pwdChars.stream()
+        String password = pwdChars.stream()
                 .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
                 .toString();
-        String password = toMd5(pass);
         return password;
     }
 
