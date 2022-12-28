@@ -45,7 +45,14 @@ public class PlanController {
         }
 
         String accountId = request.getParameter("accountId");
-        String name = request.getParameter("name").trim();
+        if(!ObjectUtils.isEmpty(accountId)){
+            accountId = accountId.trim();
+        }
+
+        String name = request.getParameter("name");
+        if(!ObjectUtils.isEmpty(name)){
+            name = name.trim();
+        }
 
         TaskPageResponse taskPageResponse = taskService.getListSubTask(page, id, NOT_APPROVED_TASK_STATUS, name, accountId);
         view.addObject("project", project);
