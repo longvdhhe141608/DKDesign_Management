@@ -49,7 +49,7 @@ public class ProjectParticipationDao {
                 "join roles r on r.id = pp.role_id\n" +
                 "join employees e on a.id = e.id_acc where pp.project_id = ? ";
 
-        if (!ObjectUtils.isEmpty(roleID) && !roleID.equals("default")) {
+        if (!ObjectUtils.isEmpty(roleID) && !roleID.equals("0")) {
             sql += " and r.id = " + roleID + " ";
         }
 
@@ -78,7 +78,7 @@ public class ProjectParticipationDao {
                 "join roles r on r.id = pp.role_id\n" +
                 "join employees e on a.id = e.id_acc where pp.project_id = ? ";
 
-        if (!ObjectUtils.isEmpty(roleID) && !roleID.equals("default")) {
+        if (!ObjectUtils.isEmpty(roleID) && !roleID.equals("0")) {
             sql += " and r.id = " + roleID + " ";
         }
 

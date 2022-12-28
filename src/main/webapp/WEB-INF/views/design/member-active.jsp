@@ -78,13 +78,17 @@
                 <div class="content-function-member">
                     <div class="function-one">
 
+                        <input style="margin-right: 10px;" type="text" placeholder="Tên thành viên" name="project-id"
+                               hidden value="${project.id}">
+                        <input style="margin-right: 10px;" type="text" placeholder="Tên thành viên" name="pageNo"
+                               hidden value="1">
                     </div>
                     <div style="display: flex; justify-content: end;margin-bottom: 10px">
                         <div class="function-two" style="margin-right:20px ;">
                             <div class="dropdown">
                                 <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
                                         name="role">
-                                    <option ${role == "default" ? "selected" :""} value="default"> Tất cả</option>
+                                    <option ${role == "0" ? "selected" :""} value="0"> Tất cả</option>
                                     <c:forEach items="${roles}" var="i" begin="1" end="3" step="1">
                                         <option ${role == i.id ? "selected" :""} value="${i.id}">${i.name}</option>
                                     </c:forEach>
@@ -96,8 +100,7 @@
                                 <div class="wap_search">
                                     <input style="margin-right: 10px;" type="text" class="search_term"
                                            placeholder="Tên thành viên" name="textSearch">
-                                    <input style="margin-right: 10px;" type="text" class="search_term"
-                                           placeholder="Tên thành viên" name="project-id" hidden value="${project.id}">
+
                                     <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
                                 </div>
                             </div>
