@@ -70,15 +70,15 @@ public class EditSummaryController {
         Account account = (Account) session.getAttribute("loginUser");
         //get value
         int id = Integer.parseInt(request.getParameter("idProject"));
-        String name = request.getParameter("name");
+        String name = request.getParameter("name").trim();
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
         Date closureDate = DateUtils.covertStringToDate(request.getParameter("closureDate"));
         Date endDate = DateUtils.covertStringToDate(request.getParameter("endDate"));
-        String customerName = request.getParameter("customerName");
-        String address = request.getParameter("address");
+        String customerName = request.getParameter("customerName").trim();
+        String address = request.getParameter("address").trim();
         String phone = request.getParameter("phone");
-        String detail = request.getParameter("detail");
+        String detail = request.getParameter("detail").trim();
         Long constructionArea = Long.parseLong(request.getParameter("constructionArea"));
         Long expectedCost = Long.parseLong(request.getParameter("expectedCost"));
         int status = Integer.parseInt(request.getParameter("status"));

@@ -11,6 +11,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,6 +54,10 @@ public class AdminController {
 
         int role = Integer.parseInt(request.getParameter("roleSearch"));
         String name = request.getParameter("nameSearch");
+
+        if(!ObjectUtils.isEmpty(name)){
+            name = name.trim();
+        }
 
         List<Member> memberList = memberService.getAllMemberInSearch(role, name);
         view.addObject("memberList", memberList);

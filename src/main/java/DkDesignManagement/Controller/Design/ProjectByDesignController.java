@@ -4,10 +4,10 @@ import DkDesignManagement.Entity.Account;
 import DkDesignManagement.Entity.ImageAndFile;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Roles;
-import DkDesignManagement.Repository.RoleDao;
-import DkDesignManagement.Service.*;
 import DkDesignManagement.Model.MemberActiveDto;
 import DkDesignManagement.Model.ProjectPageResponse;
+import DkDesignManagement.Repository.RoleDao;
+import DkDesignManagement.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -57,7 +57,12 @@ public class ProjectByDesignController {
 
 
         Account account = (Account) session.getAttribute("loginUser");
-        String textSearch = request.getParameter("textSearch").trim();
+        String textSearch = request.getParameter("textSearch");
+
+        if(!ObjectUtils.isEmpty(textSearch)){
+            textSearch = textSearch.trim();
+        }
+
         String date = request.getParameter("date");
 
         ProjectPageResponse projectPageResponse = projectService.getAllProjectByAcc(account.getId(), textSearch, date, page);
@@ -86,7 +91,7 @@ public class ProjectByDesignController {
         System.out.println(imageAndFiles.size() + "ssssssssssssssssssssssssss");
         session.setAttribute("project", project);
         view.addObject("project", project);
-        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project",project.getId()));
+        view.addObject("listHistory", historyService.getAlLRevisionHistoryOfTable(project.getId(), "project", project.getId()));
         return view;
     }
 
@@ -110,6 +115,10 @@ public class ProjectByDesignController {
 
         String roleID = (request.getParameter("role"));
         String textSearch = request.getParameter("textSearch");
+
+        if (!ObjectUtils.isEmpty(textSearch)) {
+            textSearch = textSearch.trim();
+        }
 
         int totalMember = projectParticipationService.totalAllMember(project.getId(), roleID, textSearch);
         int totalPages = (totalMember % 10 == 0) ? totalMember / 10 : totalMember / 10 + 1;
@@ -148,7 +157,11 @@ public class ProjectByDesignController {
         }
 
         String roleID = (request.getParameter("role"));
-        String textSearch = request.getParameter("textSearch").trim();
+        String textSearch = request.getParameter("textSearch");
+
+        if (!ObjectUtils.isEmpty(textSearch)) {
+            textSearch = textSearch.trim();
+        }
 
         view.addObject("project-id", projectID);
         view.addObject("pageNo", page);

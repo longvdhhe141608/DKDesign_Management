@@ -3,11 +3,11 @@ package DkDesignManagement.Controller;
 import DkDesignManagement.Entity.Notification;
 import DkDesignManagement.Entity.Project;
 import DkDesignManagement.Entity.Task;
+import DkDesignManagement.Model.TaskPageResponse;
 import DkDesignManagement.Service.AccountService;
 import DkDesignManagement.Service.NotificationService;
 import DkDesignManagement.Service.ProjectService;
 import DkDesignManagement.Service.TaskService;
-import DkDesignManagement.Model.TaskPageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import javax.servlet.http.HttpServletRequest;
 
 import static DkDesignManagement.Utils.Constant.*;
@@ -44,9 +45,9 @@ public class PlanController {
         }
 
         String accountId = request.getParameter("accountId");
-        String name = request.getParameter("name");
+        String name = request.getParameter("name").trim();
 
-        TaskPageResponse taskPageResponse = taskService.getListSubTask(page ,id, NOT_APPROVED_TASK_STATUS,name,accountId);
+        TaskPageResponse taskPageResponse = taskService.getListSubTask(page, id, NOT_APPROVED_TASK_STATUS, name, accountId);
         view.addObject("project", project);
         view.addObject("page", page);
         view.addObject("listTask", taskPageResponse.getTasksList());
@@ -74,7 +75,7 @@ public class PlanController {
         int design = task.getAssignToId();
 
         //add notification send leader
-        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId()+"&section-id="+task.getSectionId()+"&task-id="+task.getTaskfId()+"&sub-task-id="+task.getTaskId();
+        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId() + "&section-id=" + task.getSectionId() + "&task-id=" + task.getTaskfId() + "&sub-task-id=" + task.getTaskId();
         String message = "Sub-task của bạn đã được phê duyệt";
         Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
         notificationService.addNotification(notification);
@@ -100,12 +101,10 @@ public class PlanController {
         int design = task.getAssignToId();
 
         //add notification send leader
-        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId()+"&section-id="+task.getSectionId()+"&task-id="+task.getTaskfId()+"&sub-task-id="+task.getTaskId();
+        String url = HOST + "/" + PROJECT_NAME + "/design/sub-task/view-sub-task-detail?project-id=" + task.getProjectId() + "&section-id=" + task.getSectionId() + "&task-id=" + task.getTaskfId() + "&sub-task-id=" + task.getTaskId();
         String message = "Sub-task của bạn đã bị từ chối";
         Notification notification = new Notification(-1, new java.util.Date(), message, design, task.getProjectId(), url);
         notificationService.addNotification(notification);
-
-
 
         return view;
     }
