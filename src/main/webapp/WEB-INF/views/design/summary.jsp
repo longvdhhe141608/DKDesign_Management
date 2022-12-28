@@ -103,7 +103,7 @@
                         <td class="col-6">Thời gian bắt đầu:</td>
                         <td class="col-6">
                             <fmt:formatDate value="${project.startDate}" var="std" pattern="dd/MM/yyyy"/>
-                            ${crd}
+                            ${std}
                         </td>
                     </tr>
                     <tr>
