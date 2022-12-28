@@ -99,7 +99,7 @@
                         <h2 style="color:#055160;font-size: 20px; margin: 0; padding: 0;">Đã hoàn thành</h2>
                     </div>
                 </c:if>
-                <c:if test="${task.taskStatus == 5}">
+                <c:if test="${task.taskStatus == 5 || task.taskStatus == 7}">
                     <div class="alert alert-danger" role="alert" style="width: 250px;">
                         <h2 style="color:#842029;font-size: 20px; margin: 0; padding: 0;">Hủy bỏ</h2>
                     </div>
@@ -178,7 +178,7 @@
                             Đã xóa
                         </c:if>
                         <c:if test="${task.taskStatus == 7}">
-                            Đã Hủy
+                            Đã hủy
                         </c:if>
                     </td>
                 </tr>
