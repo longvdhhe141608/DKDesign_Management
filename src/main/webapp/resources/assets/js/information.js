@@ -4,25 +4,23 @@ function checkvalidate(id) {
     var regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
     var regexemail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     var regexCCCD = /[0-9]{10,12}$/;
-    var name = form.querySelector('#inputaddname');
+
     var start = form.querySelector('#inputstartdate');
-    var end = form.querySelector('#inputenddate');
+
     var error = form.querySelectorAll('.error');
     var today = new Date();
     var startdate = new Date(start.value);
-    var enddate = new Date(end.value);
+
     var input = form.querySelectorAll('.info-text');
     let numberprocess = 0;
-    console.log(today);
-    console.log(startdate);
-    console.log(enddate);
+
 
     let numberEmpty = 0;
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
     numberdate = checkdate(today, startdate);
-    let numberchecknumber = 0;
-    numberchecknumber = checkNumber(input);
+    // let numberchecknumber = 0;
+    // numberchecknumber = checkNumber(input);
     let numbercheckphone = 0;
     numbercheckphone = checkNumberPhone(input, regex);
     let numbercheckemail = 0;
@@ -157,7 +155,7 @@ function checkvalidate(id) {
         return b;
     }
     console.log(numberdate);
-    numberprocess = numberEmpty + numberchecknumber + numbercheckphone + numberdate + numbercheckemail+numbercheckcccd;
+    numberprocess = numberEmpty  + numbercheckphone + numberdate + numbercheckemail+numbercheckcccd;
     console.log(numberprocess);
     if (numberprocess > 0) {
         return false;
