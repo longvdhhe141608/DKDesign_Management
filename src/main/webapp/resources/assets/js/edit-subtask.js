@@ -1,26 +1,26 @@
 function checkvalidate(id) {
     var form = document.querySelector(id);
     console.log(form);
-    var regex = /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/;
-    var name = form.querySelector('#inputaddname');
+
+
     var start = form.querySelector('#inputstartdate');
     var end = form.querySelector('#inputenddate');
     var error = form.querySelectorAll('.error');
-    var today = new Date();
+
     var startdate = new Date(start.value);
     var enddate = new Date(end.value);
     var input = form.querySelectorAll('.info-text');
     let numberprocess = 0;
-    console.log(today);
+
     console.log(startdate);
     console.log(enddate);
 
     let numberEmpty = 0;
     numberEmpty = checkEmpty(input);
     let numberdate = 0;
-    numberdate = checkdate(today, startdate, enddate);
-    let numberdate1 = 0;
-    numberdate1 = checkdate1(today, startdate, enddate);
+    numberdate = checkdate( startdate, enddate);
+    // let numberdate1 = 0;
+    // numberdate1 = checkdate1(today, startdate, enddate);
     let numberchecknumber = 0;
     numberchecknumber = checkNumber(input);
     // let numbercheckphone = 0;
@@ -98,7 +98,7 @@ function checkvalidate(id) {
 
     // console.log(startdate.getFullYear());
     // console.log(today.getFullYear());
-    function checkdate(today, startdate, enddate) {
+    function checkdate(startdate, enddate) {
         let b = 0;
         if (enddate.getMonth() + 1 > startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() || enddate.getDate() >= startdate.getDate() && enddate.getMonth() + 1 == startdate.getMonth() + 1 && enddate.getFullYear() == startdate.getFullYear() || enddate.getFullYear() > startdate.getFullYear()) {
 

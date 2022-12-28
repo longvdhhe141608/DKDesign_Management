@@ -33,20 +33,20 @@
                 <div style="display: flex; justify-content: end; margin-bottom: 20px">
                     <form action="${pageContext.request.contextPath}/design/project/view-all-project" method="get"
                           style="display: flex; justify-content: end;">
-                        <div style="margin-right: 10px">
-                            <div class="dropdown">
-                                <%--                            <form action="${pageContext.request.contextPath}/design/project/search-by-year"--%>
-                                <%--                                  method="post">--%>
-                                <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle"
-                                        name="date">
-                                    <option ${status == 0 ? "selected":""} value="default">Tất cả</option>
-                                    <option ${status == 2022 ? "selected":""} value="2022">2022</option>
-                                    <option ${status == 2021 ? "selected":""} value="2021">2021</option>
-                                    <option ${status == 2020 ? "selected":""} value="2020">2020</option>
-                                    <option ${status == 2019 ? "selected":""} value="2019">2019</option>
-                                </select>
-                            </div>
-                        </div>
+<%--                        <div style="margin-right: 10px">--%>
+<%--                            <div class="dropdown">--%>
+<%--                                &lt;%&ndash;                            <form action="${pageContext.request.contextPath}/design/project/search-by-year"&ndash;%&gt;--%>
+<%--                                &lt;%&ndash;                                  method="post">&ndash;%&gt;--%>
+<%--                                <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle"--%>
+<%--                                        name="date">--%>
+<%--                                    <option ${status == 0 ? "selected":""} value="default">Tất cả</option>--%>
+<%--                                    <option ${status == 2022 ? "selected":""} value="2022">2022</option>--%>
+<%--                                    <option ${status == 2021 ? "selected":""} value="2021">2021</option>--%>
+<%--                                    <option ${status == 2020 ? "selected":""} value="2020">2020</option>--%>
+<%--                                    <option ${status == 2019 ? "selected":""} value="2019">2019</option>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                         <div class="">
                             <div class="function_search">
                                 <%--                            <form action="${pageContext.request.contextPath}/design/project/search-by-name"--%>

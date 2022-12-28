@@ -30,15 +30,15 @@
             </div>
         </div>
         <div class="header_left col-10">
-            <div class="search_box">
-                <form class="form-inline my-2 my-lg-0">
-                    <input style="width: 30rem;" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm"
-                           aria-label="Search"/>
-                    <button class="btn btn-primary" type="submit">
-                        Tìm kiếm
-                    </button>
-                </form>
-            </div>
+<%--            <div class="search_box">--%>
+<%--                <form class="form-inline my-2 my-lg-0">--%>
+<%--                    <input style="width: 30rem;" class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm"--%>
+<%--                           aria-label="Search"/>--%>
+<%--                    <button class="btn btn-primary" type="submit">--%>
+<%--                        Tìm kiếm--%>
+<%--                    </button>--%>
+<%--                </form>--%>
+<%--            </div>--%>
         </div>
         <div class="col-1 header-right">
             <div class="account">
