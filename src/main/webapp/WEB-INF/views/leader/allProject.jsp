@@ -154,17 +154,17 @@
 
                 <%--Tìm Kiếm Công Trình--%>
                 <form action="allProject" method="get" class="all-project-header-right">
-                    <div style="margin-right: 20px;">
-                        <div class="dropdown">
-                            <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle">
-                                <option value="default">Tất cả</option>
-                                <option value="2022">2022</option>
-                                <option value="2021">2021</option>
-                                <option value="2020">2020</option>
-                                <option value="2019">2019</option>
-                            </select>
-                        </div>
-                    </div>
+<%--                    <div style="margin-right: 20px;">--%>
+<%--                        <div class="dropdown">--%>
+<%--                            <select style="height: 38px" name="date" class="btn btn-secondary dropdown-toggle">--%>
+<%--                                <option value="default">Tất cả</option>--%>
+<%--                                <option value="2022">2022</option>--%>
+<%--                                <option value="2021">2021</option>--%>
+<%--                                <option value="2020">2020</option>--%>
+<%--                                <option value="2019">2019</option>--%>
+<%--                            </select>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                     <div>
                         <div class="function_search">
                             <div class="wap_search">
