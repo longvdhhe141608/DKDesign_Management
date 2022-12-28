@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -241,12 +242,23 @@
                                     </div>
                                 </div>
                                 <div class="col-1" style="border: 1px solid gray;">${task.assignToName}</div>
-                                <div class="col-2" style="border: 1px solid gray;">${task.startDate}</div>
-                                <div class="col-2" style="border: 1px solid gray;">${task.deadline}</div>
-                                <div class="col-2" style="border: 1px solid gray;">${task.endDate}</div>
+                                <div class="col-2" style="border: 1px solid gray;">
+                                    <fmt:formatDate value="${task.startDate}" var="std" pattern="dd/MM/yyyy"/>
+                                        ${std}
+                                </div>
+                                <div class="col-2" style="border: 1px solid gray;">
+                                    <fmt:formatDate value="${task.deadline}" var="dl" pattern="dd/MM/yyyy"/>
+                                        ${dl}
+                                </div>
+                                <div class="col-2" style="border: 1px solid gray;">
+                                    <c:if test="${task.taskStatus == 4}">
+                                        <fmt:formatDate value="${task.endDate}" var="ed" pattern="dd/MM/yyyy"/>
+                                        ${ed}
+                                    </c:if>
+                                </div>
                                 <div class="col-1" style="border: 1px solid gray;">
                                     <c:if test="${project.status == 1}">
-                                    <div style="display: flex;">
+                                        <div style="display: flex;">
                                             <c:if test="${task.listSubTask.size() == 0}">
                                                 <a href="${pageContext.request.contextPath}/edit-task?taskId=${task.taskId}">
                                                     <button><i class="fa-regular fa-pen-to-square"></i></button>
@@ -256,18 +268,18 @@
                                                 <button onclick="onUnavailable()"><i
                                                         class="fa-regular fa-pen-to-square"></i></button>
                                             </c:if>
-                                        <c:if test="${task.showFullIcon ==true}">
-                                            <button onclick="onClickDeleteTask(this.getAttribute('data-task-id'))"
-                                                    data-task-id="${task.taskId}">
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </button>
-                                        </c:if>
-                                        <c:if test="${task.showFullIcon ==false}">
-                                            <button onclick="onNoDelete()" >
-                                                <i class="fa-regular fa-trash-can"></i>
-                                            </button>
-                                        </c:if>
-                                    </div>
+                                            <c:if test="${task.showFullIcon ==true}">
+                                                <button onclick="onClickDeleteTask(this.getAttribute('data-task-id'))"
+                                                        data-task-id="${task.taskId}">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </c:if>
+                                            <c:if test="${task.showFullIcon ==false}">
+                                                <button onclick="onNoDelete()">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </button>
+                                            </c:if>
+                                        </div>
                                     </c:if>
                                 </div>
                             </div>
@@ -289,21 +301,32 @@
                                             </div>
                                         </div>
                                         <div class="col-1" style="border: 1px solid gray;">${subTask.assignToName}</div>
-                                        <div class="col-2" style="border: 1px solid gray;">${subTask.startDate}</div>
-                                        <div class="col-2" style="border: 1px solid gray;">${subTask.deadline}</div>
-                                        <div class="col-2" style="border: 1px solid gray;">${subTask.endDate}</div>
+                                        <div class="col-2" style="border: 1px solid gray;">
+                                            <fmt:formatDate value="${subTask.startDate}" var="sstd"
+                                                            pattern="dd/MM/yyyy"/>
+                                                ${sstd}
+
+                                        </div>
+                                        <div class="col-2" style="border: 1px solid gray;">
+                                            <fmt:formatDate value="${subTask.deadline}" var="sdl" pattern="dd/MM/yyyy"/>
+                                                ${sdl}
+                                        </div>
+                                        <div class="col-2" style="border: 1px solid gray;">
+                                            <fmt:formatDate value="${subTask.endDate}" var="sed" pattern="dd/MM/yyyy"/>
+                                                ${sed}
+                                        </div>
                                         <div class="col-1" style="border: 1px solid gray;">
-                                                <div style="display: flex; ">
-                                                    <c:if test="${project.status == 1}">
-                                                    <button>
+                                            <div style="display: flex; ">
+                                                <c:if test="${project.status == 1}">
+                                                    <button onclick="onUnavailableSub()">
                                                         <i class="fa-regular fa-pen-to-square"></i>
                                                     </button>
                                                     <button onclick="onClickDeleteSubTask(this.getAttribute('data-subtask-id'))"
                                                             data-subtask-id="${subTask.taskId}">
                                                         <i class="fa-regular fa-trash-can"></i>
                                                     </button>
-                                                    </c:if>
-                                                </div>
+                                                </c:if>
+                                            </div>
 
                                         </div>
                                     </div>
