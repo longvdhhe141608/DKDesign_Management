@@ -164,6 +164,11 @@
                                         <h2 style="color:#842029;font-size: 15px; margin: 0; padding: 0;">${i.statusTask}</h2>
                                     </div>
                                 </c:if>
+                                <c:if test="${i.status == 7}">
+                                    <div class="alert alert-danger" role="alert" style="width: 150px;">
+                                        <h2 style="color:#842029;font-size: 15px; margin: 0; padding: 0;">${i.statusTask}</h2>
+                                    </div>
+                                </c:if>
                             </td>
                             <td>${i.description}</td>
                         </tr>

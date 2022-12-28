@@ -114,7 +114,9 @@
                                     <td>
                                         <select name="assignId" class="btn btn-secondary dropdown-toggle">
                                             <c:forEach items="${listAccount}" var="account">
-                                                <option value="${account.id}"> ${account.username}</option>
+                                                <c:if test="${account.id != project.creator}">
+                                                    <option value="${account.id}"> ${account.username}</option>
+                                                </c:if>
                                             </c:forEach>
                                         </select>
                                     </td>

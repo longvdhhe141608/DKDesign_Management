@@ -29,12 +29,27 @@
         <div class="top-details">
             <div class="list-top">
                 <h3>${project.projectName}</h3>
-                <div class="btn project-detail" style="margin: 0; padding: 3px 6px 6px 10px">
-                    <select style="border-radius: 5px; padding: 6px;">
-                        <option class="btn btn-secondary">Đang thực hiện</option>
-                        <option class="btn btn-secondary" ${project.status==1?"selected":""}}>Đã hoàn thành</option>
-                    </select>
-                </div>
+                <form style="display: flex;" action="${pageContext.request.contextPath}/project/change-status"
+                      method="post">
+                    <input type="text" name="projectId" value="${project.id}" hidden="">
+                    <div class="btn project-detail" style="margin: 0; padding: 0px 6px 0px 10px;">
+                        <select name="statusId" class="btn btn-secondary dropdown-toggle" style="padding-bottom: 10px">
+                            <c:forEach items="${listStatus}" var="status">
+                                <option value="${status.id}" ${status.id== project.status ? 'selected' : ''} > ${status.statusProject}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                    <div>
+                        <c:if test="${sessionScope.loginUser.role_id == 2}">
+                            <c:if test="${project.status != 3 }">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                            </c:if>
+                            <c:if test="${project.status == 3 }">
+                                <button type="submit" class="btn btn-primary" disabled>Lưu</button>
+                            </c:if>
+                        </c:if>
+                    </div>
+                </form>
             </div>
             <div class="list-task-head">
                 <a class="test" href="${pageContext.request.contextPath}/project/summary?id=${task.projectId}"><input
@@ -47,7 +62,8 @@
                         class="btn btn-secondary"
                         type="button"
                         value="Duyệt công việc"></a>
-                <a class="test" href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
+                <a class="test"
+                   href="${pageContext.request.contextPath}/requirement/requirement-for-leader?id=${project.id}">
                     <input class="btn btn-secondary"
                            type="button"
                            value="Yêu cầu của khách hàng">
@@ -67,7 +83,7 @@
             </div>
         </div>
         <form id="add-sub-task" action="edit-task" method="post">
-            <input  type="text" hidden="" name="taskId" value="${task.taskId}">
+            <input type="text" hidden="" name="taskId" value="${task.taskId}">
             <div class="summary-main">
                 <div class="main-Quickview">
                     <div class="summary-main-header">
@@ -82,7 +98,9 @@
                             <td class="col-6">
                                 <select name="assignId" class="btn btn-secondary dropdown-toggle">
                                     <c:forEach items="${listAccount}" var="account">
-                                        <option value="${account.id}" ${account.id== task.assignToId ? 'selected' : ''} > ${account.username}</option>
+                                        <c:if test="${account.id != project.creator}">
+                                            <option value="${account.id}" ${account.id== task.assignToId ? 'selected' : ''} > ${account.username}</option>
+                                        </c:if>
                                     </c:forEach>
                                 </select>
                             </td>
@@ -98,14 +116,16 @@
                         <tr>
                             <td>Thời gian bắt đầu<label class="text-danger">*</label>:</td>
                             <td>
-                                <input id="inputstartdate" class="info-text" type="date" name="startDate" value="${task.startDate}">
+                                <input id="inputstartdate" class="info-text" type="date" name="startDate"
+                                       value="${task.startDate}">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Thời gian dự kiến kết thúc<label class="text-danger">*</label>:</td>
                             <td>
-                                <input id="inputenddate" class="info-text" type="date" name="deadline" value="${task.deadline}">
+                                <input id="inputenddate" class="info-text" type="date" name="deadline"
+                                       value="${task.deadline}">
                                 <div class="text-danger error"></div>
                             </td>
                         </tr>
@@ -113,7 +133,9 @@
                 </div>
                 <div class="btn-update-summary">
                     <button type="button" onclick="history.back()" class="btn btn-secondary">Hủy bỏ</button>
-                    <button onclick="return checkvalidate('#add-sub-task')" type="submit" class="btn-update btn btn-primary">Lưu</button>
+                    <button onclick="return checkvalidate('#add-sub-task')" type="submit"
+                            class="btn-update btn btn-primary">Lưu
+                    </button>
                 </div>
             </div>
         </form>
