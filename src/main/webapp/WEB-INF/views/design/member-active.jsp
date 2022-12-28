@@ -85,7 +85,7 @@
                                 <select style="height: 38px" class="btn btn-secondary dropdown-toggle"
                                         name="role">
                                     <option ${role == "default" ? "selected" :""} value="default"> Tất cả</option>
-                                    <c:forEach items="${roles}" var="i">
+                                    <c:forEach items="${roles}" var="i" begin="1" end="3" step="1">
                                         <option ${role == i.id ? "selected" :""} value="${i.id}">${i.name}</option>
                                     </c:forEach>
                                 </select>

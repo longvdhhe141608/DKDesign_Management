@@ -160,7 +160,7 @@ public class TaskController {
         Account account = (Account) session.getAttribute("loginUser");
 
         //get value
-        String name = request.getParameter("name");
+        String name = request.getParameter("name").trim();
         int assignId = Integer.parseInt(request.getParameter("assignId"));
         int sectionId = Integer.parseInt(request.getParameter("sectionId"));
         Date startDate = DateUtils.covertStringToDate(request.getParameter("startDate"));
@@ -217,7 +217,7 @@ public class TaskController {
 
         //get value
         int projectId = Integer.parseInt(request.getParameter("projectId"));
-        String name = request.getParameter("name");
+        String name = request.getParameter("name").trim();
         int assignId = Integer.parseInt(request.getParameter("assignTo"));
         int requirementId = Integer.parseInt(request.getParameter("requirementId"));
         int fileNumber = Integer.parseInt(request.getParameter("fileNumber"));

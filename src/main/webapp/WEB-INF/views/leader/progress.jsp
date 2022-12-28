@@ -80,32 +80,32 @@
         </div>
         <div>
             <h4>Tiến độ công trình</h4>
-            <div class="my-task-search">
-                <div class="my-task-search-name" style="margin-right:10px ;">
-                    <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                           aria-expanded="false">
-                            Tìm kiếm
-                        </a>
-                        <div class=" dropdown-menu">
-                            <a class="dropdown-item" href="#">Tên công trình</a>
-                            <a class=" dropdown-item" href="#">Thời gian</a>
-                            <a class=" dropdown-item" href="#">Loại công trình</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="function_search">
-                        <form action="">
-                            <div class="wap_search">
-                                <input style="margin-right: 10px;" type="text" class="search_term"
-                                       placeholder="Tên công việc">
-                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+<%--            <div class="my-task-search">--%>
+<%--                <div class="my-task-search-name" style="margin-right:10px ;">--%>
+<%--                    <div class="dropdown">--%>
+<%--                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-toggle="dropdown"--%>
+<%--                           aria-expanded="false">--%>
+<%--                            Tìm kiếm--%>
+<%--                        </a>--%>
+<%--                        <div class=" dropdown-menu">--%>
+<%--                            <a class="dropdown-item" href="#">Tên công trình</a>--%>
+<%--                            <a class=" dropdown-item" href="#">Thời gian</a>--%>
+<%--                            <a class=" dropdown-item" href="#">Loại công trình</a>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="">--%>
+<%--                    <div class="function_search">--%>
+<%--                        <form action="">--%>
+<%--                            <div class="wap_search">--%>
+<%--                                <input style="margin-right: 10px;" type="text" class="search_term"--%>
+<%--                                       placeholder="Tên công việc">--%>
+<%--                                <button type="submit" class="btn btn-primary"> Tìm kiếm</button>--%>
+<%--                            </div>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
         <div>
             <table class="table table-bordered table-progress">
