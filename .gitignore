@@ -8,3 +8,7 @@
 
 
 *.war
+/bin/
+/target/
+.classpath
+.project
